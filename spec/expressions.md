@@ -125,12 +125,12 @@ Následující tabulka shrnuje všechny operátory v pořadí dle priority od ne
 | [Operátory relační a typové zkoušky](expressions.md#relational-and-type-testing-operators) | Rovnost                    | `==`  `!=`    | 
 | [Logické operátory](expressions.md#logical-operators)                                         | Logický operátor AND                 | `&`           | 
 | [Logické operátory](expressions.md#logical-operators)                                         | Logický operátor XOR                 | `^`           | 
-| [Logické operátory](expressions.md#logical-operators)                                         | Logický operátor OR                  | `|`           |
+| [Logické operátory](expressions.md#logical-operators)                                         | Logický operátor OR                  | <code>&#124;</code>           |
 | [Podmíněné logické operátory](expressions.md#conditional-logical-operators)                 | Podmiňovací operátor AND             | `&&`          | 
-| [Podmíněné logické operátory](expressions.md#conditional-logical-operators)                 | Podmiňovací operátor OR              | `||`          | 
+| [Podmíněné logické operátory](expressions.md#conditional-logical-operators)                 | Podmiňovací operátor OR              | <code>&#124;&#124;</code>          | 
 | [Null operátor sloučení](expressions.md#the-null-coalescing-operator)                   | Nulové sloučení             | `??`          | 
 | [Podmíněný operátor](expressions.md#conditional-operator)                                   | Podmiňovací operátor                 | `?:`          | 
-| [Operátory přiřazení](expressions.md#assignment-operators), [výrazy anonymní funkce](expressions.md#anonymous-function-expressions)  | Přiřazení a výraz lambda | `=`  `*=`  `/=`  `%=`  `+=`  `-=`  `<<=`  `>>=`  `&=`  `^=`  `|=`  `=>` | 
+| [Operátory přiřazení](expressions.md#assignment-operators), [výrazy anonymní funkce](expressions.md#anonymous-function-expressions)  | Přiřazení a výraz lambda | `=`  `*=`  `/=`  `%=`  `+=`  `-=`  `<<=`  `>>=`  `&=`  `^=`  <code>&#124;=</code>  `=>` | 
 
 V případě operand mezi dva operátory se stejnou prioritou – ovládací prvky pořadí, ve kterém jsou operace prováděny asociativity operátorů:
 
@@ -3503,7 +3503,7 @@ bool? operator |(bool? x, bool? y);
 
 V následující tabulce jsou uvedeny výsledky vytvořené metodou tyto operátory pro všechny kombinace hodnot `true`, `false`, a `null`.
 
-| `x`     | `y`     | `x & y` | "x | y. |
+| `x`     | `y`     | `x & y` | <code>x &#124; y</code> |
 |:-------:|:-------:|:-------:|:-------:|
 | `true`  | `true`  | `true`  | `true`  | 
 | `true`  | `false` | `false` | `true`  | 

@@ -277,13 +277,13 @@ Následující tabulka shrnuje operátory jazyka C# společnosti, výpis kategor
 |                                  | `x != y`          | Nerovná se |
 | Logický operátor AND                      | `x & y`           | Celočíselné bitové a logických logický operátor AND |
 | Logický operátor XOR                      | `x ^ y`           | Bitový operátor XOR celého čísla, logická hodnota operátoru XOR |
-| Logický operátor OR                       | "x | y.           | Bitový operátor OR celého čísla, logická hodnota operátoru OR |
+| Logický operátor OR                       | <code>x &#124; y</code> | Bitový operátor OR celého čísla, logická hodnota operátoru OR |
 | Podmiňovací operátor AND                  | `x && y`          | Vyhodnotí `y` pouze tehdy, pokud `x` je `true` |
-| Podmiňovací operátor OR                   | "x || y.          | Vyhodnotí `y` pouze tehdy, pokud `x` je `false` |
+| Podmiňovací operátor OR                   | <code>x &#124;&#124; y</code> | Vyhodnotí `y` pouze tehdy, pokud `x` je `false` |
 | Nulové sloučení                  | `X ?? y`          | Vyhodnotí jako `y` Pokud `x` je `null`do `x` jinak |
 | Podmiňovací operátor                      | `x ? y : z`       | Vyhodnotí `y` Pokud `x` je `true`, `z` Pokud `x` je `false` |
 | Přiřazení nebo anonymní funkce | `x = y`           | Přiřazení |
-|                                  | `x op= y`         | Složené přiřazení. podporované operátory jsou `*=` `/=` `%=` `+=` `-=` `<<=` `>>=` `&=` `^=` `|=` |
+|                                  | `x op= y`         | Složené přiřazení. podporované operátory jsou `*=` `/=` `%=` `+=` `-=` `<<=` `>>=` `&=` `^=` <code>&#124;=</code> |
 |                                  | `(T x) => y`      | Anonymní funkce (výraz lambda) |
 
 ## <a name="statements"></a>Příkazy
