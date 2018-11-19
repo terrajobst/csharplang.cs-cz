@@ -366,7 +366,7 @@ class X<T>
 }
 ```
 
-Pokud s přímým přístupem explicitního převodu `t` k `int` byly převody povoleny, snadno očekávat, který `X<int>.F(7)` vracel `7L`. Však stejně, protože standardních číselných převodů považují pouze pokud jsou známé typy jako číselné během vazby. Pokud chcete mít sémantiku clear výše uvedeném příkladu musí být zapsán:
+Pokud s přímým přístupem explicitního převodu `t` k `int` byly převody povoleny, snadno očekávat, který `X<int>.F(7)` vracel `7L`. Však stejně, protože standardních číselných převodů považují pouze pokud jsou známé typy jako číselné během vazby. Pokud chcete mít sémantiku clear výše uvedeném příkladu musí být zapsán:
 ```csharp
 class X<T>
 {
@@ -738,7 +738,7 @@ Kompilace aplikace převodu ze skupiny metoda `E` typu delegátu `D` je popsaná
 *  Vybrané metody `M` musí být kompatibilní ([delegovat kompatibility](delegates.md#delegate-compatibility)) s typem delegáta `D`, nebo v opačném případě dojde k chybě kompilace.
 *  Pokud vybrané metody `M` je metoda instance, výraz instance přidružené k `E` Určuje cílový objekt delegáta.
 *  Pokud vybrané metody M metodu rozšíření, které je označené prostřednictvím přístupu ke členu na výraz instance, určuje tento výraz instance cílové objektů delegáta.
-*  Výsledkem převodu je hodnota typu `D`, a to nově vytvořený delegát, který odkazuje na vybrané metody a cílový objekt.
+*  Výsledkem převodu je hodnota typu `D`, a to nově vytvořený delegát, který odkazuje na vybrané metody a cílový objekt.
 *  Všimněte si, že tento proces může vést k vytvoření delegáta, kterého lze metodu rozšíření, pokud algoritmus [volání metod](expressions.md#method-invocations) nepodaří najít metodu instance, ale při zpracování volání úspěšné `E(A)` jako rozšíření volání metody ([volání metod rozšíření](expressions.md#extension-method-invocations)). Proto vytvoří delegát zaznamená metody rozšíření, stejně jako svůj první argument.
 
 Následující příklad ukazuje metodu skupiny převody:
@@ -770,7 +770,7 @@ class Test
 
 Přiřazení `d1` implicitně převede skupinu metod `F` na hodnotu typu `D1`.
 
-Přiřazení `d2` ukazuje, jak je možné k vytvoření delegáta metodě, má méně odvozené typy parametrů (opravné položky k typ variant) a více odvozený návratový typ (kovariantní).
+Přiřazení `d2` ukazuje, jak je možné k vytvoření delegáta metodě, která má méně odvozené (kontravariantní) typy parametrů a více odvozený návratový typ (kovariantní).
 
 Přiřazení `d3` ukazuje, jak neexistuje žádný převod Pokud metoda není použitelné.
 
