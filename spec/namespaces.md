@@ -496,7 +496,7 @@ namespace N2
 
 A *using_static_directive* importuje jenom členy a typy deklarované přímo do daného typu, ne členy a typy deklarované v základních tříd.
 
-TODO: příklad
+TODO: Příklad
 
 Nejednoznačnosti mezi několika *using_namespace_directives* a *using_static_directives* jsou popsány v [pomocí direktivy oboru názvů](namespaces.md#using-namespace-directives).
 
@@ -561,22 +561,22 @@ A *qualified_alias_member* má jednu z těchto dvou tvarů:
 Použití tohoto zápisu význam *qualified_alias_member* je stanoven následujícím způsobem:
 
 *  Pokud `N` je identifikátor `global`, pak se hledá globální obor názvů `I`:
-   * Pokud globální obor názvů obsahuje obor názvů s názvem `I` a `K` je nula, pak bude *qualified_alias_member* odkazuje na tento obor názvů.
-   * Jinak, pokud je globální obor názvů obsahuje neobecný typ s názvem `I` a `K` je nula, pak bude *qualified_alias_member* odkazuje na typu.
-   * Jinak, pokud je globální obor názvů obsahuje typ s názvem `I` , který má `K` parametry typu, pak bude *qualified_alias_member* odkazuje na tento typ vytvořený s argumenty daného typu.
+   * Pokud globální obor názvů obsahuje obor názvů s názvem `I` a `K` je nula, pak bude *qualified_alias_member* odkazuje na tento obor názvů.
+   * Jinak, pokud je globální obor názvů obsahuje neobecný typ s názvem `I` a `K` je nula, pak bude *qualified_alias_member* odkazuje na typu.
+   * Jinak, pokud je globální obor názvů obsahuje typ s názvem `I` , který má `K`  parametry typu, pak bude *qualified_alias_member* odkazuje na tento typ vytvořený s argumenty daného typu.
    * V opačném případě *qualified_alias_member* je nedefinovaný a dojde k chybě kompilace.
 
 *  V opačném případě od deklarace oboru názvů ([deklarací Namespace](namespaces.md#namespace-declarations)) okamžitě obsahující *qualified_alias_member* (pokud existuje), pokračování s každou ohraničující deklarace oboru názvů (pokud existuje) a konče jednotku kompilace obsahující *qualified_alias_member*, následující kroky jsou vyhodnocen, dokud se entita nachází:
 
    * Pokud obsahuje obor názvů deklarace nebo kompilace částí *using_alias_directive* , která přidruží `N` s typem, pak bude *qualified_alias_member* není definována a za kompilace dojde k chybě.
    * Jinak, pokud obsahuje obor názvů deklarace nebo kompilace částí *extern_alias_directive* nebo *using_alias_directive* , která přidruží `N` s oborem názvů, pak:
-     * Pokud přidružené k oboru názvů `N` obsahuje obor názvů s názvem `I` a `K` je nula, pak bude *qualified_alias_member* odkazuje na tento obor názvů.
-     * Jinak, pokud přidružené k oboru názvů `N` obsahuje neobecný typ s názvem `I` a `K` je nula, pak bude *qualified_alias_member* odkazuje na typu.
-     * Jinak, pokud přidružené k oboru názvů `N` obsahuje typ s názvem `I` , který má `K` parametry typu, pak bude *qualified_alias_member* odkazuje na tento typ vytvořený s daným typem argumenty.
+     * Pokud přidružené k oboru názvů `N` obsahuje obor názvů s názvem `I` a `K` je nula, pak bude *qualified_alias_member* odkazuje na tento obor názvů.
+     * Jinak, pokud přidružené k oboru názvů `N` obsahuje neobecný typ s názvem `I` a `K` je nula, pak bude *qualified_alias_member* odkazuje na typu.
+     * Jinak, pokud přidružené k oboru názvů `N` obsahuje typ s názvem `I` , který má `K`  parametry typu, pak bude *qualified_alias_member* označuje, že typ zkonstruován pomocí argumenty daného typu.
      * V opačném případě *qualified_alias_member* je nedefinovaný a dojde k chybě kompilace.
 *  V opačném případě *qualified_alias_member* je nedefinovaný a dojde k chybě kompilace.
 
-Všimněte si, že pomocí kvalifikátor aliasu oboru názvů s aliasem, který odkazuje na typ způsobí chybu kompilace. Všimněte si také, že pokud identifikátor `N` je `global`, pak vyhledávání se provádí v globálním oboru názvů, i v případě použití alias přidružení `global` s typem nebo oboru názvů.
+Všimněte si, že pomocí kvalifikátor aliasu oboru názvů s aliasem, který odkazuje na typ způsobí chybu kompilace. Všimněte si také, že pokud identifikátor `N` je `global`, pak vyhledávání se provádí v globálním oboru názvů, i v případě použití alias přidružení `global` s typem nebo oboru názvů.
 
 ### <a name="uniqueness-of-aliases"></a>Jedinečnost aliasy
 

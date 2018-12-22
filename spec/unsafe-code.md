@@ -276,7 +276,7 @@ V nezabezpečeném kontextu jsou k dispozici pro provozování na ukazatelích n
 
 ## <a name="fixed-and-moveable-variables"></a>Oprava a přesunutelný proměnné
 
-Operátor address-of ([operátoru address-of](unsafe-code.md#the-address-of-operator)) a `fixed` – příkaz ([fixed – příkaz](unsafe-code.md#the-fixed-statement)) proměnné rozdělit do dvou kategorií: ***stanovené proměnné***a ***přesunutelný proměnné***.
+Operátor address-of ([operátoru address-of](unsafe-code.md#the-address-of-operator)) a `fixed` – příkaz ([příkazu fixed](unsafe-code.md#the-fixed-statement)) proměnné rozdělit do dvou kategorií: ***Oprava proměnné*** a ***přesunutelný proměnné***.
 
 Oprava proměnné se nacházejí v umístění úložiště, které jsou ovlivněny operace systému uvolňování paměti. (Pevné proměnné příklady lokální proměnné, parametry s hodnotou a proměnných vytvořené pomocí přesměrování ukazatele.) Na druhé straně přesunutelný proměnné se nacházejí v umístění úložiště, které jsou v souladu s přemístění nebo vyřazení systémem uvolňování. (Příklady přesunutelný proměnných zahrnout pole objektů a prvky pole.)
 

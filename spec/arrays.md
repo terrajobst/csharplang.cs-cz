@@ -4,7 +4,7 @@ Pole je datová struktura, která obsahuje několik proměnných, které jsou p�
 
 Pole má řazení, která určuje počet indexů, které jsou přidružené k každý prvek pole. Rozměr pole se také označuje jako rozměry pole. Pole s rozměrem jedna se nazývá ***jednorozměrné pole***. Pole s rozměrem větší než jedna se nazývá ***vícerozměrné pole***. Konkrétní velikosti vícerozměrná pole jsou často označovány jako dvourozměrné pole, trojrozměrného pole a tak dále.
 
-Každé pole má přidružené délky, což je je celé číslo větší než nebo rovna nule. Délky dimenzí nejsou součástí typu pole, ale místo toho jsou vytvořeny při vytvoření instance typu pole v době běhu. Délka dimenze určuje platný rozsah indexů pro tuto dimenzi: pro dimenzi délky `N`, indexy musí být v rozsahu `0` k `N - 1` (včetně). Celkový počet prvků v poli je produktem délek každé dimenze v poli. Pokud jeden nebo více dimenzí pole mít nulovou délku, se říká, že pole bylo prázdné.
+Každé pole má přidružené délky, což je je celé číslo větší než nebo rovna nule. Délky dimenzí nejsou součástí typu pole, ale místo toho jsou vytvořeny při vytvoření instance typu pole v době běhu. Délka dimenze určuje platný rozsah indexů pro daná dimenze: Pro dimenzi délky `N`, musí být v rozsahu indexy `0` k `N - 1` (včetně). Celkový počet prvků v poli je produktem délek každé dimenze v poli. Pokud jeden nebo více dimenzí pole mít nulovou délku, se říká, že pole bylo prázdné.
 
 Typ elementu pole může být libovolného typu, včetně typu pole.
 
@@ -32,7 +32,7 @@ dim_separator
 
 A *non_array_type* libovolnou *typ* , který je sám *array_type*.
 
-Řád objektu typu pole je dán první *rank_specifier* v *array_type*: A *rank_specifier* znamená, že pole je pole s rozměrem jedna, plus počet "`,`" tokeny v *rank_specifier*.
+Řád objektu typu pole je dán první *rank_specifier* v *array_type*: A *rank_specifier* znamená, že pole je pole s rozměrem jednu plus počet "`,`" tokeny v *rank_specifier*.
 
 Typ prvku typu pole je typ, který je výsledkem odstranění první *rank_specifier*:
 

@@ -189,7 +189,7 @@ public interface IStringList
     string this[int index] { get; set; }
 }
 ```
-deklaruje rozhraní, které obsahuje jeden z možných druhy členů: metody, vlastnosti, události a indexer.
+deklaruje rozhraní, které obsahuje jeden z možných druhy členů: Metody, vlastnosti, události a indexer.
 
 *Interface_declaration* vytvoří nové prohlášení prostor ([deklarace](basic-concepts.md#declarations)) a *interface_member_declaration*s okamžitě obsažených *interface_declaration* zavést nové členy do tohoto prostoru deklarace. Následující pravidla platí pro *interface_member_declaration*s:
 
@@ -295,7 +295,7 @@ Výstup typově bezpečný, pokud existuje přístupový objekt get musí být t
 
 Rozhraní členové budou přístupní prostřednictvím přístupu ke členu ([přístup ke členu](expressions.md#member-access)) a přístup indexeru ([přístup indexeru](expressions.md#indexer-access)) výrazů formuláře `I.M` a `I[A]`, kde `I` je typu rozhraní, `M` je metoda, vlastnost nebo událost typu rozhraní, a `A` je seznam argumentů indexeru.
 
-Pro rozhraní, které se týkají výhradně jednoduchou dědičností (přesně žádnou nebo jednu přímou základní rozhraní každého rozhraní v řetězu dědičnosti má), důsledky člena vyhledávání ([člen vyhledávání](expressions.md#member-lookup)), volání metody ([ Volání metod](expressions.md#method-invocations)) a přístup indexeru ([přístup indexeru](expressions.md#indexer-access)) pravidla jsou stejné jako u tříd a struktur: více odvozeného skrýt členy méně odvozené členy s totožným názvem a signaturou. Pro rozhraní vícenásobné dědičnosti nejednoznačnosti může dojít, když dva nebo víc nesouvisejících základních rozhraní deklarovat členy s totožným názvem a signaturou. Tato část ukazuje několik příkladů takových situacích. Ve všech případech je možné přeložit nejednoznačnosti explicitní přetypování.
+Pro rozhraní, které se týkají výhradně jednoduchou dědičností (přesně žádnou nebo jednu přímou základní rozhraní každého rozhraní v řetězu dědičnosti má), důsledky člena vyhledávání ([člen vyhledávání](expressions.md#member-lookup)), volání metody ([ Volání metod](expressions.md#method-invocations)) a přístup indexeru ([přístup indexeru](expressions.md#indexer-access)) pravidla jsou stejné jako u třídy a struktury: Skrýt členy více odvozený méně odvozené členy se stejným názvem a signaturou. Pro rozhraní vícenásobné dědičnosti nejednoznačnosti může dojít, když dva nebo víc nesouvisejících základních rozhraní deklarovat členy s totožným názvem a signaturou. Tato část ukazuje několik příkladů takových situacích. Ve všech případech je možné přeložit nejednoznačnosti explicitní přetypování.
 
 V příkladu
 ```csharp

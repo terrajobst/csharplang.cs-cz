@@ -28,7 +28,7 @@ Každý zdrojový soubor v programu v jazyce C# musí odpovídat *vstupní* prod
 
 Syntaktické gramatika C# jsou zobrazena v kapitolách a přílohy, které následují této kapitole. Terminálu symboly syntaktické gramatiky jsou tokeny definované gramatika slov a syntaktické gramatiky Určuje, jak se tokeny zkombinovala, aby programy jazyka C# formulářů.
 
-Každý zdrojový soubor v programu v jazyce C# musí odpovídat *compilation_unit* produkční syntaktické gramatiky ([kompilačních jednotek](namespaces.md#compilation-units)).
+Každý zdrojový soubor v C# programu musí odpovídat *compilation_unit* produkční syntaktické gramatiky ([kompilačních jednotek](namespaces.md#compilation-units)).
 
 ## <a name="lexical-analysis"></a>Lexikální analýzu
 
@@ -55,7 +55,7 @@ input_element
     ;
 ```
 
-Pět základních prvků, které tvoří lexikální struktura zdrojový soubor jazyka C#: řádek ukončovací znaky ([řádek ukončovací znaky](lexical-structure.md#line-terminators)), mezer ([prázdných](lexical-structure.md#white-space)), komentáře ([komentáře](lexical-structure.md#comments)), tokeny ([tokeny](lexical-structure.md#tokens)) a direktivy předběžného zpracování ([předběžné zpracování direktiv](lexical-structure.md#pre-processing-directives)). Tyto základní prvky pouze tokeny jsou rozhodující pro syntaktické gramatiky programu v jazyce C# ([syntaktické gramatiky](lexical-structure.md#syntactic-grammar)).
+Pět základních prvků, které tvoří lexikální struktura C# zdrojový soubor: Řádek ukončovací znaky ([řádek ukončovací znaky](lexical-structure.md#line-terminators)), mezer ([prázdných](lexical-structure.md#white-space)), komentáře ([komentáře](lexical-structure.md#comments)), tokeny ([tokeny](lexical-structure.md#tokens)), a direktivy předběžného zpracování ([předběžné zpracování direktiv](lexical-structure.md#pre-processing-directives)). Tyto základní prvky pouze tokeny jsou rozhodující pro syntaktické gramatiky programu v jazyce C# ([syntaktické gramatiky](lexical-structure.md#syntactic-grammar)).
 
 Lexikální zpracování zdrojový soubor jazyka C# se skládá z snížení soubor do sekvence tokenů, který bude vstup pro syntaktické analýzy. Řádku, prázdné znaky a komentáře, může sloužit k oddělení tokeny a direktivy předběžného zpracování může způsobit části zdrojového souboru přeskočit, ale jinak tyto Lexikální prvky mít vliv na syntaktické struktura programu v jazyce C#.
 
@@ -510,7 +510,7 @@ Jednoduchá řídící sekvence představuje kódování Unicode znaku, jak je p
 | `\"`                | dvojité uvozovky       | `0x0022`             | 
 | `\\`                | Zpětné lomítko          | `0x005C`             | 
 | `\0`                | Null               | `0x0000`             | 
-| `\a`                | Upozornění              | `0x0007`             | 
+| `\a`                | Výstrahy              | `0x0007`             | 
 | `\b`                | Backspace          | `0x0008`             | 
 | `\f`                | Posun strany          | `0x000C`             | 
 | `\n`                | Nový řádek           | `0x000A`             | 

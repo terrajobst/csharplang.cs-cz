@@ -202,7 +202,7 @@ je platný a používá název `x` jako parametr a popisek.
 
 Spuštění příkaz s popiskem přesně odpovídá provádění příkazu za příkazem popisek.
 
-Kromě dostupnosti poskytuje běžný tok řízení, je dostupná, pokud popisek se odkazuje dostupné příkaz s popiskem `goto` příkazu. (Výjimka: Pokud `goto` příkazu se nachází uvnitř `try` , který obsahuje `finally` bloku a příkaz s popiskem je mimo `try`a koncový bod `finally` blok nedostupný, pak je příkaz s popiskem dostupné od `goto` příkazu.)
+Kromě dostupnosti poskytuje běžný tok řízení, je dostupná, pokud popisek se odkazuje dostupné příkaz s popiskem `goto` příkazu. (Výjimka: Pokud `goto` příkazu se nachází uvnitř `try` , který obsahuje `finally` bloku a příkaz s popiskem je mimo `try`a koncový bod `finally` bloku nedostupný, pak příkaz s popiskem není dosažitelný z který `goto` příkazu.)
 
 ## <a name="declaration-statements"></a>Příkazy deklarace
 
@@ -801,7 +801,7 @@ Text nakonec bloku je vytvořený podle následujících kroků:
 
    Lokální proměnná `d` není viditelné pro nebo přístup k veškerému kódu uživatele. Konkrétně to není v konfliktu s jakoukoli jinou proměnnou, jejíž obor obsahuje bloku finally.
 
-Pořadí, ve kterém `foreach` prochází přes prvky pole, je následujícím způsobem: pro jednorozměrné pole prvků je provázán ve vzestupném pořadí indexů, počínaje indexem `0` a konče index `Length - 1`. Pro vícerozměrná pole jsou prvky procházet tak, že indexy rozměr nejvíce vpravo se zvýšenou první pak další levé dimenze nalevo a tak dále.
+Pořadí, ve kterém `foreach` prochází přes prvky pole, vypadá takto: Pro prvky jednorozměrná pole je provázán ve vzestupném pořadí indexů, počínaje indexem `0` a konče index `Length - 1`. Pro vícerozměrná pole jsou prvky procházet tak, že indexy rozměr nejvíce vpravo se zvýšenou první pak další levé dimenze nalevo a tak dále.
 
 Následující příklad vytiskne každé hodnoty v dvojrozměrné pole, v pořadí elementů:
 ```csharp

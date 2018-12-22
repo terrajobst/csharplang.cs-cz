@@ -597,13 +597,13 @@ Dokumentace ke službě generátor dodržuje následující pravidla při genero
 *  Druhá část řetězce je plně kvalifikovaný název elementu, spouštění v kořenovém oboru názvů. Název elementu, jeho nadřazené typy a obor názvů jsou odděleny tečkami. Pokud má název samotné položky období, budou nahrazeny `#(U+0023)` znaků. (Předpokládá se, že žádný element nemá tento znak v názvu.)
 *  Pro metody a vlastnosti s argumenty, pomocí následujícího seznamu argument uzavřen v závorkách. Pro ty bez argumentů jsou vynechány závorky. Argumenty jsou odděleny čárkami. Kódování každý argument je stejný jako rozhraní příkazového řádku, následujícím způsobem:
    *  Argumenty jsou reprezentovány podle názvu jejich dokumentaci, která je založena na jejich plně kvalifikovanému názvu upraveny následujícím způsobem:
-      * Argumenty, které představují obecné typy mají připojený "" "znak následovaný počtem parametrů typu
+      * Argumenty, které představují obecné typy mají připojený `` ` `` (prvními) následovaný počet parametrů typu
       * Argumenty s `out` nebo `ref` mít modifikátor `@` po jejich název typu. Argumenty předány podle hodnoty nebo prostřednictvím `params` mít žádná zvláštní zápis.
-      * Argumenty, které jsou pole jsou reprezentovány ve formě `[lowerbound:size, ... , lowerbound:size]` kde počet čárky je řád méně jeden a dolní meze a velikosti jednotlivých rozměrů, pokud jsou známé, jsou reprezentovány v desítkové soustavě. Pokud není zadán dolní mez nebo velikost, je vynechán. Pokud jsou vynechány dolní mez a velikosti pro konkrétní dimenzi, "`:`" je také vynechán. Vícenásobná pole jsou reprezentované pomocí jedné "`[]`" na úroveň.
+      * Argumenty, které jsou pole jsou reprezentovány ve formě `[lowerbound:size, ... , lowerbound:size]` kde počet čárky je řád méně jeden a dolní meze a velikosti jednotlivých rozměrů, pokud jsou známé, jsou reprezentovány v desítkové soustavě. Pokud není zadán dolní mez nebo velikost, je vynechán. Pokud jsou vynechány dolní mez a velikosti pro konkrétní dimenzi, `:` je také vynechán. Vícenásobná pole jsou reprezentované pomocí jedné `[]` na úroveň.
       * Argumenty, které mají ukazatel typy než void se vyjadřují pomocí `*` za názvem typu. Ukazatel void je reprezentována pomocí názvu typu `System.Void`.
-      * Argumenty, které odkazují na parametry obecného typu, které jsou definovány pro typy jsou zakódovány pomocí "" "znak následovaný z nuly vycházející index parametru typu.
-      * Argumenty, které používají parametry obecného typu, které jsou definovány v metodách pomocí double prvními "\`\`" místo "\`" použít u typů.
-      * Argumenty, které odkazují na sestavené obecné typy jsou zakódovány pomocí obecného typu, za nímž následuje "{", za nímž následuje čárkou oddělený seznam argumentů, za nímž následuje "}".
+      * Argumenty, které odkazují na parametry obecného typu, které jsou definovány pro typy jsou zakódovány pomocí `` ` `` (prvními) následovaný z nuly vycházející index parametru typu.
+      * Argumenty, které používají parametry obecného typu, které jsou definovány v metodách pomocí double prvními ``` `` ``` místo `` ` `` použít pro typy.
+      * Argumenty, které odkazují na sestavené obecné typy jsou zakódovány pomocí obecného typu, za nímž následuje `{`, za nímž následuje čárkou oddělený seznam argumentů, za nímž následuje `}`.
 
 ### <a name="id-string-examples"></a>Příklady řetězec ID
 

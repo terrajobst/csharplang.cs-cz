@@ -821,7 +821,7 @@ Název, který slouží pro vyvolání, ke kterým dochází v rámci deklarace 
 
 ## <a name="attributes-for-interoperation"></a>Atributy pro spolupráci
 
-Poznámka: Tato část se vztahuje pouze na rozhraní Microsoft .NET implementace jazyka C#.
+Poznámka: Tato část se vztahuje pouze na implementaci rozhraní Microsoft .NET C#.
 
 ### <a name="interoperation-with-com-and-win32-components"></a>Vzájemná spolupráce s komponentami COM a Win32
 

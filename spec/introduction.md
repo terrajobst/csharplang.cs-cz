@@ -4,7 +4,7 @@ C# (čteno "v tématu Sharp") je jednoduchý, moderní, objektově orientované 
 
 C# je objektově orientovaný jazyk, ale jazyka C# dále zahrnuje podporu pro ***komponenty objektově orientovaný*** programování. Návrh moderní softwaru stále spoléhá na softwarové komponenty v podobě samostatné a popisující samy sebe balíčky funkcí. Klíčem k takové součásti je, že představují programovací model s vlastnosti, metody a události; mají atributy, které poskytují deklarativní informace o komponentě; a zahrnují vlastní dokumentace. C# zajišťuje, že jazyk konstrukce pro přímo podporují tyto koncepty, pak C# velmi přirozeného jazyka, ve kterém chcete vytvořit a používat softwarové součásti.
 
-Několik funkcí jazyka C# pomáhají při vytváření robustních a odolných aplikací: ***uvolňování*** automaticky uvolní paměť obsazena nevyužité objekty. ***zpracování výjimek*** přináší strukturovaných a rozšiřitelné přístup k detekce chyb a obnovení; a ***zajišťující bezpečnost typů*** návrh jazyka znemožňuje čtení z neinicializovaného proměnné, do indexu pole, mimo jejich rozsah nebo provést přetypování není zaškrtnuto.
+Několik C# funkce podpory ve vytváření robustních a odolných aplikací: ***Uvolňování paměti*** automaticky uvolní paměť obsazena nevyužité objekty. ***zpracování výjimek*** přináší strukturovaných a rozšiřitelné přístup k detekce chyb a obnovení; a ***zajišťující bezpečnost typů*** návrh jazyka znemožňuje čtení z neinicializovaného proměnné k indexování pole, mimo jejich rozsah nebo k provádění zaškrtnuté políčko typu přetypování.
 
 C# má ***unified systém typů***. Všechny typy C#, včetně primitivní typy, jako například `int` a `double`, dědit z jednoho kořene `object` typu. Proto sdílejí sadu běžných operací pro všechny typy a hodnoty libovolného typu lze ukládat, přenášet a provozován konzistentním způsobem. Kromě toho C# podporuje uživatelem definované referenční typy a typy hodnot, povolení dynamické přidělování objektů a úložiště v řádku zjednodušené struktur.
 
@@ -172,7 +172,7 @@ Následující tabulka shrnuje C# pro číselné typy.
 |                   | 16       | `ushort`  | 0... 65 535 |
 |                   | 32       | `uint`    | 0... 4 294 967 295 |
 |                   | 64       | `ulong`   | 0... 18,446,744,073,709,551,615 |
-| Plovoucí desetinná čárka    | 32       | `float`   | 1,5 × 10 ^ −45 3.4 × 10 ^ 38, 7 číslicemi přesnosti |
+| Číslo s plovoucí desetinnou čárkou    | 32       | `float`   | 1,5 × 10 ^ −45 3.4 × 10 ^ 38, 7 číslicemi přesnosti |
 |                   | 64       | `double`  | 5.0 × 10 ^ −324 1.7 × 10 ^ 308, 15 číslicemi přesnosti |
 | Desetinné číslo           | 128      | `decimal` | 1.0 × 10 ^ −28 7.9 × 10 ^ 28, 28 číslicemi přesnosti |
 
