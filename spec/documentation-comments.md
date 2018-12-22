@@ -1,14 +1,14 @@
-# <a name="documentation-comments"></a><span data-ttu-id="3f95a-101">Dokumentační komentáře</span><span class="sxs-lookup"><span data-stu-id="3f95a-101">Documentation comments</span></span>
+# <a name="documentation-comments"></a><span data-ttu-id="17e7c-101">Dokumentační komentáře</span><span class="sxs-lookup"><span data-stu-id="17e7c-101">Documentation comments</span></span>
 
-<span data-ttu-id="3f95a-102">C# poskytuje mechanismus pro programátory zdokumentujte svůj kód pomocí syntaxe speciální komentář, který obsahuje XML text.</span><span class="sxs-lookup"><span data-stu-id="3f95a-102">C# provides a mechanism for programmers to document their code using a special comment syntax that contains XML text.</span></span> <span data-ttu-id="3f95a-103">V souborech zdrojového kódu komentáře s formuláři určité umožňuje přímé nástroj k vytvoření XML z těchto komentářů a zdrojové elementy kódu, které jsou předcházet.</span><span class="sxs-lookup"><span data-stu-id="3f95a-103">In source code files, comments having a certain form can be used to direct a tool to produce XML from those comments and the source code elements, which they precede.</span></span> <span data-ttu-id="3f95a-104">Komentáře pomocí těchto syntaxe se nazývají ***komentáře k dokumentaci***.</span><span class="sxs-lookup"><span data-stu-id="3f95a-104">Comments using such syntax are called ***documentation comments***.</span></span> <span data-ttu-id="3f95a-105">Musí bezprostředně předcházet uživatelem definovaný typ (například třída, delegát nebo rozhraní) nebo jako člen (například pole, události, vlastnost nebo metoda).</span><span class="sxs-lookup"><span data-stu-id="3f95a-105">They must immediately precede a user-defined type (such as a class, delegate, or interface) or a member (such as a field, event, property, or method).</span></span> <span data-ttu-id="3f95a-106">Nástroj pro generování XML je volána ***dokumentaci generátor***.</span><span class="sxs-lookup"><span data-stu-id="3f95a-106">The XML generation tool is called the ***documentation generator***.</span></span> <span data-ttu-id="3f95a-107">(Tento generátor může být, ale nemusí být kompilátor jazyka C#, samotný.) Výstup vytvořené generátorem dokumentace je volána ***soubor dokumentace***.</span><span class="sxs-lookup"><span data-stu-id="3f95a-107">(This generator could be, but need not be, the C# compiler itself.) The output produced by the documentation generator is called the ***documentation file***.</span></span> <span data-ttu-id="3f95a-108">Soubor dokumentace se používá jako vstup pro ***dokumentaci prohlížeč***; nástroj určených k vytvoření nějaký druh vizuálního zobrazení informací o typu a její související dokumentaci.</span><span class="sxs-lookup"><span data-stu-id="3f95a-108">A documentation file is used as input to a ***documentation viewer***; a tool intended to produce some sort of visual display of type information and its associated documentation.</span></span>
+<span data-ttu-id="17e7c-102">C# poskytuje mechanismus pro programátory zdokumentujte svůj kód pomocí syntaxe speciální komentář, který obsahuje XML text.</span><span class="sxs-lookup"><span data-stu-id="17e7c-102">C# provides a mechanism for programmers to document their code using a special comment syntax that contains XML text.</span></span> <span data-ttu-id="17e7c-103">V souborech zdrojového kódu komentáře s formuláři určité umožňuje přímé nástroj k vytvoření XML z těchto komentářů a zdrojové elementy kódu, které jsou předcházet.</span><span class="sxs-lookup"><span data-stu-id="17e7c-103">In source code files, comments having a certain form can be used to direct a tool to produce XML from those comments and the source code elements, which they precede.</span></span> <span data-ttu-id="17e7c-104">Komentáře pomocí těchto syntaxe se nazývají ***komentáře k dokumentaci***.</span><span class="sxs-lookup"><span data-stu-id="17e7c-104">Comments using such syntax are called ***documentation comments***.</span></span> <span data-ttu-id="17e7c-105">Musí bezprostředně předcházet uživatelem definovaný typ (například třída, delegát nebo rozhraní) nebo jako člen (například pole, události, vlastnost nebo metoda).</span><span class="sxs-lookup"><span data-stu-id="17e7c-105">They must immediately precede a user-defined type (such as a class, delegate, or interface) or a member (such as a field, event, property, or method).</span></span> <span data-ttu-id="17e7c-106">Nástroj pro generování XML je volána ***dokumentaci generátor***.</span><span class="sxs-lookup"><span data-stu-id="17e7c-106">The XML generation tool is called the ***documentation generator***.</span></span> <span data-ttu-id="17e7c-107">(Tento generátor může být, ale nemusí být kompilátor jazyka C#, samotný.) Výstup vytvořené generátorem dokumentace je volána ***soubor dokumentace***.</span><span class="sxs-lookup"><span data-stu-id="17e7c-107">(This generator could be, but need not be, the C# compiler itself.) The output produced by the documentation generator is called the ***documentation file***.</span></span> <span data-ttu-id="17e7c-108">Soubor dokumentace se používá jako vstup pro ***dokumentaci prohlížeč***; nástroj určených k vytvoření nějaký druh vizuálního zobrazení informací o typu a její související dokumentaci.</span><span class="sxs-lookup"><span data-stu-id="17e7c-108">A documentation file is used as input to a ***documentation viewer***; a tool intended to produce some sort of visual display of type information and its associated documentation.</span></span>
 
-<span data-ttu-id="3f95a-109">Tato specifikace navrhuje sadu značky pro dokumentační komentáře, ale použijte tyto značky se nevyžaduje a další značky mohou být použity v případě potřeby, následovaných dlouho pravidla ve správném formátu XML.</span><span class="sxs-lookup"><span data-stu-id="3f95a-109">This specification suggests a set of tags to be used in documentation comments, but use of these tags is not required, and other tags may be used if desired, as long the rules of well-formed XML are followed.</span></span>
+<span data-ttu-id="17e7c-109">Tato specifikace navrhuje sadu značky pro dokumentační komentáře, ale použijte tyto značky se nevyžaduje a další značky mohou být použity v případě potřeby, následovaných dlouho pravidla ve správném formátu XML.</span><span class="sxs-lookup"><span data-stu-id="17e7c-109">This specification suggests a set of tags to be used in documentation comments, but use of these tags is not required, and other tags may be used if desired, as long the rules of well-formed XML are followed.</span></span>
 
-## <a name="introduction"></a><span data-ttu-id="3f95a-110">Úvod</span><span class="sxs-lookup"><span data-stu-id="3f95a-110">Introduction</span></span>
+## <a name="introduction"></a><span data-ttu-id="17e7c-110">Úvod</span><span class="sxs-lookup"><span data-stu-id="17e7c-110">Introduction</span></span>
 
-<span data-ttu-id="3f95a-111">Komentáře, které mají speciální tvar slouží ke směrování nástroj k vytvoření XML z těchto komentářů a zdrojové elementy kódu, které jsou předcházet.</span><span class="sxs-lookup"><span data-stu-id="3f95a-111">Comments having a special form can be used to direct a tool to produce XML from those comments and the source code elements, which they precede.</span></span> <span data-ttu-id="3f95a-112">Takové komentáře jsou Jednořádkové komentáře, které začínají s třemi lomítky (`///`), nebo oddělených komentáře, které začínají lomítkem a dvě hvězdičky (`/**`).</span><span class="sxs-lookup"><span data-stu-id="3f95a-112">Such comments are single-line comments that start with three slashes (`///`), or delimited comments that start with a slash and two stars (`/**`).</span></span> <span data-ttu-id="3f95a-113">Musí bezprostředně předcházet uživatelem definovaný typ (například třída, delegát nebo rozhraní) nebo člen (například pole, události, vlastnost nebo metoda), který se opatřovat je poznámkami.</span><span class="sxs-lookup"><span data-stu-id="3f95a-113">They must immediately precede a user-defined type (such as a class, delegate, or interface) or a member (such as a field, event, property, or method) that they annotate.</span></span> <span data-ttu-id="3f95a-114">Atribut oddíly ([specifikace atributu](attributes.md#attribute-specification)) jsou považovány za součást deklarace, takže komentáře dokumentace musí předcházet atributy použité na typ nebo člen.</span><span class="sxs-lookup"><span data-stu-id="3f95a-114">Attribute sections ([Attribute specification](attributes.md#attribute-specification)) are considered part of declarations, so documentation comments must precede attributes applied to a type or member.</span></span>
+<span data-ttu-id="17e7c-111">Komentáře, které mají speciální tvar slouží ke směrování nástroj k vytvoření XML z těchto komentářů a zdrojové elementy kódu, které jsou předcházet.</span><span class="sxs-lookup"><span data-stu-id="17e7c-111">Comments having a special form can be used to direct a tool to produce XML from those comments and the source code elements, which they precede.</span></span> <span data-ttu-id="17e7c-112">Takové komentáře jsou Jednořádkové komentáře, které začínají s třemi lomítky (`///`), nebo oddělených komentáře, které začínají lomítkem a dvě hvězdičky (`/**`).</span><span class="sxs-lookup"><span data-stu-id="17e7c-112">Such comments are single-line comments that start with three slashes (`///`), or delimited comments that start with a slash and two stars (`/**`).</span></span> <span data-ttu-id="17e7c-113">Musí bezprostředně předcházet uživatelem definovaný typ (například třída, delegát nebo rozhraní) nebo člen (například pole, události, vlastnost nebo metoda), který se opatřovat je poznámkami.</span><span class="sxs-lookup"><span data-stu-id="17e7c-113">They must immediately precede a user-defined type (such as a class, delegate, or interface) or a member (such as a field, event, property, or method) that they annotate.</span></span> <span data-ttu-id="17e7c-114">Atribut oddíly ([specifikace atributu](attributes.md#attribute-specification)) jsou považovány za součást deklarace, takže komentáře dokumentace musí předcházet atributy použité na typ nebo člen.</span><span class="sxs-lookup"><span data-stu-id="17e7c-114">Attribute sections ([Attribute specification](attributes.md#attribute-specification)) are considered part of declarations, so documentation comments must precede attributes applied to a type or member.</span></span>
 
-<span data-ttu-id="3f95a-115">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-115">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-115">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-115">__Syntax:__</span></span>
 
 ```antlr
 single_line_doc_comment
@@ -20,11 +20,11 @@ delimited_doc_comment
     ;
 ```
 
-<span data-ttu-id="3f95a-116">V *single_line_doc_comment*, pokud je *prázdné znaky* následující znak `///` znaků ve všech *single_line_doc_comment*s sousední na aktuální *single_line_doc_comment*, pak, která *prázdné znaky* znak není součástí výstupu XML.</span><span class="sxs-lookup"><span data-stu-id="3f95a-116">In a *single_line_doc_comment*, if there is a *whitespace* character following the `///` characters on each of the *single_line_doc_comment*s adjacent to the current *single_line_doc_comment*, then that *whitespace* character is not included in the XML output.</span></span>
+<span data-ttu-id="17e7c-116">V *single_line_doc_comment*, pokud je *prázdné znaky* následující znak `///` znaků ve všech *single_line_doc_comment*s sousední na aktuální *single_line_doc_comment*, pak, která *prázdné znaky* znak není součástí výstupu XML.</span><span class="sxs-lookup"><span data-stu-id="17e7c-116">In a *single_line_doc_comment*, if there is a *whitespace* character following the `///` characters on each of the *single_line_doc_comment*s adjacent to the current *single_line_doc_comment*, then that *whitespace* character is not included in the XML output.</span></span>
 
-<span data-ttu-id="3f95a-117">V oddělených doc – komentáři Pokud je první neprázdný znak na druhém řádku hvězdičku a stejný vzor nepovinné prázdné znaky a znak hvězdičky se opakuje na začátku každého řádku v oddělených doc – komentáře potom znaků opakované vzoru nejsou součástí výstupu XML.</span><span class="sxs-lookup"><span data-stu-id="3f95a-117">In a delimited-doc-comment, if the first non-whitespace character on the second line is an asterisk and the same pattern of optional whitespace characters and an asterisk character is repeated at the beginning of each of the line within the delimited-doc-comment, then the characters of the repeated pattern are not included in the XML output.</span></span> <span data-ttu-id="3f95a-118">Vzor může obsahovat prázdné znaky, po, stejně jako před znak hvězdičky.</span><span class="sxs-lookup"><span data-stu-id="3f95a-118">The pattern may include whitespace characters after, as well as before, the asterisk character.</span></span>
+<span data-ttu-id="17e7c-117">V oddělených doc – komentáři Pokud je první neprázdný znak na druhém řádku hvězdičku a stejný vzor nepovinné prázdné znaky a znak hvězdičky se opakuje na začátku každého řádku v oddělených doc – komentáře potom znaků opakované vzoru nejsou součástí výstupu XML.</span><span class="sxs-lookup"><span data-stu-id="17e7c-117">In a delimited-doc-comment, if the first non-whitespace character on the second line is an asterisk and the same pattern of optional whitespace characters and an asterisk character is repeated at the beginning of each of the line within the delimited-doc-comment, then the characters of the repeated pattern are not included in the XML output.</span></span> <span data-ttu-id="17e7c-118">Vzor může obsahovat prázdné znaky, po, stejně jako před znak hvězdičky.</span><span class="sxs-lookup"><span data-stu-id="17e7c-118">The pattern may include whitespace characters after, as well as before, the asterisk character.</span></span>
 
-<span data-ttu-id="3f95a-119">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-119">__Example:__</span></span>
+<span data-ttu-id="17e7c-119">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-119">__Example:__</span></span>
 
 ```csharp
 /// <summary>Class <c>Point</c> models a point in a two-dimensional
@@ -37,54 +37,54 @@ public class Point
 }
 ```
 
-<span data-ttu-id="3f95a-120">Text v rámci komentáře dokumentace musí být správně utvořena podle pravidel XML (http://www.w3.org/TR/REC-xml).</span><span class="sxs-lookup"><span data-stu-id="3f95a-120">The text within documentation comments must be well formed according to the rules of XML (http://www.w3.org/TR/REC-xml).</span></span> <span data-ttu-id="3f95a-121">Pokud kód XML má výplně formát, je vygenerováno upozornění a dokumentaci soubor bude obsahovat komentář informacemi o tom, že došlo k chybě.</span><span class="sxs-lookup"><span data-stu-id="3f95a-121">If the XML is ill formed, a warning is generated and the documentation file will contain a comment saying that an error was encountered.</span></span>
+<span data-ttu-id="17e7c-120">Text v rámci komentáře dokumentace musí být správně utvořena podle pravidel XML (http://www.w3.org/TR/REC-xml).</span><span class="sxs-lookup"><span data-stu-id="17e7c-120">The text within documentation comments must be well formed according to the rules of XML (http://www.w3.org/TR/REC-xml).</span></span> <span data-ttu-id="17e7c-121">Pokud kód XML má výplně formát, je vygenerováno upozornění a dokumentaci soubor bude obsahovat komentář informacemi o tom, že došlo k chybě.</span><span class="sxs-lookup"><span data-stu-id="17e7c-121">If the XML is ill formed, a warning is generated and the documentation file will contain a comment saying that an error was encountered.</span></span>
 
-<span data-ttu-id="3f95a-122">Přestože vývojáře k vytvoření vlastních sad značek, doporučených sada je definována v [doporučené značky](documentation-comments.md#recommended-tags).</span><span class="sxs-lookup"><span data-stu-id="3f95a-122">Although developers are free to create their own set of tags, a recommended set is defined in [Recommended tags](documentation-comments.md#recommended-tags).</span></span> <span data-ttu-id="3f95a-123">Některé doporučené značky mají zvláštní význam:</span><span class="sxs-lookup"><span data-stu-id="3f95a-123">Some of the recommended tags have special meanings:</span></span>
+<span data-ttu-id="17e7c-122">Přestože vývojáře k vytvoření vlastních sad značek, doporučených sada je definována v [doporučené značky](documentation-comments.md#recommended-tags).</span><span class="sxs-lookup"><span data-stu-id="17e7c-122">Although developers are free to create their own set of tags, a recommended set is defined in [Recommended tags](documentation-comments.md#recommended-tags).</span></span> <span data-ttu-id="17e7c-123">Některé doporučené značky mají zvláštní význam:</span><span class="sxs-lookup"><span data-stu-id="17e7c-123">Some of the recommended tags have special meanings:</span></span>
 
-*  <span data-ttu-id="3f95a-124">`<param>` Značka se používá k popisu parametrů.</span><span class="sxs-lookup"><span data-stu-id="3f95a-124">The `<param>` tag is used to describe parameters.</span></span> <span data-ttu-id="3f95a-125">Pokud tato značka se používá, generátor dokumentaci musíte ověřit, že zadaný parametr existuje a že všechny parametry jsou popsané v komentáře k dokumentaci.</span><span class="sxs-lookup"><span data-stu-id="3f95a-125">If such a tag is used, the documentation generator must verify that the specified parameter exists and that all parameters are described in documentation comments.</span></span> <span data-ttu-id="3f95a-126">Pokud se ověření nezdaří, generátor dokumentace ke službě vydá upozornění.</span><span class="sxs-lookup"><span data-stu-id="3f95a-126">If such verification fails, the documentation generator issues a warning.</span></span>
-*  <span data-ttu-id="3f95a-127">`cref` Atribut lze připojit ke každé značce poskytnout odkaz na prvek kódu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-127">The `cref` attribute can be attached to any tag to provide a reference to a code element.</span></span> <span data-ttu-id="3f95a-128">Dokumentace ke službě generátor musí ověřte, zda tento prvek kódu existuje.</span><span class="sxs-lookup"><span data-stu-id="3f95a-128">The documentation generator must verify that this code element exists.</span></span> <span data-ttu-id="3f95a-129">Pokud se ověření nezdaří, generátor dokumentace ke službě vydá upozornění.</span><span class="sxs-lookup"><span data-stu-id="3f95a-129">If the verification fails, the documentation generator issues a warning.</span></span> <span data-ttu-id="3f95a-130">Pokud hledáte podle názvu `cref` atribut, generátor dokumentaci musí dodržovat viditelnosti oboru názvů podle `using` příkazy uvedené v rámci zdrojového kódu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-130">When looking for a name described in a `cref` attribute, the documentation generator must respect namespace visibility according to `using` statements appearing within the source code.</span></span> <span data-ttu-id="3f95a-131">Pro prvky kódu, které jsou obecné, normální Obecná syntaxe (tedy "`List<T>`") nelze použít, protože vytváří neplatný kód XML.</span><span class="sxs-lookup"><span data-stu-id="3f95a-131">For code elements that are generic, the normal generic syntax (ie "`List<T>`") cannot be used because it produces invalid XML.</span></span> <span data-ttu-id="3f95a-132">Složené závorky, je možné použít místo hranaté závorky (ie "`List{T}`"), nebo je možné řídicí syntaxe jazyka XML (ie "`List&lt;T&gt;`").</span><span class="sxs-lookup"><span data-stu-id="3f95a-132">Braces can be used instead of brackets (ie "`List{T}`"), or the XML escape syntax can be used (ie "`List&lt;T&gt;`").</span></span>
-*  <span data-ttu-id="3f95a-133">`<summary>` Značka je určena pro použití podle dokumentace k prohlížeči a zobrazte další informace o typu nebo členu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-133">The `<summary>` tag is intended to be used by a documentation viewer to display additional information about a type or member.</span></span>
-*  <span data-ttu-id="3f95a-134">`<include>` Značka obsahuje informace z externího souboru XML.</span><span class="sxs-lookup"><span data-stu-id="3f95a-134">The `<include>` tag includes information from an external XML file.</span></span>
+*  <span data-ttu-id="17e7c-124">`<param>` Značka se používá k popisu parametrů.</span><span class="sxs-lookup"><span data-stu-id="17e7c-124">The `<param>` tag is used to describe parameters.</span></span> <span data-ttu-id="17e7c-125">Pokud tato značka se používá, generátor dokumentaci musíte ověřit, že zadaný parametr existuje a že všechny parametry jsou popsané v komentáře k dokumentaci.</span><span class="sxs-lookup"><span data-stu-id="17e7c-125">If such a tag is used, the documentation generator must verify that the specified parameter exists and that all parameters are described in documentation comments.</span></span> <span data-ttu-id="17e7c-126">Pokud se ověření nezdaří, generátor dokumentace ke službě vydá upozornění.</span><span class="sxs-lookup"><span data-stu-id="17e7c-126">If such verification fails, the documentation generator issues a warning.</span></span>
+*  <span data-ttu-id="17e7c-127">`cref` Atribut lze připojit ke každé značce poskytnout odkaz na prvek kódu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-127">The `cref` attribute can be attached to any tag to provide a reference to a code element.</span></span> <span data-ttu-id="17e7c-128">Dokumentace ke službě generátor musí ověřte, zda tento prvek kódu existuje.</span><span class="sxs-lookup"><span data-stu-id="17e7c-128">The documentation generator must verify that this code element exists.</span></span> <span data-ttu-id="17e7c-129">Pokud se ověření nezdaří, generátor dokumentace ke službě vydá upozornění.</span><span class="sxs-lookup"><span data-stu-id="17e7c-129">If the verification fails, the documentation generator issues a warning.</span></span> <span data-ttu-id="17e7c-130">Pokud hledáte podle názvu `cref` atribut, generátor dokumentaci musí dodržovat viditelnosti oboru názvů podle `using` příkazy uvedené v rámci zdrojového kódu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-130">When looking for a name described in a `cref` attribute, the documentation generator must respect namespace visibility according to `using` statements appearing within the source code.</span></span> <span data-ttu-id="17e7c-131">Pro prvky kódu, které jsou obecné, normální Obecná syntaxe (tedy "`List<T>`") nelze použít, protože vytváří neplatný kód XML.</span><span class="sxs-lookup"><span data-stu-id="17e7c-131">For code elements that are generic, the normal generic syntax (ie "`List<T>`") cannot be used because it produces invalid XML.</span></span> <span data-ttu-id="17e7c-132">Složené závorky, je možné použít místo hranaté závorky (ie "`List{T}`"), nebo je možné řídicí syntaxe jazyka XML (ie "`List&lt;T&gt;`").</span><span class="sxs-lookup"><span data-stu-id="17e7c-132">Braces can be used instead of brackets (ie "`List{T}`"), or the XML escape syntax can be used (ie "`List&lt;T&gt;`").</span></span>
+*  <span data-ttu-id="17e7c-133">`<summary>` Značka je určena pro použití podle dokumentace k prohlížeči a zobrazte další informace o typu nebo členu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-133">The `<summary>` tag is intended to be used by a documentation viewer to display additional information about a type or member.</span></span>
+*  <span data-ttu-id="17e7c-134">`<include>` Značka obsahuje informace z externího souboru XML.</span><span class="sxs-lookup"><span data-stu-id="17e7c-134">The `<include>` tag includes information from an external XML file.</span></span>
 
-<span data-ttu-id="3f95a-135">Pozorně si, že soubor dokumentace neposkytuje úplné informace o typu a členů (například neobsahuje žádné informace o typu).</span><span class="sxs-lookup"><span data-stu-id="3f95a-135">Note carefully that the documentation file does not provide full information about the type and members (for example, it does not contain any type information).</span></span> <span data-ttu-id="3f95a-136">Pokud chcete získat informace o typu nebo členu, musí použít soubor dokumentace ve spojení s reflexí na skutečný typ nebo člen.</span><span class="sxs-lookup"><span data-stu-id="3f95a-136">To get such information about a type or member, the documentation file must be used in conjunction with reflection on the actual type or member.</span></span>
+<span data-ttu-id="17e7c-135">Pozorně si, že soubor dokumentace neposkytuje úplné informace o typu a členů (například neobsahuje žádné informace o typu).</span><span class="sxs-lookup"><span data-stu-id="17e7c-135">Note carefully that the documentation file does not provide full information about the type and members (for example, it does not contain any type information).</span></span> <span data-ttu-id="17e7c-136">Pokud chcete získat informace o typu nebo členu, musí použít soubor dokumentace ve spojení s reflexí na skutečný typ nebo člen.</span><span class="sxs-lookup"><span data-stu-id="17e7c-136">To get such information about a type or member, the documentation file must be used in conjunction with reflection on the actual type or member.</span></span>
 
-## <a name="recommended-tags"></a><span data-ttu-id="3f95a-137">Doporučené značky</span><span class="sxs-lookup"><span data-stu-id="3f95a-137">Recommended tags</span></span>
+## <a name="recommended-tags"></a><span data-ttu-id="17e7c-137">Doporučené značky</span><span class="sxs-lookup"><span data-stu-id="17e7c-137">Recommended tags</span></span>
 
-<span data-ttu-id="3f95a-138">Generátor dokumentaci musíte přijmout a zpracovat všechny značky, který je platný podle pravidel XML.</span><span class="sxs-lookup"><span data-stu-id="3f95a-138">The documentation generator must accept and process any tag that is valid according to the rules of XML.</span></span> <span data-ttu-id="3f95a-139">Následující značky poskytuje běžně používané funkce v dokumentaci pro uživatele.</span><span class="sxs-lookup"><span data-stu-id="3f95a-139">The following tags provide commonly used functionality in user documentation.</span></span> <span data-ttu-id="3f95a-140">(Další značky jsou samozřejmě možné.)</span><span class="sxs-lookup"><span data-stu-id="3f95a-140">(Of course, other tags are possible.)</span></span>
+<span data-ttu-id="17e7c-138">Generátor dokumentaci musíte přijmout a zpracovat všechny značky, který je platný podle pravidel XML.</span><span class="sxs-lookup"><span data-stu-id="17e7c-138">The documentation generator must accept and process any tag that is valid according to the rules of XML.</span></span> <span data-ttu-id="17e7c-139">Následující značky poskytuje běžně používané funkce v dokumentaci pro uživatele.</span><span class="sxs-lookup"><span data-stu-id="17e7c-139">The following tags provide commonly used functionality in user documentation.</span></span> <span data-ttu-id="17e7c-140">(Další značky jsou samozřejmě možné.)</span><span class="sxs-lookup"><span data-stu-id="17e7c-140">(Of course, other tags are possible.)</span></span>
 
 
-| <span data-ttu-id="3f95a-141">__Značka__</span><span class="sxs-lookup"><span data-stu-id="3f95a-141">__Tag__</span></span>          | <span data-ttu-id="3f95a-142">__Oddíl__</span><span class="sxs-lookup"><span data-stu-id="3f95a-142">__Section__</span></span>                                            | <span data-ttu-id="3f95a-143">__Účel__</span><span class="sxs-lookup"><span data-stu-id="3f95a-143">__Purpose__</span></span>                                            |
+| <span data-ttu-id="17e7c-141">__Značka__</span><span class="sxs-lookup"><span data-stu-id="17e7c-141">__Tag__</span></span>          | <span data-ttu-id="17e7c-142">__Oddíl__</span><span class="sxs-lookup"><span data-stu-id="17e7c-142">__Section__</span></span>                                            | <span data-ttu-id="17e7c-143">__Účel__</span><span class="sxs-lookup"><span data-stu-id="17e7c-143">__Purpose__</span></span>                                            |
 |------------------|--------------------------------------------------------|--------------------------------------------------------|
-| `<c>`            | [`<c>`](documentation-comments.md#c)                   | <span data-ttu-id="3f95a-144">Nastavit text v kódu jako písma</span><span class="sxs-lookup"><span data-stu-id="3f95a-144">Set text in a code-like font</span></span>                           | 
-| `<code>`         | [`<code>`](documentation-comments.md#code)             | <span data-ttu-id="3f95a-145">Nastavit jeden nebo více řádků zdrojového kódu nebo výstup programu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-145">Set one or more lines of source code or program output</span></span> |
-| `<example>`      | [`<example>`](documentation-comments.md#example)       | <span data-ttu-id="3f95a-146">Označení příklad</span><span class="sxs-lookup"><span data-stu-id="3f95a-146">Indicate an example</span></span>                                    |
-| `<exception>`    | [`<exception>`](documentation-comments.md#exception)   | <span data-ttu-id="3f95a-147">Identifikuje výjimky, které můžou vyvolat metodu</span><span class="sxs-lookup"><span data-stu-id="3f95a-147">Identifies the exceptions a method can throw</span></span>           |
-| `<include>`      | [`<include>`](documentation-comments.md#include)       | <span data-ttu-id="3f95a-148">Obsahuje XML z externího souboru</span><span class="sxs-lookup"><span data-stu-id="3f95a-148">Includes XML from an external file</span></span>                     |
-| `<list>`         | [`<list>`](documentation-comments.md#list)             | <span data-ttu-id="3f95a-149">Vytvořit seznam nebo tabulku</span><span class="sxs-lookup"><span data-stu-id="3f95a-149">Create a list or table</span></span>                                 |
-| `<para>`         | [`<para>`](documentation-comments.md#para)             | <span data-ttu-id="3f95a-150">Povolit struktury mají být přidány do textu</span><span class="sxs-lookup"><span data-stu-id="3f95a-150">Permit structure to be added to text</span></span>                   |
-| `<param>`        | [`<param>`](documentation-comments.md#param)           | <span data-ttu-id="3f95a-151">Popis parametru metoda nebo konstruktor</span><span class="sxs-lookup"><span data-stu-id="3f95a-151">Describe a parameter for a method or constructor</span></span>       |
-| `<paramref>`     | [`<paramref>`](documentation-comments.md#paramref)     | <span data-ttu-id="3f95a-152">Zjistit, slovo je název parametru</span><span class="sxs-lookup"><span data-stu-id="3f95a-152">Identify that a word is a parameter name</span></span>               |
-| `<permission>`   | [`<permission>`](documentation-comments.md#permission) | <span data-ttu-id="3f95a-153">Dokument přístupností člena</span><span class="sxs-lookup"><span data-stu-id="3f95a-153">Document the security accessibility of a member</span></span>        |
-| `<remark>`       | [`<remark>`](documentation-comments.md#remark)         | <span data-ttu-id="3f95a-154">Popisují další informace o typu</span><span class="sxs-lookup"><span data-stu-id="3f95a-154">Describe additional information about a type</span></span>           |
-| `<returns>`      | [`<returns>`](documentation-comments.md#returns)       | <span data-ttu-id="3f95a-155">Popište návratovou hodnotu metody</span><span class="sxs-lookup"><span data-stu-id="3f95a-155">Describe the return value of a method</span></span>                  |
-| `<see>`          | [`<see>`](documentation-comments.md#see)               | <span data-ttu-id="3f95a-156">Zadejte odkaz</span><span class="sxs-lookup"><span data-stu-id="3f95a-156">Specify a link</span></span>                                         |
-| `<seealso>`      | [`<seealso>`](documentation-comments.md#seealso)       | <span data-ttu-id="3f95a-157">Generovat položku v části Viz také</span><span class="sxs-lookup"><span data-stu-id="3f95a-157">Generate a See Also entry</span></span>                              |
-| `<summary>`      | [`<summary>`](documentation-comments.md#summary)       | <span data-ttu-id="3f95a-158">Popisují typ nebo člen typu</span><span class="sxs-lookup"><span data-stu-id="3f95a-158">Describe a type or a member of a type</span></span>                  |
-| `<value>`        | [`<value>`](documentation-comments.md#value)           | <span data-ttu-id="3f95a-159">Popis vlastnosti</span><span class="sxs-lookup"><span data-stu-id="3f95a-159">Describe a property</span></span>                                    |
-| `<typeparam>`    |                                                        | <span data-ttu-id="3f95a-160">Popis parametru obecného typu</span><span class="sxs-lookup"><span data-stu-id="3f95a-160">Describe a generic type parameter</span></span>                      |
-| `<typeparamref>` |                                                        | <span data-ttu-id="3f95a-161">Zjistit, je slovo typu parametru názvu</span><span class="sxs-lookup"><span data-stu-id="3f95a-161">Identify that a word is a type parameter name</span></span>          |
+| `<c>`            | [`<c>`](documentation-comments.md#c)                   | <span data-ttu-id="17e7c-144">Nastavit text v kódu jako písma</span><span class="sxs-lookup"><span data-stu-id="17e7c-144">Set text in a code-like font</span></span>                           | 
+| `<code>`         | [`<code>`](documentation-comments.md#code)             | <span data-ttu-id="17e7c-145">Nastavit jeden nebo více řádků zdrojového kódu nebo výstup programu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-145">Set one or more lines of source code or program output</span></span> |
+| `<example>`      | [`<example>`](documentation-comments.md#example)       | <span data-ttu-id="17e7c-146">Označení příklad</span><span class="sxs-lookup"><span data-stu-id="17e7c-146">Indicate an example</span></span>                                    |
+| `<exception>`    | [`<exception>`](documentation-comments.md#exception)   | <span data-ttu-id="17e7c-147">Identifikuje výjimky, které můžou vyvolat metodu</span><span class="sxs-lookup"><span data-stu-id="17e7c-147">Identifies the exceptions a method can throw</span></span>           |
+| `<include>`      | [`<include>`](documentation-comments.md#include)       | <span data-ttu-id="17e7c-148">Obsahuje XML z externího souboru</span><span class="sxs-lookup"><span data-stu-id="17e7c-148">Includes XML from an external file</span></span>                     |
+| `<list>`         | [`<list>`](documentation-comments.md#list)             | <span data-ttu-id="17e7c-149">Vytvořit seznam nebo tabulku</span><span class="sxs-lookup"><span data-stu-id="17e7c-149">Create a list or table</span></span>                                 |
+| `<para>`         | [`<para>`](documentation-comments.md#para)             | <span data-ttu-id="17e7c-150">Povolit struktury mají být přidány do textu</span><span class="sxs-lookup"><span data-stu-id="17e7c-150">Permit structure to be added to text</span></span>                   |
+| `<param>`        | [`<param>`](documentation-comments.md#param)           | <span data-ttu-id="17e7c-151">Popis parametru metoda nebo konstruktor</span><span class="sxs-lookup"><span data-stu-id="17e7c-151">Describe a parameter for a method or constructor</span></span>       |
+| `<paramref>`     | [`<paramref>`](documentation-comments.md#paramref)     | <span data-ttu-id="17e7c-152">Zjistit, slovo je název parametru</span><span class="sxs-lookup"><span data-stu-id="17e7c-152">Identify that a word is a parameter name</span></span>               |
+| `<permission>`   | [`<permission>`](documentation-comments.md#permission) | <span data-ttu-id="17e7c-153">Dokument přístupností člena</span><span class="sxs-lookup"><span data-stu-id="17e7c-153">Document the security accessibility of a member</span></span>        |
+| `<remark>`       | [`<remark>`](documentation-comments.md#remark)         | <span data-ttu-id="17e7c-154">Popisují další informace o typu</span><span class="sxs-lookup"><span data-stu-id="17e7c-154">Describe additional information about a type</span></span>           |
+| `<returns>`      | [`<returns>`](documentation-comments.md#returns)       | <span data-ttu-id="17e7c-155">Popište návratovou hodnotu metody</span><span class="sxs-lookup"><span data-stu-id="17e7c-155">Describe the return value of a method</span></span>                  |
+| `<see>`          | [`<see>`](documentation-comments.md#see)               | <span data-ttu-id="17e7c-156">Zadejte odkaz</span><span class="sxs-lookup"><span data-stu-id="17e7c-156">Specify a link</span></span>                                         |
+| `<seealso>`      | [`<seealso>`](documentation-comments.md#seealso)       | <span data-ttu-id="17e7c-157">Generovat položku v části Viz také</span><span class="sxs-lookup"><span data-stu-id="17e7c-157">Generate a See Also entry</span></span>                              |
+| `<summary>`      | [`<summary>`](documentation-comments.md#summary)       | <span data-ttu-id="17e7c-158">Popisují typ nebo člen typu</span><span class="sxs-lookup"><span data-stu-id="17e7c-158">Describe a type or a member of a type</span></span>                  |
+| `<value>`        | [`<value>`](documentation-comments.md#value)           | <span data-ttu-id="17e7c-159">Popis vlastnosti</span><span class="sxs-lookup"><span data-stu-id="17e7c-159">Describe a property</span></span>                                    |
+| `<typeparam>`    |                                                        | <span data-ttu-id="17e7c-160">Popis parametru obecného typu</span><span class="sxs-lookup"><span data-stu-id="17e7c-160">Describe a generic type parameter</span></span>                      |
+| `<typeparamref>` |                                                        | <span data-ttu-id="17e7c-161">Zjistit, je slovo typu parametru názvu</span><span class="sxs-lookup"><span data-stu-id="17e7c-161">Identify that a word is a type parameter name</span></span>          |
 
 ### `<c>`
 
-<span data-ttu-id="3f95a-162">Tato značka poskytuje mechanismus pro označení, že fragment textu v popisu musí být nastaveno v speciální písmo. například, který používá pro blok kódu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-162">This tag provides a mechanism to indicate that a fragment of text within a description should be set in a special font such as that used for a block of code.</span></span> <span data-ttu-id="3f95a-163">Řádky skutečný kód, použijte `<code>` ([`<code>`](documentation-comments.md#code)).</span><span class="sxs-lookup"><span data-stu-id="3f95a-163">For lines of actual code, use `<code>` ([`<code>`](documentation-comments.md#code)).</span></span>
+<span data-ttu-id="17e7c-162">Tato značka poskytuje mechanismus pro označení, že fragment textu v popisu musí být nastaveno v speciální písmo. například, který používá pro blok kódu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-162">This tag provides a mechanism to indicate that a fragment of text within a description should be set in a special font such as that used for a block of code.</span></span> <span data-ttu-id="17e7c-163">Řádky skutečný kód, použijte `<code>` ([`<code>`](documentation-comments.md#code)).</span><span class="sxs-lookup"><span data-stu-id="17e7c-163">For lines of actual code, use `<code>` ([`<code>`](documentation-comments.md#code)).</span></span>
 
-<span data-ttu-id="3f95a-164">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-164">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-164">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-164">__Syntax:__</span></span>
 
 ```xml
 <c>text</c>
 ```
 
-<span data-ttu-id="3f95a-165">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-165">__Example:__</span></span>
+<span data-ttu-id="17e7c-165">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-165">__Example:__</span></span>
 
 ```csharp
 /// <summary>Class <c>Point</c> models a point in a two-dimensional
@@ -98,15 +98,15 @@ public class Point
 
 ### `<code>`
 
-<span data-ttu-id="3f95a-166">Tato značka se používá k nastavení jeden nebo více řádků zdrojového kódu nebo výstup programu některé speciální písmem.</span><span class="sxs-lookup"><span data-stu-id="3f95a-166">This tag is used to set one or more lines of source code or program output in some special font.</span></span> <span data-ttu-id="3f95a-167">Malý kód fragmenty v příběh, použijte `<c>` ([`<c>`](documentation-comments.md#c)).</span><span class="sxs-lookup"><span data-stu-id="3f95a-167">For small code fragments in narrative, use `<c>` ([`<c>`](documentation-comments.md#c)).</span></span>
+<span data-ttu-id="17e7c-166">Tato značka se používá k nastavení jeden nebo více řádků zdrojového kódu nebo výstup programu některé speciální písmem.</span><span class="sxs-lookup"><span data-stu-id="17e7c-166">This tag is used to set one or more lines of source code or program output in some special font.</span></span> <span data-ttu-id="17e7c-167">Malý kód fragmenty v příběh, použijte `<c>` ([`<c>`](documentation-comments.md#c)).</span><span class="sxs-lookup"><span data-stu-id="17e7c-167">For small code fragments in narrative, use `<c>` ([`<c>`](documentation-comments.md#c)).</span></span>
 
-<span data-ttu-id="3f95a-168">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-168">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-168">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-168">__Syntax:__</span></span>
 
 ```xml
 <code>source code or program output</code>
 ```
 
-<span data-ttu-id="3f95a-169">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-169">__Example:__</span></span>
+<span data-ttu-id="17e7c-169">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-169">__Example:__</span></span>
 
 ```csharp
 /// <summary>This method changes the point's location by
@@ -128,34 +128,34 @@ public void Translate(int xor, int yor) {
 
 ### `<example>`
 
-<span data-ttu-id="3f95a-170">Tato značka umožňuje ukázkový kód v komentáři, chcete-li určit, jak lze metodu nebo jiný člen knihovny.</span><span class="sxs-lookup"><span data-stu-id="3f95a-170">This tag allows example code within a comment, to specify how a method or other library member may be used.</span></span> <span data-ttu-id="3f95a-171">Obvykle to by také zahrnovat použití značky `<code>` ([`<code>`](documentation-comments.md#code)) i.</span><span class="sxs-lookup"><span data-stu-id="3f95a-171">Ordinarily, this would also involve use of the tag `<code>` ([`<code>`](documentation-comments.md#code)) as well.</span></span>
+<span data-ttu-id="17e7c-170">Tato značka umožňuje ukázkový kód v komentáři, chcete-li určit, jak lze metodu nebo jiný člen knihovny.</span><span class="sxs-lookup"><span data-stu-id="17e7c-170">This tag allows example code within a comment, to specify how a method or other library member may be used.</span></span> <span data-ttu-id="17e7c-171">Obvykle to by také zahrnovat použití značky `<code>` ([`<code>`](documentation-comments.md#code)) i.</span><span class="sxs-lookup"><span data-stu-id="17e7c-171">Ordinarily, this would also involve use of the tag `<code>` ([`<code>`](documentation-comments.md#code)) as well.</span></span>
 
-<span data-ttu-id="3f95a-172">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-172">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-172">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-172">__Syntax:__</span></span>
 
 ```xml
 <example>description</example>
 ```
 
-<span data-ttu-id="3f95a-173">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-173">__Example:__</span></span>
+<span data-ttu-id="17e7c-173">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-173">__Example:__</span></span>
 
-<span data-ttu-id="3f95a-174">Zobrazit `<code>` ([`<code>`](documentation-comments.md#code)) příklad.</span><span class="sxs-lookup"><span data-stu-id="3f95a-174">See `<code>` ([`<code>`](documentation-comments.md#code)) for an example.</span></span>
+<span data-ttu-id="17e7c-174">Zobrazit `<code>` ([`<code>`](documentation-comments.md#code)) příklad.</span><span class="sxs-lookup"><span data-stu-id="17e7c-174">See `<code>` ([`<code>`](documentation-comments.md#code)) for an example.</span></span>
 
 ### `<exception>`
 
-<span data-ttu-id="3f95a-175">Tato značka poskytuje způsob, jak dokumentovat výjimky, které můžou vyvolat metodu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-175">This tag provides a way to document the exceptions a method can throw.</span></span>
+<span data-ttu-id="17e7c-175">Tato značka poskytuje způsob, jak dokumentovat výjimky, které můžou vyvolat metodu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-175">This tag provides a way to document the exceptions a method can throw.</span></span>
 
-<span data-ttu-id="3f95a-176">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-176">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-176">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-176">__Syntax:__</span></span>
 
 ```xml
 <exception cref="member">description</exception>
 ```
 
-<span data-ttu-id="3f95a-177">kde</span><span class="sxs-lookup"><span data-stu-id="3f95a-177">where</span></span>
+<span data-ttu-id="17e7c-177">kde</span><span class="sxs-lookup"><span data-stu-id="17e7c-177">where</span></span>
 
-* <span data-ttu-id="3f95a-178">`member` je název člena.</span><span class="sxs-lookup"><span data-stu-id="3f95a-178">`member` is the name of a member.</span></span> <span data-ttu-id="3f95a-179">Dokumentace ke službě generátor kontroluje, zda daný člen existuje a přeloží `member` do názvu canonical prvku v souboru dokumentace.</span><span class="sxs-lookup"><span data-stu-id="3f95a-179">The documentation generator checks that the given member exists and translates `member` to the canonical element name in the documentation file.</span></span>
-* <span data-ttu-id="3f95a-180">`description` je popis okolnosti, ve kterých je vyvolána výjimka.</span><span class="sxs-lookup"><span data-stu-id="3f95a-180">`description` is a description of the circumstances in which the exception is thrown.</span></span>
+* <span data-ttu-id="17e7c-178">`member` je název člena.</span><span class="sxs-lookup"><span data-stu-id="17e7c-178">`member` is the name of a member.</span></span> <span data-ttu-id="17e7c-179">Dokumentace ke službě generátor kontroluje, zda daný člen existuje a přeloží `member` do názvu canonical prvku v souboru dokumentace.</span><span class="sxs-lookup"><span data-stu-id="17e7c-179">The documentation generator checks that the given member exists and translates `member` to the canonical element name in the documentation file.</span></span>
+* <span data-ttu-id="17e7c-180">`description` je popis okolnosti, ve kterých je vyvolána výjimka.</span><span class="sxs-lookup"><span data-stu-id="17e7c-180">`description` is a description of the circumstances in which the exception is thrown.</span></span>
 
-<span data-ttu-id="3f95a-181">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-181">__Example:__</span></span>
+<span data-ttu-id="17e7c-181">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-181">__Example:__</span></span>
 
 ```csharp
 public class DataBaseOperations
@@ -174,29 +174,29 @@ public class DataBaseOperations
 
 ### `<include>`
 
-<span data-ttu-id="3f95a-182">Tato značka umožňuje, včetně informací z dokumentu XML, který je externí vzhledem k souboru se zdrojovým kódem.</span><span class="sxs-lookup"><span data-stu-id="3f95a-182">This tag allows including information from an XML document that is external to the source code file.</span></span> <span data-ttu-id="3f95a-183">Externí soubor musí být ve správném formátu dokumentu XML a výraz XPath platí pro daný dokument k určení, jaké XML z dokumentu zahrnout.</span><span class="sxs-lookup"><span data-stu-id="3f95a-183">The external file must be a well-formed XML document, and an XPath expression is applied to that document to specify what XML from that document to include.</span></span> <span data-ttu-id="3f95a-184">`<include>` Značky se pak nahradí vybrané XML z externího dokumentu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-184">The `<include>` tag is then replaced with the selected XML from the external document.</span></span>
+<span data-ttu-id="17e7c-182">Tato značka umožňuje, včetně informací z dokumentu XML, který je externí vzhledem k souboru se zdrojovým kódem.</span><span class="sxs-lookup"><span data-stu-id="17e7c-182">This tag allows including information from an XML document that is external to the source code file.</span></span> <span data-ttu-id="17e7c-183">Externí soubor musí být ve správném formátu dokumentu XML a výraz XPath platí pro daný dokument k určení, jaké XML z dokumentu zahrnout.</span><span class="sxs-lookup"><span data-stu-id="17e7c-183">The external file must be a well-formed XML document, and an XPath expression is applied to that document to specify what XML from that document to include.</span></span> <span data-ttu-id="17e7c-184">`<include>` Značky se pak nahradí vybrané XML z externího dokumentu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-184">The `<include>` tag is then replaced with the selected XML from the external document.</span></span>
 
-<span data-ttu-id="3f95a-185">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-185">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-185">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-185">__Syntax:__</span></span>
 
 ```
 <include file="filename" path="xpath" />
 ```
 
-<span data-ttu-id="3f95a-186">kde</span><span class="sxs-lookup"><span data-stu-id="3f95a-186">where</span></span>
+<span data-ttu-id="17e7c-186">kde</span><span class="sxs-lookup"><span data-stu-id="17e7c-186">where</span></span>
 
-* <span data-ttu-id="3f95a-187">`filename` je název souboru z externího souboru XML.</span><span class="sxs-lookup"><span data-stu-id="3f95a-187">`filename` is the file name of an external XML file.</span></span> <span data-ttu-id="3f95a-188">Název souboru je relativní vzhledem k souboru, který obsahuje značku include interpretován.</span><span class="sxs-lookup"><span data-stu-id="3f95a-188">The file name is interpreted relative to the file that contains the include tag.</span></span>
-* <span data-ttu-id="3f95a-189">`xpath` je výraz XPath, který vybere část souboru XML v externím souboru XML.</span><span class="sxs-lookup"><span data-stu-id="3f95a-189">`xpath` is an XPath expression that selects some of the XML in the external XML file.</span></span>
+* <span data-ttu-id="17e7c-187">`filename` je název souboru z externího souboru XML.</span><span class="sxs-lookup"><span data-stu-id="17e7c-187">`filename` is the file name of an external XML file.</span></span> <span data-ttu-id="17e7c-188">Název souboru je relativní vzhledem k souboru, který obsahuje značku include interpretován.</span><span class="sxs-lookup"><span data-stu-id="17e7c-188">The file name is interpreted relative to the file that contains the include tag.</span></span>
+* <span data-ttu-id="17e7c-189">`xpath` je výraz XPath, který vybere část souboru XML v externím souboru XML.</span><span class="sxs-lookup"><span data-stu-id="17e7c-189">`xpath` is an XPath expression that selects some of the XML in the external XML file.</span></span>
 
-<span data-ttu-id="3f95a-190">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-190">__Example:__</span></span>
+<span data-ttu-id="17e7c-190">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-190">__Example:__</span></span>
 
-<span data-ttu-id="3f95a-191">Pokud zdrojový kód obsahuje deklarace, jako jsou:</span><span class="sxs-lookup"><span data-stu-id="3f95a-191">If the source code contained a declaration like:</span></span>
+<span data-ttu-id="17e7c-191">Pokud zdrojový kód obsahuje deklarace, jako jsou:</span><span class="sxs-lookup"><span data-stu-id="17e7c-191">If the source code contained a declaration like:</span></span>
 
 ```csharp
 /// <include file="docs.xml" path='extradoc/class[@name="IntList"]/*' />
 public class IntList { ... }
 ```
 
-<span data-ttu-id="3f95a-192">a externího souboru "docs.xml" měl následující obsah:</span><span class="sxs-lookup"><span data-stu-id="3f95a-192">and the external file "docs.xml" had the following contents:</span></span>
+<span data-ttu-id="17e7c-192">a externího souboru "docs.xml" měl následující obsah:</span><span class="sxs-lookup"><span data-stu-id="17e7c-192">and the external file "docs.xml" had the following contents:</span></span>
 
 ```xml
 <?xml version="1.0"?>
@@ -214,7 +214,7 @@ public class IntList { ... }
 </extradoc>
 ```
 
-<span data-ttu-id="3f95a-193">pak stejné dokumentace je výstup jako by obsahovala zdrojového kódu:</span><span class="sxs-lookup"><span data-stu-id="3f95a-193">then the same documentation is output as if the source code contained:</span></span>
+<span data-ttu-id="17e7c-193">pak stejné dokumentace je výstup jako by obsahovala zdrojového kódu:</span><span class="sxs-lookup"><span data-stu-id="17e7c-193">then the same documentation is output as if the source code contained:</span></span>
 
 ```csharp
 /// <summary>
@@ -225,11 +225,11 @@ public class IntList { ... }
 
 ### `<list>`
 
-<span data-ttu-id="3f95a-194">Tato značka se používá k vytvoření seznamu nebo tabulce položek.</span><span class="sxs-lookup"><span data-stu-id="3f95a-194">This tag is used to create a list or table of items.</span></span> <span data-ttu-id="3f95a-195">Může obsahovat `<listheader>` bloku k definování řádek záhlaví tabulky nebo definice seznamu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-195">It may contain a `<listheader>` block to define the heading row of either a table or definition list.</span></span> <span data-ttu-id="3f95a-196">(Při definování tabulku pouze záznam pro `term` v záhlaví musí být zadán.)</span><span class="sxs-lookup"><span data-stu-id="3f95a-196">(When defining a table, only an entry for `term` in the heading need be supplied.)</span></span>
+<span data-ttu-id="17e7c-194">Tato značka se používá k vytvoření seznamu nebo tabulce položek.</span><span class="sxs-lookup"><span data-stu-id="17e7c-194">This tag is used to create a list or table of items.</span></span> <span data-ttu-id="17e7c-195">Může obsahovat `<listheader>` bloku k definování řádek záhlaví tabulky nebo definice seznamu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-195">It may contain a `<listheader>` block to define the heading row of either a table or definition list.</span></span> <span data-ttu-id="17e7c-196">(Při definování tabulku pouze záznam pro `term` v záhlaví musí být zadán.)</span><span class="sxs-lookup"><span data-stu-id="17e7c-196">(When defining a table, only an entry for `term` in the heading need be supplied.)</span></span>
 
-<span data-ttu-id="3f95a-197">Každá položka v seznamu není zadán s `<item>` bloku.</span><span class="sxs-lookup"><span data-stu-id="3f95a-197">Each item in the list is specified with an `<item>` block.</span></span> <span data-ttu-id="3f95a-198">Při vytváření definice seznamu, obě `term` a `description` musí být zadán.</span><span class="sxs-lookup"><span data-stu-id="3f95a-198">When creating a definition list, both `term` and `description` must be specified.</span></span> <span data-ttu-id="3f95a-199">Nicméně pro tabulku, seznam s odrážkami nebo číslovaný seznam pouze `description` musí být zadán.</span><span class="sxs-lookup"><span data-stu-id="3f95a-199">However, for a table, bulleted list, or numbered list, only `description` need be specified.</span></span>
+<span data-ttu-id="17e7c-197">Každá položka v seznamu není zadán s `<item>` bloku.</span><span class="sxs-lookup"><span data-stu-id="17e7c-197">Each item in the list is specified with an `<item>` block.</span></span> <span data-ttu-id="17e7c-198">Při vytváření definice seznamu, obě `term` a `description` musí být zadán.</span><span class="sxs-lookup"><span data-stu-id="17e7c-198">When creating a definition list, both `term` and `description` must be specified.</span></span> <span data-ttu-id="17e7c-199">Nicméně pro tabulku, seznam s odrážkami nebo číslovaný seznam pouze `description` musí být zadán.</span><span class="sxs-lookup"><span data-stu-id="17e7c-199">However, for a table, bulleted list, or numbered list, only `description` need be specified.</span></span>
 
-<span data-ttu-id="3f95a-200">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-200">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-200">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-200">__Syntax:__</span></span>
 
 ```xml
 <list type="bullet" | "number" | "table">
@@ -249,12 +249,12 @@ public class IntList { ... }
 </list>
 ```
 
-<span data-ttu-id="3f95a-201">kde</span><span class="sxs-lookup"><span data-stu-id="3f95a-201">where</span></span>
+<span data-ttu-id="17e7c-201">kde</span><span class="sxs-lookup"><span data-stu-id="17e7c-201">where</span></span>
 
-* <span data-ttu-id="3f95a-202">`term` je termín k definování, jejichž definice není v `description`.</span><span class="sxs-lookup"><span data-stu-id="3f95a-202">`term` is the term to define, whose definition is in `description`.</span></span>
-* <span data-ttu-id="3f95a-203">`description` Položka odrážkami nebo číslovaný seznam nebo definici `term`.</span><span class="sxs-lookup"><span data-stu-id="3f95a-203">`description` is either an item in a bullet or numbered list, or the definition of a `term`.</span></span>
+* <span data-ttu-id="17e7c-202">`term` je termín k definování, jejichž definice není v `description`.</span><span class="sxs-lookup"><span data-stu-id="17e7c-202">`term` is the term to define, whose definition is in `description`.</span></span>
+* <span data-ttu-id="17e7c-203">`description` Položka odrážkami nebo číslovaný seznam nebo definici `term`.</span><span class="sxs-lookup"><span data-stu-id="17e7c-203">`description` is either an item in a bullet or numbered list, or the definition of a `term`.</span></span>
 
-<span data-ttu-id="3f95a-204">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-204">__Example:__</span></span>
+<span data-ttu-id="17e7c-204">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-204">__Example:__</span></span>
 
 ```csharp
 public class MyClass
@@ -277,17 +277,17 @@ public class MyClass
 
 ### `<para>`
 
-<span data-ttu-id="3f95a-205">Tato značka je určen pro použití v jiné značky, například `<summary>` ([`<remark>`](documentation-comments.md#remark)) nebo `<returns>` ([`<returns>`](documentation-comments.md#returns)) a povoluje struktury mají být přidány do textu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-205">This tag is for use inside other tags, such as `<summary>` ([`<remark>`](documentation-comments.md#remark)) or `<returns>` ([`<returns>`](documentation-comments.md#returns)), and permits structure to be added to text.</span></span>
+<span data-ttu-id="17e7c-205">Tato značka je určen pro použití v jiné značky, například `<summary>` ([`<remark>`](documentation-comments.md#remark)) nebo `<returns>` ([`<returns>`](documentation-comments.md#returns)) a povoluje struktury mají být přidány do textu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-205">This tag is for use inside other tags, such as `<summary>` ([`<remark>`](documentation-comments.md#remark)) or `<returns>` ([`<returns>`](documentation-comments.md#returns)), and permits structure to be added to text.</span></span>
 
-<span data-ttu-id="3f95a-206">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-206">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-206">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-206">__Syntax:__</span></span>
 
 ```xml
 <para>content</para>
 ```
 
-<span data-ttu-id="3f95a-207">kde `content` je text odstavce.</span><span class="sxs-lookup"><span data-stu-id="3f95a-207">where `content` is the text of the paragraph.</span></span>
+<span data-ttu-id="17e7c-207">kde `content` je text odstavce.</span><span class="sxs-lookup"><span data-stu-id="17e7c-207">where `content` is the text of the paragraph.</span></span>
 
-<span data-ttu-id="3f95a-208">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-208">__Example:__</span></span>
+<span data-ttu-id="17e7c-208">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-208">__Example:__</span></span>
 
 ```csharp
 /// <summary>This is the entry point of the Point class testing program.
@@ -301,20 +301,20 @@ public static void Main() {
 
 ### `<param>`
 
-<span data-ttu-id="3f95a-209">Tato značka se používá k popisu parametru pro metodu, konstruktor nebo indexeru.</span><span class="sxs-lookup"><span data-stu-id="3f95a-209">This tag is used to describe a parameter for a method, constructor, or indexer.</span></span>
+<span data-ttu-id="17e7c-209">Tato značka se používá k popisu parametru pro metodu, konstruktor nebo indexeru.</span><span class="sxs-lookup"><span data-stu-id="17e7c-209">This tag is used to describe a parameter for a method, constructor, or indexer.</span></span>
 
-<span data-ttu-id="3f95a-210">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-210">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-210">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-210">__Syntax:__</span></span>
 
 ```xml
 <param name="name">description</param>
 ```
 
-<span data-ttu-id="3f95a-211">kde</span><span class="sxs-lookup"><span data-stu-id="3f95a-211">where</span></span>
+<span data-ttu-id="17e7c-211">kde</span><span class="sxs-lookup"><span data-stu-id="17e7c-211">where</span></span>
 
-* <span data-ttu-id="3f95a-212">`name` je název parametru.</span><span class="sxs-lookup"><span data-stu-id="3f95a-212">`name` is the name of the parameter.</span></span>
-* <span data-ttu-id="3f95a-213">`description` představuje popis parametru.</span><span class="sxs-lookup"><span data-stu-id="3f95a-213">`description` is a description of the parameter.</span></span>
+* <span data-ttu-id="17e7c-212">`name` je název parametru.</span><span class="sxs-lookup"><span data-stu-id="17e7c-212">`name` is the name of the parameter.</span></span>
+* <span data-ttu-id="17e7c-213">`description` představuje popis parametru.</span><span class="sxs-lookup"><span data-stu-id="17e7c-213">`description` is a description of the parameter.</span></span>
 
-<span data-ttu-id="3f95a-214">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-214">__Example:__</span></span>
+<span data-ttu-id="17e7c-214">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-214">__Example:__</span></span>
 
 ```csharp
 /// <summary>This method changes the point's location to
@@ -329,17 +329,17 @@ public void Move(int xor, int yor) {
 
 ### `<paramref>`
 
-<span data-ttu-id="3f95a-215">Tato značka se používá k označení, že je slovo parametru.</span><span class="sxs-lookup"><span data-stu-id="3f95a-215">This tag is used to indicate that a word is a parameter.</span></span> <span data-ttu-id="3f95a-216">Soubor dokumentace mohou být zpracovány k nějakým způsobem odlišné formátování tento parametr.</span><span class="sxs-lookup"><span data-stu-id="3f95a-216">The documentation file can be processed to format this parameter in some distinct way.</span></span>
+<span data-ttu-id="17e7c-215">Tato značka se používá k označení, že je slovo parametru.</span><span class="sxs-lookup"><span data-stu-id="17e7c-215">This tag is used to indicate that a word is a parameter.</span></span> <span data-ttu-id="17e7c-216">Soubor dokumentace mohou být zpracovány k nějakým způsobem odlišné formátování tento parametr.</span><span class="sxs-lookup"><span data-stu-id="17e7c-216">The documentation file can be processed to format this parameter in some distinct way.</span></span>
 
-<span data-ttu-id="3f95a-217">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-217">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-217">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-217">__Syntax:__</span></span>
 
 ```xml
 <paramref name="name"/>
 ```
 
-<span data-ttu-id="3f95a-218">kde `name` je název parametru.</span><span class="sxs-lookup"><span data-stu-id="3f95a-218">where `name` is the name of the parameter.</span></span>
+<span data-ttu-id="17e7c-218">kde `name` je název parametru.</span><span class="sxs-lookup"><span data-stu-id="17e7c-218">where `name` is the name of the parameter.</span></span>
 
-<span data-ttu-id="3f95a-219">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-219">__Example:__</span></span>
+<span data-ttu-id="17e7c-219">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-219">__Example:__</span></span>
 
 ```csharp
 /// <summary>This constructor initializes the new Point to
@@ -355,20 +355,20 @@ public Point(int xor, int yor) {
 
 ### `<permission>`
 
-<span data-ttu-id="3f95a-220">Tato značka umožňuje přístupností člena chcete zdokumentovat.</span><span class="sxs-lookup"><span data-stu-id="3f95a-220">This tag allows the security accessibility of a member to be documented.</span></span>
+<span data-ttu-id="17e7c-220">Tato značka umožňuje přístupností člena chcete zdokumentovat.</span><span class="sxs-lookup"><span data-stu-id="17e7c-220">This tag allows the security accessibility of a member to be documented.</span></span>
 
-<span data-ttu-id="3f95a-221">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-221">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-221">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-221">__Syntax:__</span></span>
 
 ```xml
 <permission cref="member">description</permission>
 ```
 
-<span data-ttu-id="3f95a-222">kde</span><span class="sxs-lookup"><span data-stu-id="3f95a-222">where</span></span>
+<span data-ttu-id="17e7c-222">kde</span><span class="sxs-lookup"><span data-stu-id="17e7c-222">where</span></span>
 
-* <span data-ttu-id="3f95a-223">`member` je název člena.</span><span class="sxs-lookup"><span data-stu-id="3f95a-223">`member` is the name of a member.</span></span> <span data-ttu-id="3f95a-224">Dokumentace ke službě generátor kontroluje, zda daný prvek kódu existuje a přeloží *člen* do názvu canonical prvku v souboru dokumentace.</span><span class="sxs-lookup"><span data-stu-id="3f95a-224">The documentation generator checks that the given code element exists and translates *member* to the canonical element name in the documentation file.</span></span>
-* <span data-ttu-id="3f95a-225">`description` je popis přístup ke členu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-225">`description` is a description of the access to the member.</span></span>
+* <span data-ttu-id="17e7c-223">`member` je název člena.</span><span class="sxs-lookup"><span data-stu-id="17e7c-223">`member` is the name of a member.</span></span> <span data-ttu-id="17e7c-224">Dokumentace ke službě generátor kontroluje, zda daný prvek kódu existuje a přeloží *člen* do názvu canonical prvku v souboru dokumentace.</span><span class="sxs-lookup"><span data-stu-id="17e7c-224">The documentation generator checks that the given code element exists and translates *member* to the canonical element name in the documentation file.</span></span>
+* <span data-ttu-id="17e7c-225">`description` je popis přístup ke členu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-225">`description` is a description of the access to the member.</span></span>
 
-<span data-ttu-id="3f95a-226">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-226">__Example:__</span></span>
+<span data-ttu-id="17e7c-226">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-226">__Example:__</span></span>
 
 ```csharp
 /// <permission cref="System.Security.PermissionSet">Everyone can
@@ -381,17 +381,17 @@ public static void Test() {
 
 ### `<remark>`
 
-<span data-ttu-id="3f95a-227">Tato značka se používá k určení dalších informací o typu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-227">This tag is used to specify extra information about a type.</span></span> <span data-ttu-id="3f95a-228">(Použití `<summary>` ([`<summary>`](documentation-comments.md#summary)) k popisu samotný datový typ a členy typu.)</span><span class="sxs-lookup"><span data-stu-id="3f95a-228">(Use `<summary>` ([`<summary>`](documentation-comments.md#summary)) to describe the type itself and the members of a type.)</span></span>
+<span data-ttu-id="17e7c-227">Tato značka se používá k určení dalších informací o typu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-227">This tag is used to specify extra information about a type.</span></span> <span data-ttu-id="17e7c-228">(Použití `<summary>` ([`<summary>`](documentation-comments.md#summary)) k popisu samotný datový typ a členy typu.)</span><span class="sxs-lookup"><span data-stu-id="17e7c-228">(Use `<summary>` ([`<summary>`](documentation-comments.md#summary)) to describe the type itself and the members of a type.)</span></span>
 
-<span data-ttu-id="3f95a-229">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-229">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-229">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-229">__Syntax:__</span></span>
 
 ```xml
 <remark>description</remark>
 ```
 
-<span data-ttu-id="3f95a-230">kde `description` je text příspěvku.</span><span class="sxs-lookup"><span data-stu-id="3f95a-230">where `description` is the text of the remark.</span></span>
+<span data-ttu-id="17e7c-230">kde `description` je text příspěvku.</span><span class="sxs-lookup"><span data-stu-id="17e7c-230">where `description` is the text of the remark.</span></span>
 
-<span data-ttu-id="3f95a-231">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-231">__Example:__</span></span>
+<span data-ttu-id="17e7c-231">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-231">__Example:__</span></span>
 
 ```csharp
 /// <summary>Class <c>Point</c> models a point in a 
@@ -405,17 +405,17 @@ public class Point
 
 ### `<returns>`
 
-<span data-ttu-id="3f95a-232">Tato značka se používá k popisu návratovou hodnotu metody.</span><span class="sxs-lookup"><span data-stu-id="3f95a-232">This tag is used to describe the return value of a method.</span></span>
+<span data-ttu-id="17e7c-232">Tato značka se používá k popisu návratovou hodnotu metody.</span><span class="sxs-lookup"><span data-stu-id="17e7c-232">This tag is used to describe the return value of a method.</span></span>
 
-<span data-ttu-id="3f95a-233">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-233">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-233">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-233">__Syntax:__</span></span>
 
 ```xml
 <returns>description</returns>
 ```
 
-<span data-ttu-id="3f95a-234">kde `description` je popis návratovou hodnotu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-234">where `description` is a description of the return value.</span></span>
+<span data-ttu-id="17e7c-234">kde `description` je popis návratovou hodnotu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-234">where `description` is a description of the return value.</span></span>
 
-<span data-ttu-id="3f95a-235">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-235">__Example:__</span></span>
+<span data-ttu-id="17e7c-235">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-235">__Example:__</span></span>
 
 ```csharp
 /// <summary>Report a point's location as a string.</summary>
@@ -428,17 +428,17 @@ public override string ToString() {
 
 ### `<see>`
 
-<span data-ttu-id="3f95a-236">Tato značka umožňuje odkazu na specifikovaný v textu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-236">This tag allows a link to be specified within text.</span></span> <span data-ttu-id="3f95a-237">Použití `<seealso>` ([`<seealso>`](documentation-comments.md#seealso)) k označení textu, který se zobrazí v části Viz také.</span><span class="sxs-lookup"><span data-stu-id="3f95a-237">Use `<seealso>` ([`<seealso>`](documentation-comments.md#seealso)) to indicate text that is to appear in a See Also section.</span></span>
+<span data-ttu-id="17e7c-236">Tato značka umožňuje odkazu na specifikovaný v textu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-236">This tag allows a link to be specified within text.</span></span> <span data-ttu-id="17e7c-237">Použití `<seealso>` ([`<seealso>`](documentation-comments.md#seealso)) k označení textu, který se zobrazí v části Viz také.</span><span class="sxs-lookup"><span data-stu-id="17e7c-237">Use `<seealso>` ([`<seealso>`](documentation-comments.md#seealso)) to indicate text that is to appear in a See Also section.</span></span>
 
-<span data-ttu-id="3f95a-238">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-238">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-238">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-238">__Syntax:__</span></span>
 
 ```xml
 <see cref="member"/>
 ```
 
-<span data-ttu-id="3f95a-239">kde `member` je název člena.</span><span class="sxs-lookup"><span data-stu-id="3f95a-239">where `member` is the name of a member.</span></span> <span data-ttu-id="3f95a-240">Dokumentace ke službě generátor kontroluje, zda daný prvek kódu existuje a změní *člen* do názvu prvku v souboru vygenerovaná dokumentace.</span><span class="sxs-lookup"><span data-stu-id="3f95a-240">The documentation generator checks that the given code element exists and changes *member* to the element name in the generated documentation file.</span></span>
+<span data-ttu-id="17e7c-239">kde `member` je název člena.</span><span class="sxs-lookup"><span data-stu-id="17e7c-239">where `member` is the name of a member.</span></span> <span data-ttu-id="17e7c-240">Dokumentace ke službě generátor kontroluje, zda daný prvek kódu existuje a změní *člen* do názvu prvku v souboru vygenerovaná dokumentace.</span><span class="sxs-lookup"><span data-stu-id="17e7c-240">The documentation generator checks that the given code element exists and changes *member* to the element name in the generated documentation file.</span></span>
 
-<span data-ttu-id="3f95a-241">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-241">__Example:__</span></span>
+<span data-ttu-id="17e7c-241">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-241">__Example:__</span></span>
 
 ```csharp
 /// <summary>This method changes the point's location to
@@ -461,17 +461,17 @@ public void Translate(int xor, int yor) {
 
 ### `<seealso>`
 
-<span data-ttu-id="3f95a-242">Tato značka umožňuje záznam, tím se vygeneruje pro části Viz také.</span><span class="sxs-lookup"><span data-stu-id="3f95a-242">This tag allows an entry to be generated for the See Also section.</span></span> <span data-ttu-id="3f95a-243">Použití `<see>` ([`<see>`](documentation-comments.md#see)) zadat odkaz v rámci textu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-243">Use `<see>` ([`<see>`](documentation-comments.md#see)) to specify a link from within text.</span></span>
+<span data-ttu-id="17e7c-242">Tato značka umožňuje záznam, tím se vygeneruje pro části Viz také.</span><span class="sxs-lookup"><span data-stu-id="17e7c-242">This tag allows an entry to be generated for the See Also section.</span></span> <span data-ttu-id="17e7c-243">Použití `<see>` ([`<see>`](documentation-comments.md#see)) zadat odkaz v rámci textu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-243">Use `<see>` ([`<see>`](documentation-comments.md#see)) to specify a link from within text.</span></span>
 
-<span data-ttu-id="3f95a-244">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-244">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-244">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-244">__Syntax:__</span></span>
 
 ```xml
 <seealso cref="member"/>
 ```
 
-<span data-ttu-id="3f95a-245">kde `member` je název člena.</span><span class="sxs-lookup"><span data-stu-id="3f95a-245">where `member` is the name of a member.</span></span> <span data-ttu-id="3f95a-246">Dokumentace ke službě generátor kontroluje, zda daný prvek kódu existuje a změní *člen* do názvu prvku v souboru vygenerovaná dokumentace.</span><span class="sxs-lookup"><span data-stu-id="3f95a-246">The documentation generator checks that the given code element exists and changes *member* to the element name in the generated documentation file.</span></span>
+<span data-ttu-id="17e7c-245">kde `member` je název člena.</span><span class="sxs-lookup"><span data-stu-id="17e7c-245">where `member` is the name of a member.</span></span> <span data-ttu-id="17e7c-246">Dokumentace ke službě generátor kontroluje, zda daný prvek kódu existuje a změní *člen* do názvu prvku v souboru vygenerovaná dokumentace.</span><span class="sxs-lookup"><span data-stu-id="17e7c-246">The documentation generator checks that the given code element exists and changes *member* to the element name in the generated documentation file.</span></span>
 
-<span data-ttu-id="3f95a-247">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-247">__Example:__</span></span>
+<span data-ttu-id="17e7c-247">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-247">__Example:__</span></span>
 
 ```csharp
 /// <summary>This method determines whether two Points have the same
@@ -485,17 +485,17 @@ public override bool Equals(object o) {
 
 ### `<summary>`
 
-Toto klíčové slovo lze použít k popisu typ nebo člen typu. <span data-ttu-id="3f95a-249">Použití `<remark>` ([`<remark>`](documentation-comments.md#remark)) k popisu samotného typu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-249">Use `<remark>` ([`<remark>`](documentation-comments.md#remark)) to describe the type itself.</span></span>
+Toto klíčové slovo lze použít k popisu typ nebo člen typu. <span data-ttu-id="17e7c-249">Použití `<remark>` ([`<remark>`](documentation-comments.md#remark)) k popisu samotného typu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-249">Use `<remark>` ([`<remark>`](documentation-comments.md#remark)) to describe the type itself.</span></span>
 
-<span data-ttu-id="3f95a-250">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-250">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-250">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-250">__Syntax:__</span></span>
 
 ```xml
 <summary>description</summary>
 ```
 
-<span data-ttu-id="3f95a-251">kde `description` je uveden seznam tento typ nebo člen.</span><span class="sxs-lookup"><span data-stu-id="3f95a-251">where `description` is a summary of the type or member.</span></span>
+<span data-ttu-id="17e7c-251">kde `description` je uveden seznam tento typ nebo člen.</span><span class="sxs-lookup"><span data-stu-id="17e7c-251">where `description` is a summary of the type or member.</span></span>
 
-<span data-ttu-id="3f95a-252">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-252">__Example:__</span></span>
+<span data-ttu-id="17e7c-252">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-252">__Example:__</span></span>
 
 ```csharp
 /// <summary>This constructor initializes the new Point to (0,0).</summary>
@@ -505,17 +505,17 @@ public Point() : this(0,0) {
 
 ### `<value>`
 
-<span data-ttu-id="3f95a-253">Tato značka umožňuje vlastnost, která má být popsány.</span><span class="sxs-lookup"><span data-stu-id="3f95a-253">This tag allows a property to be described.</span></span>
+<span data-ttu-id="17e7c-253">Tato značka umožňuje vlastnost, která má být popsány.</span><span class="sxs-lookup"><span data-stu-id="17e7c-253">This tag allows a property to be described.</span></span>
 
-<span data-ttu-id="3f95a-254">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-254">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-254">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-254">__Syntax:__</span></span>
 
 ```xml
 <value>property description</value>
 ```
 
-<span data-ttu-id="3f95a-255">kde `property description` je pro vlastnost Popis.</span><span class="sxs-lookup"><span data-stu-id="3f95a-255">where `property description` is a description for the property.</span></span>
+<span data-ttu-id="17e7c-255">kde `property description` je pro vlastnost Popis.</span><span class="sxs-lookup"><span data-stu-id="17e7c-255">where `property description` is a description for the property.</span></span>
 
-<span data-ttu-id="3f95a-256">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-256">__Example:__</span></span>
+<span data-ttu-id="17e7c-256">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-256">__Example:__</span></span>
 
 ```csharp
 /// <value>Property <c>X</c> represents the point's x-coordinate.</value>
@@ -528,17 +528,17 @@ public int X
 
 ### `<typeparam>`
 
-<span data-ttu-id="3f95a-257">Tato značka se používá k popisu parametru obecného typu třídy, struktury, rozhraní, delegáta nebo metoda.</span><span class="sxs-lookup"><span data-stu-id="3f95a-257">This tag is used to describe a generic type parameter for a class, struct, interface, delegate, or method.</span></span>
+<span data-ttu-id="17e7c-257">Tato značka se používá k popisu parametru obecného typu třídy, struktury, rozhraní, delegáta nebo metoda.</span><span class="sxs-lookup"><span data-stu-id="17e7c-257">This tag is used to describe a generic type parameter for a class, struct, interface, delegate, or method.</span></span>
 
-<span data-ttu-id="3f95a-258">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-258">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-258">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-258">__Syntax:__</span></span>
 
 ```xml
 <typeparam name="name">description</typeparam>
 ```
 
-<span data-ttu-id="3f95a-259">kde `name` je název parametru typu a `description` je její popis.</span><span class="sxs-lookup"><span data-stu-id="3f95a-259">where `name` is the name of the type parameter, and `description` is its description.</span></span>
+<span data-ttu-id="17e7c-259">kde `name` je název parametru typu a `description` je její popis.</span><span class="sxs-lookup"><span data-stu-id="17e7c-259">where `name` is the name of the type parameter, and `description` is its description.</span></span>
 
-<span data-ttu-id="3f95a-260">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-260">__Example:__</span></span>
+<span data-ttu-id="17e7c-260">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-260">__Example:__</span></span>
 
 ```csharp
 /// <summary>A generic list class.</summary>
@@ -550,17 +550,17 @@ public class MyList<T> {
 
 ### `<typeparamref>`
 
-<span data-ttu-id="3f95a-261">Tato značka se používá k označení, že slovo je parametr typu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-261">This tag is used to indicate that a word is a type parameter.</span></span> <span data-ttu-id="3f95a-262">Soubor dokumentace mohou být zpracovány k nějakým způsobem odlišné formátování tento parametr typu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-262">The documentation file can be processed to format this type parameter in some distinct way.</span></span>
+<span data-ttu-id="17e7c-261">Tato značka se používá k označení, že slovo je parametr typu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-261">This tag is used to indicate that a word is a type parameter.</span></span> <span data-ttu-id="17e7c-262">Soubor dokumentace mohou být zpracovány k nějakým způsobem odlišné formátování tento parametr typu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-262">The documentation file can be processed to format this type parameter in some distinct way.</span></span>
 
-<span data-ttu-id="3f95a-263">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-263">__Syntax:__</span></span>
+<span data-ttu-id="17e7c-263">__Syntaxe:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-263">__Syntax:__</span></span>
 
 ```xml
 <typeparamref name="name"/>
 ```
 
-<span data-ttu-id="3f95a-264">kde `name` je název parametru typu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-264">where `name` is the name of the type parameter.</span></span>
+<span data-ttu-id="17e7c-264">kde `name` je název parametru typu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-264">where `name` is the name of the type parameter.</span></span>
 
-<span data-ttu-id="3f95a-265">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="3f95a-265">__Example:__</span></span>
+<span data-ttu-id="17e7c-265">__Příklad:__</span><span class="sxs-lookup"><span data-stu-id="17e7c-265">__Example:__</span></span>
 
 ```csharp
 /// <summary>This method fetches data and returns a list of <typeparamref name="T"/>.</summary>
@@ -570,46 +570,46 @@ public List<T> FetchData<T>(string query) {
 }
 ```
 
-## <a name="processing-the-documentation-file"></a><span data-ttu-id="3f95a-266">Zpracování souboru dokumentace</span><span class="sxs-lookup"><span data-stu-id="3f95a-266">Processing the documentation file</span></span>
+## <a name="processing-the-documentation-file"></a><span data-ttu-id="17e7c-266">Zpracování souboru dokumentace</span><span class="sxs-lookup"><span data-stu-id="17e7c-266">Processing the documentation file</span></span>
 
-<span data-ttu-id="3f95a-267">Dokumentace ke službě generátor generuje řetězec ID pro každý prvek ve zdrojovém kódu, který se Dokumentační komentář označené.</span><span class="sxs-lookup"><span data-stu-id="3f95a-267">The documentation generator generates an ID string for each element in the source code that is tagged with a documentation comment.</span></span> <span data-ttu-id="3f95a-268">Tento řetězec ID jednoznačně identifikuje prvek zdroje.</span><span class="sxs-lookup"><span data-stu-id="3f95a-268">This ID string uniquely identifies a source element.</span></span> <span data-ttu-id="3f95a-269">Dokumentace k prohlížeči slouží jako řetězec ID k identifikaci odpovídající položku metadat/reflexe, ke kterému se vztahuje na dokumentaci.</span><span class="sxs-lookup"><span data-stu-id="3f95a-269">A documentation viewer can use an ID string to identify the corresponding metadata/reflection item to which the documentation applies.</span></span>
+<span data-ttu-id="17e7c-267">Dokumentace ke službě generátor generuje řetězec ID pro každý prvek ve zdrojovém kódu, který se Dokumentační komentář označené.</span><span class="sxs-lookup"><span data-stu-id="17e7c-267">The documentation generator generates an ID string for each element in the source code that is tagged with a documentation comment.</span></span> <span data-ttu-id="17e7c-268">Tento řetězec ID jednoznačně identifikuje prvek zdroje.</span><span class="sxs-lookup"><span data-stu-id="17e7c-268">This ID string uniquely identifies a source element.</span></span> <span data-ttu-id="17e7c-269">Dokumentace k prohlížeči slouží jako řetězec ID k identifikaci odpovídající položku metadat/reflexe, ke kterému se vztahuje na dokumentaci.</span><span class="sxs-lookup"><span data-stu-id="17e7c-269">A documentation viewer can use an ID string to identify the corresponding metadata/reflection item to which the documentation applies.</span></span>
 
-<span data-ttu-id="3f95a-270">Soubor dokumentace není Hierarchická reprezentace zdrojového kódu; Místo toho je seznam bez stromové struktury s řetězcem vygenerované ID pro každý prvek.</span><span class="sxs-lookup"><span data-stu-id="3f95a-270">The documentation file is not a hierarchical representation of the source code; rather, it is a flat list with a generated ID string for each element.</span></span>
+<span data-ttu-id="17e7c-270">Soubor dokumentace není Hierarchická reprezentace zdrojového kódu; Místo toho je seznam bez stromové struktury s řetězcem vygenerované ID pro každý prvek.</span><span class="sxs-lookup"><span data-stu-id="17e7c-270">The documentation file is not a hierarchical representation of the source code; rather, it is a flat list with a generated ID string for each element.</span></span>
 
-### <a name="id-string-format"></a><span data-ttu-id="3f95a-271">Formát ID řetězce</span><span class="sxs-lookup"><span data-stu-id="3f95a-271">ID string format</span></span>
+### <a name="id-string-format"></a><span data-ttu-id="17e7c-271">Formát ID řetězce</span><span class="sxs-lookup"><span data-stu-id="17e7c-271">ID string format</span></span>
 
-<span data-ttu-id="3f95a-272">Dokumentace ke službě generátor dodržuje následující pravidla při generování ID řetězce:</span><span class="sxs-lookup"><span data-stu-id="3f95a-272">The documentation generator observes the following rules when it generates the ID strings:</span></span>
+<span data-ttu-id="17e7c-272">Dokumentace ke službě generátor dodržuje následující pravidla při generování ID řetězce:</span><span class="sxs-lookup"><span data-stu-id="17e7c-272">The documentation generator observes the following rules when it generates the ID strings:</span></span>
 
-*  <span data-ttu-id="3f95a-273">Žádné jiné mezery, nachází v řetězci.</span><span class="sxs-lookup"><span data-stu-id="3f95a-273">No white space is placed in the string.</span></span>
+*  <span data-ttu-id="17e7c-273">Žádné jiné mezery, nachází v řetězci.</span><span class="sxs-lookup"><span data-stu-id="17e7c-273">No white space is placed in the string.</span></span>
 
-*  <span data-ttu-id="3f95a-274">První část řetězce identifikuje typ členu je zdokumentovaná prostřednictvím rutiny jeden znak následovaný dvojtečkou.</span><span class="sxs-lookup"><span data-stu-id="3f95a-274">The first part of the string identifies the kind of member being documented, via a single character followed by a colon.</span></span> <span data-ttu-id="3f95a-275">Jsou definovány následující druhy členů:</span><span class="sxs-lookup"><span data-stu-id="3f95a-275">The following kinds of members are defined:</span></span>
+*  <span data-ttu-id="17e7c-274">První část řetězce identifikuje typ členu je zdokumentovaná prostřednictvím rutiny jeden znak následovaný dvojtečkou.</span><span class="sxs-lookup"><span data-stu-id="17e7c-274">The first part of the string identifies the kind of member being documented, via a single character followed by a colon.</span></span> <span data-ttu-id="17e7c-275">Jsou definovány následující druhy členů:</span><span class="sxs-lookup"><span data-stu-id="17e7c-275">The following kinds of members are defined:</span></span>
 
-   | <span data-ttu-id="3f95a-276">__Znak__</span><span class="sxs-lookup"><span data-stu-id="3f95a-276">__Character__</span></span> | <span data-ttu-id="3f95a-277">__Popis__</span><span class="sxs-lookup"><span data-stu-id="3f95a-277">__Description__</span></span>                                             |
+   | <span data-ttu-id="17e7c-276">__Znak__</span><span class="sxs-lookup"><span data-stu-id="17e7c-276">__Character__</span></span> | <span data-ttu-id="17e7c-277">__Popis__</span><span class="sxs-lookup"><span data-stu-id="17e7c-277">__Description__</span></span>                                             |
    |---------------|-------------------------------------------------------------|
-   | <span data-ttu-id="3f95a-278">E</span><span class="sxs-lookup"><span data-stu-id="3f95a-278">E</span></span>             | <span data-ttu-id="3f95a-279">Událost</span><span class="sxs-lookup"><span data-stu-id="3f95a-279">Event</span></span>                                                       |
-   | <span data-ttu-id="3f95a-280">F</span><span class="sxs-lookup"><span data-stu-id="3f95a-280">F</span></span>             | <span data-ttu-id="3f95a-281">Pole</span><span class="sxs-lookup"><span data-stu-id="3f95a-281">Field</span></span>                                                       |
-   | <span data-ttu-id="3f95a-282">M</span><span class="sxs-lookup"><span data-stu-id="3f95a-282">M</span></span>             | <span data-ttu-id="3f95a-283">(Včetně konstruktory, destruktory a operátory) – metoda</span><span class="sxs-lookup"><span data-stu-id="3f95a-283">Method (including constructors, destructors, and operators)</span></span> |
-   | <span data-ttu-id="3f95a-284">N</span><span class="sxs-lookup"><span data-stu-id="3f95a-284">N</span></span>             | <span data-ttu-id="3f95a-285">Obor názvů</span><span class="sxs-lookup"><span data-stu-id="3f95a-285">Namespace</span></span>                                                   |
-   | <span data-ttu-id="3f95a-286">P</span><span class="sxs-lookup"><span data-stu-id="3f95a-286">P</span></span>             | <span data-ttu-id="3f95a-287">Vlastnosti (včetně indexery)</span><span class="sxs-lookup"><span data-stu-id="3f95a-287">Property (including indexers)</span></span>                               |
-   | <span data-ttu-id="3f95a-288">T</span><span class="sxs-lookup"><span data-stu-id="3f95a-288">T</span></span>             | <span data-ttu-id="3f95a-289">Typ (například třída, delegát, výčtu, rozhraní a struktury)</span><span class="sxs-lookup"><span data-stu-id="3f95a-289">Type (such as class, delegate, enum, interface, and struct)</span></span> |
-   | <span data-ttu-id="3f95a-290">!</span><span class="sxs-lookup"><span data-stu-id="3f95a-290">!</span></span>             | <span data-ttu-id="3f95a-291">Řetězec chyby; zbývající řetězec poskytuje informace o této chybě.</span><span class="sxs-lookup"><span data-stu-id="3f95a-291">Error string; the rest of the string provides information about the error.</span></span> <span data-ttu-id="3f95a-292">Například dokumentace generátor generuje informace o chybě pro odkazy, které nelze rozpoznat.</span><span class="sxs-lookup"><span data-stu-id="3f95a-292">For example, the documentation generator generates error information for links that cannot be resolved.</span></span> |
+   | <span data-ttu-id="17e7c-278">E</span><span class="sxs-lookup"><span data-stu-id="17e7c-278">E</span></span>             | <span data-ttu-id="17e7c-279">Událost</span><span class="sxs-lookup"><span data-stu-id="17e7c-279">Event</span></span>                                                       |
+   | <span data-ttu-id="17e7c-280">F</span><span class="sxs-lookup"><span data-stu-id="17e7c-280">F</span></span>             | <span data-ttu-id="17e7c-281">Pole</span><span class="sxs-lookup"><span data-stu-id="17e7c-281">Field</span></span>                                                       |
+   | <span data-ttu-id="17e7c-282">M</span><span class="sxs-lookup"><span data-stu-id="17e7c-282">M</span></span>             | <span data-ttu-id="17e7c-283">(Včetně konstruktory, destruktory a operátory) – metoda</span><span class="sxs-lookup"><span data-stu-id="17e7c-283">Method (including constructors, destructors, and operators)</span></span> |
+   | <span data-ttu-id="17e7c-284">N</span><span class="sxs-lookup"><span data-stu-id="17e7c-284">N</span></span>             | <span data-ttu-id="17e7c-285">Obor názvů</span><span class="sxs-lookup"><span data-stu-id="17e7c-285">Namespace</span></span>                                                   |
+   | <span data-ttu-id="17e7c-286">P</span><span class="sxs-lookup"><span data-stu-id="17e7c-286">P</span></span>             | <span data-ttu-id="17e7c-287">Vlastnosti (včetně indexery)</span><span class="sxs-lookup"><span data-stu-id="17e7c-287">Property (including indexers)</span></span>                               |
+   | <span data-ttu-id="17e7c-288">T</span><span class="sxs-lookup"><span data-stu-id="17e7c-288">T</span></span>             | <span data-ttu-id="17e7c-289">Typ (například třída, delegát, výčtu, rozhraní a struktury)</span><span class="sxs-lookup"><span data-stu-id="17e7c-289">Type (such as class, delegate, enum, interface, and struct)</span></span> |
+   | <span data-ttu-id="17e7c-290">!</span><span class="sxs-lookup"><span data-stu-id="17e7c-290">!</span></span>             | <span data-ttu-id="17e7c-291">Řetězec chyby; zbývající řetězec poskytuje informace o této chybě.</span><span class="sxs-lookup"><span data-stu-id="17e7c-291">Error string; the rest of the string provides information about the error.</span></span> <span data-ttu-id="17e7c-292">Například dokumentace generátor generuje informace o chybě pro odkazy, které nelze rozpoznat.</span><span class="sxs-lookup"><span data-stu-id="17e7c-292">For example, the documentation generator generates error information for links that cannot be resolved.</span></span> |
 
-*  <span data-ttu-id="3f95a-293">Druhá část řetězce je plně kvalifikovaný název elementu, spouštění v kořenovém oboru názvů.</span><span class="sxs-lookup"><span data-stu-id="3f95a-293">The second part of the string is the fully qualified name of the element, starting at the root of the namespace.</span></span> <span data-ttu-id="3f95a-294">Název elementu, jeho nadřazené typy a obor názvů jsou odděleny tečkami.</span><span class="sxs-lookup"><span data-stu-id="3f95a-294">The name of the element, its enclosing type(s), and namespace are separated by periods.</span></span> <span data-ttu-id="3f95a-295">Pokud má název samotné položky období, budou nahrazeny `#(U+0023)` znaků.</span><span class="sxs-lookup"><span data-stu-id="3f95a-295">If the name of the item itself has periods, they are replaced by `#(U+0023)` characters.</span></span> <span data-ttu-id="3f95a-296">(Předpokládá se, že žádný element nemá tento znak v názvu.)</span><span class="sxs-lookup"><span data-stu-id="3f95a-296">(It is assumed that no element has this character in its name.)</span></span>
-*  <span data-ttu-id="3f95a-297">Pro metody a vlastnosti s argumenty, pomocí následujícího seznamu argument uzavřen v závorkách.</span><span class="sxs-lookup"><span data-stu-id="3f95a-297">For methods and properties with arguments, the argument list follows, enclosed in parentheses.</span></span> <span data-ttu-id="3f95a-298">Pro ty bez argumentů jsou vynechány závorky.</span><span class="sxs-lookup"><span data-stu-id="3f95a-298">For those without arguments, the parentheses are omitted.</span></span> <span data-ttu-id="3f95a-299">Argumenty jsou odděleny čárkami.</span><span class="sxs-lookup"><span data-stu-id="3f95a-299">The arguments are separated by commas.</span></span> <span data-ttu-id="3f95a-300">Kódování každý argument je stejný jako rozhraní příkazového řádku, následujícím způsobem:</span><span class="sxs-lookup"><span data-stu-id="3f95a-300">The encoding of each argument is the same as a CLI signature, as follows:</span></span>
-   *  <span data-ttu-id="3f95a-301">Argumenty jsou reprezentovány podle názvu jejich dokumentaci, která je založena na jejich plně kvalifikovanému názvu upraveny následujícím způsobem:</span><span class="sxs-lookup"><span data-stu-id="3f95a-301">Arguments are represented by their documentation name, which is based on their fully qualified name, modified as follows:</span></span>
-      * <span data-ttu-id="3f95a-302">Argumenty, které představují obecné typy mají připojený "" "znak následovaný počtem parametrů typu</span><span class="sxs-lookup"><span data-stu-id="3f95a-302">Arguments that represent generic types have an appended "'" character followed by the number of type parameters</span></span>
-      * <span data-ttu-id="3f95a-303">Argumenty s `out` nebo `ref` mít modifikátor `@` po jejich název typu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-303">Arguments having the `out` or `ref` modifier have an `@` following their type name.</span></span> <span data-ttu-id="3f95a-304">Argumenty předány podle hodnoty nebo prostřednictvím `params` mít žádná zvláštní zápis.</span><span class="sxs-lookup"><span data-stu-id="3f95a-304">Arguments passed by value or via `params` have no special notation.</span></span>
-      * <span data-ttu-id="3f95a-305">Argumenty, které jsou pole jsou reprezentovány ve formě `[lowerbound:size, ... , lowerbound:size]` kde počet čárky je řád méně jeden a dolní meze a velikosti jednotlivých rozměrů, pokud jsou známé, jsou reprezentovány v desítkové soustavě.</span><span class="sxs-lookup"><span data-stu-id="3f95a-305">Arguments that are arrays are represented as `[lowerbound:size, ... , lowerbound:size]` where the number of commas is the rank less one, and the lower bounds and size of each dimension, if known, are represented in decimal.</span></span> <span data-ttu-id="3f95a-306">Pokud není zadán dolní mez nebo velikost, je vynechán.</span><span class="sxs-lookup"><span data-stu-id="3f95a-306">If a lower bound or size is not specified, it is omitted.</span></span> <span data-ttu-id="3f95a-307">Pokud jsou vynechány dolní mez a velikosti pro konkrétní dimenzi, "`:`" je také vynechán.</span><span class="sxs-lookup"><span data-stu-id="3f95a-307">If the lower bound and size for a particular dimension are omitted, the "`:`" is omitted as well.</span></span> <span data-ttu-id="3f95a-308">Vícenásobná pole jsou reprezentované pomocí jedné "`[]`" na úroveň.</span><span class="sxs-lookup"><span data-stu-id="3f95a-308">Jagged arrays are represented by one "`[]`" per level.</span></span>
-      * <span data-ttu-id="3f95a-309">Argumenty, které mají ukazatel typy než void se vyjadřují pomocí `*` za názvem typu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-309">Arguments that have pointer types other than void are represented using a `*` following the type name.</span></span> <span data-ttu-id="3f95a-310">Ukazatel void je reprezentována pomocí názvu typu `System.Void`.</span><span class="sxs-lookup"><span data-stu-id="3f95a-310">A void pointer is represented using a type name of `System.Void`.</span></span>
-      * <span data-ttu-id="3f95a-311">Argumenty, které odkazují na parametry obecného typu, které jsou definovány pro typy jsou zakódovány pomocí "" "znak následovaný z nuly vycházející index parametru typu.</span><span class="sxs-lookup"><span data-stu-id="3f95a-311">Arguments that refer to generic type parameters defined on types are encoded using the "\`" character followed by the zero-based index of the type parameter.</span></span>
-      * <span data-ttu-id="3f95a-312">Argumenty, které používají parametry obecného typu, které jsou definovány v metodách pomocí double prvními "\`\`" místo "\`" použít u typů.</span><span class="sxs-lookup"><span data-stu-id="3f95a-312">Arguments that use generic type parameters defined in methods use a double-backtick "\`\`" instead of the "\`" used for types.</span></span>
-      * <span data-ttu-id="3f95a-313">Argumenty, které odkazují na sestavené obecné typy jsou zakódovány pomocí obecného typu, za nímž následuje "{", za nímž následuje čárkou oddělený seznam argumentů, za nímž následuje "}".</span><span class="sxs-lookup"><span data-stu-id="3f95a-313">Arguments that refer to constructed generic types are encoded using the generic type, followed by "{", followed by a comma-separated list of type arguments, followed by "}".</span></span>
+*  <span data-ttu-id="17e7c-293">Druhá část řetězce je plně kvalifikovaný název elementu, spouštění v kořenovém oboru názvů.</span><span class="sxs-lookup"><span data-stu-id="17e7c-293">The second part of the string is the fully qualified name of the element, starting at the root of the namespace.</span></span> <span data-ttu-id="17e7c-294">Název elementu, jeho nadřazené typy a obor názvů jsou odděleny tečkami.</span><span class="sxs-lookup"><span data-stu-id="17e7c-294">The name of the element, its enclosing type(s), and namespace are separated by periods.</span></span> <span data-ttu-id="17e7c-295">Pokud má název samotné položky období, budou nahrazeny `#(U+0023)` znaků.</span><span class="sxs-lookup"><span data-stu-id="17e7c-295">If the name of the item itself has periods, they are replaced by `#(U+0023)` characters.</span></span> <span data-ttu-id="17e7c-296">(Předpokládá se, že žádný element nemá tento znak v názvu.)</span><span class="sxs-lookup"><span data-stu-id="17e7c-296">(It is assumed that no element has this character in its name.)</span></span>
+*  <span data-ttu-id="17e7c-297">Pro metody a vlastnosti s argumenty, pomocí následujícího seznamu argument uzavřen v závorkách.</span><span class="sxs-lookup"><span data-stu-id="17e7c-297">For methods and properties with arguments, the argument list follows, enclosed in parentheses.</span></span> <span data-ttu-id="17e7c-298">Pro ty bez argumentů jsou vynechány závorky.</span><span class="sxs-lookup"><span data-stu-id="17e7c-298">For those without arguments, the parentheses are omitted.</span></span> <span data-ttu-id="17e7c-299">Argumenty jsou odděleny čárkami.</span><span class="sxs-lookup"><span data-stu-id="17e7c-299">The arguments are separated by commas.</span></span> <span data-ttu-id="17e7c-300">Kódování každý argument je stejný jako rozhraní příkazového řádku, následujícím způsobem:</span><span class="sxs-lookup"><span data-stu-id="17e7c-300">The encoding of each argument is the same as a CLI signature, as follows:</span></span>
+   *  <span data-ttu-id="17e7c-301">Argumenty jsou reprezentovány podle názvu jejich dokumentaci, která je založena na jejich plně kvalifikovanému názvu upraveny následujícím způsobem:</span><span class="sxs-lookup"><span data-stu-id="17e7c-301">Arguments are represented by their documentation name, which is based on their fully qualified name, modified as follows:</span></span>
+      * <span data-ttu-id="17e7c-302">Argumenty, které představují obecné typy mají připojený `` ` `` (prvními) následovaný počet parametrů typu</span><span class="sxs-lookup"><span data-stu-id="17e7c-302">Arguments that represent generic types have an appended `` ` `` (backtick) character followed by the number of type parameters</span></span>
+      * <span data-ttu-id="17e7c-303">Argumenty s `out` nebo `ref` mít modifikátor `@` po jejich název typu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-303">Arguments having the `out` or `ref` modifier have an `@` following their type name.</span></span> <span data-ttu-id="17e7c-304">Argumenty předány podle hodnoty nebo prostřednictvím `params` mít žádná zvláštní zápis.</span><span class="sxs-lookup"><span data-stu-id="17e7c-304">Arguments passed by value or via `params` have no special notation.</span></span>
+      * <span data-ttu-id="17e7c-305">Argumenty, které jsou pole jsou reprezentovány ve formě `[lowerbound:size, ... , lowerbound:size]` kde počet čárky je řád méně jeden a dolní meze a velikosti jednotlivých rozměrů, pokud jsou známé, jsou reprezentovány v desítkové soustavě.</span><span class="sxs-lookup"><span data-stu-id="17e7c-305">Arguments that are arrays are represented as `[lowerbound:size, ... , lowerbound:size]` where the number of commas is the rank less one, and the lower bounds and size of each dimension, if known, are represented in decimal.</span></span> <span data-ttu-id="17e7c-306">Pokud není zadán dolní mez nebo velikost, je vynechán.</span><span class="sxs-lookup"><span data-stu-id="17e7c-306">If a lower bound or size is not specified, it is omitted.</span></span> <span data-ttu-id="17e7c-307">Pokud jsou vynechány dolní mez a velikosti pro konkrétní dimenzi, `:` je také vynechán.</span><span class="sxs-lookup"><span data-stu-id="17e7c-307">If the lower bound and size for a particular dimension are omitted, the `:` is omitted as well.</span></span> <span data-ttu-id="17e7c-308">Vícenásobná pole jsou reprezentované pomocí jedné `[]` na úroveň.</span><span class="sxs-lookup"><span data-stu-id="17e7c-308">Jagged arrays are represented by one `[]` per level.</span></span>
+      * <span data-ttu-id="17e7c-309">Argumenty, které mají ukazatel typy než void se vyjadřují pomocí `*` za názvem typu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-309">Arguments that have pointer types other than void are represented using a `*` following the type name.</span></span> <span data-ttu-id="17e7c-310">Ukazatel void je reprezentována pomocí názvu typu `System.Void`.</span><span class="sxs-lookup"><span data-stu-id="17e7c-310">A void pointer is represented using a type name of `System.Void`.</span></span>
+      * <span data-ttu-id="17e7c-311">Argumenty, které odkazují na parametry obecného typu, které jsou definovány pro typy jsou zakódovány pomocí `` ` `` (prvními) následovaný z nuly vycházející index parametru typu.</span><span class="sxs-lookup"><span data-stu-id="17e7c-311">Arguments that refer to generic type parameters defined on types are encoded using the `` ` `` (backtick) character followed by the zero-based index of the type parameter.</span></span>
+      * <span data-ttu-id="17e7c-312">Argumenty, které používají parametry obecného typu, které jsou definovány v metodách pomocí double prvními ``` `` ``` místo `` ` `` použít pro typy.</span><span class="sxs-lookup"><span data-stu-id="17e7c-312">Arguments that use generic type parameters defined in methods use a double-backtick ``` `` ``` instead of the `` ` `` used for types.</span></span>
+      * <span data-ttu-id="17e7c-313">Argumenty, které odkazují na sestavené obecné typy jsou zakódovány pomocí obecného typu, za nímž následuje `{`, za nímž následuje čárkou oddělený seznam argumentů, za nímž následuje `}`.</span><span class="sxs-lookup"><span data-stu-id="17e7c-313">Arguments that refer to constructed generic types are encoded using the generic type, followed by `{`, followed by a comma-separated list of type arguments, followed by `}`.</span></span>
 
-### <a name="id-string-examples"></a><span data-ttu-id="3f95a-314">Příklady řetězec ID</span><span class="sxs-lookup"><span data-stu-id="3f95a-314">ID string examples</span></span>
+### <a name="id-string-examples"></a><span data-ttu-id="17e7c-314">Příklady řetězec ID</span><span class="sxs-lookup"><span data-stu-id="17e7c-314">ID string examples</span></span>
 
-<span data-ttu-id="3f95a-315">Následující příklady ukazují fragment kódu jazyka C#, společně s řetězcem ID získané z jednotlivých zdrojových elementů schopné s Dokumentační komentář:</span><span class="sxs-lookup"><span data-stu-id="3f95a-315">The following examples each show a fragment of C# code, along with the ID string produced from each source element capable of having a documentation comment:</span></span>
+<span data-ttu-id="17e7c-315">Následující příklady ukazují fragment kódu jazyka C#, společně s řetězcem ID získané z jednotlivých zdrojových elementů schopné s Dokumentační komentář:</span><span class="sxs-lookup"><span data-stu-id="17e7c-315">The following examples each show a fragment of C# code, along with the ID string produced from each source element capable of having a documentation comment:</span></span>
 
-*  <span data-ttu-id="3f95a-316">Typy jsou reprezentovány pomocí jejich plně kvalifikovanému názvu, doplněné o obecné informace:</span><span class="sxs-lookup"><span data-stu-id="3f95a-316">Types are represented using their fully qualified name, augmented with generic information:</span></span>
+*  <span data-ttu-id="17e7c-316">Typy jsou reprezentovány pomocí jejich plně kvalifikovanému názvu, doplněné o obecné informace:</span><span class="sxs-lookup"><span data-stu-id="17e7c-316">Types are represented using their fully qualified name, augmented with generic information:</span></span>
 
    ```csharp
    enum Color { Red, Blue, Green }
@@ -646,7 +646,7 @@ public List<T> FetchData<T>(string query) {
    "T:Acme.MyList`1.Helper`2"
    ```
 
-*  <span data-ttu-id="3f95a-317">Pole jsou reprezentovány pomocí jejich plně kvalifikovanému názvu:</span><span class="sxs-lookup"><span data-stu-id="3f95a-317">Fields are represented by their fully qualified name:</span></span>
+*  <span data-ttu-id="17e7c-317">Pole jsou reprezentovány pomocí jejich plně kvalifikovanému názvu:</span><span class="sxs-lookup"><span data-stu-id="17e7c-317">Fields are represented by their fully qualified name:</span></span>
 
    ```csharp
    namespace Acme
@@ -686,7 +686,7 @@ public List<T> FetchData<T>(string query) {
    "F:Acme.Widget.ppValues"
    ```
 
-*  <span data-ttu-id="3f95a-318">Konstruktory.</span><span class="sxs-lookup"><span data-stu-id="3f95a-318">Constructors.</span></span>
+*  <span data-ttu-id="17e7c-318">Konstruktory.</span><span class="sxs-lookup"><span data-stu-id="17e7c-318">Constructors.</span></span>
 
    ```csharp
    namespace Acme
@@ -704,7 +704,7 @@ public List<T> FetchData<T>(string query) {
    "M:Acme.Widget.#ctor(System.String)"
    ```
 
-*  <span data-ttu-id="3f95a-319">Destruktory.</span><span class="sxs-lookup"><span data-stu-id="3f95a-319">Destructors.</span></span>
+*  <span data-ttu-id="17e7c-319">Destruktory.</span><span class="sxs-lookup"><span data-stu-id="17e7c-319">Destructors.</span></span>
 
    ```csharp
    namespace Acme
@@ -718,7 +718,7 @@ public List<T> FetchData<T>(string query) {
    "M:Acme.Widget.Finalize"
    ```
 
-*  <span data-ttu-id="3f95a-320">Metody.</span><span class="sxs-lookup"><span data-stu-id="3f95a-320">Methods.</span></span>
+*  <span data-ttu-id="17e7c-320">Metody.</span><span class="sxs-lookup"><span data-stu-id="17e7c-320">Methods.</span></span>
 
    ```csharp
    namespace Acme
@@ -770,7 +770,7 @@ public List<T> FetchData<T>(string query) {
    "M:Acme.UseList.GetValues``(``0)"
    ```
 
-*  <span data-ttu-id="3f95a-321">Vlastnostmi a indexery.</span><span class="sxs-lookup"><span data-stu-id="3f95a-321">Properties and indexers.</span></span>
+*  <span data-ttu-id="17e7c-321">Vlastnostmi a indexery.</span><span class="sxs-lookup"><span data-stu-id="17e7c-321">Properties and indexers.</span></span>
 
    ```csharp
    namespace Acme
@@ -788,7 +788,7 @@ public List<T> FetchData<T>(string query) {
    "P:Acme.Widget.Item(System.String,System.Int32)"
    ```
 
-*  <span data-ttu-id="3f95a-322">události.</span><span class="sxs-lookup"><span data-stu-id="3f95a-322">Events.</span></span>
+*  <span data-ttu-id="17e7c-322">události.</span><span class="sxs-lookup"><span data-stu-id="17e7c-322">Events.</span></span>
 
    ```csharp
    namespace Acme
@@ -802,7 +802,7 @@ public List<T> FetchData<T>(string query) {
    "E:Acme.Widget.AnEvent"
    ```
 
-*  <span data-ttu-id="3f95a-323">Unární operátory.</span><span class="sxs-lookup"><span data-stu-id="3f95a-323">Unary operators.</span></span>
+*  <span data-ttu-id="17e7c-323">Unární operátory.</span><span class="sxs-lookup"><span data-stu-id="17e7c-323">Unary operators.</span></span>
 
    ```csharp
    namespace Acme
@@ -816,9 +816,9 @@ public List<T> FetchData<T>(string query) {
    "M:Acme.Widget.op_UnaryPlus(Acme.Widget)"
    ```
 
-   <span data-ttu-id="3f95a-324">Kompletní sadu unární operátor funkce názvů používaných vypadá takto: `op_UnaryPlus`, `op_UnaryNegation`, `op_LogicalNot`, `op_OnesComplement`, `op_Increment`, `op_Decrement`, `op_True`, a `op_False`.</span><span class="sxs-lookup"><span data-stu-id="3f95a-324">The complete set of unary operator function names used is as follows: `op_UnaryPlus`, `op_UnaryNegation`, `op_LogicalNot`, `op_OnesComplement`, `op_Increment`, `op_Decrement`, `op_True`, and `op_False`.</span></span>
+   <span data-ttu-id="17e7c-324">Kompletní sadu unární operátor funkce názvů používaných vypadá takto: `op_UnaryPlus`, `op_UnaryNegation`, `op_LogicalNot`, `op_OnesComplement`, `op_Increment`, `op_Decrement`, `op_True`, a `op_False`.</span><span class="sxs-lookup"><span data-stu-id="17e7c-324">The complete set of unary operator function names used is as follows: `op_UnaryPlus`, `op_UnaryNegation`, `op_LogicalNot`, `op_OnesComplement`, `op_Increment`, `op_Decrement`, `op_True`, and `op_False`.</span></span>
 
-*  <span data-ttu-id="3f95a-325">Binární operátory.</span><span class="sxs-lookup"><span data-stu-id="3f95a-325">Binary operators.</span></span>
+*  <span data-ttu-id="17e7c-325">Binární operátory.</span><span class="sxs-lookup"><span data-stu-id="17e7c-325">Binary operators.</span></span>
 
    ```csharp
    namespace Acme
@@ -832,9 +832,9 @@ public List<T> FetchData<T>(string query) {
    "M:Acme.Widget.op_Addition(Acme.Widget,Acme.Widget)"
    ```
 
-   <span data-ttu-id="3f95a-326">Kompletní sadu názvů funkcí binární operátor používá vypadá takto: `op_Addition`, `op_Subtraction`, `op_Multiply`, `op_Division`, `op_Modulus`, `op_BitwiseAnd`, `op_BitwiseOr`, `op_ExclusiveOr`, `op_LeftShift`, `op_RightShift`, `op_Equality`, `op_Inequality`, `op_LessThan`, `op_LessThanOrEqual`, `op_GreaterThan`, a `op_GreaterThanOrEqual`.</span><span class="sxs-lookup"><span data-stu-id="3f95a-326">The complete set of binary operator function names used is as follows: `op_Addition`, `op_Subtraction`, `op_Multiply`, `op_Division`, `op_Modulus`, `op_BitwiseAnd`, `op_BitwiseOr`, `op_ExclusiveOr`, `op_LeftShift`, `op_RightShift`, `op_Equality`, `op_Inequality`, `op_LessThan`, `op_LessThanOrEqual`, `op_GreaterThan`, and `op_GreaterThanOrEqual`.</span></span>
+   <span data-ttu-id="17e7c-326">Kompletní sadu názvů funkcí binární operátor používá vypadá takto: `op_Addition`, `op_Subtraction`, `op_Multiply`, `op_Division`, `op_Modulus`, `op_BitwiseAnd`, `op_BitwiseOr`, `op_ExclusiveOr`, `op_LeftShift`, `op_RightShift`, `op_Equality`, `op_Inequality`, `op_LessThan`, `op_LessThanOrEqual`, `op_GreaterThan`, a `op_GreaterThanOrEqual`.</span><span class="sxs-lookup"><span data-stu-id="17e7c-326">The complete set of binary operator function names used is as follows: `op_Addition`, `op_Subtraction`, `op_Multiply`, `op_Division`, `op_Modulus`, `op_BitwiseAnd`, `op_BitwiseOr`, `op_ExclusiveOr`, `op_LeftShift`, `op_RightShift`, `op_Equality`, `op_Inequality`, `op_LessThan`, `op_LessThanOrEqual`, `op_GreaterThan`, and `op_GreaterThanOrEqual`.</span></span>
 
-*  <span data-ttu-id="3f95a-327">Operátory převodu mít koncový znak "`~`" následované návratovým typem.</span><span class="sxs-lookup"><span data-stu-id="3f95a-327">Conversion operators have a trailing "`~`" followed by the return type.</span></span>
+*  <span data-ttu-id="17e7c-327">Operátory převodu mít koncový znak "`~`" následované návratovým typem.</span><span class="sxs-lookup"><span data-stu-id="17e7c-327">Conversion operators have a trailing "`~`" followed by the return type.</span></span>
 
    ```csharp
    namespace Acme
@@ -850,11 +850,11 @@ public List<T> FetchData<T>(string query) {
    "M:Acme.Widget.op_Implicit(Acme.Widget)~System.Int64"
    ```
 
-## <a name="an-example"></a><span data-ttu-id="3f95a-328">Příklad</span><span class="sxs-lookup"><span data-stu-id="3f95a-328">An example</span></span>
+## <a name="an-example"></a><span data-ttu-id="17e7c-328">Příklad</span><span class="sxs-lookup"><span data-stu-id="17e7c-328">An example</span></span>
 
-### <a name="c-source-code"></a><span data-ttu-id="3f95a-329">Zdrojový kód C#</span><span class="sxs-lookup"><span data-stu-id="3f95a-329">C# source code</span></span>
+### <a name="c-source-code"></a><span data-ttu-id="17e7c-329">Zdrojový kód C#</span><span class="sxs-lookup"><span data-stu-id="17e7c-329">C# source code</span></span>
 
-<span data-ttu-id="3f95a-330">Následující příklad ukazuje, zdrojový kód `Point` třídy:</span><span class="sxs-lookup"><span data-stu-id="3f95a-330">The following example shows the source code of a `Point` class:</span></span>
+<span data-ttu-id="17e7c-330">Následující příklad ukazuje, zdrojový kód `Point` třídy:</span><span class="sxs-lookup"><span data-stu-id="17e7c-330">The following example shows the source code of a `Point` class:</span></span>
 
 ```csharp
 namespace Graphics
@@ -1003,9 +1003,9 @@ public class Point
 }
 ```
 
-### <a name="resulting-xml"></a><span data-ttu-id="3f95a-331">Výsledný XML</span><span class="sxs-lookup"><span data-stu-id="3f95a-331">Resulting XML</span></span>
+### <a name="resulting-xml"></a><span data-ttu-id="17e7c-331">Výsledný XML</span><span class="sxs-lookup"><span data-stu-id="17e7c-331">Resulting XML</span></span>
 
-<span data-ttu-id="3f95a-332">Zde je výstup vytvořený z jednoho dokumentaci generátoru při zdrojový kód pro třídu `Point`, je uveden výše:</span><span class="sxs-lookup"><span data-stu-id="3f95a-332">Here is the output produced by one documentation generator when given the source code for class `Point`, shown above:</span></span>
+<span data-ttu-id="17e7c-332">Zde je výstup vytvořený z jednoho dokumentaci generátoru při zdrojový kód pro třídu `Point`, je uveden výše:</span><span class="sxs-lookup"><span data-stu-id="17e7c-332">Here is the output produced by one documentation generator when given the source code for class `Point`, shown above:</span></span>
 
 ```xml
 <?xml version="1.0"?>
