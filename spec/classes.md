@@ -601,7 +601,7 @@ partial class A
 
 Částečné metody nelze definovat modifikátory přístupu, ale jsou implicitně `private`. Jejich návratový typ musí být `void`, a jejich parametrů nemůže mít `out` modifikátor. Identifikátor `partial` je rozpoznán jako speciální – klíčové slovo v deklaraci metody pouze v případě, že se zobrazí přímo před `void` typ; jinak mohou být použity jako normální identifikátor. Částečná metoda nesmí explicitně implementovat metody rozhraní.
 
-Existují dva typy deklarace částečné metody: Pokud text v deklaraci metody je středník, deklarace se říká, že ***definující deklarace částečné metody***. Pokud text je zadána jako *bloku*, deklarace se říká, že ***implementující deklaraci částečné metody***. V části deklarace typu může existovat pouze jedna definice deklarace částečné metody s daným podpisem. a může existovat pouze jeden implementující deklaraci částečné metody s daným podpisem. Pokud je zadána implementující deklaraci částečné metody, odpovídající definující deklarace částečné metody musí existovat a deklarace musí odpovídat jako zadaný v následujících tématech:
+Existují dva druhy deklarace částečné metody: Pokud text v deklaraci metody je středník, deklarace se říká, že ***definující deklarace částečné metody***. Pokud text je zadána jako *bloku*, deklarace se říká, že ***implementující deklaraci částečné metody***. V části deklarace typu může existovat pouze jedna definice deklarace částečné metody s daným podpisem. a může existovat pouze jeden implementující deklaraci částečné metody s daným podpisem. Pokud je zadána implementující deklaraci částečné metody, odpovídající definující deklarace částečné metody musí existovat a deklarace musí odpovídat jako zadaný v následujících tématech:
 
 * Deklarace musí mít stejné modifikátory (i když nemusí ve stejném pořadí), název metody, počet parametrů typu a počtu parametrů.
 * Odpovídajícím parametrům in v prohlášení musí mít stejné modifikátory (i když nemusí ve stejném pořadí) a stejnými typy (modulo rozdíly v názvy parametrů typů).
@@ -929,7 +929,7 @@ class Test
 
 ### <a name="nested-types"></a>Vnořené typy
 
-Typ deklarovaný v rámci deklarace třídy nebo struktury se nazývá ***vnořený typ***. Typ, který je deklarován v rámci kompilační jednotky nebo oboru názvů je volána ***nevnořený typ.***.
+Typ deklarovaný v rámci deklarace třídy nebo struktury se nazývá ***vnořený typ***. Typ, který je deklarován v rámci kompilační jednotky nebo oboru názvů je volána ***nevnořený typ***.
 
 V příkladu
 ```csharp
@@ -2114,7 +2114,7 @@ Rozdíly mezi statické a členy instance jsou popsány dále v [statické a ins
 
 Pokud obsahuje deklaraci metody instance `virtual` modifikátor, že metoda je označen jako virtuální metody. Pokud ne `virtual` Modifikátor je k dispozici, metodu se říká, že jako nevirtuální metodu.
 
-Implementace nevirtuální metody je invariantní: implementace je stejný, ať je metoda vyvolána na instanci třídy ve kterém je deklarována nebo instanci odvozené třídy. Naproti tomu implementace virtuální metoda může být potlačeno z odvozených tříd. Nahrazování provádění zděděnou virtuální metodu proces se označuje jako ***přepsání*** metody ([přepište metody](classes.md#override-methods)).
+Implementace nevirtuální metody je invariantní: Implementace je stejný, ať vyvolání metody instance třídy, ve kterém je deklarována nebo instanci odvozené třídy. Naproti tomu implementace virtuální metoda může být potlačeno z odvozených tříd. Nahrazování provádění zděděnou virtuální metodu proces se označuje jako ***přepsání*** metody ([přepište metody](classes.md#override-methods)).
 
 Ve volání virtuální metody ***run-time typu*** instance, pro který přebírá tento vyvolání místo určuje implementaci skutečné metoda k vyvolání. Ve volání nevirtuální metody ***typu v době kompilace*** instance je určujícím faktorem. Přesně řečeno, pokud metodu s názvem `N` vyvolání se seznamem argumentů `A` instance s typem kompilace `C` a run-time typu `R` (kde `R` je buď `C` nebo třída odvozená z `C`), volání se zpracovává následujícím způsobem:
 
@@ -2207,7 +2207,7 @@ class Test
     }
 }
 ```
-`C` a `D` třídy obsahovat dvě virtuální metody se stejnou signaturou: je zavedený `A` a ten zavedené `C`. Metody zavedené `C` skryje metody zděděné z `A`. Proto přepsání deklarace v `D` přepisuje deklaraci metody zavedené `C`, a není možné pro `D` přepsat metodu zavedené `A`. Vzorové postupy výstupu:
+`C` a `D` třídy obsahovat dvě virtuální metody se stejnou signaturou: Je zavedený `A` a ten zavedené `C`. Metody zavedené `C` skryje metody zděděné z `A`. Proto přepsání deklarace v `D` přepisuje deklaraci metody zavedené `C`, a není možné pro `D` přepsat metodu zavedené `A`. Vzorové postupy výstupu:
 ```
 B.F
 B.F
@@ -2694,7 +2694,7 @@ public class Button: Control
     }
 }
 ```
-`Button` ovládací prvek deklaruje veřejnou `Caption` vlastnost. `get` Přistupující objekt `Caption` vlastnost vrací řetězec uložený v privátní `caption` pole. `set` Přistupující objekt kontroluje, jestli je nová hodnota se liší od aktuální hodnoty a pokud ano, uloží novou hodnotu a překreslí ovládacího prvku. Vlastnosti často mají tvar uvedené nahoře: `get` přistupující objekt jednoduše vrací hodnotu uloženou v soukromé pole a `set` přistupující objekt upravuje privátní pole a potom provede žádné další akce pro úplnou aktualizaci stavu objektu.
+`Button` ovládací prvek deklaruje veřejnou `Caption` vlastnost. `get` Přistupující objekt `Caption` vlastnost vrací řetězec uložený v privátní `caption` pole. `set` Přistupující objekt kontroluje, jestli je nová hodnota se liší od aktuální hodnoty a pokud ano, uloží novou hodnotu a překreslí ovládacího prvku. Vlastnosti často mají tvar uvedené výše: `get` Přistupující objekt jednoduše vrací hodnotu uloženou v soukromé pole a `set` přistupující objekt upravuje privátní pole a potom provede žádné další akce pro úplnou aktualizaci stavu objektu.
 
 Zadaný `Button` třídy výše, následuje příklad použití `Caption` vlastnost:
 ```csharp
@@ -3532,7 +3532,7 @@ binary_operator_declarator
 
 overloadable_binary_operator
     : '+'   | '-'   | '*'   | '/'   | '%'   | '&'   | '|'   | '^'   | '<<'
-    | 'right_shift' | '=='  | '!='  | '>'   | '<'   | '>='  | '<='
+    | right_shift | '=='  | '!='  | '>'   | '<'   | '>='  | '<='
     ;
 
 conversion_operator_declarator
@@ -3547,7 +3547,7 @@ operator_body
     ;
 ```
 
-Existují tři kategorie přetížitelné operátory: unárních operátorů ([unárních operátorů](classes.md#unary-operators)), binární operátory ([binární operátory](classes.md#binary-operators)) a operátory převodu ([operátory převodu ](classes.md#conversion-operators)).
+Existují tři kategorie přetížitelné operátory: Unární operátory ([unárních operátorů](classes.md#unary-operators)), binární operátory ([binární operátory](classes.md#binary-operators)) a operátory převodu ([operátory převodu](classes.md#conversion-operators)).
 
 *Operator_body* je buď středník ***tělo s příkazy*** nebo ***tělo výrazu***. Tělo s příkazy se skládá z *bloku*, která určuje příkazy ke spuštění při vyvolání operátor. *Bloku* musí splňovat pravidla pro vrácení hodnoty metod popsaných v [tělo metody](classes.md#method-body). Tělo výrazu se skládá z `=>` následovat výraz a středník a označuje jeden výraz k provádění při vyvolání operátor.
 
@@ -4115,7 +4115,7 @@ Vytvoří výstup
 X = 1, Y = 2
 ```
 
-Ke spuštění `Main` , systém nejprve spuštěním metody inicializátor pro `B.Y`, před třídy `B`na statický konstruktor. `Y`pro inicializátor způsobí, že `A`na statický konstruktor, chcete-li spustit, protože hodnota `A.X` odkazuje. Statický konstruktor třídy `A` pak pokračuje k výpočtu hodnoty `X`a přitom tak načte výchozí hodnotu `Y`, což je nula. `A.X` Proto je inicializován na hodnotu 1. Proces spuštění `A`statickými Inicializátory pole a statický konstruktor pak dokončí, vrácení k výpočtu počáteční hodnota `Y`, výsledkem bude 2.
+Ke spuštění `Main` , systém nejprve spuštěním metody inicializátor pro `B.Y`, před třídy `B`na statický konstruktor. `Y`pro inicializátor způsobí, že `A`na statický konstruktor, chcete-li spustit, protože hodnota `A.X` odkazuje. Statický konstruktor třídy `A` pak pokračuje k výpočtu hodnoty `X`a přitom tak načte výchozí hodnotu `Y`, což je nula. `A.X` Proto je inicializován na hodnotu 1. Proces spuštění `A`statickými Inicializátory pole a statický konstruktor pak dokončí, vrácení k výpočtu počáteční hodnota `Y`, výsledkem bude 2.
 
 Protože statický konstruktor provádí právě jednou pro každou uzavřený konstruovaný třídy typu, je vhodné místo pro vynutit kontroly za běhu na parametr typu, který nelze zaregistrovat v době kompilace prostřednictvím omezení ([parametr typu omezení](classes.md#type-parameter-constraints)). Například následující typ používá statický konstruktor k vynucení, že je argument typu výčtu:
 ```csharp
@@ -4272,7 +4272,7 @@ Všimněte si, že objekty enumerátor nepodporuje `IEnumerator.Reset` metody. V
 *  Pokud je stav objektu enumerátor ***po***, vyvolání `MoveNext` vrátí `false`.
 
 
-Při `MoveNext` provede blok iterátoru, provedení může být přerušeno čtyři způsoby: pomocí `yield return` příkaz, `yield break` prohlášení, prostřednictvím zjištění konce bloku iterátoru a výjimku vyvolána a rozšířena z blok iterátoru.
+Když `MoveNext` provede blok iterátoru, provedení může být přerušeno čtyři způsoby: Podle `yield return` příkaz, `yield break` prohlášení, prostřednictvím zjištění konce bloku iterátoru a výjimku vyvolána a rozšířena z bloku iterátoru.
 
 *  Když `yield return` zjistil – příkaz ([příkaz yield](statements.md#the-yield-statement)):
    * Výraz zadaný v příkazu je vyhodnocen, implicitně převeden na typ yield a přiřazená `Current` vlastnost v objektu enumerátor.
@@ -4734,6 +4734,6 @@ Při ukončení těla asynchronní funkce, vrácené úlohy je vyřadí z nekomp
 
 ### <a name="evaluation-of-a-void-returning-async-function"></a>Hodnocení produktu asynchronní funkci vracející typ void
 
-Pokud je návratový typ asynchronní funkce `void`, vyhodnocení se liší od výše uvedených následujícím způsobem: protože nevrátí žádná úloha, funkci místo toho komunikuje dokončení a výjimky pro aktuální vlákno ***synchronizace kontext***. Přesné definici kontext synchronizace je závislý na implementaci, ale je reprezentace "kde" spuštění aktuálního vlákna. Kontext synchronizace zasláno oznámení, když vyhodnocení asynchronní funkci vracející hodnotu void začíná, dokončíte úspěšně nebo způsobí, že vydá nezachycenou výjimku, která je vyvolána.
+Pokud je návratový typ asynchronní funkce `void`, vyhodnocení se liší od výše uvedených následujícím způsobem: Protože nevrátí žádná úloha, funkci místo toho komunikuje dokončení a výjimky pro aktuální vlákno ***kontext synchronizace***. Přesné definici kontext synchronizace je závislý na implementaci, ale je reprezentace "kde" spuštění aktuálního vlákna. Kontext synchronizace zasláno oznámení, když vyhodnocení asynchronní funkci vracející hodnotu void začíná, dokončíte úspěšně nebo způsobí, že vydá nezachycenou výjimku, která je vyvolána.
 
 To umožňuje sledovat, kolik asynchronní funkce vracející hodnotu void běží pod ním a rozhodování o způsobu šíření výjimky z nich kontextu.

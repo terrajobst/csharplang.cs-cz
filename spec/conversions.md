@@ -512,7 +512,7 @@ Za účelem zkrácení, tato část používá zkratka pro typy úloh `Task` a `
 
 Výraz lambda `F` je kompatibilní s typu stromu výrazu `Expression<D>` Pokud `F` kompatibilní s typem delegáta `D`. Všimněte si, že to neplatí pro anonymní metody, pouze výrazy lambda.
 
-Některé výrazy lambda nejde převést na strom typy výrazů: I když převod *existuje*, selže v době kompilace. To je v případě, pokud výraz lambda:
+Některé výrazy lambda nejde převést na typy stromu výrazu: I v případě, převod *existuje*, selže v době kompilace. To je v případě, pokud výraz lambda:
 
 *  Má *bloku* textu
 *  Obsahuje operátory jednoduchého a složeného přiřazení
@@ -723,7 +723,7 @@ class Test
 }
 ```
 
-Zde použít k zachycení lokálních proměnných stejný postup lze také při převodu anonymní funkce na stromy výrazů: odkazy na objekty generovaný kompilátorem mohou být uloženy ve stromu výrazů a může být přístup k místní proměnné reprezentována jako pole k přistupuje na tyto objekty. Výhodou tohoto přístupu je, že umožňuje "zdvižené" místní proměnné sdílen delegáty a stromů výrazů.
+Zde použít k zachycení lokálních proměnných stejný postup lze také při převodu anonymní funkce na stromy výrazů: Odkazy na objekty generovaný kompilátorem mohou být uloženy ve stromu výrazů a přístup k místní proměnné může být reprezentována jako pole k přistupuje na tyto objekty. Výhodou tohoto přístupu je, že umožňuje "zdvižené" místní proměnné sdílen delegáty a stromů výrazů.
 
 ## <a name="method-group-conversions"></a>Převody skupiny – metoda
 

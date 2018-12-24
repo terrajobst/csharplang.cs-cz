@@ -188,11 +188,11 @@ C# podporuje dva typy s plovoucí desetinnou čárkou: `float` a `double`. `floa
 *  Kladné nula a záporná nula. Ve většině situací, kladné nula a záporná nula chovají stejně jako jednoduchý hodnota nula, ale určité operace rozlišovat mezi dvěma ([operátor dělení](expressions.md#division-operator)).
 *  Kladné nekonečno a záporné nekonečno. Tyto operace jako nenulové číslo dělení nulou vytvářených nekonečno. Například `1.0 / 0.0` vrací kladné nekonečno, a `-1.0 / 0.0` výnosy záporné nekonečno.
 *  ***Not a Number*** hodnoty často označovaná zkratkou NaN. Neplatná operace s plovoucí desetinnou čárkou, např. dělení nulou nula generované hodnoty NaN.
-*  Konečná sada nenulové hodnoty ve formuláři `s * m * 2^e`, kde `s` 1 nebo -1, a `m` a `e` se určují podle konkrétního typu s plovoucí desetinnou čárkou: pro `float`, `0 < m < 2^24` a `-149 <= e <= 104`a pro `double`, `0 < m < 2^53` a `1075 <= e <= 970`. Nenormalizovaná čísla s plovoucí desetinnou čárkou jsou považovány za platné nenulové hodnoty.
+*  Konečná sada nenulové hodnoty ve formuláři `s * m * 2^e`, kde `s` 1 nebo -1, a `m` a `e` se určují podle konkrétního typu s plovoucí desetinnou čárkou: Pro `float`, `0 < m < 2^24` a `-149 <= e <= 104`a pro `double`, `0 < m < 2^53` a `1075 <= e <= 970`. Nenormalizovaná čísla s plovoucí desetinnou čárkou jsou považovány za platné nenulové hodnoty.
 
-`float` Typ může představovat hodnotu přibližně `1.5 * 10^-45` k `3.4 * 10^38` s přesností 7 číslic.
+`float` Typ může představovat hodnotu přibližně `1.5 * 10^-45` k `3.4 * 10^38` s přesností 7 číslic.
 
-`double` Typ může představovat hodnotu přibližně `5.0 * 10^-324` k `1.7 × 10^308` s přesností 15 až 16 číslic.
+`double` Typ může představovat hodnotu přibližně `5.0 * 10^-324` k `1.7 × 10^308` s přesností 15 až 16 číslic.
 
 Pokud jeden z operandů binárního operátoru s plovoucí desetinnou čárkou typu, pak je druhý operand musí být integrálního typu nebo typu s plovoucí desetinnou čárkou a operace se vyhodnotí takto:
 
@@ -211,15 +211,15 @@ S vyšší přesností než typ výsledku operace lze provádět operace s plovo
 
 ### <a name="the-decimal-type"></a>Typ decimal
 
-`decimal` Typ je typ 128bitových dat. vhodný pro výpočty finančních a přepočty měn. `decimal` Typ může představovat hodnotu `1.0 * 10^-28` na přibližně `7.9 * 10^28` s 28 až 29 platnými číslicemi.
+`decimal` Typ je typ 128bitových dat. vhodný pro výpočty finančních a přepočty měn. `decimal` Typ může představovat hodnotu `1.0 * 10^-28` na přibližně `7.9 * 10^28` s 28 až 29 platnými číslicemi.
 
-Omezená sada hodnot typu `decimal` jsou ve tvaru `(-1)^s * c * 10^-e`, kde znaménko `s` je 0 nebo 1, koeficient `c` je dán `0 <= *c* < 2^96`a rozšířit možnosti škálování `e` je tak, aby `0 <= e <= 28`. `decimal` Typ nepodporuje podepsaný nuly, nekonečno nebo na NaN. A `decimal` je reprezentována jako celé číslo verze 96 měřítkem řídit sílu deset. Pro `decimal`s absolutní hodnota menší než `1.0m`, hodnota je přesné 28 desetinné čárky, ale žádné další. Pro `decimal`s absolutní hodnota větší než nebo rovna hodnotě `1.0m`, hodnota je přesné 28 nebo 29 číslic. Contrary k `float` a `double` datové typy, decimal desetinná čísla, jako je například 0,1 může být reprezentován přesně `decimal` reprezentace. V `float` a `double` reprezentace, tato čísla jsou často nekonečné zlomky provádění těchto reprezentace náchylnější k zaokrouhlení chyby.
+Omezená sada hodnot typu `decimal` jsou ve tvaru `(-1)^s * c * 10^-e`, kde znaménko `s` je 0 nebo 1, koeficient `c` je dán `0 <= *c* < 2^96`a rozšířit možnosti škálování `e` je tak, aby `0 <= e <= 28`. `decimal` Typ nepodporuje podepsaný nuly, nekonečno nebo na NaN. A `decimal` je reprezentována jako celé číslo verze 96 měřítkem řídit sílu deset. Pro `decimal`s absolutní hodnota menší než `1.0m`, hodnota je přesné 28 desetinné čárky, ale žádné další. Pro `decimal`s absolutní hodnota větší než nebo rovna hodnotě `1.0m`, hodnota je přesné 28 nebo 29 číslic. Contrary k `float` a `double` datové typy, decimal desetinná čísla, jako je například 0,1 může být reprezentován přesně `decimal` reprezentace. V `float` a `double` reprezentace, tato čísla jsou často nekonečné zlomky provádění těchto reprezentace náchylnější k zaokrouhlení chyby.
 
 Pokud je jeden z operandů binární operátor typu `decimal`, je druhý operand musí být integrálního typu nebo typu `decimal`. Je-li operand celočíselný typ je k dispozici, je převedena na `decimal` předtím, než se operace provádí.
 
 Výsledkem operace na hodnotách typu `decimal` je, který by byl výsledkem výpočtu přesné výsledky (zachování škálování, jak jsou definovány pro každý operátor) a potom zaokrouhlení přizpůsobena reprezentace. Výsledky jsou zaokrouhleny na nejbližší reprezentovatelnou hodnotu, a pokud výsledek je stejně blízko dvě reprezentovatelných hodnot, hodnotu, která má sudé číslo nejméně významných číslic pozici (to se označuje jako "banker je zaokrouhlení"). Žádný výsledek má vždy znaménko čísla 0 a měřítkem 0.
 
-V případě desítkové aritmetické operace vytvoří hodnotu menší než nebo rovna hodnotě `5 * 10^-29` výsledek operace v absolutní hodnota klesne na nulu. Pokud `decimal` vytváří výsledek, který je příliš velká pro aritmetické operace `decimal` formátu, `System.OverflowException` je vyvolána.
+V případě desítkové aritmetické operace vytvoří hodnotu menší než nebo rovna hodnotě `5 * 10^-29` výsledek operace v absolutní hodnota klesne na nulu. Pokud `decimal` vytváří výsledek, který je příliš velká pro aritmetické operace `decimal` formátu, `System.OverflowException` je vyvolána.
 
 `decimal` Typ má zato větší přesnost ale menší rozsah než u typů s plovoucí desetinnou čárkou. Proto převody z typů s plovoucí desetinnou čárkou na `decimal` vzniknout výjimky přetečení a převody z `decimal` na typy s plovoucí desetinnou čárkou může způsobit ztrátu přesnosti. Z těchto důvodů, neexistuje žádný implicitní převod mezi typy s plovoucí desetinnou čárkou a `decimal`, a bez explicitního přetypování, není možné kombinovat s plovoucí desetinnou čárkou a `decimal` operandy ve stejném výrazu.
 
@@ -485,7 +485,7 @@ Pro rozbalení převod na daný *nullable_type* úspěšné v době běhu, hodno
 
 ## <a name="constructed-types"></a>Sestavené typy
 
-Deklarace obecného typu, samostatně, označuje ***nevázaných obecného typu*** jako "plán", který se používá k vytvoření mnoho různých typů, mimo jiné použití ***argumenty typu***. Zadejte argumenty jsou zapsány v lomených závorkách (`<` a `>`) hned za název obecného typu. Typ, který obsahuje alespoň jeden argument typu je volána ***konstruovaný typ.***. Konstruovaný typ. je možné ve většině případů v jazyce, ve kterém můžete zobrazit název typu. Nevázaný parametr generického typu jde použít jenom v rámci *typeof_expression* ([operátor typeof](expressions.md#the-typeof-operator)).
+Deklarace obecného typu, samostatně, označuje ***nevázaných obecného typu*** jako "plán", který se používá k vytvoření mnoho různých typů, mimo jiné použití ***argumenty typu***. Zadejte argumenty jsou zapsány v lomených závorkách (`<` a `>`) hned za název obecného typu. Typ, který obsahuje alespoň jeden argument typu je volána ***konstruovaný typ***. Konstruovaný typ. je možné ve většině případů v jazyce, ve kterém můžete zobrazit název typu. Nevázaný parametr generického typu jde použít jenom v rámci *typeof_expression* ([operátor typeof](expressions.md#the-typeof-operator)).
 
 Sestavené typy lze také použít ve výrazech jako jednoduchý názvy ([jednoduché názvy](expressions.md#simple-names)), nebo když přístup ke členovi ([přístup ke členu](expressions.md#member-access)).
 
@@ -545,7 +545,7 @@ Nezabezpečený kód ([nezabezpečený kód](unsafe-code.md)), *type_argument* n
 
 ### <a name="open-and-closed-types"></a>Otevřené a uzavřené typy
 
-Všechny typy mohou být klasifikovány jako buď ***otevřete typy*** nebo ***uzavření typů***. Otevřený typ je typ, který zahrnuje parametry typu. Přesněji řečeno:
+Všechny typy mohou být klasifikovány jako buď ***otevřete typy*** nebo ***uzavření typů***. Otevřený typ je typ, který zahrnuje parametry typu. A konkrétně:
 
 *  Parametr typu definuje otevřeného typu.
 *  Typ pole je otevřený typ pouze v případě jeho typ prvku je otevřeného typu.
