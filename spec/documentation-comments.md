@@ -37,12 +37,12 @@ public class Point
 }
 ```
 
-Text v rámci komentáře dokumentace musí být správně utvořena podle pravidel XML (http://www.w3.org/TR/REC-xml). Pokud kód XML má výplně formát, je vygenerováno upozornění a dokumentaci soubor bude obsahovat komentář informacemi o tom, že došlo k chybě.
+Text v rámci komentáře dokumentace musí být správně utvořena podle pravidel XML (https://www.w3.org/TR/REC-xml). Pokud kód XML má výplně formát, je vygenerováno upozornění a dokumentaci soubor bude obsahovat komentář informacemi o tom, že došlo k chybě.
 
 Přestože vývojáře k vytvoření vlastních sad značek, doporučených sada je definována v [doporučené značky](documentation-comments.md#recommended-tags). Některé doporučené značky mají zvláštní význam:
 
 *  `<param>` Značka se používá k popisu parametrů. Pokud tato značka se používá, generátor dokumentaci musíte ověřit, že zadaný parametr existuje a že všechny parametry jsou popsané v komentáře k dokumentaci. Pokud se ověření nezdaří, generátor dokumentace ke službě vydá upozornění.
-*  `cref` Atribut lze připojit ke každé značce poskytnout odkaz na prvek kódu. Dokumentace ke službě generátor musí ověřte, zda tento prvek kódu existuje. Pokud se ověření nezdaří, generátor dokumentace ke službě vydá upozornění. Pokud hledáte podle názvu `cref` atribut, generátor dokumentaci musí dodržovat viditelnosti oboru názvů podle `using` příkazy uvedené v rámci zdrojového kódu. Pro prvky kódu, které jsou obecné, normální Obecná syntaxe (tedy "`List<T>`") nelze použít, protože vytváří neplatný kód XML. Složené závorky, je možné použít místo hranaté závorky (ie "`List{T}`"), nebo je možné řídicí syntaxe jazyka XML (ie "`List&lt;T&gt;`").
+*  `cref` Atribut lze připojit ke každé značce poskytnout odkaz na prvek kódu. Dokumentace ke službě generátor musí ověřte, zda tento prvek kódu existuje. Pokud se ověření nezdaří, generátor dokumentace ke službě vydá upozornění. Pokud hledáte podle názvu `cref` atribut, generátor dokumentaci musí dodržovat viditelnosti oboru názvů podle `using` příkazy uvedené v rámci zdrojového kódu. Pro prvky kódu, které jsou obecné, normální Obecná syntaxe (tedy "`List<T>`") nelze použít, protože vytváří neplatný kód XML. Složené závorky, je možné použít místo hranaté závorky (to znamená, "`List{T}`"), nebo je možné řídicí syntaxe jazyka XML (tedy "`List&lt;T&gt;`").
 *  `<summary>` Značka je určena pro použití podle dokumentace k prohlížeči a zobrazte další informace o typu nebo členu.
 *  `<include>` Značka obsahuje informace z externího souboru XML.
 
