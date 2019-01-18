@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: a28397b1ce97dbead6d5014e2b20e108a1018502
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: cs-CZ
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229909"
+---
 # <a name="types"></a>Typy
 
 Typy jazyka C# jsou rozděleny do dvou hlavních kategorií: ***typů hodnot*** a ***referenční typy***. Typy hodnot a odkazové typy mohou být ***obecných typů***, což trvat jednu nebo více ***parametry typu***. Parametry typu můžete určit oba typy hodnot a typy odkazů.

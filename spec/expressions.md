@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 75454072a5137b3044f78bb896317fd88a29e336
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: cs-CZ
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "49640909"
+---
 # <a name="expressions"></a>Výrazy
 
 Výraz je posloupnost operátorů a operandů. Tato kapitola definuje syntaxe pořadí vyhodnocení operandů a operátory a výrazy význam.
@@ -2701,8 +2709,8 @@ Operátory násobení předdefinované jsou uvedeny níže. Všechny operátory 
    |      |      |      |     |     |      |      |     |
    |:----:|-----:|:----:|:---:|:---:|:----:|:----:|:----|
    |      | + y   | -y   | +0  | -0  | + inf | -inf | NaN | 
-   | + x   | + z   | – z   | +0  | -0  | + inf | -inf | NaN | 
-   | -x   | – z   | + z   | -0  | +0  | -inf | + inf | NaN | 
+   | +x   | +z   | -z   | +0  | -0  | + inf | -inf | NaN | 
+   | -x   | -z   | +z   | -0  | +0  | -inf | + inf | NaN | 
    | +0   | +0   | -0   | +0  | -0  | NaN  | NaN  | NaN | 
    | -0   | -0   | +0   | -0  | +0  | NaN  | NaN  | NaN | 
    | + inf | + inf | -inf | NaN | NaN | + inf | -inf | NaN | 
@@ -2753,8 +2761,8 @@ Předdefinované dělení operátory jsou uvedeny níže. Všechny operátory co
    |      |      |      |      |      |      |      |      |
    |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
    |      | + y   | -y   | +0   | -0   | + inf | -inf | NaN  | 
-   | + x   | + z   | – z   | + inf | -inf | +0   | -0   | NaN  | 
-   | -x   | – z   | + z   | -inf | + inf | -0   | +0   | NaN  | 
+   | +x   | +z   | -z   | + inf | -inf | +0   | -0   | NaN  | 
+   | -x   | -z   | +z   | -inf | + inf | -0   | +0   | NaN  | 
    | +0   | +0   | -0   | NaN  | NaN  | +0   | -0   | NaN  | 
    | -0   | -0   | +0   | NaN  | NaN  | -0   | +0   | NaN  | 
    | + inf | + inf | -inf | + inf | -inf | NaN  | NaN  | NaN  | 
@@ -2803,8 +2811,8 @@ Předdefinované zbývající operátory jsou uvedeny níže. Všechny operátor
    |      |      |      |      |      |      |      |      |
    |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
    |      | + y   | -y   | +0   | -0   | + inf | -inf | NaN  | 
-   | + x   | + z   | + z   | NaN  | NaN  | x    | x    | NaN  | 
-   | -x   | – z   | – z   | NaN  | NaN  | -x   | -x   | NaN  | 
+   | +x   | +z   | +z   | NaN  | NaN  | x    | x    | NaN  | 
+   | -x   | -z   | -z   | NaN  | NaN  | -x   | -x   | NaN  | 
    | +0   | +0   | +0   | NaN  | NaN  | +0   | +0   | NaN  | 
    | -0   | -0   | -0   | NaN  | NaN  | -0   | -0   | NaN  | 
    | + inf | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | 

@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 61eeae6173eaa19f9cf6d6e985f3dc107d4c3ac9
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: cs-CZ
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "50245523"
+---
 # <a name="conversions"></a>Převody
 
 A ***převod*** umožňuje výraz, který se považují za určitého typu. Převod může způsobit, že výraz daného typu zacházeno jako s jiným typem, nebo může to způsobit bez typu, chcete-li získat typ výrazu. Může být převody ***implicitní*** nebo ***explicitní***, a určuje, jestli se vyžaduje explicitní přetypování. Například převod z typu `int` na typ `long` je implicitní, takže výrazy typu `int` lze implicitně považovat za typ `long`. Opačné převod z typu `long` na typ `int`, je explicitní a proto se vyžaduje explicitní přetypování.
