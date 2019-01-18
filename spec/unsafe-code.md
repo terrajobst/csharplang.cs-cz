@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 90001cf3d48f216787fc65e59166ec57c5d0ca34
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: cs-CZ
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229902"
+---
 # <a name="unsafe-code"></a>Nezabezpečený kód
 
 Základní jazyk C#, jak jsou definovány v předchozích kapitol, se liší zejména z jazyka C a C++ v jeho vynechání ukazatele jako datový typ. Místo toho jazyk C# poskytuje odkazů a schopnost vytvářet objekty, které se spravují přes systému uvolňování paměti. Tento návrh spolu s dalšími funkcemi, díky C# mnohem bezpečnější jazyka C nebo C++. V základním jazyce C# jazyce není jednoduše možné mít neinicializované proměnné, ukazatel "nepropojená" nebo výraz, který indexuje pole nad rámec jeho hranice. Celé kategorie chyb, který pravidelně mor C a programy v jazyce C++ jsou tedy vyloučeny.
@@ -180,7 +188,7 @@ Na rozdíl od odkazy (hodnoty typy odkazů) nebudou pro účely systémem uvolň
 
 *  `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char`, `float`, `double`, `decimal`, nebo `bool`.
 *  Žádné *enum_type*.
-*  Žádné *pointer_type*.
+*  Any *pointer_type*.
 *  Všechny uživatelem definované *struct_type* , který není konstruovaný typ a obsahuje pole *unmanaged_type*pouze s.
 
 Intuitivní pravidlo pro kombinování ukazatele a reference je, že referents odkazů (objektů) jsou povolené tak, aby obsahovala ukazatele, ale tak, aby obsahovala odkazy nejsou povoleny referents ukazatelů.

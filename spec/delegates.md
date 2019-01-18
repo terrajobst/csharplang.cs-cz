@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 08c14d9ef2afe30580f456995066c141653ede92
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: cs-CZ
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229912"
+---
 # <a name="delegates"></a>Delegáty
 
 Delegáty umožňují scénáře další jazyky, jako je například C++, Pascal a Modula – mít řešit pomocí ukazatele na funkce. Na rozdíl od ukazatelů na funkce C++ ale delegáti jsou plně objektově orientované a na rozdíl od C++ ukazatelů na členské funkce, delegáti zapouzdřit instance objektu a metody.

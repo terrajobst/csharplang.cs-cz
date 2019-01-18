@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: b7bb7dd575d9e2e6d5dd85bdd3e535411e29fcf4
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: cs-CZ
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229901"
+---
 # <a name="variables"></a>Proměnné
 
 Proměnné představují umístění úložiště. Každá proměnná má typ, který určuje, jaké hodnoty můžou být uložené v proměnné. C# je jazyk zajišťující bezpečnost typů a kompilátor jazyka C# zaručuje, že hodnoty uložené v proměnné jsou vždy příslušného typu. Hodnota proměnné lze změnit prostřednictvím přiřazení nebo použití `++` a `--` operátory.

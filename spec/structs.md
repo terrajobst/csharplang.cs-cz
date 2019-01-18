@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 72d17175dfb8ef284dce6cf7e5837420fa06f16a
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: cs-CZ
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229898"
+---
 # <a name="structs"></a>Struktury
 
 Struktury jsou podobné třídy, které představují datové struktury, které mohou obsahovat datové členy a funkční členy. Na rozdíl od tříd však struktury jsou typy hodnot a nevyžadují přidělení haldy. Proměnné typu Struktura přímo obsahuje datové struktury, že proměnné typu třídy obsahuje odkaz na data, druhá možnost známé jako objekt.

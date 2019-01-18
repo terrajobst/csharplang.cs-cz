@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 75fcd5b00ea5cac218a9f7809c53b179df97825c
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: cs-CZ
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229914"
+---
 # <a name="exceptions"></a>Výjimky
 
 Výjimky v jazyce C# zadejte strukturovaných, jednotné a typově bezpečný způsob zpracování systémové úrovni a úrovni aplikace chybové stavy. Mechanismus výjimek v jazyce C# je podobný, C++, s několika rozdíly:

@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 8f9551b9e7f70379836c23a60f0d37dc02f8e18e
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: cs-CZ
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229949"
+---
 # <a name="statements"></a>Příkazy
 
 C# poskytuje celou paletu příkazů. Většina z těchto příkazů bude zkušenosti vývojáře, kteří mají programovat v jazycích C a C++.

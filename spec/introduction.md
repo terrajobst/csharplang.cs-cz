@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: ab41a3c99f79c4cc70f7d4720f7e53b91a410859
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: cs-CZ
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "49640896"
+---
 # <a name="introduction"></a>Úvod
 
 C# (čteno "v tématu Sharp") je jednoduchý, moderní, objektově orientované a bezpečnost typů programovací jazyk. C# má jeho kořeny řady jazyků C a bude okamžitě znát programátory C, C++ nebo Java. C# je standardizované společnosti ECMA International jako ***ECMA 334*** standardní a ISO/IEC jako ***23270 ISO/IEC*** standard. Společnosti Microsoft C# kompilátor pro rozhraní .NET Framework je vyhovující implementace obou těchto standardů.
@@ -164,14 +172,14 @@ Následující tabulka shrnuje C# pro číselné typy.
 
 | __Kategorie__      | __Služba BITS__ | __Typ__  | __Rozsah a přesnost__ |
 |-------------------|----------|-----------|---------------------|
-| Podepsané celé číslo   | 8        | `sbyte`   | -128... 127 |
-|                   | 16       | `short`   | -32, 768... 32, 767 |
-|                   | 32       | `int`     | -2,147,483, 648... 2 147, 483, 647 |
-|                   | 64       | `long`    | -9,223,372,036,854,775, 808... 9, 223, 372, 036, 854 775, 807 |
-| Celočíselný typ bez znaménka | 8        | `byte`    | 0... 255 |
-|                   | 16       | `ushort`  | 0... 65 535 |
-|                   | 32       | `uint`    | 0... 4 294 967 295 |
-|                   | 64       | `ulong`   | 0... 18,446,744,073,709,551,615 |
+| Podepsané celé číslo   | 8        | `sbyte`   | -128...127 |
+|                   | 16       | `short`   | -32,768...32,767 |
+|                   | 32       | `int`     | -2,147,483,648...2,147,483,647 |
+|                   | 64       | `long`    | -9,223,372,036,854,775,808...9,223,372,036,854,775,807 |
+| Celočíselný typ bez znaménka | 8        | `byte`    | 0...255 |
+|                   | 16       | `ushort`  | 0...65,535 |
+|                   | 32       | `uint`    | 0...4,294,967,295 |
+|                   | 64       | `ulong`   | 0...18,446,744,073,709,551,615 |
 | Číslo s plovoucí desetinnou čárkou    | 32       | `float`   | 1,5 × 10 ^ −45 3.4 × 10 ^ 38, 7 číslicemi přesnosti |
 |                   | 64       | `double`  | 5.0 × 10 ^ −324 1.7 × 10 ^ 308, 15 číslicemi přesnosti |
 | Desetinné číslo           | 128      | `decimal` | 1.0 × 10 ^ −28 7.9 × 10 ^ 28, 28 číslicemi přesnosti |
