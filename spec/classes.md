@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: af7af574814dc04ee3ece0396b7ae5f86b3ec8eb
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: cs-CZ
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229910"
+---
 # <a name="classes"></a>Třídy
 
 Třída je datová struktura, která mohou obsahovat datové členy (konstant a polí), funkce členy (metody, vlastnosti, události, indexery, operátory, konstruktory instancí, destruktory a statické konstruktory) a vnořené typy. Typy tříd podporují dědičnost, mechanismus, kterým odvozené třídy můžete rozšířit a specialize základní třídy.
@@ -1827,7 +1835,7 @@ A *fixed_parameter* s *default_argument* se označuje jako ***volitelný paramet
 
 A `ref` nebo `out` parametr nemůže mít *default_argument*. *Výraz* v *default_argument* musí být jedna z následujících akcí:
 
-*  *constant_expression*
+*  a *constant_expression*
 *  výraz ve tvaru `new S()` kde `S` je typ hodnoty
 *  výraz ve tvaru `default(S)` kde `S` je typ hodnoty
 
