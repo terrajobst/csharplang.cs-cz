@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: 9c3863c9a139f5b8309fca6e0c099d0fae7677c3
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
-ms.translationtype: MT
-ms.contentlocale: cs-CZ
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229955"
----
 # <a name="namespaces"></a>Jmenné prostory
 
 Programy jazyka C# jsou uspořádané pomocí oborů názvů. Obory názvů slouží jako systém "internal" organizace pro program i jako systém "externí" organizace, způsob prezentace prvky programu, které jsou vystaveny do jiných programů.
@@ -434,7 +426,7 @@ namespace N2
     }
 }
 ```
-`N1` obsahuje člen typu `A`, a `C` obsahuje statickou metodu `A`a protože `N2` importuje obě, odkazující na `A` jako *simple_name* je nejednoznačný a kompilace došlo k chybě. 
+`N1` obsahuje člen typu `A`, a `C` obsahuje statické pole `A`a protože `N2` importuje obě, odkazující na `A` jako *simple_name* je nejednoznačný a kompilace došlo k chybě. 
 
 Podobně jako *using_alias_directive*, *using_namespace_directive* není přispívat všemi novými členy základní deklaraci prostoru kompilační jednotky nebo oboru názvů, ale místo toho má vliv pouze kompilace částí nebo těle oboru názvů ve kterém se zobrazí.
 

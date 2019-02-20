@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: 75454072a5137b3044f78bb896317fd88a29e336
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
-ms.translationtype: MT
-ms.contentlocale: cs-CZ
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "49640909"
----
 # <a name="expressions"></a>Výrazy
 
 Výraz je posloupnost operátorů a operandů. Tato kapitola definuje syntaxe pořadí vyhodnocení operandů a operátory a výrazy význam.
@@ -92,7 +84,7 @@ Následující části popisují pro každý konstrukce v jazyce přesně při d
 
 ### <a name="types-of-constituent-expressions"></a>Typy základních výrazů
 
-Při operaci je staticky vázán, typ výrazu základní (např. příjemce a argument, index nebo operand) je vždy považuje za kompilace typ tohoto výrazu.
+Při operaci je staticky vázán, typ výrazu základní (např. příjemce, argument, index nebo operand) je vždy považuje za kompilace typ tohoto výrazu.
 
 Když se operace dynamicky vazba, typ základní výrazu je určen různými způsoby v závislosti na kompilaci typu základní výraz:
 
