@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 67019511d49a786a5d6edf6fea442f745fc40f3f
+ms.sourcegitcommit: 0a80f26b8e455c4f09843a10e11e29c24d2d922e
+ms.translationtype: MT
+ms.contentlocale: cs-CZ
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57347271"
+---
 # <a name="expressions"></a>Výrazy
 
 Výraz je posloupnost operátorů a operandů. Tato kapitola definuje syntaxe pořadí vyhodnocení operandů a operátory a výrazy význam.
@@ -2943,7 +2951,7 @@ Předdefinované odčítání operátory jsou uvedeny níže. Operátory všechn
 
    |      |      |      |      |      |      |     |
    |:----:|:----:|:----:|:----:|:----:|:----:|:---:|
-   | NaN  | y    | +0   | -0   | + inf | -inf | NaN | 
+   |      | y    | +0   | -0   | + inf | -inf | NaN | 
    | x    | z    | x    | x    | -inf | + inf | NaN | 
    | +0   | -y   | +0   | +0   | -inf | + inf | NaN | 
    | -0   | -y   | -0   | +0   | -inf | + inf | NaN | 
