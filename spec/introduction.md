@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: ab41a3c99f79c4cc70f7d4720f7e53b91a410859
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.openlocfilehash: db10046af5d635b430951679a448e23680b18b87
+ms.sourcegitcommit: a19fac74c01a6c3da67d38b2f79527145d4edcbc
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "49640896"
+ms.lasthandoff: 04/09/2019
+ms.locfileid: "59426809"
 ---
 # <a name="introduction"></a>Úvod
 
@@ -170,7 +170,7 @@ Znakové a řetězcové zpracování v jazyce C# používá kódování Unicode.
 Následující tabulka shrnuje C# pro číselné typy.
 
 
-| __Kategorie__      | __Služba BITS__ | __Typ__  | __Rozsah a přesnost__ |
+| __Kategorie__      | __Bity__ | __Type__  | __Rozsah a přesnost__ |
 |-------------------|----------|-----------|---------------------|
 | Podepsané celé číslo   | 8        | `sbyte`   | -128...127 |
 |                   | 16       | `short`   | -32,768...32,767 |
@@ -288,7 +288,7 @@ Následující tabulka shrnuje operátory jazyka C# společnosti, výpis kategor
 | Logický operátor OR                       | <code>x &#124; y</code> | Bitový operátor OR celého čísla, logická hodnota operátoru OR |
 | Podmiňovací operátor AND                  | `x && y`          | Vyhodnotí `y` pouze tehdy, pokud `x` je `true` |
 | Podmiňovací operátor OR                   | <code>x &#124;&#124; y</code> | Vyhodnotí `y` pouze tehdy, pokud `x` je `false` |
-| Nulové sloučení                  | `X ?? y`          | Vyhodnotí jako `y` Pokud `x` je `null`do `x` jinak |
+| Nulové sloučení                  | `x ?? y`          | Vyhodnotí jako `y` Pokud `x` je `null`do `x` jinak |
 | Podmiňovací operátor                      | `x ? y : z`       | Vyhodnotí `y` Pokud `x` je `true`, `z` Pokud `x` je `false` |
 | Přiřazení nebo anonymní funkce | `x = y`           | Přiřazení |
 |                                  | `x op= y`         | Složené přiřazení. podporované operátory jsou `*=` `/=` `%=` `+=` `-=` `<<=` `>>=` `&=` `^=` <code>&#124;=</code> |
