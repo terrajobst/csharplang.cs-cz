@@ -1,9 +1,9 @@
 ---
 ms.openlocfilehash: db10046af5d635b430951679a448e23680b18b87
-ms.sourcegitcommit: a19fac74c01a6c3da67d38b2f79527145d4edcbc
+ms.sourcegitcommit: 4cc6d73a765ac9827ab00c48ad9f09204baf888f
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/09/2019
+ms.lasthandoff: 04/18/2019
 ms.locfileid: "59426809"
 ---
 # <a name="introduction"></a>Úvod
@@ -170,7 +170,7 @@ Znakové a řetězcové zpracování v jazyce C# používá kódování Unicode.
 Následující tabulka shrnuje C# pro číselné typy.
 
 
-| __Kategorie__      | __Bity__ | __Type__  | __Rozsah a přesnost__ |
+| __Kategorie__      | __Služba BITS__ | __Typ__  | __Rozsah a přesnost__ |
 |-------------------|----------|-----------|---------------------|
 | Podepsané celé číslo   | 8        | `sbyte`   | -128...127 |
 |                   | 16       | `short`   | -32,768...32,767 |
@@ -180,7 +180,7 @@ Následující tabulka shrnuje C# pro číselné typy.
 |                   | 16       | `ushort`  | 0...65,535 |
 |                   | 32       | `uint`    | 0...4,294,967,295 |
 |                   | 64       | `ulong`   | 0...18,446,744,073,709,551,615 |
-| Číslo s plovoucí desetinnou čárkou    | 32       | `float`   | 1,5 × 10 ^ −45 3.4 × 10 ^ 38, 7 číslicemi přesnosti |
+| Plovoucí desetinná čárka    | 32       | `float`   | 1,5 × 10 ^ −45 3.4 × 10 ^ 38, 7 číslicemi přesnosti |
 |                   | 64       | `double`  | 5.0 × 10 ^ −324 1.7 × 10 ^ 308, 15 číslicemi přesnosti |
 | Desetinné číslo           | 128      | `decimal` | 1.0 × 10 ^ −28 7.9 × 10 ^ 28, 28 číslicemi přesnosti |
 
