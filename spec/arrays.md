@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: 155c1beecddfdfcce2e7948bcb8d6b80428fbd7a
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229911"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488845"
 ---
 # <a name="arrays"></a>Pole
 

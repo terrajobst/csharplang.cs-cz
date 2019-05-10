@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: e103f6629a363c6cd76607699ff74d69aa73ed57
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.translationtype: MT
+ms.contentlocale: cs-CZ
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488973"
+---
 # <a name="lexical-structure"></a>Lexikální struktura
 
 ## <a name="programs"></a>Programy
@@ -321,7 +329,7 @@ Dva identifikátory jsou považovány za totéž případě, že jsou identické
 
 Identifikátory obsahující dvě po sobě jdoucí znaky podtržení (`U+005F`) jsou vyhrazené pro použití v implementaci. Implementace může například poskytovat klíčových slov rozšířených začínající dvěma podtržítky.
 
-### <a name="keywords"></a>Klíčová slova
+### <a name="keywords"></a>klíčová slova
 
 A ***– klíčové slovo*** je identifikátor jako posloupnost znaků, který je vyhrazen a nelze jej použít jako identifikátoru s výjimkou při uvedena ve `@` znak.
 

@@ -1,12 +1,12 @@
 ---
 ms.openlocfilehash: c9f8417dc68153f02ceb72bb1d51f3615f3c4961
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "54272043"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488921"
 ---
-# <a name="documentation-comments"></a>Dokumentační komentáře
+# <a name="documentation-comments"></a>Komentáře dokumentace
 
 C# poskytuje mechanismus pro programátory zdokumentujte svůj kód pomocí syntaxe speciální komentář, který obsahuje XML text. V souborech zdrojového kódu komentáře s formuláři určité umožňuje přímé nástroj k vytvoření XML z těchto komentářů a zdrojové elementy kódu, které jsou předcházet. Komentáře pomocí těchto syntaxe se nazývají ***komentáře k dokumentaci***. Musí bezprostředně předcházet uživatelem definovaný typ (například třída, delegát nebo rozhraní) nebo jako člen (například pole, události, vlastnost nebo metoda). Nástroj pro generování XML je volána ***dokumentaci generátor***. (Tento generátor může být, ale nemusí být kompilátor jazyka C#, samotný.) Výstup vytvořené generátorem dokumentace je volána ***soubor dokumentace***. Soubor dokumentace se používá jako vstup pro ***dokumentaci prohlížeč***; nástroj určených k vytvoření nějaký druh vizuálního zobrazení informací o typu a její související dokumentaci.
 

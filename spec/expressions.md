@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 67019511d49a786a5d6edf6fea442f745fc40f3f
-ms.sourcegitcommit: 0a80f26b8e455c4f09843a10e11e29c24d2d922e
+ms.openlocfilehash: 066c300d4c2baa8749e132730ecd48275e2957f7
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57347271"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64489003"
 ---
 # <a name="expressions"></a>Výrazy
 
@@ -3485,7 +3485,7 @@ E operator ^(E x, E y);
 
 Výsledek vyhodnocení výrazu `x op y`, kde `x` a `y` jsou výrazy typu výčtu `E` s podkladovým typem `U`, a `op` je jedním z logické operátory, je stejný jako vyhodnocení `(E)((U)x op (U)y)`. Logické operátory typu výčtu jinými slovy, stačí provést logická operace s základního typu dva operandy.
 
-### <a name="boolean-logical-operators"></a>Logická logické operátory
+### <a name="boolean-logical-operators"></a>Logické operátory
 
 Předdefinované logické logické operátory jsou:
 ```csharp

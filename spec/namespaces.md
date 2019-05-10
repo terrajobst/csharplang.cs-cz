@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 3232163ed91d9d8bb6b0babf94c4282bfd60976c
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.translationtype: MT
+ms.contentlocale: cs-CZ
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488926"
+---
 # <a name="namespaces"></a>Jmenné prostory
 
 Programy jazyka C# jsou uspořádané pomocí oborů názvů. Obory názvů slouží jako systém "internal" organizace pro program i jako systém "externí" organizace, způsob prezentace prvky programu, které jsou vystaveny do jiných programů.
