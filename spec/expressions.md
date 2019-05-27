@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 066c300d4c2baa8749e132730ecd48275e2957f7
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 130898a8b5a7b8eb986b314cb4cf78038e840b02
+ms.sourcegitcommit: 09e0ddec3bb6aa99b7340158bbac86a5a8243b43
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64489003"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66193932"
 ---
 # <a name="expressions"></a>Výrazy
 
@@ -2489,7 +2489,7 @@ Operace formuláře `-x`, unárního operátoru rozlišení přetěžování ([u
    long operator -(long x);
    ```
 
-   Výsledkem je vypočítán odečtením `x` od nuly. Pokud hodnota z `x` je nejmenší reprezentovatelnou hodnotu typu operandu (-2 ^ 31 pro `int` nebo -2 ^ 63 pro `long`), pak matematické negaci `x` není reprezentovatelná v typu operandu. Pokud k tomu dojde v rámci `checked` kontextu, `System.OverflowException` je vyvolána, pokud se vyskytuje v `unchecked` kontextu, výsledkem je hodnota operandu a není hlášena přetečení.
+   Výsledkem je vypočítán odečtením `x` od nuly. Pokud hodnota `x` je nejmenší reprezentovatelnou hodnotu typu operandu (-2 ^ 31 pro `int` nebo -2 ^ 63 pro `long`), pak matematické negaci `x` není reprezentovatelná v typu operandu. Pokud k tomu dojde v rámci `checked` kontextu, `System.OverflowException` je vyvolána, pokud se vyskytuje v `unchecked` kontextu, výsledkem je hodnota operandu a není hlášena přetečení.
 
    Pokud je operand operátoru negace typu `uint`, je převeden na typ `long`, a typ výsledku je `long`. Výjimkou je pravidlo, které povoluje `int` hodnota -2147483648 (-2 ^ 31) má být zapsán jako desítkové celé číslo literálu ([literály celých čísel](lexical-structure.md#integer-literals)).
 

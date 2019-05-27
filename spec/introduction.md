@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 9a9baf63b83ae4eb8af0e3b8c65ed3256222f12f
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 201db57d243c9d0e22553366bc653d02e183aa4b
+ms.sourcegitcommit: 09e0ddec3bb6aa99b7340158bbac86a5a8243b43
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488896"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66193872"
 ---
 # <a name="introduction"></a>Úvod
 
@@ -20,7 +20,7 @@ Pokud chcete mít jistotu, že aplikace C# a knihovny může v průběhu času v
 
 Zbývající část tato kapitola popisuje základní funkce jazyka C#. I když dalších kapitolách popisují orientované na podrobnosti a někdy matematické způsobem pravidel a výjimek, tato kapitola usiluje jasné a zkrácení za cenu úplnost. Účelem je poskytnout Úvod do jazyka, který usnadní psaní programů časná a čtení dalších kapitolách čtecí modul.
 
-## <a name="hello-world"></a>Ahoj světe
+## <a name="hello-world"></a>Hello World
 
 Program "Hello, World" tradičně slouží k uvození programovací jazyk. Tady je v jazyce C#:
 
@@ -648,8 +648,7 @@ Pair<int,string> pair = new Pair<int,string> { First = 1, Second = "two" };
 int i = pair.First;     // TFirst is int
 string s = pair.Second; // TSecond is string
 ```
-Obecný typ s argumenty typů, které jsou k dispozici, jako je třeba `Pair<int,string>
-    ` výš, se nazývá konstruovaný typ.
+Obecný typ s argumenty typů, které jsou k dispozici, jako je třeba `Pair<int,string>` výš, se nazývá konstruovaný typ.
 
 ### <a name="base-classes"></a>Základní třídy
 
@@ -1131,9 +1130,7 @@ C# podporuje instance a statické konstruktory. ***Konstruktor instance*** je č
 
 Konstruktor je deklarován jako metoda bez návratového typu a stejný název jako třídu obsahující. Pokud obsahuje deklaraci konstruktoru `static` modifikátor, deklaruje statický konstruktor. V opačném případě deklaruje konstruktor instance.
 
-Konstruktory instancí můžou být přetížené. Například `List<T>
-` třída deklaruje dva konstruktory instancí, jednu s žádné parametry a ten, který přebírá `int` parametru. Konstruktory instancí jsou vyvolány pomocí `new` operátor. Následující příkazy přidělit dvě `List<string>
-` instance pomocí všech konstruktory `List` třídy.
+Konstruktory instancí můžou být přetížené. Například `List<T>` třída deklaruje dva konstruktory instancí, jednu s žádné parametry a ten, který přebírá `int` parametru. Konstruktory instancí jsou vyvolány pomocí `new` operátor. Následující příkazy přidělit dvě `List<string>` instance pomocí všech konstruktory `List` třídy.
 
 ```csharp
 List<string> list1 = new List<string>();
@@ -1151,8 +1148,7 @@ A `get` přistupující objekt odpovídající konstruktor bez parametrů metody
 
 A `set` přistupující objekt odpovídá metodu s jedním parametrem s názvem `value` a bez návratového typu. Když je jako cíl přiřazení nebo jako operand odkazuje vlastnost `++` nebo `--`, `set` přístupového objektu je volána s argumentem, který obsahuje novou hodnotu.
 
-`List<T>
-` Třída deklaruje dvě vlastnosti `Count` a `Capacity`, které jsou v uvedeném pořadí jen pro čtení a čtení i zápis. Následuje příklad použití těchto vlastností.
+`List<T>` Třída deklaruje dvě vlastnosti `Count` a `Capacity`, které jsou v uvedeném pořadí jen pro čtení a čtení i zápis. Následuje příklad použití těchto vlastností.
 
 ```csharp
 List<string> names = new List<string>();
@@ -1188,11 +1184,9 @@ Indexery mohou být přetíženy, což znamená, že třídy lze deklarovat něk
 
 V rámci třídy, které deklaruje člen události události se chová stejně jako pole s typem delegáta (za předpokladu, události není abstraktní a nedeklaruje přistupující objekty). Toto pole obsahuje odkaz na delegáta, který představuje obslužné rutiny událostí, které byly přidány k této události. Pokud neexistují žádné obslužné rutiny událostí, je pole `null`.
 
-`List<T>
-` Třída deklaruje člen jedna událost s názvem `Changed`, což znamená, že se do seznamu přidá nová položka. `Changed` Vyvolá událost `OnChanged` virtuální metody, které nejprve zkontroluje, zda je událost `null` (to znamená, že jsou k dispozici žádné obslužné rutiny). Pojem vyvolání události je přesně ekvivalentní k vyvolání delegáta představované událostí – to znamená, nejsou žádné zvláštní jazykovým konstrukcím pro vyvolání události.
+`List<T>` Třída deklaruje člen jedna událost s názvem `Changed`, což znamená, že se do seznamu přidá nová položka. `Changed` Vyvolá událost `OnChanged` virtuální metody, které nejprve zkontroluje, zda je událost `null` (to znamená, že jsou k dispozici žádné obslužné rutiny). Pojem vyvolání události je přesně ekvivalentní k vyvolání delegáta představované událostí – to znamená, nejsou žádné zvláštní jazykovým konstrukcím pro vyvolání události.
 
-Klienti reagovat na události prostřednictvím ***obslužné rutiny událostí***. Obslužné rutiny událostí se připojují pomocí `+=` operátor a odebrané pomocí `-=` operátor. Následující příklad připojí obslužnou rutinu události pro `Changed` události `List<string>
-`.
+Klienti reagovat na události prostřednictvím ***obslužné rutiny událostí***. Obslužné rutiny událostí se připojují pomocí `+=` operátor a odebrané pomocí `-=` operátor. Následující příklad připojí obslužnou rutinu události pro `Changed` události `List<string>`.
 
 ```csharp
 using System;
@@ -1221,10 +1215,7 @@ Pro pokročilé scénáře, kde je žádoucí ovládací prvek pro použité úl
 
 ***Operátor*** je člen, který definuje význam použití operátoru konkrétní výraz do instance třídy. Je možné definovat tři typy operátorů: unární operátory, binární operátory a operátory převodu. Všechny operátory musí být deklarována jako `public` a `static`.
 
-`List<T>
-` Třída deklaruje dva operátory `operator==` a `operator!=`a proto poskytuje nový význam pro výrazy, které se vztahují na tyto operátory `List` instancí. Konkrétně definovat operátory rovnosti dvou `List<T>
-` instance vyjádřený jako porovnání všech obsažených objektů pomocí jejich `Equals` metody. V následujícím příkladu `==` operátor pro porovnání dvou `List<int>
-` instancí.
+`List<T>` Třída deklaruje dva operátory `operator==` a `operator!=`a proto poskytuje nový význam pro výrazy, které se vztahují na tyto operátory `List` instancí. Konkrétně definovat operátory rovnosti dvou `List<T>` instance vyjádřený jako porovnání všech obsažených objektů pomocí jejich `Equals` metody. V následujícím příkladu `==` operátor pro porovnání dvou `List<int>` instancí.
 
 ```csharp
 using System;
@@ -1245,9 +1236,7 @@ class Test
 }
 ```
 
-První `Console.WriteLine` výstupy `True` vzhledem k tomu, že oba seznamy obsahují stejný počet objektů se stejnými hodnotami ve stejném pořadí. Měl `List<T>
-` není definována `operator==`, první `Console.WriteLine` by mít výstup `False` protože `a` a `b` odkaz na jiný `List<int>
-` instancí.
+První `Console.WriteLine` výstupy `True` vzhledem k tomu, že oba seznamy obsahují stejný počet objektů se stejnými hodnotami ve stejném pořadí. Měl `List<T>` není definována `operator==`, první `Console.WriteLine` by mít výstup `False` protože `a` a `b` odkaz na jiný `List<int>` instancí.
 
 #### <a name="destructors"></a>Destruktory
 

@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: b7bb7dd575d9e2e6d5dd85bdd3e535411e29fcf4
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: ff285fc202d14c2060c5f005c319c7886458a168
+ms.sourcegitcommit: 8152182f0a477cb3082e625b607262cc459a17f3
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488868"
+ms.lasthandoff: 05/23/2019
+ms.locfileid: "66174235"
 ---
 # <a name="variables"></a>Proměnné
 
@@ -574,7 +574,7 @@ Pro výraz *expr* formuláře `expr_first ?? expr_second`:
 *  Stav jednoznačného přiřazení *v* před *expr_first* je stejné jako stav jednoznačného přiřazení *v* před *expr*.
 *  Stav jednoznačného přiřazení *v* před *expr_second* je stejné jako stav jednoznačného přiřazení *v* po *expr_first*.
 *  Příkaz jednoznačného přiřazení *v* po *expr* se určuje podle:
-    * Pokud *expr_first* je konstantní výraz ([konstantní výrazy](expressions.md#constant-expressions)) s hodnotou null, pak bude stav *v* po *expr* stejný jako stav *v* po *expr_second*.
+    * Pokud *expr_first* je konstantní výraz ([konstantní výrazy](expressions.md#constant-expressions)) s hodnotou null, pak stav *v* po *expr* je stejný jako Stav *v* po *expr_second*.
 *  V opačném případě stav *v* po *expr* je stejné jako stav jednoznačného přiřazení *v* po *expr_first*.
 
 #### <a name="-conditional-expressions"></a>?: (podmínky)

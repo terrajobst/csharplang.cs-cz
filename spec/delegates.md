@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 08c14d9ef2afe30580f456995066c141653ede92
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 994b22f5375d57cfc4c7537c64345a27ddf3e416
+ms.sourcegitcommit: 09e0ddec3bb6aa99b7340158bbac86a5a8243b43
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488983"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66193878"
 ---
 # <a name="delegates"></a>Delegáty
 
@@ -73,7 +73,7 @@ class B
 }
 ```
 
-Metody `A.M1` a `B.M1 `musí být kompatibilní s typy delegáta `D1` a `D2` , protože mají stejný typ a seznam parametrů vracet; však tyto typy delegátů jsou dva různé typy, takže už nejsou zaměnitelné. Metody `B.M2`, `B.M3`, a `B.M4` nejsou kompatibilní s typy delegáta `D1` a `D2`, protože mají různé typy vrácené hodnoty nebo seznamy parametrů.
+Metody `A.M1` a `B.M1` musí být kompatibilní s typy delegáta `D1` a `D2` , protože mají stejný typ a seznam parametrů vracet; však tyto typy delegátů jsou dva různé typy, takže už nejsou zaměnitelné. Metody `B.M2`, `B.M3`, a `B.M4` nejsou kompatibilní s typy delegáta `D1` a `D2`, protože mají různé typy vrácené hodnoty nebo seznamy parametrů.
 
 Podobně jako ostatní deklarace obecného typu se musí předávat argumenty typu a vytvořte typ vytvořeného delegáta. Typy parametrů a návratový typ delegáta konstruovaný typ jsou vytvořené pro každý z parametrů typu v deklaraci delegáta nahraďte argument typu pro typ vytvořeného delegátu. Výsledný návratový typ a typy parametrů se používají při určování, které metody jsou kompatibilní s typem delegáta vytvořený. Příklad:
 

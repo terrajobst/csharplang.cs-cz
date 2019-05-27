@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: af7af574814dc04ee3ece0396b7ae5f86b3ec8eb
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 917e2f1e196013f85eefbda21fb3d717cc681084
+ms.sourcegitcommit: 09e0ddec3bb6aa99b7340158bbac86a5a8243b43
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488905"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66193906"
 ---
 # <a name="classes"></a>Třídy
 
@@ -1500,7 +1500,7 @@ Pro pole stálé techniky optimalizace, které Změna pořadí pokyny může vé
 Tato omezení Ujistěte se, že všechna vlákna budou sledovat volatile zápisy provádí ostatní vlákna v pořadí, ve kterém byly provedeny. Vyhovující implementace není potřeba poskytovat, jeden celkový řazení volatile zápisů pohledu ze všech vláken, která. Typ pole s modifikátorem volatile musí být jeden z následujících akcí:
 
 *  A *reference_type*.
-*  Typ `byte`, `sbyte`, `short`, `ushort`, `int`, `uint`, `char`, `float`, `bool`, `System.IntPtr`, nebo` System.UIntPtr`.
+*  Typ `byte`, `sbyte`, `short`, `ushort`, `int`, `uint`, `char`, `float`, `bool`, `System.IntPtr`, nebo `System.UIntPtr`.
 *  *Enum_type* základního typu výčtu `byte`, `sbyte`, `short`, `ushort`, `int`, nebo `uint`.
 
 V příkladu
