@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 61eeae6173eaa19f9cf6d6e985f3dc107d4c3ac9
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: d082393a00496b948ad4e3ff9e135d94e89d2448
+ms.sourcegitcommit: 1a46441156b13db6c845f4bbb886284387d73023
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488960"
+ms.lasthandoff: 06/13/2019
+ms.locfileid: "67047033"
 ---
 # <a name="conversions"></a>Převody
 
@@ -47,7 +47,7 @@ Ale dynamické převody ([implicitních převodů dynamické](conversions.md#imp
 
 Konverzi identity převede na stejný typ z libovolného typu. Tak, že entita, která už má požadovaný typ může být říká, že lze převést na daný typ existuje tento převod.
 
-*  Protože objektu a dynamicky se považují za ekvivalentní je konverzi identity mezi `object` a `dynamic`a mezi sestavené typy, které jsou stejné při nahrazení všech výskytů `dynamic` s `object`.
+*  Protože `object` a `dynamic` jsou považovány za ekvivalentní, je konverzi identity mezi `object` a `dynamic`a mezi sestavené typy, které jsou stejné při nahrazení všech výskytů `dynamic` s `object`.
 
 ### <a name="implicit-numeric-conversions"></a>Implicitní číselné převody
 
