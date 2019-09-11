@@ -1,28 +1,28 @@
 ---
-ms.openlocfilehash: 201db57d243c9d0e22553366bc653d02e183aa4b
-ms.sourcegitcommit: 09e0ddec3bb6aa99b7340158bbac86a5a8243b43
+ms.openlocfilehash: 8bc4bf6310fb8a8457beee167f18d30aaca10a8e
+ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66193872"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876891"
 ---
 # <a name="introduction"></a>Úvod
 
-C# (čteno "v tématu Sharp") je jednoduchý, moderní, objektově orientované a bezpečnost typů programovací jazyk. C# má jeho kořeny řady jazyků C a bude okamžitě znát programátory C, C++ nebo Java. C# je standardizované společnosti ECMA International jako ***ECMA 334*** standardní a ISO/IEC jako ***23270 ISO/IEC*** standard. Společnosti Microsoft C# kompilátor pro rozhraní .NET Framework je vyhovující implementace obou těchto standardů.
+C#(vyslovit "viz Sharp") je jednoduchý, moderní, objektově orientovaný programovací jazyk, který je typově bezpečný. C#má své kořeny v řadě jazyků C a bude se okamžitě seznámit s programátory v jazyce C++c, a Java. C#je standardizovaná ECMA mezinárodními jako standard ***ECMA-334*** a normou ISO/IEC jako standard ***iso/IEC 23270*** . C# Kompilátor od microsoftu pro .NET Framework je vyhovující implementaci obou těchto standardů.
 
-C# je objektově orientovaný jazyk, ale jazyka C# dále zahrnuje podporu pro ***komponenty objektově orientovaný*** programování. Návrh moderní softwaru stále spoléhá na softwarové komponenty v podobě samostatné a popisující samy sebe balíčky funkcí. Klíčem k takové součásti je, že představují programovací model s vlastnosti, metody a události; mají atributy, které poskytují deklarativní informace o komponentě; a zahrnují vlastní dokumentace. C# zajišťuje, že jazyk konstrukce pro přímo podporují tyto koncepty, pak C# velmi přirozeného jazyka, ve kterém chcete vytvořit a používat softwarové součásti.
+C#je objektově orientovaný jazyk, ale C# dále zahrnuje podporu pro programování ***orientované na komponenty*** . Moderní návrh softwaru se stále spoléhá na softwarové komponenty ve formě integrovaných a samoobslužných balíčků funkcí. Klíč k takovým součástem je, že prezentují programovací model s vlastnostmi, metodami a událostmi. mají atributy, které poskytují deklarativní informace o komponentě. a obsahují vlastní dokumentaci. C#poskytuje jazykové konstrukce, které přímo podporují tyto koncepce, a C# vytváří tak velmi přirozený jazyk pro vytváření a používání softwarových komponent.
 
-Několik C# funkce podpory ve vytváření robustních a odolných aplikací: ***Uvolňování paměti*** automaticky uvolní paměť obsazena nevyužité objekty. ***zpracování výjimek*** přináší strukturovaných a rozšiřitelné přístup k detekce chyb a obnovení; a ***zajišťující bezpečnost typů*** návrh jazyka znemožňuje čtení z neinicializovaného proměnné k indexování pole, mimo jejich rozsah nebo k provádění zaškrtnuté políčko typu přetypování.
+Několik C# funkcí pomáhá při konstrukci robustních a odolných aplikací: ***Uvolňování*** paměti automaticky uvolňuje paměť obsazené nepoužívanými objekty; ***zpracování výjimek*** poskytuje strukturovaný a rozšiřitelný přístup k detekci a obnovení chyb. a ***typově bezpečný*** návrh tohoto jazyka znemožňuje čtení z neinicializovaných proměnných, pro indexaci polí nad rámec jejich hranic nebo pro provedení nezaškrtnutých přetypování typu.
 
-C# má ***unified systém typů***. Všechny typy C#, včetně primitivní typy, jako například `int` a `double`, dědit z jednoho kořene `object` typu. Proto sdílejí sadu běžných operací pro všechny typy a hodnoty libovolného typu lze ukládat, přenášet a provozován konzistentním způsobem. Kromě toho C# podporuje uživatelem definované referenční typy a typy hodnot, povolení dynamické přidělování objektů a úložiště v řádku zjednodušené struktur.
+C#má ***jednotný systém typů***. Všechny C# typy, včetně primitivních typů `int` , jako jsou a `double`, dědí z jednoho `object` kořenového typu. Všechny typy tedy sdílí sadu běžných operací a hodnoty libovolného typu mohou být uloženy, přepravovány a provozovány konzistentním způsobem. Kromě toho C# podporuje uživatelsky definované typy odkazů i typy hodnot, což umožňuje dynamické přidělování objektů a také vložené úložiště lehkých struktur.
 
-Pokud chcete mít jistotu, že aplikace C# a knihovny může v průběhu času vyvíjejí kompatibilní způsobem, se nachází mnoho důraz na ***správy verzí*** v C# pro návrh. Mnoho programovacích jazyků věnovat trochu tento problém, a v důsledku toho jsou zavedeny programy napsané v těchto jazyků přerušení častěji, než pokud je novější verze závislé knihovny. Aspekty návrhu v C#, které byly přímo ovlivňován aspekty správy verzí jsou jako samostatná `virtual` a `override` modifikátory, pravidla pro řešení přetížení metody a podpora deklarací členů explicitního rozhraní.
+Aby bylo zajištěno, že se programy a knihovny můžou v průběhu času vyvíjejí kompatibilním způsobem, je mnohem zdůrazněno, že C# se v návrhu používá ***Správa verzí*** C#. Řada programovacích jazyků platíte jenom malým pozornostům tohoto problému. v důsledku toho jsou programy napsané v těchto jazycích častěji využívány, pokud jsou zavedeny novější verze závislých knihoven. C#Aspekty návrhu, které byly přímo ovlivněny aspekty správy verzí, zahrnují samostatné `virtual` a `override` modifikátory, pravidla pro řešení přetížení metod a podporu explicitních deklarací členů rozhraní.
 
-Zbývající část tato kapitola popisuje základní funkce jazyka C#. I když dalších kapitolách popisují orientované na podrobnosti a někdy matematické způsobem pravidel a výjimek, tato kapitola usiluje jasné a zkrácení za cenu úplnost. Účelem je poskytnout Úvod do jazyka, který usnadní psaní programů časná a čtení dalších kapitolách čtecí modul.
+Zbytek této kapitoly popisuje základní funkce C# jazyka. I když později kapitoly popisují pravidla a výjimky v detailním a někdy matematickém způsobu, tato kapitola usiluje o přehlednost a zkrácení na úkor úplnosti. Záměrem je poskytnout čtenářům Úvod k jazyku, který usnadní psaní dřívějších programů a čtení dalších kapitol.
 
 ## <a name="hello-world"></a>Hello World
 
-Program "Hello, World" tradičně slouží k uvození programovací jazyk. Tady je v jazyce C#:
+Program "Hello, World" se tradičně používá k zavedení programovacího jazyka. Tady je C#:
 
 ```csharp
 using System;
@@ -35,26 +35,26 @@ class Hello
 }
 ```
 
-Zdrojové soubory jazyka C# obvykle mají příponu `.cs`. Za předpokladu, že program "Hello, World" je uložen v souboru `hello.cs`, může být program zkompilován s pomocí příkazového řádku kompilátoru jazyka Microsoft C#
+C#zdrojové soubory mají obvykle příponu `.cs`souboru. Za předpokladu, že program "Hello, World" je uložen `hello.cs`v souboru, program může být zkompilován s kompilátorem společnosti Microsoft C# pomocí příkazového řádku
 ```
 csc hello.cs
 ```
-produkuje spustitelného sestavení s názvem `hello.exe`. Je výstup vytvořeného touto aplikací při spuštění
+který vytváří spustitelné sestavení s názvem `hello.exe`. Výstup vytvořený touto aplikací při spuštění je
 ```
 Hello, World
 ```
 
-Program "Hello, World" začíná `using` direktiva, která odkazuje `System` oboru názvů. Obory názvů umožňují hierarchické uspořádání programy jazyka C# a knihovny. Obory názvů obsahují typy a jiných oborech názvů – například `System` obor názvů obsahuje několik typů, například `Console` třída odkazovaná v programu a několik jiných oborech názvů, jako například `IO` a `Collections`. A `using` umožňuje direktiva, která odkazuje na daný obor názvů nekvalifikované použití typů, které jsou členy tohoto oboru názvů. Z důvodu `using` direktiv, můžete použít program `Console.WriteLine` jako zkratka pro `System.Console.WriteLine`.
+Program "Hello, World" začíná `using` direktivou, která odkazuje na `System` obor názvů. Obory názvů poskytují hierarchické prostředky pro C# uspořádání programů a knihoven. Obory názvů obsahují `System` typy a jiné obory názvů, například obor názvů obsahuje počet typů, jako je `Console` například třída odkazovaná v programu, a řadu `IO` dalších oborů názvů, například a `Collections`. `using` Direktiva, která odkazuje na daný obor názvů, umožňuje nekvalifikované použití typů, které jsou členy tohoto oboru názvů. Z `using` důvodu direktivy může program použít `Console.WriteLine` jako zkrácený pro `System.Console.WriteLine`.
 
-`Hello` Třídy deklarované jako programem "Hello, World" obsahuje jeden člen metodu s názvem `Main`. `Main` Metoda je deklarována s `static` modifikátor. Zatímco instanční metody může odkazovat na konkrétní nadřazeného objektu instanci pomocí klíčového slova `this`, statické metody fungovat bez ohledu na konkrétní objekt. Podle konvence statickou metodu s názvem `Main` slouží jako vstupní bod programu.
+Třída deklarovaná programem "Hello, World" má jednoho člena, metodu s názvem `Main`. `Hello` Metoda je deklarována `static` s modifikátorem. `Main` I když metody instance mohou odkazovat na konkrétní ohraničující objekt instance pomocí klíčového `this`slova, statické metody pracují bez odkazů na konkrétní objekt. Podle konvence, statická metoda s `Main` názvem slouží jako vstupní bod programu.
 
-Výstup programu je vytvořen `WriteLine` metodu `Console` třídy v `System` oboru názvů. Tato třída poskytuje knihovny tříd rozhraní .NET Framework, které ve výchozím nastavení, jsou automaticky odkazována pomocí kompilátoru jazyka Microsoft C#. Všimněte si, že C# sám nemá samostatné běhové knihovny. Místo toho rozhraní .NET Framework je knihovna runtime jazyka C#.
+Výstup programu je vytvořen `WriteLine` metodou `Console` třídy v `System` oboru názvů. Tato třída je poskytována knihovnami tříd .NET Framework, které jsou ve výchozím nastavení automaticky odkazovány kompilátorem společnosti C# Microsoft. Všimněte si C# , že sám nemá samostatnou běhovou knihovnu. Místo toho je .NET Framework běhová knihovna C#.
 
 ## <a name="program-structure"></a>Struktura programu
 
-Klíčové koncepty organizace v jazyce C# jsou ***programy***, ***obory názvů***, ***typy***, ***členy***, a ***sestavení***. Programy jazyka C# se skládají z jednoho nebo více zdrojových souborů. Programy deklarovat typy, které obsahují členy a mohou být uspořádány do oborů názvů. Třídy a rozhraní jsou příklady typů. Pole, metody, vlastnosti a události jsou příklady členů. Když jsou kompilovány programy jazyka C#, jsou fyzicky zabaleny do sestavení. Sestavení obvykle mít příponu souboru `.exe` nebo `.dll`, v závislosti na tom, jestli je implementovat ***aplikací*** nebo ***knihovny***.
+Klíčovou organizační koncepcí v C# nástroji jsou ***programy***, ***obory názvů***, ***typy***, ***členy***a ***sestavení***. C#programy se skládají z jednoho nebo více zdrojových souborů. Programy deklarují typy, které obsahují členy a mohou být uspořádány do oborů názvů. Příklady typů jsou třídy a rozhraní. Příklady členů jsou pole, metody, vlastnosti a události. Když C# jsou programy kompilovány, jsou fyzicky zabaleny do sestavení. Sestavení `.exe` mají obvykle příponu souboru nebo `.dll`v závislosti na tom, zda implementují ***aplikace*** nebo ***knihovny***.
 
-V příkladu
+Příklad
 
 ```csharp
 using System;
@@ -89,16 +89,16 @@ namespace Acme.Collections
     }
 }
 ```
-deklaruje třídu s názvem `Stack` v obor názvů s názvem `Acme.Collections`. Plně kvalifikovaný název této třídy je `Acme.Collections.Stack`. Třída obsahuje několik členů: pole s názvem `top`, dvě metody s názvem `Push` a `Pop`a vnořené třídy s názvem `Entry`. `Entry` Další třídy obsahuje tři členy: pole s názvem `next`, pole s názvem `data`a konstruktor. Za předpokladu, že zdrojový kód v příkladu je uložen v souboru `acme.cs`, příkazového řádku
+deklaruje třídu s názvem `Stack` v oboru názvů s názvem. `Acme.Collections` Plně kvalifikovaný název této třídy je `Acme.Collections.Stack`. Třída obsahuje několik členů: pole s `top`názvem, dvě metody pojmenované `Push` a `Pop`a vnořená třída s názvem `Entry`. Třída dále obsahuje tři členy: pole s názvem `next`, pole s názvem `data`a konstruktor. `Entry` Za předpokladu, že zdrojový kód příkladu je uložen v souboru `acme.cs`, příkazový řádek
 
 ```
 csc /t:library acme.cs
 ```
-zkompiluje v příkladu jako knihovna (bez kódu `Main` vstupního bodu) a vytváří sestavení s názvem `acme.dll`.
+zkompiluje příklad jako knihovnu (kód bez `Main` vstupního bodu) a vytvoří sestavení s názvem. `acme.dll`
 
-Sestavení obsahující spustitelný kód ve formě ***Intermediate Language*** instrukcí (IL) a symbolické informace ve formě ***metadat***. Předtím, než se spustí, kód IL v sestavení automaticky převést do kódu specifického pro procesor kompilátorem za běhu (JIT) modulu .NET Common Language Runtime.
+Sestavení obsahují spustitelný kód ve formě instrukcí pro ***převodní jazyk*** (IL) a symbolické informace ve formě ***metadat***. Před provedením je kód IL v sestavení automaticky převeden na kód specifický pro procesor pomocí kompilátoru JIT (just-in-time) modulu CLR (Common Language Runtime) .NET.
 
-Protože sestavení je jednotka funkce obsahující kód a metadata popisující samy sebe, není nutné pro `#include` direktivy a soubory hlaviček v jazyce C#. Veřejné typy a členy, které jsou obsažené v konkrétní sestavení jsou k dispozici v programu v jazyce C# jednoduše tak, že odkazující na toto sestavení při kompilaci programu. Například používá tento program `Acme.Collections.Stack` třídy z `acme.dll` sestavení:
+Vzhledem k tomu, že sestavení je samo-popisující jednotku funkcí obsahující kód i metadata, není nutné `#include` direktivy a hlavičkové soubory v. C# Veřejné typy a členy, které jsou obsaženy v konkrétním sestavení, jsou v C# programu k dispozici jednoduše odkazem na toto sestavení při kompilování programu. Například tento program používá `Acme.Collections.Stack` třídu `acme.dll` ze sestavení:
 
 ```csharp
 using System;
@@ -117,92 +117,92 @@ class Test
     }
 }
 ```
-Pokud program je uložený v souboru `test.cs`, když `test.cs` kompilaci, `acme.dll` sestavení lze odkazovat pomocí kompilátoru `/r` možnost:
+Pokud je program `test.cs`uložen v souboru, když `test.cs` je zkompilován, `acme.dll` `/r` sestavení lze odkazovat pomocí možnosti kompilátoru:
 
 ```
 csc /r:acme.dll test.cs
 ```
-Tím se vytvoří sestavení spustitelného souboru s názvem `test.exe`, který při spuštění vytvoří výstup:
+Tím se vytvoří spustitelné sestavení s `test.exe`názvem, které při spuštění vytvoří výstup:
 
 ```
 100
 10
 1
 ```
-C# umožňuje text zdrojového programu, který bude uložen do několika zdrojových souborů. Když je zkompilován více soubory programu v C#, jsou společně zpracovány všechny zdrojové soubory a zdrojové soubory můžete odkazovat na volně mezi sebou, koncepčně, je, jako kdyby byly všechny zdrojové soubory zřetězeny do jednoho velkého souboru před zpracováním. Dopředné deklarace jsou potřeba nikdy v jazyce C#, protože s několika málo výjimkami je deklarace pořadí je neplatné. C# neomezuje zdrojový soubor k deklarování pouze jeden veřejný typ taky je potřeba, aby název zdrojového souboru tak, aby odpovídaly typu deklarovaného ve zdrojovém souboru.
+C#umožňuje, aby byl zdrojový text programu uložen v několika zdrojových souborech. Když je zkompilován program pro C# více souborů, všechny zdrojové soubory jsou zpracovávány společně a zdrojové soubory mohou volně odkazovat, a to koncepční, protože všechny zdrojové soubory byly před zpracováním sloučeny do jednoho velkého souboru. Dopředné deklarace nejsou nikdy C# potřeba v důsledku nedostatečných výjimek, pořadí deklarací je nedůležité. C#neomezuje zdrojový soubor na deklaraci pouze jednoho veřejného typu, ani nevyžaduje název zdrojového souboru, aby odpovídal typu deklarovanému ve zdrojovém souboru.
 
 ## <a name="types-and-variables"></a>Typy a proměnné
 
-Existují dva druhy typů v jazyce C#: ***typů hodnot*** a ***referenční typy***. Proměnné typů hodnoty přímo obsahovat svá data, zatímco proměnné typů odkazu ukládají odkazy na svá data, ten se označuje jako objekty. V případě typů odkazu je možné pro dvě proměnné odkazovat na stejný objekt a proto je možné pro operace v rámci jedné proměnné ovlivňovat objekt odkazovaný jinou proměnnou. S typy hodnot proměnných každý vlastní kopii dat a není možné pro operace se na nich se má vliv na jinou (s výjimkou v případě třídy `ref` a `out` proměnných parametrů).
+Existují dva druhy typů v C#: ***typy hodnot*** a ***typy odkazů***. Proměnné typů hodnot přímo obsahují svá data, zatímco proměnné typu odkazu ukládají odkazy na jejich data, přičemž ta se označují jako objekty. U typů odkazů je možné, aby dvě proměnné odkazovaly na stejný objekt a bylo tak možné, aby operace s jednou proměnnou ovlivnily objekt, na který je odkazováno z jiné proměnné. S typy hodnot mají proměnné, které mají svou vlastní kopii dat, a není možné, aby operace na jednom byly ovlivněny druhou (kromě případu `ref` a `out` proměnných parametrů).
 
-C# pro typy hodnot se dále dělí do ***jednoduché typy***, ***typy výčtu***, ***typy struktury***, a ***typy připouštějící hodnotu Null***a referenční dokumentace jazyka C#. typy se dále dělí do ***typy tříd***, ***typy rozhraní***, ***pole typů***, a ***typy delegátů***.
+C#typy hodnot jsou dále rozděleny na ***jednoduché typy***, ***výčtové typy***, ***typy struktury***a ***typy s možnou hodnotou null***a C#odkazové typy jsou dále rozděleny do ***typů tříd***, ***typů rozhraní***, ***pole typy***a ***typy delegátů***.
 
-Následující tabulka obsahuje přehled o typu systému C#.
+Následující tabulka poskytuje přehled C#systému typů.
 
 | __Kategorie__    |                 | __Popis__ |
 |-----------------|-----------------|-----------------|
-| Typy hodnot     | Jednoduché typy    | Podepsané celé číslo: `sbyte`, `short`, `int`, `long` |
-|                 |                 | Celočíselný typ bez znaménka: `byte`, `ushort`, `uint`, `ulong` |
-|                 |                 | Znaky Unicode: `char` |
-|                 |                 | S plovoucí desetinnou čárkou IEEE: `float`, `double` |
-|                 |                 | Desetinná přesnost vysoce: `decimal` |
-|                 |                 | Logická hodnota: `bool` |
-|                 | Výčtové typy      | Uživatelem definované typy formuláře `enum E {...}` |
-|                 | Typy struktury    | Uživatelem definované typy formuláře `struct S {...}` |
-|                 | Typy s povolenou hodnotou Null  | Rozšíření všechny ostatní typy hodnot s `null` hodnota |
-| Odkazové typy | Typy tříd     | Ultimate základní třídy pro všechny ostatní typy: `object` |
-|                 |                 | Řetězce Unicode: `string` |
-|                 |                 | Uživatelem definované typy formuláře `class C {...}` |
-|                 | Typy rozhraní | Uživatelem definované typy formuláře `interface I {...}` |
-|                 | Typy polí     | Jeden – a s multidimenzionálním, například `int[]` a `int[,]` |
-|                 | Typy delegátů  | Uživatelem definované typy ve formátu například `delegate int  D(...)` |
+| Typy hodnot     | Jednoduché typy    | Podepsané integrály `sbyte`: `short`, `int`,,`long` |
+|                 |                 | Unsigned integrál: `byte`, `ushort`, `uint`,`ulong` |
+|                 |                 | Znaky Unicode:`char` |
+|                 |                 | Plovoucí desetinná čárka IEEE: `float`,`double` |
+|                 |                 | Desetinné číslo s vysokou přesností:`decimal` |
+|                 |                 | Datového`bool` |
+|                 | Výčtové typy      | Uživatelem definované typy formuláře`enum E {...}` |
+|                 | Typy struktury    | Uživatelem definované typy formuláře`struct S {...}` |
+|                 | Typy s povolenou hodnotou Null  | Rozšíření všech ostatních typů hodnot s `null` hodnotou |
+| Typy odkazů | Typy tříd     | Nejvyšší základní třída všech ostatních typů:`object` |
+|                 |                 | Řetězce Unicode:`string` |
+|                 |                 | Uživatelem definované typy formuláře`class C {...}` |
+|                 | Typy rozhraní | Uživatelem definované typy formuláře`interface I {...}` |
+|                 | Typy polí     | Jednoduché a multidimenzionální, například `int[]` a`int[,]` |
+|                 | Typy delegátů  | Uživatelem definované typy formuláře, např.`delegate int  D(...)` |
 
-Osm integrální typy poskytují podporu pro hodnoty 8bitové, 16 bitů, 32bitová verze a 64bitová verze v podobě nebo bez znaménka.
+Osm integrálních typů poskytuje podporu pro 8bitové, 16bitové, 32 a 64 hodnoty v podepsané nebo nepodepsané formě.
 
-Dvě s plovoucí desetinnou čárkou bodu typy, `float` a `double`, jsou reprezentovány pomocí 32-bit jednoduchou přesností a 64bitové dvojitou přesností IEEE 754 formátů.
+Dva typy `float` s plovoucí desetinnou čárkou a `double`jsou reprezentovány pomocí 32 formátů IEEE 754 s jednoduchou přesností a 64.
 
-`decimal` Typ je typ 128bitových dat. vhodný pro výpočty finančních a přepočty měn.
+`decimal` Typ je 128 datový typ, který je vhodný pro finanční a peněžní výpočty.
 
-C# `bool` typ se používá k reprezentaci logické hodnoty – hodnoty, které jsou buď `true` nebo `false`.
+C#typ se používá k reprezentaci logických hodnot – hodnot, které `true` jsou buď nebo `false`. `bool`
 
-Znakové a řetězcové zpracování v jazyce C# používá kódování Unicode. `char` Typ představuje jednotku kódu UTF-16 a `string` typ představuje posloupnost jednotkami kódu kódování UTF-16.
+Zpracování znaků a řetězců v C# nástroji používá kódování Unicode. Typ představuje jednotku kódu UTF-16 `string` a typ představuje sekvenci jednotek kódu UTF-16. `char`
 
-Následující tabulka shrnuje C# pro číselné typy.
+Následující tabulka shrnuje C#číselné typy.
 
 
-| __Kategorie__      | __Služba BITS__ | __Typ__  | __Rozsah a přesnost__ |
+| __Kategorie__      | __Bit__ | __Typ__  | __Rozsah/přesnost__ |
 |-------------------|----------|-----------|---------------------|
-| Podepsané celé číslo   | 8        | `sbyte`   | -128...127 |
-|                   | 16       | `short`   | -32,768...32,767 |
-|                   | 32       | `int`     | -2,147,483,648...2,147,483,647 |
-|                   | 64       | `long`    | -9,223,372,036,854,775,808...9,223,372,036,854,775,807 |
-| Celočíselný typ bez znaménka | 8        | `byte`    | 0...255 |
-|                   | 16       | `ushort`  | 0...65,535 |
-|                   | 32       | `uint`    | 0...4,294,967,295 |
-|                   | 64       | `ulong`   | 0...18,446,744,073,709,551,615 |
-| Plovoucí desetinná čárka    | 32       | `float`   | 1,5 × 10 ^ −45 3.4 × 10 ^ 38, 7 číslicemi přesnosti |
-|                   | 64       | `double`  | 5.0 × 10 ^ −324 1.7 × 10 ^ 308, 15 číslicemi přesnosti |
-| Desetinné číslo           | 128      | `decimal` | 1.0 × 10 ^ −28 7.9 × 10 ^ 28, 28 číslicemi přesnosti |
+| Podepsaný integrál   | 8        | `sbyte`   | -128...127 |
+|                   | 16       | `short`   | -32 768... 32, 767 |
+|                   | 32       | `int`     | -2147483648... 2, 147, 483, 647 |
+|                   | 64       | `long`    | -9223372036854775808... 9, 223, 372, 036, 854, 0,75, 807 |
+| Integrál bez znaménka | 8        | `byte`    | 0... 255 |
+|                   | 16       | `ushort`  | 0... 65, 535 |
+|                   | 32       | `uint`    | 0... 4, 294, 967, 295 |
+|                   | 64       | `ulong`   | 0... 18, 446, 744, 073, 709, 551, 615 |
+| Plovoucí desetinná čárka    | 32       | `float`   | 1,5 × 10 ^ − 45 až 3,4 × 10 ^ 38, 7 – přesnost číslic |
+|                   | 64       | `double`  | 5,0 × 10 ^ − 324 a 1,7 × 10 ^ 308, přesnost na 15 číslic |
+| Desetinné číslo           | 128      | `decimal` | 1,0 × 10 ^ − 28 až 7,9 × 10 ^ 28, 28 číslic – přesnost |
 
-C# programy používají ***typ deklarace*** pro vytvoření nových typů. Deklarace typu Určuje název a členy nového typu. Pět C# pro kategorie typů jsou definovaných uživatelem: Třída typy, typy struktury, rozhraní typy, výčtové typy a typy delegátů.
+C#programy používají ***deklarace typů*** k vytváření nových typů. Deklarace typu Určuje název a členy nového typu. C#Pět kategorií typů je uživatelsky definované: typy tříd, typy struktury, typy rozhraní, výčtové typy a typy delegátů.
 
-Typ třídy definuje datová struktura, která obsahuje data (pole) a funkční členy (metody, vlastnosti a ostatní). Typy tříd podporují jednoduché dědičnosti a polymorfismu, mechanismy jeho prostřednictvím odvozené třídy můžete rozšířit a specialize základní třídy.
+Typ třídy definuje datovou strukturu obsahující datové členy (pole) a členy funkce (metody, vlastnosti a další). Typy tříd podporují jednu dědičnost a polymorfismus, mechanismy, které mohou odvozené třídy roztáhnout a specializovat základní třídy.
 
-Typ struktury je podobný typu třídy, představuje strukturu dat a funkční členy. Na rozdíl od tříd však struktury jsou typy hodnot a nevyžadují přidělení haldy. Typy struktury nepodporují dědičnosti zadané uživatelem, a všechny typy struktury implicitně dědí z typu `object`.
+Typ struktury je podobný typu třídy v tom, že představuje strukturu s datovými členy a členy funkce. Nicméně na rozdíl od tříd, struktury jsou typy hodnot a nevyžadují přidělení haldy. Typy struktury nepodporují uživatelem zadanou dědičnost a všechny typy struktury implicitně dědí z typu `object`.
 
-Typ rozhraní definuje kontrakt jako pojmenovanou sadu funkce veřejné členy. Třída nebo struktura, která implementuje rozhraní musí poskytnout implementace členů rozhraní funkce. Rozhraní může dědit z více základních rozhraní a třídy nebo struktury může implementovat více rozhraní.
+Typ rozhraní definuje kontrakt jako pojmenovanou sadu členů veřejné funkce. Třída nebo struktura, která implementuje rozhraní, musí poskytovat implementace členů funkce rozhraní. Rozhraní může dědit z více základních rozhraní a třída nebo struktura může implementovat více rozhraní.
 
-Typ delegáta představuje odkazy na metody se seznamem konkrétních parametrů a návratovým typem. Delegáty umožňují považovat za entity, které může být přiřazena k proměnné a předány jako parametry metod. Delegáti jsou podobný koncept ukazatelů na funkce v některých jiných jazycích, ale na rozdíl od ukazatelů na funkce, Delegáti jsou objektově orientované a typově bezpečné.
+Typ delegáta představuje odkazy na metody s konkrétním seznamem parametrů a návratovým typem. Delegáti umožňují zacházet s metodami jako s entitami, které lze přiřadit proměnným a předávat jako parametry. Delegáti jsou podobní pojmu ukazatelů na funkce nalezené v některých jiných jazycích, ale na rozdíl od ukazatelů na funkce jsou delegáti objektově orientované a typově bezpečné.
 
-Třídy, struktury, rozhraní a delegátů typů všechny obecné typy podpory, které mohou být parametrizovány s jinými typy.
+Třídy, struktura, rozhraní a typy delegátů podporují obecné typy, kde je lze parametrizovanit s jinými typy.
 
-Typ výčtu je odlišný typ se pojmenovaných konstant. Každý typ výčtu se základní typ, který musí mít jednu z osmi integrální typy. Sadu hodnot typu výčtu je stejný jako sadu hodnot ze základního typu.
+Typ výčtu je odlišný typ s pojmenovanými konstantami. Každý typ výčtu má podkladový typ, který musí být jedním z osmi integrálních typů. Sada hodnot typu výčtu je stejná jako sada hodnot základního typu.
 
-C# podporuje jeden a více trojrozměrným pole libovolného typu. Na rozdíl od výše uvedené typy typy polí nemusí být deklarované před použitím. Místo toho typy pole jsou vytvořeny podle názvu typu do složených závorek. Například `int[]` je jednorozměrné pole `int`, `int[,]` je dvourozměrné pole `int`, a `int[][]` je jednorozměrné pole jednorozměrné pole `int`.
+C#podporuje jedno a multidimenzionální pole libovolného typu. Na rozdíl od typů uvedených výše nemusí být typy polí deklarovány dříve, než mohou být použity. Místo toho jsou typy polí konstruovány pomocí názvu typu s hranatými závorkami. `int[]` Například je `int` `int` `int[][]` jednorozměrné pole `int[,]` , je dvourozměrné pole, a je jednorozměrné pole jednorozměrného pole v rámci. `int`
 
-Typy s možnou hodnotou Null také nemají předtím, než je možné deklarovat. Pro jednotlivé typy neumožňující hodnotu `T` neexistuje odpovídající typ s možnou hodnotou Null `T?`, který může obsahovat další hodnotu `null`. Například `int?` je typ, který může pojmout všechny 32bitové celé číslo nebo hodnota `null`.
+Typy s možnou hodnotou null také nemusí být deklarovány dříve, než mohou být použity. Pro každý typ `T` hodnoty, která není null, existuje odpovídající typ `T?`s možnou hodnotou null, který může `null`obsahovat další hodnotu. Například je typ, který může obsahovat libovolné celé číslo 32 nebo hodnotu `null`. `int?`
 
-Systém typů jazyka C# je jednotný tak, aby jako objekt lze považovat hodnotu libovolného typu. Všechny typy v jazyce C# přímo nebo nepřímo odvozuje od `object` typ, třídy a `object` je ultimate základní třída všech typů. Hodnoty odkazové typy jsou považovány za objekty jednoduše tak, že zobrazení hodnoty jako typ `object`. Hodnoty typy hodnot jsou považovány za objekty pomocí provádí ***zabalení*** a ***rozbalení*** operace. V následujícím příkladu `int` hodnota je převedena na `object` a zpět znovu na `int`.
+C#systém typů je sjednocený tak, že hodnota libovolného typu může být zpracována jako objekt. Každý typ C# přímo nebo nepřímo je odvozen z `object` typu třídy a `object` je nejvyšší základní třídou všech typů. Hodnoty typů odkazů se považují za objekty pouhým zobrazením hodnot jako typu `object`. Hodnoty typů hodnot se považují za objekty prováděním operací ***zabalení*** a ***rozbalení*** . V následujícím příkladu `int` je hodnota převedena na `object` a zpět na `int`.
 
 ```csharp
 using System;
@@ -216,35 +216,35 @@ class Test
     }
 }
 ```
-Pokud je hodnota typu hodnoty převést na typ `object`, instanci objektu, také nazývané "pole", je přidělená k uchování hodnoty a zkopírování hodnoty do tohoto pole. Naopak, když `object` odkaz je přetypován na typ hodnoty, který je pole správnou hodnotu typu odkazovaného objektu se provede kontrola a, případě zaškrtnutí bude úspěšné, je hodnota v poli zkopírována.
+Je-li hodnota typu hodnoty převedena na typ `object`, je přidělena instance objektu, která se také označuje jako "pole", pro uchování hodnoty a hodnota je zkopírována do tohoto pole. Naopak, pokud `object` je odkaz přetypování na typ hodnoty, je provedena kontrolu, že odkazovaný objekt je pole správného typu hodnoty, a pokud je ověření úspěšné, je hodnota v poli zkopírována.
 
-Jednotného typu systému C# efektivně znamená, že typy hodnot se může stát objekty "na vyžádání." Z důvodu sjednocení pro obecné účely knihoven, které používají typ `object` jde použít s typy odkazů a typy hodnot.
+C#Sjednocený typ systému efektivně znamená, že typy hodnot se můžou stát objekty na vyžádání. Z důvodu sjednocení, knihovny pro obecné účely, které používají typ `object` , lze použít s oběma typy odkazů i s typy hodnot.
 
-Existuje několik typů z ***proměnné*** v jazyce C#, včetně polí, prvky pole, místní proměnné a parametry. Umístění úložiště představují proměnné a každá proměnná má typ, který určuje, jaké hodnoty můžou být uložené v proměnné, jak je znázorněno v následující tabulce.
+Existuje několik druhů ***proměnných*** v C#, včetně polí, prvků pole, místních proměnných a parametrů. Proměnné reprezentují umístění úložiště a každá proměnná má typ, který určuje, jaké hodnoty mohou být uloženy v proměnné, jak je znázorněno v následující tabulce.
 
 
-| __Typ proměnné__    | __Je to možné obsah__ |
+| __Typ proměnné__    | __Možný obsah__ |
 |-------------------------|-----------------------|
-| Typ neumožňující hodnotu | Hodnota tohoto přesné typu |
-| Typ s možnou hodnotou Null     | Hodnotu null nebo hodnota přesně podle tohoto typu |
-| `object`                | Odkaz s hodnotou null, odkaz na objekt typu odkazu nebo odkaz na o zabalenou hodnotu libovolný typ hodnoty |
-| Typ třídy.              | Odkaz s hodnotou null, odkaz na instanci daného typu třídy nebo odkaz na instanci třídy odvozené z typu třídy |
-| Typ rozhraní          | Odkaz s hodnotou null, odkaz na instanci typu třídy, která implementuje rozhraní typu nebo odkaz zabalené hodnoty hodnotového typu, který implementuje rozhraní typu |
-| Typ pole              | Odkaz s hodnotou null, odkaz na instanci daného typu pole nebo odkaz na instanci typu kompatibilní pole |
-| Typ delegáta           | Odkaz s hodnotou null nebo odkaz na instanci daného typu delegáta |
+| Typ hodnoty, která není null | Hodnota, která má přesný typ |
+| Typ hodnoty s možnou hodnotou null     | Hodnota null nebo hodnota daného přesného typu |
+| `object`                | Odkaz s hodnotou null, odkaz na objekt libovolného typu odkazu nebo odkaz na zabalenou hodnotu libovolného typu hodnoty |
+| Typ třídy              | Odkaz s hodnotou null, odkaz na instanci tohoto typu třídy nebo odkaz na instanci třídy odvozené z tohoto typu třídy |
+| Typ rozhraní          | Odkaz s hodnotou null, odkaz na instanci typu třídy, který implementuje tento typ rozhraní, nebo odkaz na zabalenou hodnotu typu hodnoty, který implementuje tento typ rozhraní |
+| Typ pole              | Odkaz s hodnotou null, odkaz na instanci tohoto typu pole nebo odkaz na instanci kompatibilního typu pole |
+| Typ delegáta           | Odkaz s hodnotou null nebo odkaz na instanci tohoto typu delegáta |
 
 ## <a name="expressions"></a>Výrazy
 
-***Výrazy*** se vytvářejí na základě ***operandy*** a ***operátory***. Operátory výrazu označují operace, které chcete použít pro operandy. Příklady operátorů `+`, `-`, `*`, `/`, a `new`. Příklady operandy: literály, pole, místní proměnné a výrazy.
+***Výrazy*** jsou vytvořené z ***operandů*** a ***operátorů***. Operátory výrazu označují, které operace se mají použít u operandů. Příklady operátorů zahrnují `+`, `-`, `*` `/`, a .`new` Příklady operandů zahrnují literály, pole, místní proměnné a výrazy.
 
-Pokud výraz obsahuje více operátorů ***prioritu*** operátorů určuje pořadí, ve kterém jsou jednotlivé operátory vyhodnocovány. Například výraz `x + y * z` se vyhodnotí jako `x + (y * z)` protože `*` má vyšší prioritu než operátor `+` operátor.
+Pokud výraz obsahuje více operátorů, ***Priorita*** operátorů řídí pořadí, ve kterém jsou jednotlivé operátory vyhodnocovány. Například výraz `x + y * z` je vyhodnocen jako `x + (y * z)` , protože `*` operátor má vyšší prioritu než `+` operátor.
 
-Většina operátory mohou být ***přetížené***. Přetížení operátoru umožňuje uživatelem definovaný operátor implementace pro operace, kde jeden nebo oba operandy jsou třídy nebo struktury typu uživatelem definované.
+Většina operátorů může být ***přetížená***. Přetížení operátoru umožňuje zadat uživatelsky definované implementace operátorů pro operace, u nichž jeden nebo oba operandy jsou uživatelsky definovaný typ třídy nebo struktury.
 
-Následující tabulka shrnuje operátory jazyka C# společnosti, výpis kategorie operátor v pořadí dle priority od nejvyšší k nejnižší. Operátory ve stejné kategorii mají stejnou prioritu.
+Následující tabulka shrnuje C#operátory, které obsahují kategorie operátora v pořadí podle priority od nejvyšších po nejnižší. Operátory ve stejné kategorii mají stejnou prioritu.
 
 
-| __Kategorie__                     | __Výraz__    | __Popis__ |
+| __Kategorie__                     | __Vyjádření__    | __Popis__ |
 |----------------------------------|-------------------|-----------------|
 | Primární                          | `x.m`             | Přístup ke členům |
 |                                  | `x(...)`          | Vyvolání metod a delegátů |
@@ -255,10 +255,10 @@ Následující tabulka shrnuje operátory jazyka C# společnosti, výpis kategor
 |                                  | `new T(...){...}` | Vytvoření objektu s inicializátorem |
 |                                  | `new {...}`       | Inicializátor anonymních objektů |
 |                                  | `new T[...]`      | Vytvoření pole |
-|                                  | `typeof(T)`       | Získat `System.Type` objekt pro `T` |
+|                                  | `typeof(T)`       | Získat `System.Type` objekt pro`T` |
 |                                  | `checked(x)`      | Vyhodnocení výrazu ve zkontrolovaném kontextu |
 |                                  | `unchecked(x)`    | Vyhodnocení výrazu v nezkontrolovaném kontextu |
-|                                  | `default(T)`      | Získat výchozí hodnotu typu `T` |
+|                                  | `default(T)`      | Získat výchozí hodnotu typu`T` |
 |                                  | `delegate {...}`  | Anonymní funkce (anonymní metoda) |
 | Unární                            | `+x`              | Identita |
 |                                  | `-x`              | Negace |
@@ -266,61 +266,61 @@ Následující tabulka shrnuje operátory jazyka C# společnosti, výpis kategor
 |                                  | `~x`              | Bitová negace. |
 |                                  | `++x`             | Preinkrementace |
 |                                  | `--x`             | Predekrementace |
-|                                  | `(T)x`            | Explicitně převést `x` na typ `T` |
-|                                  | `await x`         | Asynchronně počkejte `x` k dokončení |
-| Násobení                   | `x * y`           | Násobení |
+|                                  | `(T)x`            | Explicitně převést `x` na typ`T` |
+|                                  | `await x`         | Asynchronní čekání `x` na dokončení |
+| Multiplikativní                   | `x * y`           | Násobení |
 |                                  | `x / y`           | Dělení |
 |                                  | `x % y`           | Zbytek |
-| Additive                         | `x + y`           | Sčítání, řetězení řetězců, kombinování delegátů |
+| Přičítáním                         | `x + y`           | Sčítání, řetězení řetězců, kombinování delegátů |
 |                                  | `x - y`           | Odčítání, odebrání delegátů |
 | SHIFT                            | `x << y`          | Posun doleva |
 |                                  | `x >> y`          | Posun doprava |
-| Relační a typové zkoušky      | `x < y`           | Menší než |
+| Relační testování a testování typu      | `x < y`           | Menší než |
 |                                  | `x > y`           | Větší než |
 |                                  | `x <= y`          | Menší nebo rovno |
 |                                  | `x >= y`          | Větší nebo rovno |
-|                                  | `x is T`          | Vrátí `true` Pokud `x` je `T`, `false` jinak |
-|                                  | `x as T`          | Vrátí `x` zadán jako `T`, nebo `null` Pokud `x` není `T` |
+|                                  | `x is T`          | Vrátí `true` ,`T`Pokud `x` je, jinak`false` |
+|                                  | `x as T`          | Typ `x` se vrátí `T`jako nebo `null` Pokud `x` není`T` |
 | Rovnost                         | `x == y`          | Rovno      |
 |                                  | `x != y`          | Nerovná se |
-| Logický operátor AND                      | `x & y`           | Celočíselné bitové a logických logický operátor AND |
+| Logický operátor AND                      | `x & y`           | Celočíselná bitová a logická logická hodnota |
 | Logický operátor XOR                      | `x ^ y`           | Bitový operátor XOR celého čísla, logická hodnota operátoru XOR |
 | Logický operátor OR                       | <code>x &#124; y</code> | Bitový operátor OR celého čísla, logická hodnota operátoru OR |
-| Podmiňovací operátor AND                  | `x && y`          | Vyhodnotí `y` pouze tehdy, pokud `x` je `true` |
-| Podmiňovací operátor OR                   | <code>x &#124;&#124; y</code> | Vyhodnotí `y` pouze tehdy, pokud `x` je `false` |
-| Nulové sloučení                  | `x ?? y`          | Vyhodnotí jako `y` Pokud `x` je `null`do `x` jinak |
-| Podmiňovací operátor                      | `x ? y : z`       | Vyhodnotí `y` Pokud `x` je `true`, `z` Pokud `x` je `false` |
+| Podmiňovací operátor AND                  | `x && y`          | Vyhodnotí `x`pouzev případě, že je `y``true` |
+| Podmiňovací operátor OR                   | <code>x &#124;&#124; y</code> | Vyhodnotí `x`pouzev případě, že je `y``false` |
+| Nulové sloučení                  | `x ?? y`          | Vyhodnotí jako `x` v `null` `x` případě, že je, do jiného `y` |
+| Podmiňovací operátor                      | `x ? y : z`       | `x` `true` `z` Vyhodnotí`x` , pokud je, pokud je `y``false` |
 | Přiřazení nebo anonymní funkce | `x = y`           | Přiřazení |
-|                                  | `x op= y`         | Složené přiřazení. podporované operátory jsou `*=` `/=` `%=` `+=` `-=` `<<=` `>>=` `&=` `^=` <code>&#124;=</code> |
+|                                  | `x op= y`         | Složené přiřazení; podporované operátory jsou `*=` `/=` `%=` `+=` `-=` `<<=` `>>=` `&=` `^=`<code>&#124;=</code> |
 |                                  | `(T x) => y`      | Anonymní funkce (výraz lambda) |
 
 ## <a name="statements"></a>Příkazy
 
-Akce programu jsou vyjádřeny pomocí ***příkazy***. C# podporuje několik různých druhů příkazů, číslo, které jsou definovány z hlediska vložených příkazů.
+Akce programu jsou vyjádřeny pomocí ***příkazů***. C#podporuje několik různých druhů příkazů, jejichž počet je definován z podmínek vložených příkazů.
 
-A ***bloku*** povoluje více příkazů, které má být zapsán v kontextech, kde je povoleno jeden příkaz. Blok obsahuje seznam příkazů, které jsou napsané mezi oddělovači `{` a `}`.
+***Blok*** povoluje zápis více příkazů v kontextech, kde je povolen jediný příkaz. Blok obsahuje seznam příkazů zapsaných mezi oddělovači `{` a. `}`
 
-***Příkazy deklarace*** se používají k deklarování místní proměnné a konstanty.
+***Příkazy deklarace*** slouží k deklaraci lokálních proměnných a konstant.
 
-***Příkazy výrazů*** se používají k vyhodnocení výrazů. Volání metod, obsahovat výrazy, které lze použít jako příkazy přidělení pomocí objektu `new` operátora, přiřazení pomocí `=` a operátory složeného přiřazení, operace Inkrementace a dekrementace pomocí `++`a `--` operátory a výrazy await.
+***Příkazy výrazů*** se používají k vyhodnocení výrazů. Výrazy, které lze použít jako příkazy, zahrnují vyvolání metod, přidělení objektů pomocí `new` operátoru, přiřazení pomocí `=` operátorů a složené operátory přiřazení, zvýšení a snížení provozu pomocí `++`operátory and a await. `--`
 
-***Příkazy výběru*** se používají k výběru jedním z možných příkazů pro spuštění na základě hodnoty některých výrazu. V této skupině jsou `if` a `switch` příkazy.
+***Příkazy výběru*** se používají k výběru jednoho z několika možných příkazů pro spuštění na základě hodnoty nějakého výrazu. V této skupině jsou `if` příkazy a. `switch`
 
-***Příkazy iterace*** se používají k vloženým příkazem spouštět opakovaně. V této skupině jsou `while`, `do`, `for`, a `foreach` příkazy.
+***Příkazy iterace*** se používají k opakovanému provedení vloženého příkazu. V této `while`skupině jsou `foreach` příkazy, `do`, `for`a.
 
-***Jump – příkazy*** slouží k předání řízení. V této skupině jsou `break`, `continue`, `goto`, `throw`, `return`, a `yield` příkazy.
+***Příkazy skoku*** slouží k přenosu ovládacího prvku. V této skupině jsou `break`příkazy, `continue`, `goto`, `throw`, `return`a. `yield`
 
-`try`... `catch` prohlášení se používá k zachycení výjimek, ke kterým dochází při provádění bloku, a `try`... `finally` prohlášení se používá k určení dokončovacího kódu, který je vždy spuštěn, zda došlo k výjimce, nebo ne.
+`try`... příkaz slouží k zachycení výjimek, ke kterým dojde během provádění bloku, `try`a... `catch` `finally` příkaz slouží k určení výsledného kódu, který je vždy spuštěn, zda došlo k výjimce nebo nikoli.
 
-`checked` a `unchecked` příkazy se používají k řízení kontroly kontext pro integrálového typu aritmetické operace a převody přetečení.
+Příkazy `checked` a`unchecked` slouží k řízení kontextu kontroly přetečení pro aritmetické operace a převody integrálního typu.
 
-`lock` Prohlášení se používá k získání zámku vzájemné vyloučení pro daný objekt, provedení příkazu a uvolněte zámek.
+`lock` Příkaz slouží k získání zámku vzájemného vyloučení pro daný objekt, spuštění příkazu a uvolnění zámku.
 
-`using` Prohlášení se používá k získání prostředku, provedení příkazu a potom tento prostředek.
+`using` Příkaz slouží k získání prostředku, spuštění příkazu a následnému uvolnění tohoto prostředku.
 
-Níže jsou příklady každý druh – příkaz
+Níže jsou uvedeny příklady každého typu příkazu.
 
-__Místní deklarace proměnné__
+__Deklarace místních proměnných__
 
 ```csharp
 static void Main() {
@@ -332,7 +332,7 @@ static void Main() {
 ```
 
 
-__Místní deklarace konstanty__
+__Deklarace místní konstanty__
 
 ```csharp
 static void Main() {
@@ -343,7 +343,7 @@ static void Main() {
 ```
 
 
-__příkaz výrazu__
+__Příkaz výrazu__
 
 ```csharp
 static void Main() {
@@ -355,7 +355,7 @@ static void Main() {
 }
 ```
 
-__`if` – Příkaz__
+__`if`vydá__
 
 ```csharp
 static void Main(string[] args) {
@@ -369,7 +369,7 @@ static void Main(string[] args) {
 ```
 
 
-__`switch` – Příkaz__
+__`switch`vydá__
 
 ```csharp
 static void Main(string[] args) {
@@ -388,7 +388,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`while` – Příkaz__
+__`while`vydá__
 
 ```csharp
 static void Main(string[] args) {
@@ -401,7 +401,7 @@ static void Main(string[] args) {
 ```
 
 
-__`do` – Příkaz__
+__`do`vydá__
 
 ```csharp
 static void Main() {
@@ -413,7 +413,7 @@ static void Main() {
 }
 ```
 
-__`for` – Příkaz__
+__`for`vydá__
 
 ```csharp
 static void Main(string[] args) {
@@ -423,7 +423,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`foreach` – Příkaz__
+__`foreach`vydá__
 
 ```csharp
 static void Main(string[] args) {
@@ -433,7 +433,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`break` – Příkaz__
+__`break`vydá__
 
 ```csharp
 static void Main() {
@@ -445,7 +445,7 @@ static void Main() {
 }
 ```
 
-__`continue` – Příkaz__
+__`continue`vydá__
 
 ```csharp
 static void Main(string[] args) {
@@ -456,7 +456,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`goto` – Příkaz__
+__`goto`vydá__
 
 ```csharp
 static void Main(string[] args) {
@@ -469,7 +469,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`return` – Příkaz__
+__`return`vydá__
 
 ```csharp
 static int Add(int a, int b) {
@@ -482,7 +482,7 @@ static void Main() {
 }
 ```
 
-__`yield` – Příkaz__
+__`yield`vydá__
 
 ```csharp
 static IEnumerable<int> Range(int from, int to) {
@@ -499,7 +499,7 @@ static void Main() {
 }
 ```
 
-__`throw` a `try` příkazy__
+__`throw`příkazy `try` a__
 
 ```csharp
 static double Divide(double x, double y) {
@@ -525,7 +525,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`checked` a `unchecked` příkazy__
+__`checked`příkazy `unchecked` a__
 
 ```csharp
 static void Main() {
@@ -539,7 +539,7 @@ static void Main() {
 }
 ```
 
-__`lock` – Příkaz__
+__`lock`vydá__
 
 ```csharp
 class Account
@@ -556,7 +556,7 @@ class Account
 }
 ```
 
-__`using` – Příkaz__
+__`using`vydá__
 
 ```csharp
 static void Main() {
@@ -570,11 +570,11 @@ static void Main() {
 
 ## <a name="classes-and-objects"></a>Třídy a objekty
 
-***Třídy*** jsou nejvíce základní typy jazyka C#. Třída je datová struktura, která kombinuje stavů (pole) a akcí (metody a další funkce členů) v jediné jednotce. Třída obsahuje definici pro dynamicky vytvořené ***instance*** třídy, označované také jako ***objekty***. Třídy podpory ***dědičnosti*** a ***polymorfismus***, mechanismy kterým ***odvozené třídy*** můžete rozšířit a specialize ***základních tříd***.
+***Třídy*** jsou základem C#typů. Třída je datová struktura, která kombinuje stav (pole) a akce (metody a další členy funkce) v jedné jednotce. Třída poskytuje definici pro dynamicky vytvořené ***instance*** třídy, označované také jako ***objekty***. Třídy podporují ***Dědičnost*** a ***polymorfismus***, mechanismy, kterými mohou ***odvozené třídy*** roztáhnout a specializovat ***základní třídy***.
 
-Nové třídy jsou vytvořené pomocí deklarace tříd. Deklarace třídy začíná hlavičku, která určuje atributy a modifikátory třídy, název třídy, základní třídy (Pokud je zadaný) a rozhraní implementované třídy. Záhlaví je následována tělo třídy, které se skládá ze seznamu deklarací členů napsané mezi oddělovači `{` a `}`.
+Nové třídy jsou vytvářeny pomocí deklarací třídy. Deklarace třídy začíná hlavičkou, která určuje atributy a modifikátory třídy, název třídy, základní třídu (Pokud je daná) a rozhraní implementovaná třídou. Pod hlavičkou následuje tělo třídy, které se skládá ze seznamu deklarací členů napsaných mezi oddělovači `{` a. `}`
 
-Následuje deklaraci jednoduchou třídu pojmenovanou `Point`:
+Následuje deklarace jednoduché třídy s názvem `Point`:
 
 ```csharp
 public class Point
@@ -587,50 +587,50 @@ public class Point
     }
 }
 ```
-Jsou vytvořeny pomocí instance třídy `new` operátor, který přiděluje paměť pro novou instanci, vyvolá konstruktor k inicializaci instance a vrátí odkaz na instanci. Následující příkazy vytvoří dvě `Point` objektů a ukládají odkazy na tyto objekty ve dvou proměnných:
+Instance tříd jsou vytvořeny pomocí `new` operátoru, který přiděluje paměť pro novou instanci, vyvolá konstruktor pro inicializaci instance a vrátí odkaz na instanci. Následující příkazy vytvoří dva `Point` objekty a ukládají odkazy na tyto objekty ve dvou proměnných:
 
-```
+```csharp
 Point p1 = new Point(0, 0);
 Point p2 = new Point(10, 20);
 ```
-Paměť obsazena objekt je automaticky převzaty při objektu je již používán. To není nezbytné ani možné explicitně uvolnit objekty v jazyce C#.
+Paměť obsazená objektem je automaticky uvolněna, pokud se objekt již nepoužívá. Není ani možné explicitně zrušit přidělení objektů v C#.
 
 ### <a name="members"></a>Členové
 
-Členy třídy jsou buď ***statické členy*** nebo ***členy instance***. Statické členy patří do třídy a členy instance patřit k objektům (instance třídy).
+Členy třídy jsou buď ***statické členy*** , nebo ***členy instance***. Statické členy patří ke třídám a členy instance patří do objektů (instance tříd).
 
-Následující tabulka obsahuje přehled druhy členů, které mohou obsahovat třídu.
+Následující tabulka poskytuje přehled druhů členů, které třída může obsahovat.
 
 
 | __Člen__   | __Popis__ |
 |------------  |-----------------|
-| Konstanty    | Konstantní hodnoty, které jsou přidružené k třídě |
+| Konstanty    | Konstantní hodnoty přidružené ke třídě |
 | Pole       | Proměnné třídy |
-| Metody      | Výpočtů a akcí, které lze provést pomocí třídy |
-| Vlastnosti   | Akce přidružené k čtení a zápis s názvem vlastnosti třídy |
-| Indexery     | Akce přidružené k indexování instancí třídy jako pole |
-| Události       | Oznámení, která mohou být generovány třídy |
-| Operátory    | Převody a podporovaných třídou operátory výrazů |
-| Konstruktory | Akce potřebné k inicializaci instance třídy nebo vlastní třídy |
-| Destruktory  | Akce k provedení před instancí třídy budou trvale odstraněny |
-| Typy        | Vnořené typy deklarované pomocí třídy |
+| Metody      | Výpočty a akce, které mohou být provedeny třídou |
+| Vlastnosti   | Akce spojené s čtením a zápisem s názvem vlastnosti třídy |
+| Indexery     | Akce přidružené k indexování instancí třídy, jako je pole |
+| Události       | Oznámení, která mohou být vygenerována třídou |
+| Operátory    | Převody a operátory výrazů podporované třídou |
+| Konstruktory | Akce vyžadované pro inicializaci instancí třídy nebo samotné třídy |
+| Destruktory  | Akce, které se mají provést před tím, než se instance třídy trvale zahodí |
+| Typy        | Vnořené typy deklarované třídou |
 
 ### <a name="accessibility"></a>Usnadnění
 
-Každý člen třídy má přidružené usnadnění přístupu, který řídí oblasti textem programu, které budou mít přístup k členu. Existuje pět možné formy usnadnění přístupu. Ty jsou shrnuté v následující tabulce.
+Každý člen třídy má přidruženou přístupnost, která řídí oblasti textu programu, které mají přístup k členu. Existuje pět možných forem usnadnění přístupu. Tyto jsou shrnuté v následující tabulce.
 
 
-| __Usnadnění__    | __Význam__ |
+| __Usnadnění__    | __Smyslu__ |
 |----------------------|-----------------|
-| `public`             | Přístup mimo jiné |
-| `protected`          | Přístup pouze pro tuto třídu nebo třídy odvozené z této třídy |
-| `internal`           | Přístup omezen na tento program |
-| `protected internal` | Přístup omezen na tento program nebo třídy odvozené z této třídy |
-| `private`            | Přístup pouze pro tuto třídu |
+| `public`             | Přístup není omezený |
+| `protected`          | Přístup omezený na tuto třídu nebo třídy odvozené z této třídy |
+| `internal`           | Přístup omezený na tento program |
+| `protected internal` | Přístup omezený na tento program nebo třídy odvozené z této třídy |
+| `private`            | Přístup omezený na tuto třídu |
 
 ### <a name="type-parameters"></a>Parametry typu
 
-Definice třídy může určit sadu parametrů typu podle názvu třídy s ostré závorky uzavírající seznam názvy parametrů typů. Parametry typu, můžete použít v těle deklarace tříd k definování členy třídy. V následujícím příkladu, parametry typu `Pair` jsou `TFirst` a `TSecond`:
+Definice třídy může určovat sadu parametrů typu za názvem třídy a lomenými závorkami ohraničující seznam názvů parametrů typu. Parametry typu lze použít v těle deklarací třídy k definování členů třídy. V následujícím příkladu parametry `Pair` typu jsou `TFirst` a `TSecond`:
 
 ```csharp
 public class Pair<TFirst,TSecond>
@@ -639,20 +639,20 @@ public class Pair<TFirst,TSecond>
     public TSecond Second;
 }
 ```
-Typ třídy, který je deklarován mít parametry typu se nazývá typu obecné třídy. Typy struktury, rozhraní a delegátů mohou být obecný.
+Typ třídy, která je deklarována pro přijetí parametrů typu, se nazývá typ obecné třídy. Typy struktury, rozhraní a delegátů můžou být také obecné.
 
-Při použití obecné třídy musí být uvedeny argumentů typu pro jednotlivé parametry typu:
+Při použití obecné třídy je nutné zadat argumenty typu pro každý z parametrů typu:
 
 ```csharp
 Pair<int,string> pair = new Pair<int,string> { First = 1, Second = "two" };
 int i = pair.First;     // TFirst is int
 string s = pair.Second; // TSecond is string
 ```
-Obecný typ s argumenty typů, které jsou k dispozici, jako je třeba `Pair<int,string>` výš, se nazývá konstruovaný typ.
+Obecný typ s poskytnutými argumenty typu, jako `Pair<int,string>` je například výše, se označuje jako konstruovaný typ.
 
 ### <a name="base-classes"></a>Základní třídy
 
-Deklarace třídy může určovat základní třídu pomocí následujících parametrů názvem a typem třídy pomocí dvojtečku a název základní třídy. Vynechání specifikace základní třídy je stejný jako odvozený od typu `object`. V následujícím příkladu základní třída `Point3D` je `Point`a základní třídu `Point` je `object`:
+Deklarace třídy může specifikovat základní třídu za názvem třídy a parametry typu s dvojtečkou a názvem základní třídy. Vynechání specifikace základní třídy je stejné jako odvození z typu `object`. V následujícím příkladu `Point3D` je základní třída třídy `Point` `Point` a základní třída `object`:
 
 ```csharp
 public class Point
@@ -674,9 +674,9 @@ public class Point3D: Point
     }
 }
 ```
-Třída dědí členy své základní třídy. Dědičnost znamená, že třídy implicitně obsahuje všechny členy své základní třídy, s výjimkou instance a statické konstruktory a destruktory základní třídy. Odvozené třídy můžete přidat nové členy pro ty, které se dědí, ale nemůže odstranit definici zděděného člena. V předchozím příkladu `Point3D` dědí `x` a `y` pole z `Point`a každý `Point3D` instance obsahuje tři pole `x`, `y`, a `z`.
+Třída dědí členy své základní třídy. Dědičnost znamená, že třída implicitně obsahuje všechny členy své základní třídy, s výjimkou instancí a statických konstruktorů a destruktorů základní třídy. Odvozená třída může přidat nové členy do těch, které dědí, ale nemůže odebrat definici zděděného člena. V předchozím příkladu `Point3D` `x` dědí pole a `y` z `Point`a každá `Point3D` instance obsahuje tři pole, `x`, `y`a `z`.
 
-Implicitní převod existuje z typu třídy pro některé typy jejího základní třídy. Proměnné typu třídy. proto odkazovat instance této třídy nebo instance všechny odvozené třídy. Například dány předchozí deklarace třídy, proměnné typu `Point` odkazovat buď `Point` nebo `Point3D`:
+Implicitní převod existuje z typu třídy na libovolný z jeho základních typů třídy. Proto proměnná typu třídy může odkazovat na instanci této třídy nebo instanci jakékoli odvozené třídy. Například s ohledem na předchozí deklarace třídy může proměnná typu `Point` odkazovat buď na `Point` , nebo `Point3D`:
 
 ```csharp
 Point a = new Point(10, 20);
@@ -685,13 +685,13 @@ Point b = new Point3D(10, 20, 30);
 
 ### <a name="fields"></a>Pole
 
-Pole je proměnná, která souvisí s třídou nebo s instancí třídy.
+Pole je proměnná, která je přidružena ke třídě nebo s instancí třídy.
 
-Pole deklarované s `static` modifikátor definuje ***statické pole***. Statické pole identifikuje přesně jednoho umístění úložiště. Bez ohledu na to, kolik instancí třídy jsou vytvořeny je někdy pouze jednu kopii tohoto statické pole.
+Pole deklarované s `static` modifikátorem definuje ***statické pole***. Statické pole identifikuje právě jedno umístění úložiště. Bez ohledu na to, kolik instancí třídy je vytvořeno, existuje pouze jedna kopie statického pole.
 
-Pole deklarované bez `static` modifikátor definuje ***pole instance***. Každá instance třídy obsahuje kopii všechna pole instancí této třídy.
+Pole deklarované bez `static` modifikátoru definuje ***pole instance***. Každá instance třídy obsahuje samostatnou kopii všech polí instance této třídy.
 
-V následujícím příkladu, každá instance `Color` třída má samostatnou kopii `r`, `g`, a `b` instance pole, ale existuje pouze jedna kopie `Black`, `White`, `Red`, `Green`, a `Blue` statická pole:
+V následujícím příkladu má `Color` každá instance třídy samostatnou kopii `r`polí `Black`instance, `g`a `b` `Red`, ale je k dispozici pouze jedna kopie, `White`,, `Green` a`Blue` statická pole:
 
 ```csharp
 public class Color
@@ -710,27 +710,27 @@ public class Color
     }
 }
 ```
-Jak je znázorněno v předchozím příkladu ***pole jen pro čtení*** mohou být deklarovány s `readonly` modifikátor. Přiřazení `readonly` pole se můžou vyskytnout jenom jako součást deklarace pole nebo v konstruktoru ve stejné třídě.
+Jak je znázorněno v předchozím příkladu, ***pole jen pro čtení*** mohou být deklarována `readonly` s modifikátorem. Přiřazení k `readonly` poli může být provedeno pouze v rámci deklarace pole nebo v konstruktoru ve stejné třídě.
 
 ### <a name="methods"></a>Metody
 
-A ***metoda*** je člen, který implementuje výpočtu nebo akce, která může provádět k objektu nebo třídě. ***Statické metody*** jsou přístupné prostřednictvím třídy. ***Instance metody*** jsou přístupné prostřednictvím instance třídy.
+***Metoda*** je člen, který implementuje výpočet nebo akci, kterou lze provést pomocí objektu nebo třídy. ***Statické metody*** jsou k dispozici prostřednictvím třídy. ***Metody instance*** jsou k dispozici prostřednictvím instancí třídy.
 
-Metody mají (pravděpodobně prázdná) seznam ***parametry***, které představují hodnoty nebo odkazy na proměnné předaný metodě a ***návratový typ***, která určuje typ hodnoty vypočítané a vrácené Metoda. Návratový typ metody je `void` Pokud nevrací hodnotu.
+Metody mají (pravděpodobně prázdný) seznam ***parametrů***, které reprezentují hodnoty nebo odkazy na proměnné předané metodě a ***návratový typ***, který určuje typ počítané hodnoty a vrácený metodou. Návratový typ metody je `void` , pokud nevrací hodnotu.
 
-Podobně jako typy metody mají také sadu parametrů typu, pro které musí být zadán argumenty typu při volání metody. Na rozdíl od typů argumenty typu často jde odvodit z argumentů volání metody a nemusí být explicitně uvedena.
+Podobně jako typy mohou metody mít také sadu parametrů typu, pro které argumenty typu musí být zadány při volání metody. Na rozdíl od typů lze argumenty typu často odvodit z argumentů volání metody a nemusí být explicitně předány.
 
-***Podpis*** metody musí být jedinečný ve třídě, ve kterém je deklarována metodu. Podpis metody se skládá z názvu metody, počet parametrů typu a číslo, modifikátory a typy ze svých parametrů. Podpis metody neobsahuje návratovým typem.
+***Signatura*** metody musí být jedinečná ve třídě, ve které je metoda deklarovaná. Signatura metody se skládá z názvu metody, počtu parametrů typu a počtu, modifikátorů a typů jeho parametrů. Podpis metody nezahrnuje návratový typ.
 
 #### <a name="parameters"></a>Parametry
 
-Parametry se používají k předávání hodnot nebo proměnné odkazy na metody. Parametry metody získávají skutečné hodnoty z ***argumenty*** , které jsou určeny při vyvolání metody. Existují čtyři druhy parametry: hodnoty, parametry, parametry odkazů, výstupní parametry a pole parametrů.
+Parametry slouží k předání hodnot nebo odkazů na proměnné metody. Parametry metody získají jejich skutečné hodnoty z ***argumentů*** , které jsou zadány při volání metody. Existují čtyři typy parametrů: parametry hodnoty, parametry odkazu, výstupní parametry a pole parametrů.
 
-A ***parametr hodnoty*** slouží k předávání vstupních parametrů. Hodnota parametru odpovídá místní proměnná, která se získá z argumentu, který byl předán parametr počáteční hodnoty. Úpravy parametru hodnoty nemají vliv na argument, který byl předán parametr.
+***Parametr hodnoty*** se používá pro předávání vstupních parametrů. Parametr hodnoty odpovídá místní proměnné, která vrací počáteční hodnotu z argumentu předaného pro parametr. Úpravy parametru hodnoty neovlivňují argument, který byl předán parametru.
 
-Parametry s hodnotou může být volitelný, a zadat výchozí hodnotu tak, aby odpovídající argumenty lze vynechat.
+Parametry hodnoty mohou být volitelné, zadáním výchozí hodnoty, aby bylo možné vynechat odpovídající argumenty.
 
-A ***odkazovat na parametr*** se používá pro vstup a výstup předávání parametrů. Argument předaný pro referenční parametr musí být proměnná a při provádění metody referenční parametr představuje stejné úložiště jako argument proměnné. Parametr odkazu je deklarována s `ref` modifikátor. Následující příklad ukazuje použití `ref` parametry.
+***Parametr reference*** se používá pro předávání vstupních i výstupních parametrů. Argument předaný parametru reference musí být proměnná a během provádění metody představuje parametr reference stejné umístění úložiště jako proměnná argumentu. Parametr reference je deklarován s `ref` modifikátorem. Následující příklad ukazuje použití `ref` parametrů.
 
 ```csharp
 using System;
@@ -750,7 +750,7 @@ class Test
     }
 }
 ```
-***Výstupní parametr*** slouží k předávání parametru výstupu. Výstupní parametr je podobný parametr odkazu, s tím rozdílem, že počáteční hodnota argumentu, pokud volající není důležitý. Výstupní parametr je deklarována s `out` modifikátor. Následující příklad ukazuje použití `out` parametry.
+***Výstupní parametr*** se používá pro předávání výstupního parametru. Výstupní parametr je podobný referenčnímu parametru s tím rozdílem, že počáteční hodnota argumentu zadaného volajícího je neimportovaná. Výstupní parametr je deklarován s `out` modifikátorem. Následující příklad ukazuje použití `out` parametrů.
 
 ```csharp
 using System;
@@ -769,7 +769,7 @@ class Test
     }
 }
 ```
-A ***pole parametrů*** povoluje proměnlivý počet argumentů, které mají být předána metodě. Pole parametrů je deklarována s `params` modifikátor. Poslední parametr metody může být pole parametrů a typ pole parametrů musí být typu jednorozměrné pole. `Write` a `WriteLine` metody `System.Console` třídy jsou dobrým příkladem použití pole parametrů. Jsou deklarovány následujícím způsobem.
+***Pole parametrů*** povoluje proměnný počet argumentů, které mají být předány metodě. Pole parametrů je deklarováno s `params` modifikátorem. Pouze poslední parametr metody může být pole parametrů a typ pole parametrů musí být jednorozměrné pole. Metody `Write` a`WriteLine` třídy jsou osvědčenými příklady použití pole parametrů. `System.Console` Jsou deklarovány následujícím způsobem.
 
 ```csharp
 public class Console
@@ -779,12 +779,12 @@ public class Console
     ...
 }
 ```
-Pole parametrů se v rámci metody, která používá pole parametrů, chová stejně jako regulární parametr typu pole. Ve volání metody s polem parametrů, je možné předat buď jeden argument typu pole parametru nebo libovolný počet argumentů typu prvku pole parametrů. V druhém případě pole instance je automaticky vytvořen a inicializován pomocí dané argumenty. V tomto příkladu
+V rámci metody, která používá pole parametrů, se pole parametru chová stejně jako regulární parametr typu pole. Při vyvolání metody s parametrem pole je však možné předat buď jeden argument typu pole parametru, nebo libovolný počet argumentů typu prvku pole parametrů. V druhém případě je instance pole automaticky vytvořena a inicializována s danými argumenty. Tento příklad
 
 ```csharp
 Console.WriteLine("x={0} y={1} z={2}", x, y, z);
 ```
-je ekvivalentní zápisu následující.
+je ekvivalentem zápisu následujícího.
 
 ```csharp
 string s = "x={0} y={1} z={2}";
@@ -795,11 +795,11 @@ args[2] = z;
 Console.WriteLine(s, args);
 ```
 
-#### <a name="method-body-and-local-variables"></a>Tělo metody a lokální proměnné
+#### <a name="method-body-and-local-variables"></a>Tělo metody a místní proměnné
 
-Tělo metody určuje příkazy ke spuštění při vyvolání metody.
+Tělo metody Určuje příkazy, které mají být provedeny při volání metody.
 
-Tělo metody můžete deklarovat proměnné, které jsou specifické pro vyvolání metody. Tyto proměnné jsou volány ***lokální proměnné***. Místní deklarace proměnné Určuje název typu, název proměnné a případně na počáteční hodnotu. Následující příklad deklaruje místní proměnnou `i` s počáteční hodnotou nula a místní proměnnou `j` s žádná počáteční hodnota.
+Tělo metody může deklarovat proměnné, které jsou specifické pro vyvolání metody. Tyto proměnné se nazývají ***místní proměnné***. Místní deklarace proměnné Určuje název typu, název proměnné a pravděpodobně počáteční hodnotu. Následující příklad deklaruje místní proměnnou `i` s počáteční hodnotou nula a místní proměnnou `j` bez počáteční hodnoty.
 
 ```csharp
 using System;
@@ -817,17 +817,17 @@ class Squares
     }
 }
 ```
-C# vyžaduje místní proměnnou ***jednoznačně přiřazena*** před její hodnotu lze získat. Například pokud deklarace předchozí `i` počáteční hodnotu neobsahuje, kompilátor by oznámit chybu pro následné použití `i` protože `i` nemusí být jednoznačně přiřazena v těchto bodech v programu.
+C#aby bylo možné získat hodnotu, musí být místní proměnná ***jednoznačně přiřazena*** . Například pokud deklarace předchozí `i` nezahrnuje počáteční hodnotu, kompilátor by nahlásil chybu pro následné použití `i` , protože `i` by se v těchto bodech v programu nedala jednoznačně přiřadit.
 
-Můžete použít metodu `return` příkazy vrátí řízení volajícímu. Do metody vracející `void`, `return` příkazy nemohou zadat výraz. Metoda vrací jinou hodnotu než`void`, `return` příkazů musí obsahovat výraz, který vypočítá návratovou hodnotu.
+Metoda může použít `return` příkazy pro vrácení řízení volajícímu. V metodách, `void`které `return` vracejí, příkazy nemohou určovat výraz. V metodě, která vrací non`void`- `return` , příkazy musí obsahovat výraz, který vypočítá vrácenou hodnotu.
 
-#### <a name="static-and-instance-methods"></a>Statické a instance metody
+#### <a name="static-and-instance-methods"></a>Statické a instanční metody
 
-Metoda deklarována s `static` modifikátor ***statickou metodu***. Statická metoda nefunguje na konkrétní instanci a pouze přímý přístup k statické členy.
+Metoda deklarovaná s `static` modifikátorem je ***statická metoda***. Statická metoda nepracuje na konkrétní instanci a může přímo přistupovat ke statickým členům.
 
-Metoda deklarovaná bez `static` modifikátor ***metodu instance***. Metodu instance funguje na konkrétní instanci, můžete přístup ke statické a členy instance. Instance, ve kterém byla vyvolána metoda instance je explicitně přístupná jako `this`. Jedná se o chybu k odkazování na `this` uvnitř statické metody.
+Metoda deklarovaná bez `static` modifikátoru je ***Metoda instance***. Metoda instance pracuje na konkrétní instanci a může přistupovat ke statickým i instancím členů. Instance, na které byla vyvolána metoda instance, může být explicitně k dispozici jako `this`. V případě, že se odkazuje na `this` statickou metodu, se jedná o chybu.
 
-Následující `Entity` má statické třídy a členy instance.
+Následující `Entity` třída má členy statických i instancí.
 
 ```csharp
 class Entity
@@ -852,9 +852,9 @@ class Entity
     }
 }
 ```
-Každý `Entity` instance obsahuje sériové číslo (a pravděpodobně některé další informace, které tady není ukázaný). `Entity` Konstruktoru (což je jako metoda instance) inicializuje novou instanci s další dostupné sériové číslo. Protože konstruktor je členem instance, je povoleno přístup i `serialNo` pole instance a `nextSerialNo` statické pole.
+Každá `Entity` instance obsahuje sériové číslo (a předpokládá se, že některé další informace nejsou zde uvedeny). `Entity` Konstruktor (který je jako metoda instance) Inicializuje novou instanci s dalším dostupným sériovým číslem. Vzhledem k tomu, že je konstruktor členem instance, je povolen přístup `serialNo` k poli instance i k `nextSerialNo` statickému poli.
 
-`GetNextSerialNo` a `SetNextSerialNo` statické metody se dostanete `nextSerialNo` statické pole, ale bude k chybě pro ně umožňuje přímý přístup k `serialNo` pole instance.
+Statické metody `SetNextSerialNo`amůžou přistupovat ke `serialNo` statickému poli, ale při přímém přístupu k poli instance by to byla chyba. `nextSerialNo` `GetNextSerialNo`
 
 Následující příklad ukazuje použití `Entity` třídy.
 
@@ -873,19 +873,19 @@ class Test
     }
 }
 ```
-Všimněte si, že `SetNextSerialNo` a `GetNextSerialNo` statické metody jsou vyvolány ve třídě, kdežto `GetSerialNo` metodu instance se vyvolá u instance třídy.
+Všimněte si, `SetNextSerialNo` že `GetNextSerialNo` statické metody a jsou vyvolány `GetSerialNo` ve třídě, zatímco metoda instance je vyvolána na instancích třídy.
 
-#### <a name="virtual-override-and-abstract-methods"></a>Virtual, override a abstraktní metody
+#### <a name="virtual-override-and-abstract-methods"></a>Virtuální, přepisování a abstraktní metody
 
-Při deklaraci instance metody obsahuje `virtual` modifikátor, metoda se říká, že ***virtuální metoda***. Pokud ne `virtual` Modifikátor je k dispozici, metodu se říká, že ***nevirtuální metoda***.
+Pokud deklarace metody instance obsahuje `virtual` modifikátor, metoda je označována jako ***virtuální metoda***. Pokud není `virtual` k dispozici žádný modifikátor, metoda je označována jako ***nevirtuální metoda***.
 
-Při vyvolání virtuální metody, ***run-time typu*** instance, pro který přebírá tento vyvolání místo určuje implementaci skutečné metoda k vyvolání. Ve volání nevirtuální metody ***typu v době kompilace*** instance je určujícím faktorem.
+Když je vyvolána virtuální metoda, je ***typ běhu*** instance, pro kterou probíhá vyvolání, určuje vlastní implementaci metody, která má být vyvolána. V nevirtuálním volání metody je ***Typ doby kompilace*** instance určujícím faktorem.
 
-Virtuální metoda může být ***přepsat*** v odvozené třídě. Při deklaraci instance metody obsahuje `override` Modifikátor metody přepsání zděděné virtuální metody se stejným podpisem. Vzhledem k tomu virtuální metoda deklarace zavádí nové metody, specializuje deklaraci metody přepsání existující zděděnou virtuální metodu tím, že poskytuje novou implementaci této metody.
+Virtuální metoda může být ***přepsána*** v odvozené třídě. Když deklarace metody instance obsahuje `override` modifikátor, metoda přepíše zděděnou virtuální metodu se stejnou signaturou. Zatímco deklarace virtuální metody zavádí novou metodu, deklarace metody přepsání specializuje existující zděděnou virtuální metodu tím, že poskytuje novou implementaci této metody.
 
-***Abstraktní*** je virtuální metoda bez implementace. Abstraktní metoda je deklarována s `abstract` modifikátor a smí obsahovat pouze ve třídě, která je také deklarován `abstract`. Abstraktní metody musí být přepsána v každé třídě odvozené neabstraktní.
+***Abstraktní*** metoda je virtuální metoda bez implementace. Abstraktní metoda je deklarována s `abstract` modifikátorem a je povolena pouze ve třídě, která je deklarována `abstract`také. Abstraktní metoda musí být přepsána v každé neabstraktní odvozené třídě.
 
-Následující příklad deklaruje abstraktní třídu, `Expression`, který představuje uzel stromu výrazu a tři odvozené třídy, `Constant`, `VariableReference`, a `Operation`, které implementují uzly stromu výrazů konstant, proměnných Reference a aritmetické operace. (Je to podobné, ale neměl by se zaměňovat s typy výrazů stromu počínaje [typy stromu výrazů](types.md#expression-tree-types)).
+Následující příklad deklaruje abstraktní `Expression`třídu,, která představuje uzel stromu výrazu, a tři odvozené třídy, `Constant`, `VariableReference`, a `Operation`, které implementují uzly stromu výrazů pro konstanty, proměnnou odkazy a aritmetické operace. (To je podobné, ale nelze je zaměňovat s typy stromu výrazů představenými ve [stromových typech výrazů](types.md#expression-tree-types)).
 
 ```csharp
 using System;
@@ -951,7 +951,7 @@ public class Operation: Expression
     }
 }
 ```
-Předchozí čtyři třídy lze použít k modelování aritmetických výrazech. Například použití instance těchto tříd, výraz `x + 3` můžou být vyjádřeny následujícím způsobem.
+K modelování aritmetických výrazů lze použít předchozí čtyři třídy. Například pomocí instancí těchto tříd může být výraz `x + 3` reprezentován následujícím způsobem.
 
 ```csharp
 Expression e = new Operation(
@@ -959,9 +959,9 @@ Expression e = new Operation(
     '+',
     new Constant(3));
 ```
-`Evaluate` Metodu `Expression` instance se vyvolá, aby vyhodnotit tento výraz a vytvářet `double` hodnotu. Tato metoda přebírá jako argument `Hashtable` , který obsahuje názvy proměnných (jako klíče položky) a hodnoty (jako hodnoty položek). `Evaluate` Je virtuální abstraktní metoda, to znamená neabstraktní odvozené třídy musí přepsat je k dispozici skutečné implementace.
+Metoda instance je vyvolána pro vyhodnocení `double` daného výrazu a vytvoření hodnoty. `Expression` `Evaluate` Metoda přebírá jako argument a `Hashtable` , který obsahuje názvy proměnných (jako klíče záznamů) a hodnoty (jako hodnoty položek). `Evaluate` Metoda je virtuální abstraktní metoda, což znamená, že neabstraktní odvozené třídy musí přepsat, aby poskytovala skutečnou implementaci.
 
-A `Constant`vaší implementace `Evaluate` jednoduše vrací uložené – konstanta. A `VariableReference`vaší implementace vyhledá název proměnné v zatřiďovací tabulky a vrátí výslednou hodnotu. `Operation`Na provádění nejprve vyhodnotí jako operandy vlevo a vpravo (vyvoláním rekurzivně jejich `Evaluate` metody) a potom provede daný aritmetické operace.
+`Constant` Implementacejednoduševrátí`Evaluate` uloženou konstantu. Implementace `VariableReference`objektu vyhledá název proměnné v zatřiďovací tabulce a vrátí výslednou hodnotu. Implementace nejprve vyhodnotí levý a pravý operand (rekurzivním `Evaluate` voláním metod) a poté provede danou aritmetickou operaci. `Operation`
 
 Následující program používá `Expression` třídy pro vyhodnocení výrazu `x * (y + 2)` pro různé hodnoty `x` a `y`.
 
@@ -992,9 +992,9 @@ class Test
 }
 ```
 
-#### <a name="method-overloading"></a>Přetěžování metody
+#### <a name="method-overloading"></a>Přetížení metody
 
-Metoda ***přetížení*** povoluje více metod ve stejné třídě, aby mají stejný název tak dlouho, dokud mají jedinečný podpis. Při kompilaci vyvolání přetěžované metody, kterou kompilátor používá ***rozlišení přetěžování*** určit konkrétní metodu chce volat. Řešení přetížení vyhledá jednu metodu, nejlépe odpovídá argumenty nebo hlásí chybu, pokud lze najít žádné jediné nejlepší shodu. Následující příklad ukazuje přetížení v platnosti. Komentář pro každé vyvolání v `Main` metoda ukazuje, jakou metodu ve skutečnosti je vyvolána.
+***Přetížení*** metody umožňuje, aby více metod ve stejné třídě měl stejný název, pokud mají jedinečné podpisy. Při kompilování volání přetížené metody kompilátor používá ***řešení přetížení*** k určení konkrétní metody, která má být vyvolána. Řešení přetížení najde jednu metodu, která nejlépe odpovídá argumentům, nebo hlásí chybu, pokud nelze najít žádnou nejlepší shodu. Následující příklad ukazuje rozlišení přetížení v platnosti. Komentář pro každé vyvolání v `Main` metodě ukazuje, která metoda je skutečně vyvolána.
 
 ```csharp
 class Test
@@ -1035,13 +1035,13 @@ class Test
     }
 }
 ```
-Jak je znázorněno v příkladu, konkrétní metody lze vybrat vždy explicitně použití argumentů na typy parametrů přesný nebo explicitně zadávání argumentů typu.
+Jak je znázorněno v příkladu, konkrétní metodu lze vždy vybrat explicitním přetypováním argumentů na přesné typy parametrů a/nebo explicitním zadáním argumentů typu.
 
-### <a name="other-function-members"></a>Ostatní členové – funkce
+### <a name="other-function-members"></a>Další členové funkcí
 
-Členy, které obsahují spustitelného kódu jsou souhrnně označovány jako ***funkce členy*** třídy. Předchozí část popisuje metody, které jsou primární druh členy funkce. Tato část popisuje další druhy členů funkce podporované v jazyce C#: konstruktory, vlastnosti, indexery, události, operátory a destruktory.
+Členy, které obsahují spustitelný kód, jsou souhrnně označovány jako ***Členové funkce*** třídy. Předchozí část popisuje metody, které jsou hlavním typem členů funkce. Tato část popisuje další druhy členů funkce, které C#podporuje: konstruktory, vlastnosti, indexery, události, operátory a destruktory.
 
-Následující kód ukazuje obecnou třídu volá `List<T>`, který implementuje growable seznam objektů. Třída obsahuje několik příkladů nejběžnější druhy členů funkce.
+Následující kód ukazuje obecnou třídu s názvem `List<T>`, která implementuje zvětšený seznam objektů. Třída obsahuje několik příkladů nejběžnějších druhů členů funkce.
 
 
 ```csharp
@@ -1126,29 +1126,29 @@ public class List<T> {
 
 #### <a name="constructors"></a>Konstruktory
 
-C# podporuje instance a statické konstruktory. ***Konstruktor instance*** je člen, který implementuje akce potřebné k inicializaci instance třídy. A ***statický konstruktor*** je člen, který implementuje akce potřebné k inicializaci třídy samotný při prvním načtení.
+C#podporuje jak instance, tak statické konstruktory. ***Konstruktor instance*** je člen, který implementuje akce vyžadované pro inicializaci instance třídy. ***Statický konstruktor*** je člen, který implementuje akce vyžadované k inicializaci samotné třídy při prvním načtení.
 
-Konstruktor je deklarován jako metoda bez návratového typu a stejný název jako třídu obsahující. Pokud obsahuje deklaraci konstruktoru `static` modifikátor, deklaruje statický konstruktor. V opačném případě deklaruje konstruktor instance.
+Konstruktor je deklarovaný jako metoda bez návratového typu a stejný název jako obsahující třída. Pokud deklarace konstruktoru obsahuje `static` modifikátor, deklaruje statický konstruktor. V opačném případě deklaruje konstruktor instance.
 
-Konstruktory instancí můžou být přetížené. Například `List<T>` třída deklaruje dva konstruktory instancí, jednu s žádné parametry a ten, který přebírá `int` parametru. Konstruktory instancí jsou vyvolány pomocí `new` operátor. Následující příkazy přidělit dvě `List<string>` instance pomocí všech konstruktory `List` třídy.
+Konstruktory instancí mohou být přetíženy. Například `List<T>` třída deklaruje dva konstruktory instancí, jednu bez parametrů a jednu, která `int` přijímá parametr. Konstruktory instancí jsou vyvolány `new` pomocí operátoru. Následující příkazy přidělují dvě `List<string>` instance pomocí každého konstruktoru `List` třídy.
 
 ```csharp
 List<string> list1 = new List<string>();
 List<string> list2 = new List<string>(10);
 ```
-Na rozdíl od jiných členů nejsou zděděné konstruktory instancí a třída nemá žádné konstruktory instance než tyto skutečně deklarovaná ve třídě. Pokud žádný konstruktor instance není zadána pro třídu, pak prázdná bez parametrů je automaticky zadáno.
+Na rozdíl od jiných členů nejsou konstruktory instancí zděděny a třída nemá žádné konstruktory instancí jiné než ty, které jsou ve třídě skutečně deklarovány. Pokud pro třídu není zadán konstruktor instance, bude automaticky zadáno prázdné číslo bez parametrů.
 
 #### <a name="properties"></a>Vlastnosti
 
-***Vlastnosti*** jsou přirozené rozšíření polí. Jsou pojmenované členy s přidružené typy a syntaxe pro přístup k vlastnosti a pole je stejná. Na rozdíl od pole, ale vlastnosti nejsou označení umístění úložiště. Místo toho mají vlastnosti ***přistupující objekty*** , které určují příkazy ke se spustí při jejich hodnoty jsou číst nebo zapisovat.
+***Vlastnosti*** jsou přirozené rozšíření polí. Oba se nazývají členové s přidruženými typy a syntaxe pro přístup k polím a vlastnostem je stejná. Na rozdíl od polí ale vlastnosti neoznačují umístění úložiště. Místo toho mají vlastnosti ***přistupující objekty*** , které určují příkazy, které mají být provedeny, když jsou jejich hodnoty čteny nebo zapsány.
 
-Vlastnost je deklarován jako pole, s tím rozdílem, že deklarace končí `get` přístupového objektu a/nebo `set` přistupující objekt napsané mezi oddělovači `{` a `}` místo končí středníkem. Vlastnost, která má oba `get` přístupového objektu a `set` přístupový objekt není ***čtení a zápis vlastnosti***, vlastnost, která má pouze `get` přístupový objekt není ***vlastnost jen pro čtení***a vlastnost, která má pouze `set` přístupový objekt není ***vlastnost jen pro zápis***.
+Vlastnost je deklarována jako pole s tím rozdílem, že deklarace končí pomocí `get` přístupového objektu nebo `set` přístupového objektu napsaného `{` mezi oddělovači `}` a místo ukončení středníkem. `get` Vlastnost, která má přistupující objekt `set` i přistupující objekt `get` , je ***vlastnost pro čtení i zápis***, vlastnost, která má pouze přistupující objekt, je ***vlastnost jen pro čtení***a vlastnost, která má pouze `set` přistupující objekt, je. ***vlastnost pouze pro zápis***.
 
-A `get` přistupující objekt odpovídající konstruktor bez parametrů metody s návratovou hodnotou typu vlastnosti. Při odkazování na vlastnost ve výrazu, s výjimkou případů cílem přiřazení, `get` přistupující objekt vlastnosti je vyvolána k výpočtu hodnoty vlastnosti.
+`get` Přistupující objekt odpovídá metodě bez parametrů s návratovou hodnotou typu vlastnosti. S výjimkou cíle přiřazení, při odkazování na vlastnost ve výrazu, `get` je vyvolána přístup k vlastnosti pro výpočet hodnoty vlastnosti.
 
-A `set` přistupující objekt odpovídá metodu s jedním parametrem s názvem `value` a bez návratového typu. Když je jako cíl přiřazení nebo jako operand odkazuje vlastnost `++` nebo `--`, `set` přístupového objektu je volána s argumentem, který obsahuje novou hodnotu.
+Přistupující objekt odpovídá metodě s jediným parametrem s názvem `value` a bez návratového typu. `set` Když je na vlastnost odkazováno jako na cíl přiřazení nebo jako operand `++` nebo `--`, `set` je objekt přistupující vyvolán s argumentem, který poskytuje novou hodnotu.
 
-`List<T>` Třída deklaruje dvě vlastnosti `Count` a `Capacity`, které jsou v uvedeném pořadí jen pro čtení a čtení i zápis. Následuje příklad použití těchto vlastností.
+Třída deklaruje dvě vlastnosti `Count` `Capacity`, které jsou jen pro čtení a pro čtení i zápis, v uvedeném pořadí. `List<T>` Následuje příklad použití těchto vlastností.
 
 ```csharp
 List<string> names = new List<string>();
@@ -1156,15 +1156,15 @@ names.Capacity = 100;            // Invokes set accessor
 int i = names.Count;             // Invokes get accessor
 int j = names.Capacity;          // Invokes get accessor
 ```
-Podobně jako k polím a metodám, C# podporuje vlastnosti instance a statické vlastnosti. Statické vlastnosti jsou deklarovány pomocí `static` modifikátor a vlastnosti instance jsou deklarovány bez něj.
+Podobně jako pole a metody C# podporuje vlastnosti instance i statické vlastnosti. Statické vlastnosti jsou deklarovány s `static` modifikátorem a vlastnosti instance jsou deklarovány bez ní.
 
-Accessor(s) vlastnost může být virtuální. Pokud obsahuje deklaraci vlastnosti `virtual`, `abstract`, nebo `override` modifikátor, se vztahuje na accessor(s) vlastnost.
+Přístupové objekty vlastnosti mohou být virtuální. Pokud deklarace vlastnosti obsahuje `virtual`modifikátor, `abstract`nebo `override` , vztahuje se na přístupový objekt (y) vlastnosti.
 
 #### <a name="indexers"></a>Indexery
 
-***Indexer*** je člen, který umožňuje objekty, které mají být indexovány v stejným způsobem jako pole. Indexer je deklarován jako vlastnost, s tím rozdílem, že je název člena `this` za nímž následuje seznam parametrů napsané mezi oddělovači `[` a `]`. Parametry jsou k dispozici v accessor(s) indexeru. Podobně jako u vlastnosti, indexery mohou být pro čtení i zápis, jen pro čtení a jen pro zápis a accessor(s) indexer může být virtuální.
+***Indexer*** je člen, který umožňuje, aby objekty byly indexovány stejným způsobem jako pole. Indexer je deklarován jako vlastnost s tím rozdílem, že název člena je `this` následován seznamem parametrů napsaným mezi `[` oddělovači a `]`. Parametry jsou k dispozici v přistupujícím objektu indexeru. Podobně jako u vlastností mohou být indexery pro čtení i zápis, jen pro čtení a přístup k nástroji indexeru, které mohou být virtuální.
 
-`List` Třída deklaruje jednu indexeru pro čtení i zápis, která přebírá `int` parametru. Indexer umožňuje index `List` instance s `int` hodnoty. Příklad
+Třída deklaruje jeden indexer pro čtení a zápis, který `int` přebírá parametr. `List` Indexer umožňuje indexovat `List` instance s `int` hodnotami. Příklad
 
 ```csharp
 List<string> names = new List<string>();
@@ -1176,17 +1176,17 @@ for (int i = 0; i < names.Count; i++) {
     names[i] = s.ToUpper();
 }
 ```
-Indexery mohou být přetíženy, což znamená, že třídy lze deklarovat několik indexerů jako číslo nebo typů jejich parametrů se liší.
+Indexery mohou být přetíženy, což znamená, že třída může deklarovat více indexerů za předpokladu, že počet nebo typy jejich parametrů se liší.
 
 #### <a name="events"></a>Události
 
-***Události*** je člen, který umožňuje třídu nebo objektu pro sdělení. Událost je deklarován jako pole, s tím rozdílem, že obsahuje prohlášení `event` – klíčové slovo a typ musí být typu delegáta.
+***Událost*** je člen, který umožňuje třídě nebo objektu poskytovat oznámení. Událost je deklarována jako pole s tím rozdílem, že deklarace `event` zahrnuje klíčové slovo a typ musí být delegovaný typ.
 
-V rámci třídy, které deklaruje člen události události se chová stejně jako pole s typem delegáta (za předpokladu, události není abstraktní a nedeklaruje přistupující objekty). Toto pole obsahuje odkaz na delegáta, který představuje obslužné rutiny událostí, které byly přidány k této události. Pokud neexistují žádné obslužné rutiny událostí, je pole `null`.
+V rámci třídy, která deklaruje člena události, se událost chová stejně jako pole typu delegáta (za předpokladu, že událost není abstraktní a nedeklaruje přistupující objekty). Pole ukládá odkaz na delegáta, který představuje obslužné rutiny událostí, které byly přidány do události. Pokud nejsou k dispozici žádné obslužné rutiny událostí `null`, pole je.
 
-`List<T>` Třída deklaruje člen jedna událost s názvem `Changed`, což znamená, že se do seznamu přidá nová položka. `Changed` Vyvolá událost `OnChanged` virtuální metody, které nejprve zkontroluje, zda je událost `null` (to znamená, že jsou k dispozici žádné obslužné rutiny). Pojem vyvolání události je přesně ekvivalentní k vyvolání delegáta představované událostí – to znamená, nejsou žádné zvláštní jazykovým konstrukcím pro vyvolání události.
+Třída deklaruje jeden člen události s názvem `Changed`, který indikuje, že do seznamu byla přidána nová položka. `List<T>` Událost je vyvolána `OnChanged` virtuální metodou, která nejprve kontroluje, zda je `null` událost (to znamená, že nejsou přítomny žádné obslužné rutiny). `Changed` Pojem vyvolání události je přesně shodný s voláním delegáta reprezentovaného událostí, takže neexistují žádné speciální jazykové konstrukce pro vyvolání událostí.
 
-Klienti reagovat na události prostřednictvím ***obslužné rutiny událostí***. Obslužné rutiny událostí se připojují pomocí `+=` operátor a odebrané pomocí `-=` operátor. Následující příklad připojí obslužnou rutinu události pro `Changed` události `List<string>`.
+Klienti reagují na události prostřednictvím ***obslužných rutin událostí***. Obslužné rutiny událostí jsou připojeny `+=` pomocí operátoru a odebrány `-=` pomocí operátoru. Následující příklad připojí obslužnou rutinu události k `Changed` události. `List<string>`
 
 ```csharp
 using System;
@@ -1209,13 +1209,13 @@ class Test
     }
 }
 ```
-Pro pokročilé scénáře, kde je žádoucí ovládací prvek pro použité úložiště událostí, můžete explicitně uvést deklaraci události `add` a `remove` přístupové objekty, které jsou poněkud podobně jako `set` přistupujícího objektu vlastnosti.
+Pro pokročilé scénáře, kde je požadováno řízení základního úložiště události, může deklarace události explicitně poskytnout `add` a `remove` přistupující objekty, které `set` jsou poněkud podobné přístupovému objektu vlastnosti.
 
 #### <a name="operators"></a>Operátory
 
-***Operátor*** je člen, který definuje význam použití operátoru konkrétní výraz do instance třídy. Je možné definovat tři typy operátorů: unární operátory, binární operátory a operátory převodu. Všechny operátory musí být deklarována jako `public` a `static`.
+***Operátor*** je člen, který definuje význam použití konkrétního operátoru výrazu na instance třídy. Lze definovat tři typy operátorů: unární operátory, binární operátory a operátory převodu. Všechny operátory musí být deklarovány `public` jako `static`a.
 
-`List<T>` Třída deklaruje dva operátory `operator==` a `operator!=`a proto poskytuje nový význam pro výrazy, které se vztahují na tyto operátory `List` instancí. Konkrétně definovat operátory rovnosti dvou `List<T>` instance vyjádřený jako porovnání všech obsažených objektů pomocí jejich `Equals` metody. V následujícím příkladu `==` operátor pro porovnání dvou `List<int>` instancí.
+Třída deklaruje dva operátory `operator==` `List` , a, a poskytuje tak nový význam pro výrazy, které tyto operátory aplikují na instance. `operator!=` `List<T>` Konkrétně operátory definují rovnost dvou `List<T>` instancí jako porovnávání každého z obsažených objektů pomocí jejich `Equals` metod. Následující příklad používá `==` operátor k porovnání dvou `List<int>` instancí.
 
 ```csharp
 using System;
@@ -1236,21 +1236,21 @@ class Test
 }
 ```
 
-První `Console.WriteLine` výstupy `True` vzhledem k tomu, že oba seznamy obsahují stejný počet objektů se stejnými hodnotami ve stejném pořadí. Měl `List<T>` není definována `operator==`, první `Console.WriteLine` by mít výstup `False` protože `a` a `b` odkaz na jiný `List<int>` instancí.
+První `Console.WriteLine` výstupy `True` , protože dva seznamy obsahují stejný počet objektů se stejnými hodnotami ve stejném pořadí. `a` `List<int>` Nebyl definován `operator==`, `False` první `Console.WriteLine` by měl výstup, protože a`b` odkazují na různé instance. `List<T>`
 
 #### <a name="destructors"></a>Destruktory
 
-A ***destruktor*** je člen, který implementuje akce potřebné k destrukci instance třídy. Destruktory, nemohou mít parametry nemohou mít modifikátory a nemůže být volány explicitně. Destruktor pro instanci je automaticky vyvolána při uvolnění.
+***Destruktor*** je člen, který implementuje akce vyžadované k destrukcií instance třídy. Destruktory nemohou mít parametry, nemohou mít modifikátory dostupnosti a nelze je volat explicitně. Destruktor instance je vyvolán automaticky během uvolňování paměti.
 
-Uvolňování paměti je povolená široké šířky při rozhodování, kdy se mají shromáždit objekty a spusťte destruktory. Konkrétně není deterministický. časování volání destruktoru a destruktory mohou být provedeny v libovolném vlákně. Pro tyto a další důvody třídy by měly implementovat destruktory pouze v případě, že žádná jiná řešení jsou vhodná.
+Uvolňování paměti je povolená rozsáhlá Zeměpisná šířka při rozhodování o shromažďování objektů a spouštění destruktorů. Konkrétně načasování volání destruktoru není deterministické a v jakémkoli vlákně mohou být provedeny destruktory. Z těchto a dalších důvodů by třídy měly implementovat destruktory pouze v případě, že žádná jiná řešení nejsou proveditelná.
 
-`using` Příkaz poskytuje lepší přístup ke zničení objektu.
+`using` Příkaz poskytuje lepší přístup k zničení objektu.
 
 ## <a name="structs"></a>Struktury
 
-Třídy, jako jsou ***struktury*** datové struktury, které mohou obsahovat datové členy a funkční členy jsou, ale na rozdíl od tříd, struktur jsou typy hodnot a nevyžadují přidělení haldy. Proměnné typu Struktura přímo ukládá datové struktury, že proměnné typu třída uchovává odkaz na do dynamicky alokovaného objektu. Typy struktury nepodporují dědičnosti zadané uživatelem, a všechny typy struktury implicitně dědí z typu `object`.
+Podobně jako třídy ***struktury*** jsou datové struktury, které mohou obsahovat datové členy a členy funkce, ale na rozdíl od tříd, struktury jsou typy hodnot a nevyžadují přidělení haldy. Proměnná typu struktury přímo ukládá data struktury, zatímco proměnná typu třídy ukládá odkaz na dynamicky přidělený objekt. Typy struktury nepodporují uživatelem zadanou dědičnost a všechny typy struktury implicitně dědí z typu `object`.
 
-Struktury jsou zvláště užitečná pro malé datové struktury, které mají hodnotu sémantiku. Komplexní čísla, body v souřadnicovém systému nebo páry klíč hodnota do slovníku jsou všechny dobrým příkladem struktury. Použití struktur, místo třídy pro malé datové struktury mohou přinést důležité velký počet přidělení paměti aplikace provádí. Například následující program vytvoří a inicializuje pole 100 bodů. S `Point` implementován jako třída, 101 samostatné objekty jsou vytvořena instance – jednu pro pole a jeden pro 100 elementů.
+Struktury jsou zvláště užitečné pro malé datové struktury, které mají sémantiku hodnot. Komplexní čísla, body v systému souřadnic nebo páry klíč-hodnota ve slovníku jsou všechny dobrými příklady struktur. Použití struktur namísto tříd pro malé datové struktury může mít velký rozdíl v počtu přidělení paměti, které aplikace provádí. Například následující program vytvoří a inicializuje pole 100 bodů. V `Point` případě 101, že jsou implementovány jako třídy, jsou vytvořeny instance samostatných objektů – jeden pro pole a jeden pro prvky 100.
 
 ```csharp
 class Point
@@ -1271,7 +1271,7 @@ class Test
     }
 }
 ```
-Alternativou je, aby `Point` struktury.
+Alternativou je vytvoření `Point` struktury.
 
 ```csharp
 struct Point
@@ -1284,11 +1284,11 @@ struct Point
     }
 }
 ```
-Nyní pouze jeden objekt je vytvořena instance – jednu pro pole – a `Point` instance jsou uložené v řádku v poli.
+Nyní je vytvořena instance pouze jednoho objektu – jeden pro pole – a `Point` instance jsou uloženy v poli do pole.
 
-Konstruktory struktury jsou vyvolány pomocí `new` operátoru, ale to neznamená, že paměť přidělena. Namísto dynamického přidělování objektu a vrací se odkaz na to jednoduše vrací hodnotu – struktura (obvykle do dočasného umístění v zásobníku), konstruktor struktury a tato hodnota se pak zkopíruje podle potřeby.
+Konstruktory struktury jsou vyvolány `new` pomocí operátoru, ale to neznamená, že se paměť přiděluje. Namísto dynamického přidělování objektu a vrácení odkazu na něj konstruktor struktury jednoduše vrátí hodnotu samotné struktury (obvykle v dočasném umístění v zásobníku) a tato hodnota se pak podle potřeby zkopíruje.
 
-Pomocí třídy je možné pro dvě proměnné odkazovat na stejný objekt a proto je možné pro operace v rámci jedné proměnné ovlivňovat objekt odkazovaný jinou proměnnou. Struktury proměnné každý mají své vlastní kopii dat, a není možné pro operace se na nich se má vliv na jinou. Například výstup vytvořený podle následující fragment kódu závisí na tom, zda `Point` třída nebo struktura.
+U tříd je možné, aby dvě proměnné odkazovaly na stejný objekt a bylo tak možné, aby operace na jedné proměnné ovlivnily objekt, na který je odkazováno jinou proměnnou. Pomocí struktur mají proměnné, které mají svou vlastní kopii dat, a není možné, aby operace na jednom z nich ovlivnily druhou. Například výstup vyprodukovaný následujícím fragmentem kódu závisí na tom, zda `Point` je třída nebo struktura.
 
 ```csharp
 Point a = new Point(10, 10);
@@ -1296,17 +1296,17 @@ Point b = a;
 a.x = 20;
 Console.WriteLine(b.x);
 ```
-Pokud `Point` je třída, výstup je `20` protože `a` a `b` odkazovat na stejný objekt. Pokud `Point` je struktura, výstup je `10` protože přiřazení `a` k `b` vytvoří kopii hodnoty, a tuto kopii není ovlivněn následné přiřazení `a.x`.
+Pokud `Point` je třída, výstup je `20` , protože `a` a `b` odkazuje na stejný objekt. Pokud `Point` je struktura, výstup je `10` , protože přiřazení `a` pro `b` vytvoří kopii hodnoty a tato kopie není ovlivněna následným přiřazením k `a.x`.
 
-Předchozí příklad ukazuje dvě omezení struktury. Kopírování celé struktury je poprvé, obvykle méně efektivní než odkaz na objekt, kopírování, předávání přiřazení a hodnota parametru může být dražší s struktury než s typy odkazů. Druhý, s výjimkou `ref` a `out` parametry, není možné vytvořit odkazy na struktury, který vylučuje jejich použití v mnoha situacích.
+Předchozí příklad zvýrazní dvě omezení struktury. Nejprve kopírování celé struktury je obvykle méně efektivní než kopírování odkazu na objekt, takže předávání parametrů hodnot a parametrů může být dražší s strukturami, než s typem odkazu. Sekunda s `ref` výjimkou `out` parametrů a není možné vytvořit odkazy na struktury, které pravidla jejich používání vymění v řadě situací.
 
 ## <a name="arrays"></a>Pole
 
-***Pole*** je datová struktura, která obsahuje několik proměnných, které jsou přístupné prostřednictvím vypočítané indexy. Proměnné, které jsou obsaženy v poli, tzv. ***prvky*** pole, jsou všechny stejného typu a tento typ se nazývá ***typ elementu*** pole.
+***Pole*** je datová struktura, která obsahuje počet proměnných, které jsou dostupné prostřednictvím počítaných indexů. Proměnné obsažené v poli, označované také jako ***prvky*** pole, jsou všechny stejného typu a tento typ se nazývá ***typ elementu*** pole.
 
-Typy pole jsou typy odkazů a deklarace proměnné pole jednoduše vyčleňuje místo odkazu na pole instance. Skutečné pole instance v dynamicky se vytvářejí s využitím za běhu `new` operátor. `new` Operace určovala ***délka*** nové instance pole, které se potom jsme opravili po dobu životnosti instance. Indexy prvků v rozsahu pole z `0` k `Length - 1`. `new` Operátor automaticky inicializuje prvků pole na výchozí hodnoty, které je třeba nulu pro všechny číselné typy a `null` pro všechny typy odkazů.
+Typy polí jsou odkazové typy a deklarace proměnné pole jednoduše nastaví volné místo pro odkaz na instanci pole. Skutečné instance pole jsou vytvářeny dynamicky za běhu pomocí `new` operátoru. Operace určuje délku nové instance pole, která je poté opravena po dobu života instance. `new` Indexy prvků rozsahu pole od `0` do. `Length - 1` Operátor automaticky inicializuje prvky pole na výchozí hodnotu, což je například nula pro všechny číselné typy a `null` pro všechny typy odkazů. `new`
 
-Následující příklad vytvoří pole `int` prvky, inicializuje pole a vytiskne obsah pole.
+Následující příklad vytvoří pole `int` prvků, inicializuje pole a vytiskne obsah pole.
 
 ```csharp
 using System;
@@ -1324,16 +1324,16 @@ class Test
     }
 }
 ```
-Tento příklad vytvoří a pracuje ***jednorozměrné pole***. C# rovněž podporuje ***vícerozměrných polí***. Zadejte počet rozměrů pole, označované také jako ***pořadí*** typ pole je jednu plus počet čárek mezi hranaté závorky pole zapsána. V následujícím příkladu se přiděluje jednorozměrný dvourozměrném a trojrozměrného pole.
+Tento příklad vytvoří a pracuje na jednorozměrném ***poli***. C#podporuje rovněž ***multidimenzionální pole***. Počet rozměrů typu pole, označovaný také jako ***rozměr*** typu pole, je jedna plus počet čárek napsaných mezi hranatými závorkami typu pole. Následující příklad přiděluje jednorozměrné, dvourozměrné a trojrozměrné pole.
 
 ```csharp
 int[] a1 = new int[10];
 int[,] a2 = new int[10, 5];
 int[,,] a3 = new int[10, 5, 2];
 ```
-`a1` Pole obsahuje 10 prvků `a2` pole obsahuje 50 (10 × 5) elementy a `a3` 100 (10 × 5 × 2) obsahuje pole prvků.
+Pole obsahuje 10 prvků `a2` , pole obsahuje 50 (10 × 5 `a3` ) prvků a pole obsahuje 100 (10 × 5 × 2) prvků. `a1`
 
-Typ elementu pole může být libovolného typu, včetně typu pole. Někdy se označuje jako pole s prvky typu pole ***vícenásobného pole*** protože ne všechny délky pole elementu mají být stejné. V následujícím příkladu se přiděluje pole polí `int`:
+Typ elementu pole může být libovolný typ, včetně typu pole. Pole s prvky typu pole se někdy nazývá ***vícenásobné pole*** , protože délky polí elementů nemusí být stejné. Následující příklad přiděluje pole polí pro `int`:
 
 ```csharp
 int[][] a = new int[3][];
@@ -1341,19 +1341,19 @@ a[0] = new int[10];
 a[1] = new int[5];
 a[2] = new int[20];
 ```
-První řádek vytvoří pole se třemi prvky, každý typ `int[]` a každý s počáteční hodnotou `null`. Následující řádky následně inicializujete tři prvky s odkazy na jednotlivá pole instancí z různých délek.
+První řádek vytvoří pole se třemi prvky, každý typ `int[]` a každý s počáteční `null`hodnotou. Následující řádky poté inicializují tři prvky s odkazy na jednotlivé instance pole s různou délkou.
 
-`new` Operátor umožňuje počáteční hodnoty prvků pole zadat pomocí ***inicializátor pole***, což je seznamem výrazů napsané mezi oddělovači `{` a `}`. V následujícím příkladu se přiděluje a inicializuje `int[]` s tři elementy.
+Operátor umožňuje zadat počáteční hodnoty prvků pole pomocí ***inicializátoru pole***, což je seznam výrazů zapsaných mezi oddělovači `{` a. `}` `new` Následující příklad přiděluje a inicializuje `int[]` se třemi prvky.
 
 ```csharp
 int[] a = new int[] {1, 2, 3};
 ```
-Všimněte si, že délka pole je odvozen z počet výrazů mezi `{` a `}`. Lokální proměnná a pole deklarace lze zkrátit další tak, aby typ pole nemusí být revidovat.
+Všimněte si, že délka pole je odvozena od počtu výrazů mezi `{` a. `}` Deklarace lokální proměnné a pole lze dále zkrátit tak, aby se typ pole nemuselo přestavit.
 
 ```csharp
 int[] a = {1, 2, 3};
 ```
-Obě předchozí příklady jsou ekvivalentní následujícímu zápisu:
+Oba předchozí příklady jsou ekvivalentní následujícímu:
 
 ```csharp
 int[] t = new int[3];
@@ -1364,9 +1364,9 @@ int[] a = t;
 ```
 ## <a name="interfaces"></a>Rozhraní
 
-***Rozhraní*** definuje kontrakt, který může být implementována třídy a struktury. Rozhraní může obsahovat metody, vlastnosti, události a indexery. Rozhraní neposkytuje implementace členů definuje – pouze Určuje členy, které je třeba dodat ze třídy nebo struktury, které implementují rozhraní.
+***Rozhraní*** definuje kontrakt, který může být implementován pomocí tříd a struktur. Rozhraní může obsahovat metody, vlastnosti, události a indexery. Rozhraní neposkytuje implementace členů, které definuje – určuje pouze členy, které musí být poskytnuty třídami nebo strukturami, které implementují rozhraní.
 
-Rozhraní může využívat ***vícenásobná dědičnost***. V následujícím příkladu, rozhraní `IComboBox` zdědí vlastnosti z obou `ITextBox` a `IListBox`.
+Rozhraní mohou využívat ***vícenásobnou dědičnost***. V následujícím příkladu rozhraní `IComboBox` dědí `ITextBox` z a `IListBox`.
 
 ```csharp
 interface IControl
@@ -1386,7 +1386,7 @@ interface IListBox: IControl
 
 interface IComboBox: ITextBox, IListBox {}
 ```
-Třídy a struktury mohou implementovat více rozhraní. V následujícím příkladu třída `EditBox` implementuje oba `IControl` a `IDataBound`.
+Třídy a struktury mohou implementovat více rozhraní. V následujícím příkladu třída `EditBox` implementuje `IDataBound`i `IControl` .
 
 ```csharp
 interface IDataBound
@@ -1400,21 +1400,21 @@ public class EditBox: IControl, IDataBound
     public void Bind(Binder b) {...}
 }
 ```
-Pokud konkrétní rozhraní implementuje, třídy nebo struktury, instance této třídy nebo struktury lze implicitně převést na tento typ rozhraní. Příklad
+Pokud třída nebo struktura implementuje konkrétní rozhraní, instance této třídy nebo struktury lze implicitně převést na tento typ rozhraní. Příklad
 
 ```csharp
 EditBox editBox = new EditBox();
 IControl control = editBox;
 IDataBound dataBound = editBox;
 ```
-V případech, kde není instance znám staticky implementovat určité rozhraní je možné dynamického přetypování. Například následující příkazy použijte k získání objektu dynamického přetypování `IControl` a `IDataBound` implementace rozhraní. Protože je skutečný typ objektu `EditBox`, úspěšné položky CAST.
+V případech, kdy instance není staticky známá pro implementaci konkrétního rozhraní, lze použít dynamické přetypování typu. Například následující příkazy používají přetypování dynamického typu k získání implementace objektu `IControl` a `IDataBound` rozhraní. Vzhledem k tomu, že skutečný typ objektu `EditBox`je, přetypování je úspěšné.
 
 ```csharp
 object obj = new EditBox();
 IControl control = (IControl)obj;
 IDataBound dataBound = (IDataBound)obj;
 ```
-V předchozím `EditBox` třídy, `Paint` metodu z `IControl` rozhraní a `Bind` metodu z `IDataBound` rozhraní jsou implementovány pomocí `public` členy. C# rovněž podporuje ***implementace explicitního rozhraní členských***, který horizontálních oddílů pomocí třídy nebo struktury může předejděte tomu, aby členové `public`. Implementace explicitního rozhraní člen je zapsáno s použitím rozhraní plně kvalifikovaný název člena. Například `EditBox` třída může implementovat `IControl.Paint` a `IDataBound.Bind` metod pomocí explicitní implementace členů rozhraní následujícím způsobem.
+V `EditBox` předchozí `public` třídě `Paint` je metoda `IControl` `IDataBound` z rozhraní a Metodazrozhraníimplementovánapomocíčlenů.`Bind` C#podporuje také ***explicitní implementace členů rozhraní***, pomocí kterých se třída nebo struktura může vyhnout vytváření členů `public`. Explicitní implementace člena rozhraní je zapsána pomocí plně kvalifikovaného názvu člena rozhraní. Například `EditBox` třída může `IControl.Paint` implementovat metody a `IDataBound.Bind` pomocí explicitní implementace členů rozhraní následujícím způsobem.
 
 ```csharp
 public class EditBox: IControl, IDataBound
@@ -1423,7 +1423,7 @@ public class EditBox: IControl, IDataBound
     void IDataBound.Bind(Binder b) {...}
 }
 ```
-Explicitní rozhraní členy jsou přístupné pouze prostřednictvím typu rozhraní. Například provádění `IControl.Paint` poskytované předchozí `EditBox` třídy lze vyvolat pouze první převedením `EditBox` odkaz `IControl` typu rozhraní.
+K explicitním členům rozhraní lze přistupovat pouze prostřednictvím typu rozhraní. Například implementaci `IControl.Paint` poskytovanou předchozí `EditBox` třídou lze `EditBox` vyvolat pouze první `IControl` převod odkazu na typ rozhraní.
 
 ```csharp
 EditBox editBox = new EditBox();
@@ -1434,7 +1434,7 @@ control.Paint();                        // Ok
 
 ## <a name="enums"></a>Výčty
 
-***Typ výčtu*** je typ odlišné hodnoty se sadou pojmenovaných konstant. Následující příklad deklaruje a používá typ výčtu s názvem `Color` pomocí tří hodnot konstanty `Red`, `Green`, a `Blue`.
+***Typ výčtu*** je jedinečný typ hodnoty se sadou pojmenovaných konstant. Následující příklad deklaruje a používá `Color` typ výčtu pojmenovaný se třemi konstantními hodnotami, `Red`, `Green`a `Blue`.
 
 ```csharp
 using System;
@@ -1472,9 +1472,9 @@ class Test
     }
 }
 ```
-Každý typ enum má odpovídající integrální typ s názvem ***nadřízený typ*** typu výčtu. Typ výčtu, která nedeklaruje explicitně nadřízený typ má základní typ `int`. Formát úložiště a rozsah možných hodnot typu výčtu jsou určeny jeho nadřízeného typu. Sadu hodnot, které může přijmout typ výčtu není omezena jeho členy výčtu. Konkrétně se libovolná hodnota základního typu výčtu lze převést na typ výčtu a odlišné platná hodnota daného typu výčtu.
+Každý typ výčtu má odpovídající celočíselný typ nazvaný ***základní typ*** výčtového typu. Typ výčtu, který explicitně nedeklaruje nadřízený typ, má podkladový typ `int`. Formát úložiště typu výčtu a rozsah možných hodnot jsou určeny podle jeho základního typu. Sada hodnot, na jejichž základě může typ výčtu pobírat, není omezena členy výčtu. Konkrétně jakákoli hodnota základního typu výčtu může být převedena na typ výčtu a je odlišná platná hodnota tohoto typu výčtu.
 
-Následující příklad deklaruje typ výčtu s názvem `Alignment` pomocí základního typu `sbyte`.
+Následující příklad deklaruje typ výčtu s názvem `Alignment` s podkladovým `sbyte`typem.
 
 ```csharp
 enum Alignment: sbyte
@@ -1484,15 +1484,15 @@ enum Alignment: sbyte
     Right = 1
 }
 ```
-Jak je znázorněno v předchozím příkladu, může obsahovat deklaraci člena výčtu konstantní výraz, který určuje hodnotu člena. Konstantní hodnoty pro každého člena výčtu musí být v rozsahu od základního typu výčtu. Při deklaraci člena výčtu explicitně neurčí hodnotu, se klíči přiřadí člen hodnotu nula (Pokud je první člen v typu výčtu) nebo hodnotu textový předchozí člen výčtu plus jedna.
+Jak je znázorněno v předchozím příkladu, deklarace člena výčtu může zahrnovat konstantní výraz, který určuje hodnotu člena. Hodnota konstanty pro každého člena výčtu musí být v rozsahu nadřazeného typu výčtu. Když deklarace člena výčtu explicitně neurčí hodnotu, členovi se předává hodnota nula (Pokud se jedná o první člen v typu výčtu) nebo hodnota dříve předcházejícího člena výčtu plus jedna.
 
-Hodnoty výčtu lze převést na integrální hodnoty a naopak pomocí přetypování. Příklad
+Hodnoty výčtu lze převést na integrální hodnoty a naopak pomocí přetypování typů. Příklad
 
 ```csharp
 int i = (int)Color.Blue;        // int i = 2;
 Color c = (Color)2;             // Color c = Color.Blue;
 ```
-Výchozí hodnota typu výčtu je integrální hodnotu nula, převést na typ výčtu. V případech, kdy proměnné jsou automaticky inicializovány na výchozí hodnotu jedná se o hodnotu k proměnné typů výčtu. Aby výchozí hodnota typu výčtu být snadno k dispozici, literál `0` implicitně převede na libovolný typ výčtu. Proto následující je povolený.
+Výchozí hodnota libovolného typu výčtu je celočíselná hodnota nula převedená na typ výčtu. V případech, kdy jsou proměnné automaticky inicializovány na výchozí hodnotu, je tato hodnota předána proměnným typům výčtu. Aby byla výchozí hodnota typu výčtu snadno dostupná, literál `0` implicitně převede na libovolný typ výčtu. Proto jsou povoleny následující.
 
 ```csharp
 Color c = 0;
@@ -1500,7 +1500,7 @@ Color c = 0;
 
 ## <a name="delegates"></a>Delegáty
 
-A ***typ delegáta*** seznamu představuje odkazy na metody pomocí konkrétních parametrů a návratový typ. Delegáty umožňují považovat za entity, které může být přiřazena k proměnné a předány jako parametry metod. Delegáti jsou podobný koncept ukazatelů na funkce v některých jiných jazycích, ale na rozdíl od ukazatelů na funkce, Delegáti jsou objektově orientované a typově bezpečné.
+***Typ delegáta*** představuje odkazy na metody s konkrétním seznamem parametrů a návratovým typem. Delegáti umožňují zacházet s metodami jako s entitami, které lze přiřadit proměnným a předávat jako parametry. Delegáti jsou podobní pojmu ukazatelů na funkce nalezené v některých jiných jazycích, ale na rozdíl od ukazatelů na funkce jsou delegáti objektově orientované a typově bezpečné.
 
 Následující příklad deklaruje a používá typ delegáta s názvem `Function`.
 
@@ -1543,22 +1543,22 @@ class Test
     }
 }
 ```
-Instance `Function` typ delegáta může odkazovat na jakoukoli metodu, která přijímá `double` argument a vrátí `double` hodnotu. `Apply` Postup se vztahuje dané `Function` na elementy `double[]`, vrácení `double[]` s výsledky. V `Main` metody `Apply` slouží k použití tří různých funkcí `double[]`.
+Instance `Function` typu delegáta může odkazovat na jakoukoli metodu, která `double` přebírá argument a vrací `double` hodnotu. Metoda použije daný `Function` prvek `double[]` pro prvky a vrátí výsledek. `double[]` `Apply` `Main` V `double[]`metodě sepoužívákpoužitítřírůznýchfunkcína.`Apply`
 
-Delegát může odkazovat na statickou metodu (například `Square` nebo `Math.Sin` v předchozím příkladu) nebo metodu instance (například `m.Multiply` v předchozím příkladu). Delegát, který odkazuje na metodu instance také odkazuje na konkrétní objekt, a když uživatel vyvolá metodu instance prostřednictvím delegáta, tento objekt se stane `this` ve volání.
+Delegát může odkazovat buď na statickou metodu (například `Square` nebo `Math.Sin` v předchozím příkladu), nebo na metodu `m.Multiply` instance (například v předchozím příkladu). Delegát, který odkazuje na metodu instance, také odkazuje na konkrétní objekt a když je metoda instance vyvolána prostřednictvím delegáta, bude `this` tento objekt ve volání.
 
-Delegáty lze vytvořit také pomocí anonymní funkce, které jsou "inline metod", které jsou vytvořeny v reálném čase. Anonymní funkce můžete zobrazit místní proměnné okolního metody. Proto je výše uvedený příklad multiplikátor zapisovat snadněji bez použití `Multiplier` třídy:
+Delegáty je také možné vytvořit pomocí anonymních funkcí, což jsou "vložené metody", které jsou vytvářeny průběžně. Anonymní funkce mohou zobrazit místní proměnné okolních metod. Proto je příklad násobitele výše možné napsat snadněji bez použití `Multiplier` třídy:
 
 ```csharp
 double[] doubles =  Apply(a, (double x) => x * 2.0);
 ```
-Zajímavé a užitečné vlastnictví delegáta je, že ho neznáte nebo postaral o třídě, na které odkazuje; metody vše, co je důležité je, že odkazované metody má stejné parametry a návratový typ jako delegát.
+Zajímavou a užitečnou vlastností delegáta je, že neznají ani nezáleží na třídě metody, na kterou odkazuje; všechny tyto věci jsou, že odkazovaná metoda má stejné parametry a návratový typ jako delegát.
 
 ## <a name="attributes"></a>Atributy
 
-Typy, členy a dalších entit v programu v jazyce C# podporují modifikátory, které ovládat některé aspekty jejich chování. Například pro usnadnění metody je řízen pomocí `public`, `protected`, `internal`, a `private` modifikátory. C# umožňuje zobecnit tuto funkci tak, uživatelem definované typy deklarativní informací můžete připojit k programu entity a načíst v době běhu. Programy zadejte tyto dodatečné informace deklarativní definice a používání ***atributy***.
+Typy, členy a další entity v C# programu podporují modifikátory, které řídí určité aspekty jejich chování. Například přístupnost metody je `public`řízena pomocí modifikátorů, `protected`, `internal`a `private` . C#generalizuje tuto funkci tak, aby uživatelsky definované typy deklarativních informací mohly být připojeny k programovým entitám a načteny v době běhu. Programy určují tyto dodatečné deklarativní informace definováním a použitím ***atributů***.
 
-Následující příklad deklaruje `HelpAttribute` atribut, který může být umístěn v programu entity, které obsahují odkazy na jejich související dokumentaci.
+Následující příklad deklaruje `HelpAttribute` atribut, který lze umístit do entit programu, aby poskytoval odkazy na jeho přidruženou dokumentaci.
 
 ```csharp
 using System;
@@ -1582,7 +1582,7 @@ public class HelpAttribute: Attribute
     }
 }
 ```
-Všechny třídy atributu odvozovat `System.Attribute` základní třídy, které poskytuje rozhraní .NET Framework. Atributy lze použít zadáním jeho názvu, spolu s žádné argumenty, v hranatých závorkách těsně před deklaraci přidružené. Pokud název atributu končí na `Attribute`, část názvu lze vynechat, pokud se odkazuje atribut. Například `HelpAttribute` atribut je možné následujícím způsobem.
+Všechny třídy atributů jsou odvozeny `System.Attribute` ze základní třídy poskytnuté .NET Framework. Atributy lze použít zadáním jejich názvu spolu s případnými argumenty uvnitř hranatých závorek těsně před přidruženou deklarací. Pokud název atributu končí `Attribute`, Tato část názvu může být vynechána při odkazování na atribut. `HelpAttribute` Atribut lze například použít následujícím způsobem.
 
 ```csharp
 [Help("http://msdn.microsoft.com/.../MyClass.htm")]
@@ -1592,9 +1592,9 @@ public class Widget
     public void Display(string text) {}
 }
 ```
-Tento příklad připojí `HelpAttribute` k `Widget` třídy a další `HelpAttribute` k `Display` metody ve třídě. Veřejné konstruktory třídu atributu řídit informace, které musí být zadaná, když je připojena k entitě programu. Další informace lze zadat pomocí odkazu na veřejné čtení a zápis vlastnosti třídy atributů (jako je například odkaz na `Topic` vlastnost dříve).
+Tento `HelpAttribute` příklad připojí `Widget` ke tříděa`HelpAttribute` druhé k metoděvetřídě.`Display` Veřejné konstruktory třídy atributu určují informace, které je nutné zadat při připojení atributu k entitě programu. Další informace lze poskytnout odkazem na veřejné vlastnosti pro čtení a zápis třídy atributu (například odkaz na `Topic` vlastnost dříve).
 
-Následující příklad ukazuje, jak můžete načíst informace o atributu pro daný program entitu v době běhu pomocí operace reflection.
+Následující příklad ukazuje, jak lze načíst informace o atributu pro danou entitu programu v době běhu pomocí reflexe.
 
 ```csharp
 using System;
@@ -1620,4 +1620,4 @@ class Test
     }
 }
 ```
-Konkrétní atribut je žádost prostřednictvím reflexe, konstruktor pro třídu atributu je vyvolán pomocí informací uvedených ve zdrojovém programu a vrátí se výsledná instance atributu. Pokud Další informace se poskytovaly prostřednictvím vlastností, tyto vlastnosti jsou nastavené na dané hodnoty před vrácením instance atributu.
+Pokud je požadován konkrétní atribut prostřednictvím reflexe, konstruktor třídy atributu je vyvolán s informacemi poskytnutými ve zdroji programu a výslednou instancí atributu je vrácen. Pokud byly k dispozici další informace prostřednictvím vlastností, jsou tyto vlastnosti nastaveny na zadané hodnoty před vrácením instance atributu.

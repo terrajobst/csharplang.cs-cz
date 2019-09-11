@@ -1,14 +1,14 @@
 ---
-ms.openlocfilehash: 8f9551b9e7f70379836c23a60f0d37dc02f8e18e
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 94346034a667ad4af26796c0c4bbc96d6ed79aba
+ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488816"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876836"
 ---
 # <a name="statements"></a>Příkazy
 
-C# poskytuje celou paletu příkazů. Většina z těchto příkazů bude zkušenosti vývojáře, kteří mají programovat v jazycích C a C++.
+C#poskytuje celou řadu příkazů. Většina těchto příkazů bude obeznámena s vývojáři, kteří mají program v jazyce C a C++.
 
 ```antlr
 statement
@@ -34,20 +34,20 @@ embedded_statement
     ;
 ```
 
-*Embedded_statement* neterminálu se používá pro příkazy, které se zobrazují v rámci jiných příkazů. Použití *embedded_statement* spíše než *příkaz* vyloučí použití příkazy deklarace a příkazy s popiskem v těchto kontextech. V příkladu
+Neterminál *embedded_statement* se používá pro příkazy, které se zobrazí v jiných příkazech. Použití příkazu *embedded_statement* spíše než *příkaz* vyloučí v těchto kontextech příkazy deklarace a příkazy s popiskem. Příklad
 ```csharp
 void F(bool b) {
     if (b)
         int i = 44;
 }
 ```
-výsledkem chyba kompilace, protože `if` příkazu vyžaduje *embedded_statement* spíše než *příkaz* pro jeho Pokud větev. Pokud tento kód byly převody povoleny, pak proměnná `i` by být deklarovány, ale může nikdy nepoužívá. Mějte na paměti, ale, tak, že `i`na deklaraci v bloku, v příkladu je platný.
+Výsledkem je chyba při kompilaci, protože `if` příkaz vyžaduje *embedded_statement* , nikoli *příkaz* pro svou větev if. Pokud byl tento kód povolen, proměnná `i` by byla deklarována, ale nebyla nikdy použita. Všimněte si však, že `i`vložením deklarace do bloku je platný příklad.
 
-## <a name="end-points-and-reachability"></a>Koncové body a dostupnosti
+## <a name="end-points-and-reachability"></a>Koncové body a dosažitelnost
 
-Každý příkaz má ***koncový bod***. Intuitivní řečeno koncový bod příkazu je umístění, které bezprostředně následuje po příkazu. Spuštění pravidla pro složené příkazy (příkazy, které obsahují vložené příkazy) určují akce, která se provede, když ovládací prvek dosáhne koncového bodu vloženým příkazem. Například když ovládací prvek dosáhne příkazu v bloku koncový bod, je kontrola předána dalšímu příkazu v bloku.
+Každý příkaz má ***koncový bod***. V intuitivních výrazech je koncový bod příkazu umístěním, které bezprostředně následuje za příkazem. Pravidla spouštění pro složené příkazy (příkazy, které obsahují vložené příkazy) určují akci, která je provedena, když ovládací prvek dosáhne koncového bodu vloženého příkazu. Například když ovládací prvek dosáhne koncového bodu příkazu v bloku, je ovládací prvek převeden na další příkaz v bloku.
 
-Pokud příkaz může být dosažitelný z provádění, příkaz se říká, že ***dostupný***. Naopak, pokud není možné, že se spustí příkaz, příkaz se říká, že ***nedostupný***.
+Pokud je možné, že je příkaz dosažitelný provedením, je příkaz označen jako ***dostupný***. Naopak, pokud není k dispozici možnost provedení příkazu, bude prohlášení ***nedostupné***.
 
 V příkladu
 ```csharp
@@ -59,11 +59,11 @@ void F() {
     Console.WriteLine("reachable");
 }
 ```
-druhé volání `Console.WriteLine` nedosažitelný, proto není možné, že se spustí příkaz.
+druhé vyvolání `Console.WriteLine` je nedosažitelné, protože neexistuje možnost, že se příkaz spustí.
 
-Upozornění bude nahlášena, pokud kompilátor zjistí, že příkaz nedosažitelný. Je speciálně není chyba pro příkaz nedostupná.
+Pokud kompilátor zjistí, že je příkaz nedosažitelný, je hlášeno upozornění. Konkrétně není chyba, pokud příkaz nebude dostupný.
 
-Pokud chcete zjistit, jestli je konkrétní příkaz nebo koncový bod dostupný, kompilátor provede analýzu toku podle dostupnosti pravidel definovaných příkazu for each. Analýzy toku bere v úvahu hodnoty konstantních výrazů ([konstantní výrazy](expressions.md#constant-expressions)), které řídí chování příkazy, ale nejsou považovány za možných hodnot, která není konstantní výrazy. Jinými slovy pro účely analýzy toku řízení nekonstantní výraz daného typu se považuje za všechny možné hodnotu daného typu.
+Chcete-li určit, zda je konkrétní příkaz nebo koncový bod dosažitelný, kompilátor provede analýzu toků podle pravidel dostupnosti definovaných pro každý příkaz. Analýza toku bere v úvahu hodnoty konstantních výrazů ([konstantní výrazy](expressions.md#constant-expressions)), které řídí chování příkazů, ale možné hodnoty nekonstantních výrazů nejsou považovány za. Jinými slovy pro účely analýzy toku řízení je nekonstantní výraz daného typu považován za to, že má libovolnou možnou hodnotu tohoto typu.
 
 V příkladu
 ```csharp
@@ -72,16 +72,16 @@ void F() {
     if (i == 2) Console.WriteLine("unreachable");
 }
 ```
-logický výraz `if` příkazu je konstantní výraz, protože oba operandy `==` operátor jsou konstanty. Jako konstantní výraz je vyhodnocen v době kompilace, vytváření hodnota `false`, `Console.WriteLine` volání se považuje za nedostupný. Nicméně pokud `i` se změní, aby byla místní proměnné
+logický výraz `if` příkazu je konstantní výraz, protože oba operandy `==` operátoru jsou konstanty. Jelikož je konstantní výraz vyhodnocen v době kompilace, což vyprodukuje hodnotu `false` `Console.WriteLine` , vyvolání je považováno za nedosažitelné. Pokud `i` se ale změní na lokální proměnnou
 ```csharp
 void F() {
     int i = 1;
     if (i == 2) Console.WriteLine("reachable");
 }
 ```
-`Console.WriteLine` volání se považuje za dostupný, i když ve skutečnosti, bude nikdy spuštěn.
+`Console.WriteLine` volání je považováno za dosažitelné, i když ve skutečnosti nebude nikdy provedeno.
 
-*Bloku* funkce člena je vždy považován za dostupný. Postupně po vyhodnocení pravidla dostupnosti každého příkazu v bloku, se dá určit dostupnosti jakékoli daný příkaz.
+*Blok* člena funkce je vždy považován za dostupný. Po úspěšném vyhodnocení pravidel dostupnosti každého příkazu v bloku je možné určit dostupnost jakéhokoli daného příkazu.
 
 V příkladu
 ```csharp
@@ -90,21 +90,21 @@ void F(int x) {
     if (x < 0) Console.WriteLine("negative");
 }
 ```
-připojení z druhé `Console.WriteLine` je stanoven následujícím způsobem:
+dostupnost druhé `Console.WriteLine` je určena následujícím způsobem:
 
-*  První `Console.WriteLine` příkaz výrazu je dostupný protože bloku `F` metoda je dostupný.
-*  Koncový bod první `Console.WriteLine` příkaz výrazu je dostupný, protože tento příkaz je dostupný.
-*  `if` Příkaz je dostupný, protože koncový bod prvního `Console.WriteLine` příkaz výrazu je dostupný.
-*  Druhá `Console.WriteLine` příkaz výrazu je dostupný protože logický výraz `if` příkaz nemá konstantní hodnotu `false`.
+*  První `Console.WriteLine` příkaz výrazu je dosažitelný, protože blok `F` metody je dosažitelný.
+*  Koncový bod prvního `Console.WriteLine` příkazu výrazu je dosažitelný, protože tento příkaz je dosažitelný.
+*  Příkaz je dosažitelný, protože koncový bod prvního `Console.WriteLine` příkazu výrazu je dosažitelný. `if`
+*  Druhý `Console.WriteLine` příkaz výrazu je dosažitelný, protože logický výraz `if` příkazu nemá konstantní hodnotu `false`.
 
-Existují dvě situace, ve kterých je chyba kompilace pro koncový bod příkazu být dostupná pro:
+Existují dvě situace, ve kterých se jedná o chybu při kompilaci koncového bodu příkazu, aby byla dostupná:
 
-*  Vzhledem k tomu, `switch` příkaz neumožňuje části přepínače, aby "" k další části přepínače, je chyba kompilace pro koncový bod seznamu příkazů oddíl přepínače být dostupná. Pokud k této chybě dochází, je obvykle jako ukazatel toho, který `break` příkaz nebyl nalezen.
-*  Je chyba kompilace pro koncový bod bloku funkce člena, který vypočítá hodnotu být dostupná. Pokud k této chybě dochází, obvykle je údaj, který `return` příkaz nebyl nalezen.
+*  Vzhledem k tomu, že příkaznepovolujepřesměrovatoddílpřepínačedodalšíhooddílupřepínače,jednáseochybupřikompilacikoncovéhoboduseznamupříkazůoddílupřepínače,abybyldostupný.`switch` Pokud k této chybě dojde, obvykle se jedná o indikaci `break` chybějícího příkazu.
+*  Jedná se o chybu při kompilaci koncového bodu bloku členu funkce, který počítá hodnotu, která je dostupná. Pokud k této chybě dojde, obvykle se jedná o indikaci `return` chybějícího příkazu.
 
 ## <a name="blocks"></a>Bloky
 
-A *bloku* povoluje více příkazů, které má být zapsán v kontextech, kde je povoleno jeden příkaz.
+*Blok* povoluje zápis více příkazů v kontextech, kde je povolen jediný příkaz.
 
 ```antlr
 block
@@ -112,27 +112,27 @@ block
     ;
 ```
 
-A *bloku* se skládá z volitelné *statement_list* ([příkaz uvádí](statements.md#statement-lists)), uzavřené ve složených závorkách. Pokud je vynechán seznam příkazů, se říká, že blok prázdný.
+*Blok* se skládá z volitelných *statement_list* ([seznamů příkazů](statements.md#statement-lists)) uzavřených do složených závorek. Pokud je seznam příkazů vynechán, je tento blok označován jako prázdný.
 
-Blok mohou obsahovat příkazy deklarace ([příkazy deklarace](statements.md#declaration-statements)). Obor lokální proměnné nebo konstantní deklarované v bloku je blok.
+Blok může obsahovat příkazy deklarace ([příkazy deklarace](statements.md#declaration-statements)). Rozsah místní proměnné nebo konstanty deklarované v bloku je blok.
 
-Blok provádí následujícím způsobem:
+Blok se spustí takto:
 
-*  Pokud blok je prázdný, ovládací prvek bude převeden na koncový bod bloku.
-*  Pokud blok není prázdná, ovládací prvek bude převeden do seznamu příkazů. Když a ovládací prvek dosáhne koncového bodu seznam příkazů, ovládací prvek bude převeden na koncový bod bloku.
+*  Pokud je blok prázdný, řízení se převede na koncový bod bloku.
+*  Pokud blok není prázdný, ovládací prvek se přenese do seznamu příkazů. Když a když ovládací prvek dosáhne koncového bodu seznamu příkazů, ovládací prvek se převede na koncový bod bloku.
 
-Seznam příkazů bloku je dostupná, pokud je dostupný samotného bloku.
+Seznam příkazů bloku je dosažitelný, pokud je samotný blok dostupný.
 
-Koncový bod bloku je dostupná, pokud blok je prázdný nebo pokud je dostupný koncový bod seznamu příkazů.
+Koncový bod bloku je dosažitelný, pokud je blok prázdný nebo pokud je koncový bod seznamu příkazů dostupný.
 
-A *bloku* , který obsahuje jeden nebo více `yield` příkazy ([příkaz yield](statements.md#the-yield-statement)) se nazývá blok iterátoru. Iterátor bloky se používají k implementaci funkce členy jako iterátory ([iterátory](classes.md#iterators)). Některé další omezení se vztahují na iterátor bloků:
+*Blok* , který obsahuje jeden nebo více `yield` příkazů ([příkaz yield](statements.md#the-yield-statement)), se nazývá blok iterátoru. Bloky iterátoru slouží k implementaci členů funkce jako iterátory ([iterátory](classes.md#iterators)). U bloků iterátoru platí některá další omezení:
 
-*  Je chyba kompilace pro `return` příkazu se zobrazí v blok iterátoru (ale `yield return` příkazy jsou povolené).
-*  Je chyba kompilace pro blok iterátoru tak, aby obsahovala kontextu unsafe ([nezabezpečený kontext](unsafe-code.md#unsafe-contexts)). Blok iterátoru vždy definuje bezpečné kontextu, i v případě, že jeho deklarace je vnořená v nezabezpečeném kontextu.
+*  Jedná se o chybu `return` při kompilaci, aby se příkaz objevil v bloku iterátoru (ale `yield return` příkazy jsou povoleny).
+*  Jedná se o chybu při kompilaci, aby blok iterátoru obsahoval nezabezpečený kontext ([nezabezpečené](unsafe-code.md#unsafe-contexts)kontexty). Blok iterátoru vždy definuje bezpečný kontext, a to i v případě, že je jeho deklarace vnořena v nezabezpečeném kontextu.
 
-### <a name="statement-lists"></a>Seznamy – příkaz
+### <a name="statement-lists"></a>Seznamy příkazů
 
-A ***seznamu příkazů*** se skládá z jednoho nebo více příkazů, které jsou napsané v pořadí. Probíhá příkaz seznamy *bloku*s ([bloky](statements.md#blocks)) a v *switch_block*s ([příkazu switch](statements.md#the-switch-statement)).
+***Seznam příkazů*** se skládá z jednoho nebo více příkazů zapsaných v sekvenci. Seznamy příkazů se vyskytují v blocích s ( *Blocks*[) a](statements.md#blocks)v *switch_block*s ([příkaz switch](statements.md#the-switch-statement)).
 
 ```antlr
 statement_list
@@ -140,19 +140,19 @@ statement_list
     ;
 ```
 
-Seznam příkazů provádí přenos řízení na první příkaz. Když a ovládací prvek dosáhne příkazu koncový bod, je kontrola předána dalšímu příkazu. Když a ovládací prvek dosáhne koncového bodu poslední příkaz, ovládací prvek bude převeden na koncový bod seznamu příkazů.
+Seznam příkazů je spuštěn převodem řízení na první příkaz. Když a pokud ovládací prvek dosáhne koncového bodu příkazu, bude ovládací prvek převeden na další příkaz. Když a když ovládací prvek dosáhne koncového bodu posledního příkazu, ovládací prvek se převede na koncový bod seznamu příkazů.
 
-Příkaz v seznamu příkazů je dostupný, pokud platí alespoň jedna z následujících akcí:
+Příkaz v seznamu příkazů je dosažitelný, pokud je splněna alespoň jedna z následujících podmínek:
 
-*  Příkaz je prvním příkazem a samotný seznam příkaz je dostupný.
-*  Koncový bod předchozí příkaz je dostupný.
-*  Příkaz je příkaz s popiskem a popisek se odkazuje dostupné `goto` příkazu.
+*  Příkaz je prvním příkazem a samotný seznam příkazů je dosažitelný.
+*  Koncový bod předchozího příkazu je dosažitelný.
+*  Příkaz je příkaz s popiskem a popisek je odkazován pomocí dosažitelného `goto` příkazu.
 
-Pokud je dostupný koncový bod poslední příkaz v seznamu je dostupný koncový bod seznamu příkazů.
+Koncový bod seznamu příkazů je dosažitelný, pokud je koncový bod posledního příkazu v seznamu dosažitelný.
 
 ## <a name="the-empty-statement"></a>Prázdný příkaz
 
-*Empty_statement* nemá žádný účinek.
+*Empty_statement* neprovede žádnou akci.
 
 ```antlr
 empty_statement
@@ -160,11 +160,11 @@ empty_statement
     ;
 ```
 
-Prázdný příkaz se používá, když nejsou žádná operace mají provést v kontextu, ve kterém jsou vyžadována příkaz.
+Prázdný příkaz se používá, pokud nejsou žádné operace k provedení v kontextu, kde je vyžadován příkaz.
 
-Provádění prázdný příkaz jednoduše přenese ovládací prvek na konec příkazu. Koncový bod prázdný příkaz je tedy pokud prázdný příkaz je dostupný.
+Provedení prázdného příkazu jednoduše převede řízení na koncový bod příkazu. Proto je koncový bod prázdného příkazu dosažitelný, pokud je prázdný příkaz dostupný.
 
-Prázdný příkaz může být použit při zápisu `while` příkaz s hodnotou null text:
+Prázdný příkaz lze použít při zápisu `while` příkazu s textem s hodnotou null:
 ```csharp
 bool ProcessMessage() {...}
 
@@ -174,7 +174,7 @@ void ProcessMessages() {
 }
 ```
 
-Navíc prázdný příkaz je možné deklarovat popisek těsně před uzavírací "`}`" bloku:
+Prázdný příkaz lze také použít k deklaraci popisku těsně před uzavíracím znakem "`}`" bloku:
 ```csharp
 void F() {
     ...
@@ -184,9 +184,9 @@ void F() {
 }
 ```
 
-## <a name="labeled-statements"></a>Příkaz s popiskem
+## <a name="labeled-statements"></a>Příkazy s popiskem
 
-A *labeled_statement* povoluje příkazu k mít předponu popisek. Příkaz s popiskem jsou povolené v blocích, ale nejsou povolené jako vložené příkazy.
+*Labeled_statement* umožňuje, aby příkaz byl předponou. Příkazy s popiskem jsou povolené v blocích, ale nejsou povolené jako vložené příkazy.
 
 ```antlr
 labeled_statement
@@ -194,11 +194,11 @@ labeled_statement
     ;
 ```
 
-Příkaz s popiskem deklaruje popisek s názvem dána *identifikátor*. Obor popisku je celý blok ve kterém je deklarována popisek, včetně všech vnořených bloků. Je chyba kompilace pro dva popisky se stejným názvem, aby mají překrývající se rozsahy.
+Příkaz s popiskem deklaruje popisek s názvem daným *identifikátorem*. Rozsah popisku je celý blok, ve kterém je popisek deklarován, včetně všech vnořených bloků. Jedná se o chybu při kompilaci pro dva popisky se stejným názvem, aby měly překrývající se obory.
 
-Popisek můžete odkazovat z `goto` příkazy ([příkazu goto](statements.md#the-goto-statement)) v rámci oboru popisku. To znamená, že `goto` příkazů může přenést řízení v rámci bloků a z bloků, ale nikdy do bloků.
+Na popisek lze odkazovat z `goto` příkazů ([příkaz goto](statements.md#the-goto-statement)) v rámci rozsahu popisku. To znamená, `goto` že příkazy mohou přenášet řízení v rámci bloků a mimo bloky, ale nikdy do bloků.
 
-Popisky své vlastní prohlášení místa a nejsou v konfliktu s další identifikátory. V příkladu
+Popisky mají vlastní prostor deklarací a neovlivňují jiné identifikátory. Příklad
 ```csharp
 int F(int x) {
     if (x >= 0) goto x;
@@ -206,15 +206,15 @@ int F(int x) {
     x: return x;
 }
 ```
-je platný a používá název `x` jako parametr a popisek.
+je platný a používá název `x` jako parametr i popisek.
 
-Spuštění příkaz s popiskem přesně odpovídá provádění příkazu za příkazem popisek.
+Provedení příkaz s popiskem odpovídá přesně provedení příkazu za popiskem.
 
-Kromě dostupnosti poskytuje běžný tok řízení, je dostupná, pokud popisek se odkazuje dostupné příkaz s popiskem `goto` příkazu. (Výjimka: Pokud `goto` příkazu se nachází uvnitř `try` , který obsahuje `finally` bloku a příkaz s popiskem je mimo `try`a koncový bod `finally` bloku nedostupný, pak příkaz s popiskem není dosažitelný z který `goto` příkazu.)
+Kromě dosažitelnosti, které poskytuje běžný tok řízení, je příkaz s popiskem dosažitelný, pokud je popisek odkazován pomocí dosažitelného `goto` příkazu. Jímka `finally` `finally` `try`Pokud je `try` příkaz uvnitř, který obsahuje blok, a příkaz s popiskem je mimo a koncový bod bloku je nedosažitelný, pak příkaz s popiskem není dosažitelný z `goto` Tento `goto` příkaz.)
 
 ## <a name="declaration-statements"></a>Příkazy deklarace
 
-A *declaration_statement* deklaruje místní proměnnou nebo konstantu. Příkazy deklarace jsou povolené v blocích, ale nejsou povolené jako vložené příkazy.
+*Declaration_statement* deklaruje místní proměnnou nebo konstantu. Příkazy deklarace jsou povolené v blocích, ale nejsou povolené jako vložené příkazy.
 
 ```antlr
 declaration_statement
@@ -223,9 +223,9 @@ declaration_statement
     ;
 ```
 
-### <a name="local-variable-declarations"></a>Místní deklarace proměnné
+### <a name="local-variable-declarations"></a>Deklarace místních proměnných
 
-A *local_variable_declaration* deklaruje jednoho nebo několika lokálními proměnnými.
+*Local_variable_declaration* deklaruje jednu nebo více místních proměnných.
 
 ```antlr
 local_variable_declaration
@@ -254,17 +254,17 @@ local_variable_initializer
     ;
 ```
 
-*Local_variable_type* z *local_variable_declaration* přímo určuje typ proměnné zavedeným deklarací, nebo označuje s identifikátorem `var` , který typ by měl odvodit podle inicializátor. Typ následuje seznam *local_variable_declarator*s, z nichž každý představuje novou proměnnou. A *local_variable_declarator* se skládá ze *identifikátor* , název proměnné, může volitelně následovat "`=`" token a *local_variable_initializer* , která obsahuje počáteční hodnotu proměnné.
+*Local_variable_type* *local_variable_declaration* buď přímo určuje typ proměnných zavedených deklarací, nebo označuje identifikátor `var` , který má být typu odvozen na základě inicializátor. Po typu následuje seznam *local_variable_declarator*, z nichž každá zavádí novou proměnnou. *Local_variable_declarator* se skládá z *identifikátoru* , který proměnnou pojmenovává, volitelně následovaný "`=`" tokenem a *local_variable_initializer* , který poskytuje počáteční hodnotu proměnné.
 
-V rámci deklarace lokální proměnné, var identifikátor funguje jako kontextové klíčové slovo ([klíčová slova](lexical-structure.md#keywords)). Když *local_variable_type* je zadán jako `var` a žádný typ s názvem `var` je v oboru, je deklarace ***implicitně typované lokální proměnné deklarace***, jehož typ je odvodit z typu přidružené inicializačního výrazu. Implicitně typované lokální deklarace proměnných, které se vztahují následující omezení:
+V kontextu deklarace lokální proměnné funguje var jako kontextové klíčové slovo ([klíčová slova](lexical-structure.md#keywords)). Pokud je *local_variable_type* zadán jako `var` a žádný typ s názvem `var` není v oboru, deklarace je ***implicitně typovou deklarací lokální proměnné***, jejíž typ je odvozen od typu přidruženého inicializátoru. vyjádření. Implicitně typované deklarace lokálních proměnných podléhá následujícím omezením:
 
-*  *Local_variable_declaration* nesmí obsahovat více *local_variable_declarator*s.
-*  *Local_variable_declarator* musí obsahovat *local_variable_initializer*.
+*  *Local_variable_declaration* nemůže obsahovat více *local_variable_declarator*s.
+*  *Local_variable_declarator* musí zahrnovat *local_variable_initializer*.
 *  *Local_variable_initializer* musí být *výraz*.
-*  Inicializátor *výraz* musí mít typ za kompilace.
-*  Inicializátor *výraz* nemůže odkazovat na proměnné deklarované samotný
+*  *Výraz* inicializátoru musí mít typ pro čas kompilace.
+*  *Výraz* inicializátoru nemůže odkazovat na samotný deklarovaný proměnnou.
 
-Následují příklady nesprávné implicitně typované lokální deklarace proměnných:
+Následují příklady nesprávných implicitních typů deklarací místních proměnných:
 
 ```csharp
 var x;               // Error, no initializer to infer type from
@@ -274,19 +274,19 @@ var u = x => x + 1;  // Error, anonymous functions do not have a type
 var v = v++;         // Error, initializer cannot refer to variable itself
 ```
 
-V pomocí výrazu se získá hodnota místní proměnné *simple_name* ([jednoduché názvy](expressions.md#simple-names)), a hodnotu místní proměnné je upravit pomocí *přiřazení* () [Operátory přiřazení](expressions.md#assignment-operators)). Lokální proměnná musí být jednoznačně přiřazena ([jednoznačného přiřazení](variables.md#definite-assignment)) v každém umístění, kde získat jeho hodnotu.
+Hodnota místní proměnné je získána ve výrazu pomocí *simple_name* ([jednoduché názvy](expressions.md#simple-names)) a hodnota lokální proměnné je upravena pomocí *přiřazení* ([operátory přiřazení](expressions.md#assignment-operators)). Místní proměnná musí být jednoznačně přiřazena ([jednoznačné přiřazení](variables.md#definite-assignment)) na každém místě, kde je jeho hodnota získána.
 
-Lokální proměnná deklarovaná v rozsahu *local_variable_declaration* je blok ve kterém dochází k deklaraci. Jedná se o chybu k odkazování na místní proměnnou v textové pozici, která předchází *local_variable_declarator* lokální proměnné. V rámci oboru místní proměnná je chyba kompilace, chcete-li deklarovat jinou místní proměnné nebo konstantní se stejným názvem.
+Rozsah místní proměnné deklarované ve *local_variable_declaration* je blok, ve kterém se nachází deklarace. Jedná se o chybu, která odkazuje na místní proměnnou v textové pozici, která předchází *local_variable_declarator* místní proměnné. V rámci rozsahu místní proměnné se jedná o chybu při kompilaci k deklaraci jiné místní proměnné nebo konstanty se stejným názvem.
 
-Je ekvivalentní více deklarací jedné proměnné se stejným typem deklarace lokální proměnné, která deklaruje několik proměnných. Kromě toho inicializátoru proměnné v deklaraci lokální proměnné přesně odpovídá přiřazovací příkaz, který je vložen hned za deklaraci.
+Deklarace místní proměnné, která deklaruje více proměnných, je ekvivalentní více deklaracím jednotlivých proměnných stejného typu. Kromě toho inicializátor proměnné v deklaraci lokální proměnné odpovídá přesně příkazu přiřazení, který je vložen ihned po deklaraci.
 
-V příkladu
+Příklad
 ```csharp
 void F() {
     int x = 1, y, z = x * 2;
 }
 ```
-přesně odpovídá
+odpovídá přesně
 ```csharp
 void F() {
     int x; x = 1;
@@ -295,7 +295,7 @@ void F() {
 }
 ```
 
-V implicitně typované lokální proměnné deklarace typ místní proměnné deklarované se používá stejný jako typ výrazu použitý k inicializaci proměnné. Příklad:
+V implicitní typové deklaraci lokální proměnné je typ deklarované místní proměnné stejný jako typ výrazu použitého k inicializaci proměnné. Příklad:
 ```csharp
 var i = 5;
 var s = "Hello";
@@ -304,7 +304,7 @@ var numbers = new int[] {1, 2, 3};
 var orders = new Dictionary<int,Order>();
 ```
 
-Implicitně typovaná místní proměnné prohlášení výše jsou přesně odpovídá explicitně následující deklarace:
+Implicitně typové deklarace místních proměnných jsou přesně ekvivalentem následujících explicitně typované deklarace:
 ```csharp
 int i = 5;
 string s = "Hello";
@@ -313,9 +313,9 @@ int[] numbers = new int[] {1, 2, 3};
 Dictionary<int,Order> orders = new Dictionary<int,Order>();
 ```
 
-### <a name="local-constant-declarations"></a>Místní deklarace konstanty
+### <a name="local-constant-declarations"></a>Deklarace místní konstanty
 
-A *local_constant_declaration* deklaruje nejmíň jeden místní konstanty.
+*Local_constant_declaration* deklaruje jednu nebo více místních konstant.
 
 ```antlr
 local_constant_declaration
@@ -331,19 +331,19 @@ constant_declarator
     ;
 ```
 
-*Typ* z *local_constant_declaration* Určuje typ konstanty zavedeným deklarací. Typ následuje seznam *constant_declarator*s, z nichž každý představuje nové konstantou. A *constant_declarator* se skládá ze *identifikátor* této názvy – konstanta, za nímž následuje "`=`" token a po něm *constant_expression* ([ Výrazy konstant](expressions.md#constant-expressions)), který vrací hodnotu konstanty.
+*Typ* *local_constant_declaration* určuje typ konstant zavedený deklarací. Po typu následuje seznam *constant_declarator*, z nichž každá zavádí novou konstantu. *Constant_declarator* se skládá z *identifikátoru* , který obsahuje název konstanty následovaný "`=`" tokenem následovaným *constant_expression* ([konstantními výrazy](expressions.md#constant-expressions)), které poskytují hodnotu konstanty.
 
-*Typ* a *constant_expression* místní deklarace konstanty musí řídit stejnými pravidly jako deklarace konstantní členské ([konstanty](classes.md#constants)).
+*Typ* a *constant_expression* deklarace místní konstanty musí splňovat stejná pravidla jako deklarace konstantního člena ([konstanty](classes.md#constants)).
 
-Hodnota lokální konstanta je získanou v pomocí výrazu *simple_name* ([jednoduché názvy](expressions.md#simple-names)).
+Hodnota místní konstanty je získána ve výrazu pomocí *simple_name* ([jednoduché názvy](expressions.md#simple-names)).
 
-Obor lokální konstanta je blok ve kterém dochází k deklaraci. Jedná se o chybu k odkazování na lokální konstanta v textové pozici, která předchází jeho *constant_declarator*. V rámci oboru místní konstantu je chyba kompilace, chcete-li deklarovat jinou místní proměnné nebo konstantní se stejným názvem.
+Rozsah místní konstanty je blok, ve kterém k deklaraci dojde. Odkaz na místní konstantu v textové pozici, která předchází jeho *constant_declarator*, je chyba. V rámci rozsahu místní konstanty se jedná o chybu při kompilaci k deklaraci jiné místní proměnné nebo konstanty se stejným názvem.
 
-Místní deklarace konstanty, který deklaruje více konstant je ekvivalentní více deklarací jedné konstanty se stejným typem.
+Deklarace místní konstanty, která deklaruje více konstant, je ekvivalentní více deklaracím s jedním konstantou stejného typu.
 
-## <a name="expression-statements"></a>Příkazy výrazů
+## <a name="expression-statements"></a>Příkazy výrazu
 
-*Expression_statement* vyhodnotí zadaný výraz. Hodnota vypočítaná aplikací výrazu, pokud existuje, se zahodí.
+*Expression_statement* vyhodnocuje daný výraz. Hodnota vypočítaná výrazem, pokud existuje, je zahozena.
 
 ```antlr
 expression_statement
@@ -363,13 +363,13 @@ statement_expression
     ;
 ```
 
-Ne všechny výrazy nejsou povoleny jako příkazy. Ve výrazech konkrétní, jako například `x + y` a `x == 1` , který pouze výpočtu hodnoty (což se zahodí), nejsou povolené jako příkazy.
+Ne všechny výrazy jsou povoleny jako příkazy. Konkrétně se jako příkazy nepovolují `x + y` výrazy `x == 1` jako a, které pouze počítají hodnotu (která se zahodí).
 
-Spuštění *expression_statement* vyhodnotí výraz v omezením a pak přenese ovládací prvek na koncový bod *expression_statement*. Koncový bod *expression_statement* dostupný, pokud to *expression_statement* je dostupný.
+Provedení *expression_statement* vyhodnotí obsažený výraz a poté přenáší řízení na koncový bod *expression_statement*. Koncový bod *expression_statement* je dosažitelný, pokud je tento *expression_statement* dosažitelný.
 
 ## <a name="selection-statements"></a>Příkazy výběru
 
-Příkazy výběru vyberte jedním z možných příkazů pro spuštění na základě hodnoty některých výrazu.
+Příkazy výběru vyberou jeden z několika možných příkazů pro spuštění na základě hodnoty nějakého výrazu.
 
 ```antlr
 selection_statement
@@ -378,7 +378,7 @@ selection_statement
     ;
 ```
 
-### <a name="the-if-statement"></a>If – příkaz
+### <a name="the-if-statement"></a>Příkaz if
 
 `if` Příkaz vybere příkaz pro spuštění na základě hodnoty logického výrazu.
 
@@ -389,7 +389,7 @@ if_statement
     ;
 ```
 
-`else` Část souvisí s předchozím lexikálně nejbližší `if` , který je povolen pomocí syntaxe. Proto `if` příkaz formuláře
+Část je přidružena k lexikálnímu `if` nejbližšímu, který je povolen syntaxí. `else` `if` Proto příkaz formuláře
 ```csharp
 if (x) if (y) F(); else G();
 ```
@@ -405,22 +405,22 @@ if (x) {
 }
 ```
 
-`if` Je proveden příkaz takto:
+`if` Příkaz se spustí takto:
 
-*  *Boolean_expression* ([logické výrazy](expressions.md#boolean-expressions)) je vyhodnocen.
-*  Je-li logický výraz vrací `true`, ovládací prvek bude převeden na první příkaz vložený. Když, pokud ovládací prvek dosáhne koncového bodu, který tento příkaz Ovládací prvek bude převeden na koncový bod `if` příkazu.
-*  Je-li logický výraz vrací `false` a pokud `else` část je k dispozici, ovládací prvek bude převeden na druhý vloženým příkazem. Když, pokud ovládací prvek dosáhne koncového bodu, který tento příkaz Ovládací prvek bude převeden na koncový bod `if` příkazu.
-*  Je-li logický výraz vrací `false` a pokud `else` část není k dispozici, ovládací prvek bude převeden na koncový bod `if` příkaz.
+*  *Boolean_expression* ([booleovské výrazy](expressions.md#boolean-expressions)) jsou vyhodnoceny.
+*  Pokud logický výraz vrací `true`, je ovládací prvek převeden do prvního vloženého příkazu. Když a když ovládací prvek dosáhne koncového bodu tohoto příkazu, ovládací prvek se převede na koncový bod `if` příkazu.
+*  Pokud logický výraz `false` vyhodnotí a `else` Pokud je část přítomna, řízení je převedeno do druhého vloženého příkazu. Když a když ovládací prvek dosáhne koncového bodu tohoto příkazu, ovládací prvek se převede na koncový bod `if` příkazu.
+*  Pokud logický výraz vrací `false` a `else` Pokud část není přítomna, řízení je převedeno na koncový bod `if` příkazu.
 
-Vložené první příkaz `if` příkaz je dostupný Pokud `if` příkaz je dostupný a logický výraz nemá konstantní hodnotu `false`.
+První vložený příkaz `if` příkazu je dosažitelný, `if` Pokud je příkaz dosažitelný a logický výraz nemá konstantní hodnotu `false`.
 
-Druhá vložené prohlášení o `if` příkazu, pokud jsou k dispozici, je dostupný Pokud `if` příkaz je dostupný a logický výraz nemá konstantní hodnotu `true`.
+Druhý vložený příkaz `if` příkazu, je-li k dispozici, je dosažitelný, `if` Pokud je příkaz dosažitelný a logický výraz nemá konstantní hodnotu. `true`
 
-Koncový bod `if` příkaz je dostupný, pokud je dostupný koncový bod alespoň jeden z jeho vložených příkazů. Kromě toho koncový bod `if` příkaz bez `else` část je dostupný Pokud `if` příkaz je dostupný a logický výraz nemá konstantní hodnotu `true`.
+Koncový bod `if` příkazu je dosažitelný, pokud je koncový bod alespoň jednoho z jeho vložených příkazů dosažitelný. Kromě `if` toho koncový bod příkazu bez `else` části `if` je dosažitelný, pokud je příkaz dosažitelný a logický výraz nemá konstantní hodnotu `true`.
 
 ### <a name="the-switch-statement"></a>Příkaz switch
 
-Příkaz switch vybere pro spuštění seznamu příkazů s popisek přidružený přepínač, který odpovídá hodnotě výraz přepínače.
+Příkaz switch vybere příkaz pro spuštění seznamu příkazů, který má přidružený popisek přepínače, který odpovídá hodnotě výrazu přepínače.
 
 ```antlr
 switch_statement
@@ -441,26 +441,26 @@ switch_label
     ;
 ```
 
-A *switch_statement* se skládá z klíčového slova `switch`, za nímž následuje výrazu v závorkách (označované jako výraz přepínače), za nímž následuje *switch_block*. *Switch_block* se skládá z nula nebo více *switch_section*s uzavřeny ve složených závorkách. Každý *switch_section* obsahuje jeden nebo více *switch_label*s za nímž následuje *statement_list* ([příkaz uvádí](statements.md#statement-lists)).
+*Switch_statement* se skládá z klíčového `switch`slova následovaného výrazem v závorkách (nazývaný výraz Switch) následovaným *switch_block*. *Switch_block* se skládá z nuly nebo více *switch_section*s uzavřenými závorkami. Každý *switch_section* se skládá z jednoho nebo více *switch_label*, po kterých následuje *statement_list* ([seznamy příkazů](statements.md#statement-lists)).
 
-***Řídící typ*** z `switch` příkaz pokládáme stav, výrazem přepnutí.
+Typ`switch` ***řízení*** příkazu je vytvořen výrazem přepínače.
 
-*  Pokud je typ výrazu přepínače `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `bool`, `char`, `string`, nebo *enum_type*, nebo pokud je typ připouštějící hodnotu Null odpovídá jedné z těchto typů, pak je správní typ `switch` příkazu.
-*  V opačném případě právě jeden uživatelský implicitní převod ([uživatelem definované převody](conversions.md#user-defined-conversions)) z typu výrazu přepínače, musí existovat na jednu z následujících možných řídící typy: `sbyte`, `byte`, `short` , `ushort`, `int`, `uint`, `long`, `ulong`, `char`, `string`, nebo typ připouštějící hodnotu Null odpovídá jedné z těchto typů.
-*  Jinak pokud neexistuje žádný implicitní převod, nebo pokud více než jedna implicitní převod existuje, dojde k chybě kompilace.
+*  Pokud je `sbyte`typ výrazu přepínače `ushort`, `byte`, `short` ,,`uint` ,,`long` ,`char`,, ,`string`nebo `int` `ulong` `bool`  *enum_type*, nebo pokud se jedná o typ s možnou hodnotou null odpovídající jednomu z těchto typů, pak to je typ `switch` řízení příkazu.
+*  V opačném případě musí existovat přesně jeden uživatelem definovaný implicitní převod ([uživatelem definované převody](conversions.md#user-defined-conversions)) z typu výrazu Switch na jeden z následujících možných typů řízení `sbyte`:, `byte`,, `ushort` `short` , `int` ,`uint`, ,`char`,, nebo`string`, typ s možnou hodnotou null, který odpovídá jednomu z těchto typů. `ulong` `long`
+*  V opačném případě, pokud žádný takový implicitní převod neexistuje nebo pokud existuje více než jeden takový implicitní převod, dojde k chybě při kompilaci.
 
-Konstantní výraz každé `case` popisku musí označují hodnotu, která implicitně převést ([implicitních převodů](conversions.md#implicit-conversions)) celopodnikové typu `switch` příkazu. Chyba kompilace nastane, pokud dva nebo více `case` popisky ve stejném `switch` příkazu zadejte stejnou hodnotu konstanty.
+Konstantní výraz každého `case` popisku musí znamenat hodnotu, která je implicitně převoditelná ([implicitní převod](conversions.md#implicit-conversions)) na typ `switch` řízení příkazu. Pokud dva nebo více `case` jmenovek v rámci stejného `switch` příkazu určuje stejnou konstantní hodnotu, dojde k chybě v době kompilace.
 
-Může existovat maximálně jeden `default` popisků v příkazu switch.
+V příkazu switch může být nejvýše `default` jeden popisek.
 
-A `switch` je proveden příkaz takto:
+`switch` Příkaz se spustí takto:
 
-*  Výraz přepínače je vyhodnotit a převedeny na typ řízení.
-*  Pokud některou z konstant podle `case` popisek ve stejném `switch` příkaz je rovna hodnotě výraz přepínače, ovládací prvek bude převeden do seznamu příkazů podle odpovídajícího `case` popisek.
-*  Pokud žádná konstanta zadané v `case` popisky ve stejném `switch` příkaz je rovna hodnotě výraz přepínače a pokud `default` popisek je k dispozici, ovládací prvek bude převeden na příkaz následující seznam `default` Popisek.
-*  Pokud žádná konstanta podle `case` popisky ve stejném `switch` příkaz je rovna hodnotě výraz přepínače a pokud ne `default` popisek je k dispozici, ovládací prvek bude převeden na koncový bod `switch` příkaz.
+*  Výraz přepínače je vyhodnocen a převeden na typ řízení.
+*  Pokud je jedna z konstant určená v `case` popisku v rámci stejného `switch` příkazu rovna hodnotě výrazu Switch, je ovládací prvek převeden do seznamu příkazů po odpovídajícím `case` popisku.
+*  Pokud žádná `case` konstanta zadaná v popisku v rámci stejného `switch` příkazu není rovna hodnotě `default` výrazu Switch, a pokud je popisek přítomen, ovládací prvek `default` se přenese do seznamu příkazů za popisek.
+*  Pokud žádná `case` konstanta zadaná v popisku v rámci stejného `switch` příkazu není rovna hodnotě výrazu Switch, a pokud není k dispozici žádný `default` popisek, `switch` je ovládací prvek převeden na koncový bod příkazu.
 
-Pokud je dostupný koncový bod seznamu příkazů části přepínače, dojde k chybě kompilace. To se označuje jako "žádné fall prostřednictvím" pravidlo. V příkladu
+Pokud je koncový bod seznamu příkazů oddílu přepínače dosažitelný, dojde k chybě při kompilaci. Tento postup se označuje jako pravidlo nespadající do rozsahu. Příklad
 ```csharp
 switch (i) {
 case 0:
@@ -474,7 +474,7 @@ default:
     break;
 }
 ```
-je platný, protože žádný oddíl přepínače má dosažitelný koncový bod. Na rozdíl od jazyka C a C++ spouštěcí oddíl přepínače není dovoleno "předat" k další části přepínače a v příkladu
+je platný, protože žádný oddíl Switch má dosažitelný koncový bod. Na rozdíl od jazyka C++C a provedení oddílu přepínače není povoleno "přejít do" do dalšího oddílu Switch a příklad
 ```csharp
 switch (i) {
 case 0:
@@ -485,7 +485,7 @@ default:
     CaseAny();
 }
 ```
-výsledkem chyba kompilace. Při provádění oddíl přepínače má následovat provádění jiné části přepínače, explicitní `goto case` nebo `goto default` musíte použít příkaz:
+má za následek chybu při kompilaci. V případě provedení oddílu přepínače, který je následován provedením jiného oddílu přepínače, je nutné použít explicitní `goto case` příkaz `goto default` nebo.
 ```csharp
 switch (i) {
 case 0:
@@ -500,7 +500,7 @@ default:
 }
 ```
 
-Více popisky jsou povoleny v *switch_section*. V příkladu
+V *switch_section*je povoleno více popisků. Příklad
 ```csharp
 switch (i) {
 case 0:
@@ -515,9 +515,9 @@ default:
     break;
 }
 ```
-je platný. V příkladu nebudou porušovat pravidla "žádné fall prostřednictvím" protože popisky `case 2:` a `default:` jsou součástí stejného *switch_section*.
+je platný. Tento příklad nerušuje pravidlo "nespadají do", protože popisky `case 2:` a `default:` jsou součástí stejného *switch_section*.
 
-Pravidlo "žádné fall prostřednictvím" Zabrání běžné třídy chyb, ke kterým dochází v jazyce C a C++ při `break` příkazy jsou vynechány omylem. Kromě toho kvůli tomuto pravidlu oddílů přepínače `switch` příkaz může být libovolně změnit jejich uspořádání aniž by to ovlivnilo chování příkazu. Například oddíly `switch` výše uvedeného příkazu je možné vrátit zpět, aniž by to ovlivnilo chování příkazu:
+Pravidlo "nespadající do" zabraňuje společné třídě chyb, ke kterým dojde v C a C++ kdy `break` jsou výrazy náhodně vynechány. Kromě toho z důvodu tohoto pravidla mohou být oddíly `switch` přepínače v příkazu libovolně přeuspořádány bez ovlivnění chování příkazu. Například oddíly `switch` výše uvedeného příkazu mohou být vráceny bez ovlivnění chování příkazu:
 ```csharp
 switch (i) {
 default:
@@ -532,7 +532,7 @@ case 0:
 }
 ```
 
-Seznam příkazů oddíl přepínače se obvykle ukončí v `break`, `goto case`, nebo `goto default` je povolen příkaz, ale žádné konstrukci, která vykreslí koncový bod seznamu příkazů nedostupný. Například `while` příkaz řídí logický výraz `true` známé nikdy dosah její koncový bod. Podobně `throw` nebo `return` příkaz vždy přenese ovládací prvek jinde a nikdy dosáhne její koncový bod. Proto je platný v následujícím příkladu:
+Seznam příkazů oddílu přepínače obvykle končí v `break`příkazu, `goto case`nebo `goto default` , ale všechny konstrukce, které vykreslují koncový bod seznamu příkazů, jsou povoleny. Například příkaz, který `while` je ovládán pomocí logického výrazu `true` , je znám tak, že nikdy nedosáhnou koncového bodu. Stejně tak příkaz `return`nebovždy přenáší řízení jinde a nikdy nedosáhne svého koncového bodu. `throw` Proto je následující příklad platný:
 ```csharp
 switch (i) {
 case 0:
@@ -544,7 +544,7 @@ case 2:
 }
 ```
 
-Typ řízení `switch` příkaz může být typu `string`. Příklad:
+Typ řízení `switch` příkazu může být typ `string`. Příklad:
 ```csharp
 void DoCommand(string command) {
     switch (command.ToLower()) {
@@ -564,28 +564,28 @@ void DoCommand(string command) {
 }
 ```
 
-Operátory rovnosti řetězce, jako jsou ([řetězec operátory rovnosti](expressions.md#string-equality-operators)), `switch` příkazu je velká a malá písmena a spustí daný přepínač části pouze v případě, že řetězec výraz přepínače se přesně shoduje `case` popisek Toto je konstanta.
+Podobně jako operátory rovnosti řetězců ([operátory rovnosti řetězců](expressions.md#string-equality-operators)) `switch` , příkaz rozlišuje velká a malá písmena a provede daný oddíl přepínače pouze v `case` případě, že řetězec výrazu Switch přesně odpovídá konstantě popisku.
 
-Když správní typ `switch` příkaz je `string`, hodnota `null` smí obsahovat jako konstanta popisek případu.
+Pokud je `switch` `string`typ řízení příkazu, hodnota `null` je povolena jako konstanta jmenovky Case.
 
-*Statement_list*s *switch_block* mohou obsahovat příkazy deklarace ([příkazy deklarace](statements.md#declaration-statements)). Obor lokální proměnné nebo konstantní deklarované v bloku přepínačů je blok switch.
+*Statement_list*s *switch_block* může obsahovat příkazy deklarace ([příkazy deklarace](statements.md#declaration-statements)). Rozsah místní proměnné nebo konstanty deklarované v bloku Switch je blok přepínače.
 
-Seznam příkazů daný přepínač oddílu je dostupný Pokud `switch` příkaz je dostupný a platí alespoň jedna z následujících akcí:
+Seznam příkazů daného oddílu přepínače je dosažitelný, pokud `switch` je příkaz dosažitelný a alespoň jedna z následujících možností je pravdivá:
 
-*  Výraz přepnutí má hodnotu, která není konstantní.
-*  Výraz přepnutí má konstantní hodnotu, která odpovídá `case` popisek v části přepínače.
-*  Výraz přepnutí má konstantní hodnotu, která neodpovídá žádnému `case` popisek a oddíl přepínače obsahuje `default` popisek.
-*  Popisek přepínače oddíl přepínače se odkazuje dostupné `goto case` nebo `goto default` příkazu.
+*  Výraz přepínače je nekonstantní hodnota.
+*  Výraz přepínače je konstantní hodnota, která odpovídá `case` popisku v části Switch.
+*  Výraz přepínače je konstantní hodnota, která neodpovídá žádnému `case` popisku a oddíl Switch `default` obsahuje popisek.
+*  Na jmenovku přepínače oddílu Switch se odkazuje dosažitelný `goto case` příkaz nebo. `goto default`
 
-Koncový bod `switch` příkaz je dostupný, pokud platí alespoň jedna z následujících akcí:
+Koncový bod `switch` příkazu je dosažitelný, pokud je splněna alespoň jedna z následujících podmínek:
 
-*  `switch` Obsahuje prohlášení dostupný `break` příkaz, který ukončí `switch` příkazu.
-*  `switch` Příkaz je dostupný, výraz přepnutí má hodnotu, která není konstantní a ne `default` popisek je k dispozici.
-*  `switch` Příkaz je dostupný, výraz přepnutí má konstantní hodnotu, která neodpovídá žádnému `case` popisek a ne `default` popisek je k dispozici.
+*  Příkaz obsahuje `break` dostupný příkaz, který ukončí příkaz.`switch` `switch`
+*  Příkaz je dosažitelný, výraz přepínače je nekonstantní hodnota a není k dispozici žádný `default` popisek. `switch`
+*  Příkaz je dosažitelný, výraz přepínače je konstantní hodnota, která neodpovídá žádnému `case` popisku a není k dispozici `default` žádný popisek. `switch`
 
 ## <a name="iteration-statements"></a>Příkazy iterace
 
-Příkazy iterace spouštět opakovaně vloženým příkazem.
+Příkazy iterace opakovaně spouštějí vložený příkaz.
 
 ```antlr
 iteration_statement
@@ -596,9 +596,9 @@ iteration_statement
     ;
 ```
 
-### <a name="the-while-statement"></a>While – příkaz
+### <a name="the-while-statement"></a>Příkaz While
 
-`while` Příkaz podmíněně provede vloženým příkazem nulakrát nebo vícekrát.
+`while` Příkaz podmíněně spustí vložený příkaz nula nebo vícekrát.
 
 ```antlr
 while_statement
@@ -606,24 +606,24 @@ while_statement
     ;
 ```
 
-A `while` je proveden příkaz takto:
+`while` Příkaz se spustí takto:
 
-*  *Boolean_expression* ([logické výrazy](expressions.md#boolean-expressions)) je vyhodnocen.
-*  Je-li logický výraz vrací `true`, je kontrola předána příkazu embedded. Pokud a v případě, že ovládací prvek dosáhne koncového bodu vloženým příkazem (pravděpodobně z provádění `continue` příkaz), ovládací prvek bude převeden na začátek `while` příkazu.
-*  Je-li logický výraz vrací `false`, ovládací prvek bude převeden na koncový bod `while` příkazu.
+*  *Boolean_expression* ([booleovské výrazy](expressions.md#boolean-expressions)) jsou vyhodnoceny.
+*  Pokud logický výraz vrací `true`, je ovládací prvek převeden do vloženého příkazu. Když a pokud ovládací prvek dosáhne koncového bodu vloženého příkazu (případně z provádění `continue` příkazu), řízení je převedeno na začátek `while` příkazu.
+*  Je-li logický výraz `false`výsledkem, je ovládací prvek převeden na koncový bod `while` příkazu.
 
-V rámci příkazu vložený `while` příkaz, `break` – příkaz ([příkaz break](statements.md#the-break-statement)) slouží k řízení je převedeno na koncový bod `while` – příkaz (tedy končící iteraci vložený příkaz) a `continue` – příkaz ([příkaz continue](statements.md#the-continue-statement)) slouží k řízení je převedeno na koncový bod vloženým příkazem (tedy provádí další iteraci `while` příkaz).
+`while` V rámci vloženého příkazu `break` příkazu může být příkaz ([příkaz break](statements.md#the-break-statement)) použit k přenosu `while` ovládacího prvku na koncový bod příkazu (takže koncová iterace vloženého příkazu) a `continue` příkaz ([příkaz Continue](statements.md#the-continue-statement)) lze použít k přenosu ovládacího prvku do koncového bodu vloženého příkazu (čímž se provádí další `while` iterace příkazu).
 
-Příkaz vložený `while` příkaz je dostupný Pokud `while` příkaz je dostupný a logický výraz nemá konstantní hodnotu `false`.
+Vložený příkaz `while` příkazu je dosažitelný, `while` Pokud je příkaz dosažitelný a logický výraz nemá konstantní hodnotu `false`.
 
-Koncový bod `while` příkaz je dostupný, pokud platí alespoň jedna z následujících akcí:
+Koncový bod `while` příkazu je dosažitelný, pokud je splněna alespoň jedna z následujících podmínek:
 
-*  `while` Obsahuje prohlášení dostupný `break` příkaz, který ukončí `while` příkazu.
-*  `while` Příkaz je dostupný a logický výraz nemá konstantní hodnotu `true`.
+*  Příkaz obsahuje `break` dostupný příkaz, který ukončí příkaz.`while` `while`
+*  Příkaz je dosažitelný a logický výraz nemá konstantní hodnotu `true`. `while`
 
-### <a name="the-do-statement"></a>– Příkaz
+### <a name="the-do-statement"></a>Příkaz do
 
-`do` Příkaz podmíněně provede vloženým příkazem jednou nebo vícekrát.
+`do` Příkaz podmíněně spustí vložený příkaz jednou nebo vícekrát.
 
 ```antlr
 do_statement
@@ -631,23 +631,23 @@ do_statement
     ;
 ```
 
-A `do` je proveden příkaz takto:
+`do` Příkaz se spustí takto:
 
-*  Ovládací prvek bude převeden na vloženým příkazem.
-*  Pokud a v případě, že ovládací prvek dosáhne koncového bodu vloženým příkazem (pravděpodobně z provádění `continue` příkaz), *boolean_expression* ([logické výrazy](expressions.md#boolean-expressions)) je vyhodnocen. Je-li logický výraz vrací `true`, ovládací prvek bude převeden na začátek `do` příkazu. V opačném případě ovládací prvek bude převeden na koncový bod `do` příkazu.
+*  Ovládací prvek se přenese do vloženého příkazu.
+*  Když a pokud ovládací prvek dosáhne koncového bodu vloženého příkazu (případně z provádění `continue` příkazu), je vyhodnocen *Boolean_expression* ([booleovské výrazy](expressions.md#boolean-expressions)). Je-li logický výraz `true`výsledkem, je ovládací prvek převeden na začátek `do` příkazu. V opačném případě je ovládací prvek převeden na koncový bod `do` příkazu.
 
-V rámci příkazu vložený `do` příkaz, `break` – příkaz ([příkaz break](statements.md#the-break-statement)) slouží k řízení je převedeno na koncový bod `do` – příkaz (tedy končící iteraci vložený příkaz) a `continue` – příkaz ([příkaz continue](statements.md#the-continue-statement)) slouží k řízení je převedeno na koncový bod vloženým příkazem.
+`do` V rámci vloženého příkazu `break` příkazu může být příkaz ([příkaz break](statements.md#the-break-statement)) použit k přenosu `do` ovládacího prvku na koncový bod příkazu (takže koncová iterace vloženého příkazu) a `continue` příkaz ([příkaz Continue](statements.md#the-continue-statement)) lze použít k přenosu řízení na koncový bod vloženého příkazu.
 
-Příkaz vložený `do` příkaz je dostupný Pokud `do` příkaz je dostupný.
+Vložený příkaz `do` příkazu je dosažitelný, `do` Pokud je příkaz dosažitelný.
 
-Koncový bod `do` příkaz je dostupný, pokud platí alespoň jedna z následujících akcí:
+Koncový bod `do` příkazu je dosažitelný, pokud je splněna alespoň jedna z následujících podmínek:
 
-*  `do` Obsahuje prohlášení dostupný `break` příkaz, který ukončí `do` příkazu.
-*  Koncový bod vloženým příkazem je dostupný a logický výraz nemá konstantní hodnotu `true`.
+*  Příkaz obsahuje `break` dostupný příkaz, který ukončí příkaz.`do` `do`
+*  Koncový bod vloženého příkazu je dosažitelný a logický výraz nemá konstantní hodnotu `true`.
 
-### <a name="the-for-statement"></a>Příkazu for
+### <a name="the-for-statement"></a>Příkaz for
 
-`for` Příkaz vyhodnocen jako posloupnost výrazy inicializace a poté, dokud je podmínka true, opakovaně provede vloženým příkazem a vyhodnocuje sekvenci výrazů iterace.
+`for` Příkaz vyhodnocuje sekvenci inicializačních výrazů a potom, zatímco je podmínka pravdivá, opakovaně spouští vložený příkaz a vyhodnocuje sekvenci výrazů iterace.
 
 ```antlr
 for_statement
@@ -672,34 +672,34 @@ statement_expression_list
     ;
 ```
 
-*For_initializer*, pokud jsou k dispozici, se skládá buď *local_variable_declaration* ([místní deklarace proměnné](statements.md#local-variable-declarations)) nebo seznam *statement_ výraz*s ([příkazy výrazů](statements.md#expression-statements)) oddělený čárkami. Obor lokální proměnná deklarovaná příkazem *for_initializer* začíná *local_variable_declarator* proměnné a rozšiřuje na konec vloženým příkazem. Rozsah zahrnuje *for_condition* a *for_iterator*.
+*For_initializer*, pokud je k dispozici, se skládá buď z *local_variable_declaration* ([místní proměnná deklarace](statements.md#local-variable-declarations)), nebo seznamu *statement_expression*s ([příkazy výrazu](statements.md#expression-statements)) oddělené čárkami. Rozsah místní proměnné deklarované *for_initializer* začíná na *local_variable_declarator* pro proměnnou a rozšiřuje na konec vloženého příkazu. Obor zahrnuje *for_condition* a *for_iterator*.
 
-*For_condition*, pokud jsou k dispozici, musí být *boolean_expression* ([logické výrazy](expressions.md#boolean-expressions)).
+*For_condition*, pokud je přítomen, musí být *Boolean_expression* ([booleovské výrazy](expressions.md#boolean-expressions)).
 
-*For_iterator*, pokud jsou k dispozici, se skládá ze seznamu *statement_expression*s ([příkazy výrazů](statements.md#expression-statements)) oddělený čárkami.
+*For_iterator*, pokud je k dispozici, se skládá ze seznamu *statement_expression*s ([příkazy výrazu](statements.md#expression-statements)), které jsou odděleny čárkami.
 
-Pro příkaz je proveden následujícím způsobem:
+Příkaz for se spustí takto:
 
-*  Pokud *for_initializer* je k dispozici, proměnné inicializátory nebo výrazy příkazu jsou provedeny v pořadí, jsou zapsány. Tento krok se provádí pouze jednou.
-*  Pokud *for_condition* je k dispozici, je vyhodnocen.
-*  Pokud *for_condition* není k dispozici nebo pokud je výsledkem vyhodnocení `true`, je kontrola předána příkazu embedded. Pokud a v případě, že ovládací prvek dosáhne koncového bodu vloženým příkazem (pravděpodobně z provádění `continue` příkaz), výrazů operátoru *for_iterator*, pokud existují, jsou vyhodnocovány v pořadí, a pak je jiné iterace provést, počínaje vyhodnocení *for_condition* v předchozím kroku.
-*  Pokud *for_condition* je k dispozici a vyhodnocení vrací `false`, ovládací prvek bude převeden na koncový bod `for` příkazu.
+*  Pokud je přítomen *for_initializer* , Inicializátory proměnných nebo výrazy příkazů jsou spouštěny v pořadí, ve kterém jsou zapsány. Tento krok se provádí jenom jednou.
+*  Pokud je přítomen *for_condition* , vyhodnotí se.
+*  Pokud *for_condition* není k dispozici nebo pokud dojde k vyhodnocení `true`, řízení se přenese do vloženého příkazu. Když a pokud ovládací prvek dosáhne koncového bodu vloženého příkazu (případně z provádění `continue` příkazu), jsou výrazy *for_iterator*, pokud existují, vyhodnocovány v sekvenci a poté je provedena další iterace, počínaje vyhodnocení *for_condition* v kroku výše.
+*  Pokud je přítomen *for_condition* a vyhodnocení `false`, řízení je převedeno na `for` koncový bod příkazu.
 
-V rámci příkazu vložený `for` příkaz, `break` – příkaz ([příkaz break](statements.md#the-break-statement)) slouží k řízení je převedeno na koncový bod `for` – příkaz (tedy končící iteraci vložený příkaz) a `continue` – příkaz ([příkaz continue](statements.md#the-continue-statement)) slouží k řízení je převedeno na koncový bod vloženým příkazem (tedy provádění *for_iterator* a provedení další iteraci `for` prohlášení, počínaje *for_condition*).
+`for` V rámci vloženého příkazu `break` příkazu může být příkaz ([příkaz break](statements.md#the-break-statement)) použit k přenosu `for` ovládacího prvku na koncový bod příkazu (takže koncová iterace vloženého příkazu) a `continue` příkaz ([příkaz Continue](statements.md#the-continue-statement)) se dá použít k přenosu řízení na koncový bod vloženého příkazu (takže se spustí *for_iterator* a `for` provádí se další iterace příkazu, počínaje *for_condition*).
 
-Příkaz vložený `for` příkaz je dostupný, pokud platí jedna z následujících akcí:
+Vložený příkaz `for` příkazu je dosažitelný, pokud je splněna jedna z následujících podmínek:
 
-*  `for` Příkaz je dostupný a ne *for_condition* je k dispozici.
-*  `for` Příkaz je dostupný a *for_condition* je k dispozici a nemá konstantní hodnotu `false`.
+*  Příkaz je dosažitelný a není k dispozici žádný *for_condition.* `for`
+*  Příkaz je dosažitelný a je přítomen *for_condition* a nemá konstantní hodnotu `false`. `for`
 
-Koncový bod `for` příkaz je dostupný, pokud platí alespoň jedna z následujících akcí:
+Koncový bod `for` příkazu je dosažitelný, pokud je splněna alespoň jedna z následujících podmínek:
 
-*  `for` Obsahuje prohlášení dostupný `break` příkaz, který ukončí `for` příkazu.
-*  `for` Příkaz je dostupný a *for_condition* je k dispozici a nemá konstantní hodnotu `true`.
+*  Příkaz obsahuje `break` dostupný příkaz, který ukončí příkaz.`for` `for`
+*  Příkaz je dosažitelný a je přítomen *for_condition* a nemá konstantní hodnotu `true`. `for`
 
 ### <a name="the-foreach-statement"></a>Příkaz foreach
 
-`foreach` Příkaz vytvoří výčet prvků kolekce, provádění vloženým příkazem pro každý prvek kolekce.
+`foreach` Příkaz vytvoří výčet prvků kolekce a spouští vložený příkaz pro každý prvek kolekce.
 
 ```antlr
 foreach_statement
@@ -707,34 +707,34 @@ foreach_statement
     ;
 ```
 
-*Typ* a *identifikátor* z `foreach` deklarovat příkaz ***proměnné iterace*** příkazu. Pokud `var` identifikátor je zadána jako *local_variable_type*a žádný typ s názvem `var` je v oboru, iterační proměnná se říká, že ***proměnné implicitně typované iterace***, a její typ slov za typ prvku `foreach` prohlášení, jak je uvedeno níže. Iterační proměnná odpovídá jen pro čtení místní proměnné s rozsahem, který rozšiřuje nad vloženým příkazem. Během provádění `foreach` prohlášení, iterační proměnná představuje prvek kolekce, pro který je aktuálně provádění iterace. Chyba kompilace v případě vloženým příkazem se pokusí upravit proměnné iterace (prostřednictvím přiřazení nebo `++` a `--` operátory) nebo předejte jako proměnnou iterace `ref` nebo `out` parametru.
+*Typ* a *identifikátor* `foreach` příkazu deklaruje ***proměnnou iterace*** příkazu. Pokud je `var`identifikátor přidělen jako local_variable_type a žádný typ s názvem není v oboru, proměnná iterace je označována jako implicitně typovou proměnnou iterace a jejím typem je typ prvku `var` `foreach` , jak je uvedeno níže. Proměnná iterace odpovídá místní proměnné určené jen pro čtení s oborem, který se rozšíří přes vložený příkaz. Během provádění `foreach` příkazu představuje proměnná iterace prvek kolekce, pro který je iterace právě prováděna. K chybě při kompilaci dojde v případě, že se vložený příkaz pokusí změnit proměnnou iterace (prostřednictvím přiřazení nebo `++` operátorů a `--` ) nebo předat proměnnou iterace jako `ref` parametr `out` or.
 
-V následujícím příkladu jako stručný výtah `IEnumerable`, `IEnumerator`, `IEnumerable<T>` a `IEnumerator<T>` odkazují na odpovídající typy v oborech názvů `System.Collections` a `System.Collections.Generic`.
+V následujících případech pro `IEnumerable`zkrácení, `IEnumerator` `IEnumerable<T>` , a `IEnumerator<T>` odkazují na odpovídající typy v oborech názvů `System.Collections` a `System.Collections.Generic`.
 
-Kompilace zpracování příkazu foreach nejdřív zjistí, ***typ kolekce***, ***výčtovým typem*** a ***typ elementu*** výrazu. Určení probíhá následujícím způsobem:
+Nejprve zpracování příkazu foreach v době kompilace Určuje ***typ kolekce***, ***typ enumerátoru*** a ***typ elementu*** výrazu. Toto určení pokračuje následujícím způsobem:
 
-*  Pokud typ `X` z *výraz* je typ pole je implicitní referenční převod z `X` k `IEnumerable` rozhraní (protože `System.Array` implementuje toto rozhraní). ***Typ kolekce*** je `IEnumerable` rozhraní, ***výčtovým typem*** je `IEnumerator` rozhraní a ***typ elementu*** je typ prvku Typ pole `X`.
-*  Pokud typ `X` z *výraz* je `dynamic` je implicitní převod z *výraz* k `IEnumerable` rozhraní ([implicitní dynamic převody](conversions.md#implicit-dynamic-conversions)). ***Typ kolekce*** je `IEnumerable` rozhraní a ***výčtovým typem*** je `IEnumerator` rozhraní. Pokud `var` identifikátor je zadána jako *local_variable_type* pak bude ***typ elementu*** je `dynamic`, v opačném případě je `object`.
-*  V opačném případě určit, zda typ `X` má odpovídající `GetEnumerator` metody:
-   * Provádět vyhledávání člen v typu `X` s identifikátorem `GetEnumerator` a žádné argumenty typu. Pokud je výsledkem vyhledávání člen není shoda, nebo ho vytvoří nejednoznačnost, nebo je výsledný shodu, která není skupinou – metoda, hledá vyčíslitelná rozhraní jak je popsáno níže. Doporučuje se, že se objeví upozornění, pokud člen vyhledávání vytvoří nic s výjimkou skupinu metod nebo žádná shoda.
-   * Proveďte řešení přetížení pomocí výsledný skupinu metod a prázdným seznamem argumentů. Řešení přetížení výsledků v žádné příslušné metody, výsledkem nejednoznačnost, zda výsledkem jednoho nejlepší metody, ale, že metoda je buď statický, nebo není veřejné vyhledat vyčíslitelná rozhraní, jak je popsáno níže. Doporučuje se, že se objeví upozornění v případě přetížení vytvoří nic s výjimkou metody jednoznačný veřejné instance nebo žádné použitelné metody.
-   * Pokud návratový typ `E` z `GetEnumerator` metoda se nejedná o třídu, je vytvořen typ struktury nebo rozhraní, chybu a jsou přesměrováni žádné další kroky.
-   * Člen vyhledávání se provádí na `E` s identifikátorem `Current` a žádné argumenty typu. Pokud člen vyhledávání vytvoří žádná shoda, výsledkem je chyba nebo výsledek je kromě veřejnou vlastnost instance, která umožňuje čtení, je vytvořen chybu a jsou přesměrováni žádné další kroky.
-   * Člen vyhledávání se provádí na `E` s identifikátorem `MoveNext` a žádné argumenty typu. Pokud člen vyhledávání vytvoří žádná shoda, výsledkem je chyba nebo kromě skupinu metod. Výsledkem je, je vytvořen chybu a jsou přesměrováni žádné další kroky.
-   * Řešení přetížení se provádí na skupinu metod s prázdným seznamem argumentů. Pokud výsledky rozlišení přetížení v žádné příslušné metody, výsledky v nejednoznačnost nebo výsledky v jediné nejlepší metody, ale tato metoda je buď statický, nebo není veřejné nebo její typ vrácené hodnoty není `bool`, je vytvořen chybu a jsou přesměrováni žádné další kroky.
-   * ***Typ kolekce*** je `X`, ***výčtovým typem*** je `E`a ***typ elementu*** je typ `Current` vlastnost.
+*  Pokud typ `X` *výrazu* je typ pole, pak existuje implicitní `X` referenční `IEnumerable` převod z na rozhraní (od `System.Array` implementace tohoto rozhraní). ***Typ kolekce*** je `IEnumerable` rozhraní, ***typ enumerátoru*** je `IEnumerator` rozhraní a ***typ prvku*** je typ prvku typu `X`pole.
+*  Pokud je `X` `IEnumerable` [](conversions.md#implicit-dynamic-conversions)typ výrazu poté, existuje implicitní převod z výrazu na rozhraní (implicitní dynamické převody). `dynamic` ***Typ kolekce*** je `IEnumerable` rozhraní a ***typ enumerátoru*** je `IEnumerator` rozhraní. `dynamic` `object` Pokud je identifikátorpřidělenjakolocal_variable_type,pakjetypprvku,jinak.`var`
+*  V opačném případě určete, `X` zda má typ `GetEnumerator` odpovídající metodu:
+   * Proveďte vyhledávání členů u typu `X` s identifikátorem `GetEnumerator` bez argumentů typu. Pokud vyhledávání členů nevytvoří shodu, nebo vytvoří nejednoznačnost, nebo vytvoří shodu, která není skupinou metod, vyhledejte vyčíslitelné rozhraní, jak je popsáno níže. Doporučuje se vystavovat upozornění, pokud vyhledávání členů vytvoří cokoli s výjimkou skupiny metod nebo neodpovídá.
+   * Proveďte rozlišení přetížení pomocí výsledné skupiny metod a prázdného seznamu argumentů. Pokud výsledkem rozlišení přetížení nejsou žádné použitelné metody, výsledkem je nejednoznačnost nebo výsledkem je jediná nejlepší metoda, ale tato metoda je statická nebo není veřejná, vyhledejte vyčíslitelné rozhraní, jak je popsáno níže. Doporučuje se vydávat upozornění, pokud řešení přetížení vytvoří cokoli kromě nejednoznačné metody veřejné instance nebo žádné použitelné metody.
+   * Pokud návratový typ `E` `GetEnumerator` metody není typu třída, struktura ani typ rozhraní, je vytvořena chyba a nejsou provedeny žádné další kroky.
+   * Vyhledávání členů se provádí `E` s identifikátorem `Current` bez argumentů typu. Pokud vyhledávání členů nevrátí žádnou shodu, výsledkem je chyba, nebo výsledkem je cokoli s výjimkou veřejné vlastnosti instance, která umožňuje čtení, je vytvořena chyba a nejsou provedeny žádné další kroky.
+   * Vyhledávání členů se provádí `E` s identifikátorem `MoveNext` bez argumentů typu. Pokud vyhledávání členů nevrátí žádnou shodu, výsledkem je chyba, nebo je výsledek cokoli kromě skupiny metod, je vytvořena chyba a nejsou provedeny žádné další kroky.
+   * Rozlišení přetěžování se provádí ve skupině metod s prázdným seznamem argumentů. Pokud výsledkem rozlišení přetížení nejsou žádné použitelné metody, výsledkem je nejednoznačnost nebo výsledkem je jediná nejlepší metoda, ale tato metoda je buď statická, nebo není veřejná, nebo její návratový typ `bool`není, je vytvořena chyba a nejsou provedeny žádné další kroky.
+   * ***Typ kolekce*** je `X`, ***typ enumerátoru*** je `E` `Current` a ***typ elementu*** je typ vlastnosti.
 
-*  V opačném případě zkontrolujte vyčíslitelná rozhraní:
-   * Pokud mezi všechny typy `Ti` pro něž neexistuje implicitní převod z `X` k `IEnumerable<Ti>`, je jedinečný typ `T` tak, aby `T` není `dynamic` a pro všechny ostatní `Ti` je implicitní převod z `IEnumerable<T>` k `IEnumerable<Ti>`, pak bude ***typ kolekce*** je rozhraní `IEnumerable<T>`, ***výčtovým typem*** je rozhraní `IEnumerator<T>`a ***typ elementu*** je `T`.
-   * Jinak, pokud existuje více než jeden takový typ `T`, je vytvořen chybu a jsou provedeny žádné další kroky.
-   * Jinak, pokud je implicitní převod z `X` k `System.Collections.IEnumerable` rozhraní, pak bude ***typ kolekce*** je toto rozhraní ***výčtovým typem*** je rozhraní `System.Collections.IEnumerator`a ***typ elementu*** je `object`.
-   * V opačném případě je vytvořen chybu a jsou přesměrováni žádné další kroky.
+*  V opačném případě Ověřte vyčíslitelné rozhraní:
+   * Pokud je mezi všemi typy `Ti` , pro které existuje implicitní převod z `X` na `IEnumerable<Ti>`, existuje jedinečný typ `T` , který `T` `dynamic` není a pro všechny ostatní `Ti` . implicitní převod z `IEnumerable<T>` na `IEnumerable<Ti>`, potom ***typ kolekce*** `IEnumerable<T>`je rozhraní, ***typ enumerátoru*** je rozhraní `IEnumerator<T>`a ***typ elementu*** je `T`.
+   * V opačném případě, pokud existuje více než jeden `T`takový typ, je vytvořena chyba a nejsou provedeny žádné další kroky.
+   * V opačném případě, pokud existuje implicitní převod `X` z `System.Collections.IEnumerable` na rozhraní, pak ***typ kolekce*** je toto rozhraní, ***typ enumerátoru*** je rozhraní `System.Collections.IEnumerator`a ***typ elementu*** je `object`.
+   * V opačném případě se vytvoří chyba a neprovádí se žádné další kroky.
 
-Výše uvedené kroky, pokud je úspěšná, jednoznačně vytvořit typ kolekce `C`, výčtovým typem `E` a typ prvku `T`. Příkaz foreach formuláře
+Výše uvedené kroky, pokud bylo úspěšné, jednoznačně vytvoří typ `C`kolekce, typ `E` enumerátoru a typ `T`elementu. Příkaz foreach ve formátu
 ```csharp
 foreach (V v in x) embedded_statement
 ```
-je pak rozšířen pro:
+je pak rozbalen na:
 ```csharp
 {
     E e = ((C)(x)).GetEnumerator();
@@ -750,11 +750,11 @@ je pak rozšířen pro:
 }
 ```
 
-Proměnná `e` není viditelná nebo přístupné pro výraz `x` nebo vloženým příkazem nebo jiný zdrojový kód programu. Proměnná `v` je jen pro čtení v vloženým příkazem. Pokud není k dispozici explicitní převod ([explicitních převodů](conversions.md#explicit-conversions)) z `T` (typ prvku) pro `V` ( *local_variable_type* v příkazu foreach), vytvořilo chybu a jsou přesměrováni žádné další kroky. Pokud `x` má hodnotu `null`, `System.NullReferenceException` je vyvolána v době běhu.
+Proměnná `e` není viditelná ani přístupná k výrazu `x` nebo vloženému příkazu nebo žádnému jinému zdrojovému kódu tohoto programu. Proměnná `v` je určena jen pro čtení v příkazu Embedded. Pokud není k dispozici explicitní převod ([explicitní převody](conversions.md#explicit-conversions)) z `T` typu (typ elementu) na `V` ( *local_variable_type* v příkazu foreach), je vytvořena chyba a nejsou provedeny žádné další kroky. Pokud `x` má hodnotu `null`, `System.NullReferenceException` je vyvolána v době běhu.
 
-Implementace je povolený pro implementaci daného příkazu foreach odlišně, např. z důvodů výkonu za předpokladu, chování je konzistentní s rozšiřující se výše.
+Implementace má povolenou implementaci daného příkazu foreach, například z důvodů výkonu, pokud je chování konzistentní s výše uvedeným rozšířením.
 
-Umístění `v` uvnitř while je důležité, jak je zachycena v jakékoli anonymní funkci, ke kterým dochází v smyčky *embedded_statement*.
+Umístění `v` uvnitř smyčky while je důležité pro způsob, jakým je zachycena všemi anonymními funkcemi, ke kterým dochází v *embedded_statement*.
 
 Příklad:
 ```csharp
@@ -768,12 +768,12 @@ foreach (var value in values)
 
 f();
 ```
-Pokud `v` byla deklarována mimo while smyčky, by být sdílena mezi všech iterací a jeho hodnota po smyčky by být konečná hodnota `13`, který je co vyvolání typu `f` vytiskněte. Místo toho protože každé iterace má svůj vlastní proměnnou `v`, je zachycená výrazem `f` v první iteraci budou pro uchování hodnoty `7`, což je, co budou zobrazeny. (Poznámka: starší verze jazyka C# deklarované `v` smyčku while mimo.)
+Pokud `v` byla deklarována mimo smyčku while, bude sdílena mezi všemi iteracemi a její hodnotou za smyčkou for by byla konečná hodnota, `13`, což je `f` to, co by bylo vyvoláno. Místo toho, protože každá iterace má svou `v`vlastní proměnnou, bude hodnota `f` zachycená v první iteraci nadále uchovávat hodnotu `7`, která bude vytištěna. (Poznámka: starší verze C# deklarované `v` mimo smyčku while.)
 
-Text nakonec bloku je vytvořený podle následujících kroků:
+Tělo bloku finally je konstruováno podle následujících kroků:
 
-*  Pokud je implicitní převod z `E` k `System.IDisposable` rozhraní, pak
-   *  Pokud `E` je typ hodnoty Null bude nakonec klauzule rozbalen a sémantické ekvivalent:
+*  Pokud existuje implicitní převod z `E` `System.IDisposable` na rozhraní, pak
+   *  Pokud `E` je typ hodnoty, která není null, klauzule finally je rozšířena na sémantický ekvivalent:
 
       ```csharp
       finally {
@@ -781,7 +781,7 @@ Text nakonec bloku je vytvořený podle následujících kroků:
       }
       ```
 
-   *  V opačném případě nakonec klauzule rozbalen a sémantické ekvivalent:
+   *  V opačném případě je klauzule finally rozšířena na sémantický ekvivalent:
 
       ```csharp
       finally {
@@ -789,16 +789,16 @@ Text nakonec bloku je vytvořený podle následujících kroků:
       }
       ```
 
-   s výjimkou, že pokud `E` je hodnotový typ nebo parametr typu instance typu hodnoty a pak přetypování souřadnic `e` k `System.IDisposable` nezpůsobí zabalení dochází.
+   s výjimkou `E` toho, že pokud je typ hodnoty nebo parametr typu, který je vytvořen jako typ hodnoty, `e` přetypování na `System.IDisposable` nezpůsobí, že by došlo k zabalení.
 
-*  Jinak, pokud `E` je zapečetěný typ, nakonec klauzule rozbalen a prázdný blok:
+*  V opačném `E` případě, pokud je zapečetěný typ, je klauzule finally rozbalena na prázdný blok:
 
    ```csharp
    finally {
    }
    ```
 
-*  V opačném případě nakonec klauzule rozbalen do:
+*  V opačném případě je klauzule finally rozšířena na:
 
    ```csharp
    finally {
@@ -807,11 +807,11 @@ Text nakonec bloku je vytvořený podle následujících kroků:
    }
    ```    
 
-   Lokální proměnná `d` není viditelné pro nebo přístup k veškerému kódu uživatele. Konkrétně to není v konfliktu s jakoukoli jinou proměnnou, jejíž obor obsahuje bloku finally.
+   Místní proměnná `d` není viditelná ani přístupná pro žádný uživatelský kód. Konkrétně není v konfliktu s žádnou jinou proměnnou, jejíž obor obsahuje blok finally.
 
-Pořadí, ve kterém `foreach` prochází přes prvky pole, vypadá takto: Pro prvky jednorozměrná pole je provázán ve vzestupném pořadí indexů, počínaje indexem `0` a konče index `Length - 1`. Pro vícerozměrná pole jsou prvky procházet tak, že indexy rozměr nejvíce vpravo se zvýšenou první pak další levé dimenze nalevo a tak dále.
+Pořadí, ve kterém `foreach` procházejí prvky pole, je následující: Pro jednorozměrná prvky pole jsou prochází ve vzestupném pořadí indexu počínaje indexem `0` a končí indexem. `Length - 1` U multidimenzionálních polí jsou elementy procházeny tak, že jsou nejprve zvyšovány indexy pravého rozměru, potom následující levá dimenze a tak dále doleva.
 
-Následující příklad vytiskne každé hodnoty v dvojrozměrné pole, v pořadí elementů:
+Následující příklad vytiskne každou hodnotu v dvojrozměrném poli v pořadí prvků:
 ```csharp
 using System;
 
@@ -830,7 +830,7 @@ class Test
     }
 }
 ```
-Výstup vytvořený vypadá takto:
+Výstup vyprodukovaný je následující:
 ```csharp
 1.2 2.3 3.4 4.5 5.6 6.7 7.8 8.9
 ```
@@ -840,11 +840,11 @@ V příkladu
 int[] numbers = { 1, 3, 5, 7, 9 };
 foreach (var n in numbers) Console.WriteLine(n);
 ```
-typ `n` odvozena jako `int`, typ elementu `numbers`.
+typ `n` je `int` odvozený`numbers`, typ elementu.
 
 ## <a name="jump-statements"></a>Jump – příkazy
 
-Příkazy skoku bezpodmínečně přenést řízení.
+Příkazy skoku nepodmíněný přenos řízení.
 
 ```antlr
 jump_statement
@@ -856,11 +856,11 @@ jump_statement
     ;
 ```
 
-Umístění, ke kterému předává příkaz skoku řízení se nazývá ***cílové*** příkazu jump.
+Umístění, do kterého příkaz skoku přenáší řízení, se nazývá ***cíl*** příkazu skoku.
 
-Pokud v rámci bloku dojde k výpisu odkazů, a cíl, který tento příkaz skoku je mimo tento blok, příkaz skoku se říká, že ***ukončit*** bloku. Při výpisu odkazů může přenést řízení mimo blok, se nikdy nepřenášejí ovládacího prvku do bloku.
+V případě, že se k příkazu skoku dojde v rámci bloku a cíl tohoto příkazu skoku je mimo tento blok, je příkaz skoku označován pro ***ukončení*** bloku. Zatímco příkaz skoku může přenést řízení z bloku, nemůže nikdy přenést ovládací prvek do bloku.
 
-Spuštění příkazů skoku je složité přítomností intervenující `try` příkazy. Chybí těchto `try` příkazy, příkaz skoku bezpodmínečně přenese ovládací prvek z příkazu skoku k cíli. Za přítomnosti takové intervenující `try` příkazy, provedení je složitější. Pokud se příkaz skoku ukončí jeden nebo více `try` přidružené bloky s `finally` bloky, ovládací prvek zpočátku bude převeden na `finally` bloku nejvnitřnější `try` příkazu. Pokud a v případě, že ovládací prvek dosáhne koncového bodu `finally` bloku, ovládací prvek bude převeden na `finally` další uzavírající blok `try` příkazu. Tento proces se opakuje, dokud `finally` všechny bloky použité `try` příkazy byly provedeny.
+Spuštění příkazů skoku je komplikované přítomností `try` v rámci příkazů. V případě absence takových `try` příkazů příkaz skoku nepodmíněné přenáší řízení z příkazu skok na jeho cíl. V přítomnosti těchto `try` vydaných příkazů je provádění složitější. Pokud příkaz skoku `try` ukončí jeden nebo více bloků s přidruženými `finally` bloky, `finally` je počáteční přenos ovládacího prvku do bloku nejvnitřnějšího `try` příkazu. Když a pokud ovládací prvek dosáhne koncového bodu `finally` bloku, je ovládací prvek převeden `finally` do bloku dalšího ohraničujícího `try` příkazu. Tento proces se opakuje, `finally` dokud nebudou provedeny bloky všech `try` předaných příkazů.
 
 V příkladu
 ```csharp
@@ -887,9 +887,9 @@ class Test
     }
 }
 ```
-`finally` bloky, které jsou přidružené dvě `try` příkazy jsou spouštěny před ovládací prvek bude převeden na cíl příkazu skoku.
+bloky přidružené ke dvěma `try` příkazům jsou spouštěny před přesměrováním ovládacího prvku na cíl příkazu skoku. `finally`
 
-Výstup vytvořený vypadá takto:
+Výstup vyprodukovaný je následující:
 ```
 Before break
 Innermost finally block
@@ -899,7 +899,7 @@ After break
 
 ### <a name="the-break-statement"></a>Příkaz break
 
-`break` Ukončí nejbližšího obklopujícího příkazu `switch`, `while`, `do`, `for`, nebo `foreach` příkazu.
+Příkazukončí`switch`nejbližší ohraničující `while` příkaz,`foreach` ,, nebo. `do` `break` `for`
 
 ```antlr
 break_statement
@@ -907,22 +907,22 @@ break_statement
     ;
 ```
 
-Cíl `break` příkaz je koncový bod nejbližšího obklopujícího `switch`, `while`, `do`, `for`, nebo `foreach` příkazu. Pokud `break` příkazu není uzavřená v `switch`, `while`, `do`, `for`, nebo `foreach` příkaz, vyvolá chybu v době kompilace.
+`break` Cílem příkazu je koncový bod nejbližšího `do` `switch`ohraničujícího `while`příkazu,, `for`, nebo `foreach` . `switch` `do` `while`Pokud příkaz není uzavřen v příkazu, ,`for`, nebo`foreach` , dojde k chybě při kompilaci. `break`
 
-Když více `switch`, `while`, `do`, `for`, nebo `foreach` příkazy jsou vnořeny do sebe navzájem `break` příkaz platí jenom pro vnitřní příkaz. Přenos řízení napříč více úrovní vnoření, `goto` – příkaz ([příkazu goto](statements.md#the-goto-statement)) musí být použita.
+Je- `switch` `while` `do` `for`li více příkazů,, `foreach` , nebo v sobě vnořeno, příkaz se vztahuje pouze na nejvnitřnější výraz. `break` Chcete-li přenést řízení napříč více úrovněmi vnoření `goto` , je nutné použít příkaz ([příkaz goto](statements.md#the-goto-statement)).
 
-A `break` příkaz nemůže ukončit `finally` blok ([příkazu try](statements.md#the-try-statement)). Při `break` příkazu vyvolá se v rámci `finally` blokovat, cíl `break` příkaz musí být v rámci stejného `finally` blokovat; v opačném případě dojde k chybě kompilace.
+Příkaz nemůže ukončit blok ([příkaz try).](statements.md#the-try-statement) `finally` `break` V případě `finally` `finally` `break` ,žedojdekpříkazuvrámcibloku,musíbýtcílpříkazuvrámcistejnéhobloku;vopačném`break` případě dojde k chybě při kompilaci.
 
-A `break` je proveden příkaz takto:
+`break` Příkaz se spustí takto:
 
-*  Pokud `break` příkaz ukončí jeden nebo více `try` přidružené bloky s `finally` bloky, ovládací prvek zpočátku bude převeden na `finally` bloku nejvnitřnější `try` příkaz. Pokud a v případě, že ovládací prvek dosáhne koncového bodu `finally` bloku, ovládací prvek bude převeden na `finally` další uzavírající blok `try` příkazu. Tento proces se opakuje, dokud `finally` všechny bloky použité `try` příkazy byly provedeny.
-*  Ovládací prvek bude převeden do cílového místa `break` příkazu.
+*  `finally` `try` `finally` Pokud příkaz ukončí jeden nebo více `try` bloků s přidruženými bloky, je ovládací prvek zpočátku převeden do bloku nejvnitřnějšího příkazu. `break` Když a pokud ovládací prvek dosáhne koncového bodu `finally` bloku, je ovládací prvek převeden `finally` do bloku dalšího ohraničujícího `try` příkazu. Tento proces se opakuje, `finally` dokud nebudou provedeny bloky všech `try` předaných příkazů.
+*  Řízení je převedeno na cíl `break` příkazu.
 
-Protože `break` příkaz bezpodmínečně převede ovládací prvek jinde, koncový bod `break` příkazu není dostupný.
+Vzhledem k `break` tomu, že příkaz nepodmíněně přenáší řízení jinde, koncový bod `break` příkazu není nikdy dosažitelný.
 
-### <a name="the-continue-statement"></a>Příkaz continue
+### <a name="the-continue-statement"></a>Příkaz Continue
 
-`continue` Spustí novou iteraci nejbližšího ohraničujícího příkazu `while`, `do`, `for`, nebo `foreach` příkazu.
+`do` `while` `foreach` `for`Příkaz spustí novou iteraci nejbližšího ohraničujícího příkazu,, nebo. `continue`
 
 ```antlr
 continue_statement
@@ -930,22 +930,22 @@ continue_statement
     ;
 ```
 
-Cíl `continue` příkaz je koncový bod vloženým příkazem nejbližšího obklopujícího `while`, `do`, `for`, nebo `foreach` příkazu. Pokud `continue` příkazu není uzavřená v `while`, `do`, `for`, nebo `foreach` příkaz, vyvolá chybu v době kompilace.
+Cíl `continue` příkazu je koncový bod vloženého příkazu nejbližšího `while`ohraničujícího `do`příkazu,, `for`nebo `foreach` . `while` `do` `for`Pokud příkaz není uzavřen v příkazu,, nebo `foreach` , dojde k chybě při kompilaci. `continue`
 
-Když více `while`, `do`, `for`, nebo `foreach` příkazy jsou vnořeny do sebe navzájem `continue` příkaz platí jenom pro vnitřní příkaz. Přenos řízení napříč více úrovní vnoření, `goto` – příkaz ([příkazu goto](statements.md#the-goto-statement)) musí být použita.
+Je- `while` `do` `for` `foreach` li více příkazů,, nebo vnořen mezi sebou, příkaz se vztahuje pouze na nejvnitřnější výraz. `continue` Chcete-li přenést řízení napříč více úrovněmi vnoření `goto` , je nutné použít příkaz ([příkaz goto](statements.md#the-goto-statement)).
 
-A `continue` příkaz nemůže ukončit `finally` blok ([příkazu try](statements.md#the-try-statement)). Při `continue` příkazu vyvolá se v rámci `finally` blokovat, cíl `continue` příkaz musí být v rámci stejného `finally` blokovat; v opačném případě dojde k chybě kompilace.
+Příkaz nemůže ukončit blok ([příkaz try).](statements.md#the-try-statement) `finally` `continue` V případě `finally` `finally` `continue` ,žedojdekpříkazuvrámcibloku,musíbýtcílpříkazuvrámcistejnéhobloku;vopačném`continue` případě dojde k chybě při kompilaci.
 
-A `continue` je proveden příkaz takto:
+`continue` Příkaz se spustí takto:
 
-*  Pokud `continue` příkaz ukončí jeden nebo více `try` přidružené bloky s `finally` bloky, ovládací prvek zpočátku bude převeden na `finally` bloku nejvnitřnější `try` příkaz. Pokud a v případě, že ovládací prvek dosáhne koncového bodu `finally` bloku, ovládací prvek bude převeden na `finally` další uzavírající blok `try` příkazu. Tento proces se opakuje, dokud `finally` všechny bloky použité `try` příkazy byly provedeny.
-*  Ovládací prvek bude převeden do cílového místa `continue` příkazu.
+*  `finally` `try` `finally` Pokud příkaz ukončí jeden nebo více `try` bloků s přidruženými bloky, je ovládací prvek zpočátku převeden do bloku nejvnitřnějšího příkazu. `continue` Když a pokud ovládací prvek dosáhne koncového bodu `finally` bloku, je ovládací prvek převeden `finally` do bloku dalšího ohraničujícího `try` příkazu. Tento proces se opakuje, `finally` dokud nebudou provedeny bloky všech `try` předaných příkazů.
+*  Řízení je převedeno na cíl `continue` příkazu.
 
-Protože `continue` příkaz bezpodmínečně převede ovládací prvek jinde, koncový bod `continue` příkazu není dostupný.
+Vzhledem k `continue` tomu, že příkaz nepodmíněně přenáší řízení jinde, koncový bod `continue` příkazu není nikdy dosažitelný.
 
-### <a name="the-goto-statement"></a>Goto – příkaz
+### <a name="the-goto-statement"></a>Příkaz goto
 
-`goto` Příkaz přenese ovládací prvek na příkaz, který je označen popiskem.
+`goto` Příkaz přenáší řízení na příkaz, který je označen popiskem.
 
 ```antlr
 goto_statement
@@ -955,7 +955,7 @@ goto_statement
     ;
 ```
 
-Cíl `goto` *identifikátor* příkaz je příkaz s popiskem s danou popiskem. Pokud popisek se zadaným názvem neexistuje v aktuálním členské funkce, nebo pokud `goto` příkaz není v rámci oboru popisku, dojde k chybě kompilace. Toto pravidlo povoluje použití `goto` příkaz k předání řízení z vnořené oboru, ale ne do vnořené oboru. V příkladu
+Cíl `goto` příkazu *identifikátoru* je popisek příkazu se zadaným popiskem. Pokud popisek s daným názvem neexistuje v aktuálním členovi funkce nebo pokud `goto` příkaz není v rámci oboru popisku, dojde k chybě při kompilaci. Toto pravidlo povoluje použití `goto` příkazu pro přenos řízení z vnořeného oboru, ale ne do vnořeného oboru. V příkladu
 ```csharp
 using System;
 
@@ -982,24 +982,24 @@ class Test
     }
 }
 ```
-`goto` prohlášení se používá k přenosu řízení z vnořené oboru.
+`goto` příkaz se používá k přenosu řízení z vnořeného oboru.
 
-Cíl `goto case` příkaz je seznamu příkazů ve těsně uzavírajícím `switch` – příkaz ([příkazu switch](statements.md#the-switch-statement)), obsahující `case` popisek s danou hodnotu konstanty. Pokud `goto case` příkazu není uzavřená v `switch` příkazu, pokud *constant_expression* není implicitně převést ([implicitní převody](conversions.md#implicit-conversions)) celopodnikové typu nejbližší uzavírající `switch` příkazu, nebo pokud nejbližšího obklopujícího `switch` neobsahuje příkaz `case` popisek s danou konstantní hodnoty, dojde k chybě kompilace.
+Cíl `goto case` příkazu je seznam příkazů v `switch` příkazu bezprostředně ohraničujícího příkaz ( `case` [příkaz switch](statements.md#the-switch-statement)), který obsahuje popisek s danou konstantní hodnotou. `switch` `switch` [](conversions.md#implicit-conversions)Pokud příkaz není uzavřený příkazem, pokud constant_expression není implicitně konvertibilní (implicitní převody) na typ řízení nejbližšího ohraničujícího příkazu, nebo pokud `goto case` nejbližší ohraničující `switch` příkaz `case` neobsahuje popisek s danou konstantní hodnotou, dojde k chybě při kompilaci.
 
-Cíl `goto default` příkaz je seznamu příkazů ve těsně uzavírajícím `switch` – příkaz ([příkazu switch](statements.md#the-switch-statement)), obsahující `default` popisek. Pokud `goto default` příkazu není uzavřená v `switch` příkazu, nebo pokud nejbližšího obklopujícího `switch` příkaz neobsahuje `default` popisek, dojde k chybě kompilace.
+Cíl `goto default` příkazu je seznam příkazů v `switch` příkazu bezprostředně ohraničujícího příkaz ( `default` [příkaz switch](statements.md#the-switch-statement)), který obsahuje popisek. Pokud příkaz není ohraničen `switch` příkazem, nebo `switch` Pokud nejbližší nadřazený příkaz `default` neobsahuje popisek, dojde k chybě při kompilaci. `goto default`
 
-A `goto` příkaz nemůže ukončit `finally` blok ([příkazu try](statements.md#the-try-statement)). Při `goto` příkazu vyvolá se v rámci `finally` blokovat, cíl `goto` příkaz musí být v rámci stejného `finally` blok, nebo v opačném případě dojde k chybě kompilace.
+Příkaz nemůže ukončit blok ([příkaz try).](statements.md#the-try-statement) `finally` `goto` V případě `finally` `finally` `goto` ,žedojdekpříkazuvrámcibloku,cílpříkazumusíbýtvrámcistejnéhoblokunebovopačném`goto` případě dojde k chybě při kompilaci.
 
-A `goto` je proveden příkaz takto:
+`goto` Příkaz se spustí takto:
 
-*  Pokud `goto` příkaz ukončí jeden nebo více `try` přidružené bloky s `finally` bloky, ovládací prvek zpočátku bude převeden na `finally` bloku nejvnitřnější `try` příkaz. Pokud a v případě, že ovládací prvek dosáhne koncového bodu `finally` bloku, ovládací prvek bude převeden na `finally` další uzavírající blok `try` příkazu. Tento proces se opakuje, dokud `finally` všechny bloky použité `try` příkazy byly provedeny.
-*  Ovládací prvek bude převeden do cílového místa `goto` příkazu.
+*  `finally` `try` `finally` Pokud příkaz ukončí jeden nebo více `try` bloků s přidruženými bloky, je ovládací prvek zpočátku převeden do bloku nejvnitřnějšího příkazu. `goto` Když a pokud ovládací prvek dosáhne koncového bodu `finally` bloku, je ovládací prvek převeden `finally` do bloku dalšího ohraničujícího `try` příkazu. Tento proces se opakuje, `finally` dokud nebudou provedeny bloky všech `try` předaných příkazů.
+*  Řízení je převedeno na cíl `goto` příkazu.
 
-Protože `goto` příkaz bezpodmínečně převede ovládací prvek jinde, koncový bod `goto` příkazu není dostupný.
+Vzhledem k `goto` tomu, že příkaz nepodmíněně přenáší řízení jinde, koncový bod `goto` příkazu není nikdy dosažitelný.
 
 ### <a name="the-return-statement"></a>Příkaz return
 
-`return` Příkaz vrátí řízení volajícímu aktuální funkce, ve kterém `return` objevuje příkaz.
+Příkaz vrátí řízení aktuálnímu volajícímu funkce, ve `return` které se příkaz zobrazí. `return`
 
 ```antlr
 return_statement
@@ -1007,26 +1007,26 @@ return_statement
     ;
 ```
 
-A `return` příkaz s žádný výraz lze použít pouze v funkce členu, který nelze vypočítat hodnotu tedy metoda s výsledným typem ([tělo metody](classes.md#method-body)) `void`, `set` přistupující objekt vlastnosti nebo indexer, který je `add` a `remove` přistupující objekty událost, konstruktor instance, statický konstruktor nebo destruktor.
+`add` `void` `set` [](classes.md#method-body)Příkaz bez výrazu lze použít pouze ve členovi funkce, který nepočítá hodnotu, tedy metodu s typem výsledku (tělo metody), přistupující objekt vlastnosti nebo indexeru, `return` a `remove` přistupující objekty události, konstruktor instance, statický konstruktor nebo destruktor.
 
-A `return` příkaz s výrazem jde použít jenom v členské funkci, která vypočítá hodnotu tedy metoda s typem výsledku není void, `get` přistupující objekt vlastnosti nebo indexeru nebo uživatelem definovaný operátor. Implicitní převod ([implicitních převodů](conversions.md#implicit-conversions)) z typu výrazu, musí existovat na návratový typ obsahující členské funkce.
+Příkaz s výrazem lze použít pouze v členovi funkce, který vypočítá hodnotu, což je metoda s neprázdným typem výsledku `get` , přístupový objekt vlastnosti nebo indexeru nebo uživatelem definovaný operátor. `return` Implicitní převod ([implicitní převody](conversions.md#implicit-conversions)) musí existovat z typu výrazu na návratový typ obsahujícího člena funkce.
 
-Vrátí příkazy lze použít také v těle výrazu anonymní funkce ([výrazy anonymní funkce](expressions.md#anonymous-function-expressions)) a účast při určování, které převody existovat pro tyto funkce.
+Příkazy Return lze také použít v těle anonymních výrazů funkce ([výrazy anonymních funkcí](expressions.md#anonymous-function-expressions)) a účastnit se určení, které převody pro tyto funkce existují.
 
-Je chyba kompilace pro `return` příkazu se zobrazí v `finally` blok ([příkazu try](statements.md#the-try-statement)).
+Jedná se o chybu `return` `finally` v době kompilace pro zobrazení příkazu v bloku ([příkaz try](statements.md#the-try-statement)).
 
-A `return` je proveden příkaz takto:
+`return` Příkaz se spustí takto:
 
-*  Pokud `return` příkaz Určuje výraz, výraz je vyhodnocen a výsledná hodnota je převedena na typ vrácené hodnoty funkce obsahující podle implicitní převod. Výsledkem převodu se změní hodnota výsledku vytvořeného funkcí.
-*  Pokud `return` příkazu není uzavřen v jedné nebo více `try` nebo `catch` přidružené bloky s `finally` bloky, ovládací prvek zpočátku bude převeden na `finally` bloku nejvnitřnější `try` příkaz. Pokud a v případě, že ovládací prvek dosáhne koncového bodu `finally` bloku, ovládací prvek bude převeden na `finally` další uzavírající blok `try` příkazu. Tento proces se opakuje, dokud `finally` blokuje všechny nadřazené `try` příkazy byly provedeny.
-*  Pokud obsahující funkce není asynchronní funkce, ovládací prvek se vrátí volajícímu metody obsahující funkce včetně hodnoty výsledku pokud existuje.
-*  Pokud je asynchronní funkce obsahující funkce, ovládací prvek se vrátí volajícímu aktuální a výslednou hodnotu, pokud existuje, je zaznamenán v Vrácená úloha jak je popsáno v ([rozhraní pro výčty](classes.md#enumerator-interfaces)).
+*  `return` Pokud příkaz určuje výraz, je vyhodnocen výraz a výsledná hodnota je převedena na návratový typ obsahující funkce implicitním převodem. Výsledek převodu se stala výslednou hodnotou vytvořenou funkcí.
+*  `finally` `catch` `try` `finally` Je-li `try` příkaz uzavřen jedním nebo více nebo bloku s přidruženými bloky, je ovládací prvek zpočátku převeden do bloku nejvnitřnějšího příkazu. `return` Když a pokud ovládací prvek dosáhne koncového bodu `finally` bloku, je ovládací prvek převeden `finally` do bloku dalšího ohraničujícího `try` příkazu. Tento proces se opakuje, `finally` dokud nebudou provedeny bloky všech `try` ohraničujících příkazů.
+*  Pokud je nadřazená funkce neasynchronní funkcí, ovládací prvek je vrácen volajícímu obsahující funkci spolu s výslednou hodnotou, pokud existuje.
+*  Pokud je nadřazená funkce asynchronní funkce, vrátí se řízení aktuálnímu volajícímu a výsledná hodnota, pokud existuje, je zaznamenána v úloze vrácení, jak je popsáno v tématu ([rozhraní enumerátorů](classes.md#enumerator-interfaces)).
 
-Protože `return` příkaz bezpodmínečně převede ovládací prvek jinde, koncový bod `return` příkazu není dostupný.
+Vzhledem k `return` tomu, že příkaz nepodmíněně přenáší řízení jinde, koncový bod `return` příkazu není nikdy dosažitelný.
 
 ### <a name="the-throw-statement"></a>Příkaz throw
 
-`throw` Příkazu dojde k výjimce.
+`throw` Příkaz vyvolá výjimku.
 
 ```antlr
 throw_statement
@@ -1034,33 +1034,33 @@ throw_statement
     ;
 ```
 
-A `throw` Vyvolá příkaz s výrazem hodnotu vytvořenou testovaným vyhodnocení výrazu. Výraz musí označují hodnotu typu třídy `System.Exception`, typu třídy, která je odvozena z `System.Exception` nebo typu parametru typu, který má `System.Exception` (nebo jejich podtřída) jako jeho základní třída. V případě vyhodnocování výrazu vytvoří `null`, `System.NullReferenceException` místo toho je vyvolána výjimka.
+`throw` Příkaz s výrazem vyvolá hodnotu vytvořenou vyhodnocením výrazu. Výraz musí poznamenat hodnotu typu `System.Exception`třídy typu třídy, který je odvozen z `System.Exception` nebo typu parametru typu, který má `System.Exception` (nebo podtřídu) jako platnou základní třídu. Pokud vygeneruje `null`vyhodnocení výrazu `System.NullReferenceException` , je vyvolána místo toho.
 
-A `throw` příkaz s žádný výraz se dá použít jenom ve `catch` blokovat, v takovém případě, který tento příkaz znovu vyvolá výjimku, která je aktuálně zpracovávanou díky tomu `catch` bloku.
+Příkaz bez výrazu lze použít pouze `catch` v bloku, v takovém případě příkaz znovu vyvolá výjimku, která je `catch` aktuálně zpracovávána tímto blokem. `throw`
 
-Protože `throw` příkaz bezpodmínečně převede ovládací prvek jinde, koncový bod `throw` příkazu není dostupný.
+Vzhledem k `throw` tomu, že příkaz nepodmíněně přenáší řízení jinde, koncový bod `throw` příkazu není nikdy dosažitelný.
 
-Když je vyvolána výjimka, ovládací prvek bude převeden na první `catch` klauzuli v nadřazeném `try` příkaz, který může zpracovat výjimku. Proces, který se provádí z bodu výjimky do místa přenos řízení na obslužnou rutinu vhodná výjimka se označuje jako ***šíření výjimek***. Šíření výjimky se skládá z opakovaného vyhodnocování následující kroky, dokud `catch` nenajde klauzuli, která odpovídá výjimku. V tomto popisu ***throw bodu*** je zpočátku umístění, ve kterém je vyvolána výjimka.
+Je-li vyvolána výjimka, je ovládací prvek převeden do první `catch` klauzule v `try` ohraničujícím příkazu, který může zpracovat výjimku. Proces, který probíhá z bodu výjimky vyvolané v bodě přenosu řízení na vhodnou obslužnou rutinu výjimky, je označován jako ***šíření výjimky***. Šíření výjimky se skládá z opakovaného vyhodnocení následujících kroků, dokud `catch` není nalezena klauzule, která se shoduje s výjimkou. V tomto popisu je ***bod throw*** zpočátku umístěním, kde je vyvolána výjimka.
 
-*  V aktuální funkce členu každý `try` příkaz, který obklopuje bodu throw je zkontrolován. Příkazu for each `S`počínaje nejvnitřnější `try` příkazu a konče nejkrajnější `try` prohlášení, jsou vyhodnocovány následující kroky:
+*  V aktuálním členovi funkce je zkontrolován `try` každý příkaz, který je ohraničený bodem throw. Pro každý příkaz `S`, který začíná nejvnitřnějším `try` příkazem a končí vnějším `try` příkazem, jsou vyhodnoceny následující kroky:
 
-   * Pokud `try` bloku `S` obklopuje bodu throw a pokud S má jeden nebo více `catch` klauzulí se operátor `catch` klauzule jsou zkoumány podle pořadí vzhled pro vyhledání vhodné obslužné rutiny pro výjimky, podle pravidel zadaných v Část [příkazu try](statements.md#the-try-statement). Pokud odpovídající `catch` klauzule nachází, šíření výjimek je dokončit přenos řízení na blok, který `catch` klauzuli.
+   * `try` Pokud `catch` `catch` blok uzavíracího bodu uzavřete a pokud má parametr S jednu nebo více klauzulí, jsou klauzule zkontrolovány v pořadí podle vzhledu pro vyhledání vhodné obslužné rutiny pro výjimku podle pravidel uvedených v `S` [V části příkaz try](statements.md#the-try-statement). Pokud je nalezena `catch` odpovídající klauzule, šíření výjimky je dokončeno přenesením ovládacího prvku na blok `catch` této klauzule.
 
-   * Jinak, pokud `try` bloku nebo `catch` bloku `S` obklopuje bodu throw a pokud `S` má `finally` bloku, ovládací prvek bude převeden na `finally` bloku. Pokud `finally` bloku vyvolá další výjimku, se ukončí zpracování aktuální výjimky. Jinak, když ovládací prvek dosáhne koncového bodu `finally` bloku, pokračovat zpracování aktuální výjimky.
+   * V opačném případě `try` , pokud blok `catch` nebo blok `S` uzavíracího bodu a `S` má `finally` blok, je ovládací prvek převeden do `finally` bloku. `finally` Pokud blok vyvolá jinou výjimku, zpracování aktuální výjimky je ukončeno. V opačném případě, pokud ovládací prvek dosáhne koncového bodu `finally` bloku, pokračuje zpracování aktuální výjimky.
 
-*  Pokud nebyl v aktuálním volání funkce obslužné rutiny výjimek, volání funkce se ukončí a dojde k jedné z následujících akcí:
+*  Pokud nebyla obslužná rutina výjimky umístěna v aktuálním volání funkce, volání funkce je ukončeno a nastane jedna z následujících situací:
 
-   * Pokud je aktuální funkce není asynchronní, se opakují výše uvedených kroků pro volající funkci s bodem throw odpovídající příkaz, ze kterého byla vyvolána členské funkce.
+   * Pokud je aktuální funkce neasynchronní, výše uvedené kroky jsou opakovány pro volající funkce s bodem throw, který odpovídá příkazu, ze kterého byl člen funkce vyvolán.
 
-   * Pokud je aktuální funkce async a vracející úlohy, výjimka se zaznamená do vrácené úlohou, které přejde do stavu chybovém nebo bylo zrušeno, jak je popsáno v [rozhraní pro výčty](classes.md#enumerator-interfaces).
+   * Pokud je aktuální funkce asynchronní a vrácení úlohy zpět, je výjimka zaznamenána do návratové úlohy, která je vložena do chybného nebo zrušeného stavu, jak je popsáno v tématu [rozhraní výčtu](classes.md#enumerator-interfaces).
 
-   * Pokud aktuální funkci je asynchronní a vracející hodnotu void, je oznámení kontext synchronizace aktuálního vlákna, jak je popsáno v [vyčíslitelná rozhraní](classes.md#enumerable-interfaces).
+   * Pokud je aktuální funkce asynchronní a návratovou hodnotou void, je kontext synchronizace aktuálního vlákna upozorněn, jak je popsáno v tématu [výčtová rozhraní](classes.md#enumerable-interfaces).
 
-*  Zpracování výjimek ukončí všechny volání členské funkce v aktuálním vlákně, označující, že vlákno nemá žádná obslužná rutina výjimky, pak vlákna je ukončen. Dopad ukončení, je definováno implementací.
+*  Pokud zpracování výjimek ukončí všechna volání členů funkce v aktuálním vlákně, což značí, že vlákno neobsahuje žádnou obslužnou rutinu pro výjimku, vlákno je ukončeno. Dopad takového ukončení je definován implementací.
 
 ## <a name="the-try-statement"></a>Příkaz try
 
-`try` Příkaz poskytuje mechanismus pro zachycování výjimek, ke kterým dochází při provádění bloku. Kromě toho `try` poskytuje možnost určit blok kódu, který je vždy spuštěn, když ovládací prvek opustí příkaz `try` příkazu.
+`try` Příkaz poskytuje mechanismus pro zachycení výjimek, ke kterým dochází během provádění bloku. Kromě toho `try` příkaz poskytuje možnost zadat blok kódu, který je vždy spuštěn, když ovládací prvek `try` opustí příkaz.
 
 ```antlr
 try_statement
@@ -1086,25 +1086,25 @@ finally_clause
     ;
 ```
 
-Existují tři možné formy `try` příkazy:
+Existují tři možné formy `try` příkazů:
 
-*  A `try` bloku, za nímž následuje jedna nebo více `catch` bloky.
-*  A `try` bloku, za nímž následuje `finally` bloku.
-*  A `try` bloku, za nímž následuje jedna nebo více `catch` bloky, za nímž následuje `finally` bloku.
+*  Blok následovaný jedním nebo více `catch` bloky. `try`
+*  `try` Blok následovaný`finally` blokem.
+*  Blok následovaný jedním nebo více `catch` bloky následovanými `finally` blokem. `try`
 
-Při `catch` určuje klauzuli *exception_specifier*, musí být typu `System.Exception`, typ, který je odvozen od `System.Exception` nebo typ parametru typu, který má `System.Exception` (nebo jejich podtřída) jako jeho platit Základní třída.
+`System.Exception` `System.Exception` `System.Exception`Když klauzule určuje exception_specifier, musí být typ, typ, který je odvozen z nebo typ parametru typu, který má (nebo podtříd) jako jeho efektivní základní třídu. `catch`
 
-Při `catch` klauzule určuje, jak *exception_specifier* s *identifikátor*, ***proměnné exception*** zadaný název a typ je deklarován. Proměnné exception odpovídá na místní proměnnou s rozsahem, který rozšiřuje přes `catch` klauzuli. Během provádění *exception_filter* a *bloku*, proměnné exception představuje aktuálně zpracovávanou výjimku. Pro účely kontroly jednoznačného přiřazení proměnné exception se považuje za jednoznačně přiřazena v jeho celý rozsah.
+Když klauzule určuje jak exception_specifier s *identifikátorem*, je deklarována ***Proměnná výjimky*** daného názvu a typu. `catch` Proměnná výjimky odpovídá místní proměnné s rozsahem, který překračuje `catch` klauzuli. Během provádění *exception_filter* a *bloku*představuje proměnná výjimky Aktuálně zpracovávanou výjimku. Pro účely jednoznačné kontroly přiřazení je proměnná výjimky považována za jednoznačně přiřazenou v celém oboru.
 
-Pokud `catch` klauzule obsahuje název proměnné výjimky, není možné získat přístup k objektu výjimka ve filtru a `catch` bloku.
+Pokud klauzule nezahrnuje název proměnné výjimky, není nemožné získat přístup k objektu výjimky ve filtru a `catch` bloku. `catch`
 
-A `catch` klauzuli, která neurčuje *exception_specifier* nazývá Obecné `catch` klauzuli.
+Klauzule, která neurčuje *exception_specifier* , se nazývá obecná `catch` klauzule. `catch`
 
-Některé z nich můžou podporovat výjimky, které nejsou reprezentovat objekt odvozena z `System.Exception`, i když tyto výjimky může nebudou nikdy generována pomocí kódu jazyka C#. Obecné `catch` klauzuli může použít k zachycení takové výjimky. Proto Obecné `catch` je klauzule sémanticky rozdílnými z jednoho, který určuje typ `System.Exception`, v tom, že dříve uvedené může také zachytit výjimky z jiných jazyků.
+Některé programovací jazyky mohou podporovat výjimky, které nejsou reprezentovány jako objekt odvozený z `System.Exception`, i když takové výjimky by nikdy neměly být C# generovány kódem. K zachycení `catch` takových výjimek se dá použít obecná klauzule. Proto obecná `catch` klauzule je sémanticky odlišná od jednoho, který určuje typ `System.Exception`, v tom, že předchozí může také zachytit výjimky z jiných jazyků.
 
-Aby bylo možné najít obslužnou rutinu výjimky, `catch` klauzule jsou zkoumány podle pořadí slov. Pokud `catch` klauzule určuje typ, ale žádný filtr výjimek, je chyba kompilace pro pozdější `catch` klauzule ve stejném `try` příkaz a zadejte typ, který je stejný jako, nebo je odvozen z typu. Pokud `catch` klauzule určuje žádný typ a žádný filtr, musí být poslední `catch` klauzuli, která `try` příkazu.
+Aby bylo možné najít obslužnou rutinu pro výjimku, `catch` jsou v lexikálním pořadí přezkoumány klauzule. Pokud klauzule určuje typ, ale filtr výjimek, jedná se o chybu při kompilaci pro pozdější `catch` klauzuli v rámci stejného `try` příkazu k určení typu, který je stejný jako nebo je odvozen z typu, který je typu. `catch` Pokud klauzule neurčuje žádný typ bez filtru, musí se jednat o poslední `catch` klauzuli pro tento `try` příkaz. `catch`
 
-V rámci `catch` bloku, `throw` – příkaz ([příkazu throw](statements.md#the-throw-statement)) s žádný výraz lze použít pro opětovné vyvolání výjimky, která byla zachycena `catch` bloku. Přiřazení proměnné výjimka nemění, který je znovu vyvolána výjimka.
+V rámci `throw` `catch` bloku lze příkaz ([příkaz throw](statements.md#the-throw-statement)) bez výrazu použít k opětovnému vyvolání výjimky, která byla zachycena blokem. `catch` Přiřazení proměnné výjimky nemění výjimku, která je znovu vyvolána.
 
 V příkladu
 ```csharp
@@ -1137,62 +1137,62 @@ class Test
     }
 }
 ```
-Metoda `F` zachytí výjimku, zapíše některé diagnostické informace do konzoly, mění proměnné exception a znovu vyvolá výjimku. Výjimka, která je znovu vyvolána je původní výjimky, takže je výstup vytvořený:
+Metoda `F` zachytí výjimku, zapisuje do konzoly nějaké diagnostické informace, změní proměnnou výjimky a znovu vyvolá výjimku. Výjimka, která je znovu vyvolána, je původní výjimka, takže výstup vytvářený je:
 ```
 Exception in F: G
 Exception in Main: G
 ```
 
-Pokud měl vyvolána první blok catch `e` místo opětné vyvolání aktuální výjimky, výstup vytvořený by měl vypadat takto:
-```csharp
+Pokud první blok catch vyvolal `e` místo opětovného vyvolání aktuální výjimky, vyprodukovaný výstup by byl následující:
+```
 Exception in F: G
 Exception in Main: F
 ```
 
-Je chyba kompilace pro `break`, `continue`, nebo `goto` příkazu k předání řízení z celkového počtu `finally` bloku. Při `break`, `continue`, nebo `goto` příkaz probíhá `finally` bloku, cílem příkazu musí být v rámci stejného `finally` bloku, nebo v opačném případě dojde k chybě kompilace.
+Jedná se o `break`chybu při kompilaci příkazu, `continue`nebo `goto` pro přenos řízení `finally` z bloku. Když v `break` `finally` bloku `continue`dojde k `goto` příkazu, nebo, musí být cíl příkazu v rámci stejného `finally` bloku nebo jinak dojde k chybě při kompilaci.
 
-Je chyba kompilace pro `return` vyskytuje v příkazu `finally` bloku.
+Jedná se o chybu při kompilaci, ke které `return` může příkaz `finally` v bloku dojít.
 
-A `try` je proveden příkaz takto:
+`try` Příkaz se spustí takto:
 
-*  Ovládací prvek bude převeden na `try` bloku.
-*  Pokud a v případě, že ovládací prvek dosáhne koncového bodu `try` blok:
-   *  Pokud `try` příkaz má `finally` bloku `finally` je blok proveden.
-   *  Ovládací prvek bude převeden na koncový bod `try` příkazu.
+*  Ovládací prvek se přenese `try` do bloku.
+*  Když a když ovládací prvek dosáhne koncového bodu `try` bloku:
+   *  Pokud příkaz má blok, je spuštěn `finally` blok. `finally` `try`
+   *  Ovládací prvek se přenese do koncového bodu `try` příkazu.
 
-*  Pokud se výjimka šíří do `try` příkaz během provádění `try` blok:
-   *  `catch` Klauzule, pokud existují, jsou zkoumány podle pořadí vzhled najít vhodné obslužné rutiny výjimky. Pokud `catch` klauzule není zadán typ nebo určuje typ výjimky nebo základní typ typu výjimky:
-      *  Pokud `catch` klauzule deklaruje proměnnou výjimky, je přiřazen objekt výjimky do proměnné výjimky.
-      *  Pokud `catch` deklaruje klauzule filtru výjimky, je vyhodnocen filtru. Pokud je vyhodnocen jako `false`klauzule catch není shoda a pokračuje v hledání prostřednictvím libovolného následné `catch` klauzule pro obslužnou rutinu vhodná.
-      *  V opačném případě `catch` klauzule považován za shodný a ovládací prvek bude převeden na odpovídající `catch` bloku.
-      *  Pokud a v případě, že ovládací prvek dosáhne koncového bodu `catch` blok:
-         * Pokud `try` příkaz má `finally` bloku `finally` je blok proveden.
-         * Ovládací prvek bude převeden na koncový bod `try` příkazu.
-      *  Pokud se výjimka šíří do `try` příkaz během provádění `catch` blok:
-         *  Pokud `try` příkaz má `finally` bloku `finally` je blok proveden.
-         *  Výjimka se šíří do další uzavírající `try` příkazu.
-   *  Pokud `try` příkazu nemá žádné `catch` klauzule nebo pokud žádná `catch` klauzule odpovídá výjimku:
-      *  Pokud `try` příkaz má `finally` bloku `finally` je blok proveden.
-      *  Výjimka se šíří do další uzavírající `try` příkazu.
+*  Pokud je výjimka rozšířena na `try` příkaz během provádění `try` bloku:
+   *  `catch` Klauzule, pokud existují, jsou zkontrolovány v pořadí podle vzhledu pro vyhledání vhodné obslužné rutiny pro výjimku. `catch` Pokud klauzule neurčuje typ, nebo typ výjimky nebo základní typ typu výjimky:
+      *  `catch` Pokud klauzule deklaruje proměnnou výjimky, je objekt výjimky přiřazen proměnné výjimky.
+      *  `catch` Pokud klauzule deklaruje filtr výjimek, je vyhodnocen filtr. Pokud se vyhodnotí `false`jako, klauzule catch není shodná a hledání pokračuje prostřednictvím jakékoli další `catch` klauzule pro vhodnou obslužnou rutinu.
+      *  V opačném případě je `catch` klauzulepovažovánazashoduaovládacíprveksepřenesedoodpovídajícíhobloku.`catch`
+      *  Když a když ovládací prvek dosáhne koncového bodu `catch` bloku:
+         * Pokud příkaz má blok, je spuštěn `finally` blok. `finally` `try`
+         * Ovládací prvek se přenese do koncového bodu `try` příkazu.
+      *  Pokud je výjimka rozšířena na `try` příkaz během provádění `catch` bloku:
+         *  Pokud příkaz má blok, je spuštěn `finally` blok. `finally` `try`
+         *  Výjimka je šířena do dalšího ohraničujícího `try` příkazu.
+   *  Pokud příkaz nemá žádné `catch` klauzule nebo pokud žádná `catch` klauzule neodpovídá výjimce: `try`
+      *  Pokud příkaz má blok, je spuštěn `finally` blok. `finally` `try`
+      *  Výjimka je šířena do dalšího ohraničujícího `try` příkazu.
 
-Příkazy `finally` bloku jsou provedeny vždy, když ovládací prvek opustí `try` příkazu. Je hodnota true Určuje, zda přenos ovládacího prvku dojde v důsledku normálního provedení, v důsledku spuštění `break`, `continue`, `goto`, nebo `return` příkazu, nebo v důsledku šíření výjimky z `try` příkaz.
+Příkazy `finally` bloku jsou vždy spouštěny, pokud ovládací prvek `try` opustí příkaz. To platí, zda je přenos ovládacího prvku proveden jako výsledek normálního spuštění, v `break`důsledku provedení příkazu, `continue`, `goto`nebo `return` nebo v důsledku rozšiřování výjimky z `try` vydá.
 
-Pokud dojde k výjimce za běhu `finally` blok a není zachycena v rámci stejného bloku finally, se výjimka šíří do další značka `try` příkazu. Pokud právě rozšířen byla další výjimku, tato výjimka bude ztracena. Proces šíření výjimky je popsána dále v popisu `throw` – příkaz ([příkazu throw](statements.md#the-throw-statement)).
+Pokud je vyvolána výjimka během provádění `finally` bloku a není zachycena v rámci stejného bloku finally, je výjimka rozšířena do dalšího `try` ohraničujícího příkazu. Pokud byla v procesu rozšiřování další výjimka, dojde ke ztrátě této výjimky. Proces šíření výjimky je popsán dále v popisu `throw` příkazu ([příkaz throw](statements.md#the-throw-statement)).
 
-`try` Bloku `try` příkaz je dostupný Pokud `try` příkaz je dostupný.
+Blok příkazu je dosažitelný, pokud je příkazdosažitelný.`try` `try` `try`
 
-A `catch` bloku `try` příkaz je dostupný Pokud `try` příkaz je dostupný.
+Blok příkazu je dosažitelný, pokud je příkazdosažitelný.`try` `try` `catch`
 
-`finally` Bloku `try` příkaz je dostupný Pokud `try` příkaz je dostupný.
+Blok příkazu je dosažitelný, pokud je příkazdosažitelný.`try` `try` `finally`
 
-Koncový bod `try` příkaz je dostupný, pokud jsou splněny obě z následujících akcí:
+Koncový bod `try` příkazu je dosažitelný, pokud jsou splněny obě následující podmínky:
 
-*  Koncový bod `try` blok je dostupný nebo koncový bod alespoň jeden `catch` blok je dostupný.
-*  Pokud `finally` blok je k dispozici, koncový bod `finally` blok je dostupný.
+*  Koncový bod `try` bloku je dosažitelný nebo je dostupný koncový bod alespoň jednoho `catch` bloku.
+*  Pokud je `finally` k dispozici blok, koncový bod `finally` bloku je dosažitelný.
 
-## <a name="the-checked-and-unchecked-statements"></a>Příkazy zaškrtnuto a nezaškrtnuto
+## <a name="the-checked-and-unchecked-statements"></a>Kontrolované a nezaškrtnuté příkazy
 
-`checked` a `unchecked` příkazy se používají k řízení ***kontextu kontroly přetečení*** integrálového typu aritmetické operace a převody.
+Příkazy `checked` a`unchecked` slouží k řízení ***kontextu kontroly přetečení*** pro aritmetické operace a převody integrálního typu.
 
 ```antlr
 checked_statement
@@ -1204,13 +1204,13 @@ unchecked_statement
     ;
 ```
 
-`checked` Příkaz způsobí, že všechny výrazy v *bloku* který se má vyhodnotit ve zkontrolovaném kontextu a `unchecked` příkaz způsobí, že všechny výrazy v *bloku* má být vyhodnocen v nezkontrolovaném kontextu.
+Příkaz způsobí vyhodnocení všech výrazů v *bloku* v kontrolovaném kontextu a příkaz způsobí, že `unchecked` všechny výrazy v bloku budou vyhodnocovány v nekontrolovaném kontextu. `checked`
 
-`checked` a `unchecked` příkazy jsou přesně odpovídá `checked` a `unchecked` operátory ([operátory zaškrtnuto a nezaškrtnuto](expressions.md#the-checked-and-unchecked-operators)), s tím rozdílem, že tyto nástroje fungují na bloky namísto výrazů .
+`unchecked` Příkazy `checked` a `unchecked` jsoupřesnéekvivalentemoperátorůa(zkontrolovanýchanekontrolovanýchoperátorů),stímrozdílem`checked` , že pracují na blocích namísto výrazů.[](expressions.md#the-checked-and-unchecked-operators)
 
-## <a name="the-lock-statement"></a>Příkaz lock
+## <a name="the-lock-statement"></a>Příkaz Lock
 
-`lock` Příkaz získá zámek pro vzájemné vyloučení pro daný objekt, provede příkaz a poté uvolní zámek.
+`lock` Příkaz získá zámek vzájemného vyloučení pro daný objekt, provede příkaz a pak uvolní zámek.
 
 ```antlr
 lock_statement
@@ -1218,13 +1218,13 @@ lock_statement
     ;
 ```
 
-Výraz `lock` příkaz musí označují hodnotu typu známé jako *reference_type*. Žádný převod na uzavřené určení implicitní ([zabalení převody](conversions.md#boxing-conversions)) je nikdy neprováděl pro výraz `lock` příkaz a proto je chyba kompilace pro výraz, který má označení hodnotu *value_type*.
+Výraz `lock` příkazu musí znamenat hodnotu typu, který je známý jako *reference_type*. Pro výraz `lock` příkazu není nikdy proveden žádný implicitní převod na zabalení ([převody zabalení](conversions.md#boxing-conversions)), a proto se jedná o chybu při kompilaci, která označuje hodnotu *value_type*.
 
-A `lock` příkaz formuláře
+`lock` Příkaz formuláře
 ```csharp
 lock (x) ...
 ```
-kde `x` je výraz *reference_type*, přesně odpovídá
+kde `x` je výrazem *reference_type*, je přesně ekvivalentní
 ```csharp
 bool __lockWasTaken = false;
 try {
@@ -1235,11 +1235,11 @@ finally {
     if (__lockWasTaken) System.Threading.Monitor.Exit(x);
 }
 ```
-s tím rozdílem, že `x` se jenom vyhodnotí jednou.
+s výjimkou, že `x` je vyhodnocena pouze jednou.
 
-Dokud je držen zámek vzájemné vyloučení, provádění kódu ve stejném vláknu spuštění můžete také získat a uvolní zámek. Nicméně spuštění kódu v jiných vláken se blokuje získání zámku, dokud se zámek je uvolněn.
+I když je držen zámek vzájemného vyloučení, může kód spuštěný ve stejném vláknu spuštění také získat a uvolnit zámek. Nicméně kód, který je spuštěn v jiných vláknech, je blokován pro získání zámku, dokud se zámek neuvolní.
 
-Uzamčení `System.Type` objektů, aby se synchronizovaly přístup ke statickým datům se nedoporučuje. Další kód může zamknout na stejný typ, který může vést k zablokování. Lepším řešením je synchronizovat přístup ke statickým datům zamčením privátní statický objekt. Příklad:
+Uzamčení `System.Type` objektů za účelem synchronizace přístupu ke statickým datům se nedoporučuje. Jiný kód může být uzamčen na stejném typu, což může vést k zablokování. Lepším řešením je synchronizovat přístup ke statickým datům uzamknutím privátního statického objektu. Příklad:
 ```csharp
 class Cache
 {
@@ -1261,7 +1261,7 @@ class Cache
 
 ## <a name="the-using-statement"></a>Pomocí příkazu using
 
-`using` Příkaz získá jeden nebo více zdrojů, provede příkaz a uvolní prostředku.
+`using` Příkaz získá jeden nebo více prostředků, provede příkaz a pak odstraní prostředek.
 
 ```antlr
 using_statement
@@ -1274,19 +1274,19 @@ resource_acquisition
     ;
 ```
 
-A ***prostředků*** je třída nebo struktura, která implementuje `System.IDisposable`, což zahrnuje jeden konstruktor bez parametrů metodu s názvem `Dispose`. Můžete volat kód, který používá prostředek `Dispose` k označení, že prostředek už nepotřebujete. Pokud `Dispose` není volána, dojde k automatické vyřazení nakonec následkem uvolňování paměti.
+***Prostředek*** je třída nebo struktura, která implementuje `System.IDisposable`rozhraní, které zahrnuje jednu metodu bez parametrů s názvem. `Dispose` Kód, který používá prostředek, může zavolat `Dispose` , aby označoval, že prostředek již není potřeba. Pokud `Dispose` není voláno, pak automatické vyřazení nakonec probíhá jako důsledek uvolňování paměti.
 
-Pokud formu *resource_acquisition* je *local_variable_declaration* potom je typ *local_variable_declaration* musí být buď `dynamic` nebo typ. který lze implicitně převést na `System.IDisposable`. Pokud formu *resource_acquisition* je *výraz* tento výraz musí být implicitně převeditelný na `System.IDisposable`.
+Pokud je forma *resource_acquisition* *local_variable_declaration* , pak typ *local_variable_declaration* musí být buď `dynamic` nebo typ, který lze implicitně převést na. `System.IDisposable` Pokud je tvar výrazu *resource_acquisition* , pak tento výraz musí být implicitně převoditelné `System.IDisposable`na.
 
-Lokální proměnné deklarované v *resource_acquisition* jsou jen pro čtení a musí obsahovat inicializátor. Chyba kompilace v případě vloženým příkazem se pokusí upravit tyto místní proměnné (prostřednictvím přiřazení nebo `++` a `--` operátory), převzít adresu proměnné je, nebo předejte jako `ref` nebo `out` parametry.
+Místní proměnné deklarované v *resource_acquisition* jsou jen pro čtení a musí zahrnovat inicializátor. K chybě při kompilaci dojde v případě, že se vložený příkaz pokusí změnit tyto místní proměnné (prostřednictvím přiřazení nebo `++` operátorů a `--` ), přebírat jejich adresu nebo předat `ref` parametry nebo `out` .
 
-A `using` příkaz je přeložen do tří částí: získání, využití a vyřazení. Využití prostředku je implicitně uzavřen v `try` příkaz, který zahrnuje `finally` klauzuli. To `finally` klauzule uvolní prostředku. Pokud `null` prostředku je požadován, pak bez volání `Dispose` se provádí, a není vyvolána žádná výjimka. Pokud prostředek je typu `dynamic` převede se dynamicky prostřednictvím implicitního převodu dynamického ([implicitních převodů dynamické](conversions.md#implicit-dynamic-conversions)) k `IDisposable` během pořízení, aby se zajistilo, že je převod úspěšná, až poté využití a vyřazení.
+`using` Příkaz je přeložen na tři části: získání, využití a vyřazení. Využití prostředku je implicitně uzavřeno v `try` příkazu, který `finally` obsahuje klauzuli. Tato `finally` klauzule odstraní prostředek. Pokud je získán `Dispose` prostředek,neníprovedenožádnévoláníanení`null` vyvolána žádná výjimka. Pokud je prostředek typu `dynamic` , je dynamicky převeden prostřednictvím implicitního dynamického převodu ([implicitní dynamické převody](conversions.md#implicit-dynamic-conversions)) na `IDisposable` během akvizice, aby bylo zajištěno, že převod proběhne úspěšně před využitím a odvod.
 
-A `using` příkaz formuláře
+`using` Příkaz formuláře
 ```csharp
 using (ResourceType resource = expression) statement
 ```
-představuje jednu ze tří možných rozšíření. Když `ResourceType` je typ hodnoty Null, je rozšíření
+odpovídá jedné ze tří možných rozšíření. Pokud `ResourceType` je typ hodnoty, která není null, je rozšíření
 ```csharp
 {
     ResourceType resource = expression;
@@ -1299,7 +1299,7 @@ představuje jednu ze tří možných rozšíření. Když `ResourceType` je typ
 }
 ```
 
-V opačném případě `ResourceType` je typ s možnou hodnotou Null nebo odkazového typu jiného než `dynamic`, je rozšíření
+V opačném `ResourceType` případě, kdy je typ hodnoty s možnou hodnotou null `dynamic`nebo typ odkazu jiný než je rozšíření
 ```csharp
 {
     ResourceType resource = expression;
@@ -1312,7 +1312,7 @@ V opačném případě `ResourceType` je typ s možnou hodnotou Null nebo odkazo
 }
 ```
 
-V opačném případě `ResourceType` je `dynamic`, je rozšíření
+`ResourceType` V `dynamic`opačném případě je rozšíření
 ```csharp
 {
     ResourceType resource = expression;
@@ -1326,21 +1326,21 @@ V opačném případě `ResourceType` je `dynamic`, je rozšíření
 }
 ```
 
-V obou rozšíření `resource` je proměnná jen pro čtení v příkazu vložené a `d` proměnná se do nedostupný a neviditelná, vloženým příkazem.
+V obou rozšířeních `resource` je proměnná v příkazu Embedded jen pro čtení `d` a proměnná je nepřístupná v a neviditelná pro vložený příkaz.
 
-Implementace je povolený pro implementaci daného příkazu using odlišně, např. z důvodů výkonu za předpokladu, chování je konzistentní s rozšiřující se výše.
+Implementace má povolenou implementaci daného příkazu Using, například z důvodů výkonu, pokud je chování konzistentní s výše uvedeným rozšířením.
 
-A `using` příkaz formuláře
+`using` Příkaz formuláře
 ```csharp
 using (expression) statement
 ```
-má stejné tři možné rozšíření. V tomto případě `ResourceType` je implicitně typu kompilace `expression`, má-li nějaký. V opačném případě rozhraní `IDisposable` samotné se používá jako `ResourceType`. `resource` Proměnná se do nedostupný a neviditelná, vloženým příkazem.
+má stejné tři možné rozšíření. V tomto případě `ResourceType` je implicitně typ doby kompilace `expression`, pokud má,, pokud má nějaký typ. V opačném `IDisposable` případě se samotné rozhraní používá `ResourceType`jako. Tato `resource` proměnná je nepřístupná v a v rámci vloženého příkazu není viditelná.
 
-Když *resource_acquisition* má formu *local_variable_declaration*, je možné získat více prostředků daného typu. A `using` příkaz formuláře
+Pokud má *resource_acquisition* formu *local_variable_declaration*, je možné získat více prostředků daného typu. `using` Příkaz formuláře
 ```csharp
 using (ResourceType r1 = e1, r2 = e2, ..., rN = eN) statement
 ```
-je vnořená přesně odpovídá sekvenci `using` příkazy:
+je přesně ekvivalentní sekvenci vnořených `using` příkazů:
 ```csharp
 using (ResourceType r1 = e1)
     using (ResourceType r2 = e2)
@@ -1349,7 +1349,7 @@ using (ResourceType r1 = e1)
                 statement
 ```
 
-Následující příklad vytvoří soubor s názvem `log.txt` a zapíše dva řádky textu do souboru. V příkladu pak otevře že stejný soubor pro čtení a zkopíruje omezením řádků textu do konzoly.
+Následující příklad vytvoří soubor s názvem `log.txt` a zapíše dva řádky textu do souboru. Příklad následně otevře stejný soubor pro čtení a zkopíruje obsažené řádky textu do konzoly.
 ```csharp
 using System;
 using System.IO;
@@ -1373,11 +1373,11 @@ class Test
 }
 ```
 
-Protože `TextWriter` a `TextReader` implementace třídy `IDisposable` rozhraní, můžete použít v příkladu `using` příkazy a ujistěte se, že je podkladový soubor řádně uzavřeny po zápisu operace čtení.
+Vzhledem k tomu `TextReader` , že třídy `IDisposable` `using` a implementují rozhraní, může příklad použít příkazy k zajištění toho, aby byl podkladový soubor správně uzavřen po operacích zápisu nebo čtení. `TextWriter`
 
 ## <a name="the-yield-statement"></a>Příkaz yield
 
-`yield` Prohlášení se používá v blok iterátoru ([bloky](statements.md#blocks)) na hodnotu, která objekt enumerator ([výčtu objektů](classes.md#enumerator-objects)) nebo vyčíslitelný objekt ([vyčíslitelné objekty](classes.md#enumerable-objects)) iterátoru nebo který signalizuje, že konce iterace.
+Příkaz se používá v bloku iterátoru ([bloky](statements.md#blocks)) k získání hodnoty objektu Enumerator ([objekty enumerátoru](classes.md#enumerator-objects)) nebo vyčíslitelného objektu ([vyčíslitelné objekty](classes.md#enumerable-objects)) iterátoru nebo k signalizaci konce iterace. `yield`
 
 ```antlr
 yield_statement
@@ -1386,16 +1386,16 @@ yield_statement
     ;
 ```
 
-`yield` není vyhrazené slovo má zvláštní význam pouze bezprostředně před `return` nebo `break` – klíčové slovo. V jiných kontextech `yield` lze použít jako identifikátor.
+`yield`není rezervované slovo; má zvláštní význam pouze v případě, že je použit `return` bezprostředně `break` před klíčovým slovem or. V jiných kontextech `yield` lze použít jako identifikátor.
 
-Existuje několik omezení umístění, ve kterém `yield` příkazu můžete zobrazit, jak je popsáno v následující.
+Existuje několik omezení, kde `yield` se může zobrazit příkaz, jak je popsáno v následujícím tématu.
 
-*  Je chyba kompilace pro `yield` – příkaz (z obou tvarech) zobrazit mimo *method_body*, *operator_body* nebo *accessor_body*
-*  Je chyba kompilace pro `yield` – příkaz (z obou tvarech) se zobrazí uvnitř anonymní funkce.
-*  Je chyba kompilace pro `yield` – příkaz (z obou tvarech) se zobrazí v `finally` klauzuli `try` příkazu.
-*  Je chyba kompilace pro `yield return` vyskytovat kdekoli v příkazu `try` příkaz, který obsahuje některý `catch` klauzule.
+*  Jedná se o chybu `yield` při kompilaci pro příkaz (z obou formulářů), který se zobrazí mimo *method_body*, *operator_body* nebo *accessor_body* .
+*  Jedná se o chybu při kompilaci pro `yield` příkaz (z obou formulářů), který se má objevit uvnitř anonymní funkce.
+*  Jedná se o chybu při kompilaci pro `yield` příkaz (z obou formulářů), který se má objevit `finally` v klauzuli `try` příkazu.
+*  Jedná se o chybu `yield return` při kompilaci, aby se příkaz objevil kdekoli `try` v příkazu, který obsahuje jakékoli `catch` klauzule.
 
-Následující příklad ukazuje některé platné a neplatné použití `yield` příkazy.
+Následující příklad ukazuje několik platných a neplatných použití `yield` příkazů.
 
 ```csharp
 delegate IEnumerable<int> D();
@@ -1429,19 +1429,19 @@ int MyMethod() {
 }
 ```
 
-Implicitní převod ([implicitních převodů](conversions.md#implicit-conversions)) z typu výrazu v, musí existovat `yield return` příkazu yield typ ([Yield typ](classes.md#yield-type)) iterátoru.
+Implicitní převod ([implicitní převody](conversions.md#implicit-conversions)) musí existovat z typu výrazu v `yield return` příkazu na typ Yield ([typ výtěžnosti](classes.md#yield-type)) iterátoru.
 
-A `yield return` je proveden příkaz takto:
+`yield return` Příkaz se spustí takto:
 
-*  Výraz zadaný v příkazu je vyhodnocen, implicitně převeden na typ yield a přiřazená `Current` vlastnost v objektu enumerátor.
-*  Spouštění bloku iterátoru je pozastaveno. Pokud `yield return` příkaz je v jedné nebo více `try` blokuje, přidružené `finally` v tuto chvíli nejsou provedeny bloky.
-*  `MoveNext` Vrátí metoda objekt enumerator `true` na volající funkci, která udává, že objekt enumerator byly úspěšně posunuty na další položku.
+*  Výraz uvedený v příkazu je vyhodnocen, implicitně převeden na typ yield a přiřazený `Current` vlastnosti objektu enumerátor.
+*  Provádění bloku iterátoru je pozastaveno. Pokud je `try` `finally` příkaz v jednom nebo více blocích, přidružené bloky nejsou v tuto chvíli spuštěny. `yield return`
+*  Metoda objektu Enumerator se vrátí `true` svému volajícímu, což značí, že objekt enumerátoru se úspěšně pokročil na další položku. `MoveNext`
 
-Další volání objekt enumerator `MoveNext` metoda pokračuje v provádění bloku iterátoru od kdy posledního pozastavení.
+Další volání `MoveNext` metody objektu Enumerator pokračuje v provádění bloku iterátoru, ze kterého byl naposled pozastaven.
 
-A `yield break` je proveden příkaz takto:
+`yield break` Příkaz se spustí takto:
 
-*  Pokud `yield break` příkazu není uzavřen v jedné nebo více `try` přidružené bloky s `finally` bloky, ovládací prvek zpočátku bude převeden na `finally` bloku nejvnitřnější `try` příkaz. Pokud a v případě, že ovládací prvek dosáhne koncového bodu `finally` bloku, ovládací prvek bude převeden na `finally` další uzavírající blok `try` příkazu. Tento proces se opakuje, dokud `finally` blokuje všechny nadřazené `try` příkazy byly provedeny.
-*  Ovládací prvek se vrátí volajícímu metody blok iterátoru. Je to `MoveNext` metoda nebo `Dispose` metodu objektu enumerátor.
+*  `try` `finally` `finally` `try` Pokud je příkazuzavřenjednímnebovíceblokyspřidruženýmibloky,jeovládacíprvekzpočátkupřevedendoblokunejvnitřnějšíhopříkazu.`yield break` Když a pokud ovládací prvek dosáhne koncového bodu `finally` bloku, je ovládací prvek převeden `finally` do bloku dalšího ohraničujícího `try` příkazu. Tento proces se opakuje, `finally` dokud nebudou provedeny bloky všech `try` ohraničujících příkazů.
+*  Ovládací prvek se vrátí volajícímu bloku iterátoru. Toto je buď `MoveNext` metoda, nebo `Dispose` metoda objektu Enumerator.
 
-Protože `yield break` příkaz bezpodmínečně převede ovládací prvek jinde, koncový bod `yield break` příkazu není dostupný.
+Vzhledem k `yield break` tomu, že příkaz nepodmíněně přenáší řízení jinde, koncový bod `yield break` příkazu není nikdy dosažitelný.

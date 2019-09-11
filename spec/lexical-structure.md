@@ -1,46 +1,46 @@
 ---
-ms.openlocfilehash: e103f6629a363c6cd76607699ff74d69aa73ed57
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 5fbe0267b5b33b1a24dbdca493d118c576092573
+ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488973"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876911"
 ---
 # <a name="lexical-structure"></a>Lexikální struktura
 
 ## <a name="programs"></a>Programy
 
-C# ***program*** obsahuje jeden nebo více ***zdrojové soubory***známé formálně jako ***kompilačních jednotek*** ([kompilačních jednotek](namespaces.md#compilation-units)). Zdrojový soubor je seřazená posloupnost znaků Unicode. Zdrojové soubory obvykle korespondovaly s soubory v systému souborů, ale tento korespondenci se nevyžaduje. Pro maximální přenositelnost, se doporučuje, aby soubory v systému souborů být zakódován pomocí kódování UTF-8 kódování.
+C# ***Program*** se skládá z jednoho nebo více ***zdrojových souborů***, známých ve formě ***kompilačních jednotek*** ([kompilačních jednotek](namespaces.md#compilation-units)). Zdrojový soubor je uspořádaná sekvence znaků Unicode. Zdrojové soubory mají obvykle korespondenci se soubory v systému souborů, ale tato korespondence se nevyžaduje. Pro maximální přenositelnost doporučujeme, aby soubory v systému souborů byly kódovány pomocí kódování UTF-8.
 
-Obecně vzato programu je zkompilován pomocí tří kroků:
+Koncepčně řečeno, program se kompiluje pomocí tří kroků:
 
-1. Transformace, která převede soubor z určitého znaku repertoáru a schéma kódování na sekvenci znaků Unicode.
-2. Lexikální analýzu, která převede datový proud vstupních znaků Unicode do datového proudu tokenů.
-3. Syntaktické analýzy, která převede datový proud s tokeny do spustitelného kódu.
+1. Transformace, která převede soubor z konkrétního znakového repertoáru a schématu kódování do sekvence znaků Unicode.
+2. Lexikální analýza, která překládá datový proud vstupních znaků Unicode do datového proudu tokenů.
+3. Syntaktická analýza, která překládá datový proud tokenů do spustitelného kódu.
 
-## <a name="grammars"></a>Gramatika
+## <a name="grammars"></a>Gramatiky
 
-Tato specifikace uvede syntaxe jazyka C# programování pomocí dvou gramatiky. ***Gramatika slov*** ([gramatika slov](lexical-structure.md#lexical-grammar)) definuje, jak jsou zkombinované znaků Unicode pro zakončení řádku formuláře, prázdné znaky, komentáře, tokenů a direktivy předběžného zpracování. ***Syntaktické gramatiky*** ([syntaktické gramatiky](lexical-structure.md#syntactic-grammar)) definuje, jak se tokeny vyplývající z gramatika slov zkombinovala, aby programy formuláře C#.
+Tato specifikace prezentuje syntaxi C# programovacího jazyka pomocí dvou gramatik. ***Lexikální gramatika*** ([lexikální gramatika](lexical-structure.md#lexical-grammar)) definuje, jakým způsobem jsou znaky Unicode kombinovány při koncích řádků formulářů, prázdných znaků, komentářů, tokenech a direktivách předběžného zpracování. ***Syntaktická gramatika*** ([syntaktická gramatika](lexical-structure.md#syntactic-grammar)) definuje, jak jsou tokeny vyplývající z lexikální gramatiky C# kombinovány do formulářových programů.
 
-### <a name="grammar-notation"></a>Zápis gramatiky
+### <a name="grammar-notation"></a>Gramatický zápis
 
-Gramatika slov a syntaktické jsou uvedeny v Backus-Naur formuláře pomocí notace nástroj ANTLR gramatiky.
+Lexikální a syntaktické gramatiky jsou prezentovány ve formě Backus-Naur pomocí zápisu gramatického nástroje ANTLR.
 
 ### <a name="lexical-grammar"></a>Gramatika slov
 
-Gramatika slov jazyka C# je uveden v [provést lexikální analýzu](lexical-structure.md#lexical-analysis), [tokeny](lexical-structure.md#tokens), a [předběžné zpracování direktiv](lexical-structure.md#pre-processing-directives). Terminálu symboly gramatika slov jsou znaky znakové sady Unicode a gramatika slov Určuje, jak jsou zkombinované znaků na formulář tokeny ([tokeny](lexical-structure.md#tokens)), mezer ([prázdných](lexical-structure.md#white-space)), komentáře ([komentáře](lexical-structure.md#comments)) a direktivy předběžného zpracování ([předběžné zpracování direktiv](lexical-structure.md#pre-processing-directives)).
+Lexikální C# gramatika je prezentována v [lexikální analýze](lexical-structure.md#lexical-analysis), [tokenech](lexical-structure.md#tokens)a [direktivách předběžného zpracování](lexical-structure.md#pre-processing-directives). Symboly terminálu lexikální gramatiky jsou znaky znakové sady Unicode a lexikální gramatika určuje způsob, jakým jsou kombinovány znaky pro formuláře ([tokeny](lexical-structure.md#tokens)), prázdné znaky ([prázdné](lexical-structure.md#white-space)znaky), komentáře ([Komentáře](lexical-structure.md#comments)) a direktivy předběžného zpracování ([předem zpracovávané direktivy](lexical-structure.md#pre-processing-directives)).
 
-Každý zdrojový soubor v programu v jazyce C# musí odpovídat *vstupní* produkční gramatika slov ([provést lexikální analýzu](lexical-structure.md#lexical-analysis)).
+Každý zdrojový soubor v C# programu musí být v souladu se *vstupní* výrobou lexikální gramatiky ([lexikální analýza](lexical-structure.md#lexical-analysis)).
 
-### <a name="syntactic-grammar"></a>Syntaktické gramatiky
+### <a name="syntactic-grammar"></a>Syntaktická gramatika
 
-Syntaktické gramatika C# jsou zobrazena v kapitolách a přílohy, které následují této kapitole. Terminálu symboly syntaktické gramatiky jsou tokeny definované gramatika slov a syntaktické gramatiky Určuje, jak se tokeny zkombinovala, aby programy jazyka C# formulářů.
+Syntaktická gramatika C# je prezentována v kapitolách a dodatcích, které následují v této kapitole. Symboly terminálu syntaktické gramatiky jsou tokeny definované lexikální gramatikou a syntaktická gramatika určuje, jak jsou tokeny kombinovány do formulářových C# programů.
 
-Každý zdrojový soubor v C# programu musí odpovídat *compilation_unit* produkční syntaktické gramatiky ([kompilačních jednotek](namespaces.md#compilation-units)).
+Každý zdrojový soubor v C# programu musí splňovat *compilation_unitou* produkci syntaktické gramatiky ([kompilační jednotky](namespaces.md#compilation-units)).
 
-## <a name="lexical-analysis"></a>Lexikální analýzu
+## <a name="lexical-analysis"></a>Lexikální analýza
 
-*Vstupní* produkční definuje lexikální struktura zdrojový soubor jazyka C#. Tato výroba gramatika slov musí odpovídat každý zdrojový soubor v programu v jazyce C#.
+*Vstupní* výroba definuje lexikální strukturu C# zdrojového souboru. Každý zdrojový soubor v C# programu musí být v souladu s touto lexikální gramatickou výrobou.
 
 ```antlr
 input
@@ -63,17 +63,17 @@ input_element
     ;
 ```
 
-Pět základních prvků, které tvoří lexikální struktura C# zdrojový soubor: Řádek ukončovací znaky ([řádek ukončovací znaky](lexical-structure.md#line-terminators)), mezer ([prázdných](lexical-structure.md#white-space)), komentáře ([komentáře](lexical-structure.md#comments)), tokeny ([tokeny](lexical-structure.md#tokens)), a direktivy předběžného zpracování ([předběžné zpracování direktiv](lexical-structure.md#pre-processing-directives)). Tyto základní prvky pouze tokeny jsou rozhodující pro syntaktické gramatiky programu v jazyce C# ([syntaktické gramatiky](lexical-structure.md#syntactic-grammar)).
+Pět základních elementů tvoří lexikální strukturu C# zdrojového souboru: Ukončení řádků ([ukončovací](lexical-structure.md#line-terminators)znaky), prázdné znaky ([prázdné](lexical-structure.md#white-space)znaky), komentáře ([Komentáře](lexical-structure.md#comments)), tokeny ([tokeny](lexical-structure.md#tokens)) a direktivy předběžného zpracování ([předběžné zpracování direktiv](lexical-structure.md#pre-processing-directives)). Z těchto základních prvků jsou v syntaktické gramatice C# programu významné jenom tokeny ([syntaktická gramatika](lexical-structure.md#syntactic-grammar)).
 
-Lexikální zpracování zdrojový soubor jazyka C# se skládá z snížení soubor do sekvence tokenů, který bude vstup pro syntaktické analýzy. Řádku, prázdné znaky a komentáře, může sloužit k oddělení tokeny a direktivy předběžného zpracování může způsobit části zdrojového souboru přeskočit, ale jinak tyto Lexikální prvky mít vliv na syntaktické struktura programu v jazyce C#.
+Lexikální zpracování C# zdrojového souboru sestává z zmenšení souboru do posloupnosti tokenů, která se do syntaktické analýzy stává vstupem. Ukončení řádků, prázdné znaky a komentáře mohou sloužit k oddělení tokenů a direktivy předběžného zpracování mohou způsobit přeskočení oddílů zdrojového souboru, ale jinak tyto lexikální prvky nemají žádný vliv na syntaktickou strukturu C# programu.
 
-V případě interpolovaný řetězec literálů ([interpolované řetězce literálů](lexical-structure.md#interpolated-string-literals)) do jednoho tokenu původně vytvořil provést lexikální analýzu, ale je rozdělený do několika vstupních elementy, které jsou opakovaně podroben provést lexikální analýzu dokud všechny literály interpolovaném řetězci byly vyřešeny. Použitím výsledných tokenů, sloužit jako vstup pro syntaktické analýzy.
+V případě interpolovaná řetězcové literály ([interpolované řetězcové literály](lexical-structure.md#interpolated-string-literals)) je zpočátku jeden token vytvořen lexikální analýzou, ale je rozdělen do několika vstupních elementů, které jsou opakovaně vyčleněny na lexikální analýzu, dokud neproběhne všechny interpoly. byly přeloženy řetězcové literály. Výsledné tokeny pak slouží jako vstup k syntaktické analýze.
 
-Když několik výroby gramatika slov odpovídají pořadí znaků ve zdrojovém souboru, lexikální se vždy zpracování forms nejdelší možný lexikální elementu. Například sekvence znaků `//` je zpracovat jako začátek jednořádkový komentář, protože je delší než jeden tento element lexikální `/` token.
+V případě, že se několik lexikálních gramatických příčin shoduje se sekvencí znaků ve zdrojovém souboru, lexikální zpracování vždy tvoří nejdelší možný lexikální element. Například sekvence `//` znaků je zpracována jako začátek jednořádkového komentáře, protože tento lexikální prvek je delší než jeden `/` token.
 
-### <a name="line-terminators"></a>Řádku
+### <a name="line-terminators"></a>Ukončení řádků
 
-Řádku rozdělit řádky znaků zdrojový soubor jazyka C#.
+Zakončení řádků rozdělí znaky C# zdrojového souboru na řádky.
 
 ```antlr
 new_line
@@ -86,14 +86,14 @@ new_line
     ;
 ```
 
-Pro kompatibilitu s zdrojový kód nástroje pro úpravy, které aplikacím dodávají endovém souborovém značky a umožňuje zdroji soubor prohlížení jako posloupnost správně ukončena řádky, se použijí následující transformace, aby každý zdrojový soubor v programu v jazyce C#:
+Z důvodu kompatibility s nástroji pro úpravy zdrojového kódu, které přidávají značky konce souboru a umožňují zobrazení zdrojového souboru jako sekvence správně ukončených řádků, jsou v daném pořadí aplikovány následující transformace, a to na každý zdrojový soubor v C# programu:
 
-*  Pokud poslední znak zdrojového souboru, je znak Z ovládacího prvku (`U+001A`), se odstraní tento znak.
-*  Znak pro návrat na začátek řádku (`U+000D`) se přidá do konce zdrojového souboru, pokud se tento zdrojový soubor je prázdný, a pokud poslední znak zdrojového souboru není zalomení řádku (`U+000D`), odřádkování (`U+000A`), oddělovač řádků (`U+2028`), nebo oddělovač odstavců (`U+2029`).
+*  Pokud poslední znak zdrojového souboru je ovládací prvek – znak Z (`U+001A`), tento znak se odstraní.
+*  Znak návratu na začátek řádku (`U+000D`) se přidá na konec zdrojového souboru, pokud je tento zdrojový soubor neprázdný a pokud poslední znak zdrojového souboru není znak návratu na začátek řádku (`U+000D`), znak čáry (`U+000A`), oddělovač`U+2028`řádků() nebo oddělovačem odstavce (`U+2029`).
 
 ### <a name="comments"></a>Komentáře
 
-Jsou podporovány dvě formy komentáře: Jednořádkové komentáře a poznámky s oddělovači. ***Jednořádkové komentáře*** začínají znaky `//` a rozšířit na konec řádku zdroje. ***Oddělené komentáře*** začínají znaky `/*` a končit znaky `*/`. Komentáře s oddělovači může zahrnovat více řádků.
+Podporovány jsou dvě formy komentářů: Jednořádkový komentář a komentáře s oddělovači. ***Jednořádkový komentář*** začíná znaky `//` a rozšířil na konec řádku zdroje. ***Komentáře s oddělovači*** začínají znaky `/*` a končí znaky `*/`. Komentáře s oddělovači mohou být rozloženy na více řádků.
 
 ```antlr
 comment
@@ -135,11 +135,11 @@ not_slash_or_asterisk
     ;
 ```
 
-Komentáře nelze vnořovat. Sekvence znaků `/*` a `*/` nemají zvláštní význam v rámci `//` komentář a znakovými sekvencemi `//` a `/*` nemají zvláštní význam v rámci oddělovači komentář.
+Komentáře nevnořeny. `/*` Sekvence znaků a `*/` nemají `//` `/*` žádné zvláštní významy v rámci komentářeasekvenceznakůanemajížádnýzvláštnívýznamvrámcioddělenýchkomentářů.`//`
 
-V rámci znakové a řetězcové literály nejsou zpracovány poznámky.
+Komentáře nejsou zpracovány v rámci znakových a řetězcových literálů.
 
-V příkladu
+Příklad
 ```csharp
 /* Hello, world program
    This program writes "hello, world" to the console
@@ -151,9 +151,9 @@ class Hello
     }
 }
 ```
-obsahuje komentář s oddělovači.
+obsahuje oddělený komentář.
 
-V příkladu
+Příklad
 ```csharp
 // Hello, world program
 // This program writes "hello, world" to the console
@@ -165,11 +165,11 @@ class Hello // any name will do for this class
     }
 }
 ```
-ukazuje několik Jednořádkové komentáře.
+zobrazí několik jednořádkových komentářů.
 
 ### <a name="white-space"></a>Prázdné znaky
 
-Prázdné místo je definována jako libovolný znak Unicode třída Zs (která obsahuje znak mezery) a znak horizontálního tabulátoru, znak svislého tabulátoru a formulář se znakem kanálu.
+Prázdné znaky jsou definovány jako libovolný znak s třídou Unicode ZS (což zahrnuje znak mezery) a také vodorovný znak tabulátoru, znak svislé čáry a znak kanálu formuláře.
 
 ```antlr
 whitespace
@@ -182,7 +182,7 @@ whitespace
 
 ## <a name="tokens"></a>Tokeny
 
-Existuje několik druhů tokenů: identifikátory, klíčová slova, literály, operátory a interpunkční znaky. Prázdné znaky a komentáře nejsou tokeny, i když působí jako oddělovače pro tokeny.
+Existuje několik typů tokenů: identifikátory, klíčová slova, literály, operátory a interpunkční znaky. Prázdné znaky a komentáře nejsou tokeny, i když fungují jako oddělovače pro tokeny.
 
 ```antlr
 token
@@ -197,9 +197,9 @@ token
     ;
 ```
 
-### <a name="unicode-character-escape-sequences"></a>Znak – řídicí sekvence Unicode
+### <a name="unicode-character-escape-sequences"></a>Řídicí sekvence znaků Unicode
 
-Znak řídicí sekvence Unicode hodnota představuje znak Unicode. Znak – řídicí sekvence Unicode se zpracovávají v identifikátorech ([identifikátory](lexical-structure.md#identifiers)), znakové literály ([literály znaků](lexical-structure.md#character-literals)) a pravidelné řetězcových literálů ([řetězcových literálů](lexical-structure.md#string-literals)). Řídicí znak Unicode není zpracována v jiném umístění (například formulář operátor, interpunkci nebo – klíčové slovo).
+Řídicí sekvence znaků Unicode představuje znak Unicode. Řídicí sekvence znaků Unicode jsou zpracovávány v identifikátorech ([identifikátory](lexical-structure.md#identifiers)), literálech znaků ([literály znaků](lexical-structure.md#character-literals)) a regulárních řetězcových literálů ([řetězcové literály](lexical-structure.md#string-literals)). Řídicí znak Unicode se nezpracovává na žádném jiném místě (například pro vytvoření operátoru, punctuator nebo klíčového slova).
 
 ```antlr
 unicode_escape_sequence
@@ -208,11 +208,11 @@ unicode_escape_sequence
     ;
 ```
 
-Řídicí sekvence Unicode představuje jeden znak Unicode tvořen šestnáctkové číslo následující "`\u`"nebo"`\U`" znaků. Protože jazyk C# používá 16 bitů kódování kódové body sady Unicode v znaky a řetězcové hodnoty, znak Unicode v rozsahu U + 10000 až U + 10FFFF není povolená ve znakového literálu a se vyjadřuje náhradní pár kódu Unicode v řetězcovém literálu. Znaky Unicode s body kódu nad 0x10FFFF nejsou podporovány.
+Řídicí sekvence Unicode představuje jeden znak Unicode tvořený šestnáctkovým číslem za`\u`znaky`\U`nebo. Vzhledem C# k tomu, že používá 16bitové kódování bodů kódu Unicode do znaků a hodnot řetězce, znak Unicode v rozsahu U + 10000 až U + 10FFFF není povolený ve znakovém literálu a je reprezentován pomocí náhradní dvojice Unicode v řetězcovém literálu. Znaky Unicode s body kódu nad 0x10FFFF nejsou podporovány.
 
-Více posunutí se neprovádí. Například textový literál "`\u005Cu005C`"je ekvivalentní k"`\u005C`"místo"`\`". Hodnota Unicode `\u005C` je znak "`\`".
+Vícenásobné překlady se neprovádí. Například řetězcový literál "`\u005Cu005C`" je ekvivalentem "`\u005C`", nikoli "`\`". Hodnota `\u005C` Unicode je`\`znak "".
 
-V příkladu
+Příklad
 ```csharp
 class Class1
 {
@@ -223,7 +223,7 @@ class Class1
     }        
 }
 ```
-ukazuje použití několika `\u0066`, což je řídicí sekvence pro písmeno "`f`". Program je ekvivalentní
+ukazuje několik použití `\u0066`, což je řídicí sekvence pro`f`písmeno "". Program je ekvivalentní
 ```csharp
 class Class1
 {
@@ -237,7 +237,7 @@ class Class1
 
 ### <a name="identifiers"></a>Identifikátory
 
-Pravidla pro identifikátory, které jsou uvedené v této části přesně odpovídat doporučené Unicode Standard Annex 31, s tím rozdílem, že podtržítka je povolen jako počáteční znak (jako je tradiční v programovacím jazyce C), řídicí sekvence Unicode povolené v identifikátorech a "`@`" znak je povolený jako předponu povolit klíčová slova používat jako identifikátory.
+Pravidla pro identifikátory uvedené v této části odpovídají přesně těch, které doporučila příloha Standard Unicode Standard, s tím rozdílem, že podtržítko je povolené jako počáteční znak (jako tradiční v programovacím jazyce C), řídicí sekvence Unicode jsou povoluje se v identifikátorech a znak`@`"" je povolen jako předpona, aby bylo možné používat klíčová slova jako identifikátory.
 
 ```antlr
 identifier
@@ -292,13 +292,13 @@ formatting_character
     ;
 ```
 
-Informace o třídách znaků Unicode uvedených výše viz standardu Unicode, verze 3.0, bod 4.5.
+Informace o třídách znaků Unicode uvedených výše najdete v části Standard Unicode verze 3,0, část 4,5.
 
-Příklady platné identifikátory "`identifier1`","`_identifier2`", a "`@if`".
+Příklady platných identifikátorů:`identifier1`"", "`_identifier2`" a "`@if`".
 
-Identifikátor vyhovující aplikace musí být v kanonickém formátu definovaném v normalizačním formuláři Unicode C, jak jsou definovány v Unicode Standard Annex 15. Chování při zjištění identifikátor není v normalizace formuláře C, je definováno implementací; Diagnostika však není povinné.
+Identifikátor v koformovém programu musí být v kanonickém formátu definovaném formulářem normalizace Unicode C definovaným standardem Unicode Standard přílohy 15. Chování při zjištění identifikátoru, který není v normalizačním tvaru C je definováno implementací; Diagnostika ale není nutná.
 
-Předpona "`@`" umožňuje použít klíčová slova jako identifikátory, což je užitečné při propojování s jinými programovací jazyky. Znak `@` není ve skutečnosti součástí identifikátoru, a proto identifikátor může zobrazit v jiných jazycích jako normální identifikátor, bez předpony. Identifikátor s `@` předpona je volána ***Doslovný identifikátor***. Použití `@` předpona pro identifikátory, které nejsou klíčových slov je povolené, ale důrazně nedoporučuje jak stylu.
+Předpona "`@`" umožňuje používat klíčová slova jako identifikátory, což je užitečné při navzájemení s jinými programovacími jazyky. Znak `@` není ve skutečnosti součástí identifikátoru, proto se identifikátor může zobrazit v jiných jazycích jako běžný identifikátor bez předpony. Identifikátor s `@` předponou se nazývá ***doslovné identifikátor***. `@` Použití předpony pro identifikátory, které nejsou klíčovými slovy, je povoleno, ale důrazně nedoporučujeme ve stylu.
 
 Příklad:
 ```csharp
@@ -319,19 +319,19 @@ class Class1
     }
 }
 ```
-definuje třídu s názvem "`class`"se statickou metodu s názvem"`static`", která přebírá parametr s názvem"`bool`". Všimněte si, že vzhledem k tomu, že řídicí sekvence Unicode nejsou povolené v klíčových slov, token "`cl\u0061ss`"je identifikátor, a je stejný identifikátor jako"`@class`".
+definuje třídu s názvem`class`"" se statickou metodou nazvanou "`static`", která`bool`přebírá parametr s názvem "". Všimněte si, že protože řídicí znaky Unicode nejsou v klíčových slovech povoleny,`cl\u0061ss`token "" je identifikátor a je stejný identifikátor jako "`@class`".
 
-Dva identifikátory jsou považovány za totéž případě, že jsou identické, až tyto transformace jsou použity v zadaném pořadí:
+Dva identifikátory jsou považovány za stejné, pokud jsou stejné po použití následujících transformací, v uvedeném pořadí:
 
-*  Předpona "`@`", pokud použijete, se odebere.
-*  Každý *unicode_escape_sequence* se transformuje na jeho odpovídající znak Unicode.
-*  Žádné *formatting_character*byly odebrány.
+*  Předpona "`@`", pokud je použita, je odebrána.
+*  Každý *unicode_escape_sequence* se transformuje na příslušný znak Unicode.
+*  Všechny *formatting_character*se odeberou.
 
-Identifikátory obsahující dvě po sobě jdoucí znaky podtržení (`U+005F`) jsou vyhrazené pro použití v implementaci. Implementace může například poskytovat klíčových slov rozšířených začínající dvěma podtržítky.
+Identifikátory, které obsahují dvě po sobě jdoucí podtržítka (`U+005F`), jsou vyhrazeny pro použití implementací. Například implementace může poskytovat rozšířená klíčová slova, která začínají dvěma podtržítky.
 
 ### <a name="keywords"></a>klíčová slova
 
-A ***– klíčové slovo*** je identifikátor jako posloupnost znaků, který je vyhrazen a nelze jej použít jako identifikátoru s výjimkou při uvedena ve `@` znak.
+***Klíčové slovo*** je posloupnost znaků, které jsou rezervovány, a nelze jej použít jako identifikátor s výjimkou, kdy je `@` použit znak.
 
 ```antlr
 keyword
@@ -354,11 +354,11 @@ keyword
     ;
 ```
 
-V některých místech v gramatice zvláštní identifikátory mají zvláštní význam, ale nejsou klíčová slova. Tyto identifikátory jsou někdy označovány jako "kontextová klíčová slova". Například v deklaraci vlastnosti "`get`"a"`set`" mají zvláštní význam identifikátory ([přistupující objekty](classes.md#accessors)). Identifikátor jiných než `get` nebo `set` nikdy smí v těchto umístěních, takže toto použití nejsou v konfliktu s využitím tato slova jako identifikátory. V ostatních případech, například stejně jako identifikátor "`var`" v deklaracích implicitně typované lokální proměnné ([místní deklarace proměnné](statements.md#local-variable-declarations)), kontextové klíčové slovo může dojít ke konfliktu s názvy deklarované. V takových případech deklarovaný název má přednost před použití identifikátor jako kontextové klíčové slovo.
+Na některých místech gramatiky mají konkrétní identifikátory zvláštní význam, ale nejedná se o klíčová slova. Takové identifikátory se někdy označují jako "kontextová klíčová slova". Například v rámci deklarace vlastnosti mají identifikátory "`get`" a "`set`" speciální význam ([přistupující objekty](classes.md#accessors)). Identifikátor jiný než `get` nebo `set` není nikdy povolen v těchto umístěních, takže toto použití není v konfliktu s použitím těchto slov jako identifikátorů. V jiných případech, například s identifikátorem "`var`" v implicitním typu deklarace lokální proměnné ([místní proměnné deklarace](statements.md#local-variable-declarations)), klíčové slovo kontextové může být v konfliktu s deklarovanými názvy. V takových případech má deklarovaný název přednost před použitím identifikátoru jako klíčového slova kontextové.
 
 ### <a name="literals"></a>Literály
 
-A ***literálu*** je reprezentace hodnotu zdrojového kódu.
+***Literál*** je reprezentace hodnoty ve zdrojovém kódu.
 
 ```antlr
 literal
@@ -371,7 +371,7 @@ literal
     ;
 ```
 
-#### <a name="boolean-literals"></a>Logické hodnoty literálu
+#### <a name="boolean-literals"></a>Logické literály
 
 Existují dvě logické hodnoty literálu: `true` a `false`.
 
@@ -384,9 +384,9 @@ boolean_literal
 
 Typ *boolean_literal* je `bool`.
 
-#### <a name="integer-literals"></a>Literály celých čísel
+#### <a name="integer-literals"></a>Celočíselné literály
 
-Literály celých čísel se používá k zápisu hodnoty typů `int`, `uint`, `long`, a `ulong`. Literály celých čísel mít dva možné typy: desetinných míst a šestnáctková.
+Celočíselné literály se používají pro zápis hodnot typů `int`, `uint`, `long`a `ulong`. Celočíselné literály mají dvě možné formy: Decimal a hexadecimální.
 
 ```antlr
 integer_literal
@@ -416,25 +416,25 @@ hex_digit
     | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'a' | 'b' | 'c' | 'd' | 'e' | 'f';
 ```
 
-Typ celočíselného literálu je stanoven následujícím způsobem:
+Typ celočíselného literálu je určen následujícím způsobem:
 
-*  Pokud literálu bez přípony, má první z těchto typů, ve kterých může být reprezentována jeho hodnota: `int`, `uint`, `long`, `ulong`.
-*  Pokud je literál příponou podle `U` nebo `u`, má první z těchto typů, ve kterých může být reprezentována jeho hodnota: `uint`, `ulong`.
-*  Pokud je literál příponou podle `L` nebo `l`, má první z těchto typů, ve kterých může být reprezentována jeho hodnota: `long`, `ulong`.
-*  Pokud je literál příponou podle `UL`, `Ul`, `uL`, `ul`, `LU`, `Lu`, `lU`, nebo `lu`, je typu `ulong`.
+*  Pokud literál nemá žádnou příponu, má první z těchto typů, ve kterém lze jeho `int`hodnotu reprezentovat:, `uint`, `long`, `ulong`.
+*  Pokud je `U` literál namapován pomocí nebo `u`, má první z těchto typů, ve kterém může být jeho hodnota reprezentovaná: `uint`, `ulong`.
+*  Pokud je `L` literál namapován pomocí nebo `l`, má první z těchto typů, ve kterém může být jeho hodnota reprezentovaná: `long`, `ulong`.
+*  Pokud je `UL`literál s příponou, `LU` `ul` `Ul`, `uL`,,, `Lu`, `lU`nebo `ulong`, jetypu.`lu`
 
-Pokud hodnota reprezentovaná celočíselného literálu je mimo rozsah `ulong` zadejte, dojde k chybě kompilace.
+Pokud hodnota reprezentovaná celočíselným literálem je mimo rozsah `ulong` typu, dojde k chybě při kompilaci.
 
-Jak styl, je určeno, který "`L`"měl použít namísto"`l`" při zápisu literály typu `long`, protože je snadno zaměnit písmeno "`l`"se číslice"`1`".
+V ohledu na styl je`L`navržena možnost "" použít místo "`l`" při zápisu literálů typu `long`, protože je snadné Zaměňujte písmeno`l`"" s číslicí "`1`".
 
-Tak, aby povolovala nejmenší `int` a `long` hodnot má být zapsán jako literály desítkové celé číslo, existují následující dvě pravidla:
+Chcete-li povolit, `int` aby `long` byly nejmenší možné hodnoty a hodnoty zapsány jako desítkové celočíselné literály, existují následující dvě pravidla:
 
-* Když *decimal_integer_literal* s hodnotou 2147483648 (2 ^ 31) a ne *integer_type_suffix* se zobrazí jako token hned za unární operátor minus token operátoru ([Unární minus operátor](expressions.md#unary-minus-operator)), výsledkem je konstanta typu `int` s hodnotou -2147483648 (-2 ^ 31). V jiných situacích takové *decimal_integer_literal* je typu `uint`.
-* Když *decimal_integer_literal* s hodnotou 9223372036854775808 (2 ^ 63) a ne *integer_type_suffix* nebo *integer_type_suffix* `L` nebo `l` se zobrazí jako token hned za unární operátor minus token – operátor ([unární operátor minus](expressions.md#unary-minus-operator)), výsledkem je konstanta typu `long` s hodnotou -9223372036854775808 (-2 ^ 63). V jiných situacích takové *decimal_integer_literal* je typu `ulong`.
+* Pokud se *decimal_integer_literal* s hodnotou 2147483648 (2 ^ 31) a žádné *integer_type_suffix* se nezobrazí jako token bezprostředně po unárním tokenu minus operátor ([unární operátor mínus](expressions.md#unary-minus-operator)), výsledkem je konstanta typu `int`.s hodnotou-2147483648 (-2 ^ 31). Ve všech ostatních situacích je například *decimal_integer_literal* typu `uint`.
+* Když je *decimal_integer_literal* s hodnotou 9223372036854775808 (2 ^ 63), ne *integer_type_suffix* nebo *integer_type_suffix* `L` , nebo `l` se zobrazí jako token hned za Unární minus token operátoru ([unární operátor minus](expressions.md#unary-minus-operator)), výsledkem je konstanta typu `long` s hodnotou-9223372036854775808 (-2 ^ 63). Ve všech ostatních situacích je například *decimal_integer_literal* typu `ulong`.
 
-#### <a name="real-literals"></a>Skutečné literály
+#### <a name="real-literals"></a>Reálné literály
 
-Skutečné literály se používají pro zápis hodnoty typů `float`, `double`, a `decimal`.
+Reálné literály se používají pro zápis hodnot typů `float`, `double`a `decimal`.
 
 ```antlr
 real_literal
@@ -459,23 +459,23 @@ real_type_suffix
     ;
 ```
 
-Pokud ne *real_type_suffix* není zadána, je typu literál reálného čísla `double`. V opačném případě přípona reálný typ Určuje typ literál reálného čísla, následujícím způsobem:
+Pokud není zadán žádný *real_type_suffix* , je `double`typ reálného literálu. Jinak přípona reálného typu Určuje typ reálného literálu následujícím způsobem:
 
-*  Literál reálného čísla příponou podle `F` nebo `f` je typu `float`. Například literály `1f`, `1.5f`, `1e10f`, a `123.456F` jsou všechny typu `float`.
-*  Literál reálného čísla příponou podle `D` nebo `d` je typu `double`. Například literály `1d`, `1.5d`, `1e10d`, a `123.456D` jsou všechny typu `double`.
-*  Literál reálného čísla příponou podle `M` nebo `m` je typu `decimal`. Například literály `1m`, `1.5m`, `1e10m`, a `123.456M` jsou všechny typu `decimal`. Tato literál je převedena na `decimal` hodnotu tak, že přesná hodnota, v případě potřeby zaokrouhlení na nejbližší reprezentovatelnou hodnotu pomocí společnosti bankovní zaokrouhlení ([typem decimal](types.md#the-decimal-type)). Libovolného rozsahu zřejmé v literálu se zachovají, pokud je tato hodnota zaokrouhlena nebo hodnota je nula (v tom druhém případě přihlašování a škálování bude 0). Proto je literál `2.900m` tvoří desetinné čárky se znaménkem, bude analyzována `0`, koeficient `2900`a škálování `3`.
+*  Skutečný literál s příponou `F` nebo `f` je typu `float`. Například literály `1f`, `1.5f`, `1e10f`a `123.456F` jsou všechny typu `float`.
+*  Skutečný literál s příponou `D` nebo `d` je typu `double`. Například literály `1d`, `1.5d`, `1e10d`a `123.456D` jsou všechny typu `double`.
+*  Skutečný literál s příponou `M` nebo `m` je typu `decimal`. Například literály `1m`, `1.5m`, `1e10m`a `123.456M` jsou všechny typu `decimal`. Tento literál je převeden na `decimal` hodnotu tím, že převezme přesnou hodnotu a v případě potřeby se zaokrouhluje na nejbližší reprezentovatelné hodnoty pomocí zaokrouhlování bank ([desítkový typ](types.md#the-decimal-type)). Jakékoli patrné zjevné v literálu se zachová, pokud hodnota není zaokrouhlená nebo je hodnota nulová (v opačném případě bude znaménko a měřítko 0). Proto se literál `2.900m` bude analyzovat za účelem vytvoření desetinné čárky pomocí znaménka `0`, koeficientu `2900`a stupnice `3`.
 
-Pokud v zvolený typ nelze reprezentovat zadaný literál, dojde k chybě v době kompilace.
+Pokud zadaný literál nemůže být reprezentovaný v zadaném typu, dojde k chybě při kompilaci.
 
-Hodnota literál reálného čísla typu `float` nebo `double` je určit pomocí standardu IEEE "zaokrouhlí na nejbližší" režimu.
+Hodnota reálného literálu typu `float` nebo `double` je určena pomocí režimu zaokrouhlení IEEE na nejbližší.
 
-Všimněte si, že v literál reálného čísla, desítkových číslic jsou vždy požadované za desetinnou čárkou. Například `1.3F` je literál typu reálné číslo ale `1.F` není.
+Všimněte si, že v reálném literálu jsou desítkové číslice vždy požadovány za desetinnou čárkou. Například je skutečný `1.3F` literál, ale `1.F` není.
 
-#### <a name="character-literals"></a>Znakové literály
+#### <a name="character-literals"></a>Literály znaků
 
-Znakový literál představuje jeden znak a obvykle obsahuje znak do uvozovek, stejně jako v `'a'`.
+Znakový literál představuje jeden znak a obvykle se skládá ze znaku v uvozovkách, jako v `'a'`.
 
-Poznámka: Zápis gramatiky ANTLR provede následující matoucí! V ANTLR při psaní `\'` zkratka pro jednoduchá uvozovka `'`. A při psaní `\\` zkratka pro jedno zpětné lomítko `\`. Proto první pravidlo pro literální znak znamená, že začíná jednoduchá uvozovka, pak znak pak jednoduché uvozovky. A jsou jedenáct možné jednoduchá řídící sekvence `\'`, `\"`, `\\`, `\0`, `\a`, `\b`, `\f`, `\n`, `\r`, `\t`, `\v`.
+Poznámka: Gramatický zápis ANTLR způsobuje následující matoucí! Při psaní `\'` v ANTLR se pro jednu uvozovku `'`postupuje. A při psaní `\\` se zaznamená jedno zpětné lomítko `\`. Proto první pravidlo pro znakový literál znamená, že začíná jednoduchou uvozovkou, pak znakem, pak jednoduchou uvozovku. A jedenáct možných jednoduchých řídicích sekvencí `\'`jsou `\"`, `\\`, `\0` `\a`,, `\b`, `\f`, `\n`, `\r`, ,`\t` ,`\v`.
 
 ```antlr
 character_literal
@@ -501,26 +501,26 @@ hexadecimal_escape_sequence
     : '\\x' hex_digit hex_digit? hex_digit? hex_digit?;
 ```
 
-Znak, který následuje znak zpětného lomítka (`\`) v *znak* musí být jedna z následujících znaků: `'`, `"`, `\`, `0`, `a`, `b` , `f`, `n`, `r`, `t`, `u`, `U`, `x`, `v`. V opačném případě dojde k chybě v době kompilace.
+Znak, který následuje znak zpětného lomítka`\`() ve *znaku* , musí být jedním z následujících znaků: `'`, `"`, `\`, `0`, `a`, `b`, `f` , `n`, `r`, `t`, `u`, `U`, `x`, `v`. V opačném případě dojde k chybě při kompilaci.
 
-Šestnáctková řídicí sekvence představuje jeden znak Unicode s hodnotou tvořen šestnáctkové číslo následující "`\x`".
+Šestnáctková řídicí sekvence představuje jeden znak Unicode s hodnotou vytvořenou hexadecimálním číslem za`\x`"".
 
-Pokud je hodnota reprezentovaná literální znak větší než `U+FFFF`, dojde k chybě kompilace.
+Pokud je hodnota reprezentovaná znakovým literálem větší než `U+FFFF`, dojde k chybě při kompilaci.
 
-Řídicí sekvence znaků Unicode ([znak – řídicí sekvence Unicode](lexical-structure.md#unicode-character-escape-sequences)) ve znakového literálu musí být v rozsahu `U+0000` k `U+FFFF`.
+Řídicí sekvence znaků Unicode ([řídicí sekvence znaků Unicode](lexical-structure.md#unicode-character-escape-sequences)) ve znakovém literálu musí být v rozsahu `U+0000` až. `U+FFFF`
 
-Jednoduchá řídící sekvence představuje kódování Unicode znaku, jak je popsáno v následující tabulce.
+Jednoduchá řídicí sekvence představuje kódování znaků Unicode, jak je popsáno v následující tabulce.
 
 
 | __Řídicí sekvence__ | __Název znaku__ | __Kódování Unicode__ |
 |---------------------|--------------------|----------------------|
-| `\'`                | jednoduché uvozovky       | `0x0027`             | 
-| `\"`                | dvojité uvozovky       | `0x0022`             | 
-| `\\`                | Zpětné lomítko          | `0x005C`             | 
+| `\'`                | Jednoduchá uvozovka       | `0x0027`             | 
+| `\"`                | Dvojité uvozovky       | `0x0022`             | 
+| `\\`| Zpětné lomítko |`0x005C`             | 
 | `\0`                | Null               | `0x0000`             | 
 | `\a`                | Výstrahy              | `0x0007`             | 
 | `\b`                | Backspace          | `0x0008`             | 
-| `\f`                | Posun strany          | `0x000C`             | 
+| `\f`                | Informační kanál formuláře          | `0x000C`             | 
 | `\n`                | Nový řádek           | `0x000A`             | 
 | `\r`                | Návrat na začátek řádku    | `0x000D`             | 
 | `\t`                | Horizontální tabulátor     | `0x0009`             | 
@@ -530,11 +530,11 @@ Typ *character_literal* je `char`.
 
 #### <a name="string-literals"></a>Řetězcové literály
 
-C# podporuje dvě formy řetězcových literálů: ***regulární řetězcové literály*** a ***doslovný řetězec literálů***.
+C#podporuje dva formy řetězcových literálů: ***regulární řetězcové literály*** a ***doslovné řetězce literálů***.
 
-Pravidelné Textový literál skládá z nula nebo více znaků uzavřených v uvozovkách, stejně jako v `"hello"`a může jich obsahovat i jednoduchá řídící sekvence (jako například `\t` pro znak tabulátoru) a šestnáctkové a řídicí sekvence Unicode.
+Regulární řetězcový literál se skládá z nula nebo více znaků uzavřených v dvojitých uvozovkách, `"hello"`jako v a může zahrnovat jednoduché řídicí sekvence ( `\t` například pro znak tabulátoru) a hexadecimální sekvence znaků a kódování Unicode.
 
-Doslovný řetězec literálu se skládá z `@` znak následovaný znak dvojitých uvozovek, nula nebo více znaků a koncový znak dvojitých uvozovek. Je jednoduchý příklad `@"hello"`. Začal v doslovném řetězci literálu, jsou znaky mezi oddělovači interpretovány verbatim, pouze se výjimka *quote_escape_sequence*. Zejména jednoduchá řídící sekvence a šestnáctkové a řídicí sekvence Unicode nejsou zpracovány v doslovném řetězci literály. Doslovný řetězec literálu může zahrnovat více řádků.
+Doslovné řetězcový literál se skládá ze `@` znaku následovaného znakem dvojité uvozovky, nula nebo více znaků a uzavíracího znaku dvojité uvozovky. Jednoduchý příklad je `@"hello"`. V doslovném řetězcovém literálu jsou znaky mezi oddělovači interpretovány doslovné, jedinou výjimkou je *quote_escape_sequence*. Zejména jednoduché řídicí sekvence a šestnáctkové a znakové sekvence Unicode nejsou zpracovány v doslovném řetězci literálů. Doslovné řetězcový literál může zahrnovat více řádků.
 
 ```antlr
 string_literal
@@ -575,9 +575,9 @@ quote_escape_sequence
     ;
 ```
 
-Znak, který následuje znak zpětného lomítka (`\`) v *regular_string_literal_character* musí být jedna z následujících znaků: `'`, `"`, `\`, `0`, `a` , `b`, `f`, `n`, `r`, `t`, `u`, `U`, `x`, `v`. V opačném případě dojde k chybě v době kompilace.
+Znak, který následuje znak zpětného lomítka`\`() v *regular_string_literal_character* , musí být jedním z následujících znaků: `'`, `"`, `\`, `0`, `a`, `b` , `f`, `n`, `r`, `t`, `u`, `U`, `x`, `v`. V opačném případě dojde k chybě při kompilaci.
 
-V příkladu
+Příklad
 ```csharp
 string a = "hello, world";                   // hello, world
 string b = @"hello, world";                  // hello, world
@@ -596,13 +596,13 @@ string j = @"one
 two
 three";
 ```
-ukazuje různé řetězcové literály. Poslední řetězcový literál, `j`, je doslovný řetězec literálu, která zahrnuje více řádků. Znaky mezi uvozovkami, včetně prázdných znaků, jako je například znaky nového řádku, jsou zachovány verbatim.
+zobrazuje různé řetězcové literály. Poslední řetězcový literál, `j`je doslovné textový literál, který pokrývá více řádků. Znaky mezi uvozovkami, včetně prázdných znaků, jako jsou znaky nového řádku, jsou zachovány ve znění.
 
-Protože šestnáctkové řídicí sekvence může mít proměnný počet šestnáctkových číslic, řetězcový literál `"\x123"` obsahuje jeden znak s šestnáctkovou hodnotou 123. Řetězec obsahující znak s šestnáctkovou hodnotou 12 následované znakem 3 vytvoříte jeden napsat `"\x00123"` nebo `"\x12" + "3"` místo.
+Vzhledem k tomu, že hexadecimální řídicí sekvence může mít proměnlivý počet šestnáctkových číslic, `"\x123"` řetězcový literál obsahuje jeden znak s šestnáctkovou hodnotou 123. Chcete-li vytvořit řetězec, který obsahuje znak s šestnáctkovou hodnotou 12 následovaný znakem 3, může `"\x00123"` jeden `"\x12" + "3"` napsat nebo místo něj.
 
-Typ *řetězcový_literál* je `string`.
+Typ *string_literal* je `string`.
 
-Každý řetězec literálu nemá za následek nutně novou instanci řetězce. Když dva nebo více řetězcových literálů, které jsou ekvivalentní podle operátoru rovnosti řetězců ([řetězec operátory rovnosti](expressions.md#string-equality-operators)) se zobrazí ve stejném programu, tyto řetězcové literály odkazují na stejnou instanci řetězce. Například výstup vyprodukovaný
+Každý řetězcový literál nemusí nutně mít za následek novou instanci řetězce. V případě, že dva nebo více řetězcových literálů, které jsou ekvivalentní vzhledem k operátoru rovnosti řetězců ([operátory rovnosti řetězců](expressions.md#string-equality-operators)), se nachází ve stejném programu, tyto řetězcové literály odkazují na stejnou instanci řetězce. Například výstup vytvářený
 ```csharp
 class Test
 {
@@ -613,15 +613,15 @@ class Test
     }
 }
 ```
-je `True` vzhledem k tomu dva literály odkazují na stejnou instanci řetězce.
+je `True` to proto, že dva literály odkazují na stejnou instanci řetězce.
 
-#### <a name="interpolated-string-literals"></a>Interpolované řetězce literálů
+#### <a name="interpolated-string-literals"></a>Interpolované řetězcové literály
 
-Interpolované řetězcové literály jsou podobné řetězcové literály, ale obsahovat děr odděleny `{` a `}`, ve které může dojít, výrazy. Za běhu jsou výrazy vyhodnocovány za účelem s jejich textové formulářů nahradit do řetězce na místě, kde dochází k riziko. Syntaxe a sémantiky interpolace řetězců jsou popsány v části ([interpolovaných řetězců](expressions.md#interpolated-strings)).
+Interpolované řetězcové literály jsou podobné řetězcovým literálům, ale obsahují otvory oddělené `{` znakem `}`a, mohou nastat výrazy. V době běhu jsou výrazy vyhodnocovány s účelem použití jejich textových formulářů, které jsou nahrazeny řetězcem na místě, kde se objeví otvor. Syntaxe a sémantika řetězcové interpolace je popsána v části ([interpolované řetězce](expressions.md#interpolated-strings)).
 
-Například řetězcové literály může být interpolovaný řetězec literálů pravidelné nebo verbatim. Interpolované regulární řetězcové literály jsou odděleny `$"` a `"`, a jsou odděleny interpolovaný řetězec verbatim literály `$@"` a `"`.
+Podobně jako řetězcové literály mohou být interpolované řetězcové literály buď pravidelné, nebo doslovné. Interpolované regulární řetězcové literály jsou odděleny `$"` a `"`a interpolované řetězcové literály jsou odděleny hodnotami `$@"` a `"`.
 
-Stejně jako ostatní literály provést lexikální analýzu interpolovaného řetězce literálu zpočátku výsledků do jednoho tokenu podle gramatika níže. Ale před syntaktické analýzy jeden token interpolovaného řetězce literálu je rozdělená do několika tokeny pro části řetězec uzavírající děr a vstupní prvky, ke kterým dochází v děr analyzují lexikálně znovu. To zase může vytvořit více interpolované řetězcových literálů na zpracování, ale, pokud lexikálně opravit, bude nakonec vést k posloupnost tokeny pro syntaktické analýzu ke zpracování.
+Podobně jako jiné literály, lexikální analýza interpolované řetězcové literály, zpočátku vede k jednomu tokenu, jak je uvedeno níže. Nicméně před syntaktickou analýzou je jeden token interpolované řetězcové literály rozdělen do několika tokenů pro části řetězce ohraničujících otvory a vstupní prvky, ke kterým dochází v otvorech, se znovu analyzují. To může mít za následek zpracování více interpolovaná řetězcové literály, ale v případě, že je lexikální správnost, nakonec vede k sekvenci tokenů pro syntaktickou analýzu, která bude zpracována.
 
 ```antlr
 interpolated_string_literal
@@ -780,12 +780,12 @@ single_verbatim_balanced_text_character
     ;
 ```
 
-*Interpolated_string_literal* token je interpretovány jako více tokenů a dalších vstupních prvků následujícím způsobem, v pořadí podle výskytu v *interpolated_string_literal*:
+*Interpolated_string_literal* token se překládá jako více tokenů a dalších vstupních elementů následujícím způsobem, v pořadí podle výskytu v *interpolated_string_literal*:
 
-* Výskyty následující jsou interpretovány jako samostatné jednotlivé tokeny: úvodního `$` znaménko, *interpolated_regular_string_whole*, *interpolated_regular_string_start*, *interpolated_regular_string_mid*, *interpolated_regular_string_end*, *interpolated_verbatim_string_whole*,  *interpolated_verbatim_string_start*, *interpolated_verbatim_string_mid* a *interpolated_verbatim_string_end*.
-* Výskyty *regular_balanced_text* a *verbatim_balanced_text* mezi těmito se naplánovalo jako *input_section* ([provést lexikální analýzu ](lexical-structure.md#lexical-analysis)) a jsou interpretovány jako výsledné pořadí elementů vstupu. Může pak patří mezi ně interpolovaném řetězci opětovnou interpretaci bitového literálové tokeny.
+* Výskyty následujících `$` jsou překládány jako samostatné jednotlivé tokeny: přední znaménko, *interpolated_regular_string_whole*, *interpolated_regular_string_start*, *interpolated_regular_string_mid*, *interpolated_regular_string_end*, *interpolated_verbatim_string_whole*, *interpolated_verbatim_string_start*, *interpolated_verbatim_string_mid* a *interpolated_verbatim_string_end*.
+* Výskyty hodnot *regular_balanced_text* a *verbatim_balanced_text* mezi nimi se znovu zpracovávají jako *input_section* ([lexikální analýza](lexical-structure.md#lexical-analysis)) a jsou překládány jako výsledná sekvence vstupních prvků. Ty můžou zase zahrnovat interpolované řetězcové literály tokeny, které se mají přeinterpretovat.
 
-Syntaktické analýzy se opětovnému zkombinování tokeny do *interpolated_string_expression* ([interpolovaných řetězců](expressions.md#interpolated-strings)).
+Syntaktická analýza znovu sloučí tokeny do *interpolated_string_expression* ([interpolované řetězce](expressions.md#interpolated-strings)).
 
 Příklady TODO
 
@@ -798,11 +798,11 @@ null_literal
     ;
 ```
 
-*Null_literal* lze implicitně převést na typ odkazu nebo typ připouštějící hodnotu Null.
+*Null_literal* se dá implicitně převést na typ odkazu nebo na typ s možnou hodnotou null.
 
 ### <a name="operators-and-punctuators"></a>Operátory a interpunkční znaky
 
-Existuje několik druhů operátory a interpunkční znaky. Operátory se ve výrazech používají k popisu operace, které zahrnují jeden nebo více operandů. Například výraz `a + b` používá `+` operátor přidat dva operandy `a` a `b`. Interpunkční znaky jsou určené pro seskupování a oddělení.
+Existuje několik druhů operátorů a interpunkční znaky. Operátory jsou používány ve výrazech k popisu operací, které zahrnují jeden nebo více operandů. Například výraz `a + b` `a` používá operátor k přidání dvou operandů a `b`. `+` Interpunkční znaky jsou pro seskupování a oddělování.
 
 ```antlr
 operator_or_punctuator
@@ -822,11 +822,11 @@ right_shift_assignment
     ;
 ```
 
-Svislá čára v *right_shift* a *right_shift_assignment* výroby slouží k označení, že, na rozdíl od jiných výroby v syntaxi gramatice žádné znaky jakéhokoli druhu (dokonce ani prázdné znaky) jsou povolené mezi tokeny. Tyto výroby jsou zpracovány speciálně, chcete-li povolit správné zpracování *type_parameter_list*s ([parametry typu](classes.md#type-parameters)).
+Svislá čára v rámci *right_shift* a *right_shift_assignment* se používá k označení toho, že na rozdíl od jiných výrob v syntaktické gramatice nejsou mezi tokeny povoleny žádné znaky libovolného typu (ne ani prázdné znaky). Tyto výroby jsou speciálně ošetřeny, aby bylo možné povolit správné zpracování *type_parameter_list*s ([parametry typu](classes.md#type-parameters)).
 
 ## <a name="pre-processing-directives"></a>Direktivy předběžného zpracování
 
-Direktivy předběžného zpracování umožní v podmíněně přeskočit oddílů zdrojové soubory k nahlášení chyby a upozornění podmínky a zobrazit různé oblasti zdrojového kódu. Termín "předběžné zpracování direktiv" se používá pouze pro soulad s programovacích jazyků C a C++. V jazyce C# neexistuje žádný samostatný krok předběžného zpracování. direktivy předběžného zpracování jsou zpracovávány jako součást fáze provést lexikální analýzu.
+Direktivy předběžného zpracování poskytují možnost podmíněně přeskočit oddíly zdrojových souborů, hlásit chybové a varovné podmínky a rozlišit různé oblasti zdrojového kódu. Termín "direktivy předběžného zpracování" se používá pouze pro konzistenci s programovacími jazyky jazyka C a C++ . V C#není k dispozici žádný samostatný krok před zpracováním; direktivy předběžného zpracování jsou zpracovávány jako součást lexikální analytické fáze.
 
 ```antlr
 pp_directive
@@ -841,18 +841,18 @@ pp_directive
 
 K dispozici jsou následující direktivy předběžného zpracování:
 
-*  `#define` a `#undef`, které se používají k definování a, respektive nedefinované symboly podmíněné kompilace ([deklaračních direktiv](lexical-structure.md#declaration-directives)).
-*  `#if`, `#elif`, `#else`, a `#endif`, které se používají k podmíněně vynechá části zdrojového kódu ([direktivy podmíněné kompilace](lexical-structure.md#conditional-compilation-directives)).
-*  `#line`, který se používá k řízení čísla řádků pro chyby a upozornění ([řádek direktivy](lexical-structure.md#line-directives)).
-*  `#error` a `#warning`, které se používají k vydávání chyby a upozornění, respektive ([diagnostických direktivy](lexical-structure.md#diagnostic-directives)).
-*  `#region` a `#endregion`, které se používají k explicitně označit části zdrojového kódu ([direktivy oblastí](lexical-structure.md#region-directives)).
-*  `#pragma`, který se používá k určení volitelné kontextové informace kompilátoru ([direktivy Pragma](lexical-structure.md#pragma-directives)).
+*  `#define`a `#undef`, které jsou použity k definování a zrušení definice, v uvedeném pořadí, symboly podmíněné kompilace ([deklarace direktiv](lexical-structure.md#declaration-directives)).
+*  `#if`, `#elif`, `#else`, a`#endif`, které jsou použity k podmíněnému přeskočení sekcí zdrojového kódu ([direktivy podmíněné kompilace](lexical-structure.md#conditional-compilation-directives)).
+*  `#line`, který se používá k řízení čísel řádků vygenerovaných pro chyby a upozornění ([direktivy řádku](lexical-structure.md#line-directives)).
+*  `#error`a `#warning`, které se používají k vydávání chyb a upozornění, v uvedeném pořadí ([diagnostické direktivy](lexical-structure.md#diagnostic-directives)).
+*  `#region`a `#endregion`, které se používají k explicitnímu označení oddílů zdrojového kódu ([direktivy oblasti](lexical-structure.md#region-directives)).
+*  `#pragma`, který se používá k určení volitelných kontextových informací kompilátoru ([direktivy pragma](lexical-structure.md#pragma-directives)).
 
-Direktivy předběžného zpracování vždy zabírá samostatný řádek zdrojového kódu a vždy začíná službami `#` znaků a název direktivy předběžného zpracování. Prázdné znaky může dojít před `#` znak a mezi `#` znaků a název direktivy.
+Direktiva před zpracováním vždy zabírá samostatný řádek zdrojového kódu a vždy začíná `#` znakem a názvem direktivy před zpracováním. Před `#` znakem a `#` mezi znakem a názvem direktivy může být mezera.
 
-Zdrojový řádek obsahující `#define`, `#undef`, `#if`, `#elif`, `#else`, `#endif`, `#line`, nebo `#endregion` – direktiva mohou končit jednořádkový komentář. Komentáře s oddělovači ( `/* */` Styl komentáře) nejsou povoleny na zdrojové řádky obsahující direktivy předběžného zpracování.
+Zdrojový řádek obsahující `#define`direktivu, `#undef`, `#if` `#else` `#endif`,,, ,`#line`nebo může`#endregion` končit jedním řádkem komentáře. `#elif` Znaky s oddělovači ( `/* */` styl komentářů) nejsou povoleny pro zdrojové řádky obsahující direktivy předběžného zpracování.
 
-Direktivy předběžného zpracování nejsou tokeny a nejsou součástí syntaktické gramatika C#. Direktivy předběžného zpracování však lze použít k zahrnutí nebo vyloučení sekvence tokenů a můžete tímto způsobem ovlivnit význam programu v jazyce C#. Například při kompilaci programu:
+Direktivy předběžného zpracování nejsou tokeny a nejsou součástí syntaktické gramatiky C#. Direktivy předběžného zpracování však lze použít k zahrnutí nebo vyloučení sekvencí tokenů a může tak v takovém smyslu ovlivnit význam C# programu. Například při kompilování programu:
 ```csharp
 #define A
 #undef B
@@ -872,7 +872,7 @@ class C
 #endif
 }
 ```
-výsledky v přesně stejnou sekvenci tokeny jako programu:
+má za následek přesně stejnou sekvenci tokenů jako program:
 ```csharp
 class C
 {
@@ -881,11 +881,11 @@ class C
 }
 ```
 
-To znamená že lexikálně, dva programy je značně odlišná, syntakticky, že jsou identické.
+Vzhledem k tomu, že tyto dva programy jsou proto v lexikálním rozdílovém, syntakticky stejné.
 
 ### <a name="conditional-compilation-symbols"></a>Symboly podmíněné kompilace
 
-Podmíněná kompilace funkce poskytované službou `#if`, `#elif`, `#else`, a `#endif` direktivy je řízen pomocí předběžného zpracování výrazů ([předběžného zpracování výrazů](lexical-structure.md#pre-processing-expressions)) a symboly podmíněné kompilace.
+Funkce `#if`podmíněné kompilace poskytované `#endif` direktivami, `#elif`, `#else`a jsou řízeny prostřednictvím předzpracování výrazů ([předzpracování výrazů](lexical-structure.md#pre-processing-expressions)) a podmíněné symboly kompilace.
 
 ```antlr
 conditional_symbol
@@ -893,15 +893,15 @@ conditional_symbol
     ;
 ```
 
-Symbol podmíněné kompilace má dva možné stavy: ***definované*** nebo ***nedefinované***. Na začátku lexikální zpracování zdrojového souboru, je definován symbol podmíněné kompilace, pokud byly explicitně definovány pomocí externího mechanismu (jako je například možnost příkazového řádku kompilátoru). Když `#define` – direktiva se zpracovává, stane definován symbol podmíněné kompilace v náhradu této direktivy s názvem v daném zdrojovém souboru. Symbol zůstává definovaný až `#undef` směrnice pro zpracování stejným symbolu, nebo dokud je dosaženo konce zdrojového souboru. Důsledkem tohoto je, že `#define` a `#undef` direktivy v jednom zdrojovém souboru nemají žádný vliv na jiných zdrojových souborech ve stejném programu.
+Symbol podmíněné kompilace má dva možné stavy: ***definováno*** nebo ***undefined***. Na začátku lexikálního zpracování zdrojového souboru je nedefinovaný symbol podmíněné kompilace, pokud nebyl explicitně definován externím mechanismem (například možnost kompilátoru příkazového řádku). Když je zpracována direktiva, symbol podmíněné kompilace s názvem v této direktivě bude definován v tomto zdrojovém souboru. `#define` Symbol zůstane definován, dokud `#undef` není zpracována direktiva pro stejný symbol, nebo dokud není dosaženo konce zdrojového souboru. Nejedná se o to, že `#define` direktivy a `#undef` v jednom zdrojovém souboru nemají žádný vliv na jiné zdrojové soubory ve stejném programu.
 
-Při odkazování ve výrazu předběžného zpracování, symbol definovaný podmíněné kompilace má logická hodnota `true`, a symbol definován Podmíněná kompilace je logická hodnota `false`. Neexistuje žádný požadavek, symboly podmíněné kompilace explicitně deklarovat předtím, než jsou odkazovány v předběžného zpracování výrazů. Místo toho nedeklarovaný symboly nejsou jednoduše definovány a proto mají hodnotu `false`.
+V případě, že je odkazováno ve výrazu před zpracováním, má definovaný podmíněný symbol kompilace `true`logickou hodnotu a nedefinovaný symbol podmíněné kompilace má logickou `false`hodnotu. Neexistuje žádný požadavek, aby symboly podmíněné kompilace byly explicitně deklarovány předtím, než jsou odkazovány v předzpracování výrazů. Místo toho jsou nedeklarované symboly jednoduše nedefinovány a mají tedy hodnotu `false`.
 
-Obor názvů pro symboly podmíněné kompilace je samostatný a oddělený od jiných pojmenovaných entit v programu v jazyce C#. Symboly podmíněné kompilace může být odkazováno pouze v `#define` a `#undef` direktivy a předběžného zpracování výrazů.
+Obor názvů pro symboly podmíněné kompilace je jedinečný a oddělený od všech ostatních pojmenovaných entit C# v programu. Na symboly podmíněné kompilace lze odkazovat pouze v `#define` direktivách and `#undef` a ve výrazech předběžného zpracování.
 
-### <a name="pre-processing-expressions"></a>Předběžné zpracování výrazů
+### <a name="pre-processing-expressions"></a>Výrazy předběžného zpracování
 
-Předběžné zpracování výrazů může dojít v `#if` a `#elif` direktivy. Operátory `!`, `==`, `!=`, `&&` a `||` jsou povolené v předběžného zpracování výrazů, a mohou být použity závorky pro seskupení.
+Výrazy předběžného zpracování se můžou `#if` vyskytovat `#elif` v direktivách a. Operátory `!`, `==`, ajsou`!=`povolenyve výrazech předběžného zpracování a závorky lze použít k seskupení. `||` `&&`
 
 ```antlr
 pp_expression
@@ -937,13 +937,13 @@ pp_primary_expression
     ;
 ```
 
-Při odkazování ve výrazu předběžného zpracování, symbol definovaný podmíněné kompilace má logická hodnota `true`, a symbol definován Podmíněná kompilace je logická hodnota `false`.
+V případě, že je odkazováno ve výrazu před zpracováním, má definovaný podmíněný symbol kompilace `true`logickou hodnotu a nedefinovaný symbol podmíněné kompilace má logickou `false`hodnotu.
 
-Vyhodnocení výrazu předběžného zpracování vždy vrátí hodnotu typu boolean. Pravidla vyhodnocení výrazu předběžného zpracování jsou stejné jako pro konstantní výraz ([konstantní výrazy](expressions.md#constant-expressions)), s tím rozdílem, že pouze entity definovaný uživatelem, které může být odkazováno jsou symboly podmíněné kompilace .
+Vyhodnocení předzpracovávaného výrazu vždy vrací logickou hodnotu. Pravidla vyhodnocení pro předzpracování výrazu jsou stejná jako u konstantního výrazu ([konstantní výrazy](expressions.md#constant-expressions)), s tím rozdílem, že pouze uživatelsky definované entity, na které lze odkazovat, jsou podmíněné symboly kompilace.
 
-### <a name="declaration-directives"></a>Deklaračních direktiv
+### <a name="declaration-directives"></a>Direktivy deklarace
 
-Deklaračních direktiv se používají k definování nebo nedefinované symboly podmíněné kompilace.
+Direktivy deklarace slouží k definování nebo zrušení definování symbolů podmíněné kompilace.
 
 ```antlr
 pp_declaration
@@ -956,9 +956,9 @@ pp_new_line
     ;
 ```
 
-Zpracování `#define` – direktiva způsobí, že symbol daného podmíněné kompilace budou definovat, počínaje zdrojového řádku, který následuje direktivu. Podobně, zpracování `#undef` – direktiva způsobí, že symbol daného podmíněné kompilace se nedefinované, počínaje zdrojového řádku, který následuje direktivu.
+Zpracování `#define` direktiv způsobí, že daný symbol podmíněné kompilace bude definován, počínaje zdrojovým řádkem, který následuje po direktivě. Podobně zpracování `#undef` direktiv způsobí, že se daný symbol podmíněné kompilace stane nedefinovaným, počínaje zdrojovým řádkem, který následuje po direktivě.
 
-Žádné `#define` a `#undef` směrnice ve zdrojovém souboru se musí vyskytovat před první *token* ([tokeny](lexical-structure.md#tokens)) ve zdrojovém souboru; jinak kompilace dojde k chybě. Intuitivní řečeno `#define` a `#undef` direktivy musí předcházet všechny "skutečného kódu" ve zdrojovém souboru.
+Všechny `#define` direktivy ve zdrojovém souboru musí nastat před prvním tokenem ([tokeny](lexical-structure.md#tokens)) ve zdrojovém souboru. v opačném případě dojde k chybě při kompilaci. `#undef` V intuitivních `#define` výrazech `#undef` a direktivy musí předcházet libovolnému "skutečnému kódu" ve zdrojovém souboru.
 
 Příklad:
 ```csharp
@@ -975,9 +975,9 @@ namespace Megacorp.Data
     #endif
 }
 ```
-je platný vzhledem k tomu `#define` direktivy předcházet první token ( `namespace` – klíčové slovo) ve zdrojovém souboru.
+je platný, protože `#define` direktivy předcházejí prvnímu tokenu `namespace` (klíčové slovo) ve zdrojovém souboru.
 
-Následující příklad vrátí chybu v době kompilace, protože `#define` následuje skutečného kódu:
+V následujícím příkladu dojde k chybě při kompilaci, protože `#define` následuje skutečný kód:
 ```csharp
 #define A
 namespace N
@@ -989,13 +989,13 @@ namespace N
 }
 ```
 
-A `#define` může definovat symbol podmíněné kompilace, která je již definován, aniž by bylo jakékoli intervenující `#undef` pro tento symbol. Následující příklad definuje symbol podmíněné kompilace `A` a znovu ji definuje.
+Může definovat symbol podmíněné kompilace, který je již definován, aniž by došlo `#undef` k jeho použití pro tento symbol. `#define` Následující příklad definuje podmíněný kompilační symbol `A` a pak ho znovu definuje.
 ```csharp
 #define A
 #define A
 ```
 
-A `#undef` může "definice" podmíněné kompilace symbolu, která není definovaná. Následující příklad definuje symbol podmíněné kompilace `A` a potom nedefinovaných hodnot ji dvakrát; i když druhý `#undef` nemá žádný vliv, je stále platný.
+`#undef` Může "undefine" undefine "undefined" – symbol podmíněné kompilace, který není definován. Následující příklad definuje podmíněný kompilační symbol `A` a pak je nedefinuje dvakrát; i když druhý `#undef` nemá žádný vliv, je stále platný.
 ```csharp
 #define A
 #undef A
@@ -1004,7 +1004,7 @@ A `#undef` může "definice" podmíněné kompilace symbolu, která není defino
 
 ### <a name="conditional-compilation-directives"></a>Direktivy podmíněné kompilace
 
-Direktivy podmíněné kompilace umožňují podmíněně zahrnout nebo vyloučit částí zdrojového souboru.
+Direktivy podmíněné kompilace jsou používány k podmíněnému zahrnutí nebo vyloučení částí zdrojového souboru.
 
 ```antlr
 pp_conditional
@@ -1050,19 +1050,19 @@ not_number_sign
     ;
 ```
 
-Jak je uvedeno v syntaxi, direktivy podmíněné kompilace musí být napsaná jako sady skládající se z, v pořadí, `#if` směrnice, nula nebo více `#elif` direktivy, nula nebo `#else` směrnice a `#endif` – direktiva. Mezi direktivy jsou podmíněné sekce zdrojového kódu. Každý oddíl se řídí bezprostředně předcházející směrnice. Podmíněný oddíl může obsahovat direktivy podmíněné kompilace vnořené zadané tyto direktivy tvoří kompletní sady.
+Jak je určeno syntaxí, direktivy podmíněné kompilace musí být zapsány jako sady, které se skládají `#if` z, v pořadí, `#elif` direktiva, nula nebo `#else` více direktiv, nula `#endif` nebo jedna direktiva a direktiva. Mezi direktivami jsou podmíněné oddíly zdrojového kódu. Každý oddíl je řízen hned předchozí direktivou. Podmíněný oddíl může sám obsahovat vnořené direktivy podmíněné kompilace, pokud tyto direktivy tvoří kompletní sady.
 
-A *pp_conditional* vybere jenom jedna z uzavřeného *conditional_section*s normální lexikální zpracování:
+*Pp_conditional* vybere maximálně jeden z obsažených *conditional_section*s pro normální lexikální zpracování:
 
-*  *Pp_expression*s `#if` a `#elif` direktivy jsou vyhodnocovány v pořadí, dokud jeden vrací `true`. Pokud výraz vrací `true`, *conditional_section* je vybrána odpovídající direktivy.
-*  Pokud všechny *pp_expression*s yield `false`a pokud `#else` – direktiva je k dispozici, *conditional_section* z `#else` – direktiva je vybrána.
-*  V opačném případě ne *conditional_section* zaškrtnuto.
+*  *Pp_expression* `#if` s direktivami a `#elif` jsou vyhodnocovány v pořadí až do jedné z `true`těchto výnosů. Pokud výraz `true`vrátí, je vybrána *conditional_section* odpovídající direktiva.
+*  `false`Pokud `#else` sevrátívšechnypp_expressionapokudjepřítomnadirektiva,vybereseconditional_sectiondirektiva`#else` .
+*  V opačném případě není vybrána žádná *conditional_section* .
 
-Vybrané *conditional_section*, pokud existuje, se zpracovává jako normální *input_section*: musí dodržovat zdrojového kódu obsažen v části gramatika slov; tokeny jsou generovány ze zdroje kód v části; a předběžné zpracování direktiv v části mají předepsané účinky.
+Vybraná *conditional_section*, pokud existuje, je zpracována jako normální *input_section*: zdrojový kód obsažený v části musí splňovat lexikální gramatiku; tokeny jsou generovány ze zdrojového kódu v oddílu; a direktivy předběžného zpracování v oddílu mají předepsané účinky.
 
-Zbývající *conditional_section*s, je-li k dispozici, jsou zpracovávány jako *skipped_section*s: s výjimkou direktivy předběžného zpracování, zdrojový kód v části nemusí splňovat lexikální gramatiky; ne tokeny jsou generovány ze zdrojového kódu v části; a předběžné zpracování direktiv v části musí být lexikálně správná, ale nebudou zpracovány jinak. V rámci *conditional_section* , který je zpracováván jako *skipped_section*jakékoli vnořené *conditional_section*s (obsažené ve vnořených `#if`... `#endif` a `#region`... `#endregion` vytvoří) zpracovávají jako *skipped_section*s.
+Zbývající *conditional_section*, pokud nějaké jsou zpracovávány jako *skipped_section*s s výjimkou předzpracování direktiv, zdrojový kód v části nemusí vyhovovat lexikální gramatice; v oddílu nejsou vygenerovány žádné tokeny ze zdrojového kódu. a direktivy předběžného zpracování v oddílu musí být lexikální, ale nejsou jinak zpracovány. V rámci *conditional_section* , který je zpracováván jako *skipped_section*, jakýkoli vnořený *conditional_section*s (obsaženo ve `#if`vnořených... `#endif` a`#region`... konstrukce) jsou zpracovávány také jako *skipped_section s.* `#endregion`
 
-Následující příklad ukazuje, jak Podmíněná kompilace můžete vnořit direktivy:
+Následující příklad ukazuje, jak mohou direktivy podmíněné kompilace vnořovat:
 ```csharp
 #define Debug       // Debugging on
 #undef Trace        // Tracing off
@@ -1081,7 +1081,7 @@ class PurchaseTransaction
 }
 ```
 
-S výjimkou direktivy předběžného zpracování, přeskočené zdrojový kód není lze provést lexikální analýzu. Například následující platí bez ohledu na Neukončený komentář `#else` části:
+S výjimkou předběžně zpracovávaných direktiv nepodléhá zdrojový kód lexikální analýze. Následující příklad je platný bez ohledu na neukončený komentář v `#else` části:
 ```csharp
 #define Debug        // Debugging on
 
@@ -1097,9 +1097,9 @@ class PurchaseTransaction
 }
 ```
 
-Všimněte si však, že jsou direktivy předběžného zpracování musí být lexikálně správné i v bylo přeskočeno částí zdrojového kódu.
+Všimněte si však, že direktivy předběžného zpracování jsou nutné k lexikálnímu opravení i v vynechaných částech zdrojového kódu.
 
-Direktivy předběžného zpracování nejsou zpracovány, když se zobrazí uvnitř Víceřádkový vstupní prvky. Například program:
+Direktivy předběžného zpracování nejsou zpracovávány při jejich zobrazení uvnitř víceřádkových vstupních prvků. Například program:
 ```csharp
 class Hello
 {
@@ -1114,7 +1114,7 @@ class Hello
     }
 }
 ```
-výsledky ve výstupu:
+výsledek výstupu:
 ```
 hello,
 #if Debug
@@ -1124,7 +1124,7 @@ hello,
 #endif
 ```
 
-V případech specifické sadu direktivy předběžného zpracování, která je zpracována může záviset na vyhodnocení *pp_expression*. Příklad:
+V běžných případech může sada předzpracovaných direktiv, které jsou zpracovány, záviset na vyhodnocení *pp_expression*. Příklad:
 ```csharp
 #if X
     /*
@@ -1132,11 +1132,11 @@ V případech specifické sadu direktivy předběžného zpracování, která je
     /* */ class Q { }
 #endif
 ```
-vždy vytváří stejný token datového proudu (`class` `Q` `{` `}`), bez ohledu na to, jestli `X` je definována. Pokud `X` je definován, jsou pouze zpracovaných direktivy `#if` a `#endif`z důvodu víceřádkových komentářů. Pokud `X` je nedefinovaný, pak tři direktivy (`#if`, `#else`, `#endif`) jsou součástí sady direktiv.
+vždy vytvoří stejný datový proud tokenu`class` ( `}` `Q` `{` ) bez ohledu na to, zda `X` je definován. Pokud `X` je definován, jediné zpracované direktivy jsou `#if` a `#endif`z důvodu víceřádkového komentáře. Pokud `X` není definován, pak tři direktivy (`#if`, `#else`, `#endif`) jsou součástí sady direktiv.
 
 ### <a name="diagnostic-directives"></a>Diagnostické direktivy
 
-Direktivy diagnostiky se používají k generovat explicitně chybové zprávy a upozornění, které jsou hlášeny stejným způsobem jako jiné chyby při kompilaci a upozornění.
+Diagnostické direktivy slouží k explicitnímu generování chybových zpráv a upozornění, které jsou hlášeny stejným způsobem jako jiné chyby při kompilaci a upozornění.
 
 ```antlr
 pp_diagnostic
@@ -1160,11 +1160,11 @@ Příklad:
 
 class Test {...}
 ```
-vždy vyvolá upozornění ("revize kódu potřebný před vrácení se změnami") a způsobí chybu kompilace ("sestavení nemůže být ladění a maloobchodní licence") Pokud podmíněné symboly `Debug` a `Retail` jsou definovány. Všimněte si, že *pp_message* může obsahovat libovolný text, konkrétně, nemusí znázorněno jednoduché uvozovky klíčové slovo obsahovat tokenů ve správném formátu, `can't`.
+vždy vytvoří upozornění ("revize kódu nutná před vrácením se změnami") a vytvoří chybu při kompilaci ("sestavení nemůže být ladění a prodej"), pokud jsou definovány podmíněné symboly `Debug` a. `Retail` Všimněte si, že *pp_message* může obsahovat libovolný text; konkrétně nemusí obsahovat tokeny ve správném formátu, jak je znázorněno v jednoduchých uvozovkách ve slově `can't`.
 
-### <a name="region-directives"></a>Direktivy oblastí
+### <a name="region-directives"></a>Direktivy oblasti
 
-Direktivy oblastí se používají k explicitně označit oblasti zdrojového kódu.
+Direktivy oblasti se používají k explicitnímu označení oblastí zdrojového kódu.
 
 ```antlr
 pp_region
@@ -1180,7 +1180,7 @@ pp_end_region
     ;
 ```
 
-Žádné sémantický význam je připojen k oblasti; oblasti jsou určeny k použití programátor nebo automatizované nástroje pro označení část zdrojového kódu. Zprávu určenou ve `#region` nebo `#endregion` – direktiva podobně nemá žádný sémantický význam; slouží jenom k identifikaci oblasti. Odpovídající `#region` a `#endregion` direktivy mohou mít různé *pp_message*s.
+K oblasti není připojen žádný sémantický význam. oblasti jsou určeny pro účely programátora nebo automatizovaných nástrojů k označení oddílu zdrojového kódu. Zpráva zadaná v `#region` direktivě nebo `#endregion` má také žádný sémantický význam; slouží pouze k identifikaci oblasti. Shoda `#region` a`#endregion` direktivy mohou mít různé *pp_message*.
 
 Lexikální zpracování oblasti:
 ```csharp
@@ -1188,18 +1188,18 @@ Lexikální zpracování oblasti:
 ...
 #endregion
 ```
-odpovídá přesně lexikální zpracování direktivy podmíněné kompilace ve tvaru:
+odpovídá přesně lexikálnímu zpracování direktivy podmíněné kompilace ve formátu:
 ```csharp
 #if true
 ...
 #endif
 ```
 
-### <a name="line-directives"></a>Direktivy Line
+### <a name="line-directives"></a>Line – direktivy
 
-Direktivy Line slouží ke změně čísla řádku a názvy zdrojových souborů, které jsou hlášeny sadou kompilátoru ve výstupu, jako je například upozornění a chyby a které jsou používány atributy informace o volajícím ([atributy informace o volajícím](attributes.md#caller-info-attributes)).
+Direktivy řádku lze použít k změně čísel řádků a názvů zdrojových souborů, které jsou hlášeny kompilátorem, jako jsou upozornění a chyby a které jsou používány atributy informací o volajícím ([atributy informací o volajícím](attributes.md#caller-info-attributes)).
 
-Direktivy line se běžně používají v meta programovací nástroje, které generují zdrojový kód C# z některých jiných textový vstup.
+Direktivy řádku se nejčastěji používají v nástrojích pro meta programování, C# které generují zdrojový kód z nějakého jiného textového vstupu.
 
 ```antlr
 pp_line
@@ -1222,17 +1222,17 @@ file_name_character
     ;
 ```
 
-Pokud ne `#line` direktivy jsou k dispozici, kompilátor oznámí čísla řádků true a názvů zdrojových souborů v jeho výstup. Při zpracování `#line` direktiva, která zahrnuje *line_indicator* , který není `default`, kompilátor považuje za direktivou tak, že má zadaná čísla řádků (a název souboru, je-li zadán) na řádku.
+Pokud nejsou `#line` přítomny žádné direktivy, kompilátor ohlásí hodnoty true a názvy zdrojových souborů ve svém výstupu. Při zpracování `#line` direktivy, která obsahuje *line_indicator* , která `default`není, kompilátor zpracovává řádek za direktivou, která má dané číslo řádku (a název souboru, pokud je zadán).
 
-A `#line default` obrátí účinek metody všechny předchozí direktiv #line – direktiva. Kompilátor sestavy true řádku informace pro následné řádky, přesně jak když není `#line` zpracoval direktivy.
+`#line default` Direktiva obrátí účinek všech předchozích direktiv #line. Kompilátor ohlásí hodnotu true pro následné řádky, přesně tak, že nebyly zpracovány `#line` žádné direktivy.
 
-A `#line hidden` – direktiva nemá žádný vliv na souboru a čísla řádků, které jsou uvedeny v chybové zprávy, ale neovlivňuje ladění na úrovni zdroje. Při ladění, všechny řádky mezi `#line hidden` směrnice a následné `#line` – direktiva (není `#line hidden`) mít žádné informace o číslech řádků. Při krokování kódu v ladicím programu, se přeskočí zcela tyto řádky.
+`#line hidden` Direktiva nemá žádný vliv na soubor a čísla řádků uvedená v chybových zprávách, ale má vliv na ladění na úrovni zdroje. Při ladění nejsou všechny řádky mezi `#line hidden` direktivou a následnou `#line` direktivou (které nejsou `#line hidden`) žádné informace o čísle řádku. Při procházení kódu v ladicím programu budou tyto řádky zcela vynechány.
 
-Všimněte si, že *název_souboru* se liší od pravidelných řetězcový literál v tom, že řídicí znaky nejsou zpracovávány; "`\`" znak jednoduše určuje v rámci běžných lomítka *název_souboru*.
+Všimněte si, že se *název_souboru* liší od regulárního řetězcového literálu v tom, že řídicí znaky nejsou zpracovány; znak "`\`" jednoduše označuje normální znak zpětného lomítka v rámci *název_souboru*.
 
 ### <a name="pragma-directives"></a>Direktivy pragma
 
-`#pragma` Direktiva předzpracování se používá k určení volitelné kontextové informace pro kompilátor. Informace poskytnuty v `#pragma` – direktiva se nikdy nezmění sémantiku programu.
+`#pragma` Direktiva předzpracování se používá k určení volitelných kontextových informací kompilátoru. Informace, které jsou zadány v `#pragma` direktivě, nebudou nikdy měnit sémantiku programu.
 
 ```antlr
 pp_pragma
@@ -1244,11 +1244,11 @@ pragma_body
     ;
 ```
 
-Jazyk C# poskytuje `#pragma` direktivy řízení upozornění kompilátoru. Budoucí verze jazyka mohou zahrnovat další `#pragma` direktivy. Aby vzájemná funkční spolupráce s jinými kompilátory C#, kompilátor jazyka Microsoft C# bez vyvolání chyby při kompilaci pro neznámý `#pragma` direktivy, proveďte tyto direktivy ale generovat upozornění.
+C#poskytuje `#pragma` direktivy pro řízení upozornění kompilátoru. Budoucí verze jazyka mohou zahrnovat další `#pragma` direktivy. Aby byla zajištěna interoperabilita s jinými C# kompilátory C# , kompilátor společnosti Microsoft nevydá chyby kompilace `#pragma` pro neznámé direktivy; takové direktivy však generují upozornění.
 
-#### <a name="pragma-warning"></a>– Direktiva pragma upozornění
+#### <a name="pragma-warning"></a>pragma – upozornění
 
-`#pragma warning` – Direktiva slouží k zakázání nebo obnovit všechny nebo konkrétní sadu upozornění zpráv během kompilace programu následující text.
+`#pragma warning` Direktiva slouží k zakázání nebo obnovení všech nebo konkrétní sady varovných zpráv během kompilace následného textu programu.
 
 ```antlr
 pragma_warning_body
@@ -1266,13 +1266,13 @@ warning_list
     ;
 ```
 
-A `#pragma warning` direktiva, která vynechává seznam upozornění ovlivňuje všechna upozornění. A `#pragma warning` – direktiva obsahuje seznam upozornění se týká pouze upozornění, které jsou uvedeny v seznamu.
+`#pragma warning` Direktiva, která vynechává seznam upozornění, má vliv na všechna upozornění. `#pragma warning` Direktiva, která obsahuje seznam upozornění, má vliv pouze na upozornění, která jsou uvedena v seznamu.
 
-A `#pragma warning disable` direktiv zakáže všechny nebo danou sadu upozornění.
+`#pragma warning disable` Direktiva zakáže všechny nebo danou sadu upozornění.
 
-A `#pragma warning restore` direktiv obnoví všechny nebo danou sadu upozornění na stav, který byl v platnosti na začátku kompilační jednotky. Všimněte si, že pokud konkrétní upozornění zakázal externě, `#pragma warning restore` (, jestli se pro všechny nebo konkrétního upozornění) nebude znovu povolit tohoto upozornění.
+`#pragma warning restore` Direktiva obnoví všechny nebo danou sadu upozornění na stav, který byl platný na začátku kompilační jednotky. Všimněte si, že pokud bylo určité upozornění zakázáno externě, `#pragma warning restore` a (zda pro všechna nebo konkrétní upozornění) nebude toto upozornění znovu povoleno.
 
-Následující příklad ukazuje použití `#pragma warning` dočasně zakázat upozornění oznamují zastaralé členy odkazují, pomocí čísla upozornění z kompilátoru jazyka Microsoft C#.
+Následující příklad ukazuje použití `#pragma warning` k dočasnému zakázání upozornění nahlášeného při odkazování na zastaralé členy pomocí čísla upozornění z kompilátoru společnosti Microsoft. C#
 ```csharp
 using System;
 

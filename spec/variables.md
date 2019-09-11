@@ -1,22 +1,22 @@
 ---
-ms.openlocfilehash: ff285fc202d14c2060c5f005c319c7886458a168
-ms.sourcegitcommit: 8152182f0a477cb3082e625b607262cc459a17f3
+ms.openlocfilehash: a01cf9387b8dc47de036bf0bd1496c19a441d81c
+ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 05/23/2019
-ms.locfileid: "66174235"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876794"
 ---
 # <a name="variables"></a>Proměnné
 
-Proměnné představují umístění úložiště. Každá proměnná má typ, který určuje, jaké hodnoty můžou být uložené v proměnné. C# je jazyk zajišťující bezpečnost typů a kompilátor jazyka C# zaručuje, že hodnoty uložené v proměnné jsou vždy příslušného typu. Hodnota proměnné lze změnit prostřednictvím přiřazení nebo použití `++` a `--` operátory.
+Proměnné reprezentují umístění úložiště. Každá proměnná má typ, který určuje, jaké hodnoty mohou být uloženy v proměnné. C#je typově bezpečný jazyk a C# kompilátor garantuje, že hodnoty uložené v proměnných jsou vždy příslušného typu. Hodnotu proměnné lze změnit pomocí přiřazení nebo `++` pomocí operátorů a. `--`
 
-Proměnná musí být ***jednoznačně přiřazena*** ([jednoznačného přiřazení](variables.md#definite-assignment)) před jeho hodnotu lze získat.
+Aby bylo možné získat jeho hodnotu, musí být proměnná ***jednoznačně přiřazená*** ([jednoznačné přiřazení](variables.md#definite-assignment)).
 
-Jak je popsáno v následujících částech, proměnné jsou buď ***původně přiřazené*** nebo ***zpočátku nepřiřazené***. Na začátku přiřazenou proměnnou nemá jasně definované počáteční hodnotu a je vždy považován za jednoznačně přiřazena. Zpočátku Nepřiřazená proměnná nemá počáteční hodnotu. Pro proměnnou zpočátku nepřiřazené považovat jednoznačně přiřazené do určitých umístění se musí objevit přiřazení k proměnné v každé možné spuštění cesta, která vede do tohoto umístění.
+Jak je popsáno v následujících oddílech, jsou proměnné buď ***zpočátku přiřazené*** , nebo ***zpočátku nepřiřazené***. Původně přiřazená proměnná má jasně definovanou počáteční hodnotu a je vždy považována za jednoznačně přiřazenou. Počáteční Nepřiřazená proměnná nemá počáteční hodnotu. Pro původně nepřiřazenou proměnnou, která má být považována za jednoznačně přiřazenou v určitém umístění, musí být přiřazení proměnné provedeno v každé možné cestě provádění, která vede k tomuto umístění.
 
-## <a name="variable-categories"></a>Proměnné kategorie
+## <a name="variable-categories"></a>Kategorie proměnných
 
-C# definuje proměnných sedm kategorií: statické proměnné, instance proměnné, prvky pole, parametry s hodnotou, parametry odkazů, výstupní parametry a lokální proměnné. Následující části popisují každou z těchto kategorií.
+C#definuje sedm kategorií proměnných: statické proměnné, proměnné instancí, prvky pole, parametry hodnot, referenční parametry, výstupní parametry a místní proměnné. Níže uvedené části popisují každou z těchto kategorií.
 
 V příkladu
 ```csharp
@@ -31,253 +31,253 @@ class A
     }
 }
 ```
-`x` je statická proměnná `y` je proměnná instance `v[0]` je k elementu pole `a` je parametr hodnota `b` je parametr odkaz `c` je výstupní parametr, a `i` místní proměnná.
+`x`je statická proměnná, `y` je proměnná instance, `v[0]` je elementem pole, `a` je parametrem hodnoty, `b` je parametrem odkazu, `c` je výstupní parametr a `i` je místní proměnná. .
 
 ### <a name="static-variables"></a>Statické proměnné
 
-Pole deklarované s `static` modifikátor se volá ***statická proměnná***. Statická proměnná stává existence před spuštěním statického konstruktoru ([statické konstruktory](classes.md#static-constructors)) pro jeho nadřazeného typu a přestane existovat, pokud domény přidružené aplikace přestane existovat.
+Pole deklarované s `static` modifikátorem se nazývá ***statická proměnná***. Statická proměnná se vyskytuje před provedením statického konstruktoru ([statických konstruktorů](classes.md#static-constructors)) pro svůj nadřazený typ a přestane existovat, pokud přidružená aplikační doména přestane existovat.
 
-Počáteční hodnota statická proměnná je výchozí hodnota ([výchozí hodnoty](variables.md#default-values)) typu proměnné.
+Počáteční hodnota statické proměnné je výchozí hodnota ([výchozí hodnoty](variables.md#default-values)) typu proměnné.
 
-Pro účely kontroly jednoznačného přiřazení statická proměnná je považován za původně přiřazený.
+Pro účely jednoznačné kontroly přiřazení je statická proměnná považována za původně přiřazenou.
 
 ### <a name="instance-variables"></a>Proměnné instance
 
-Pole deklarované bez `static` Modifikátor je volána ***proměnnou instance***.
+Pole deklarované bez `static` modifikátoru se nazývá ***instance proměnné***.
 
-#### <a name="instance-variables-in-classes"></a>Instance proměnné ve třídách
+#### <a name="instance-variables-in-classes"></a>Proměnné instancí ve třídách
 
-Proměnná instance třídy existence stává, když se vytvoří novou instanci této třídy a přestanou existovat, pokud neexistují žádné odkazy do této instance a po provedení instance – destruktor (pokud existuje).
+Instance proměnné třídy se vyskytuje, když je vytvořena nová instance této třídy, a přestane existovat, pokud neexistují žádné odkazy na tuto instanci a destruktor instance (pokud existuje).
 
-Počáteční hodnota proměnné instance třídy, je výchozí hodnota ([výchozí hodnoty](variables.md#default-values)) typu proměnné.
+Počáteční hodnota proměnné instance třídy je výchozí hodnota ([výchozí hodnoty](variables.md#default-values)) typu proměnné.
 
-Pro účely kontroly jednoznačného přiřazení proměnnou instance třídy se považuje za původně přiřazený.
+Pro účely jednoznačné kontroly přiřazení je proměnná instance třídy považována za původně přiřazenou.
 
-#### <a name="instance-variables-in-structs"></a>Proměnné instance ve strukturách
+#### <a name="instance-variables-in-structs"></a>Proměnné instancí ve strukturách
 
-Proměnná instance struktury má přesně stejnou dobu platnosti jako proměnnou struktury, ke kterému patří. Jinými slovy, při vstupu do existenci nebo přestane existovat, tak proměnnou typu Struktura příliš proveďte proměnné instance struktury.
+Proměnná instance struktury má přesně stejnou životnost jako proměnná struktury, ke které patří. Jinými slovy, pokud je proměnná typu struktury v výskytu nebo přestane existovat, tak je také nutné proměnné instance struktury.
 
-Počáteční přiřazení stavu instance proměnné struktury je stejné jako u obsahujícího proměnnou struktury. Jinými slovy, když proměnné struktury je považován za původně přiřazené, tak příliš jsou své instance proměnné a při proměnné struktury je považován za zpočátku nepřiřazené, své instance proměnné jsou rovněž nepřiřazené.
+Počáteční stav přiřazení proměnné instance struktury je stejný jako objekt obsahující proměnnou struktury. Jinými slovy, pokud je proměnná struktury považována za původně přiřazenou, tedy příliš jsou její proměnné instance a pokud je proměnná struktury považována za původně nepřiřazenou, její proměnné instance jsou stejně nepřiřazeny.
 
 ### <a name="array-elements"></a>Prvky pole
 
-Prvky pole existence začne, když je vytvořena instance pole a přestanou existovat, pokud neexistují žádné odkazy do této instance pole.
+Prvky pole přicházejí v případě, že je vytvořena instance pole, a přestanou existovat, pokud žádné odkazy na tuto instanci pole neexistují.
 
-Počáteční hodnotu všech prvků pole je výchozí hodnota ([výchozí hodnoty](variables.md#default-values)) typu prvků pole.
+Počáteční hodnota každého prvku pole je výchozí hodnota ([výchozí hodnoty](variables.md#default-values)) typu prvků pole.
 
-Pro účely kontroly jednoznačného přiřazení k elementu pole se považuje za původně přiřazený.
+Pro účely jednoznačné kontroly přiřazení je prvek pole považován za původně přiřazený.
 
-### <a name="value-parameters"></a>Parametry s hodnotou
+### <a name="value-parameters"></a>Parametry hodnoty
 
-Parametr deklarovaný bez `ref` nebo `out` modifikátor ***parametr hodnoty***.
+Parametr deklarovaný bez `ref` modifikátoru nebo `out` je ***parametrem hodnoty***.
 
-Hodnota parametru stává existence při volání členské funkce (metoda, konstruktor instance, přístupový objekt nebo operátor) nebo anonymní funkce, které parametr patří, a je inicializován s hodnotou argumentu zadaný ve volání. Hodnota parametru obvykle přestane existovat po návratu funkce člena nebo anonymní funkce. Nicméně pokud má parametr hodnoty zachycena anonymní funkce ([výrazy anonymní funkce](expressions.md#anonymous-function-expressions)), jeho životnosti rozšiřuje alespoň dokud delegát nebo strom výrazu, které jsou vytvořené z této anonymní funkce má nárok na uvolnění paměti.
+Parametr hodnoty se vyskytuje v případě volání členu funkce (metoda, konstruktor instance, přistupující objekt nebo operátor) nebo anonymní funkce, do které parametr patří, a je inicializován s hodnotou argumentu uvedeného v vyvolání. Parametr hodnoty obvykle po vrácení členu funkce nebo anonymní funkce přestane existovat. Pokud je však parametr value zachycen anonymní funkcí ([anonymními výrazy funkce](expressions.md#anonymous-function-expressions)), bude jeho životní cyklus prodloužen alespoň do doby, než je vytvořen delegát nebo strom výrazů vytvořený z této anonymní funkce, který je vhodný pro uvolňování paměti.
 
-Pro účely kontroly jednoznačného přiřazení parametr hodnoty se považuje za původně přiřazený.
+Pro účely jednoznačné kontroly přiřazení je parametr hodnoty považován za původně přiřazený.
 
 ### <a name="reference-parameters"></a>Parametry odkazu
 
-Parametr deklarovaný s `ref` modifikátor ***odkazovat na parametr***.
+Parametr deklarovaný s `ref` modifikátorem je ***parametr odkazu***.
 
-Parametr odkazu nevytváří nového umístění úložiště. Místo toho referenční parametr představuje stejné úložiště jako proměnná, zadaný jako argument v členské funkci nebo volání anonymní funkce. Díky tomu se hodnota parametru odkazu je vždy stejný jako základní proměnné.
+Parametr reference nevytváří nové umístění úložiště. Místo toho parametr reference představuje stejné umístění úložiště jako proměnná zadaná jako argument členu funkce nebo anonymní volání funkce. Proto hodnota referenčního parametru je vždy stejná jako podkladová proměnná.
 
-Platí následující pravidla jednoznačného přiřazení k parametrům reference. Poznámka: jiná pravidla pro výstupní parametry, které jsou popsané v [výstupních parametrů](variables.md#output-parameters).
+Následující pravidla přiřazení platí pro referenční parametry. Všimněte si různých pravidel pro výstupní parametry popsaných v tématu [výstupní parametry](variables.md#output-parameters).
 
-*  Proměnná musí být jednoznačně přiřazena ([jednoznačného přiřazení](variables.md#definite-assignment)) předtím, než může být předán jako referenční parametr ve volání funkce člena nebo delegáta.
-*  V rámci funkce člena nebo anonymní funkce je považován za původně přiřazené parametr odkazu.
+*  Proměnná musí být jednoznačně přiřazena ([jednoznačné přiřazení](variables.md#definite-assignment)) předtím, než může být předána jako parametr reference v členu funkce nebo volání delegáta.
+*  V rámci členu funkce nebo anonymní funkce je referenční parametr považován za původně přiřazený.
 
-V rámci metodu instance nebo přístupový objekt instance typu Struktura `this` – klíčové slovo se chová stejně jako odkaz na parametr typu struktury ([tento přístup](expressions.md#this-access)).
+V rámci metody instance nebo přístupového objektu instance typu `this` struktury se klíčové slovo chová přesně jako referenční parametr typu struktury ([Tento přístup](expressions.md#this-access)).
 
 ### <a name="output-parameters"></a>Výstupní parametry
 
-Parametr deklarovaný pomocí `out` modifikátor ***výstupní parametr***.
+Parametr deklarovaný s `out` modifikátorem je ***výstupní parametr***.
 
-Výstupní parametr nevytváří jinam úložiště. Místo toho výstupní parametr představuje stejné úložiště jako proměnná, zadaný jako argument ve volání funkce člena nebo delegáta. Díky tomu se hodnota výstupního parametru je vždy stejný jako základní proměnné.
+Výstupní parametr nevytváří nové umístění úložiště. Namísto toho parametr Output představuje stejné umístění úložiště jako proměnná zadaná jako argument členu funkce nebo volání delegáta. Proto hodnota výstupní parametr je vždy stejná jako podkladová proměnná.
 
-Platí následující pravidla jednoznačného přiřazení do výstupní parametry. Všimněte si různých pravidel pro parametry odkazů je popsáno v [odkazovat na parametry](variables.md#reference-parameters).
+Následující pravidla přiřazení se vztahují na výstupní parametry. Poznamenejte si různá pravidla pro referenční parametry popsané v [parametrech reference](variables.md#reference-parameters).
 
-*  Proměnná není jednoznačně přiřazena dříve, než může být předán jako výstupní parametr v členské funkci nebo vyvolání delegáta.
-*  V důsledku normálního dokončení volání funkce člena nebo delegát každou proměnnou, která byla předána jako výstupní parametr je považován za přiřazené v této cestě spuštění.
-*  V rámci funkce člena nebo anonymní funkce je považován za zpočátku nepřiřazené výstupní parametr.
-*  Každou výstupní parametr funkce člena nebo anonymní funkce musí být jednoznačně přiřazena ([jednoznačného přiřazení](variables.md#definite-assignment)) před funkce člena nebo anonymní funkce vrátí normálně.
+*  Proměnná nemusí být jednoznačně přiřazena, než může být předána jako výstupní parametr v členu funkce nebo volání delegáta.
+*  Po normálním dokončení členu funkce nebo delegáta delegáta se v této cestě provádění považuje každá proměnná, která byla předána jako výstupní parametr.
+*  V rámci členu funkce nebo anonymní funkce je výstupní parametr považován za původně nepřiřazený.
+*  Každému výstupnímu parametru členu funkce nebo anonymní funkce se musí jednoznačně přiřadit ([jednoznačné přiřazení](variables.md#definite-assignment)) před tím, než se člen funkce nebo anonymní funkce vrátí běžným způsobem.
 
-V rámci konstruktoru instance typu Struktura `this` – klíčové slovo se chová stejně jako výstupní parametr typu struktury ([tento přístup](expressions.md#this-access)).
+V rámci konstruktoru instance typu `this` struktury se klíčové slovo chová přesně jako výstupní parametr typu struktury ([Tento přístup](expressions.md#this-access)).
 
-### <a name="local-variables"></a>Lokální proměnné
+### <a name="local-variables"></a>Místní proměnné
 
-A ***lokální proměnná*** deklaroval *local_variable_declaration*, kterému může dojít v *bloku*, *for_statement*, *switch_statement* nebo *using_statement*; nebo *foreach_statement* nebo *specific_catch_clause* pro *try_statement*.
+***Lokální proměnná*** je deklarována pomocí *local_variable_declaration*, ke kterému může dojít v *bloku*, *for_statement*, *switch_statement* nebo *using_statement*; nebo *foreach_statement* nebo *specific_catch_clause* pro *try_statement*.
 
-Doba života lokální proměnná je část provádění programu, během které je zaručeno úložiště, které budou rezervovány pro něj. Tato doba života rozšiřuje nejméně ze vstupu *bloku*, *for_statement*, *switch_statement*, *using_statement*, *foreach_statement*, nebo *specific_catch_clause* s jakou je přidružený, dokud nebude spuštění, který *bloku*, *for_statement*, *switch_statement*, *using_statement*, *foreach_statement*, nebo *specific_catch_clause* končí žádným způsobem. (Zadání uzavřené *bloku* nebo volání metody pozastaví, ale nekončí, provádění aktuálního *bloku*, *for_statement*, *switch_statement* , *using_statement*, *foreach_statement*, nebo *specific_catch_clause*.) Pokud místní proměnná je zachycen anonymní funkce ([zachyceným proměnným vnější](expressions.md#captured-outer-variables)), dobu života rozšiřuje alespoň do stromu delegáta nebo výraz anonymní funkce, společně s další objekty, které jsou vytvořené zachycené proměnné odkazovat, jsou vhodné pro uvolnění paměti.
+Doba života místní proměnné je část provádění programu, během které je zaručeno, že je úložiště rezervováno pro něj. Tato doba života sahá aspoň od vstupu do *bloku*, *for_statement*, *switch_statement*, *using_statement*, *foreach_statement*nebo *specific_catch_clause* , ke kterému je přidružená, až do provádění tohoto *bloku*, *for_statement*, *switch_statement*, *using_statement*, *foreach_statement*nebo *specific_catch_clause* končí jakýmkoli způsobem. (Vstup do uzavřeného *bloku* nebo volání metody pozastaví, ale ne na konec, spuštění aktuálního *bloku*, *for_statement*, *switch_statement*, *using_statement*, *foreach_statement*nebo *specific_ catch_clause*.) Pokud je lokální proměnná zachycena anonymní funkcí ([zaznamenanými vnějšími proměnnými](expressions.md#captured-outer-variables)), její životnost přesahuje alespoň do doby, než se vytvoří delegát nebo strom výrazů vytvořeného z anonymní funkce, spolu s dalšími objekty, které jsou na odkaz zachycená proměnná, která je vhodná pro uvolňování paměti.
 
-Pokud nadřazená *bloku*, *for_statement*, *switch_statement*, *using_statement*, *foreach_statement*, nebo *specific_catch_clause* zadání rekurzivně, je vytvořena nová instance lokální proměnné pokaždé, když a jeho *local_variable_initializer*, pokud existuje, je vyhodnocen pokaždé, když.
+Pokud se nadřazený *blok*, *for_statement*, *switch_statement*, *using_statement*, *foreach_statement*nebo *specific_catch_clause* zadá rekurzivně, vytvoří se nová instance místní proměnné. čas a jeho *local_variable_initializer*, pokud jsou nějaké, se vyhodnotí pokaždé.
 
-Lokální proměnná zavedené *local_variable_declaration* nejsou inicializovány automaticky, a proto nemá žádnou výchozí hodnotu. Pro účely kontroly jednoznačného přiřazení místní proměnné zavedené *local_variable_declaration* se považuje za zpočátku nepřiřazené. A *local_variable_declaration* mohou zahrnovat *local_variable_initializer*, v takovém případě proměnné se považuje za jednoznačně přiřazená jenom po inicializační výraz ([ Příkazy deklarace](variables.md#declaration-statements)).
+Lokální proměnná zavedená *local_variable_declaration* se neinicializuje automaticky, takže nemá žádnou výchozí hodnotu. Pro účely jednoznačné kontroly přiřazení je místní proměnná zavedená *local_variable_declaration* považována za původně nepřiřazenou. *Local_variable_declaration* může obsahovat *local_variable_initializer*. v takovém případě se proměnná považuje za jednoznačně přiřazenou až po inicializaci výrazu ([příkazy deklarace](variables.md#declaration-statements)).
 
-V rámci oboru zavedených v místní proměnné *local_variable_declaration*, je chyba kompilace k odkazování na tuto místní proměnnou v textové pozici, která předchází jeho *local_variable_declarator*. Pokud deklarace lokální proměnné je implicitní ([místní deklarace proměnné](statements.md#local-variable-declarations)), je také chybou odkazovat na proměnné v rámci jeho *local_variable_declarator*.
+V rámci rozsahu místní proměnné zavedené *local_variable_declaration*se jedná o chybu při kompilaci, která odkazuje na tuto místní proměnnou v textové pozici, která předchází své *local_variable_declarator*. Pokud je deklarace lokální proměnné implicitní ([místní deklarace proměnných](statements.md#local-variable-declarations)), je také chyba pro odkazování na proměnnou v rámci jejího *local_variable_declarator*.
 
-Lokální proměnná zavedené *foreach_statement* nebo *specific_catch_clause* považován za jeho celý rozsah jednoznačně přiřazené.
+Místní proměnná zavedená *foreach_statement* nebo *specific_catch_clause* se považuje za jednoznačně přiřazenou v celém oboru.
 
-Skutečná doba života lokální proměnná je závislý na implementaci. Například kompilátor může být staticky určit, že místní proměnné v bloku se používá jenom pro malá část tohoto bloku. Pomocí této analýzy, kompilátor může vygenerovat kód, který má za následek úložiště proměnné s kratší doby života než jeho obsahujícího bloku.
+Skutečná doba života místní proměnné je závislá na implementaci. Kompilátor může například staticky určit, že místní proměnná v bloku je použita pouze pro malou část tohoto bloku. Pomocí této analýzy může kompilátor vygenerovat kód, který má za následek, že úložiště proměnných má kratší dobu života, než je blok, který ho obsahuje.
 
-Úložiště, na které odkazuje místní referenční proměnné je uvolněn nezávisle na životnost místní referenční proměnné ([Automatická správa paměti](basic-concepts.md#automatic-memory-management)).
+Úložiště, na které odkazuje místní referenční proměnná, se uvolní nezávisle na době života této místní referenční proměnné ([Automatická správa paměti](basic-concepts.md#automatic-memory-management)).
 
 ## <a name="default-values"></a>Výchozí hodnoty
 
-Následující kategorie proměnné jsou automaticky inicializovány na výchozí hodnoty:
+Následující kategorie proměnných jsou automaticky inicializovány na výchozí hodnoty:
 
 *  Statické proměnné.
-*  Instance proměnné instance třídy.
+*  Proměnné instance instancí třídy.
 *  Prvky pole.
 
-Výchozí hodnota proměnné a závisí na typu proměnné a je stanoven následujícím způsobem:
+Výchozí hodnota proměnné závisí na typu proměnné a je určena následujícím způsobem:
 
-*  Pro proměnnou *value_type*, výchozí hodnota je stejná jako hodnota vypočítaná aplikací *value_type*jeho výchozí konstruktor ([výchozí konstruktory](types.md#default-constructors)).
-*  Pro proměnnou *reference_type*, výchozí hodnota je `null`.
+*  Pro proměnnou *value_type*je výchozí hodnota shodná s hodnotou vypočítanou výchozím konstruktorem *value_type*([výchozí konstruktory](types.md#default-constructors)).
+*  Pro proměnnou *reference_type*je `null`výchozí hodnota.
 
-Inicializace na výchozí hodnoty se obvykle provádí tak, že správce paměti nebo systému uvolňování paměti inicializovat paměť na hodnotu nula všechny bity, předtím, než je přidělená k použití. Z tohoto důvodu je vhodné použít všechny bity žádnou k reprezentaci nulový odkaz.
+Inicializace na výchozí hodnoty je obvykle prováděna tím, že správce paměti nebo systém uvolňování paměti inicializuje paměť na všechny bity – nula, než je přiděleno k použití. Z tohoto důvodu je vhodné použít všechny bity-Zero k vyjádření nulového odkazu.
 
-## <a name="definite-assignment"></a>Jednoznačného přiřazení
+## <a name="definite-assignment"></a>Jednoznačné přiřazení
 
-V daném místě v spustitelného kódu z členské funkce, proměnné se říká, že ***jednoznačně přiřazena*** Pokud kompilátor může být velmi, podle konkrétního toku statické analýzy ([přesné pravidla pro určování jednoznačného přiřazení](variables.md#precise-rules-for-determining-definite-assignment)), proměnná automaticky inicializován nebo má cíl alespoň jedno přiřazení. Neformálně jsme uvedli, jsou pravidla jednoznačného přiřazení:
+V daném umístění v kódu spustitelného členu funkce je proměnná označena jako ***jednoznačně přiřazená*** , pokud kompilátor může prokázat konkrétní statickou analýzu toku ([přesné pravidlo pro určení jednoznačného přiřazení](variables.md#precise-rules-for-determining-definite-assignment)), že proměnná byl automaticky inicializován nebo byl cílem alespoň jednoho přiřazení. Pravidla jednoznačného přiřazení jsou neformálně uvedená:
 
-*  Na začátku přiřazenou proměnnou ([původně přiřazený proměnné](variables.md#initially-assigned-variables)) je vždy považován za jednoznačně přiřazené.
-*  Na začátku nepřiřazené proměnnou ([původně nepřiřazené proměnné](variables.md#initially-unassigned-variables)) se považuje za jednoznačně přiřazené do daného umístění. Pokud všemi možnými cestami spuštění vede do tohoto umístění obsahovat alespoň jeden z následujících akcí:
-    * Jednoduché přiřazení ([jednoduché přiřazení](expressions.md#simple-assignment)) v které proměnná je levý operand.
-    * Výraz volání ([výrazy typu Invocation](expressions.md#invocation-expressions)) nebo výraz vytvoření objektu ([výrazy vytvoření objektu](expressions.md#object-creation-expressions)), která předá proměnná jako výstupní parametr.
-    * Pro místní proměnnou, místní deklarace proměnné ([místní deklarace proměnné](statements.md#local-variable-declarations)), který obsahuje inicializátoru proměnné.
+*  Původně přiřazená proměnná ([původně přiřazené proměnné](variables.md#initially-assigned-variables)) se vždycky považuje za jednoznačně přiřazenou.
+*  Původně Nepřiřazená proměnná ([zpočátku nepřiřazené proměnné](variables.md#initially-unassigned-variables)) se považuje za jednoznačně přiřazenou v daném umístění, pokud všechny možné cesty spuštění, které vede k tomuto umístění, obsahují alespoň jednu z následujících možností:
+    * Jednoduché přiřazení ([jednoduché přiřazení](expressions.md#simple-assignment)), ve kterém je proměnná levý operand.
+    * Výraz vyvolání ([výrazy vyvolání](expressions.md#invocation-expressions)) nebo výraz pro vytvoření objektu (výrazy pro[vytvoření objektu](expressions.md#object-creation-expressions)), který tuto proměnnou předává jako výstupní parametr.
+    * Místní proměnná, deklaraci lokální proměnné ([deklarace místní proměnné](statements.md#local-variable-declarations)), která obsahuje inicializátor proměnné.
 
-Formální specifikaci základní výše uvedených pravidel neformální je popsána v [původně přiřazený proměnné](variables.md#initially-assigned-variables), [původně nepřiřazené proměnné](variables.md#initially-unassigned-variables), a [přesné pravidla pro určování jednoznačného přiřazení](variables.md#precise-rules-for-determining-definite-assignment).
+Formální specifikace uvedená výše neformálních pravidel je popsána v [úvodně přiřazených proměnných](variables.md#initially-assigned-variables), [počátečních nepřiřazených proměnných](variables.md#initially-unassigned-variables)a [přesných pravidlech pro určení jednoznačného přiřazení](variables.md#precise-rules-for-determining-definite-assignment).
 
-Stavy jednoznačného přiřazení instance proměnné *struct_type* proměnné jsou sledovány jako jednotlivě i hromadně. V další pravidla výše uvedené, platí následující pravidla pro *struct_type* proměnné a jejich instance proměnné:
+Přesné stavy přiřazení proměnných instance proměnné *struct_type* jsou sledovány jednotlivě a společně. Kromě výše uvedených pravidel platí následující pravidla pro proměnné *struct_type* a jejich proměnné instance:
 
-*  Proměnná instance se považuje za jednoznačně přiřazené, pokud jeho obsahující *struct_type* proměnné se považuje za jednoznačně přiřazené.
-*  A *struct_type* proměnné se považuje za jednoznačně přiřazené, pokud všechny její instance proměnné je považován za jednoznačně přiřazené.
+*  Proměnná instance se považuje za jednoznačně přiřazenou, pokud je její obsahující proměnná *struct_type* považována za jednoznačně přiřazenou.
+*  Proměnná *struct_type* se považuje za jednoznačně přiřazenou, pokud je každá z jejích proměnných instance považována za jednoznačně přiřazenou.
 
-Jednoznačného přiřazení je požadavek v následujících kontextů:
+Jednoznačné přiřazení je požadavek v následujících kontextech:
 
-*  Proměnná musí být jednoznačně přiřazena v každém umístění, kde získat jeho hodnotu. Tím se zajistí, že nikdy nedojde nedefinované hodnoty. Získat hodnotu proměnné, kromě případů, kdy považován za výskyt proměnné ve výrazu
-    * Proměnná je levý operand jednoduché přiřazení
-    * Proměnná je předána jako výstupní parametr, nebo
-    * Proměnná je *struct_type* proměnné a vyskytuje se jako levý operand přístup ke členu.
-*  Proměnná musí být jednoznačně přiřazena v každém umístění, kde je předán jako parametr odkazu. Tím se zajistí, že můžete členské funkce volané zvažte referenční parametr původně přiřazený.
-*  Všechny výstupní parametry funkce člena musí být jednoznačně přiřazena v každém umístění, kde členské funkce vrátí (až `return` příkaz nebo prostřednictvím spuštění dojde na konec těla členské funkce). Tím se zajistí, že členy funkce nevracejí nedefinované hodnoty ve výstupních parametrů, což umožní kompilátoru vzít v úvahu volání členské funkce, která přebírá proměnnou jako výstupní parametr ekvivalentní k přiřazení k proměnné.
-*  `this` Proměnnou *struct_type* konstruktor instance musí být jednoznačně přiřazena v každém umístění, kde vrátí tento konstruktor instance.
+*  Proměnná musí být jednoznačně přiřazena na každém místě, kde je jeho hodnota získána. Tím se zajistí, že nedefinované hodnoty nebudou nikdy provedeny. Výskyt proměnné ve výrazu je považován za získání hodnoty proměnné, s výjimkou případů, kdy
+    * proměnná je levý operand jednoduchého přiřazení,
+    * proměnná se předává jako výstupní parametr nebo
+    * proměnná je *struct_type* proměnná a nastane jako levý operand přístupu ke členu.
+*  Proměnná musí být jednoznačně přiřazena na každém místě, kde je předána jako parametr reference. Tím je zajištěno, že vyvolaná člen funkce může uvažovat o počátečním přiřazeném parametru odkazu.
+*  Všechny výstupní parametry členu funkce musí být jednoznačně přiřazeny v každém umístění, kde vrací člen funkce (prostřednictvím `return` příkazu nebo prostřednictvím provádění, které se blíží konci těla člena funkce). Tím se zajistí, že členové funkce nebudou vracet nedefinované hodnoty v parametrech Output, takže Kompilátor považuje volání člena funkce, které přebírá proměnnou jako výstupní parametr ekvivalentní přiřazení k proměnné.
+*  Proměnná konstruktoru instance struct_type musí být jednoznačně přiřazena v každém umístění, kde se konstruktor instance vrátí. `this`
 
-### <a name="initially-assigned-variables"></a>Zpočátku přiřazených proměnných
+### <a name="initially-assigned-variables"></a>Původně přiřazené proměnné
 
-Následující kategorie proměnné jsou klasifikovány jako původně přiřazený:
+Následující kategorie proměnných jsou klasifikovány jako původně přiřazené:
 
 *  Statické proměnné.
-*  Instance proměnné instance třídy.
-*  Instance proměnné původně přiřazené struktury proměnných.
+*  Proměnné instance instancí třídy.
+*  Proměnné instance původně přiřazených proměnných struktury.
 *  Prvky pole.
-*  Parametry s hodnotou.
-*  Odkaz na parametry.
-*  Proměnné deklarované v `catch` klauzule nebo `foreach` příkazu.
+*  Parametry hodnoty.
+*  Parametry odkazu
+*  Proměnné deklarované v `catch` klauzuli `foreach` nebo příkazu.
 
-### <a name="initially-unassigned-variables"></a>Zpočátku nepřiřazené proměnné
+### <a name="initially-unassigned-variables"></a>Původně nepřiřazené proměnné
 
-Následující kategorie proměnné jsou klasifikovány jako původně nepřiřazené:
+Následující kategorie proměnných jsou klasifikovány jako původně nepřiřazené:
 
-*  Instance proměnné proměnných zpočátku nepřiřazenou strukturu.
-*  Výstupní parametry, včetně `this` proměnnou struktury konstruktory instancí.
-*  Lokální proměnné, s výjimkou deklarované v `catch` klauzule nebo `foreach` příkazu.
+*  Proměnné instance počátečních nepřiřazených proměnných struktury.
+*  Výstupní parametry, včetně `this` proměnné konstruktory instance struktury.
+*  Místní proměnné, s výjimkou těch, `catch` které jsou deklarovány v klauzuli `foreach` nebo příkazu.
 
-### <a name="precise-rules-for-determining-definite-assignment"></a>Přesná pravidla pro určování jednoznačného přiřazení
+### <a name="precise-rules-for-determining-definite-assignment"></a>Přesné pravidla pro určení jednoznačného přiřazení
 
-Aby bylo možné určit, že každou používá proměnnou je jednoznačně přiřazena, musíte použít kompilátor proces, který je ekvivalentní popsané v této části.
+Aby bylo možné určit, že je každá použitá proměnná jednoznačně přiřazená, kompilátor musí použít proces, který je ekvivalentní k tomu popsanému v této části.
 
-Kompilátor zpracovává text každého funkce člena, který má jednu nebo více zpočátku nepřiřazené proměnných. Pro každou proměnnou zpočátku nepřiřazené *v*, kompilátor Určuje ***jednoznačného přiřazení stavu*** pro *v* v každé z následujících bodů členské funkce:
+Kompilátor zpracovává tělo každého členu funkce, který má jednu nebo více počátečních nepřiřazených proměnných. Pro každou původně nepřiřazenou proměnnou *v*kompilátor *určuje v každém* z následujících bodů člena funkce ***jednoznačný stav přiřazení*** :
 
 *  Na začátku každého příkazu
-*  Na koncovém bodu ([koncové body a dostupnosti](statements.md#end-points-and-reachability)) každého příkazu
-*  Na každý oblouk který přenese ovládací prvek do jiného příkazu a koncový bod příkazu
+*  Na koncovém bodu ([koncové body a dosažitelnost](statements.md#end-points-and-reachability)) každého příkazu
+*  U každého oblouku, který přenáší řízení na jiný příkaz nebo na koncový bod příkazu
 *  Na začátku každého výrazu
 *  Na konci každého výrazu
 
-Stav jednoznačného přiřazení *v* může být buď:
+Určitý stav přiřazení *v* aplikaci může být:
 
-*  Jednoznačně přiřazena. To znamená, že na všechny toky možné ovládací prvek do této chvíle *v* byla přiřazena hodnota.
-*  Není jednoznačně přiřazena. Pro stav proměnnou na konci výrazu typu `bool`, stav proměnná, která není jednoznačně přiřazena může (ale ne nutně) spadají do jedné z následujících stavů dílčí:
-    * Jednoznačně přiřazena po výraz hodnotu true. Tento stav znamená, že *v* je jednoznačně přiřazovat, je-li logický výraz vyhodnotí jako true, ale není přiřazen nutně pokud logický výraz vyhodnotí jako false.
-    * Jednoznačně přiřazena po výraz hodnotu false. Tento stav znamená, že *v* je jednoznačně přiřazovat, je-li logický výraz vyhodnocen jako chybný, ale není přiřazen nutně pokud logický výraz vyhodnotí jako true.
+*  Jednoznačně přiřazené. To znamená, že u všech možných toků řízení k tomuto bodu *v* je přiřazena hodnota.
+*  Není jednoznačně přiřazeno. Pro stav proměnné na konci výrazu typu `bool`může stav proměnné, která není jednoznačně přiřazená, být (ale nemusí nutně) patřit do jednoho z následujících podřízených stavů:
+    * Po hodnotě true se přiřadí výraz s omezením. Tento stav označuje, že hodnota *v* je jednoznačně přiřazená, pokud se logický výraz vyhodnotí jako true, ale není nutně přiřazený, pokud se logický výraz vyhodnotí jako false.
+    * Po omezení se přiřadí po nepravdivém výrazu. Tento stav označuje, že hodnota *v* je jednoznačně přiřazená, pokud se logický výraz vyhodnotí jako false, ale není nutně přiřazený, pokud se logický výraz vyhodnotí jako true.
 
-Následující pravidla určují, jak stavu proměnné *v* je určen v každém umístění.
+Následující pravidla určují, jak se určuje stav proměnné *v* jednotlivých umístěních.
 
 #### <a name="general-rules-for-statements"></a>Obecná pravidla pro příkazy
 
-*  *v* není jednoznačně přiřazena na začátku těla členské funkce.
-*  *v* je jednoznačně přiřazovat na začátku všechny nedostupné příkazu.
-*  Stav jednoznačného přiřazení *v* na začátku další příkaz je určeno kontroluje se stav jednoznačného přiřazení *v* na všechny přenosy řízení toku, které se zaměřují na začátek příkaz. Pokud (a pouze v případě) *v* je jednoznačně přiřazovat na všechny tyto přenosy tok řízení, se pak *v* je jednoznačně přiřazovat na začátku prohlášení. Sadu možných řízení toku přenosů, je určena stejným způsobem jako u kontroly dostupnosti – příkaz ([koncové body a dostupnosti](statements.md#end-points-and-reachability)).
-*  Stav jednoznačného přiřazení *v* na koncovém bodu bloku, `checked`, `unchecked`, `if`, `while`, `do`, `for`, `foreach`, `lock`, `using`, nebo `switch` se určí podle kontroluje se stav jednoznačného přiřazení *v* na všechny přenosy řízení toku, které se zaměřují koncový bod, který tento příkaz. Pokud *v* je jednoznačně přiřazovat na všechny tyto přenosy tok řízení, se pak *v* je jednoznačně přiřazovat na koncovém bodu příkazu. Jinak. *v* není jednoznačně přiřazena na koncovém bodu příkazu. Sadu možných řízení toku přenosů, je určena stejným způsobem jako u kontroly dostupnosti – příkaz ([koncové body a dostupnosti](statements.md#end-points-and-reachability)).
+*  *v* není jednoznačně přiřazen na začátku těla členu funkce.
+*  *v* je jednoznačně přiřazen na začátku libovolného nedosažitelného příkazu.
+*  Určitý stav přiřazení *v* v na začátku jakéhokoli jiného příkazu je určen kontrolou omezeného stavu přiřazení *v* u všech přenosů toku řízení, které cílí na začátek tohoto příkazu. If (a pouze if) *v* se jednoznačně přiřazují u všech takových přenosů toku řízení, pak je *v* systému jednoznačně přiřazen na začátku prohlášení. Sada možných přenosů toků řízení je určena stejným způsobem jako při ověřování dostupnosti příkazů ([koncových bodů a dostupnosti](statements.md#end-points-and-reachability)).
+*  Jednoznačný stav přiřazení *v v* koncovém bodě `checked`bloku,, `lock` `foreach` `do` `while` `unchecked` `if`,,,, `for`,,, `using` nebo`switch`příkaz je určen kontrolou omezeného stavu přiřazení *v* v u všech přenosů toku řízení, které cílí na koncový bod tohoto příkazu. Pokud je *v* jednoznačně přiřazeno pro všechny takové přenosy toku řízení, pak *v* je jednoznačně přiřazeno na koncový bod příkazu. Případech *v* není jednoznačně přiřazen na koncový bod příkazu. Sada možných přenosů toků řízení je určena stejným způsobem jako při ověřování dostupnosti příkazů ([koncových bodů a dostupnosti](statements.md#end-points-and-reachability)).
 
-#### <a name="block-statements-checked-and-unchecked-statements"></a>Blok příkazů, zaškrtnutí a zaškrtnuté políčko příkazů
+#### <a name="block-statements-checked-and-unchecked-statements"></a>Příkazy bloku, zkontrolované a nezaškrtnuté příkazy
 
-Stav jednoznačného přiřazení *v* na ovládacím prvku přenos první příkaz seznamu příkazů v bloku (nebo koncový bod bloku, pokud je prázdný seznam příkazů) je stejný jako příkaz jednoznačného přiřazení *v* před blokem, `checked`, nebo `unchecked` příkazu.
+Nekonečný stav přiřazení v *v ovládacím* prvku přenáší do prvního příkazu seznamu příkazů v bloku (nebo na koncový bod bloku, pokud je seznam příkazů prázdný) stejný jako u zvláštního příkazu přiřazení *v před blok* . , `checked` nebo`unchecked` příkaz.
 
-#### <a name="expression-statements"></a>Příkazy výrazů
+#### <a name="expression-statements"></a>Příkazy výrazu
 
-Pro příkaz výrazu *příkazu Insert* , který se skládá z výrazu *expr*:
+Pro příkaz výrazu *stmt* , který se skládá z výrazu *expr*:
 
-*  *v* má stejné jednoznačného přiřazení stavu na začátku *expr* stejně jako na začátku *příkazu Insert*.
-*  Pokud *v* pokud jednoznačně přiřazena na konci *expr*, je jednoznačně přiřazena na koncový bod *příkazu Insert*; jinak vrátí hodnotu; není jednoznačně přiřazena na koncový bod *příkazu Insert*.
+*  *v* má stejný jednoznačný stav přiřazení na začátku *výrazu* jako na začátku *stmt*.
+*  Pokud je *v* případě jednoznačně přiřazeno na konci *výrazu expr*, je jednoznačně přiřazen na koncový bod *stmt*; případech neomezeně se nepřiřazuje na koncový bod *stmt*.
 
 #### <a name="declaration-statements"></a>Příkazy deklarace
 
-*  Pokud *příkazu Insert* příkazu deklarace bez inicializátorů, pak je *v* má stejný stav jednoznačného přiřazení na koncový bod *příkazu Insert* stejně jako na začátku *příkazu Insert*.
-*  Pokud *příkazu Insert* příkazu deklarace s inicializátory, pak je stav jednoznačného přiřazení *v* je určen jako *příkazu Insert* byly seznam příkazů, pomocí jedné úlohy příkaz pro každou deklaraci s inicializátorem (v pořadí deklarace).
+*  Pokud *stmt* je příkaz deklarace bez inicializátorů, pak *v* má stejný jednoznačný stav přiřazení na koncovém bodu *stmt* jako na začátku *stmt*.
+*  Pokud je *stmt* příkazem deklarace s inicializátory, pak je stanovený stav přiřazení *v v v* , jako by *stmt* byl seznam příkazů s jedním příkazem přiřazení pro každou deklaraci s inicializátorem (v pořadí deklarace).
 
-#### <a name="if-statements"></a>Pokud se příkazy
+#### <a name="if-statements"></a>Příkazy if
 
-Pro `if` příkaz *příkazu Insert* formuláře:
+Pro příkaz stmt ve tvaru: `if`
 ```csharp
 if ( expr ) then_stmt else else_stmt
 ```
 
-*  *v* má stejné jednoznačného přiřazení stavu na začátku *expr* stejně jako na začátku *příkazu Insert*.
-*  Pokud *v* je jednoznačně přiřazovat na konci *expr*, pak je jednoznačně přiřazena na přenos řízení toku do *then_stmt* a buď *else_stmt*  nebo koncový bod z *příkazu Insert* Pokud neexistuje žádná klauzule else.
-*  Pokud *v* má stav "jednoznačně přiřazena po hodnotu true, výraz" na konci *expr*, pak je jednoznačně přiřazena na přenos řízení toku do *then_stmt*a ne určitě přiřazené na toku přenosu ovládacího prvku buď *else_stmt* nebo koncový bod z *příkazu Insert* Pokud neexistuje žádná klauzule else.
-*  Pokud *v* má stav "jednoznačně přiřazena po false výraz" na konci *expr*, pak je jednoznačně přiřazena na přenos řízení toku do *else_stmt*a ne na přenos řízení toku do jednoznačně přiřazena *then_stmt*. Je jednoznačně přiřazena na koncový bod z *příkazu Insert* pouze v případě je jednoznačně přiřazena na koncový bod z *then_stmt*.
-*  V opačném případě *v* je považováno za nevyhovující jednoznačně přiřazené na toku přenosu ovládacího prvku buď *then_stmt* nebo *else_stmt*, nebo koncový bod z  *příkazu Insert* Pokud neexistuje žádná klauzule else.
+*  *v* má stejný jednoznačný stav přiřazení na začátku *výrazu* jako na začátku *stmt*.
+*  Pokud je *v* systému jednoznačně přiřazen na konci *výrazu expr*, pak je jednoznačně přiřazen k přenosu toku řízení do *then_stmt* a buď *else_stmt* , nebo do koncového bodu *stmt* , pokud neexistuje klauzule else.
+*  Pokud *v* má na konci výrazu výraz "s omezením" jednoznačně přiřazený po hodnotě *true, pak*je jednoznačně přiřazený k přenosu toku řízení do *then_stmt*a není jednoznačně přiřazený k přenosu toku řízení *else_. stmt* nebo na koncový bod *stmt* , pokud neexistuje klauzule else.
+*  Pokud *v* má stav "po nepravdivém výrazu" po nepravdivém výrazu "na *konci výrazu", pak*je jednoznačně přiřazen k přenosu toku řízení do *else_stmt*a není jednoznačně přiřazen k přenosu toku řízení do *then_stmt* . V případě, že je v konečném bodě *stmt* k dispozici, je jednoznačně přiřazená, pokud je k dispozici pouze v případě, že je na koncovém bodu *then_stmt*.
+*  V opačném případě je *v* tomto případě považována za neomezenou hodnotu pro přenos toku řízení do *then_stmt* nebo *else_stmt*, nebo do koncového bodu *stmt* , pokud neexistuje klauzule else.
 
 #### <a name="switch-statements"></a>Příkazy Switch
 
-V `switch` příkaz *příkazu Insert* s řídicí výraz *expr*:
+V příkazu stmt *s výrazem řízení výrazu:* `switch`
 
-*  Stav jednoznačného přiřazení *v* na začátku *expr* je stejné jako stav *v* na začátku *příkazu Insert*.
-*  Stav jednoznačného přiřazení *v* v toku řízení přenosu do seznamu dostupný přepínač bloku příkazu je stejné jako stav jednoznačného přiřazení *v* na konci *expr*.
+*  Určitý stav přiřazení *v v* na začátku *výrazu* je stejný jako stav *v* na začátku *stmt*.
+*  Určitý stav přiřazení *v* v je přenos toku řízení do seznamu příkazů bloku, který je k dispozici, je stejný jako jednoznačný stav přiřazení *v* v na konci *výrazu expr*.
 
-#### <a name="while-statements"></a>While – příkazy
+#### <a name="while-statements"></a>Příkazy while
 
-Pro `while` příkaz *příkazu Insert* formuláře:
+Pro příkaz stmt ve formátu: `while`
 ```csharp
 while ( expr ) while_body
 ```
 
-*  *v* má stejné jednoznačného přiřazení stavu na začátku *expr* stejně jako na začátku *příkazu Insert*.
-*  Pokud *v* je jednoznačně přiřazovat na konci *expr*, pak je jednoznačně přiřazena na přenos řízení toku do *while_body* a koncový bod  *příkazu Insert*.
-*  Pokud *v* má stav "jednoznačně přiřazena po hodnotu true, výraz" na konci *expr*, pak je jednoznačně přiřazena na přenos řízení toku do *while_body*, ale ne jednoznačně přiřazena na koncový bod z *příkazu Insert*.
-*  Pokud *v* má stav "jednoznačně přiřazena po false výraz" na konci *expr*, pak je jednoznačně přiřazena na toku přenosu ovládacího prvku do koncového bodu *příkazu Insert* , ale není přiřazen jednoznačně na přenos řízení toku do *while_body*.
+*  *v* má stejný jednoznačný stav přiřazení na začátku *výrazu* jako na začátku *stmt*.
+*  Pokud je *v* systému jednoznačně přiřazen na konci *výrazu expr*, pak je jednoznačně přiřazen k přenosu toku řízení do *while_body* a koncovému bodu *stmt*.
+*  Pokud *v* má na konci výrazu výraz "s omezením" jednoznačně přiřazený po hodnotě *true, pak*je jednoznačně přiřazený k přenosu toku řízení do *while_body*, ale ne jednoznačně přiřazený na koncový bod *stmt*.
+*  Pokud *v* má stav "po nepravdivém výrazu" po nepravdivém výrazu *", pak*je jednoznačně přiřazen k přenosu toku řízení na koncový bod *stmt*, ale ne jednoznačně přiřazený k přenosu toku *řízení do _body*.
 
-#### <a name="do-statements"></a>Proveďte příkazy
+#### <a name="do-statements"></a>Do – příkazy
 
-Pro `do` příkaz *příkazu Insert* formuláře:
+Pro příkaz stmt ve formátu: `do`
 ```csharp
 do do_body while ( expr ) ;
 ```
 
-*  *v* má stejné jednoznačného přiřazení stavu v přenos řízení toku od začátku *příkazu Insert* k *do_body* stejně jako na začátku *příkazu Insert*.
-*  *v* má stejné jednoznačného přiřazení stavu na začátku *expr* za koncový bod *do_body*.
-*  Pokud *v* je jednoznačně přiřazovat na konci *expr*, pak je jednoznačně přiřazena na toku přenosu ovládacího prvku do koncového bodu *příkazu Insert*.
-*  Pokud *v* má stav "jednoznačně přiřazena po false výraz" na konci *expr*, pak je jednoznačně přiřazena na toku přenosu ovládacího prvku do koncového bodu *příkazu Insert* .
+*  *v* má stejný určitý stav přiřazení pro přenos toku řízení od začátku *stmt* do *do_body* jako na začátku *stmt*.
+*  *v* má stejný jednoznačný stav přiřazení na začátku *výrazu* , jako na koncovém bodu *do_body*.
+*  Pokud je *v* systému jednoznačně přiřazen na konci *výrazu expr*, pak je jednoznačně přiřazen k přenosu toku řízení do koncového bodu *stmt*.
+*  Pokud *v* má stav "po nepravdivém výrazu" po nepravdivém výrazu "na *konci výrazu", pak*je jednoznačně přiřazen k přenosu toku řízení do koncového bodu *stmt*.
 
-#### <a name="for-statements"></a>Pro příkazy
+#### <a name="for-statements"></a>Příkazy for
 
-Kontrola jednoznačného přiřazení `for` příkazu ve formátu:
+Kontrola jednoznačného přiřazení pro `for` příkaz formuláře:
 ```csharp
 for ( for_initializer ; for_condition ; for_iterator ) embedded_statement
 ```
-Probíhá, jako kdyby byly napsány příkaz:
+je proveden jako při zápisu příkazu:
 ```csharp
 {
     for_initializer ;
@@ -288,45 +288,45 @@ Probíhá, jako kdyby byly napsány příkaz:
 }
 ```
 
-Pokud *for_condition* je vynecháno z `for` příkaz a pak vyhodnocování pokračuje jednoznačného přiřazení jakoby *for_condition* byla nahrazena `true` ve výše uvedené rozšíření .
+Pokud se *for_condition* z `for` příkazu vynechá, vyhodnocování jednoznačného přiřazení pokračuje, jako kdyby se `true` for_condition nahradilo ve výše uvedeném rozšíření.
 
-#### <a name="break-continue-and-goto-statements"></a>Přerušit, pokračovat a příkazy goto
+#### <a name="break-continue-and-goto-statements"></a>Příkazy Break, Continue a goto
 
-Stav jednoznačného přiřazení *v* na přenos řízení toku způsobené `break`, `continue`, nebo `goto` příkaz je stejné jako stav jednoznačného přiřazení *v* na začátek příkazu.
+Určitý stav přiřazení *v* v na přenosu toku řízení `break`, který je způsoben příkazem, nebo `goto` , `continue`je stejný jako jednoznačný stav přiřazení *v* na začátku příkazu.
 
-#### <a name="throw-statements"></a>Throw – příkazy
+#### <a name="throw-statements"></a>Příkazy throw
 
-Pro příkaz *příkazu Insert* formuláře
+Pro příkaz *stmt* ve formuláři
 ```csharp
 throw expr ;
 ```
 
-Stav jednoznačného přiřazení *v* na začátku *expr* je stejné jako stav jednoznačného přiřazení *v* na začátku *příkazu Insert*.
+Určitý stav přiřazení *v v* na začátku *výrazu* je stejný jako jednoznačný stav přiřazení *v* na začátku *stmt*.
 
 #### <a name="return-statements"></a>Příkazy Return
 
-Pro příkaz *příkazu Insert* formuláře
+Pro příkaz *stmt* ve formuláři
 ```csharp
 return expr ;
 ```
 
-*  Stav jednoznačného přiřazení *v* na začátku *expr* je stejné jako stav jednoznačného přiřazení *v* na začátku *příkazu Insert*.
-*  Pokud *v* je výstupní parametr, pak ho musí být jednoznačně přiřazena buď:
-    * Po *výraz*
-    * nebo na konci `finally` bloku `try` - `finally` nebo `try` - `catch` - `finally` , který obklopuje `return` příkazu.
+*  Určitý stav přiřazení *v v* na začátku *výrazu* je stejný jako jednoznačný stav přiřazení *v* na začátku *stmt*.
+*  Pokud *v* je výstupní parametr, musí být jednoznačně přiřazen buď:
+    * Po *výrazu*
+    * nebo na `finally` konci bloku `try` - nebo`try` ,který`return` uzavře příkaz. - `finally` `catch` - `finally`
 
-Pro příkaz příkazu INSERT formuláře:
+Pro příkaz stmt ve formátu:
 ```csharp
 return ;
 ```
 
-*  Pokud *v* je výstupní parametr, pak ho musí být jednoznačně přiřazena buď:
-    * před *příkazu INSERT*
-    * nebo na konci `finally` bloku `try` - `finally` nebo `try` - `catch` - `finally` , který obklopuje `return` příkazu.
+*  Pokud *v* je výstupní parametr, musí být jednoznačně přiřazen buď:
+    * před *stmt*
+    * nebo na `finally` konci bloku `try` - nebo`try` ,který`return` uzavře příkaz. - `finally` `catch` - `finally`
 
-#### <a name="try-catch-statements"></a>Try-catch – příkazy
+#### <a name="try-catch-statements"></a>Příkazy try-catch
 
-Pro příkaz *příkazu Insert* formuláře:
+Pro příkaz *stmt* ve formátu:
 ```csharp
 try try_block
 catch(...) catch_block_1
@@ -334,28 +334,28 @@ catch(...) catch_block_1
 catch(...) catch_block_n
 ```
 
-*  Stav jednoznačného přiřazení *v* na začátku *try_block* je stejné jako stav jednoznačného přiřazení *v* na začátku *příkazu Insert*.
-*  Stav jednoznačného přiřazení *v* na začátku *catch_block_i* (pro všechny *můžu*) je stejný jako stav jednoznačného přiřazení *v*na začátku *příkazu Insert*.
-*  Stav jednoznačného přiřazení *v* na koncový bod z *příkazu Insert* je jednoznačně přiřazené if (a pouze v případě) *v* je jednoznačně přiřazovat na koncový bod z  *try_block* a každý *catch_block_i* (pro každý *můžu* od 1 do *n*).
+*  Určitý stav přiřazení *v v* na začátku *try_block* je stejný jako jednoznačný stav přiřazení *v* na začátku *stmt*.
+*  Stanovený stav přiřazení *v* v na začátku *catch_block_i* (pro libovolný *i*) je stejný jako jednoznačný stav přiřazení *v* na začátku *stmt*.
+*  Určitý stav přiřazení *v* v koncových bodech *stmt* je jednoznačně přiřazený, pokud (a pouze pokud) *v* se jednoznačně přiřazují v koncovém bodě *try_block* a každé *catch_block_i* (pro každý z 1 do *n.* ).
 
 #### <a name="try-finally-statements"></a>Try-finally – příkazy
 
-Pro `try` příkaz *příkazu Insert* formuláře:
+Pro příkaz stmt ve formátu: `try`
 ```csharp
 try try_block finally finally_block
 ```
 
-*  Stav jednoznačného přiřazení *v* na začátku *try_block* je stejné jako stav jednoznačného přiřazení *v* na začátku *příkazu Insert*.
-*  Stav jednoznačného přiřazení *v* na začátku *finally_block* je stejné jako stav jednoznačného přiřazení *v* na začátku *příkazu INSERT* .
-*  Stav jednoznačného přiřazení *v* na koncový bod z *příkazu Insert* je jednoznačně přiřazené if (a pouze v případě) platí alespoň jedna z následujících akcí:
-    * *v* je jednoznačně přiřazovat na koncový bod z *try_block*
-    * *v* je jednoznačně přiřazovat na koncový bod z *finally_block*
+*  Určitý stav přiřazení *v v* na začátku *try_block* je stejný jako jednoznačný stav přiřazení *v* na začátku *stmt*.
+*  Určitý stav přiřazení *v v* na začátku *finally_block* je stejný jako jednoznačný stav přiřazení *v* na začátku *stmt*.
+*  Určitý stav přiřazení *v* v koncovém bodě *stmt* je jednoznačně přiřazený, pokud (a pouze pokud) alespoň jedna z následujících možností:
+    * *v* je jednoznačně přiřazený na koncový bod *try_block* .
+    * *v* je jednoznačně přiřazený na koncový bod *finally_block* .
 
-Pokud přenos toku řízení (například `goto` příkaz), která začne v rámci *try_block*a končí mimo *try_block*, pak *v* je také považován za jednoznačně přiřazené na přenos řízení toku v případě *v* je jednoznačně přiřazovat na koncový bod z *finally_block*. (Toto není právě tehdy, pokud *v* je jednoznačně přiřazovat z nějakého jiného důvodu na tento převod řízení toku, a přesto považuje jednoznačně přiřazené.)
+Pokud je `goto` proveden přenos toku řízení (například příkaz), který začíná v *try_block*a končí mimo *try_block*, pak v je také v případě, že je v rámci tohoto přenosu toku řízení, *v* případě jednoznačně přiřazené k koncovému bodu *finally_block*. (Nejedná se o pouze v případě, že – pokud je *v* systému jednoznačně přiřazen jiný důvod pro přenos toku řízení, pak je stále považován za jednoznačně přiřazený.)
 
-#### <a name="try-catch-finally-statements"></a>Konstrukce try-catch – finally – příkazy
+#### <a name="try-catch-finally-statements"></a>Try-catch-finally – příkazy
 
-Analýza jednoznačného přiřazení `try` - `catch` - `finally` příkazu ve formátu:
+Analýza jednoznačného přiřazení pro `try` - `catch` příkazformuláře-: `finally`
 ```csharp
 try try_block
 catch(...) catch_block_1
@@ -363,7 +363,7 @@ catch(...) catch_block_1
 catch(...) catch_block_n
 finally *finally_block*
 ```
-se provádí, jako kdyby byly příkaz `try` - `finally` uzavírající příkazu `try` - `catch` – příkaz:
+je proveden, jako kdyby byl příkaz `try` `finally` - příkazem ohraničujícím `try` - `catch` příkaz:
 ```csharp
 try {
     try try_block
@@ -374,7 +374,7 @@ try {
 finally finally_block
 ```
 
-Následující příklad ukazuje, jak různé bloky `try` – příkaz ([příkazu try](statements.md#the-try-statement)) ovlivnit jednoznačného přiřazení.
+Následující příklad ukazuje, jak různé bloky `try` příkazu ([příkaz try](statements.md#the-try-statement)) ovlivňují jednoznačné přiřazení.
 ```csharp
 class A
 {
@@ -408,103 +408,103 @@ class A
 
 #### <a name="foreach-statements"></a>Příkazy foreach
 
-Pro `foreach` příkaz *příkazu Insert* formuláře:
+Pro příkaz stmt ve formátu: `foreach`
 ```csharp
 foreach ( type identifier in expr ) embedded_statement
 ```
 
-*  Stav jednoznačného přiřazení *v* na začátku *expr* je stejné jako stav *v* na začátku *příkazu Insert*.
-*  Stav jednoznačného přiřazení *v* na přenos řízení toku do *embedded_statement* nebo koncový bod *příkazu Insert* je stejné jako stav *v* na konci *expr*.
+*  Určitý stav přiřazení *v v* na začátku *výrazu* je stejný jako stav *v* na začátku *stmt*.
+*  Určitý stav přiřazení *v* v v případě přenosů toku řízení do *embedded_statement* nebo na koncový bod *stmt* je stejný jako stav *v* elementu na konci *výrazu expr*.
 
-#### <a name="using-statements"></a>Pomocí příkazů
+#### <a name="using-statements"></a>Příkazy using
 
-Pro `using` příkaz *příkazu Insert* formuláře:
+Pro příkaz stmt ve formátu: `using`
 ```csharp
 using ( resource_acquisition ) embedded_statement
 ```
 
-*  Stav jednoznačného přiřazení *v* na začátku *resource_acquisition* je stejné jako stav *v* na začátku *příkazu Insert*.
-*  Stav jednoznačného přiřazení *v* na přenos řízení toku do *embedded_statement* je stejné jako stav *v* na konci *resource_ získání*.
+*  Určitý stav přiřazení *v v* na začátku *resource_acquisition* je stejný jako stav *v* v na začátku *stmt*.
+*  Určitý stav přiřazení *v* v v případě přenosu toku řízení do *embedded_statement* je stejný jako stav *v* v na konci *resource_acquisition*.
 
-#### <a name="lock-statements"></a>Příkazy zámku
+#### <a name="lock-statements"></a>Příkazy LOCK
 
-Pro `lock` příkaz *příkazu Insert* formuláře:
+Pro příkaz stmt ve formátu: `lock`
 ```csharp
 lock ( expr ) embedded_statement
 ```
 
-*  Stav jednoznačného přiřazení *v* na začátku *expr* je stejné jako stav *v* na začátku *příkazu Insert*.
-*  Stav jednoznačného přiřazení *v* na přenos řízení toku do *embedded_statement* je stejné jako stav *v* na konci *expr*.
+*  Určitý stav přiřazení *v v* na začátku *výrazu* je stejný jako stav *v* na začátku *stmt*.
+*  Určitý stav přiřazení *v* v v případě přenosu toku řízení do *embedded_statement* je stejný jako stav *v* elementu na konci *výrazu expr*.
 
-#### <a name="yield-statements"></a>Příkazy YIELD
+#### <a name="yield-statements"></a>Příkazy yield
 
-Pro `yield return` příkaz *příkazu Insert* formuláře:
+Pro příkaz stmt ve formátu: `yield return`
 ```csharp
 yield return expr ;
 ```
 
-*  Stav jednoznačného přiřazení *v* na začátku *expr* je stejné jako stav *v* na začátku *příkazu Insert*.
-*  Stav jednoznačného přiřazení *v* na konci *příkazu Insert* je stejné jako stav *v* na konci *expr*.
-*  A `yield break` příkaz nemá žádný vliv na stav jednoznačného přiřazení.
+*  Určitý stav přiřazení *v v* na začátku *výrazu* je stejný jako stav *v* na začátku *stmt*.
+*  Jednoznačný stav přiřazení *v v* na konci *stmt* je stejný jako stav *v* elementu na konci *výrazu expr*.
+*  `yield break` Příkaz nemá žádný vliv na určitý stav přiřazení.
 
 #### <a name="general-rules-for-simple-expressions"></a>Obecná pravidla pro jednoduché výrazy
 
-Následující pravidlo se vztahuje na tyto druhy výrazů: literály ([literály](expressions.md#literals)), jednoduché názvy ([jednoduché názvy](expressions.md#simple-names)), výrazy přístupu členů ([přístup ke členu](expressions.md#member-access)), výrazy neindexovanou základní přístupu ([základní přístup](expressions.md#base-access)), `typeof` výrazy ([typeof – operátor](expressions.md#the-typeof-operator)), výchozí hodnota výrazy ([výchozí hodnotu výrazů ](expressions.md#default-value-expressions)) a `nameof` výrazy ([výrazy Nameof](expressions.md#nameof-expressions)).
+Následující pravidlo se vztahuje na tyto druhy výrazů: literály ([literály](expressions.md#literals)), jednoduché názvy ([jednoduché názvy](expressions.md#simple-names)), výrazy přístupu členů ([přístup členů](expressions.md#member-access)), neindexovaných základních výrazů přístupu ([základní přístup](expressions.md#base-access)), `typeof`výrazy ([operátor typeof](expressions.md#the-typeof-operator)), výchozí hodnoty výrazy ([výrazy výchozích hodnot](expressions.md#default-value-expressions)) a `nameof` výrazy ([výrazy nameof](expressions.md#nameof-expressions)).
 
-*  Stav jednoznačného přiřazení *v* na konci takový výraz je stejné jako stav jednoznačného přiřazení *v* na začátku výrazu.
+*  Absolutní stav přiřazení *v* rámci na konci takového výrazu je stejný jako jednoznačný stav přiřazení *v* na začátku výrazu.
 
-#### <a name="general-rules-for-expressions-with-embedded-expressions"></a>Obecná pravidla pro výrazy s vložené výrazy
+#### <a name="general-rules-for-expressions-with-embedded-expressions"></a>Obecná pravidla pro výrazy s vloženými výrazy
 
-Následující pravidla platí pro tyto druhy výrazů: výrazy v závorkách ([výrazech se závorkami](expressions.md#parenthesized-expressions)), výrazy přístupu – element ([přístup k prvkům](expressions.md#element-access)), základní přístup výrazy s indexování ([základní přístup](expressions.md#base-access)), zvýší a sníží výrazy ([Příponové operátory Inkrementace a dekrementace operátory](expressions.md#postfix-increment-and-decrement-operators), [předpony Inkrementace a dekrementace operátory](expressions.md#prefix-increment-and-decrement-operators)), výrazy přetypování ([výrazy přetypování](expressions.md#cast-expressions)), unární `+`, `-`, `~`, `*` výrazy, binární `+`, `-`, `*`, `/`, `%`, `<<`, `>>`, `<`, `<=`, `>`, `>=`, `==`, `!=`, `is`, `as`, `&`, `|`, `^` výrazy ([aritmetické operátory](expressions.md#arithmetic-operators), [operátory posunutí](expressions.md#shift-operators), [relační a typové zkoušky operátory](expressions.md#relational-and-type-testing-operators) [Logické operátory](expressions.md#logical-operators)), složené výrazy přiřazení ([složené přiřazení](expressions.md#compound-assignment)), `checked` a `unchecked` výrazy ([zaškrtnuto a nezaškrtnuto operátory](expressions.md#the-checked-and-unchecked-operators)), plus pole a delegáta vytváření výrazů ([operátor new](expressions.md#the-new-operator)).
+Následující pravidla se vztahují na tyto typy výrazů: výrazy v závorkách ([výrazy v závorkách](expressions.md#parenthesized-expressions)), výrazy přístupu k prvkům ([přístup k prvkům](expressions.md#element-access)), základní výrazy přístupu s indexováním ([základní přístup](expressions.md#base-access)), zvýšení a snížení výrazů ([operátory přírůstku a snížení přípony](expressions.md#postfix-increment-and-decrement-operators), [operátory přírůstku a snížení předpony](expressions.md#prefix-increment-and-decrement-operators)), výrazy přetypování `+`( `-`[výrazy přetypování](expressions.md#cast-expressions)), Unární,, `~`, `*`výrazy, binární `+` `-` ,`*`, ,,`%`,,,, ,`>`,, `>=` `/` `<<` `>>` `<` `<=` `==`, ,`is`,, ,`&` [](expressions.md#shift-operators)[](expressions.md#arithmetic-operators), výrazy(aritmetickéoperátory,operátory`^` posunutí, relační testování a testování typu `|` `!=` `as` [ operátory](expressions.md#relational-and-type-testing-operators), [logické operátory](expressions.md#logical-operators)), výrazy složeného přiřazení ( `checked` [složené přiřazení](expressions.md#compound-assignment)) a `unchecked` výrazy ([kontrolované a nezaškrtnuté operátory](expressions.md#the-checked-and-unchecked-operators)), plus pole a delegát výrazy vytváření ([operátor New](expressions.md#the-new-operator)).
 
-Každá z těchto výrazů má nejméně jeden dílčí výrazy, které jsou bezpodmínečně vyhodnocovány v pořadí pevné. Například binární `%` operátor vyhodnotí levé straně operátoru a potom na pravé straně. Operace indexování vyhodnotí indexovaným výrazem a pak vyhodnotí každý indexové výrazy v pořadí zleva doprava. Pro výraz *expr*, který má dílčí výrazy *e1, e2,..., eN*, Vyhodnocená v tomto pořadí:
+Každý z těchto výrazů má jeden nebo více dílčích výrazů, které jsou bezpodmínečně vyhodnoceny v pevně uvedeném pořadí. Například binární `%` operátor vyhodnocuje levou stranu operátora a pak pravou stranu. Operace indexování vyhodnotí indexovaný výraz a pak vyhodnotí všechny indexové výrazy v pořadí zleva doprava. Výraz *expr*, který má dílčí výrazy *E1, E2,..., EN*, vyhodnocený v tomto pořadí:
 
-*  Stav jednoznačného přiřazení *v* na začátku *e1* je stejný jako jednoznačného přiřazení stavu na začátku *expr*.
-*  Stav jednoznačného přiřazení *v* na začátku *ei* (*můžu* větší než jedna) je stejný jako stav jednoznačného přiřazení na konci předchozí dílčí výraz.
-*  Stav jednoznačného přiřazení *v* na konci *expr* je stejné jako stav jednoznačného přiřazení na konci *eN*
+*  Určitý stav přiřazení *v v* na začátku *E1* je stejný jako určitý stav přiřazení na začátku *výrazu expr*.
+*  Stanovený stav přiřazení *v v* na začátku *EI* (*i* větší než jeden) je stejný jako u jednoznačného stavu přiřazení na konci předchozího dílčího výrazu.
+*  Určitý stav přiřazení *v v* na konci *výrazu* je stejný jako jednoznačný stav přiřazení na konci *EN*
 
-#### <a name="invocation-expressions-and-object-creation-expressions"></a>Výrazy typu Invocation a vytváření výrazy
+#### <a name="invocation-expressions-and-object-creation-expressions"></a>Výrazy vyvolání a výrazy pro vytváření objektů
 
-Výraz volání *expr* formuláře:
+*Výraz výrazu vyvolání* formuláře:
 ```csharp
 primary_expression ( arg1 , arg2 , ... , argN )
 ```
-nebo výraz vytvoření objektu ve formátu:
+nebo výraz pro vytvoření objektu ve formátu:
 ```csharp
 new type ( arg1 , arg2 , ... , argN )
 ```
 
-*  Pro výraz vyvolání jednoznačného přiřazení stavu *v* před *primary_expression* je stejné jako stav *v* před *expr*.
-*  Pro výraz vyvolání jednoznačného přiřazení stavu *v* před *arg1* je stejné jako stav *v* po *primary_expression*.
-*  Pro vytvoření výrazu objektu, stav jednoznačného přiřazení *v* před *arg1* je stejné jako stav *v* před *expr*.
-*  Pro každý argument *argi*, stav jednoznačného přiřazení *v* po *argi* se určuje podle pravidla normální výrazů, ignoruje všechny `ref` nebo `out`modifikátory.
-*  Pro každý argument *argi* libovolné *můžu* větší než jedna, stav jednoznačného přiřazení *v* před *argi* je stejné jako stav *v* po předchozí *arg*.
-*  Pokud proměnná *v* je předán jako `out` argument (tj, argument formuláře `out v`) v některé z argumentů, potom stav *v* po *expr* je jednoznačně přiřazena. Jinak. Stav *v* po *expr* je stejné jako stav *v* po *argN*.
-*  Pro Inicializátory polí ([pole vytváření výrazů](expressions.md#array-creation-expressions)), inicializátorech objektu ([inicializátorech objektu](expressions.md#object-initializers)), inicializátory kolekce ([inicializátory kolekce](expressions.md#collection-initializers)) a Inicializátory anonymních objektů ([anonymní objekt vytváření výrazů](expressions.md#anonymous-object-creation-expressions)), stav jednoznačného přiřazení je určeno rozšíření, které tyto konstrukce jsou definovány z hlediska.
+*  Pro výraz vyvolání je jednoznačný stav přiřazení *v v* před *primary_expression* shodný se stavem *v* před *výrazem*.
+*  U výrazu vyvolání je jednoznačný stav přiřazení *v v* před *arg1* stejný jako stav *v v* po *primary_expression*.
+*  V případě výrazu pro vytvoření objektu je jednoznačný stav přiřazení *v v* před *arg1* stejný jako stav *v* před *výrazem*.
+*  U každého argumentu *Argi*je stanovený jednoznačný stav přiřazení *v v* po *Argi* pravidla pro normální výrazy, přičemž se ignorují `ref` všechny `out` nebo modifikátory.
+*  U každého argumentu *Argi* pro libovolný *i* větší než jeden je určený stav přiřazení *v* před *Argi* stejný jako stav *v* za předchozí *arg*.
+*  Pokud je proměnná *v* předána jako `out` argument (tj. argument formuláře `out v`) v některém z argumentů, pak je stav *v v* za *výraz* jednoznačně přiřazen. Případech stav *v v* po *výrazu expr* je stejný jako stav *v* za po *argn*.
+*  Pro Inicializátory pole ([výrazy vytváření pole](expressions.md#array-creation-expressions)), Inicializátory objektů ([Inicializátory objektů](expressions.md#object-initializers)), inicializátory kolekce ([inicializátory kolekce](expressions.md#collection-initializers)) a Inicializátory anonymních objektů ([vytváření anonymních objektů výrazy](expressions.md#anonymous-object-creation-expressions)), jednoznačný stav přiřazení je určen rozšířením, které jsou definovány ve smyslu.
 
-#### <a name="simple-assignment-expressions"></a>Jednoduché přiřazení výrazy
+#### <a name="simple-assignment-expressions"></a>Výrazy jednoduchého přiřazení
 
-Pro výraz *expr* formuláře `w = expr_rhs`:
+Výraz *expr* formuláře `w = expr_rhs`:
 
-*  Stav jednoznačného přiřazení *v* před *expr_rhs* je stejné jako stav jednoznačného přiřazení *v* před *expr*.
-*  Stav jednoznačného přiřazení *v* po *expr* se určuje podle:
-   * Pokud *w* stejnou proměnnou, jako je *v*, pak jednoznačného přiřazení stavu *v* po *expr* jednoznačně přiřazena.
-   * Jinak, pokud dojde k přiřazení v rámci konstruktoru instance typu struktury, pokud *w* je přístup k vlastnosti s vyznačením automaticky implementovanou vlastnost *P* vytváří instance a *v* je pole Skrytá zálohování *P*, pak jednoznačného přiřazení stavu *v* po *expr* se o výborný prostředek přiřadit.
-   * V opačném případě jednoznačného přiřazení stavu *v* po *expr* je stejné jako stav jednoznačného přiřazení *v* po *expr_rhs*.
+*  Určitý stav přiřazení *v* rámci před *expr_rhs* je stejný jako jednoznačný stav přiřazení *v* před *výrazem*.
+*  Jednoznačný stav přiřazení *v v* po *výrazu* určuje:
+   * Je-li *w* stejná proměnná jako *v*, pak je jednoznačný stav přiřazení *v v* After *expr* jednoznačně přiřazen.
+   * V opačném případě, pokud je přiřazení provedeno v rámci konstruktoru instance typu struktury, pokud je *w* přístup k vlastnosti určení automaticky implementované vlastnosti *P* na instanci, kterou vytváříte, a *v* je skryté pole zálohování *P*, pak bude jednoznačný stav přiřazení *v v* After *expr* jednoznačně přiřazen.
+   * V opačném případě bude jednoznačný stav přiřazení *v v* After *expr* stejný jako jednoznačný stav přiřazení *v* po *expr_rhs*.
 
-#### <a name="-conditional-and-expressions"></a>& & (podmiňovací operátor AND) výrazů
+#### <a name="-conditional-and-expressions"></a>& & (podmíněné a) výrazy
 
-Pro výraz *expr* formuláře `expr_first && expr_second`:
+Výraz *expr* formuláře `expr_first && expr_second`:
 
-*  Stav jednoznačného přiřazení *v* před *expr_first* je stejné jako stav jednoznačného přiřazení *v* před *expr*.
-*  Stav jednoznačného přiřazení *v* před *expr_second* je jednoznačně přiřazovat, pokud státu *v* po *expr_first* je buď určitě přiřazené nebo "přiřazené jednoznačně po Výraz true". V opačném případě ji není jednoznačně přiřazena.
-*  Stav jednoznačného přiřazení *v* po *expr* se určuje podle:
-    * Pokud *expr_first* je konstantní výraz s hodnotou `false`, pak jednoznačného přiřazení stavu *v* po *expr* je stejný jako jednoznačného přiřazení Stav *v* po *expr_first*.
-    * Jinak, pokud státu *v* po *expr_first* jednoznačně přiřazena, potom stav *v* po *expr* jednoznačně přiřazena.
-    * Jinak, pokud stav *v* po *expr_second* jednoznačně přiřazena a stav *v* po *expr_first* je "jednoznačně přiřazené po false výraz"a pak stav *v* po *expr* jednoznačně přiřazena.
-    * Jinak, pokud státu *v* po *expr_second* jednoznačně přiřazena nebo "přiřazené jednoznačně po hodnotu true, výraz", potom stav *v* po  *výraz* "jednoznačně přiřazena po Výraz true".
-    * Jinak, pokud státu *v* po *expr_first* je "přiřazené jednoznačně po false výraz" a stav *v* po *expr_second* "přiřazené jednoznačně po false výraz", je stav *v* po *expr* "jednoznačně přiřazena po výrazu false".
-    * V opačném případě stav *v* po *expr* není jednoznačně přiřazena.
+*  Určitý stav přiřazení *v* rámci před *expr_first* je stejný jako jednoznačný stav přiřazení *v* před *výrazem*.
+*  Skutečný stav přiřazení *v v* před *expr_second* je jednoznačně přiřazený, pokud je stav *v v* po *expr_first* buď jednoznačně přiřazen, nebo "jednoznačně přiřazeno po výrazu true". V opačném případě se nepřiřazují jako neomezeně.
+*  Jednoznačný stav přiřazení *v v* po *výrazu* určuje:
+    * Pokud *expr_first* `false`je konstantní výraz s hodnotou, pak bude mít jednoznačný stav přiřazení *v v* After *expr* stejný jako pro určitý stav přiřazení *v* za za *expr_first*.
+    * V opačném případě, pokud je stav *v v* po *expr_first* přiřazení jednoznačně přiřazen, je stav *v v* po jednoznačně přiřazeném *výrazu* .
+    * V opačném případě platí, že pokud je stav *v v* po *expr_secondně* přiřazený, a stav *v* po po *expr_first* je "jednoznačně přiřazený po nepravdivém výrazu", pak je stav *v v* After *expr* jednoznačně přiřazení.
+    * V opačném případě platí, že *Pokud je stav* *v v* po *expr_second* jednoznačně přiřazený nebo "jednoznačně přiřazený po hodnotě true", pak je stav *v* po výrazu "jednoznačně přiřazený po výrazu true".
+    * V opačném případě, pokud je stav *v* po po *expr_first* "jednoznačně přiřazený po nepravdivém výrazu", a stav *v v* After *expr_second* je "jednoznačně přiřazený po nepravdivém výrazu", pak stav *v* za  *výraz* je "jednoznačně přiřazený po nepravdivém výrazu".
+    * V opačném případě stav *v* případě, kdy *výraz* není jednoznačně přiřazen.
 
 V příkladu
 ```csharp
@@ -522,21 +522,21 @@ class A
     }
 }
 ```
-proměnné `i` se považuje za jednoznačně přiřazené v jednom z vložené příkazy `if` příkazu, ale ne v jiném. V `if` příkaz v metodě `F`, proměnná `i` je jednoznačně přiřazena první příkaz vložený, protože provádění výrazu `(i = y)` vždy předchází spuštění tohoto příkazu embedded. Naproti tomu, proměnná `i` není jednoznačně přiřazena v druhém příkazu vložený, protože `x >= 0` může otestovali false, což vede k proměnné `i` se nepřiřazený.
+proměnná `i` se považuje za jednoznačně přiřazenou v jednom z vložených příkazů `if` příkazu, ale ne v druhé. V příkazu v metodě `F`je proměnná `i` jednoznačně přiřazena v prvním vloženém příkazu, protože provádění výrazu `(i = y)` vždy předchází provedení tohoto vloženého příkazu. `if` Naopak proměnná `i` není jednoznačně přiřazena v druhém vloženém příkazu, protože `x >= 0` by mohla být testována na false, výsledkem je, že proměnná `i` je Nepřiřazená.
 
-#### <a name="-conditional-or-expressions"></a>|| (podmiňovací operátor OR) výrazů
+#### <a name="-conditional-or-expressions"></a>|| (podmíněné nebo) výrazy
 
-Pro výraz *expr* formuláře `expr_first || expr_second`:
+Výraz *expr* formuláře `expr_first || expr_second`:
 
-*  Stav jednoznačného přiřazení *v* před *expr_first* je stejné jako stav jednoznačného přiřazení *v* před *expr*.
-*  Stav jednoznačného přiřazení *v* před *expr_second* je jednoznačně přiřazovat, pokud státu *v* po *expr_first* je buď určitě přiřazené nebo "přiřazené jednoznačně po výrazu false". V opačném případě ji není jednoznačně přiřazena.
-*  Příkaz jednoznačného přiřazení *v* po *expr* se určuje podle:
-    * Pokud *expr_first* je konstantní výraz s hodnotou `true`, pak jednoznačného přiřazení stavu *v* po *expr* je stejný jako jednoznačného přiřazení Stav *v* po *expr_first*.
-    * Jinak, pokud státu *v* po *expr_first* jednoznačně přiřazena, potom stav *v* po *expr* jednoznačně přiřazena.
-    * Jinak, pokud stav *v* po *expr_second* jednoznačně přiřazena a stav *v* po *expr_first* je "jednoznačně přiřazené po hodnotu true, výraz"a pak stav *v* po *expr* jednoznačně přiřazena.
-    * Jinak, pokud státu *v* po *expr_second* jednoznačně přiřazena nebo "přiřazené jednoznačně po false výraz", potom stav *v* po *expr* "jednoznačně přiřazena po výrazu false".
-    * Jinak, pokud státu *v* po *expr_first* je "přiřazené jednoznačně po hodnotu true, výraz" a stav *v* po *expr_second*"přiřazené jednoznačně po hodnotu true, výraz", je stav *v* po *expr* "jednoznačně přiřazena po Výraz true".
-    * V opačném případě stav *v* po *expr* není jednoznačně přiřazena.
+*  Určitý stav přiřazení *v* rámci před *expr_first* je stejný jako jednoznačný stav přiřazení *v* před *výrazem*.
+*  Určitý stav přiřazení *v v* před *expr_second* je jednoznačně přiřazený, pokud je stav *v v* po *expr_first* buď jednoznačně přiřazen, nebo "jednoznačně přiřazený po false výrazu". V opačném případě se nepřiřazují jako neomezeně.
+*  Jednoznačné příkazy přiřazení *v v* After *expr* určují:
+    * Pokud *expr_first* `true`je konstantní výraz s hodnotou, pak bude mít jednoznačný stav přiřazení *v v* After *expr* stejný jako pro určitý stav přiřazení *v* za za *expr_first*.
+    * V opačném případě, pokud je stav *v v* po *expr_first* přiřazení jednoznačně přiřazen, je stav *v v* po jednoznačně přiřazeném *výrazu* .
+    * V opačném případě platí, že pokud je stav *v v* po *expr_secondně* přiřazený, a stav *v* po po *expr_first* je "jednoznačně přiřazený po true Expression", pak je stav *v v* After *expr* jednoznačně přiřazení.
+    * V opačném případě platí, že pokud je stav *v v* po *expr_second* jednoznačně přiřazený nebo "jednoznačně přiřazený po nepravdivém výrazu", pak je stav *v v* After *expr* "jednoznačně přiřazený po nepravdivém výrazu".
+    * V opačném případě, pokud je stav *v* po po *expr_first* "jednoznačně přiřazený za true Expression", a stav *v v* After *expr_second* je "jednoznačně přiřazený za true Expression", pak stav *v v* After *expr* je "jednoznačně přiřazeno po výrazu true".
+    * V opačném případě stav *v* případě, kdy *výraz* není jednoznačně přiřazen.
 
 V příkladu
 ```csharp
@@ -554,54 +554,54 @@ class A
     }
 }
 ```
-proměnné `i` se považuje za jednoznačně přiřazené v jednom z vložené příkazy `if` příkazu, ale ne v jiném. V `if` příkaz v metodě `G`, proměnná `i` jednoznačně přiřazena v druhém příkazu vložený protože provádění výrazu `(i = y)` vždy předchází spuštění tohoto příkazu embedded. Naproti tomu, proměnná `i` není jednoznačně přiřazena v první příkaz vložený, protože `x >= 0` může otestovali nastavena hodnota true, což vede k proměnné `i` se nepřiřazený.
+proměnná `i` se považuje za jednoznačně přiřazenou v jednom z vložených příkazů `if` příkazu, ale ne v druhé. V příkazu v metodě `G`je proměnná `i` jednoznačně přiřazena v druhém vloženém příkazu, protože provádění výrazu `(i = y)` vždy předchází provedení tohoto vloženého příkazu. `if` V opačném případě proměnná `i` není jednoznačně přiřazena v prvním vloženém příkazu, protože `x >= 0` by mohla být testována na hodnotu true, výsledkem `i` je, že proměnná je Nepřiřazená.
 
-#### <a name="-logical-negation-expressions"></a>! výrazy (Logická negace)
+#### <a name="-logical-negation-expressions"></a>! (logické negace) – výrazy
 
-Pro výraz *expr* formuláře `! expr_operand`:
+Výraz *expr* formuláře `! expr_operand`:
 
-*  Stav jednoznačného přiřazení *v* před *expr_operand* je stejné jako stav jednoznačného přiřazení *v* před *expr*.
-*  Stav jednoznačného přiřazení *v* po *expr* se určuje podle:
-    * Pokud stav *v* po * expr_operand * je jednoznačně přiřazena, potom stav *v* po *expr* jednoznačně přiřazena.
-    * Pokud státu *v* po * expr_operand * není jednoznačně přiřazena, potom stav *v* po *expr* není jednoznačně přiřazena.
-    * Pokud stav *v* po * expr_operand * "přiřazené jednoznačně po false výraz", je stav *v* po *expr* "jednoznačně přiřazena po true výraz".
-    * Pokud stav *v* po * expr_operand * "přiřazené jednoznačně po hodnotu true, výraz", je stav *v* po *expr* "jednoznačně přiřazena po false výraz".
+*  Určitý stav přiřazení *v* rámci před *expr_operand* je stejný jako jednoznačný stav přiřazení *v* před *výrazem*.
+*  Jednoznačný stav přiřazení *v v* po *výrazu* určuje:
+    * Pokud je stav *v* po za * expr_operand * jednoznačně přiřazený, pak je stav *v v* po jednoznačně přiřazeném *výrazu* .
+    * Pokud stav *v v* After * expr_operand * není jednoznačně přiřazen, pak stav *v v* po *výrazu* není jednoznačně přiřazen.
+    * Pokud stav *v v* After * expr_operand * je "jednoznačně přiřazený po nepravdivém výrazu", pak je stav *v v* After *expr* "jednoznačně přiřazený po výrazu true".
+    * Pokud je stav *v v* After * expr_operand * "po true Expression" "" jednoznačně přiřazen ", pak je stav v *po výrazu* " jednoznačně přiřazený po nepravdivém výrazu ".
 
-#### <a name="-null-coalescing-expressions"></a>?? výrazy (nulové sloučení)
+#### <a name="-null-coalescing-expressions"></a>?? (slučovací výrazy s hodnotou null)
 
-Pro výraz *expr* formuláře `expr_first ?? expr_second`:
+Výraz *expr* formuláře `expr_first ?? expr_second`:
 
-*  Stav jednoznačného přiřazení *v* před *expr_first* je stejné jako stav jednoznačného přiřazení *v* před *expr*.
-*  Stav jednoznačného přiřazení *v* před *expr_second* je stejné jako stav jednoznačného přiřazení *v* po *expr_first*.
-*  Příkaz jednoznačného přiřazení *v* po *expr* se určuje podle:
-    * Pokud *expr_first* je konstantní výraz ([konstantní výrazy](expressions.md#constant-expressions)) s hodnotou null, pak stav *v* po *expr* je stejný jako Stav *v* po *expr_second*.
-*  V opačném případě stav *v* po *expr* je stejné jako stav jednoznačného přiřazení *v* po *expr_first*.
+*  Určitý stav přiřazení *v* rámci před *expr_first* je stejný jako jednoznačný stav přiřazení *v* před *výrazem*.
+*  Určitý stav přiřazení *v* rámci před *expr_second* je stejný jako jednoznačný stav přiřazení *v* za za *expr_first*.
+*  Jednoznačné příkazy přiřazení *v v* After *expr* určují:
+    * Pokud *expr_first* je konstantní výraz ([konstantní výrazy](expressions.md#constant-expressions)) s hodnotou null, pak je stav *v v* After *expr* stejný jako stav *v v* za *expr_second*.
+*  V opačném případě je stav *v v* After *expr* stejný jako jednoznačný stav přiřazení *v* po *expr_first*.
 
-#### <a name="-conditional-expressions"></a>?: (podmínky)
+#### <a name="-conditional-expressions"></a>?: (podmíněné) výrazy
 
-Pro výraz *expr* formuláře `expr_cond ? expr_true : expr_false`:
+Výraz *expr* formuláře `expr_cond ? expr_true : expr_false`:
 
-*  Stav jednoznačného přiřazení *v* před *expr_cond* je stejné jako stav *v* před *expr*.
-*  Stav jednoznačného přiřazení *v* před *expr_true* jednoznačně přiřazena pouze v případě obsahuje jeden z následujících akcí:
-    * *expr_cond* je konstantní výraz s hodnotou `false`
-    * Stav *v* po *expr_cond* je jednoznačně přiřazovat nebo "jednoznačně přiřazena po Výraz true".
-*  Stav jednoznačného přiřazení *v* před *expr_false* jednoznačně přiřazena pouze v případě obsahuje jeden z následujících akcí:
-    * *expr_cond* je konstantní výraz s hodnotou `true`
-*  Stav *v* po *expr_cond* je jednoznačně přiřazovat nebo "jednoznačně přiřazena po výrazu false".
-*  Stav jednoznačného přiřazení *v* po *expr* se určuje podle:
-    * Pokud *expr_cond* je konstantní výraz ([konstantní výrazy](expressions.md#constant-expressions)) s hodnotou `true` pak stav *v* po *expr* je stejný jako stav *v* po *expr_true*.
-    * Jinak, pokud *expr_cond* je konstantní výraz ([konstantní výrazy](expressions.md#constant-expressions)) s hodnotou `false` pak stav *v* po *expr* je stejné jako stav *v* po *expr_false*.
-    * Jinak, pokud státu *v* po *expr_true* je jednoznačně přiřazovat a stav *v* po *expr_false* se o výborný prostředek pak přiřazen stav *v* po *expr* jednoznačně přiřazena.
-    * V opačném případě stav *v* po *expr* není jednoznačně přiřazena.
+*  Určitý stav přiřazení *v* rámci před *expr_cond* je stejný jako stav *v* před *výrazem*.
+*  Určitý stav přiřazení *v v* před *expr_true* se jednoznačně přiřadí, pokud a pouze v případě, že je k dispozici jeden z následujících:
+    * *expr_cond* je konstantní výraz s hodnotou.`false`
+    * stav *v v* po po *expr_cond* je jednoznačně přiřazený nebo "jednoznačně přiřazeno po výrazu true".
+*  Určitý stav přiřazení *v v* před *expr_false* se jednoznačně přiřadí, pokud a pouze v případě, že je k dispozici jeden z následujících:
+    * *expr_cond* je konstantní výraz s hodnotou.`true`
+*  stav *v v* po *expr_cond* je jednoznačně přiřazený nebo "jednoznačně přiřazený po nepravdivém výrazu".
+*  Jednoznačný stav přiřazení *v v* po *výrazu* určuje:
+    * Pokud *expr_cond* je konstantní výraz ([konstantní výrazy](expressions.md#constant-expressions)) s hodnotou `true` , pak stav *v v* po *výrazu expr* je stejný jako stav *v* za *expr_true*.
+    * V opačném případě, pokud *expr_cond* je konstantní výraz ([konstantní výrazy](expressions.md#constant-expressions)) `false` s hodnotou, pak stav *v v* After *expr* je stejný jako stav *v* za za *expr_false*.
+    * V opačném případě, pokud je stav *v v* po *expr_trueně* přiřazený a stav *v v* po, kdy *expr_false* je jednoznačně přiřazený, pak je stav *v v* After *expr* jednoznačně přiřazený.
+    * V opačném případě stav *v* případě, kdy *výraz* není jednoznačně přiřazen.
 
 #### <a name="anonymous-functions"></a>Anonymní funkce
 
-Pro *lambda_expression* nebo *anonymous_method_expression* *expr* s tělem (buď *bloku* nebo *výraz* ) *tělo*:
+Výraz *lambda_expression* nebo *anonymous_method_expression* *expr* *s tělo (* buď *blok* nebo *výraz*):
 
-*  Stav jednoznačného přiřazení vnější proměnná *v* před *tělo* je stejné jako stav *v* před *expr*. To znamená jednoznačného přiřazení stavu vnější proměnné je zděděno z kontextu anonymní funkce.
-*  Stav jednoznačného přiřazení vnější proměnná *v* po *expr* je stejné jako stav *v* před *expr*.
+*  Určitý stav přiřazení vnější proměnné *v* před *textovým tělem* je stejný jako stav *v* před *výrazem*. To znamená, že je z kontextu anonymní funkce zděděný pouze stav přiřazení vnějších proměnných.
+*  Jednoznačný stav přiřazení vnější proměnné *v* po *výrazu expr* je stejný jako stav *v* před *výrazem*.
 
-V příkladu
+Příklad
 ```csharp
 delegate bool Filter(int i);
 
@@ -615,7 +615,7 @@ void F() {
     DoWork(f);
 }
 ```
-vygeneruje chybu kompilace od `max` není jednoznačně přiřazena, ve kterém je deklarována jako anonymní funkce. V příkladu
+vygeneruje chybu při kompilaci, protože `max` není jednoznačně přiřazen, kde je deklarace anonymní funkce deklarována. Příklad
 ```csharp
 delegate void D();
 
@@ -629,11 +629,11 @@ void F() {
     Console.WriteLine(n);
 }
 ```
-také vygeneruje chybu kompilace od přiřazení `n` v anonymní funkce nemá žádný vliv na stav jednoznačného přiřazení `n` vně anonymní funkce.
+také generuje chybu při kompilaci, protože přiřazení k `n` v anonymní funkci nemá žádný vliv na jednoznačný `n` stav přiřazení vně anonymní funkce.
 
 ## <a name="variable-references"></a>Odkazy na proměnné
 
-A *variable_reference* je *výraz* , který je klasifikován jako proměnnou. A *variable_reference* označuje umístění úložiště, který je přístupný načíst aktuální hodnotu a uložte novou hodnotu.
+*Variable_reference* je *výraz* , který je klasifikován jako proměnná. *Variable_reference* označuje umístění úložiště, ke kterému lze získat pøístup pro načtení aktuální hodnoty a uložení nové hodnoty.
 
 ```antlr
 variable_reference
@@ -641,9 +641,9 @@ variable_reference
     ;
 ```
 
-V jazyce C a C++, *variable_reference* se označuje jako *l-hodnoty*.
+V jazyce C C++a je *variable_reference* označován jako *l*-hodnota.
 
-## <a name="atomicity-of-variable-references"></a>Atomicitu odkazy na proměnné
+## <a name="atomicity-of-variable-references"></a>Nedělitelnost odkazů na proměnné
 
-Čtení a zápisy následující datové typy jsou atomické: `bool`, `char`, `byte`, `sbyte`, `short`, `ushort`, `uint`, `int`, `float`a typy odkazů. Kromě toho přečtených a zapsaných typů výčtů se základním typem v předchozím seznamu jsou také atomické. Operace čtení a zápisu z ostatních typů, včetně `long`, `ulong`, `double`, a `decimal`, a také uživatelem definovaných typů, nemusí být atomické. Kromě funkcí knihovny určená pro tento účel neexistuje žádná záruka z atomických čtení modify-write, například v případě zvýšení nebo snížení.
+Čtení a zápisy následujících datových typů jsou atomické: `bool` `byte`, `char` `ushort` `short` `sbyte`,,,,, `uint`, `int`, `float`a odkazové typy. Kromě toho jsou operace čtení a zápisy typů výčtu s nadřízeným typem v předchozím seznamu také atomické. Čtení a zápisy jiných typů, včetně `long` `double`, `ulong`, a `decimal`i uživatelsky definovaných typů, nejsou zaručeny jako atomické. Kromě funkcí v knihovně, které jsou navrženy pro tento účel, neexistuje žádná záruka atomické úpravy pro čtení a zápis, například v případě zvýšení nebo snížení.
 
