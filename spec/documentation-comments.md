@@ -1,22 +1,22 @@
 ---
-ms.openlocfilehash: c9f8417dc68153f02ceb72bb1d51f3615f3c4961
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: adf81842e3c763c7bbdd3f10bb884dc1207b9099
+ms.sourcegitcommit: 0489cb64b7dfb328813d757f4d447a15b85a5851
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488921"
+ms.lasthandoff: 09/11/2019
+ms.locfileid: "70912440"
 ---
 # <a name="documentation-comments"></a>Komentáře dokumentace
 
-C# poskytuje mechanismus pro programátory zdokumentujte svůj kód pomocí syntaxe speciální komentář, který obsahuje XML text. V souborech zdrojového kódu komentáře s formuláři určité umožňuje přímé nástroj k vytvoření XML z těchto komentářů a zdrojové elementy kódu, které jsou předcházet. Komentáře pomocí těchto syntaxe se nazývají ***komentáře k dokumentaci***. Musí bezprostředně předcházet uživatelem definovaný typ (například třída, delegát nebo rozhraní) nebo jako člen (například pole, události, vlastnost nebo metoda). Nástroj pro generování XML je volána ***dokumentaci generátor***. (Tento generátor může být, ale nemusí být kompilátor jazyka C#, samotný.) Výstup vytvořené generátorem dokumentace je volána ***soubor dokumentace***. Soubor dokumentace se používá jako vstup pro ***dokumentaci prohlížeč***; nástroj určených k vytvoření nějaký druh vizuálního zobrazení informací o typu a její související dokumentaci.
+C#poskytuje mechanismus pro programátory k dokumentování kódu pomocí speciální syntaxe komentářů, která obsahuje text XML. V souborech zdrojového kódu lze použít komentáře s určitým formulářem k tomu, aby nástroj vytvořil XML z těchto komentářů a prvky zdrojového kódu, které předcházejí. Komentáře používající takovou syntaxi se nazývají ***dokumentační komentáře***. Musí bezprostředně předcházet uživatelsky definovanému typu (například třída, delegát nebo rozhraní) nebo člen (například pole, událost, vlastnost nebo metoda). Nástroj pro generování XML se nazývá ***generátor dokumentace***. (Tento generátor může být, ale nemusí být samotným C# kompilátorem.) Výstup vyprodukovaný v dokumentaci generátoru se nazývá ***soubor dokumentace***. Soubor dokumentace slouží jako vstup do ***prohlížeče dokumentace***; nástroj určený k vytvoření určitého způsobu vizuálního zobrazení informací o typu a související dokumentaci.
 
-Tato specifikace navrhuje sadu značky pro dokumentační komentáře, ale použijte tyto značky se nevyžaduje a další značky mohou být použity v případě potřeby, následovaných dlouho pravidla ve správném formátu XML.
+Tato specifikace navrhuje sadu značek pro použití v dokumentačních komentářích, ale použití těchto značek není vyžadováno a jiné značky mohou být použity v případě potřeby, pokud jsou dodržena pravidla ve správném formátu XML.
 
 ## <a name="introduction"></a>Úvod
 
-Komentáře, které mají speciální tvar slouží ke směrování nástroj k vytvoření XML z těchto komentářů a zdrojové elementy kódu, které jsou předcházet. Takové komentáře jsou Jednořádkové komentáře, které začínají s třemi lomítky (`///`), nebo oddělených komentáře, které začínají lomítkem a dvě hvězdičky (`/**`). Musí bezprostředně předcházet uživatelem definovaný typ (například třída, delegát nebo rozhraní) nebo člen (například pole, události, vlastnost nebo metoda), který se opatřovat je poznámkami. Atribut oddíly ([specifikace atributu](attributes.md#attribute-specification)) jsou považovány za součást deklarace, takže komentáře dokumentace musí předcházet atributy použité na typ nebo člen.
+Komentáře s speciálním formulářem lze použít k tomu, aby nástroj vytvořil XML z těchto komentářů a prvky zdrojového kódu, které předcházejí. Jedná se o Jednořádkový komentář, který začíná třemi lomítky (`///`) nebo oddělenými komentáři, které začínají lomítkem a dvěma hvězdičkami (`/**`). Musí bezprostředně předcházet uživatelem definovaný typ (například třída, delegát nebo rozhraní) nebo člen (například pole, událost, vlastnost nebo metoda), ke kterým mají anotace. Oddíly atributů ([specifikace atributů](attributes.md#attribute-specification)) se považují za součást deklarací, takže dokumentační komentáře musí předcházet atributům použitým pro typ nebo člen.
 
-__Syntaxe:__
+__Syntaktick__
 
 ```antlr
 single_line_doc_comment
@@ -28,9 +28,9 @@ delimited_doc_comment
     ;
 ```
 
-V *single_line_doc_comment*, pokud je *prázdné znaky* následující znak `///` znaků ve všech *single_line_doc_comment*s sousední na aktuální *single_line_doc_comment*, pak, která *prázdné znaky* znak není součástí výstupu XML.
+V *single_line_doc_comment*, pokud `///` je znak *mezery* za znaky v každé z *single_line_doc_comment*s aktuální *single_line_doc_comment*, pakve výstupu XML není obsažen prázdný znak.
 
-V oddělených doc – komentáři Pokud je první neprázdný znak na druhém řádku hvězdičku a stejný vzor nepovinné prázdné znaky a znak hvězdičky se opakuje na začátku každého řádku v oddělených doc – komentáře potom znaků opakované vzoru nejsou součástí výstupu XML. Vzor může obsahovat prázdné znaky, po, stejně jako před znak hvězdičky.
+V komentáři s oddělovači, pokud je první neprázdný znak na druhém řádku hvězdičkou a stejný vzor volitelných prázdných znaků a znak hvězdičky se opakuje na začátku každého řádku v rámci objektu s oddělovači. znaky opakovaného vzoru nejsou zahrnuty ve výstupu XML. Vzor může obsahovat prázdné znaky po znaku hvězdičky a také před znakem hvězdičky.
 
 __Příklad:__
 
@@ -45,48 +45,48 @@ public class Point
 }
 ```
 
-Text v rámci komentáře dokumentace musí být správně utvořena podle pravidel XML (https://www.w3.org/TR/REC-xml). Pokud kód XML má výplně formát, je vygenerováno upozornění a dokumentaci soubor bude obsahovat komentář informacemi o tom, že došlo k chybě.
+Text v dokumentačních komentářích musí být ve správném formátu podle pravidel XML (https://www.w3.org/TR/REC-xml). Pokud je kód XML chybně vytvořen, je vygenerováno upozornění a soubor dokumentace bude obsahovat komentář, který říká, že došlo k chybě.
 
-Přestože vývojáře k vytvoření vlastních sad značek, doporučených sada je definována v [doporučené značky](documentation-comments.md#recommended-tags). Některé doporučené značky mají zvláštní význam:
+I když je vývojářům zdarma vytvořit vlastní sadu značek, doporučovaná sada je definována v [doporučených značkách](documentation-comments.md#recommended-tags). Některé z doporučených značek mají zvláštní význam:
 
-*  `<param>` Značka se používá k popisu parametrů. Pokud tato značka se používá, generátor dokumentaci musíte ověřit, že zadaný parametr existuje a že všechny parametry jsou popsané v komentáře k dokumentaci. Pokud se ověření nezdaří, generátor dokumentace ke službě vydá upozornění.
-*  `cref` Atribut lze připojit ke každé značce poskytnout odkaz na prvek kódu. Dokumentace ke službě generátor musí ověřte, zda tento prvek kódu existuje. Pokud se ověření nezdaří, generátor dokumentace ke službě vydá upozornění. Pokud hledáte podle názvu `cref` atribut, generátor dokumentaci musí dodržovat viditelnosti oboru názvů podle `using` příkazy uvedené v rámci zdrojového kódu. Pro prvky kódu, které jsou obecné, normální Obecná syntaxe (tedy "`List<T>`") nelze použít, protože vytváří neplatný kód XML. Složené závorky, je možné použít místo hranaté závorky (to znamená, "`List{T}`"), nebo je možné řídicí syntaxe jazyka XML (tedy "`List&lt;T&gt;`").
-*  `<summary>` Značka je určena pro použití podle dokumentace k prohlížeči a zobrazte další informace o typu nebo členu.
+*  Tato `<param>` značka se používá k popisu parametrů. Je-li použita taková značka, musí generátor dokumentace ověřit, zda zadaný parametr existuje a zda jsou všechny parametry popsány v dokumentaci dokumentace. Pokud takové ověření neproběhne úspěšně, generátor dokumentace vydá upozornění.
+*  `cref` Atribut lze připojit k libovolné značce k poskytnutí odkazu na prvek kódu. Generátor dokumentace musí ověřit, zda tento prvek kódu existuje. Pokud se ověření nepovede, generátor dokumentace vydá upozornění. Při hledání názvu popsanýho v `cref` atributu musí generátor dokumentace respektovat viditelnost oboru názvů `using` podle příkazů, které se nacházejí v rámci zdrojového kódu. U elementů kódu, které jsou obecné, nelze použít normální obecnou syntaxi (`List<T>`tj. ""), protože vytváří neplatný kód XML. Složené závorky lze použít místo závorek (`List{T}`tj. ""), případně lze použít syntaxi Escape XML (tj`List&lt;T&gt;`.).
+*  `<summary>` Značku má použít prohlížeč dokumentace pro zobrazení dalších informací o typu nebo členu.
 *  `<include>` Značka obsahuje informace z externího souboru XML.
 
-Pozorně si, že soubor dokumentace neposkytuje úplné informace o typu a členů (například neobsahuje žádné informace o typu). Pokud chcete získat informace o typu nebo členu, musí použít soubor dokumentace ve spojení s reflexí na skutečný typ nebo člen.
+Pozorně si všimněte, že soubor dokumentace neposkytuje úplné informace o typu a členech (například neobsahuje žádné informace o typu). Chcete-li získat informace o typu nebo členu, je třeba použít soubor dokumentace ve spojení s reflexí pro skutečný typ nebo člen.
 
 ## <a name="recommended-tags"></a>Doporučené značky
 
-Generátor dokumentaci musíte přijmout a zpracovat všechny značky, který je platný podle pravidel XML. Následující značky poskytuje běžně používané funkce v dokumentaci pro uživatele. (Další značky jsou samozřejmě možné.)
+Generátor dokumentace musí přijmout a zpracovat všechny značky, které jsou platné podle pravidel XML. Následující značky poskytují běžně používané funkce v dokumentaci uživatele. (Samozřejmě jsou možné další značky.)
 
 
-| __Značka__          | __Oddíl__                                            | __Účel__                                            |
+| __Inteligentní__          | __Section__                                            | __Účel__                                            |
 |------------------|--------------------------------------------------------|--------------------------------------------------------|
-| `<c>`            | [`<c>`](documentation-comments.md#c)                   | Nastavit text v kódu jako písma                           | 
-| `<code>`         | [`<code>`](documentation-comments.md#code)             | Nastavit jeden nebo více řádků zdrojového kódu nebo výstup programu. |
-| `<example>`      | [`<example>`](documentation-comments.md#example)       | Označení příklad                                    |
-| `<exception>`    | [`<exception>`](documentation-comments.md#exception)   | Identifikuje výjimky, které můžou vyvolat metodu           |
-| `<include>`      | [`<include>`](documentation-comments.md#include)       | Obsahuje XML z externího souboru                     |
-| `<list>`         | [`<list>`](documentation-comments.md#list)             | Vytvořit seznam nebo tabulku                                 |
-| `<para>`         | [`<para>`](documentation-comments.md#para)             | Povolit struktury mají být přidány do textu                   |
-| `<param>`        | [`<param>`](documentation-comments.md#param)           | Popis parametru metoda nebo konstruktor       |
-| `<paramref>`     | [`<paramref>`](documentation-comments.md#paramref)     | Zjistit, slovo je název parametru               |
-| `<permission>`   | [`<permission>`](documentation-comments.md#permission) | Dokument přístupností člena        |
-| `<remark>`       | [`<remark>`](documentation-comments.md#remark)         | Popisují další informace o typu           |
-| `<returns>`      | [`<returns>`](documentation-comments.md#returns)       | Popište návratovou hodnotu metody                  |
-| `<see>`          | [`<see>`](documentation-comments.md#see)               | Zadejte odkaz                                         |
-| `<seealso>`      | [`<seealso>`](documentation-comments.md#seealso)       | Generovat položku v části Viz také                              |
-| `<summary>`      | [`<summary>`](documentation-comments.md#summary)       | Popisují typ nebo člen typu                  |
-| `<value>`        | [`<value>`](documentation-comments.md#value)           | Popis vlastnosti                                    |
-| `<typeparam>`    |                                                        | Popis parametru obecného typu                      |
-| `<typeparamref>` |                                                        | Zjistit, je slovo typu parametru názvu          |
+| `<c>`            | [`<c>`](documentation-comments.md#c)                   | Nastavení textu v písmu podobného kódu                           | 
+| `<code>`         | [`<code>`](documentation-comments.md#code)             | Nastavení jednoho nebo více řádků zdrojového kódu nebo výstupu programu |
+| `<example>`      | [`<example>`](documentation-comments.md#example)       | Označení příkladu                                    |
+| `<exception>`    | [`<exception>`](documentation-comments.md#exception)   | Určuje výjimky, které může metoda vyvolat.           |
+| `<include>`      | [`<include>`](documentation-comments.md#include)       | Zahrnuje XML z externího souboru.                     |
+| `<list>`         | [`<list>`](documentation-comments.md#list)             | Vytvoření seznamu nebo tabulky                                 |
+| `<para>`         | [`<para>`](documentation-comments.md#para)             | Povolit přidání struktury do textu                   |
+| `<param>`        | [`<param>`](documentation-comments.md#param)           | Popište parametr pro metodu nebo konstruktor.       |
+| `<paramref>`     | [`<paramref>`](documentation-comments.md#paramref)     | Určení, že slovo je název parametru               |
+| `<permission>`   | [`<permission>`](documentation-comments.md#permission) | Dokumentuje přístupnost člena v zabezpečení.        |
+| `<remarks>`      | [`<remarks>`](documentation-comments.md#remarks)       | Popište Další informace o typu.           |
+| `<returns>`      | [`<returns>`](documentation-comments.md#returns)       | Popisuje návratovou hodnotu metody.                  |
+| `<see>`          | [`<see>`](documentation-comments.md#see)               | Zadat odkaz                                         |
+| `<seealso>`      | [`<seealso>`](documentation-comments.md#seealso)       | Generovat položku viz také                              |
+| `<summary>`      | [`<summary>`](documentation-comments.md#summary)       | Popis typu nebo členu typu                  |
+| `<value>`        | [`<value>`](documentation-comments.md#value)           | Popsat vlastnost                                    |
+| `<typeparam>`    |                                                        | Popsat parametr obecného typu                      |
+| `<typeparamref>` |                                                        | Určení, že slovo je názvem parametru typu          |
 
 ### `<c>`
 
-Tato značka poskytuje mechanismus pro označení, že fragment textu v popisu musí být nastaveno v speciální písmo. například, který používá pro blok kódu. Řádky skutečný kód, použijte `<code>` ([`<code>`](documentation-comments.md#code)).
+Tato značka poskytuje mechanismus pro indikaci, že fragment textu v rámci popisu by měl být nastaven ve speciálním písmu, například, které se používá pro blok kódu. Pro řádky vlastního kódu použijte `<code>` ([`<code>`](documentation-comments.md#code)).
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <c>text</c>
@@ -106,9 +106,9 @@ public class Point
 
 ### `<code>`
 
-Tato značka se používá k nastavení jeden nebo více řádků zdrojového kódu nebo výstup programu některé speciální písmem. Malý kód fragmenty v příběh, použijte `<c>` ([`<c>`](documentation-comments.md#c)).
+Tato značka se používá k nastavení jednoho nebo více řádků zdrojového kódu nebo výstupu programu v některém speciálním písmu. Pro malé fragmenty kódu v mluveném komentáři[`<c>`](documentation-comments.md#c)použijte `<c>` ().
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <code>source code or program output</code>
@@ -136,9 +136,9 @@ public void Translate(int xor, int yor) {
 
 ### `<example>`
 
-Tato značka umožňuje ukázkový kód v komentáři, chcete-li určit, jak lze metodu nebo jiný člen knihovny. Obvykle to by také zahrnovat použití značky `<code>` ([`<code>`](documentation-comments.md#code)) i.
+Tato značka umožňuje ukázkový kód v rámci komentáře, který určuje, jak lze použít metodu nebo jiného člena knihovny. Obvykle by to zahrnovalo i použití značky `<code>` ([`<code>`](documentation-comments.md#code)).
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <example>description</example>
@@ -146,13 +146,13 @@ __Syntaxe:__
 
 __Příklad:__
 
-Zobrazit `<code>` ([`<code>`](documentation-comments.md#code)) příklad.
+Příklad `<code>` naleznete[`<code>`](documentation-comments.md#code)v tématu ().
 
 ### `<exception>`
 
-Tato značka poskytuje způsob, jak dokumentovat výjimky, které můžou vyvolat metodu.
+Tato značka poskytuje způsob, jak zdokumentovat výjimky, které může metoda vyvolat.
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <exception cref="member">description</exception>
@@ -160,8 +160,8 @@ __Syntaxe:__
 
 kde
 
-* `member` je název člena. Dokumentace ke službě generátor kontroluje, zda daný člen existuje a přeloží `member` do názvu canonical prvku v souboru dokumentace.
-* `description` je popis okolnosti, ve kterých je vyvolána výjimka.
+* `member`je název člena. Generátor dokumentace kontroluje, zda daný člen existuje a překládá `member` se na název kanonického elementu v souboru dokumentace.
+* `description`je popis okolností, v nichž je vyvolána výjimka.
 
 __Příklad:__
 
@@ -182,9 +182,9 @@ public class DataBaseOperations
 
 ### `<include>`
 
-Tato značka umožňuje, včetně informací z dokumentu XML, který je externí vzhledem k souboru se zdrojovým kódem. Externí soubor musí být ve správném formátu dokumentu XML a výraz XPath platí pro daný dokument k určení, jaké XML z dokumentu zahrnout. `<include>` Značky se pak nahradí vybrané XML z externího dokumentu.
+Tato značka umožňuje zahrnout informace z dokumentu XML, který je externí pro soubor zdrojového kódu. Externím souborem musí být dokument XML ve správném formátu a k tomuto dokumentu se použije výraz XPath, který určuje, co XML z tohoto dokumentu má zahrnout. `<include>` Značka se pak nahradí vybraným XML z externího dokumentu.
 
-__Syntaxe:__
+__Syntaktick__
 
 ```
 <include file="filename" path="xpath" />
@@ -192,19 +192,19 @@ __Syntaxe:__
 
 kde
 
-* `filename` je název souboru z externího souboru XML. Název souboru je relativní vzhledem k souboru, který obsahuje značku include interpretován.
-* `xpath` je výraz XPath, který vybere část souboru XML v externím souboru XML.
+* `filename`je název souboru externího souboru XML. Název souboru je interpretován relativně k souboru, který obsahuje značku include.
+* `xpath`je výraz XPath, který vybírá některé XML v externím souboru XML.
 
 __Příklad:__
 
-Pokud zdrojový kód obsahuje deklarace, jako jsou:
+Pokud zdrojový kód obsahoval deklaraci jako:
 
 ```csharp
 /// <include file="docs.xml" path='extradoc/class[@name="IntList"]/*' />
 public class IntList { ... }
 ```
 
-a externího souboru "docs.xml" měl následující obsah:
+a externí soubor docs. XML má následující obsah:
 
 ```xml
 <?xml version="1.0"?>
@@ -222,7 +222,7 @@ a externího souboru "docs.xml" měl následující obsah:
 </extradoc>
 ```
 
-pak stejné dokumentace je výstup jako by obsahovala zdrojového kódu:
+pak je stejná dokumentace ve výstupu, jako by obsahovala zdrojový kód:
 
 ```csharp
 /// <summary>
@@ -233,11 +233,11 @@ public class IntList { ... }
 
 ### `<list>`
 
-Tato značka se používá k vytvoření seznamu nebo tabulce položek. Může obsahovat `<listheader>` bloku k definování řádek záhlaví tabulky nebo definice seznamu. (Při definování tabulku pouze záznam pro `term` v záhlaví musí být zadán.)
+Tato značka slouží k vytvoření seznamu nebo tabulky položek. Může obsahovat `<listheader>` blok pro definování řádku záhlaví buď tabulky, nebo seznamu definic. (Při definování tabulky je nutné zadat pouze záznam pro `term` v hlavičce.)
 
-Každá položka v seznamu není zadán s `<item>` bloku. Při vytváření definice seznamu, obě `term` a `description` musí být zadán. Nicméně pro tabulku, seznam s odrážkami nebo číslovaný seznam pouze `description` musí být zadán.
+Každá položka v seznamu je určena `<item>` blokem. Při vytváření seznamu definic musí být zadán `term` obojí `description` a. U tabulky, seznamu s odrážkami nebo číslovaného seznamu je však třeba `description` zadat pouze parametr.
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <list type="bullet" | "number" | "table">
@@ -259,8 +259,8 @@ __Syntaxe:__
 
 kde
 
-* `term` je termín k definování, jejichž definice není v `description`.
-* `description` Položka odrážkami nebo číslovaný seznam nebo definici `term`.
+* `term`je výraz, který má být definován, jehož definice `description`je v.
+* `description`je buď položka v seznamu odrážek nebo číslovaný seznam, nebo definice `term`.
 
 __Příklad:__
 
@@ -285,9 +285,9 @@ public class MyClass
 
 ### `<para>`
 
-Tato značka je určen pro použití v jiné značky, například `<summary>` ([`<remark>`](documentation-comments.md#remark)) nebo `<returns>` ([`<returns>`](documentation-comments.md#returns)) a povoluje struktury mají být přidány do textu.
+Tato značka je určena pro použití uvnitř jiných značek, například `<summary>` ([`<remarks>`](documentation-comments.md#remarks)) nebo `<returns>` ([`<returns>`](documentation-comments.md#returns)), a umožňuje přidání struktury do textu.
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <para>content</para>
@@ -309,9 +309,9 @@ public static void Main() {
 
 ### `<param>`
 
-Tato značka se používá k popisu parametru pro metodu, konstruktor nebo indexeru.
+Tato značka se používá k popisu parametru pro metodu, konstruktor nebo indexer.
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <param name="name">description</param>
@@ -319,8 +319,8 @@ __Syntaxe:__
 
 kde
 
-* `name` je název parametru.
-* `description` představuje popis parametru.
+* `name`je název parametru.
+* `description`je popis parametru.
 
 __Příklad:__
 
@@ -337,9 +337,9 @@ public void Move(int xor, int yor) {
 
 ### `<paramref>`
 
-Tato značka se používá k označení, že je slovo parametru. Soubor dokumentace mohou být zpracovány k nějakým způsobem odlišné formátování tento parametr.
+Tato značka slouží k označení, že slovo je parametrem. Soubor dokumentace může být zpracován pro naformátování tohoto parametru nějakým odlišným způsobem.
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <paramref name="name"/>
@@ -363,9 +363,9 @@ public Point(int xor, int yor) {
 
 ### `<permission>`
 
-Tato značka umožňuje přístupností člena chcete zdokumentovat.
+Tato značka umožňuje zdokumentování zabezpečení člena.
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <permission cref="member">description</permission>
@@ -373,8 +373,8 @@ __Syntaxe:__
 
 kde
 
-* `member` je název člena. Dokumentace ke službě generátor kontroluje, zda daný prvek kódu existuje a přeloží *člen* do názvu canonical prvku v souboru dokumentace.
-* `description` je popis přístup ke členu.
+* `member`je název člena. Generátor dokumentace kontroluje, zda daný prvek kódu existuje, a překládá *člena* na kanonický název elementu v souboru dokumentace.
+* `description`je popis přístupu ke členu.
 
 __Příklad:__
 
@@ -387,24 +387,24 @@ public static void Test() {
 }
 ```
 
-### `<remark>`
+### `<remarks>`
 
-Tato značka se používá k určení dalších informací o typu. (Použití `<summary>` ([`<summary>`](documentation-comments.md#summary)) k popisu samotný datový typ a členy typu.)
+Tato značka slouží k zadání dalších informací o typu. (Pomocí `<summary>` ([`<summary>`](documentation-comments.md#summary)) Popište samotný typ a členy typu.)
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
-<remark>description</remark>
+<remarks>description</remarks>
 ```
 
-kde `description` je text příspěvku.
+kde `description` je text přeznačení.
 
 __Příklad:__
 
 ```csharp
 /// <summary>Class <c>Point</c> models a point in a 
 /// two-dimensional plane.</summary>
-/// <remark>Uses polar coordinates</remark>
+/// <remarks>Uses polar coordinates</remarks>
 public class Point 
 {
     // ...
@@ -413,15 +413,15 @@ public class Point
 
 ### `<returns>`
 
-Tato značka se používá k popisu návratovou hodnotu metody.
+Tato značka se používá k popisu návratové hodnoty metody.
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <returns>description</returns>
 ```
 
-kde `description` je popis návratovou hodnotu.
+kde `description` je popis návratové hodnoty.
 
 __Příklad:__
 
@@ -436,15 +436,15 @@ public override string ToString() {
 
 ### `<see>`
 
-Tato značka umožňuje odkazu na specifikovaný v textu. Použití `<seealso>` ([`<seealso>`](documentation-comments.md#seealso)) k označení textu, který se zobrazí v části Viz také.
+Tato značka umožňuje zadat odkaz v rámci textu. Pomocí `<seealso>` [(`<seealso>`](documentation-comments.md#seealso)) označíte text, který se má zobrazit v části Viz také.
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <see cref="member"/>
 ```
 
-kde `member` je název člena. Dokumentace ke službě generátor kontroluje, zda daný prvek kódu existuje a změní *člen* do názvu prvku v souboru vygenerovaná dokumentace.
+kde `member` je název člena. Generátor dokumentace kontroluje, zda daný prvek kódu existuje a mění *člena* na název elementu v generovaném souboru dokumentace.
 
 __Příklad:__
 
@@ -469,15 +469,15 @@ public void Translate(int xor, int yor) {
 
 ### `<seealso>`
 
-Tato značka umožňuje záznam, tím se vygeneruje pro části Viz také. Použití `<see>` ([`<see>`](documentation-comments.md#see)) zadat odkaz v rámci textu.
+Tato značka umožňuje vygenerovat položku v části Viz také. Pomocí `<see>` [(`<see>`](documentation-comments.md#see)) můžete zadat odkaz v rámci textu.
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <seealso cref="member"/>
 ```
 
-kde `member` je název člena. Dokumentace ke službě generátor kontroluje, zda daný prvek kódu existuje a změní *člen* do názvu prvku v souboru vygenerovaná dokumentace.
+kde `member` je název člena. Generátor dokumentace kontroluje, zda daný prvek kódu existuje a mění *člena* na název elementu v generovaném souboru dokumentace.
 
 __Příklad:__
 
@@ -493,15 +493,15 @@ public override bool Equals(object o) {
 
 ### `<summary>`
 
-Toto klíčové slovo lze použít k popisu typ nebo člen typu. Použití `<remark>` ([`<remark>`](documentation-comments.md#remark)) k popisu samotného typu.
+Tato značka se dá použít k popisu typu nebo členu typu. Použijte `<remarks>` [(`<remarks>`](documentation-comments.md#remarks)) pro popis samotného typu.
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <summary>description</summary>
 ```
 
-kde `description` je uveden seznam tento typ nebo člen.
+kde `description` je souhrn typu nebo členu.
 
 __Příklad:__
 
@@ -513,15 +513,15 @@ public Point() : this(0,0) {
 
 ### `<value>`
 
-Tato značka umožňuje vlastnost, která má být popsány.
+Tato značka umožňuje popsat vlastnost.
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <value>property description</value>
 ```
 
-kde `property description` je pro vlastnost Popis.
+kde `property description` je popis vlastnosti.
 
 __Příklad:__
 
@@ -536,15 +536,15 @@ public int X
 
 ### `<typeparam>`
 
-Tato značka se používá k popisu parametru obecného typu třídy, struktury, rozhraní, delegáta nebo metoda.
+Tato značka se používá k popisu parametru obecného typu pro třídu, strukturu, rozhraní, delegáta nebo metodu.
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <typeparam name="name">description</typeparam>
 ```
 
-kde `name` je název parametru typu a `description` je její popis.
+kde `name` je název parametru typu a `description` je jeho popis.
 
 __Příklad:__
 
@@ -558,9 +558,9 @@ public class MyList<T> {
 
 ### `<typeparamref>`
 
-Tato značka se používá k označení, že slovo je parametr typu. Soubor dokumentace mohou být zpracovány k nějakým způsobem odlišné formátování tento parametr typu.
+Tato značka slouží k označení, že slovo je parametr typu. Soubor dokumentace může být zpracován pro naformátování tohoto parametru typu nějakým odlišným způsobem.
 
-__Syntaxe:__
+__Syntaktick__
 
 ```xml
 <typeparamref name="name"/>
@@ -578,46 +578,46 @@ public List<T> FetchData<T>(string query) {
 }
 ```
 
-## <a name="processing-the-documentation-file"></a>Zpracování souboru dokumentace
+## <a name="processing-the-documentation-file"></a>Zpracovává se soubor dokumentace.
 
-Dokumentace ke službě generátor generuje řetězec ID pro každý prvek ve zdrojovém kódu, který se Dokumentační komentář označené. Tento řetězec ID jednoznačně identifikuje prvek zdroje. Dokumentace k prohlížeči slouží jako řetězec ID k identifikaci odpovídající položku metadat/reflexe, ke kterému se vztahuje na dokumentaci.
+Generátor dokumentace generuje řetězec ID pro každý prvek ve zdrojovém kódu, který je označen komentářem k dokumentaci. Tento řetězec IDENTIFIKÁTORu jednoznačně identifikuje zdrojový element. Prohlížeč dokumentace může použít řetězec ID k identifikaci odpovídající položky metadat nebo reflexe, na kterou se dokumentace vztahuje.
 
-Soubor dokumentace není Hierarchická reprezentace zdrojového kódu; Místo toho je seznam bez stromové struktury s řetězcem vygenerované ID pro každý prvek.
+Soubor dokumentace není hierarchická reprezentace zdrojového kódu; místo toho je seznam bez stromové struktury s generovaným řetězcem ID pro každý prvek.
 
-### <a name="id-string-format"></a>Formát ID řetězce
+### <a name="id-string-format"></a>Formát řetězce ID
 
-Dokumentace ke službě generátor dodržuje následující pravidla při generování ID řetězce:
+Generátor dokumentace při generování řetězců ID dodržuje následující pravidla:
 
-*  Žádné jiné mezery, nachází v řetězci.
+*  V řetězci není vložen prázdný znak.
 
-*  První část řetězce identifikuje typ členu je zdokumentovaná prostřednictvím rutiny jeden znak následovaný dvojtečkou. Jsou definovány následující druhy členů:
+*  První část řetězce identifikuje druh dokumentovaného člena přes jeden znak následovaný dvojtečkou. Jsou definovány následující typy členů:
 
-   | __Znak__ | __Popis__                                             |
+   | __Optické__ | __Popis__                                             |
    |---------------|-------------------------------------------------------------|
    | E             | Událost                                                       |
    | F             | Pole                                                       |
-   | M             | (Včetně konstruktory, destruktory a operátory) – metoda |
+   | M             | Metoda (včetně konstruktorů, destruktorů a operátorů) |
    | N             | Obor názvů                                                   |
-   | P             | Vlastnosti (včetně indexery)                               |
-   | T             | Typ (například třída, delegát, výčtu, rozhraní a struktury) |
-   | !             | Řetězec chyby; zbývající řetězec poskytuje informace o této chybě. Například dokumentace generátor generuje informace o chybě pro odkazy, které nelze rozpoznat. |
+   | P             | Vlastnost (včetně indexerů)                               |
+   | T             | Typ (například třída, delegát, výčet, rozhraní a struktura) |
+   | !             | Chybový řetězec; zbytek řetězce poskytuje informace o chybě. Například generátor dokumentace generuje informace o chybě pro odkazy, které nelze přeložit. |
 
-*  Druhá část řetězce je plně kvalifikovaný název elementu, spouštění v kořenovém oboru názvů. Název elementu, jeho nadřazené typy a obor názvů jsou odděleny tečkami. Pokud má název samotné položky období, budou nahrazeny `#(U+0023)` znaků. (Předpokládá se, že žádný element nemá tento znak v názvu.)
-*  Pro metody a vlastnosti s argumenty, pomocí následujícího seznamu argument uzavřen v závorkách. Pro ty bez argumentů jsou vynechány závorky. Argumenty jsou odděleny čárkami. Kódování každý argument je stejný jako rozhraní příkazového řádku, následujícím způsobem:
-   *  Argumenty jsou reprezentovány podle názvu jejich dokumentaci, která je založena na jejich plně kvalifikovanému názvu upraveny následujícím způsobem:
-      * Argumenty, které představují obecné typy mají připojený `` ` `` (prvními) následovaný počet parametrů typu
-      * Argumenty s `out` nebo `ref` mít modifikátor `@` po jejich název typu. Argumenty předány podle hodnoty nebo prostřednictvím `params` mít žádná zvláštní zápis.
-      * Argumenty, které jsou pole jsou reprezentovány ve formě `[lowerbound:size, ... , lowerbound:size]` kde počet čárky je řád méně jeden a dolní meze a velikosti jednotlivých rozměrů, pokud jsou známé, jsou reprezentovány v desítkové soustavě. Pokud není zadán dolní mez nebo velikost, je vynechán. Pokud jsou vynechány dolní mez a velikosti pro konkrétní dimenzi, `:` je také vynechán. Vícenásobná pole jsou reprezentované pomocí jedné `[]` na úroveň.
-      * Argumenty, které mají ukazatel typy než void se vyjadřují pomocí `*` za názvem typu. Ukazatel void je reprezentována pomocí názvu typu `System.Void`.
-      * Argumenty, které odkazují na parametry obecného typu, které jsou definovány pro typy jsou zakódovány pomocí `` ` `` (prvními) následovaný z nuly vycházející index parametru typu.
-      * Argumenty, které používají parametry obecného typu, které jsou definovány v metodách pomocí double prvními ``` `` ``` místo `` ` `` použít pro typy.
-      * Argumenty, které odkazují na sestavené obecné typy jsou zakódovány pomocí obecného typu, za nímž následuje `{`, za nímž následuje čárkou oddělený seznam argumentů, za nímž následuje `}`.
+*  Druhá část řetězce je plně kvalifikovaný název elementu začínajícího v kořenu oboru názvů. Název elementu, jeho uzavírací typ (y) a obor názvů jsou odděleny tečkami. Pokud má název položky vlastní tečky, nahradí `#(U+0023)` se znaky. (Předpokládá se, že žádný element nemá tento znak v názvu.)
+*  Pro metody a vlastnosti s argumenty následuje seznam argumentů uzavřený v závorkách. V případě bez argumentů jsou závorky vynechány. Argumenty jsou odděleny čárkami. Kódování každého argumentu je stejné jako signatura CLI následujícím způsobem:
+   *  Argumenty jsou reprezentovány podle názvu jejich dokumentace, který je založen na jejich plně kvalifikovaném názvu, který je upraven následujícím způsobem:
+      * Argumenty, které reprezentují obecné typy, `` ` `` mají připojený znak (zpětný) následovaný počtem parametrů typu.
+      * Argumenty, `out` které mají `ref` modifikátor or, `@` mají následující název typu. Argumenty předané hodnotou nebo prostřednictvím `params` nemají žádný speciální zápis.
+      * Argumenty, které jsou pole, jsou `[lowerbound:size, ... , lowerbound:size]` reprezentovány, kde počet čárek je méně než jedna a dolní meze a velikost jednotlivých dimenzí, pokud jsou známy, jsou reprezentovány v desítkové soustavě. Pokud není zadaná dolní mez nebo velikost, je vynechána. Pokud je spodní mez a velikost pro konkrétní dimenzi vynechána, `:` je vynechána také hodnota. Vícenásobná pole jsou reprezentována `[]` jednou na úrovni.
+      * Argumenty, které mají jiné typy ukazatelů než void, jsou reprezentovány pomocí `*` následujícího názvu typu. Ukazatel void je reprezentován pomocí názvu `System.Void`typu.
+      * Argumenty, které odkazují na parametry obecného typu definované u typů, jsou zakódovány pomocí `` ` `` znaku (počátečního) následovaného indexem parametru typu s nulovým základem.
+      * Argumenty, které používají parametry obecného typu definované v metodách, používají dvojité přetržení ``` `` ``` namísto `` ` `` použití pro typy.
+      * Argumenty, které odkazují na konstruované obecné typy, jsou zakódovány pomocí obecného typu `{`následovaného čárkami odděleným seznamem argumentů typu a `}`následovány.
 
-### <a name="id-string-examples"></a>Příklady řetězec ID
+### <a name="id-string-examples"></a>Příklady řetězců ID
 
-Následující příklady ukazují fragment kódu jazyka C#, společně s řetězcem ID získané z jednotlivých zdrojových elementů schopné s Dokumentační komentář:
+Následující příklady každé ukazuje fragment C# kódu, společně s řetězcem ID vytvořeným z každého zdrojového elementu, který může mít komentář k dokumentaci:
 
-*  Typy jsou reprezentovány pomocí jejich plně kvalifikovanému názvu, doplněné o obecné informace:
+*  Typy jsou reprezentovány pomocí jejich plně kvalifikovaného názvu, rozšiřované o obecné informace:
 
    ```csharp
    enum Color { Red, Blue, Green }
@@ -654,7 +654,7 @@ Následující příklady ukazují fragment kódu jazyka C#, společně s řetě
    "T:Acme.MyList`1.Helper`2"
    ```
 
-*  Pole jsou reprezentovány pomocí jejich plně kvalifikovanému názvu:
+*  Pole jsou reprezentována jejich plně kvalifikovaným názvem:
 
    ```csharp
    namespace Acme
@@ -726,7 +726,7 @@ Následující příklady ukazují fragment kódu jazyka C#, společně s řetě
    "M:Acme.Widget.Finalize"
    ```
 
-*  Metody.
+*  Způsobů.
 
    ```csharp
    namespace Acme
@@ -778,7 +778,7 @@ Následující příklady ukazují fragment kódu jazyka C#, společně s řetě
    "M:Acme.UseList.GetValues``(``0)"
    ```
 
-*  Vlastnostmi a indexery.
+*  Vlastnosti a indexery.
 
    ```csharp
    namespace Acme
@@ -796,7 +796,7 @@ Následující příklady ukazují fragment kódu jazyka C#, společně s řetě
    "P:Acme.Widget.Item(System.String,System.Int32)"
    ```
 
-*  události.
+*  Událost.
 
    ```csharp
    namespace Acme
@@ -824,7 +824,7 @@ Následující příklady ukazují fragment kódu jazyka C#, společně s řetě
    "M:Acme.Widget.op_UnaryPlus(Acme.Widget)"
    ```
 
-   Kompletní sadu unární operátor funkce názvů používaných vypadá takto: `op_UnaryPlus`, `op_UnaryNegation`, `op_LogicalNot`, `op_OnesComplement`, `op_Increment`, `op_Decrement`, `op_True`, a `op_False`.
+   Kompletní sada názvů funkcí unárního operátoru je `op_UnaryPlus`následující:, `op_UnaryNegation`, `op_LogicalNot`, `op_Decrement` `op_Increment` `op_OnesComplement`,,, `op_True` `op_False`a.
 
 *  Binární operátory.
 
@@ -840,9 +840,9 @@ Následující příklady ukazují fragment kódu jazyka C#, společně s řetě
    "M:Acme.Widget.op_Addition(Acme.Widget,Acme.Widget)"
    ```
 
-   Kompletní sadu názvů funkcí binární operátor používá vypadá takto: `op_Addition`, `op_Subtraction`, `op_Multiply`, `op_Division`, `op_Modulus`, `op_BitwiseAnd`, `op_BitwiseOr`, `op_ExclusiveOr`, `op_LeftShift`, `op_RightShift`, `op_Equality`, `op_Inequality`, `op_LessThan`, `op_LessThanOrEqual`, `op_GreaterThan`, a `op_GreaterThanOrEqual`.
+   `op_Addition`Kompletní sada názvů funkcí binárního operátoru je následující:, `op_LeftShift` `op_BitwiseOr` `op_Multiply` `op_BitwiseAnd` `op_Division` `op_Subtraction`,,, `op_Modulus`,,, `op_ExclusiveOr`,, `op_RightShift`, `op_Equality`, ,,`op_LessThan`, a`op_GreaterThan`. `op_LessThanOrEqual` `op_Inequality` `op_GreaterThanOrEqual`
 
-*  Operátory převodu mít koncový znak "`~`" následované návratovým typem.
+*  Operátory převodu mají koncový znak`~`"" následovaný návratovým typem.
 
    ```csharp
    namespace Acme
@@ -860,9 +860,9 @@ Následující příklady ukazují fragment kódu jazyka C#, společně s řetě
 
 ## <a name="an-example"></a>Příklad
 
-### <a name="c-source-code"></a>Zdrojový kód C#
+### <a name="c-source-code"></a>C#zdrojový kód
 
-Následující příklad ukazuje, zdrojový kód `Point` třídy:
+Následující příklad ukazuje zdrojový kód `Point` třídy:
 
 ```csharp
 namespace Graphics
@@ -1011,9 +1011,9 @@ public class Point
 }
 ```
 
-### <a name="resulting-xml"></a>Výsledný XML
+### <a name="resulting-xml"></a>Výsledný kód XML
 
-Zde je výstup vytvořený z jednoho dokumentaci generátoru při zdrojový kód pro třídu `Point`, je uveden výše:
+Zde je výstup vyprodukovaný jedním generátorem dokumentace, pokud je daný zdrojový kód třídy `Point`, zobrazený výše:
 
 ```xml
 <?xml version="1.0"?>
