@@ -1,22 +1,22 @@
 ---
-ms.openlocfilehash: 72d17175dfb8ef284dce6cf7e5837420fa06f16a
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 6dd1dde67597b2125de9a1aa2fab9144128d533f
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488882"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71704032"
 ---
 # <a name="structs"></a>Struktury
 
-Struktury jsou podobné třídy, které představují datové struktury, které mohou obsahovat datové členy a funkční členy. Na rozdíl od tříd však struktury jsou typy hodnot a nevyžadují přidělení haldy. Proměnné typu Struktura přímo obsahuje datové struktury, že proměnné typu třídy obsahuje odkaz na data, druhá možnost známé jako objekt.
+Struktury jsou podobné třídám, které představují datové struktury, které mohou obsahovat datové členy a členy funkce. Nicméně na rozdíl od tříd, struktury jsou typy hodnot a nevyžadují přidělení haldy. Proměnná typu struktury přímo obsahuje data struktury, zatímco proměnná typu třídy obsahuje odkaz na data, druhá je známá jako objekt.
 
-Struktury jsou zvláště užitečná pro malé datové struktury, které mají hodnotu sémantiku. Komplexní čísla, body v souřadnicovém systému nebo páry klíč hodnota do slovníku jsou všechny dobrým příkladem struktury. Je klíč pro tyto datové struktury, ke kterým mají několik datových členů, nevyžadují použití dědičnosti nebo referenční identity a že můžete pohodlně prováděny pomocí sémantiky hodnota, kde přiřazení kopíruje hodnotu namísto odkazu.
+Struktury jsou zvláště užitečné pro malé datové struktury, které mají sémantiku hodnot. Komplexní čísla, body v systému souřadnic nebo páry klíč-hodnota ve slovníku jsou všechny dobrými příklady struktur. Klíč k těmto datovým strukturám je, že mají několik datových členů, které nevyžadují použití dědičnosti nebo referenční identity, a že je lze pohodlně implementovat pomocí sémantiky hodnot, kde přiřazení kopíruje hodnotu namísto odkazu.
 
-Jak je popsáno v [jednoduché typy](types.md#simple-types), jednoduché typy, které jsou k dispozici v jazyce C#, jako například `int`, `double`, a `bool`, jsou ve skutečnosti všechny typy struktury. Stejně jako tyto předdefinované typy jsou struktury, je také možné použít struktury a přetěžování pro implementaci nový "základní" typy v jazyce C#. Na konci této kapitole jsou uvedeny dva příklady těchto typů ([struktura příklady](structs.md#struct-examples)).
+Jak je popsáno v [jednoduchých typech](types.md#simple-types), jednoduché typy poskytované C#, například `int`, `double` a `bool`, jsou ve skutečnosti všechny typy struktury. Stejně jako tyto předdefinované typy jsou struktury, lze také použít struktury a přetížení operátoru pro implementaci nových primitivních typů v C# jazyce. Dva příklady těchto typů jsou uvedeny na konci této kapitoly ([Příklady struktury](structs.md#struct-examples)).
 
 ## <a name="struct-declarations"></a>Deklarace struktury
 
-A *struct_declaration* je *type_declaration* ([typ deklarace](namespaces.md#type-declarations)), který deklaruje novou strukturu:
+*Struct_declaration* je *type_declaration* ([deklarace typu](namespaces.md#type-declarations)), který deklaruje novou strukturu:
 
 ```antlr
 struct_declaration
@@ -25,11 +25,11 @@ struct_declaration
     ;
 ```
 
-A *struct_declaration* se skládá z volitelné sadu *atributy* ([atributy](attributes.md)) následovaný volitelná sada *struct_modifier*s ([struktura modifikátory](structs.md#struct-modifiers)), následovaným volitelnou `partial` modifikátor, za nímž následuje klíčové slovo `struct` a *identifikátor* , která pojmenuje struktury, za nímž následuje volitelné *type_parameter_list* specifikace ([parametry typu](classes.md#type-parameters)), následovaným volitelnou *struct_interfaces* specifikace ([Částečný modifikátor](structs.md#partial-modifier))), následovaným volitelnou *type_parameter_constraints_clause*s specifikace ([omezení parametru typu](classes.md#type-parameter-constraints)) a po něm *struct_body* ([struktury textu](structs.md#struct-body)), volitelně za nímž následuje středníkem.
+*Struct_declaration* se skládá z volitelné sady *atributů* ([atributů](attributes.md)), následované volitelnou sadou *struct_modifier*s ([modifikátory struktury](structs.md#struct-modifiers)) následovaným volitelným modifikátorem `partial` následovaným nastavením klíčové slovo `struct` a *identifikátor* , který název struktury, následované volitelnou specifikací *Type_parameter_list* ([parametry typu](classes.md#type-parameters)) následovaný volitelnou specifikací *struct_interfaces* ([částečný Modifikátor](structs.md#partial-modifier))) následovaný volitelnou specifikací *type_parameter_constraints_clause*s ([omezeními parametrů typu](classes.md#type-parameter-constraints)) následovaným *struct_body* ([tělo struktury](structs.md#struct-body)), volitelně následovaný středníkem.
 
-### <a name="struct-modifiers"></a>Modifikátory – struktura
+### <a name="struct-modifiers"></a>Modifikátory struktury
 
-A *struct_declaration* může volitelně zahrnovat posloupnost modifikátory struktury:
+*Struct_declaration* může volitelně zahrnovat posloupnost modifikátorů struktury:
 
 ```antlr
 struct_modifier
@@ -42,17 +42,17 @@ struct_modifier
     ;
 ```
 
-Je chyba kompilace pro stejný modifikátor objevit více než jednou v deklaraci struktury.
+Jedná se o chybu při kompilaci, aby se stejný modifikátor zobrazoval víckrát v deklaraci struktury.
 
-Modifikátory deklarace struktury mají stejný význam jako deklarace třídy ([třídy deklarací](classes.md#class-declarations)).
+Modifikátory deklarace struktury mají stejný význam jako deklarace třídy ([deklarace tříd](classes.md#class-declarations)).
 
 ### <a name="partial-modifier"></a>Částečný modifikátor
 
-`partial` Modifikátor znamená, že to *struct_declaration* je částečný typ deklarace. Více deklaracích částečné struktury se stejným názvem v rámci nadřazeného oboru názvů nebo typ deklarace se dá tvoří jednu deklaraci struktury, dle pravidel uvedených v [částečné typy](classes.md#partial-types).
+Modifikátor `partial` označuje, že toto *struct_declaration* je částečná deklarace typu. Vícenásobná deklarace částečné struktury se stejným názvem v rámci ohraničujícího oboru názvů nebo deklarace typu jsou zkombinovány o jednu deklaraci struktury za základě pravidel určených v [částečných typech](classes.md#partial-types).
 
-### <a name="struct-interfaces"></a>Struktura rozhraní
+### <a name="struct-interfaces"></a>Rozhraní struktury
 
-Může obsahovat deklaraci struktury *struct_interfaces* specifikace, ve kterém případ struct se říká, že přímo implementaci typů dané rozhraní.
+Deklarace struktury může zahrnovat specifikaci *struct_interfaces* . v takovém případě je tato struktura určena k přímé implementaci daných typů rozhraní.
 
 ```antlr
 struct_interfaces
@@ -60,9 +60,9 @@ struct_interfaces
     ;
 ```
 
-Implementace rozhraní jsou popsány dále v [rozhraní implementace](interfaces.md#interface-implementations).
+Implementace rozhraní jsou podrobněji popsány v [implementacích rozhraní](interfaces.md#interface-implementations).
 
-### <a name="struct-body"></a>Text – struktura
+### <a name="struct-body"></a>Tělo struktury
 
 *Struct_body* struktury definuje členy struktury.
 
@@ -72,9 +72,9 @@ struct_body
     ;
 ```
 
-## <a name="struct-members"></a>Členy struktury
+## <a name="struct-members"></a>Členové struktury
 
-Členové struktury obsahovat členy zavedených v jeho *struct_member_declaration*s a členy zděděné z typu `System.ValueType`.
+Členy struktury se skládají ze členů zavedených jeho *struct_member_declaration*s a členy zděděnými z typu `System.ValueType`.
 
 ```antlr
 struct_member_declaration
@@ -92,27 +92,27 @@ struct_member_declaration
     ;
 ```
 
-S výjimkou rozdílů, které jste si poznamenali v [třídou a strukturou rozdíly](structs.md#class-and-struct-differences), popisy členy třídy, které jsou součástí [členy třídy](classes.md#class-members) prostřednictvím [iterátory](classes.md#iterators) použít – struktura také členy.
+S výjimkou rozdílů uvedených v [rozdílech třídy a struktury](structs.md#class-and-struct-differences)jsou popisy členů třídy, které jsou zadány ve [členech třídy](classes.md#class-members) pomocí [iterátorů](classes.md#iterators) , použity také pro členy struktury.
 
-## <a name="class-and-struct-differences"></a>Třídy a struktury rozdíly
+## <a name="class-and-struct-differences"></a>Rozdíly třídy a struktury
 
-Struktury se liší od tříd v několika důležitých směrech –:
+Struktury se liší od tříd v několika důležitých způsobech:
 
-*  Struktury jsou typy hodnot ([hodnota sémantiku](structs.md#value-semantics)).
-*  Všechny typy struktury implicitně dědí z třídy `System.ValueType` ([dědičnosti](structs.md#inheritance)).
-*  Přiřazení proměnné typu Struktura se vytvoří kopie přiřazené hodnoty ([přiřazení](structs.md#assignment)).
-*  Výchozí hodnota struktury je hodnotu vytvořenou testovaným nastavení všechna pole typu hodnota na výchozí hodnoty a referenční dokumentace všech polí typu `null` ([výchozí hodnoty](structs.md#default-values)).
-*  Operace zabalení a rozbalení se používají pro převod mezi typy struktury a `object` ([zabalení a rozbalení](structs.md#boxing-and-unboxing)).
-*  Význam `this` se liší pro struktury ([tento přístup](expressions.md#this-access)).
-*  Zahrnout proměnné inicializátory nejsou povolené instance pole deklarace pro strukturu ([Inicializátory pole](structs.md#field-initializers)).
-*  Struktura není povolená pro deklaraci konstruktor instance bez parametrů ([konstruktory](structs.md#constructors)).
-*  Chcete-li deklarovat destruktor není povolená struktury ([destruktory](structs.md#destructors)).
+*  Struktury jsou typy hodnot ([sémantika hodnot](structs.md#value-semantics)).
+*  Všechny typy struktury implicitně dědí z třídy `System.ValueType` ([Dědičnost](structs.md#inheritance)).
+*  Přiřazení k proměnné typu struktury vytvoří kopii přiřazené hodnoty ([přiřazení](structs.md#assignment)).
+*  Výchozí hodnota struktury je hodnota vytvořená nastavením všech polí Typ hodnoty na jejich výchozí hodnotu a všechna pole s odkazem na `null` ([výchozí hodnoty](structs.md#default-values)).
+*  Operace zabalení a rozbalení se používají k převodu mezi typem struktury a `object` (zabalení[a rozbalení](structs.md#boxing-and-unboxing)).
+*  Význam `this` se pro struktury ([Tento přístup](expressions.md#this-access)) liší.
+*  Deklarace polí instance pro strukturu nejsou povoleny pro zahrnutí inicializátorů proměnných ([Inicializátory pole](structs.md#field-initializers)).
+*  Struktura není povolená pro deklaraci konstruktoru instance bez parametrů ([konstruktory](structs.md#constructors)).
+*  Struktura není oprávněná deklarovat destruktor ([destruktory](structs.md#destructors)).
 
 ### <a name="value-semantics"></a>Sémantika hodnoty
 
-Struktury jsou typy hodnot ([typů hodnot](types.md#value-types)) a se říká, že mají hodnotu sémantiku. Třídy, na druhé straně jsou odkazové typy ([referenční typy](types.md#reference-types)) a mají často odkazové sémantiky.
+Struktury jsou typy hodnot ([typy hodnot](types.md#value-types)) a jsou označeny jako sémantika hodnoty. Třídy jsou na druhé straně odkazy na typy ([odkazové typy](types.md#reference-types)) a jsou označeny jako referenční sémantika.
 
-Proměnné typu Struktura přímo obsahuje datové struktury, že proměnné typu třídy obsahuje odkaz na data, druhá možnost známé jako objekt. Pokud struktura `B` obsahuje pole instance typu `A` a `A` je typ struktury je chyba kompilace pro `A` závisí na `B` nebo typ vytvořený z `B`. Struktura `X` ***přímo závisí na*** struktura `Y` Pokud `X` obsahuje pole instance typu `Y`. Při této definici, kompletní sadu struktury, na kterém závisí struktura je přenositelný uzavření ***přímo závisí na*** vztah.  Příklad
+Proměnná typu struktury přímo obsahuje data struktury, zatímco proměnná typu třídy obsahuje odkaz na data, druhá je známá jako objekt. Pokud struktura `B` obsahuje pole instance typu `A` a `A` je typ struktury, jedná se o chybu při kompilaci pro `A` pro záviset na `B` nebo na typu vytvořeném z `B`. Struktura `X` ***přímo závisí na*** struktuře `Y`, pokud `X` obsahuje pole instance typu `Y`. V této definici je kompletní sada struktur, na které struktura závisí, ***přímý uzávěr přímo závislá na*** vztahu.  Například
 ```csharp
 struct Node
 {
@@ -120,7 +120,7 @@ struct Node
     Node next; // error, Node directly depends on itself
 }
 ```
-se o chybu, protože `Node` obsahuje pole instance vlastního typu.  Další příklad
+je chyba, protože `Node` obsahuje pole instance vlastního typu.  Jiný příklad
 ```csharp
 struct A { B b; }
 
@@ -128,11 +128,11 @@ struct B { C c; }
 
 struct C { A a; }
 ```
-se o chybu, protože jednotlivé typy `A`, `B`, a `C` závisí na sebe navzájem.
+je chyba, protože každý z typů `A`, `B` a `C` závisí na sobě navzájem.
 
-Pomocí třídy je možné pro dvě proměnné odkazovat na stejný objekt a proto možná pro operace v rámci jedné proměnné ovlivňovat objekt odkazovaný jinou proměnnou. Struktury, proměnné každý mají své vlastní kopii dat (s výjimkou v případě třídy `ref` a `out` proměnných parametrů), a není možné pro operace se na nich se má vliv na jinou. Navíc vzhledem k tomu struktury nejsou typy odkazů, není možné pro hodnoty typu struktura bude `null`.
+U tříd je možné, aby dvě proměnné odkazovaly na stejný objekt a bylo tak možné, aby operace na jedné proměnné ovlivnily objekt, na který je odkazováno jinou proměnnou. U struktur mají proměnné, které mají svou vlastní kopii dat (s výjimkou proměnných parametrů `ref` a `out`) a nejsou možné operace na jednom z nich ovlivnit. Vzhledem k tomu, že struktury neodkazují na typy, není možné, aby hodnoty typu struktury byly `null`.
 
-Zadané deklarace
+Daná deklarace
 ```csharp
 struct Point
 {
@@ -151,39 +151,39 @@ Point b = a;
 a.x = 100;
 System.Console.WriteLine(b.x);
 ```
-Vypíše hodnotu `10`. Přiřazení `a` k `b` vytvoří kopii hodnoty, a `b` je tedy nebudou výpadkem ovlivněny přiřazení `a.x`. Měl `Point` místo toho byla deklarována jako třída, výstup by měl `100` protože `a` a `b` by odkazovat na stejný objekt.
+Vytvoří výstup hodnoty `10`. Přiřazení `a` pro `b` vytvoří kopii hodnoty a `b` tak nebude ovlivněno přiřazením na `a.x`. Byl `Point` místo toho deklarován jako třída, výstup by byl `100`, protože `a` a `b` by odkazovaly na stejný objekt.
 
 ### <a name="inheritance"></a>Dědičnost
 
-Všechny typy struktury implicitně dědí z třídy `System.ValueType`, který zase dědí z třídy `object`. Deklarace struktury mohou zadat seznamu implementovaných rozhraní, ale není možné určit základní třídu pro deklaraci struktury.
+Všechny typy struktury implicitně dědí z třídy `System.ValueType`, což zase dědí z třídy `object`. Deklarace struktury může určovat seznam implementovaných rozhraní, ale není možné, aby deklarace struktury určovala základní třídu.
 
-Typy struktury jsou nikdy abstraktní a jsou implicitně jsou vždycky zapečetěné. `abstract` a `sealed` proto nejsou povolené modifikátory. v deklaraci struktury.
+Typy struktury nejsou nikdy abstraktní a jsou vždy implicitně zapečetěné. Modifikátory `abstract` a `sealed` nejsou proto v deklaraci struktury povoleny.
 
-Protože dědičnost se nepodporuje pro struktury, nemůže být deklarovaná přístupnost člena struktury `protected` nebo `protected internal`.
+Vzhledem k tomu, že dědičnost není pro struktury podporovaná, deklarovaná přístupnost člena struktury nemůže být `protected` nebo `protected internal`.
 
-Funkce členy struktury nemůžou být `abstract` nebo `virtual`a `override` Modifikátor je povolen pouze k přepsání metod zděděných z `System.ValueType`.
+Členy funkce ve struktuře nelze `abstract` nebo `virtual` a modifikátor `override` je povolen pouze pro přepsání metod zděděných od `System.ValueType`.
 
 ### <a name="assignment"></a>Přiřazení
 
-Přiřazení proměnné typu Struktura vytvoří kopii přiřazené hodnoty. Tím se liší od přiřazení k proměnné typu třídy, která kopíruje odkaz, ale ne identifikovaný odkaz na objekt.
+Přiřazení k proměnné typu struktury vytvoří kopii hodnoty, která je přiřazena. To se liší od přiřazení k proměnné typu třídy, které kopírují odkaz, ale nikoli objekt identifikovaný odkazem.
 
-Podobně jako přiřazení, pokud struktury je předán jako parametr hodnoty nebo vrátí jako výsledek členské funkce, je vytvořena kopie struktury. Struktura může být předány podle odkazu na člen funkce pomocí `ref` nebo `out` parametru.
+Podobně jako u přiřazení, pokud je struktura předána jako parametr hodnoty nebo vrácena jako výsledek členu funkce, je vytvořena kopie struktury. Struktura může být předána odkazem na člena funkce pomocí parametru `ref` nebo `out`.
 
-Pokud vlastnost nebo indexovací člen struktury je cílem přiřazení, musí být výraz instance spojené s přístupem k vlastnosti nebo indexeru zařazeny jako proměnnou. Pokud výraz instance je klasifikován tak hodnotu, dojde k chybě v době kompilace. To je podrobně popsán dále v [jednoduché přiřazení](expressions.md#simple-assignment).
+Pokud je cílem přiřazení vlastnost nebo indexer struktury, výraz instance přidružený k vlastnosti nebo přístupu indexeru musí být klasifikován jako proměnná. Pokud je výraz instance klasifikován jako hodnota, dojde k chybě při kompilaci. Tato informace je podrobněji popsána v tématu [jednoduché přiřazení](expressions.md#simple-assignment).
 
 ### <a name="default-values"></a>Výchozí hodnoty
 
-Jak je popsáno v [výchozí hodnoty](variables.md#default-values), několik druhů proměnné jsou automaticky inicializovány na jejich výchozí hodnota při jejich vytváření. Pro proměnné typů třídy a další typy odkazů, tato výchozí hodnota je `null`. Ale protože struktury jsou typy hodnot, které nelze `null`, výchozí hodnota struktury je hodnotu vytvořenou testovaným nastavení všechna pole typu hodnota na výchozí hodnoty a referenční dokumentace všech polí typu `null`.
+Jak je popsáno ve [výchozích hodnotách](variables.md#default-values), několik druhů proměnných se automaticky inicializuje na výchozí hodnotu při jejich vytvoření. U proměnných typů tříd a jiných typů odkazů je tato výchozí hodnota `null`. Nicméně vzhledem k tomu, že struktury jsou typy hodnot, které nemohou být `null`, výchozí hodnota struktury je hodnota vytvořená nastavením všech polí Typ hodnoty na jejich výchozí hodnotu a všechna pole typu odkaz na `null`.
 
-Odkazující na `Point` struktury deklarovaného výše v příkladu
+V příkladu se odkazuje na strukturu @no__t 0, která je uvedená výše, příklad
 ```csharp
 Point[] a = new Point[100];
 ```
-Inicializuje každý `Point` jako pole k hodnotě vytvořený tak, že nastavíte `x` a `y` pole na hodnotu nula.
+Inicializuje každé `Point` v poli na hodnotu vytvořenou nastavením polí `x` a `y` na hodnotu nula.
 
-Výchozí hodnota struktury odpovídá hodnotě vrácené výchozí konstruktor třídy struktury ([výchozí konstruktory](types.md#default-constructors)). Na rozdíl od třídy struktury není oprávněn deklarovat konstruktor instance bez parametrů. Místo toho každých struktura má implicitně konstruktor instance bez parametrů, která vždy vrátí hodnotu, která je výsledkem nastavení všechna pole typu hodnota na výchozí hodnoty a referenční dokumentace všech polí typu `null`.
+Výchozí hodnota struktury odpovídá hodnotě vrácené výchozím konstruktorem struktury ([výchozí konstruktory](types.md#default-constructors)). Na rozdíl od třídy struktura není povolena k deklaraci konstruktoru instance bez parametrů. Místo toho má každá struktura implicitně konstruktor instance bez parametrů, který vždycky vrací hodnotu, která je výsledkem nastavení všech polí typu hodnoty na výchozí hodnotu a všechna pole odkazového typu na `null`.
 
-Struktury by se měly navrhovat vzít v úvahu výchozího stavu inicializace platném stavu. V příkladu
+Struktury by měly být navržené tak, aby braly výchozí stav inicializace na platný stav. V příkladu
 ```csharp
 using System;
 
@@ -199,15 +199,15 @@ struct KeyValuePair
     }
 }
 ```
-uživatelské instance konstruktoru chrání proti hodnoty null, pouze pokud je explicitně volána. V případech, kde `KeyValuePair` proměnná je v souladu s výchozí hodnotou inicializace `key` a `value` pole bude mít hodnotu null a struct musí být připravena ke zpracování tohoto stavu.
+uživatelsky definovaný konstruktor instance chrání proti hodnotám null pouze tam, kde je explicitně volána. V případech, kdy proměnná `KeyValuePair` podléhá inicializaci výchozí hodnoty, budou pole `key` a `value` null a struktura musí být připravená na zpracování tohoto stavu.
 
 ### <a name="boxing-and-unboxing"></a>Zabalení a rozbalení
 
-Hodnotu typu třídy lze převést na typ `object` nebo k typu rozhraní, která je implementována ve třídě jednoduše díky tomu, že odkaz na jiný typ v době kompilace. Obdobně hodnotu typu `object` nebo hodnotu rozhraní typu lze převést zpět na typ třídy beze změny odkaz (ale samozřejmě typu modulu runtime je vyžadována kontrola v tomto případě).
+Hodnota typu třídy může být převedena na typ `object` nebo na typ rozhraní, který je implementován třídou jednoduše tím, že v době kompilace považuje odkaz za jiný typ. Stejně tak hodnota typu `object` nebo hodnota typu rozhraní lze převést zpět na typ třídy beze změny odkazu (ale v tomto případě je vyžadována kontrolní rutina typu runtime).
 
-Protože struktury nejsou typy odkazů, jsou tyto operace pro typy struktury implementováno jinak. Pokud je hodnota typu Struktura převést na typ `object` nebo na typ rozhraní implementovaný struktury zabalení operace probíhá. Podobně když je hodnota typu `object` nebo hodnotu typu rozhraní je převést zpět na typu Struktura, probíhá operace rozbalení. Klíčovým rozdílem mezi ze stejné operace na typy tříd je, že zabalení a rozbalení zkopírujete příslušnou hodnotu struktury do nebo z pevně určené instance. Proto po operaci zabalení a rozbalení provedené změny nezabalené struktury se neprojeví v zabalený struktury.
+Vzhledem k tomu, že struktury nejsou odkazy na typy, jsou tyto operace pro typy struktury implementovány jinak. Je-li hodnota typu struktury převedena na typ `object` nebo na typ rozhraní, který je implementován strukturou, dojde k operaci zabalení. Podobně platí, že pokud je hodnota typu `object` nebo hodnota typu rozhraní převedena zpět na typ struktury, bude provedena operace rozbalení. Klíčovým rozdílem ze stejných operací na typech tříd je, že zabalení a rozbalení zkopíruje hodnotu struktury buď do, nebo z zabalené instance. Proto se po zabalení nebo rozbalení operace změny provedené v nezabalené struktuře neprojeví v zabalené struktuře.
 
-Při přepsání typu Struktura virtuální metody zděděné z `System.Object` (například `Equals`, `GetHashCode`, nebo `ToString`), volání virtuální metody prostřednictvím instance typu Struktura nezpůsobí zabalení dochází. To platí i v případě, že struktura slouží jako parametr typu a dojde k vyvolání prostřednictvím instance typu parametru typu. Příklad:
+Když typ struktury přepíše virtuální metodu děděnou z `System.Object` (například `Equals`, `GetHashCode` nebo `ToString`), volání virtuální metody prostřednictvím instance typu struktury nezpůsobí, že dojde k zabalení. To platí i v případě, že se jako parametr typu používá struktura a k vyvolání dojde prostřednictvím instance typu parametru typu. Příklad:
 ```csharp
 using System;
 
@@ -237,15 +237,15 @@ class Program
 ```
 
 Výstup programu je:
-```
+```console
 1
 2
 3
 ```
 
-I když je špatný styl `ToString` mít vedlejší účinky, příklad ukazuje, že došlo k žádné zabalení pro tři volání `x.ToString()`.
+I když je špatný styl `ToString` pro vedlejší účinky, příklad ukazuje, že žádné zabalení neproběhlo pro tři vyvolání `x.ToString()`.
 
-Podobně nikdy implicitně zabalení dochází při přístupu k členovi na parametr typu s omezením. Předpokládejme například, že rozhraní `ICounter` obsahuje metodu `Increment` který můžete použít třeba hodnotu změnit. Pokud `ICounter` je použitý jako omezení, provádění `Increment` metoda je volána s odkazem na proměnnou, která `Increment` byla volána pro nikdy zabalený kopírování.
+Podobně zabalení nikdy neproběhne implicitně při přístupu ke členu v parametru omezeného typu. Předpokládejme například, že rozhraní `ICounter` obsahuje metodu `Increment`, kterou lze použít k úpravě hodnoty. Pokud je jako omezení použito `ICounter`, implementace metody `Increment` je volána s odkazem na proměnnou, která byla volána `Increment`, nikdy nezabalená kopie.
 
 ```csharp
 using System;
@@ -285,26 +285,26 @@ class Program
 }
 ```
 
-První volání `Increment` změní hodnoty v proměnné `x`. Toto není ekvivalentní k druhé volání `Increment`, které mění hodnotu v zabalený kopie `x`. Proto je výstup programu:
-```
+První volání `Increment` upraví hodnotu v proměnné `x`. To není ekvivalentní druhému volání `Increment`, což upraví hodnotu v zabalené kopii `x`. Proto výstup programu je:
+```console
 0
 1
 1
 ```
 
-Další podrobnosti o zabalení a rozbalení najdete [zabalení a rozbalení](types.md#boxing-and-unboxing).
+Další podrobnosti o zabalení a rozbalení naleznete v tématu [zabalení a rozbalení](types.md#boxing-and-unboxing).
 
-### <a name="meaning-of-this"></a>Význam tohoto objektu
+### <a name="meaning-of-this"></a>Význam tohoto
 
-V rámci konstruktor instance nebo instance funkce člena třídy `this` klasifikovaný jako hodnotu. Proto při `this` slouží k odkazování na instanci pro který byla vyvolána členské funkce, není možné přiřadit `this` v členské funkce třídy.
+V rámci konstruktoru instance nebo členu funkce instance třídy je `this` klasifikován jako hodnota. Proto, zatímco `this` lze použít k odkazování na instanci, pro kterou byl člen funkce vyvolán, není možné přiřadit k `this` v členu funkce třídy.
 
-V rámci konstruktoru instance struktury `this` odpovídá `out` parametr typu Struktura a v rámci funkce členem instance struktury, `this` odpovídá `ref` parametr typu Struktura. V obou případech `this` je klasifikován jako proměnnou, a je možné změnit celé struktury, pro kterou členské funkce se vyvolala přiřazením `this` nebo předáním jako `ref` nebo `out` parametru.
+V rámci konstruktoru instance struktury, `this` odpovídá parametru `out` typu struktury a v rámci členu funkce instance struktury, `this` odpovídá parametru `ref` typu struktury. V obou případech je `this` klasifikován jako proměnná a je možné upravit celou strukturu, pro kterou byl člen funkce vyvolán přiřazením do `this` nebo předáním jako parametru `ref` nebo `out`.
 
-### <a name="field-initializers"></a>Inicializátory pole
+### <a name="field-initializers"></a>Inicializátory polí
 
-Jak je popsáno v [výchozí hodnoty](structs.md#default-values), výchozí hodnota struktury se skládá z hodnotu, která je výsledkem nastavení všechna pole typu hodnota na výchozí hodnoty a referenční dokumentace všech polí typu `null`. Z tohoto důvodu struktura neumožňuje deklarace pole instance na obsahovat inicializátory proměnné. Toto omezení platí pouze pro pole instance. Statická pole struktury mohou obsahovat inicializátory proměnné.
+Jak je popsáno ve [výchozích hodnotách](structs.md#default-values), výchozí hodnota struktury sestává z hodnoty, která je výsledkem nastavení všech polí typu hodnoty na výchozí hodnotu a všech polí typu odkazu na `null`. Z tohoto důvodu struktura nepovoluje deklarace pole instance pro zahrnutí inicializátorů proměnných. Toto omezení platí pouze pro pole instance. Statická pole struktury mají povolený zahrnutí inicializátorů proměnných.
 
-V příkladu
+Příklad
 ```csharp
 struct Point
 {
@@ -312,11 +312,11 @@ struct Point
     public int y = 1;  // Error, initializer not permitted
 }
 ```
-je v chybě, protože deklarace pole instance obsahovat inicializátory proměnné.
+došlo k chybě, protože deklarace pole instance obsahují proměnné inicializátorů.
 
 ### <a name="constructors"></a>Konstruktory
 
-Na rozdíl od třídy struktury není oprávněn deklarovat konstruktor instance bez parametrů. Místo toho každých struktury implicitně obsahuje konstruktor instance bez parametrů, která vždy vrátí hodnotu, která je výsledkem nastavení všechna pole na výchozí hodnoty a referenční dokumentace všech typ pole na hodnotu null ([výchozí konstruktory](types.md#default-constructors)). Struktury můžete deklarovat konstruktory instancí s parametry. Příklad
+Na rozdíl od třídy struktura není povolena k deklaraci konstruktoru instance bez parametrů. Místo toho má každá struktura implicitně konstruktor instance bez parametrů, který vždycky vrací hodnotu, která je výsledkem nastavení všech polí typu hodnoty na výchozí hodnotu a všechna pole odkazového typu na hodnotu null ([výchozí konstruktory](types.md#default-constructors)). Struktura může deklarovat konstruktory instancí s parametry. Například
 ```csharp
 struct Point
 {
@@ -329,16 +329,16 @@ struct Point
 }
 ```
 
-Uvedené výše uvedené prohlášení, příkazy
+S ohledem na výše uvedenou deklaraci jsou příkazy
 ```csharp
 Point p1 = new Point();
 Point p2 = new Point(0, 0);
 ```
-obě vytváří `Point` s `x` a `y` inicializována na nulovou hodnotu.
+Vytvoří `Point` s `x` a `y` inicializována na nulu.
 
-Konstruktor instance struktury není dovoleno zahrnují inicializátoru konstruktoru formuláře `base(...)`.
+Konstruktor instance struktury není oprávněn zahrnovat inicializátor konstruktoru formuláře `base(...)`.
 
-Pokud konstruktor instance struktury neurčuje inicializátoru konstruktoru `this` odpovídá proměnné `out` parametr typu struktury a podobně jako `out` parametr, `this` musí být jednoznačně přiřazena () [Jednoznačného přiřazení](variables.md#definite-assignment)) na jakémkoliv místě, kde konstruktor vrátí. Pokud konstruktor instance struktury určuje inicializátoru konstruktoru `this` odpovídá proměnné `ref` parametr typu struktury a podobně jako `ref` parametr, `this` se považuje za jednoznačně přiřazené v vstupem do těla konstruktoru. Zvažte implementaci konstruktoru instance níže:
+Pokud konstruktor instance struktury neurčuje inicializátor konstruktoru, proměnná `this` odpovídá parametru `out` typu struktury a podobně jako parametr `out`, `this` se musí jednoznačně přiřadit ([jednoznačné přiřazení ](variables.md#definite-assignment)) na každém místě, kde se konstruktor vrátí. Pokud konstruktor instance struktury určuje inicializátor konstruktoru, proměnná `this` odpovídá parametru `ref` typu struktury a podobá se parametru `ref`, `this` je považována za jednoznačně přiřazenou pro položku v těle konstruktoru. . Zvažte následující implementaci konstruktoru instance:
 ```csharp
 struct Point
 {
@@ -359,7 +359,7 @@ struct Point
 }
 ```
 
-Žádné členskou funkci instance (včetně přístupové objekty set vlastnosti `X` a `Y`) nelze volat, dokud všechna pole struktury vytváří jednoznačně přiřazena. Jedinou výjimkou zahrnuje automaticky implementované vlastnosti ([automaticky implementované vlastnosti](classes.md#automatically-implemented-properties)). Pravidla jednoznačného přiřazení ([jednoduché přiřazení výrazy](variables.md#simple-assignment-expressions)) konkrétně s výjimkou přiřazení na automatickou vlastnost typu struktury v rámci konstruktoru instance tohoto typu struktury: taková přiřazení se považuje za jednoznačného přiřazení skryté pomocným polem vlastnosti automaticky. Proto následující může:
+Není možné volat žádnou členskou funkci instance (včetně přístupových objektů set pro vlastnosti `X` a `Y`), dokud nebudou přiřazena všechna pole strukturované struktury. Jediná výjimka zahrnuje automaticky implementované vlastnosti ([automaticky implementované vlastnosti](classes.md#automatically-implemented-properties)). Neomezená pravidla přiřazení ([jednoduché výrazy přiřazení](variables.md#simple-assignment-expressions)) specificky vyloučí přiřazení k automatické vlastnosti typu struktury v rámci konstruktoru instance daného typu struktury. takové přiřazení je považováno za jednoznačné přiřazení skryté pole pro zálohování automatické vlastnosti. Proto jsou povoleny následující:
 
 ```csharp
 struct Point
@@ -375,24 +375,24 @@ struct Point
 
 ### <a name="destructors"></a>Destruktory
 
-Chcete-li deklarovat destruktor není povolena struktury.
+Struktura není oprávněná deklarovat destruktor.
 
 ### <a name="static-constructors"></a>Statické konstruktory
 
-Statické konstruktory pro struktury pomocí většiny stejná pravidla jako u třídy. Provedení statický konstruktor pro typ struktury se aktivuje první z následujících událostí v rámci domény aplikace:
+Statické konstruktory pro struktury se řídí většinou stejných pravidel jako u tříd. Provedení statického konstruktoru pro typ struktury je aktivováno prvním z následujících událostí, které se mají provést v rámci domény aplikace:
 
-*  Statický člen typu Struktura se odkazuje.
-*  Explicitně deklarované konstruktoru typu Struktura se nazývá.
+*  Odkazuje se na statický člen typu struktury.
+*  Je volán explicitně deklarovaný konstruktor typu struktury.
 
-Vytváření výchozích hodnot ([výchozí hodnoty](structs.md#default-values)) struktury typy neaktivuje statický konstruktor. (Příkladem je počáteční hodnota elementů v matici.)
+Vytváření výchozích hodnot ([výchozích hodnot](structs.md#default-values)) typů struktury neaktivuje statický konstruktor. (Příkladem je počáteční hodnota prvků v poli.)
 
-## <a name="struct-examples"></a>Příklady – struktura
+## <a name="struct-examples"></a>Příklady struktury
 
-Následující příklad zobrazuje dvě důležité příklady použití `struct` typy a vytvoří typy, které je možné podobně předdefinované typy jazyka, ale s upravenou sémantiku.
+Následující příklad ukazuje dva významné příklady použití `struct` typů k vytváření typů, které lze použít podobně jako předdefinované typy jazyka, ale s upravenou sémantikou.
 
 ### <a name="database-integer-type"></a>Celočíselný typ databáze
 
-`DBInt` Celočíselného typu, který může představovat úplnou sadu hodnot, které implementuje strukturu níže `int` typu a navíc další stav, který určuje neznámou hodnotu. Typ s těmito charakteristikami se běžně používá v databázích.
+Níže uvedená struktura `DBInt` implementuje celočíselný typ, který může představovat úplnou sadu hodnot typu `int` a další stav, který označuje neznámou hodnotu. Typ s těmito charakteristikami se běžně používá v databázích.
 
 ```csharp
 using System;
@@ -508,9 +508,9 @@ public struct DBInt
 }
 ```
 
-### <a name="database-boolean-type"></a>Logický typ databáze
+### <a name="database-boolean-type"></a>Typ databáze typu Boolean
 
-`DBBool` Níže struktura implementuje logický typ s hodnotou tři. Možné hodnoty tohoto typu jsou `DBBool.True`, `DBBool.False`, a `DBBool.Null`, kde `Null` člen určuje neznámou hodnotu. Tyto tři vracející logické typy se běžně používají v databázích.
+Struktura `DBBool` níže implementuje logický typ se třemi hodnotami. Možné hodnoty tohoto typu jsou `DBBool.True`, `DBBool.False` a `DBBool.Null`, kde člen `Null` označuje neznámou hodnotu. Tyto tři logické typy jsou běžně používány v databázích.
 
 ```csharp
 using System;

@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 5fbe0267b5b33b1a24dbdca493d118c576092573
-ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
+ms.openlocfilehash: 4676bcd3f0a92260b4e5e20a0aa5b5ec00bf204e
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 09/10/2019
-ms.locfileid: "70876911"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71704076"
 ---
 # <a name="lexical-structure"></a>Lexikální struktura
 
@@ -429,8 +429,8 @@ V ohledu na styl je`L`navržena možnost "" použít místo "`l`" při zápisu l
 
 Chcete-li povolit, `int` aby `long` byly nejmenší možné hodnoty a hodnoty zapsány jako desítkové celočíselné literály, existují následující dvě pravidla:
 
-* Pokud se *decimal_integer_literal* s hodnotou 2147483648 (2 ^ 31) a žádné *integer_type_suffix* se nezobrazí jako token bezprostředně po unárním tokenu minus operátor ([unární operátor mínus](expressions.md#unary-minus-operator)), výsledkem je konstanta typu `int`.s hodnotou-2147483648 (-2 ^ 31). Ve všech ostatních situacích je například *decimal_integer_literal* typu `uint`.
-* Když je *decimal_integer_literal* s hodnotou 9223372036854775808 (2 ^ 63), ne *integer_type_suffix* nebo *integer_type_suffix* `L` , nebo `l` se zobrazí jako token hned za Unární minus token operátoru ([unární operátor minus](expressions.md#unary-minus-operator)), výsledkem je konstanta typu `long` s hodnotou-9223372036854775808 (-2 ^ 63). Ve všech ostatních situacích je například *decimal_integer_literal* typu `ulong`.
+* Pokud se *decimal_integer_literal* s hodnotou 2147483648 (2 ^ 31) a žádné *integer_type_suffix* se nezobrazí jako token bezprostředně po unárním tokenu minus operátor ([unární operátor mínus](expressions.md#unary-minus-operator)), výsledkem je konstanta typu `int`. s hodnotou-2147483648 (-2 ^ 31). Ve všech ostatních situacích taková *decimal_integer_literal* je typu `uint`.
+* Pokud se *decimal_integer_literal* s hodnotou 9223372036854775808 (2 ^ 63) a No *integer_type_suffix* nebo *integer_type_suffix* `L` nebo `l`, zobrazí se jako token bezprostředně po unárním tokenu minus operátor ([ Unární operátor minus](expressions.md#unary-minus-operator): Výsledkem je konstanta typu `long` s hodnotou-9223372036854775808 (-2 ^ 63). Ve všech ostatních situacích taková *decimal_integer_literal* je typu `ulong`.
 
 #### <a name="real-literals"></a>Reálné literály
 
@@ -459,7 +459,7 @@ real_type_suffix
     ;
 ```
 
-Pokud není zadán žádný *real_type_suffix* , je `double`typ reálného literálu. Jinak přípona reálného typu Určuje typ reálného literálu následujícím způsobem:
+Pokud není zadán žádný *real_type_suffix* , typ reálného literálu je `double`. Jinak přípona reálného typu Určuje typ reálného literálu následujícím způsobem:
 
 *  Skutečný literál s příponou `F` nebo `f` je typu `float`. Například literály `1f`, `1.5f`, `1e10f`a `123.456F` jsou všechny typu `float`.
 *  Skutečný literál s příponou `D` nebo `d` je typu `double`. Například literály `1d`, `1.5d`, `1e10d`a `123.456D` jsou všechny typu `double`.
@@ -516,7 +516,7 @@ Jednoduchá řídicí sekvence představuje kódování znaků Unicode, jak je p
 |---------------------|--------------------|----------------------|
 | `\'`                | Jednoduchá uvozovka       | `0x0027`             | 
 | `\"`                | Dvojité uvozovky       | `0x0022`             | 
-| `\\`| Zpětné lomítko |`0x005C`             | 
+| `\\`                | Zpětné lomítko          | `0x005C`             | 
 | `\0`                | Null               | `0x0000`             | 
 | `\a`                | Výstrahy              | `0x0007`             | 
 | `\b`                | Backspace          | `0x0008`             | 
@@ -575,7 +575,7 @@ quote_escape_sequence
     ;
 ```
 
-Znak, který následuje znak zpětného lomítka`\`() v *regular_string_literal_character* , musí být jedním z následujících znaků: `'`, `"`, `\`, `0`, `a`, `b` , `f`, `n`, `r`, `t`, `u`, `U`, `x`, `v`. V opačném případě dojde k chybě při kompilaci.
+Znak, který následuje znak zpětného lomítka (`\`) ve *regular_string_literal_character* , musí být jedním z následujících znaků: `'`, `"`, `\`, `0`, `a`, `b`, `f`, `n`, 0, 1 @no__ t-12, 3, 4 5. V opačném případě dojde k chybě při kompilaci.
 
 Příklad
 ```csharp
@@ -782,7 +782,7 @@ single_verbatim_balanced_text_character
 
 *Interpolated_string_literal* token se překládá jako více tokenů a dalších vstupních elementů následujícím způsobem, v pořadí podle výskytu v *interpolated_string_literal*:
 
-* Výskyty následujících `$` jsou překládány jako samostatné jednotlivé tokeny: přední znaménko, *interpolated_regular_string_whole*, *interpolated_regular_string_start*, *interpolated_regular_string_mid*, *interpolated_regular_string_end*, *interpolated_verbatim_string_whole*, *interpolated_verbatim_string_start*, *interpolated_verbatim_string_mid* a *interpolated_verbatim_string_end*.
+* Výskyty následujících jsou překládány jako samostatné jednotlivé tokeny: přední `$` Sign, *interpolated_regular_string_whole*, *interpolated_regular_string_start*, *interpolated_regular_string_mid*,  *interpolated_regular_string_end*, *interpolated_verbatim_string_whole*, *interpolated_verbatim_string_start*, *interpolated_verbatim_string_mid* a *interpolated_verbatim_string_end*.
 * Výskyty hodnot *regular_balanced_text* a *verbatim_balanced_text* mezi nimi se znovu zpracovávají jako *input_section* ([lexikální analýza](lexical-structure.md#lexical-analysis)) a jsou překládány jako výsledná sekvence vstupních prvků. Ty můžou zase zahrnovat interpolované řetězcové literály tokeny, které se mají přeinterpretovat.
 
 Syntaktická analýza znovu sloučí tokeny do *interpolated_string_expression* ([interpolované řetězce](expressions.md#interpolated-strings)).
@@ -1054,13 +1054,13 @@ Jak je určeno syntaxí, direktivy podmíněné kompilace musí být zapsány ja
 
 *Pp_conditional* vybere maximálně jeden z obsažených *conditional_section*s pro normální lexikální zpracování:
 
-*  *Pp_expression* `#if` s direktivami a `#elif` jsou vyhodnocovány v pořadí až do jedné z `true`těchto výnosů. Pokud výraz `true`vrátí, je vybrána *conditional_section* odpovídající direktiva.
-*  `false`Pokud `#else` sevrátívšechnypp_expressionapokudjepřítomnadirektiva,vybereseconditional_sectiondirektiva`#else` .
+*  *Pp_expression*s direktivami `#if` a `#elif` jsou vyhodnocovány v pořadí, dokud jedna z hodnot `true`. Pokud výraz vrací `true`, je vybrána *conditional_section* odpovídající direktiva.
+*  Pokud je *pp_expressiona*`false` a pokud je přítomna direktiva `#else`, vybere se *conditional_section* direktiva `#else`.
 *  V opačném případě není vybrána žádná *conditional_section* .
 
 Vybraná *conditional_section*, pokud existuje, je zpracována jako normální *input_section*: zdrojový kód obsažený v části musí splňovat lexikální gramatiku; tokeny jsou generovány ze zdrojového kódu v oddílu; a direktivy předběžného zpracování v oddílu mají předepsané účinky.
 
-Zbývající *conditional_section*, pokud nějaké jsou zpracovávány jako *skipped_section*s s výjimkou předzpracování direktiv, zdrojový kód v části nemusí vyhovovat lexikální gramatice; v oddílu nejsou vygenerovány žádné tokeny ze zdrojového kódu. a direktivy předběžného zpracování v oddílu musí být lexikální, ale nejsou jinak zpracovány. V rámci *conditional_section* , který je zpracováván jako *skipped_section*, jakýkoli vnořený *conditional_section*s (obsaženo ve `#if`vnořených... `#endif` a`#region`... konstrukce) jsou zpracovávány také jako *skipped_section s.* `#endregion`
+Zbývající *conditional_section*, pokud nějaké jsou zpracovávány jako *skipped_section*s s výjimkou předzpracování direktiv, zdrojový kód v části nemusí vyhovovat lexikální gramatice; v oddílu nejsou vygenerovány žádné tokeny ze zdrojového kódu. a direktivy předběžného zpracování v oddílu musí být lexikální, ale nejsou jinak zpracovány. V rámci *conditional_section* , který se zpracovává jako *skipped_section*, všechny vnořené *conditional_section*s (obsažené ve vnořených `#if`... `#endif` a `#region`... `#endregion`) se také zpracovávají jako skipped_.  *oddíl*s.
 
 Následující příklad ukazuje, jak mohou direktivy podmíněné kompilace vnořovat:
 ```csharp
@@ -1115,7 +1115,7 @@ class Hello
 }
 ```
 výsledek výstupu:
-```
+```console
 hello,
 #if Debug
         world
@@ -1160,7 +1160,7 @@ Příklad:
 
 class Test {...}
 ```
-vždy vytvoří upozornění ("revize kódu nutná před vrácením se změnami") a vytvoří chybu při kompilaci ("sestavení nemůže být ladění a prodej"), pokud jsou definovány podmíněné symboly `Debug` a. `Retail` Všimněte si, že *pp_message* může obsahovat libovolný text; konkrétně nemusí obsahovat tokeny ve správném formátu, jak je znázorněno v jednoduchých uvozovkách ve slově `can't`.
+vždy vytvoří upozornění ("revize kódu nutná před vrácením se změnami") a vytvoří chybu při kompilaci ("sestavení nemůže být ladění a prodej"), pokud jsou definovány podmíněné symboly `Debug` a. `Retail` Všimněte si, že *pp_message* může obsahovat libovolný text; konkrétně nemusí obsahovat tokeny ve správném formátu, jak je znázorněno v jedné uvozovkě ve slově `can't`.
 
 ### <a name="region-directives"></a>Direktivy oblasti
 
@@ -1180,7 +1180,7 @@ pp_end_region
     ;
 ```
 
-K oblasti není připojen žádný sémantický význam. oblasti jsou určeny pro účely programátora nebo automatizovaných nástrojů k označení oddílu zdrojového kódu. Zpráva zadaná v `#region` direktivě nebo `#endregion` má také žádný sémantický význam; slouží pouze k identifikaci oblasti. Shoda `#region` a`#endregion` direktivy mohou mít různé *pp_message*.
+K oblasti není připojen žádný sémantický význam. oblasti jsou určeny pro účely programátora nebo automatizovaných nástrojů k označení oddílu zdrojového kódu. Zpráva zadaná v `#region` direktivě nebo `#endregion` má také žádný sémantický význam; slouží pouze k identifikaci oblasti. Shoda s `#region` a direktivami `#endregion` mohou mít různé *pp_message*.
 
 Lexikální zpracování oblasti:
 ```csharp
@@ -1222,7 +1222,7 @@ file_name_character
     ;
 ```
 
-Pokud nejsou `#line` přítomny žádné direktivy, kompilátor ohlásí hodnoty true a názvy zdrojových souborů ve svém výstupu. Při zpracování `#line` direktivy, která obsahuje *line_indicator* , která `default`není, kompilátor zpracovává řádek za direktivou, která má dané číslo řádku (a název souboru, pokud je zadán).
+Pokud nejsou `#line` přítomny žádné direktivy, kompilátor ohlásí hodnoty true a názvy zdrojových souborů ve svém výstupu. Při zpracování direktivy `#line`, která obsahuje *line_indicator* , která není `default`, kompilátor zpracovává řádek za direktivou, která má dané číslo řádku (a název souboru, pokud je zadán).
 
 `#line default` Direktiva obrátí účinek všech předchozích direktiv #line. Kompilátor ohlásí hodnotu true pro následné řádky, přesně tak, že nebyly zpracovány `#line` žádné direktivy.
 

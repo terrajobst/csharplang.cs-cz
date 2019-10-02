@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 2c87cafb8591b9dff2aa517b65af80ab263c7faa
-ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
+ms.openlocfilehash: e0def754174ab8646f9b849abe86d2c375c958b6
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 09/10/2019
-ms.locfileid: "70876904"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71703986"
 ---
 # <a name="classes"></a>Třídy
 
@@ -21,7 +21,7 @@ class_declaration
     ;
 ```
 
-*Class_declaration* se skládá z volitelné sady *atributů* ([atributů](attributes.md)) následovaný volitelnou sadou *class_modifier*s ([modifikátory třídy](classes.md#class-modifiers)) následovaný volitelným `partial` modifikátorem následovaným parametrem klíčové `class` slovo a *identifikátor* , který pojmenovává třídu, následovaný volitelnou *type_parameter_list* ([parametry typu](classes.md#type-parameters)) následovaný nepovinnou specifikací *class_base* ([základní specifikace třídy ](classes.md#class-base-specification)) následovaný volitelnou sadou *type_parameter_constraints_clause*s ([omezeními parametrů typu](classes.md#type-parameter-constraints)) následovaným *class_body* ([tělo třídy](classes.md#class-body)), volitelně následovaný středníkem.
+*Class_declaration* se skládá z volitelné sady *atributů* ([atributů](attributes.md)) následovaný volitelnou sadou *class_modifier*s ([modifikátory třídy](classes.md#class-modifiers)) následovaným volitelným modifikátorem `partial` následovaným klíčovým slovem. `class` a *identifikátor* , který vyjmenovává třídu následovaný nepovinným *type_parameter_list* ([parametry typu](classes.md#type-parameters)) následovaný nepovinnou specifikací *class_base* ([základní specifikace třídy](classes.md#class-base-specification)) následovaný volitelná sada *type_parameter_constraints_clause*s ([omezení parametrů typu](classes.md#type-parameter-constraints)) následovaná *class_body* ([tělo třídy](classes.md#class-body)), volitelně následovaný středníkem.
 
 Deklarace třídy nemůže poskytovat *type_parameter_constraints_clause*s, pokud zároveň neposkytuje *type_parameter_list*.
 
@@ -111,18 +111,18 @@ __Odkazování na typy statických tříd__
 
 *Namespace_or_type_name* ([obor názvů a názvy typů](basic-concepts.md#namespace-and-type-names)) je povolený odkazování na statickou třídu, pokud
 
-*  *Namespace_or_type_name* `T` je v namespace_or_type_name formuláře nebo `T.I`
-*  *Namespace_or_type_name* `T` je v *typeof_expression* ([seznam argumentů](expressions.md#argument-lists)1) formuláře `typeof(T)`.
+*  *Namespace_or_type_name* je `T` ve *namespace_or_type_name* ve formě `T.I` nebo
+*  *Namespace_or_type_name* je `T` v *typeof_expression* ([seznam argumentů](expressions.md#argument-lists)1) formuláře `typeof(T)`.
 
 *Primary_expression* ([Členové funkce](expressions.md#function-members)) mají povolen odkaz na statickou třídu, pokud
 
-*  *Primary_expression* `E` je v *member_access* ([Kontrola dynamického přetěžování při kompilaci](expressions.md#compile-time-checking-of-dynamic-overload-resolution)) formuláře `E.I`.
+*  *Primary_expression* je `E` v *member_access* ([Kontrola doby kompilace dynamického přetěžování](expressions.md#compile-time-checking-of-dynamic-overload-resolution)) formuláře `E.I`.
 
 V jakémkoli jiném kontextu se jedná o chybu při kompilaci, která odkazuje na statickou třídu. Například se jedná o chybu pro statickou třídu, která bude použita jako základní třída, typ prvku ([vnořené typy](classes.md#nested-types)) člena, argument obecného typu nebo omezení parametru typu. Stejně tak statická třída nemůže být použita v typu pole, typu ukazatele `new` , výrazu, výrazu přetypování `is` , výrazu `sizeof` , `as` výrazu, výrazu nebo výrazu výchozí hodnoty.
 
 ### <a name="partial-modifier"></a>Částečný modifikátor
 
-Modifikátor slouží k označení, že toto class_declaration je částečná deklarace typu. `partial` Vícenásobná deklarace částečného typu se stejným názvem v rámci ohraničujícího oboru názvů nebo deklarace typu jsou zkombinovány o jednu deklaraci typu podle pravidel zadaných v [částečných typech](classes.md#partial-types).
+Modifikátor `partial` slouží k označení, že toto *class_declaration* je částečná deklarace typu. Vícenásobná deklarace částečného typu se stejným názvem v rámci ohraničujícího oboru názvů nebo deklarace typu jsou zkombinovány o jednu deklaraci typu podle pravidel zadaných v [částečných typech](classes.md#partial-types).
 
 Deklarace třídy distribuované přes samostatné segmenty textu programu může být užitečná, pokud jsou tyto segmenty vyráběny nebo udržovány v různých kontextech. Například jedna část deklarace třídy může být vygenerována počítačem, zatímco druhá je ručně vytvořen. Textové oddělení těchto dvou brání aktualizacím, které jsou v konfliktu s aktualizacemi.
 
@@ -171,7 +171,7 @@ class Extend<V>: V {}            // Error, type parameter used as base class
 
 #### <a name="base-classes"></a>Základní třídy
 
-Pokud je *class_type* obsažen v *class_base*, určuje přímou základní třídu deklarované třídy. Pokud deklarace třídy nemá žádný *class_base*nebo pokud *class_base* uvádí pouze typy rozhraní, `object`předpokládá se, že přímá základní třída je. Třída dědí členy ze své přímé základní třídy, jak je popsáno v tématu [Dědičnost](classes.md#inheritance).
+Pokud je *class_type* obsažen v *class_base*, určuje přímou základní třídu deklarované třídy. Pokud deklarace třídy nemá *class_base*nebo pokud *class_base* uvádí pouze typy rozhraní, předpokládá se přímá základní třída `object`. Třída dědí členy ze své přímé základní třídy, jak je popsáno v tématu [Dědičnost](classes.md#inheritance).
 
 V příkladu
 ```csharp
@@ -298,7 +298,7 @@ constructor_constraint
     ;
 ```
 
-Každý *type_parameter_constraints_clause* se skládá z tokenu `where`následovaný názvem parametru typu, následovaný dvojtečkou a seznamem omezení pro tento parametr typu. Pro každý parametr typu může existovat `where` maximálně jedna klauzule `where` a klauzule mohou být uvedeny v libovolném pořadí. Podobně jako tokeny `set` `where` a v přistupujícím objektu vlastnosti token není klíčové slovo. `get`
+Každý *type_parameter_constraints_clause* se skládá z tokenu `where`, za nímž následuje název parametru typu, následovaný dvojtečkou a seznamem omezení pro tento parametr typu. Pro každý parametr typu může existovat `where` maximálně jedna klauzule `where` a klauzule mohou být uvedeny v libovolném pořadí. Podobně jako tokeny `set` `where` a v přistupujícím objektu vlastnosti token není klíčové slovo. `get`
 
 Seznam omezení uvedených v `where` klauzuli může zahrnovat kteroukoli z následujících součástí v tomto pořadí: jedno primární omezení, jedno nebo více sekundárních omezení a `new()`omezení konstruktoru.
 
@@ -344,9 +344,9 @@ Vzhledem k tomuto vztahu se jedná o chybu při kompilaci pro parametr typu, kte
 Všechna omezení musí být konzistentní mezi parametry závislého typu. Pokud parametr `S` typu závisí na parametru `T` typu, pak:
 
 *  `T`nesmí mít omezení typu hodnoty. V opačném případě `S` `T`je to efektivně zapečetěné, takže by bylo nutné, aby bylo stejného typu, jako s vyloučením nutnosti dvou parametrů typu. `T`
-*  Pokud `S` má`T` omezení typu hodnoty, nesmí mít omezení *class_type* .
-*  Pokud `S` má omezení `T` *class_type a* má `A` omezení class_type,musíbýtpřevodidentityneboimplicitníodkaznapřevod`B`zna `A` `B`nebo implicitní převod odkazu z `B` na. `A`
-*  Pokud `S` také závisí na parametru `U` typu a `U` má omezení `A` class_type a má `T` omezení `B` *class_type* , musí existovat převod identity. nebo implicitní převod odkazu z `A` na `B` nebo implicitní odkaz na převod z `B` na `A`.
+*  Pokud má `S` omezení typu hodnoty, pak `T` nesmí mít omezení *class_type* .
+*  Pokud má `S` omezení *class_type* `A` a `T` má omezení *class_type* `B`, musí existovat převod identity nebo implicitní převod odkazu z `A` na `B` nebo implicitní převod odkazu z `B` do `A`.
+*  Pokud `S` také závisí na parametru typu `U` a `U` má omezení *class_type* `A` a `T` má omezení *class_type* `B`, musí existovat převod identity nebo implicitní převod odkazu z `A`. `B` nebo implicitní převod odkazu z 0 na 1.
 
 Je platný pro `S` , že má omezení typu hodnoty a `T` má omezení typu odkazu. Toto omezení `T` je efektivní pro typy `System.Object`, `System.ValueType`, `System.Enum`a libovolný typ rozhraní.
 
@@ -424,21 +424,21 @@ class StructWithClass<S,T,U>
 
 *  Pokud `T` nemá omezení primárních omezení nebo parametrů typu, jeho efektivní základní třída je `object`.
 *  Pokud `T` má omezení typu hodnoty, jeho efektivní základní třída je `System.ValueType`.
-*  Pokud `T` `C`má omezení `C` class_type, ale žádné omezení *type_parameter* , jeho efektivní základní třída je.
+*  Pokud má `T` omezení *class_type* `C`, ale žádné omezení *type_parameter* , jeho platná základní třída je `C`.
 *  Pokud `T` nemá žádné omezení *class_type* , ale má nejméně jedno omezení *type_parameter* , jeho efektivní základní třída je[nejvýšený](conversions.md#lifted-conversion-operators)typ (přenesené operátory převodu) v sadě efektivních základních tříd jeho *type_ omezení parametru* . Pravidla konzistence zajišťují, že existuje takový typ, který nejlépe zahrnuje.
-*  Pokud `T` má omezení *class_type* i jedno nebo více *type_parameter* omezení, jeho efektivní základní třída je[nejvýšený](conversions.md#lifted-conversion-operators)typ (přenesené operátory převodu) v sadě sestávající z *class_type* omezení a efektivní základní třídy jeho omezení type_parameter. `T` Pravidla konzistence zajišťují, že existuje takový typ, který nejlépe zahrnuje.
-*  Pokud `T` má omezení typu odkazu, ale žádná omezení *class_type* , jeho efektivní základní třída je `object`.
+*  Pokud má `T` omezení *class_type* a jedno nebo více *type_parameter* omezení, jeho efektivní základní třída je[nejvýšený](conversions.md#lifted-conversion-operators)typ (přenesené operátory převodu) v množině sestávající z *class_type* omezení `T` a efektivní základní třídy jeho omezení *type_parameter* . Pravidla konzistence zajišťují, že existuje takový typ, který nejlépe zahrnuje.
+*  Pokud má `T` omezení typu reference, ale žádná omezení *class_type* , jeho účinná základní třída je `object`.
 
-Pro účely těchto pravidel platí, že pokud `V` má T omezení, které je *value_type*, použijte místo nejpřesnější základní typ `V` , který je *class_type*. K tomu nemůže nikdy dojít v explicitně daném omezení, ale může dojít v případě, že jsou omezení obecné metody implicitně zděděna přepsáním deklarace metody nebo explicitní implementací metody rozhraní.
+Pro účely těchto pravidel platí, že pokud má T omezení `V`, což je *value_type*, použijte místo nejpřesnější základní typ `V`, který je *class_type*. K tomu nemůže nikdy dojít v explicitně daném omezení, ale může dojít v případě, že jsou omezení obecné metody implicitně zděděna přepsáním deklarace metody nebo explicitní implementací metody rozhraní.
 
 Tato pravidla zajišťují, že účinná základní třída je vždy *class_type*.
 
 ***Efektivní sada rozhraní*** parametru `T` typu je definována takto:
 
-*  Pokud `T` nemá žádný *secondary_constraints*, je jeho efektivní sada rozhraní prázdná.
-*  Pokud `T` má omezení *INTERFACE_TYPE* , ale žádné omezení *type_parameter* , jeho efektivní sada rozhraní je svou sadou omezení *INTERFACE_TYPE* .
+*  Pokud `T` nemá žádné *secondary_constraints*, je jeho efektivní sada rozhraní prázdná.
+*  Pokud má `T` omezení *INTERFACE_TYPE* , ale žádné omezení *type_parameter* , jeho efektivní sada rozhraní je svou sadou omezení *INTERFACE_TYPE* .
 *  Pokud `T` nemá žádná omezení *INTERFACE_TYPE* , ale má omezení *type_parameter* , jeho efektivní sada rozhraní je sjednocení platných sad rozhraní svých omezení *type_parameter* .
-*  Pokud `T` má omezení *INTERFACE_TYPE* i omezení *type_parameter* , jeho efektivní sada rozhraní je sjednocení své sady omezení *INTERFACE_TYPE* a efektivní sady rozhraní své *type_parameter* omezení.
+*  Pokud `T` má omezení *INTERFACE_TYPE* i omezení *type_parameter* , jeho efektivní sada rozhraní je sjednocení své sady omezení *INTERFACE_TYPE* a efektivní sady rozhraní své *type_parameter* jednotlivým.
 
 Parametr typu je ***známý jako odkazový typ*** , pokud má omezení typu odkazu nebo jeho efektivní základní třídu `object` není nebo. `System.ValueType`
 
@@ -472,7 +472,7 @@ class_body
 
 Deklarace typu může být rozdělená mezi několik ***deklarací částečného typu***. Deklarace typu je vytvořena z jeho částí podle pravidel v této části, přičemž je považována za jednu deklaraci během doby kompilace programu a za běhu.
 
-*Class_declaration*, *struct_declaration* nebo *interface_declaration* představuje `partial` deklaraci částečného typu, pokud obsahuje modifikátor. `partial`není klíčové slovo a funguje pouze jako modifikátor, pokud se zobrazí bezprostředně před `class`jedním z klíčových slov `struct` nebo `interface` v deklaraci typu nebo před typem `void` v deklaraci metody. V jiných kontextech je možné ji použít jako běžný identifikátor.
+*Class_declaration*, *struct_declaration* nebo *interface_declaration* představuje deklaraci částečného typu, pokud obsahuje modifikátor `partial`. `partial`není klíčové slovo a funguje pouze jako modifikátor, pokud se zobrazí bezprostředně před `class`jedním z klíčových slov `struct` nebo `interface` v deklaraci typu nebo před typem `void` v deklaraci metody. V jiných kontextech je možné ji použít jako běžný identifikátor.
 
 Každá část deklarace částečného typu musí obsahovat `partial` modifikátor. Musí mít stejný název a být deklarován ve stejném oboru názvů nebo deklaraci typu jako ostatní části. Modifikátor označuje, že další části deklarace typu mohou existovat jinde, ale existence těchto dalších částí není požadavkem; je platná pro typ s jedinou deklarací pro `partial` zahrnutí modifikátoru. `partial`
 
@@ -575,7 +575,7 @@ partial class X: IComparable
 }
 ```
 
-### <a name="members"></a>Členové
+### <a name="members"></a>Members
 
 S výjimkou částečných metod ([částečné metody](classes.md#partial-methods)) je množina členů typu deklarovaného ve více částech jednoduše sjednocením sady členů deklarované v každé části. Těla všech částí deklarace typu sdílejí stejné místo deklarace ([deklarace](basic-concepts.md#declarations)) a rozsah jednotlivých členů ([oborů](basic-concepts.md#scopes)) se rozšiřuje na tělo všech částí. Doména přístupnosti libovolného člena vždy obsahuje všechny části ohraničujícího typu; `private` člen deklarovaný v jedné části je volně dostupný z jiné části. Jedná se o chybu při kompilaci, která deklaruje stejného člena ve více než jedné části typu, pokud tento člen není typu s `partial` modifikátorem.
 
@@ -884,7 +884,7 @@ Pokud je v deklaraci, která neskrývá zděděný člen, zahrnut modifikátor,z
 
 ### <a name="access-modifiers"></a>Modifikátory přístupu
 
-*Class_member_declaration* může mít jeden z pěti možných druhů deklarovaného usnadnění ([deklarovaný přístup](basic-concepts.md#declared-accessibility) `public`):, `protected internal`, `protected`, `internal`nebo `private`. S výjimkou `protected internal` kombinace se jedná o chybu při kompilaci k určení více než jednoho modifikátoru přístupu. Pokud *class_member_declaration* nezahrnuje žádné modifikátory přístupu, `private` předpokládá se.
+*Class_member_declaration* může mít jeden z pěti možných typů deklarovaného usnadnění ([deklarovaný přístup](basic-concepts.md#declared-accessibility)): `public`, `protected internal`, `protected`, `internal` nebo `private`. S výjimkou `protected internal` kombinace se jedná o chybu při kompilaci k určení více než jednoho modifikátoru přístupu. Pokud *class_member_declaration* neobsahuje žádné modifikátory přístupu, předpokládá se `private`.
 
 ### <a name="constituent-types"></a>Typy prvků
 
@@ -896,13 +896,13 @@ Typy, které se používají v deklaraci členu, se nazývají typy prvků dané
 
 Pokud pole, metoda, vlastnost, událost, operátor nebo deklarace konstruktoru obsahují `static` modifikátor, deklaruje statický člen. Kromě toho deklarace konstanty nebo typu implicitně deklaruje statický člen. Statické členy mají následující vlastnosti:
 
-*  Je-li na `M` *member_access* ([členský přístup](expressions.md#member-access)) formuláře `E.M`odkazováno na statický člen, `E` musí poznamenat typ obsahující `M`. Jedná se o chybu při kompilaci pro `E` označení instance.
+*  Pokud je statický člen `M` odkazován v *member_access* ([členský přístup](expressions.md#member-access)) formuláře `E.M`, `E` musí poznamenat typ obsahující `M`. Jedná se o chybu při kompilaci pro `E` označení instance.
 *  Statické pole identifikuje přesně jedno umístění úložiště, které se má sdílet všemi instancemi daného typu uzavřené třídy. Bez ohledu na to, kolik instancí daného typu uzavřené třídy je vytvořeno, existuje pouze jedna kopie statického pole.
 *  Člen statické funkce (metoda, vlastnost, událost, operátor nebo konstruktor) nepracuje na konkrétní instanci a jedná se o chybu při kompilaci, na kterou se odkazuje `this` v takovém členu funkce.
 
 V případě, že deklarace `static` pole, metody, vlastnosti, události, indexer, konstruktoru nebo destruktoru neobsahuje modifikátor, deklaruje člen instance. (Člen instance se někdy označuje jako nestatický člen.) Členové instance mají následující vlastnosti:
 
-*  `M` Pokud je člen instance odkazován v *member_access* (přístupu ke[členu](expressions.md#member-access)) formuláře `E.M`, `E` musí poznamenat instanci typu obsahující `M`. Jedná se o chybu při vazbě pro `E` zaznamenání typu.
+*  Pokud je člen instance `M` odkazován v *member_access* ([členský přístup](expressions.md#member-access)) formuláře `E.M`, `E` musí poznamenat instanci typu obsahujícího `M`. Jedná se o chybu při vazbě pro `E` zaznamenání typu.
 *  Každá instance třídy obsahuje samostatnou sadu všech polí instance třídy.
 *  Člen funkce instance (metoda, vlastnost, indexer, konstruktor instance nebo destruktor) pracuje na dané instanci třídy a k této instanci může přistupovat jako `this` ([Tento přístup](expressions.md#this-access)).
 
@@ -933,7 +933,7 @@ class Test
 }
 ```
 
-Metoda ukazuje, že v členu funkce instance lze použít simple_name ([jednoduché názvy](expressions.md#simple-names)) pro přístup ke členům instance i ke statickým členům. `F` Metoda ukazuje, že ve statickém členovi funkce se jedná o chybu při kompilaci pro přístup k členu instance prostřednictvím *simple_name.* `G` Metoda ukazuje, že v *member_access* ([přístupu ke členu](expressions.md#member-access)) musí být členové instance přístupné prostřednictvím instancí a ke statickým členům musí přistupovat prostřednictvím typů. `Main`
+Metoda `F` ukazuje, že v členu funkce instance lze použít *simple_name* ([jednoduché názvy](expressions.md#simple-names)) pro přístup ke členům instance i ke statickým členům. Metoda `G` ukazuje, že ve statickém členovi funkce se jedná o chybu při kompilaci pro přístup k členu instance prostřednictvím *simple_name*. Metoda `Main` ukazuje, *že ke členům* instance musí[být přístup prostřednictvím](expressions.md#member-access)instancí a ke statickým členům musí přistupovat prostřednictvím typů.
 
 ### <a name="nested-types"></a>Vnořené typy
 
@@ -1220,7 +1220,7 @@ class Test
 }
 ```
 Třída `A` definuje vlastnost `P`, která je jen pro čtení, a zachovává tak `get_P` signatury pro metody a `set_P` . Třída `B` je odvozena z `A` a skrývá oba tyto vyhrazené signatury. Příklad vytvoří výstup:
-```
+```console
 123
 123
 456
@@ -1279,11 +1279,11 @@ constant_declarator
     ;
 ```
 
-*Constant_declaration* může zahrnovat sadu *atributů* ( `new` [atributů](attributes.md)), modifikátoru ([nový modifikátor](classes.md#the-new-modifier)) a platnou kombinaci čtyř modifikátorů přístupu ([modifikátory přístupu](classes.md#access-modifiers)). Atributy a modifikátory se vztahují na všechny členy deklarované *constant_declaration*. I když jsou konstanty považovány za statické členy, *constant_declaration* ani nepožaduje `static` ani neumožňuje modifikátor. Je-li stejný modifikátor v deklaraci konstanty uveden několikrát, jedná se o chybu.
+*Constant_declaration* může zahrnovat sadu *atributů* ([atributů](attributes.md)), modifikátor `new` ([nový modifikátor](classes.md#the-new-modifier)) a platnou kombinaci čtyř modifikátorů přístupu ([modifikátory přístupu](classes.md#access-modifiers)). Atributy a modifikátory se vztahují na všechny členy deklarované *constant_declaration*. I když jsou konstanty považovány za statické členy, *constant_declaration* ani nepožaduje ani neumožňuje modifikátor `static`. Je-li stejný modifikátor v deklaraci konstanty uveden několikrát, jedná se o chybu.
 
-*Typ* *constant_declaration* určuje typ členů zavedených deklarací. Po typu následuje seznam *constant_declarator*, z nichž každý zavádí nového člena. *Constant_declarator* se skládá z *identifikátoru* , který má za člena název, následovaný tokenem "`=`" následovaným *constant_expression* ([konstantními výrazy](expressions.md#constant-expressions)), které přidělí hodnotu člena.
+*Typ* *constant_declaration* určuje typ členů zavedených deklarací. Po typu následuje seznam *constant_declarator*, z nichž každý zavádí nového člena. *Constant_declarator* sestává z *identifikátoru* , který název členu následovaný tokenem "`=`" následovaný *constant_expression* ([konstantními výrazy](expressions.md#constant-expressions)), které předává hodnotu člena.
 
-*Typ* určený v deklaraci konstanty musí být `sbyte` `ushort` `uint` `long` `ulong`, `byte`, `short`,, `int`,,, ,`char`, ,`float` `double`, ,`decimal` *,, a enum_type*nebo *reference_type*. `bool` `string` Každý *constant_expression* musí vracet hodnotu cílového typu nebo typu, který lze převést na cílový typ pomocí implicitního převodu ([implicitní převody](conversions.md#implicit-conversions)).
+*Typ* zadaný v deklaraci konstanty musí být `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char`, 0, 1, 2, 3, 4, a *enum_type*nebo reference_.  *Zadejte*. Každý *constant_expression* musí vracet hodnotu cílového typu nebo typu, který lze převést na cílový typ pomocí implicitního převodu ([implicitní převody](conversions.md#implicit-conversions)).
 
 *Typ* konstanty musí být alespoň tak přístupný jako konstanta sama ([Omezení přístupnosti](basic-concepts.md#accessibility-constraints)).
 
@@ -1291,11 +1291,11 @@ Hodnota konstanty je získána ve výrazu pomocí *simple_name* ([jednoduché n�
 
 Konstanta se může účastnit *constant_expression*. Proto může být konstanta použita v jakékoli konstrukci, která vyžaduje *constant_expression*. Příklady takových konstrukcí zahrnují `case` popisky, `goto case` příkazy, `enum` deklarace členů, atributy a další konstantní deklarace.
 
-Jak je popsáno v [konstantních výrazech](expressions.md#constant-expressions), *constant_expression* je výraz, který lze plně vyhodnotit v době kompilace. Vzhledem k tomu, že jediný způsob, jak vytvořit jinou hodnotu než null, která `string` je reference_type jiným než `new` , je použít operátor a `new` protože operátor není povolen v *constant_expression*, jedinou možnou hodnotou pro konstanty *reference_type*s jiné než `string` jsou `null`.
+Jak je popsáno v [konstantních výrazech](expressions.md#constant-expressions), *constant_expression* je výraz, který lze plně vyhodnotit v době kompilace. Vzhledem k tomu, že jediný způsob, jak vytvořit *hodnotu jinou než* null, než je `string`, je použití operátoru `new` a protože operátor `new` není v *constant_expression*povolený, jedinou možnou hodnotou konstanty  *reference_type*s jiné než `string` je `null`.
 
-Je-li požadován symbolický název pro konstantní hodnotu, ale pokud typ této hodnoty není v deklaraci konstanty povolen, nebo pokud hodnotu nelze vypočítat v době kompilace *constant_expression*, `readonly` pole ([pole jen pro čtení ](classes.md#readonly-fields)), lze použít místo toho.
+Když je požadován symbolický název hodnoty konstanty, ale pokud typ této hodnoty není v deklaraci konstanty povolen, nebo pokud hodnotu nelze vypočítat v době kompilace *constant_expression*, pole `readonly` ([pole jen pro čtení](classes.md#readonly-fields)) může místo toho použít.
 
-Deklarace konstanty, která deklaruje více konstant je ekvivalentní více deklaracím s jedním konstantou se stejnými atributy, modifikátory a typem. Příklad
+Deklarace konstanty, která deklaruje více konstant je ekvivalentní více deklaracím s jedním konstantou se stejnými atributy, modifikátory a typem. Například
 ```csharp
 class A
 {
@@ -1327,7 +1327,7 @@ class B
 ```
 Kompilátor nejprve vyhodnotí `A.Y`a poté `B.Z`vyhodnotí a nakonec `A.X`vyhodnotí, a vrátí `10`hodnoty `11`, a `12`. Konstantní deklarace mohou záviset na konstantách z jiných programů, ale tyto závislosti jsou možné pouze v jednom směru. Odkazy na výše uvedený příklad, pokud `A` a `B` byly deklarovány v samostatných programech, by mohly být závislé `A.X` na `B.Z`, ale `B.Z` mohou být pak nezávislá `A.Y`na.
 
-## <a name="fields"></a>Pole
+## <a name="fields"></a>Fields (Pole)
 
 ***Pole*** je člen, který představuje proměnnou přidruženou k objektu nebo třídě. *Field_declaration* zavádí jedno nebo více polí daného typu.
 
@@ -1362,15 +1362,15 @@ variable_initializer
     ;
 ```
 
-*Field_declaration* může zahrnovat sadu *atributů* `new` ([atributů](attributes.md)), modifikátor ([nový modifikátor](classes.md#the-new-modifier)), platnou kombinaci `static` modifikátorů čtyř přístupu ([modifikátory přístupu](classes.md#access-modifiers)) a Modifikátor ([statická a pole instance](classes.md#static-and-instance-fields)). Kromě toho může *field_declaration* `readonly` obsahovat modifikátor ([pole jen pro čtení](classes.md#readonly-fields)) nebo modifikátor ( `volatile` pole s modifikátorem[volatile](classes.md#volatile-fields)), ale ne obojí. Atributy a modifikátory se vztahují na všechny členy deklarované *field_declaration*. Je-li stejný modifikátor v deklaraci pole uveden několikrát, jedná se o chybu.
+*Field_declaration* může zahrnovat sadu *atributů* ([atributů](attributes.md)), modifikátor `new` ([nový modifikátor](classes.md#the-new-modifier)), platnou kombinaci modifikátorů čtyř přístupu ([modifikátory přístupu](classes.md#access-modifiers)) a modifikátor `static` ([ Statická pole a pole instance](classes.md#static-and-instance-fields)). Kromě toho může *field_declaration* obsahovat modifikátor `readonly` ([pole jen pro čtení](classes.md#readonly-fields)) nebo modifikátor `volatile` (pole s[nestálou](classes.md#volatile-fields)výjimkou), ale ne obojí. Atributy a modifikátory se vztahují na všechny členy deklarované *field_declaration*. Je-li stejný modifikátor v deklaraci pole uveden několikrát, jedná se o chybu.
 
-*Typ* *field_declaration* určuje typ členů zavedených deklarací. Po typu následuje seznam *variable_declarator*, z nichž každý zavádí nového člena. *Variable_declarator* se skládá z *identifikátoru* , který je členem, volitelně následovaný`=`tokenem a *variable_initializer* ([Inicializátory proměnných](classes.md#variable-initializers)), který poskytuje počáteční hodnotu tohoto člena.
+*Typ* *field_declaration* určuje typ členů zavedených deklarací. Po typu následuje seznam *variable_declarator*, z nichž každý zavádí nového člena. *Variable_declarator* se skládá z *identifikátoru* , který má za člena název, volitelně následovaný tokenem "`=`" a *variable_initializer* ([Inicializátory proměnných](classes.md#variable-initializers)), který poskytuje počáteční hodnotu tohoto člena.
 
 *Typ* pole musí být alespoň přístupný jako pole samotné ([Omezení přístupnosti](basic-concepts.md#accessibility-constraints)).
 
 Hodnota pole se získá ve výrazu s použitím *simple_name* ([jednoduché názvy](expressions.md#simple-names)) nebo *member_access* ([přístup ke členu](expressions.md#member-access)). Hodnota pole, které není jen pro čtení, je upravena pomocí *přiřazení* ([operátor přiřazení](expressions.md#assignment-operators)). Hodnota pole, které není jen pro čtení, může být získána i upravena pomocí operátorů přírůstku[a snížení](expressions.md#postfix-increment-and-decrement-operators)předpony a operátorů přírůstku a snížení předpony ([zvýšení a snížení předpony). Operators](expressions.md#prefix-increment-and-decrement-operators)).
 
-Deklarace pole, která deklaruje více polí, je ekvivalentní více deklaracím jednoho pole se stejnými atributy, modifikátory a typem. Příklad
+Deklarace pole, která deklaruje více polí, je ekvivalentní více deklaracím jednoho pole se stejnými atributy, modifikátory a typem. Například
 ```csharp
 class A
 {
@@ -1425,13 +1425,13 @@ class Application
 
 Pole instance patří do instance. Konkrétně každá instance třídy obsahuje samostatnou sadu všech polí instance této třídy.
 
-Pokud je na pole odkazováno v *member_access* ([členský přístup](expressions.md#member-access)) formuláře `E.M`, pokud `E` `M` je statickým polem, musí to znamenat typ obsahující `M`a pokud `M` je pole instance, musí být E. označuje instanci typu obsahujícího `M`.
+Když je na pole odkazováno v *member_access* ([členský přístup](expressions.md#member-access)) formuláře `E.M`, pokud `M` je statické pole, `E` musí znamenat typ obsahující `M` a pokud `M` je pole instance, musí být E-mailová instance typu, který obsahuje `M`.
 
 Rozdíly mezi členy static a instance jsou podrobněji popsány ve [statických a instancích členů](classes.md#static-and-instance-members).
 
 ### <a name="readonly-fields"></a>Pole jen pro čtení
 
-Pokud *field_declaration* obsahuje `readonly` modifikátor, pole zavedená deklarací jsou ***pole jen pro čtení***. Přímá přiřazení k polím jen pro čtení se můžou vyskytovat jenom jako součást této deklarace nebo konstruktoru instance nebo statického konstruktoru ve stejné třídě. (Pole jen pro čtení lze v těchto kontextech přiřadit vícekrát.) Konkrétně Přímá přiřazení k `readonly` poli jsou povolena pouze v následujících kontextech:
+Pokud *field_declaration* obsahuje modifikátor `readonly`, pole zavedená deklarací jsou ***pole jen pro čtení***. Přímá přiřazení k polím jen pro čtení se můžou vyskytovat jenom jako součást této deklarace nebo konstruktoru instance nebo statického konstruktoru ve stejné třídě. (Pole jen pro čtení lze v těchto kontextech přiřadit vícekrát.) Konkrétně Přímá přiřazení k `readonly` poli jsou povolena pouze v následujících kontextech:
 
 *  V *variable_declarator* , který zavádí pole (včetně *variable_initializer* v deklaraci).
 *  Pro pole instance v konstruktorech instancí třídy, která obsahuje deklaraci pole; pro statické pole ve statickém konstruktoru třídy, která obsahuje deklaraci pole. Jsou to také pouze kontexty, ve kterých je platný pro předání `readonly` pole `out` jako parametru nebo `ref` .
@@ -1490,7 +1490,7 @@ Obory `Program2` názvů aoznačujídvaprogramy,kteréjsoukompiloványsamostatn�
 
 ### <a name="volatile-fields"></a>Pole s modifikátorem volatile
 
-Pokud *field_declaration* obsahuje `volatile` modifikátor, pole zavedená touto deklarací jsou pole typu ***volatile***.
+Pokud *field_declaration* obsahuje modifikátor `volatile`, pole zavedená touto deklarací jsou pole typu ***volatile***.
 
 Pro nestálá pole mohou optimalizační techniky, které mění pořadí instrukcí, vést k neočekávaným a nepředvídatelným výsledkům v aplikacích s více vlákny, které přistupují k polím bez synchronizace,[jako je například lock_statement ( Lock – příkaz](statements.md#the-lock-statement)). Tyto optimalizace mohou být provedeny kompilátorem, systémem za běhu nebo podle hardwaru. U polí typu volatile jsou tyto optimalizace pro změnu pořadí omezené:
 
@@ -1501,7 +1501,7 @@ Tato omezení zajistí, že všechna vlákna budou sledovat nestálá zápisy pr
 
 *  *Reference_type*.
 *  `byte`Typ ,`char`,, ,`int`, ,,`bool`,,, nebo .`System.UIntPtr` `float` `ushort` `short` `sbyte` `uint` `System.IntPtr`
-*  *Enum_type* `byte`, který má základní typ výčtu, `sbyte`, `short`, `ushort`, `int`nebo `uint`.
+*  *Enum_type* , který má základní typ výčtu `byte`, `sbyte`, `short`, `ushort`, `int` nebo `uint`.
 
 Příklad
 ```csharp
@@ -1536,7 +1536,7 @@ class Test
 }
 ```
 Vytvoří výstup:
-```
+```console
 result = 143
 ```
 
@@ -1560,7 +1560,7 @@ class Test
 }
 ```
 Vytvoří výstup
-```
+```console
 b = False, i = 0
 ```
 vzhledem `b` k `i` tomu, že jsou automaticky inicializovány výchozí hodnoty.
@@ -1586,7 +1586,7 @@ class Test
 }
 ```
 Vytvoří výstup
-```
+```console
 x = 1.4142135623731, i = 100, s = Hello
 ```
 vzhledem k `x` tomu, že k přiřazení dojde v případě, že se spustí `i` Inicializátory statických polí a dojde k přiřazení a `s` dojde k provedení inicializátorů pole instance.
@@ -1608,7 +1608,7 @@ class Test
 }
 ```
 vykazuje toto chování. Bez ohledu na cyklické definice a a b je program platný. Výsledkem bude výstup
-```
+```console
 a = 1, b = 2
 ```
 vzhledem k tomu, `a` že `b` statická pole a `0` jsou inicializována na ( `int`výchozí hodnota pro) před spuštěním jejich inicializátorů. Když je inicializátor pro `a` spuštění, `b` hodnota je nula, a proto `a` je inicializována na `1`. V případě inicializátoru `b` pro spuštění je `a` hodnota již `1`, a proto `b` je inicializována na `2`.
@@ -1642,13 +1642,13 @@ class B
 }
 ```
 může způsobit výstup:
-```
+```console
 Init A
 Init B
 1 1
 ```
 nebo výstup:
-```
+```console
 Init B
 Init A
 1 1
@@ -1684,7 +1684,7 @@ class B
 }
 ```
 výstup musí být:
-```
+```console
 Init B
 Init A
 1 1
@@ -1695,7 +1695,7 @@ vzhledem k tomu, `B`že pravidla pro použití statických konstruktorů (jak je
 
 Inicializátory proměnných pole instance třídy odpovídají sekvenci přiřazení, která jsou spouštěna ihned po zadání některého z konstruktorů instance ([Inicializátory konstruktoru](classes.md#constructor-initializers)) dané třídy. Inicializátory proměnných jsou spouštěny v textovém pořadí, ve kterém jsou uvedeny v deklaraci třídy. Proces vytvoření a inicializace instance třídy je podrobněji popsán v části [konstruktory instancí](classes.md#instance-constructors).
 
-Inicializátor proměnné pro pole instance nemůže odkazovat na vytvořenou instanci. Proto se jedná o chybu při kompilaci na odkazování `this` v inicializátoru proměnné, protože se jedná o chybu při kompilaci pro inicializátor proměnné na odkazování na člen instance pomocí *simple_name*. V příkladu
+Inicializátor proměnné pro pole instance nemůže odkazovat na vytvořenou instanci. Proto se jedná o chybu při kompilaci na odkaz `this` v inicializátoru proměnné, protože se jedná o chybu při kompilaci pro inicializátor proměnné, aby odkazoval na libovolný člen instance prostřednictvím *simple_name*. V příkladu
 ```csharp
 class A
 {
@@ -1752,7 +1752,7 @@ method_body
     ;
 ```
 
-*Method_declaration* může zahrnovat sadu *atributů* ([atributů](attributes.md)) a platnou kombinaci modifikátorů čtyř přístupu ([modifikátory](classes.md#access-modifiers) `new` přístupu), a to ([nový modifikátor](classes.md#the-new-modifier)) `static` ([statický a metody instance](classes.md#static-and-instance-methods)), `virtual` ([virtuální metody](classes.md#virtual-methods)), `override` ([metody](classes.md#override-methods) `abstract` přepisu) `sealed` ,[(](classes.md#sealed-methods)metody přepsání), ([abstraktní](classes.md#abstract-methods)metody) a `extern`([Externí metody](classes.md#external-methods)) modifikátory.
+*Method_declaration* může zahrnovat sadu *atributů* ([atributů](attributes.md)) a platnou kombinaci modifikátorů čtyř přístupu ([modifikátory přístupu](classes.md#access-modifiers)), `new` ([nový modifikátor](classes.md#the-new-modifier)), `static` ([static a instance). metody](classes.md#static-and-instance-methods)), `virtual` ([virtuální metody](classes.md#virtual-methods)), 0 ([metody přepisu](classes.md#override-methods)), 2 ([zapečetěné metody](classes.md#sealed-methods)), 4 ([abstraktní metody](classes.md#abstract-methods)) a 6 ([externí metody](classes.md#external-methods)) modifikátory.
 
 Deklarace má platnou kombinaci modifikátorů, pokud jsou splněny všechny následující podmínky:
 
@@ -1767,23 +1767,23 @@ Deklarace má platnou kombinaci modifikátorů, pokud jsou splněny všechny ná
 
 Metoda, která má `async` modifikátor, je asynchronní funkce a postupuje podle pravidel popsaných v tématu [asynchronní funkce](classes.md#async-functions).
 
-Typ *deklarace* metody určuje typ počítané hodnoty a vrácenou metodou. *Typ* je `void` v případě, že metoda nevrací hodnotu. Pokud deklarace obsahuje `partial` modifikátor, pak návratový typ musí být `void`.
+Typ *deklarace* metody určuje typ počítané hodnoty a vrácenou metodou. *Typ* je `void`, pokud metoda nevrací hodnotu. Pokud deklarace obsahuje `partial` modifikátor, pak návratový typ musí být `void`.
 
 *MEMBER_NAME* Určuje název metody. Pokud metoda není explicitní implementací člena rozhraní ([explicitní implementace členů rozhraní](interfaces.md#explicit-interface-member-implementations)), *MEMBER_NAME* je pouze *identifikátor*. Pro explicitní implementaci člena rozhraní se *MEMBER_NAME* skládá z *INTERFACE_TYPE* následovaných "`.`" a *identifikátorem*.
 
-Volitelné *type_parameter_list* Určuje parametry typu metody ([parametry typu](classes.md#type-parameters)). Pokud je určena *type_parameter_list* , metoda je ***Obecná metoda***. Pokud má `extern` metoda modifikátor, nelze zadat *type_parameter_list* .
+Volitelné *type_parameter_list* Určuje parametry typu metody ([parametry typu](classes.md#type-parameters)). Pokud je určena *type_parameter_list* , metoda je ***Obecná metoda***. Pokud má metoda modifikátor `extern`, nelze zadat *type_parameter_list* .
 
 Volitelné *formal_parameter_list* Určuje parametry metody ([parametry metody](classes.md#method-parameters)).
 
-Volitelná *type_parameter_constraints_clause*s určují omezení pro jednotlivé parametry typu ([omezení parametrů typu](classes.md#type-parameter-constraints)) a mohou být zadána pouze v případě, že je zadán také parametr *type_parameter_list* a metoda nemá `override` modifikátor.
+Volitelná *type_parameter_constraints_clause*s určují omezení pro jednotlivé parametry typu ([omezení parametrů typu](classes.md#type-parameter-constraints)) a mohou být zadána pouze v případě, že je zadán také parametr *type_parameter_list* a metoda nemá Modifikátor `override`.
 
 *Typ* a každý z typů, na které se odkazuje v *formal_parameter_list* metody, musí být alespoň tak přístupný jako samotná metoda ([Omezení přístupnosti](basic-concepts.md#accessibility-constraints)).
 
 *Method_body* je buď středník, ***text příkazu*** nebo ***tělo výrazu***. Tělo příkazu se skládá z *bloku*, který určuje příkazy, které mají být provedeny při volání metody. Tělo výrazu se skládá `=>` za následováním *výrazu* a středníkem a označuje jeden výraz, který má být proveden při vyvolání metody. 
 
-Pro `abstract` metody `extern` a *method_body* sestávají pouze středníkem. Pro `partial` metody, které může *method_body* obsahovat buď středník, blok těla nebo tělo výrazu. Pro všechny ostatní metody je *method_body* buď tělo bloku, nebo tělo výrazu.
+Pro metody `abstract` a `extern` se *method_body* skládá jednoduše středník. Pro metody `partial` může *method_body* obsahovat buď středník, blok těla nebo tělo výrazu. Pro všechny ostatní metody je *method_body* buď tělo bloku, nebo tělo výrazu.
 
-Pokud se *method_body* skládá ze středníku, deklarace nesmí obsahovat `async` modifikátor.
+Pokud se *method_body* skládá ze středníku, nesmí deklarace obsahovat modifikátor `async`.
 
 Název, seznam parametrů typu a seznam formálních parametrů metody definují podpis ([signatury a přetížení](basic-concepts.md#signatures-and-overloading)) metody. Konkrétně signatura metody se skládá z jejího názvu, počtu parametrů typu a počtu, modifikátorů a typů jeho formálních parametrů. Pro tyto účely je jakýkoli parametr typu metody, která se vyskytuje v typu formálního parametru, identifikován jako není jeho názvem, ale podle jeho ordinální pozice v seznamu argumentů typu metody. Návratový typ není součástí signatury metody, ani se nejedná o názvy parametrů typu nebo formální parametry.
 
@@ -1829,7 +1829,7 @@ parameter_array
 
 Seznam formálních parametrů se skládá z jednoho nebo více parametrů oddělených čárkami, jejichž *parameter_array*může být pouze poslední.
 
-*Fixed_parameter* se skládá z volitelné sady *atributů* ([atributů](attributes.md) `ref` `out` ), volitelného nebo `this` modifikátoru *typu*, *identifikátoru* a volitelného *default_. Argument*. Každý *fixed_parameter* deklaruje parametr daného typu se zadaným názvem. `this` Modifikátor označuje metodu jako metodu rozšíření a je povolen pouze pro první parametr statické metody. Rozšiřující metody jsou dále popsány v tématu [metody rozšíření](classes.md#extension-methods).
+*Fixed_parameter* se skládá z volitelné sady *atributů* ([atributů](attributes.md)), volitelného modifikátoru `ref`, `out` nebo `this`, *typu*, *identifikátoru* a volitelného *default_argument*. Každý *fixed_parameter* deklaruje parametr daného typu se zadaným názvem. `this` Modifikátor označuje metodu jako metodu rozšíření a je povolen pouze pro první parametr statické metody. Rozšiřující metody jsou dále popsány v tématu [metody rozšíření](classes.md#extension-methods).
 
 *Fixed_parameter* s *default_argument* je označován jako ***volitelný parametr***, zatímco *fixed_parameter* bez *default_argument* je ***povinný parametr***. Požadovaný parametr se nesmí nacházet po volitelném parametru v *formal_parameter_list*.
 
@@ -1843,7 +1843,7 @@ Parametr `ref` nebo `out` nemůže mít *default_argument*. *Výraz* v *default_
 
 Pokud dojde k volitelným parametrům v deklaraci částečné metody ([částečné metody](classes.md#partial-methods)), explicitní implementace člena rozhraní ([explicitní implementace členů rozhraní](interfaces.md#explicit-interface-member-implementations)) nebo v deklaraci indexeru s jedním parametrem ([ Indexery](classes.md#indexers)) kompilátor by měl poskytnout upozornění, protože tito členové nemohou být nikdy vyvoláni způsobem, který umožňuje vynechat argumenty.
 
-*Parameter_array* se skládá z volitelné sady *atributů* ( `params` [atributů](attributes.md)), modifikátoru, *array_type*a *identifikátoru*. Pole parametrů deklaruje jeden parametr daného typu pole se zadaným názvem. *Array_type* pole parametrů musí být jednorozměrného typu pole ([typy polí](arrays.md#array-types)). V volání metody umožňuje pole parametrů zadat buď jeden argument daného typu pole, nebo umožňuje zadat nula nebo více argumentů typu elementu pole. Pole parametrů jsou podrobněji popsány v [polích parametrů](classes.md#parameter-arrays).
+*Parameter_array* se skládá z volitelné sady *atributů* ([atributů](attributes.md)), modifikátoru `params`, *array_type*a *identifikátoru*. Pole parametrů deklaruje jeden parametr daného typu pole se zadaným názvem. *Array_type* pole parametrů musí být jednorozměrného typu pole ([typy polí](arrays.md#array-types)). V volání metody umožňuje pole parametrů zadat buď jeden argument daného typu pole, nebo umožňuje zadat nula nebo více argumentů typu elementu pole. Pole parametrů jsou podrobněji popsány v [polích parametrů](classes.md#parameter-arrays).
 
 K *parameter_array* může dojít po volitelném parametru, ale nemůže mít výchozí hodnotu – vynechání argumentů pro *parameter_array* by vedlo k vytvoření prázdného pole.
 
@@ -1861,7 +1861,7 @@ public void M(
 ) { }
 ```
 
-V *formal_parameter_list* pro `M` `b` `d` `s` `t` je povinný parametr ref, je povinný parametr`o` hodnoty,, a jsou volitelné parametry hodnoty. `i` a `a` je pole parametrů.
+V *formal_parameter_list* pro `M` `i` je povinný parametr ref, `d` je povinný parametr hodnoty `b`, `s`, `o` a `t` jsou volitelné parametry hodnoty a `a` je pole parametrů.
 
 Deklarace metody vytvoří samostatný prostor deklarace pro parametry, parametry typu a místní proměnné. Názvy jsou představeny do tohoto prostoru deklarace seznamem parametrů typu a seznamem formálních parametrů metody a deklarací místní proměnné v *bloku* metody. Jedná se o chybu, pokud dva členy prostoru deklarace metod mají stejný název. Jedná se o chybu pro místo deklarace metody a místní prostor deklarace proměnné vnořeného prostoru deklarace, který obsahuje prvky se stejným názvem.
 
@@ -1888,7 +1888,7 @@ Metoda je povolena k přiřazení nových hodnot parametru hodnoty. Tato přiřa
 
 Parametr deklarovaný s `ref` modifikátorem je parametr odkazu. Na rozdíl od parametru hodnoty nevytvoří parametr reference nové umístění úložiště. Místo toho parametr reference představuje stejné umístění úložiště jako proměnná zadaná jako argument ve volání metody.
 
-Pokud je formálním parametrem odkazový parametr, odpovídající argument ve volání metody musí sestávat z klíčového slova `ref` následovaného *variable_reference* ([přesné pravidlo pro určení jednoznačného přiřazení](variables.md#precise-rules-for-determining-definite-assignment)) stejné. jako formální parametr zadejte. Proměnná musí být jednoznačně přiřazena dříve, než může být předána jako parametr reference.
+Pokud je formální parametr referenčním parametrem, odpovídající argument ve volání metody musí obsahovat klíčové slovo `ref` následovaný *variable_reference* ([přesné pravidlo pro určení jednoznačného přiřazení](variables.md#precise-rules-for-determining-definite-assignment)) stejného typu jako formální parametr Proměnná musí být jednoznačně přiřazena dříve, než může být předána jako parametr reference.
 
 V rámci metody je referenční parametr vždy považován za jednoznačně přiřazený.
 
@@ -1914,7 +1914,7 @@ class Test
 }
 ```
 Vytvoří výstup
-```
+```console
 i = 2, j = 1
 ```
 
@@ -1943,7 +1943,7 @@ class A
 
 Parametr deklarovaný s `out` modifikátorem je výstupní parametr. Podobně jako parametr reference nevytváří výstupní parametr nové umístění úložiště. Namísto toho výstupní parametr představuje stejné umístění úložiště jako proměnná zadaná jako argument ve volání metody.
 
-Pokud je formálním parametrem výstupní parametr, odpovídající argument ve volání metody musí sestávat z klíčového slova `out` následovaného *variable_reference* ([přesné pravidlo pro určení jednoznačného přiřazení](variables.md#precise-rules-for-determining-definite-assignment)) stejné. jako formální parametr zadejte. Proměnná nemusí být jednoznačně přiřazena, než může být předána jako výstupní parametr, ale po vyvolání, kde byla proměnná předána jako výstupní parametr, je proměnná považována za jednoznačně přiřazenou.
+Pokud je formálním parametrem výstupní parametr, odpovídající argument ve volání metody musí obsahovat klíčové slovo `out` následovaný *variable_reference* ([přesné pravidlo pro určení jednoznačného přiřazení](variables.md#precise-rules-for-determining-definite-assignment)) stejného typu jako formální parametr Proměnná nemusí být jednoznačně přiřazena, než může být předána jako výstupní parametr, ale po vyvolání, kde byla proměnná předána jako výstupní parametr, je proměnná považována za jednoznačně přiřazenou.
 
 V rámci metody, stejně jako místní proměnná, je výstupní parametr zpočátku považován za nepřiřazený a musí být jednoznačně přiřazen před použitím jeho hodnoty.
 
@@ -1978,7 +1978,7 @@ class Test
 ```
 
 Příklad vytvoří výstup:
-```
+```console
 c:\Windows\System\
 hello.txt
 ```
@@ -2018,7 +2018,7 @@ class Test
 }
 ```
 Vytvoří výstup
-```
+```console
 Array contains 3 elements: 1 2 3
 Array contains 4 elements: 10 20 30 40
 Array contains 0 elements:
@@ -2060,7 +2060,7 @@ class Test
 }
 ```
 Vytvoří výstup
-```
+```console
 F();
 F(object[]);
 F(object,object);
@@ -2097,7 +2097,7 @@ class Test
 }
 ```
 Vytvoří výstup
-```
+```console
 System.Int32 System.String System.Double
 System.Object[]
 System.Object[]
@@ -2114,7 +2114,7 @@ Statická metoda nepracuje na konkrétní instanci a jedná se o chybu při komp
 
 Metoda instance pracuje na dané instanci třídy a k této instanci může přistupovat jako `this` ([Tento přístup](expressions.md#this-access)).
 
-Pokud je metoda odkazována v *member_access* ([členský přístup](expressions.md#member-access) `E.M`) formuláře, pokud `M` je statická metoda, `E` musí poznamenat typ obsahující `M`a pokud `M` je metoda instance, musí se poznamenat instance typu, který obsahuje `M`. `E`
+Když se na metodu odkazuje *member_access* ([členský přístup](expressions.md#member-access)) formuláře `E.M`, pokud `M` je statická metoda, `E` musí znamenat typ obsahující `M` a pokud `M` je metoda instance, `E` musí poznamenat instanci typu. obsahující `M`.
 
 Rozdíly mezi členy static a instance jsou podrobněji popsány ve [statických a instancích členů](classes.md#static-and-instance-members).
 
@@ -2168,7 +2168,7 @@ class Test
 ```
 
 V příkladu `A` představuje `F` nevirtuální a virtuální metodu `G`. Třída `B` zavádí novou nevirtuální metodu `F`, takže Skryje zděděné `F`a také přepíše zděděnou metodu `G`. Příklad vytvoří výstup:
-```
+```console
 A.F
 B.F
 B.G
@@ -2216,7 +2216,7 @@ class Test
 }
 ```
 třídy `C` a`D` obsahují dvě virtuální metody se stejnou signaturou: Ten, který představil `A` , a ten, který `C`představil. Metoda, kterou zavedla `C` , skrývá metodu děděnou z. `A` Proto `D` deklarace override v přepisuje metodu `C`, kterou zavádí, a není možné `D` přepsat metodu zavedenou pomocí `A`. Příklad vytvoří výstup:
-```
+```console
 B.F
 B.F
 D.F
@@ -2522,7 +2522,7 @@ static class Program
 
 V případě, že metoda `void` má typ výsledku a tělo bloku, `return` příkazy ([příkaz return](statements.md#the-return-statement)) v bloku nepovolují zadání výrazu. Pokud se provádění bloku metody void dokončí normálně (to znamená, že řízení projde na konci těla metody), tato metoda jednoduše vrátí na aktuálního volajícího.
     
-Pokud má `void` metoda výsledek a tělo výrazu, musí být výraz `E` *statement_expression*a tělo je přesně ekvivalentní tělo bloku ve formuláři `{ E; }`.
+Když metoda obsahuje výsledek `void` a tělo výrazu, výraz `E` musí být *statement_expression*a tělo je přesně stejné jako blokové tělo formuláře `{ E; }`.
     
 Pokud má metoda typ výsledku, který není typu void, a tělo bloku, každý `return` příkaz v bloku musí specifikovat výraz, který je implicitně převeden na typ výsledku. Koncový bod těla bloku metody vracející hodnoty nesmí být dosažitelný. Jinými slovy, v metodě vracející hodnoty s tělo bloku není ovládací prvek povolen tok na konec těla metody.
     
@@ -2556,7 +2556,7 @@ metoda vracející `F` hodnoty má za následek chybu při kompilaci, protože �
 
 Pravidla řešení přetížení metod jsou popsána v tématu [odvození typu](expressions.md#type-inference).
 
-## <a name="properties"></a>Vlastnosti
+## <a name="properties"></a>properties
 
 ***Vlastnost*** je člen, který poskytuje přístup k vlastnosti objektu nebo třídy. Mezi příklady vlastností patří délka řetězce, velikost písma, titulek okna, jméno zákazníka atd.... Vlastnosti jsou přirozené rozšíření polí – oba se nazývají členy s přidruženými typy a syntaxe pro přístup k polím a vlastnostem je stejná. Na rozdíl od polí ale vlastnosti neoznačují umístění úložiště. Místo toho mají vlastnosti ***přistupující objekty*** , které určují příkazy, které mají být provedeny, když jsou jejich hodnoty čteny nebo zapsány. Vlastnosti tak poskytují mechanismus pro přidružení akcí ke čtení a zápisu atributů objektu; Kromě toho povolují, aby tyto atributy byly vypočítány.
 
@@ -2592,7 +2592,7 @@ property_initializer
     ;
 ```
 
-*Property_declaration* může zahrnovat sadu *atributů* ([atributů](attributes.md)) a platnou kombinaci modifikátorů čtyř přístupu ([modifikátory](classes.md#access-modifiers) `new` přístupu), a to ([nový modifikátor](classes.md#the-new-modifier)) `static` ([statický a metody instance](classes.md#static-and-instance-methods)), `virtual` ([virtuální metody](classes.md#virtual-methods)), `override` ([metody](classes.md#override-methods) `abstract` přepisu) `sealed` ,[(](classes.md#sealed-methods)metody přepsání), ([abstraktní](classes.md#abstract-methods)metody) a `extern`([Externí metody](classes.md#external-methods)) modifikátory.
+*Property_declaration* může zahrnovat sadu *atributů* ([atributů](attributes.md)) a platnou kombinaci modifikátorů čtyř přístupu ([modifikátory přístupu](classes.md#access-modifiers)), `new` ([nový modifikátor](classes.md#the-new-modifier)), `static` ([static a instance). metody](classes.md#static-and-instance-methods)), `virtual` ([virtuální metody](classes.md#virtual-methods)), 0 ([metody přepisu](classes.md#override-methods)), 2 ([zapečetěné metody](classes.md#sealed-methods)), 4 ([abstraktní metody](classes.md#abstract-methods)) a 6 ([externí metody](classes.md#external-methods)) modifikátory.
 
 Deklarace vlastností jsou v souladu se stejnými pravidly jako deklarace metod ([metody](classes.md#methods)) s ohledem na platné kombinace modifikátorů.
 
@@ -2600,7 +2600,7 @@ Deklarace vlastností jsou v souladu se stejnými pravidly jako deklarace metod 
 
 *Typ* vlastnosti musí být alespoň tak přístupný jako samotná vlastnost ([Omezení přístupnosti](basic-concepts.md#accessibility-constraints)).
 
-*Property_body* může buď sestávat z ***těla přistupujícího objektu*** nebo ***textu výrazu***. V těle objektu pro přístup, *accessor_declarations*, který musí být uzavřen v`{`tokenech "`}`" a "", deklarujte přistupující objekty ([přistupující objekty](classes.md#accessors)) vlastnosti. Přistupující objekty určují spustitelné příkazy spojené s čtením a zápisem vlastnosti.
+*Property_body* může buď sestávat z ***těla přistupujícího objektu*** nebo ***textu výrazu***. V těle přístupového objektu *accessor_declarations*, který musí být uzavřen v tokenech "`{`" a "`}`", deklarujte přistupující objekty ([přístupové objekty](classes.md#accessors)) vlastnosti. Přistupující objekty určují spustitelné příkazy spojené s čtením a zápisem vlastnosti.
 
 Tělo `=>` výrazu sestávající z *výrazu následovaný výrazem* `E` a středníkem je přesně ekvivalentní tělo `{ get { return E; } }`příkazu a lze jej proto použít pouze k zadání vlastností pouze pro getter, kde výsledek metoda getter je dána jediným výrazem.
 
@@ -2618,7 +2618,7 @@ Statická vlastnost není přidružena k určité instanci a jedná se o chybu p
 
 Vlastnost instance je přidružena k dané instanci třídy a k této instanci lze v přístupových objektech této `this` vlastnosti přistupovat jako ([Tento přístup](expressions.md#this-access)).
 
-Pokud je vlastnost odkazována v *member_access* ([přístupu ke členu](expressions.md#member-access)) `E.M`formuláře, pokud `M` je statická vlastnost, `E` musí znamenat typ obsahující `M`a pokud `M` je instancí. vlastnost, E musí poznamenat instanci typu obsahující `M`.
+Když se na vlastnost odkazuje v *member_access* ([členský přístup](expressions.md#member-access)) formuláře `E.M`, pokud `M` je statická vlastnost, `E` musí znamenat typ obsahující `M` a pokud `M` je vlastnost instance, musí být E-mailová instance typu. obsahující `M`.
 
 Rozdíly mezi členy static a instance jsou podrobněji popsány ve [statických a instancích členů](classes.md#static-and-instance-members).
 
@@ -2654,20 +2654,20 @@ accessor_body
     ;
 ```
 
-Deklarace přistupujícího objektu se skládají z *get_accessor_declaration*, *set_accessor_declaration*nebo obou. Každá deklarace přístupového objektu se skládá `get` z `set` tokenu nebo po něm následovat volitelná *accessor_modifier* a *accessor_body*.
+Deklarace přistupujícího objektu se skládají z *get_accessor_declaration*, *set_accessor_declaration*nebo obou. Každá deklarace přistupujícího objektu se skládá z tokenu `get` nebo `set` následovaného nepovinným *accessor_modifier* a *accessor_body*.
 
 Použití *accessor_modifier*s se řídí následujícími omezeními:
 
 *  *Accessor_modifier* se nesmí použít v rozhraní nebo v explicitní implementaci člena rozhraní.
-*  U vlastnosti nebo indexeru, který nemá žádný `override` modifikátor, je *accessor_modifier* povolen pouze v případě, že vlastnost nebo indexovací člen má `get` přístup `set` k objektu a a je povolen pouze v jednom z těchto přístupových objektů.
-*  U vlastnosti nebo indexeru, který obsahuje `override` modifikátor, musí přistupující objekt odpovídat *accessor_modifier*(pokud existuje) přepsaného přístupového objektu.
+*  U vlastnosti nebo indexeru, který nemá modifikátor `override`, je povolený *accessor_modifier* jenom v případě, že vlastnost nebo indexer má přístupový objekt `get` i `set` a pak je povolený jenom pro jeden z těchto přístupových objektů.
+*  U vlastnosti nebo indexeru, který obsahuje modifikátor `override`, musí přistupující objekt odpovídat *accessor_modifier*(pokud existuje) přepsaného objektu.
 *  *Accessor_modifier* musí deklarovat přístupnost, která je striktně přísnější než deklarovaná přístupnost vlastnosti nebo samotného indexeru. Bude přesný:
-   * Pokud vlastnost nebo `public`indexer má deklaraci přístupnosti, může být *accessor_modifier* buď `protected internal`, `internal`, `protected`nebo `private`.
-   * Pokud vlastnost nebo indexer `protected internal`má deklaraci přístupnosti, může být *accessor_modifier* buď `internal`, `protected`nebo `private`.
-   * Pokud vlastnost `internal` nebo indexer má deklaraci přístupnosti nebo `protected`, musí být `private`accessor_modifier.
-   * Pokud vlastnost nebo indexovací člen má deklaraci přístupnosti `private`, nelze použít žádný *accessor_modifier* .
+   * Pokud má vlastnost nebo indexeru deklarovanou přístupnost `public`, může být *accessor_modifier* buď `protected internal`, `internal`, `protected` nebo `private`.
+   * Pokud má vlastnost nebo indexeru deklaraci přístupnosti `protected internal`, může být *accessor_modifier* buď `internal`, `protected` nebo `private`.
+   * Pokud má vlastnost nebo indexeru deklaraci přístupnosti `internal` nebo `protected`, *accessor_modifier* musí být `private`.
+   * Pokud vlastnost nebo indexovací člen má deklaraci přístupnosti `private`, nemůžete použít žádný *accessor_modifier* .
 
-V případě `extern` vlastností a jsou accessor_body pro každý přistupující objekt jednoduše středníkem `abstract` . Neabstraktní vlastnost, která není typu extern, může mít každý *accessor_body* středníkem, v takovém případě se jedná o ***automaticky implementovanou vlastnost*** ([automaticky implementované vlastnosti](classes.md#automatically-implemented-properties)). Automaticky implementovaná vlastnost musí mít alespoň přistupující objekt get. Pro přistupující objekty jakékoli jiné neabstraktní nebo neexterné vlastnosti je *accessor_body* *blok* , který určuje příkazy, které mají být provedeny, když je vyvolán odpovídající přistupující objekt.
+U vlastností `abstract` a `extern` jsou *accessor_body* pro každý přistupující objekt jednoduše středníkem. Neabstraktní vlastnost, která není typu extern, může mít každý *accessor_body* středníkem, v takovém případě se jedná o ***automaticky implementovanou vlastnost*** ([automaticky implementované vlastnosti](classes.md#automatically-implemented-properties)). Automaticky implementovaná vlastnost musí mít alespoň přistupující objekt get. Pro přistupující objekty jakékoli jiné neabstraktní nebo neexterné vlastnosti je *accessor_body* *blok* , který určuje příkazy, které mají být provedeny, když je vyvolán odpovídající přistupující objekt.
 
 `get` Přistupující objekt odpovídá metodě bez parametrů s návratovou hodnotou typu vlastnosti. S výjimkou cíle přiřazení, při odkazování na vlastnost ve výrazu, `get` je objekt přistupující k vlastnosti vyvolán pro výpočet hodnoty vlastnosti ([hodnoty výrazů](expressions.md#values-of-expressions)). Tělo `get` přístupového objektu musí splňovat pravidla pro metody vracející hodnoty popsané v [těle metody](classes.md#method-body). Konkrétně všechny `return` příkazy v těle `get` přístupového objektu musí určovat výraz, který lze implicitně převést na typ vlastnosti. Kromě toho nesmí být koncový bod `get` přístupového objektu dostupný.
 
@@ -2928,7 +2928,7 @@ public class ReadOnlyPoint
 Všimněte si, že přiřazení k poli jen pro čtení jsou zákonná, protože se vyskytují v rámci konstruktoru.
 
 
-### <a name="accessibility"></a>Usnadnění
+### <a name="accessibility"></a>Přístupnost
 
 Pokud má přistupující objekt *accessor_modifier*, doména přístupnosti ([domény přístupnosti](basic-concepts.md#accessibility-domains)) je určena pomocí deklarovaného přístupnosti *accessor_modifier*. Pokud přístupový objekt nemá *accessor_modifier*, je doména přístupnosti přistupujícího objektu určena z deklarovaného přístupnosti vlastnosti nebo indexeru.
 
@@ -3081,7 +3081,7 @@ public class D: B
 }
 ```
 
-## <a name="events"></a>Události
+## <a name="events"></a>Duration
 
 ***Událost*** je člen, který umožňuje objektu nebo třídě poskytnout oznámení. Klienti mohou připojit spustitelný kód pro události tím, že dodávají ***obslužné rutiny událostí***.
 
@@ -3122,7 +3122,7 @@ remove_accessor_declaration
     ;
 ```
 
-*Event_declaration* může zahrnovat sadu *atributů* ([atributů](attributes.md)) a platnou kombinaci modifikátorů čtyř přístupu ([modifikátory](classes.md#access-modifiers) `new` přístupu), a to ([nový modifikátor](classes.md#the-new-modifier)) `static` ([statický a metody instance](classes.md#static-and-instance-methods)), `virtual` ([virtuální metody](classes.md#virtual-methods)), `override` ([metody](classes.md#override-methods) `abstract` přepisu) `sealed` ,[(](classes.md#sealed-methods)metody přepsání), ([abstraktní](classes.md#abstract-methods)metody) a `extern`([Externí metody](classes.md#external-methods)) modifikátory.
+*Event_declaration* může zahrnovat sadu *atributů* ([atributů](attributes.md)) a platnou kombinaci modifikátorů čtyř přístupu ([modifikátory přístupu](classes.md#access-modifiers)), `new` ([nový modifikátor](classes.md#the-new-modifier)), `static` ([static a instance). metody](classes.md#static-and-instance-methods)), `virtual` ([virtuální metody](classes.md#virtual-methods)), 0 ([metody přepisu](classes.md#override-methods)), 2 ([zapečetěné metody](classes.md#sealed-methods)), 4 ([abstraktní metody](classes.md#abstract-methods)) a 6 ([externí metody](classes.md#external-methods)) modifikátory.
 
 Deklarace událostí podléhají stejným pravidlům jako deklarace metod ([metody](classes.md#methods)) s ohledem na platné kombinace modifikátorů.
 
@@ -3132,11 +3132,11 @@ Deklarace události může zahrnovat *event_accessor_declarations*. Nicméně po
 
 Deklarace události, která vynechává *event_accessor_declarations* , definuje jednu nebo více událostí – jeden pro každou *variable_declarator*. Atributy a modifikátory se vztahují na všechny členy deklarované tímto *event_declaration*.
 
-Jedná se o chybu při kompilaci, kterou může *event_declaration* zahrnovat modifikátor a `abstract` *event_accessor_declarations*s oddělovači ve složených závorkách.
+Jedná se o chybu při kompilaci, kterou může *event_declaration* zahrnovat modifikátor `abstract` a *event_accessor_declarations*závorky s oddělovači.
 
-Pokud deklarace události obsahuje `extern` modifikátor, událost je označována jako ***externí událost***. Vzhledem k tomu, že deklarace externí události neposkytuje žádnou skutečnou implementaci, jedná se o chybu, která `extern` by zahrnovala jak modifikátor, tak *event_accessor_declarations*.
+Pokud deklarace události obsahuje `extern` modifikátor, událost je označována jako ***externí událost***. Vzhledem k tomu, že vnější deklarace události neposkytuje žádnou skutečnou implementaci, jedná se o chybu, aby mohla zahrnovat modifikátor `extern` a *event_accessor_declarations*.
 
-Jedná se o chybu při kompilaci pro *variable_declarator* deklarace události s `abstract` modifikátorem or `external` pro zahrnutí *variable_initializer*.
+Jedná se o chybu při kompilaci pro *variable_declarator* deklarace události s modifikátorem `abstract` nebo `external` pro zahrnutí *variable_initializer*.
 
 Událost lze použít jako levý operand `+=` operátorů a `-=` ([přiřazení události](expressions.md#event-assignment)). Tyto operátory se používají k připojení obslužných rutin událostí k nebo k odebrání obslužných rutin událostí z události a modifikátorů přístupu ovládacího prvku události, ve kterém jsou tyto operace povoleny.
 
@@ -3179,7 +3179,7 @@ Zde konstruktor `Button` instance vytvoří dvě instance a připojí obslužné
 
 ### <a name="field-like-events"></a>Události podobné poli
 
-V textu programu třídy nebo struktury, která obsahuje deklaraci události, mohou být některé události použity jako pole. Pro použití tímto způsobem nesmí být `abstract` událost ani `extern`a nesmí explicitně zahrnovat *event_accessor_declarations*. Taková událost se dá použít v jakémkoli kontextu, který povoluje pole. Pole obsahuje delegáta ([Delegáti](delegates.md)), který odkazuje na seznam obslužných rutin událostí přidaných do události. Pokud nebyly přidány žádné obslužné rutiny událostí, pole obsahuje `null`.
+V textu programu třídy nebo struktury, která obsahuje deklaraci události, mohou být některé události použity jako pole. Pro použití tímto způsobem nesmí být událost `abstract` nebo `extern` a nesmí explicitně zahrnovat *event_accessor_declarations*. Taková událost se dá použít v jakémkoli kontextu, který povoluje pole. Pole obsahuje delegáta ([Delegáti](delegates.md)), který odkazuje na seznam obslužných rutin událostí přidaných do události. Pokud nebyly přidány žádné obslužné rutiny událostí, pole obsahuje `null`.
 
 V příkladu
 ```csharp
@@ -3240,13 +3240,13 @@ V rámci třídy `X` `Ev` odkazy na levou stranu `+=` operátoru and `-=` způso
 
 ### <a name="event-accessors"></a>Přístupové objekty událostí
 
-Deklarace událostí typicky vynechávají *event_accessor_declarations*, jako v `Button` předchozím příkladu. Jedna z těchto situací zahrnuje případ, ve kterém není přijatelné náklady na úložiště jednoho pole na každou událost. V takových případech může třída zahrnovat *event_accessor_declarations* a používat privátní mechanizmus pro ukládání seznamu obslužných rutin událostí.
+Deklarace událostí typicky vynechávají *event_accessor_declarations*, jak je uvedeno výše v příkladu `Button`. Jedna z těchto situací zahrnuje případ, ve kterém není přijatelné náklady na úložiště jednoho pole na každou událost. V takových případech může třída zahrnovat *event_accessor_declarations* a používat privátní mechanizmus pro ukládání seznamu obslužných rutin událostí.
 
 *Event_accessor_declarations* události specifikuje spustitelné příkazy přidružené k přidávání a odebírání obslužných rutin událostí.
 
 Deklarace přistupujícího objektu se skládají z *add_accessor_declaration* a *remove_accessor_declaration*. Každá deklarace přistupujícího objektu se `add` skládá `remove` z tokenu nebo následovaný *blokem*. *Blok* přidružený k *add_accessor_declaration* Určuje příkazy, které mají být provedeny při přidání obslužné rutiny události, a *blok* přidružený k *remove_accessor_declaration* Určuje příkazy, které mají být provedeny. Při odebrání obslužné rutiny události.
 
-Každý *add_accessor_declaration* a *remove_accessor_declaration* odpovídá metodě s parametrem s jednou hodnotou `void` typu události a návratovým typem. Implicitní parametr přístupového objektu události má název `value`. V případě, že se v přiřazení události používá událost, použije se odpovídající přístupový objekt události. Konkrétně, je-li operátor `+=` přiřazení použit, je použit přistupující objekt Add a je-li `-=` operátor přiřazení, je použit přístupový objekt Remove. V obou případech je pravý operand operátoru přiřazení použit jako argument přístupového objektu události. Blok *add_accessor_declaration* nebo *remove_accessor_declaration* musí odpovídat pravidlům pro `void` metody popsané v [těle metody](classes.md#method-body). Konkrétně `return` příkazy v takovém bloku nejsou povoleny pro určení výrazu.
+Každý *add_accessor_declaration* a *remove_accessor_declaration* odpovídá metodě s parametrem s jednou hodnotou typu události a návratovým typem `void`. Implicitní parametr přístupového objektu události má název `value`. V případě, že se v přiřazení události používá událost, použije se odpovídající přístupový objekt události. Konkrétně, je-li operátor `+=` přiřazení použit, je použit přistupující objekt Add a je-li `-=` operátor přiřazení, je použit přístupový objekt Remove. V obou případech je pravý operand operátoru přiřazení použit jako argument přístupového objektu události. Blok *add_accessor_declaration* nebo *remove_accessor_declaration* musí splňovat pravidla pro metody `void` popsané v [těle metody](classes.md#method-body). Konkrétně `return` příkazy v takovém bloku nejsou povoleny pro určení výrazu.
 
 Vzhledem k tomu, že objekt pro přístup k události `value`má implicitně parametr s názvem, jedná se o chybu při kompilaci pro místní proměnnou nebo konstantu deklarovanou v přístupovém objektu události, aby měl tento název.
 
@@ -3298,7 +3298,7 @@ Statická událost není přidružena k určité instanci a jedná se o chybu p�
 
 Událost instance je přidružena k dané instanci třídy a k této instanci lze přistupovat jako `this` ([přístup](expressions.md#this-access)) v přístupových objektech této události.
 
-Pokud je událost odkazována v *member_access* ([přístupu ke členu](expressions.md#member-access)) `E.M`formuláře, pokud `M` je statická událost, `E` musí poznamenat typ obsahující `M`a pokud `M` je událost instance, E musí označuje instanci typu obsahujícího `M`.
+Pokud se na událost odkazuje v *member_access* ([členský přístup](expressions.md#member-access)) formuláře `E.M`, pokud `M` je statická událost, `E` musí znamenat typ obsahující `M`, a pokud `M` je instance událost, E musí napřed znamenat instanci typu obsahujícího `M`.
 
 Rozdíly mezi členy static a instance jsou podrobněji popsány ve [statických a instancích členů](classes.md#static-and-instance-members).
 
@@ -3356,19 +3356,19 @@ indexer_body
     ;
 ```
 
-*Indexer_declaration* může zahrnovat sadu *atributů* ([atributů](attributes.md)) a platnou kombinaci modifikátorů čtyř přístupu ([modifikátory](classes.md#access-modifiers) `new` přístupu), a to ([nový modifikátor](classes.md#the-new-modifier)), `virtual` ([ Virtuální metody](classes.md#virtual-methods)), `override` ([metody](classes.md#override-methods) `sealed` přepisu),[(](classes.md#sealed-methods) `abstract` metody přepsání), ([abstraktní](classes.md#abstract-methods)metody) a `extern` modifikátory ([externí metody](classes.md#external-methods)).
+*Indexer_declaration* může zahrnovat sadu *atributů* ([atributů](attributes.md)) a platnou kombinaci modifikátorů čtyř přístupu ([modifikátory přístupu](classes.md#access-modifiers)), `new` ([nový modifikátor](classes.md#the-new-modifier)), `virtual` ([virtuální metody ](classes.md#virtual-methods)), `override` ([metody přepisu](classes.md#override-methods)), 0 ([zapečetěné metody](classes.md#sealed-methods)), 2 ([abstraktní metody](classes.md#abstract-methods)) a modifikátory 4 ([externí metody](classes.md#external-methods)).
 
 Deklarace indexeru podléhají stejným pravidlům jako deklarace metod ([metody](classes.md#methods)) s ohledem na platné kombinace modifikátorů, s jednou výjimkou, že statický modifikátor není povolený u deklarace indexeru.
 
 Modifikátory `virtual`, `override`a `abstract` se vzájemně vylučují, s výjimkou jednoho případu. Modifikátory `override` a mohou být použity společně, aby abstraktní indexer mohl přepsat virtuální. `abstract`
 
-*Typ* deklarace indexer určuje typ elementu indexeru zavedeného deklarací. Pokud indexer není explicitní implementací člena rozhraní, pak je *typ* následován klíčovým slovem `this`. Pro explicitní implementaci člena rozhraní je *typ* následován *INTERFACE_TYPE*, "`.`" a klíčovým slovem. `this` Na rozdíl od jiných členů indexery nemají uživatelsky definované názvy.
+*Typ* deklarace indexer určuje typ elementu indexeru zavedeného deklarací. Pokud indexer není explicitní implementací člena rozhraní, pak je *typ* následován klíčovým slovem `this`. Pro explicitní implementaci člena rozhraní je *typu* následováno *interface_type*, "`.`" a klíčovým slovem `this`. Na rozdíl od jiných členů indexery nemají uživatelsky definované názvy.
 
 *Formal_parameter_list* Určuje parametry indexeru. Seznam formálních parametrů indexeru odpovídá metodě ([parametrům metody](classes.md#method-parameters)), s tím rozdílem, že je nutné zadat alespoň jeden parametr a zda `ref` nejsou povoleny modifikátory parametrů a. `out`
 
 *Typ* indexeru a každý z typů odkazovaných v *formal_parameter_list* musí být alespoň tak přístupný jako indexer samotný ([Omezení přístupnosti](basic-concepts.md#accessibility-constraints)).
 
-*Indexer_body* může buď sestávat z ***těla přistupujícího objektu*** nebo ***textu výrazu***. V těle objektu pro přístup, *accessor_declarations*, který musí být uzavřen v`{`tokenech "`}`" a "", deklarujte přistupující objekty ([přistupující objekty](classes.md#accessors)) vlastnosti. Přistupující objekty určují spustitelné příkazy spojené s čtením a zápisem vlastnosti.
+*Indexer_body* může buď sestávat z ***těla přistupujícího objektu*** nebo ***textu výrazu***. V těle přístupového objektu *accessor_declarations*, který musí být uzavřen v tokenech "`{`" a "`}`", deklarujte přistupující objekty ([přístupové objekty](classes.md#accessors)) vlastnosti. Přistupující objekty určují spustitelné příkazy spojené s čtením a zápisem vlastnosti.
 
 Tělo výrazu sestávající z "`=>`" následovaný výrazem `E` a středníkem je přesně ekvivalentní tělo `{ get { return E; } }`příkazu, a lze jej proto použít pouze k zadání indexerů pouze pro getter, kde je výsledek getter předána jediným výrazem.
 
@@ -3559,7 +3559,7 @@ Existují tři kategorie přetížených operátorů: Unární operátory ([uná
 
 *Operator_body* je buď středník, ***text příkazu*** nebo ***tělo výrazu***. Tělo příkazu se skládá z *bloku*, který určuje příkazy, které mají být provedeny při vyvolání operátoru. *Blok* musí odpovídat pravidlům pro metody vracející hodnoty popsané v [těle metody](classes.md#method-body). Tělo výrazu se skládá `=>` za následováním výrazu a středníkem a označuje jeden výraz, který má být proveden při vyvolání operátoru.
 
-V `extern` případě operátorů se *operator_body* skládá ze středníku. Pro všechny ostatní operátory je *operator_body* buď blokové tělo, nebo tělo výrazu.
+Pro operátory `extern` se *operator_body* skládá jednoduše středník. Pro všechny ostatní operátory je *operator_body* buď blokové tělo, nebo tělo výrazu.
 
 Následující pravidla platí pro všechny deklarace operátorů:
 
@@ -3650,7 +3650,7 @@ Pro `S` daný typ zdroje a cílový typ `T`, pokud `S` nebo `T` jsou typy s mož
 
 *  `S0`a `T0` jsou různé typy.
 *  Buď `S0` nebo`T0` je typem třídy nebo struktury, ve které se provádí deklarace operátoru.
-*  Ani se nejedná o *INTERFACE_TYPE.* `S0` `T0`
+*  Ani `S0` ani `T0` není *INTERFACE_TYPE*.
 *  S výjimkou uživatelem `S` definovaných převodů neexistuje převod z `T` na nebo z `T` na `S`.
 
 Pro účely těchto pravidel jsou všechny parametry typu přidružené `S` k nebo `T` považovány za jedinečné typy, které nemají žádný vztah dědičnosti s jinými typy, a jakákoli omezení u těchto parametrů typu jsou ignorována.
@@ -3775,7 +3775,7 @@ constructor_body
     ;
 ```
 
-*Constructor_declaration* může zahrnovat sadu *atributů* ([atributů](attributes.md)), platnou kombinaci modifikátorů přístupu ke čtyřem `extern` ([modifikátory přístupu](classes.md#access-modifiers)) a modifikátor ([externí metody](classes.md#external-methods)). Deklarace konstruktoru nemůže zahrnovat stejný modifikátor víckrát.
+*Constructor_declaration* může zahrnovat sadu *atributů* ([atributů](attributes.md)), platnou kombinaci modifikátorů přístupu ([modifikátory přístupu](classes.md#access-modifiers)) a modifikátor `extern` ([externí metody](classes.md#external-methods)). Deklarace konstruktoru nemůže zahrnovat stejný modifikátor víckrát.
 
 *Identifikátor* *constructor_declarator* musí pojmenovat třídu, ve které je deklarován konstruktor instance. Pokud je zadán jiný název, dojde k chybě při kompilaci.
 
@@ -3820,11 +3820,11 @@ class B: A
 }
 ```
 
-Inicializátor konstruktoru instance nemá přístup k instanci, kterou vytváříte. Proto se jedná o chybu `this` při kompilaci v rámci výrazu argumentu inicializátoru konstruktoru, jako je chyba při kompilaci pro výraz argumentu na odkazování na člen instance pomocí *simple_name*.
+Inicializátor konstruktoru instance nemá přístup k instanci, kterou vytváříte. Proto se jedná o chybu při kompilaci na odkaz `this` ve výrazu argumentu inicializátoru konstruktoru, jako je chyba při kompilaci pro výraz argumentu na odkazování na člen instance prostřednictvím *simple_name*.
 
 ### <a name="instance-variable-initializers"></a>Inicializátory proměnných instance
 
-Pokud konstruktor instance nemá inicializátor konstruktoru, nebo má inicializátor konstruktoru formuláře `base(...)`, tento konstruktor implicitně provede inicializace určené *variable_initializer*s v polích instance. deklarováno v jeho třídě. To odpovídá sekvenci přiřazení, která je provedena ihned po vstupu do konstruktoru a před implicitním voláním konstruktoru přímé základní třídy. Inicializátory proměnných jsou spouštěny v textovém pořadí, ve kterém jsou uvedeny v deklaraci třídy.
+Pokud konstruktor instance nemá inicializátor konstruktoru, nebo má inicializátor konstruktoru ve formátu `base(...)`, tento konstruktor implicitně provede inicializace určené v *variable_initializer*s polí instance, která jsou deklarována v jeho třída. To odpovídá sekvenci přiřazení, která je provedena ihned po vstupu do konstruktoru a před implicitním voláním konstruktoru přímé základní třídy. Inicializátory proměnných jsou spouštěny v textovém pořadí, ve kterém jsou uvedeny v deklaraci třídy.
 
 ### <a name="constructor-execution"></a>Spuštění konstruktoru
 
@@ -3858,7 +3858,7 @@ class B: A
 }
 ```
 Když `new B()` se používá k vytvoření `B`instance, je vytvořen následující výstup:
-```
+```console
 x = 1, y = 0
 ```
 
@@ -3948,7 +3948,7 @@ Pokud třída neobsahuje deklarace konstruktoru instance, je automaticky poskytn
 ```csharp
 protected C(): base() {}
 ```
-or
+nebo
 ```csharp
 public C(): base() {}
 ```
@@ -4034,11 +4034,11 @@ static_constructor_body
     ;
 ```
 
-*Static_constructor_declaration* může obsahovat sadu *atributů* ( `extern` [atributů](attributes.md)) a modifikátor ([externí metody](classes.md#external-methods)).
+*Static_constructor_declaration* může obsahovat sadu *atributů* ([atributů](attributes.md)) a modifikátor `extern` ([externí metody](classes.md#external-methods)).
 
 *Identifikátor* *static_constructor_declaration* musí pojmenovat třídu, ve které je deklarován statický konstruktor. Pokud je zadán jiný název, dojde k chybě při kompilaci.
 
-Pokud deklarace statického konstruktoru obsahuje `extern` modifikátor, statický konstruktor je označován jako ***externí statický konstruktor***. Vzhledem k tomu, že deklarace externích statických konstruktorů neposkytuje žádnou skutečnou implementaci, její *static_constructor_body* se skládá ze střední hodnoty. Pro všechny ostatní deklarace statického konstruktoru se *static_constructor_body* skládá z *bloku* , který určuje příkazy, které mají být provedeny, aby bylo možné třídu inicializovat. To odpovídá přesně *method_body* statické metody s `void` návratovým typem ([tělo metody](classes.md#method-body)).
+Pokud deklarace statického konstruktoru obsahuje `extern` modifikátor, statický konstruktor je označován jako ***externí statický konstruktor***. Vzhledem k tomu, že deklarace externích statických konstruktorů neposkytuje žádnou skutečnou implementaci, její *static_constructor_body* se skládá ze střední hodnoty. Pro všechny ostatní deklarace statického konstruktoru se *static_constructor_body* skládá z *bloku* , který určuje příkazy, které mají být provedeny, aby bylo možné třídu inicializovat. To odpovídá přesně *method_body* statické metody s návratovým typem `void` ([tělo metody](classes.md#method-body)).
 
 Statické konstruktory nejsou zděděné a nelze je volat přímo.
 
@@ -4084,7 +4084,7 @@ class B
 }
 ```
 musí mít výstup:
-```
+```console
 Init A
 A.F
 Init B
@@ -4119,7 +4119,7 @@ class B
 }
 ```
 Vytvoří výstup
-```
+```console
 X = 1, Y = 2
 ```
 
@@ -4157,7 +4157,7 @@ destructor_body
 
 *Identifikátor* *destructor_declaration* musí pojmenovat třídu, ve které je destruktor deklarovaný. Pokud je zadán jiný název, dojde k chybě při kompilaci.
 
-Když deklarace destruktoru obsahuje `extern` modifikátor, destruktor je označován jako ***externí destruktor***. Vzhledem k tomu, že deklarace externího destruktoru neposkytuje žádnou skutečnou implementaci, její *destructor_body* se skládá ze střední hodnoty. Pro všechny ostatní destruktory se *destructor_body* skládá z *bloku* , který určuje příkazy, které mají být provedeny, aby destrukci instanci třídy. *Destructor_body* odpovídá přesně *method_body* `void` metody instance s návratovým typem ([tělo metody](classes.md#method-body)).
+Když deklarace destruktoru obsahuje `extern` modifikátor, destruktor je označován jako ***externí destruktor***. Vzhledem k tomu, že deklarace externího destruktoru neposkytuje žádnou skutečnou implementaci, její *destructor_body* se skládá ze střední hodnoty. Pro všechny ostatní destruktory se *destructor_body* skládá z *bloku* , který určuje příkazy, které mají být provedeny, aby destrukci instanci třídy. *Destructor_body* odpovídá přesně *method_body* metody instance s návratovým typem `void` ([tělo metody](classes.md#method-body)).
 
 Destruktory nejsou děděny. Třída proto nemá žádné destruktory jiné než ta, která může být deklarována v této třídě.
 
@@ -4723,7 +4723,7 @@ Metoda ([metody](classes.md#methods)) nebo anonymní funkce ([výrazy anonymní 
 
 Jedná se o chybu při kompilaci pro seznam formálních parametrů asynchronní funkce pro určení `ref` parametrů nebo. `out`
 
-Typ asynchronní metody musí být buď `void` nebo ***typu úkolu***. Typy úloh jsou `System.Threading.Tasks.Task` a typy vytvořené z `System.Threading.Tasks.Task<T>`. Pro účely zkrácení je v této kapitole odkazováno `Task` na tyto typy, a `Task<T>`to v uvedeném pořadí. Asynchronní metoda, která vrací typ úkolu, je označována jako vracející úlohy.
+Typ asynchronní metody musí být buď `void`, nebo ***typ úlohy***. Typy úloh jsou `System.Threading.Tasks.Task` a typy vytvořené z `System.Threading.Tasks.Task<T>`. Pro účely zkrácení je v této kapitole odkazováno `Task` na tyto typy, a `Task<T>`to v uvedeném pořadí. Asynchronní metoda, která vrací typ úkolu, je označována jako vracející úlohy.
 
 Přesná definice typů úloh je definovaná implementace, ale v bodě zobrazení je typ úlohy v jednom ze stavů neúplný, úspěšný nebo chybný. Úloha s chybou zaznamená určitou výjimku. Výsledkem úspěšného `Task<T>` záznamu je výsledek typu `T`. Typy úloh jsou await, a proto mohou být operandy výrazů await ([výrazy await](expressions.md#await-expressions)).
 

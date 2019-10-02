@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: adf81842e3c763c7bbdd3f10bb884dc1207b9099
-ms.sourcegitcommit: 0489cb64b7dfb328813d757f4d447a15b85a5851
+ms.openlocfilehash: 2026fc1bf9d3576b967cbc2e9a670aa44b7eab3a
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 09/11/2019
-ms.locfileid: "70912440"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71704024"
 ---
 # <a name="documentation-comments"></a>Komentáře dokumentace
 
@@ -28,7 +28,7 @@ delimited_doc_comment
     ;
 ```
 
-V *single_line_doc_comment*, pokud `///` je znak *mezery* za znaky v každé z *single_line_doc_comment*s aktuální *single_line_doc_comment*, pakve výstupu XML není obsažen prázdný znak.
+Pokud je v *single_line_doc_comment* *mezera* , která následuje za znaky `///` na každé *single_line_doc_comment*s aktuální *single_line_doc_comment*, pak tento *prázdný znak* ve výstupu XML není obsažen znak.
 
 V komentáři s oddělovači, pokud je první neprázdný znak na druhém řádku hvězdičkou a stejný vzor volitelných prázdných znaků a znak hvězdičky se opakuje na začátku každého řádku v rámci objektu s oddělovači. znaky opakovaného vzoru nejsou zahrnuty ve výstupu XML. Vzor může obsahovat prázdné znaky po znaku hvězdičky a také před znakem hvězdičky.
 
@@ -186,7 +186,7 @@ Tato značka umožňuje zahrnout informace z dokumentu XML, který je externí p
 
 __Syntaktick__
 
-```
+```xml
 <include file="filename" path="xpath" />
 ```
 
@@ -597,7 +597,7 @@ Generátor dokumentace při generování řetězců ID dodržuje následující 
    | E             | Událost                                                       |
    | F             | Pole                                                       |
    | M             | Metoda (včetně konstruktorů, destruktorů a operátorů) |
-   | N             | Obor názvů                                                   |
+   | Ne             | Obor názvů                                                   |
    | P             | Vlastnost (včetně indexerů)                               |
    | T             | Typ (například třída, delegát, výčet, rozhraní a struktura) |
    | !             | Chybový řetězec; zbytek řetězce poskytuje informace o chybě. Například generátor dokumentace generuje informace o chybě pro odkazy, které nelze přeložit. |

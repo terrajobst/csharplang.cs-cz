@@ -1,16 +1,16 @@
 ---
-ms.openlocfilehash: c3b716e6eb331be2ee33fffeb42c1e2406cd3a5c
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 3b142d7dbda8a94a4cf2c973a2e380065dcbf5ee
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488761"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71703969"
 ---
 # <a name="enums"></a>Výčty
 
-***Typ výčtu*** je typ odlišné hodnoty ([typů hodnot](types.md#value-types)), který deklaruje sadou pojmenovaných konstant.
+***Typ výčtu*** je jedinečný typ hodnoty ([typy hodnot](types.md#value-types)), který deklaruje sadu pojmenovaných konstant.
 
-V příkladu
+Příklad
 
 ```csharp
 enum Color
@@ -21,11 +21,11 @@ enum Color
 }
 ```
 
-deklaruje typ výčtu s názvem `Color` s členy `Red`, `Green`, a `Blue`.
+Deklaruje typ výčtu s názvem `Color` s členy `Red`, `Green` a `Blue`.
 
 ## <a name="enum-declarations"></a>Deklarace výčtu
 
-Deklarace výčtu deklaruje nový typ výčtu. Deklarace výčtu začíná klíčovým slovem `enum`a definuje název, dostupnost, nadřízený typ a členy výčtu.
+Deklarace výčtu deklaruje nový typ výčtu. Deklarace výčtu začíná klíčovým slovem `enum` a definuje název, přístupnost, nadřízený typ a členy výčtu.
 
 ```antlr
 enum_declaration
@@ -42,9 +42,9 @@ enum_body
     ;
 ```
 
-Každý typ enum má odpovídající integrální typ s názvem ***nadřízený typ*** typu výčtu. Tento typ musí být schopno představovat všechny hodnoty výčtu definované ve výčtu. Základní typ explicitně deklarovat deklarace výčtu `byte`, `sbyte`, `short`, `ushort`, `int`, `uint`, `long` nebo `ulong`. Všimněte si, že `char` nelze použít jako základního typu. Deklarace výčtu, která nedeklaruje explicitně nadřízený typ má základní typ `int`.
+Každý typ výčtu má odpovídající celočíselný typ nazvaný ***základní typ*** výčtového typu. Tento nadřízený typ musí být schopný reprezentovat všechny hodnoty výčtu definované ve výčtu. Deklarace výčtu může explicitně deklarovat základní typ `byte`, `sbyte`, `short`, `ushort`, `int`, `uint`, `long` nebo `ulong`. Všimněte si, že `char` nelze použít jako podkladový typ. Deklarace výčtu, která explicitně nedeklaruje nadřízený typ, má podkladový typ `int`.
 
-V příkladu
+Příklad
 
 ```csharp
 enum Color: long
@@ -55,11 +55,11 @@ enum Color: long
 }
 ```
 
-deklaruje výčet s základního typu `long`. Vývojáři zvolit použití základního typu `long`, jako v příkladu umožní použít hodnoty, které jsou v rozsahu `long` , ale není v rozsahu `int`, nebo zachovat tuto možnost v budoucnosti.
+deklaruje výčet s podkladovým typem `long`. Vývojář se může rozhodnout použít základní typ `long`, jako v příkladu, pro povolení použití hodnot, které jsou v rozsahu `long`, ale ne v rozsahu `int`, nebo pro zachování této možnosti pro budoucnost.
 
 ## <a name="enum-modifiers"></a>Modifikátory výčtu
 
-*Enum_declaration* může volitelně zahrnovat posloupnost modifikátory výčtu:
+*Enum_declaration* může volitelně zahrnovat posloupnost modifikátorů výčtu:
 
 ```antlr
 enum_modifier
@@ -71,13 +71,13 @@ enum_modifier
     ;
 ```
 
-Je chyba kompilace pro stejný modifikátor se zobrazí více než jednou v deklaraci výčtu.
+Jedná se o chybu při kompilaci, aby se stejný modifikátor zobrazoval víckrát v deklaraci výčtu.
 
-Modifikátory deklarace výčtu mají stejný význam jako deklarace třídy ([třídy modifikátory](classes.md#class-modifiers)). Upozorňujeme však, který `abstract` a `sealed` modifikátory nejsou povolené v deklaraci výčtu. Výčty nemohou být abstraktní a není povoleno odvození.
+Modifikátory výčtového typu mají stejný význam jako deklarace třídy ([modifikátory třídy](classes.md#class-modifiers)). Upozorňujeme však, že modifikátory `abstract` a `sealed` nejsou v deklaraci výčtu povoleny. Výčty nemohou být abstraktní a nepovolují odvození.
 
 ## <a name="enum-members"></a>Členy výčtu
 
-Tělo deklaraci typu výčtu definuje nula nebo více členy výčtu, které jsou pojmenované konstanty typu výčtu. Žádné dva členy výčtu může mít stejný název.
+Tělo deklarace výčtového typu definuje nula nebo více členů výčtu, které jsou pojmenované konstanty typu výčtu. Žádný ze dvou členů výčtu nesmí mít stejný název.
 
 ```antlr
 enum_member_declarations
@@ -89,7 +89,7 @@ enum_member_declaration
     ;
 ```
 
-Každý člen výčtu má přidruženou konstantní hodnotu. Typ této hodnoty je základní typ pro obsahující Výčet. Konstantní hodnoty pro každého člena výčtu musí být v rozsahu nadřízený typ výčtu. V příkladu
+Každý člen výčtu má přidruženou konstantní hodnotu. Typ této hodnoty je základní typ pro obsažený výčet. Hodnota konstanty pro každý člen výčtu musí být v rozsahu nadřazeného typu pro výčet. Příklad
 
 ```csharp
 enum Color: uint
@@ -100,9 +100,9 @@ enum Color: uint
 }
 ```
 
-výsledkem chyba kompilace, protože konstantní hodnoty `-1`, `-2`, a `-3` nejsou v rozsahu podkladových celočíselného typu `uint`.
+dojde k chybě v době kompilace, protože hodnoty konstant `-1`, `-2` a `-3` nejsou v rozsahu základního integrálního typu `uint`.
 
-Více členů výčtu může sdílet stejné přidruženou hodnotu. V příkladu
+Víc členů výčtu může sdílet stejnou přidruženou hodnotu. Příklad
 
 ```csharp
 enum Color 
@@ -115,14 +115,14 @@ enum Color
 }
 ```
 
-Zobrazí výčet v dva členy výčtu – `Blue` a `Max` --mají stejné přidružené hodnoty.
+zobrazuje výčet, ve kterém jsou dva členy výčtu--`Blue` a `Max`--mají stejnou přidruženou hodnotu.
 
-Přidružená hodnota člen výčtu je přiřazena implicitně nebo explicitně. Pokud má deklarace člena výčtu *constant_expression* inicializátor, hodnota tento konstantní výraz, implicitně převeden na podkladový typ výčtového typu, je přidružená hodnota člena výčtu. Pokud deklarace výčtu člen nemá žádný inicializátor, je její přidružené hodnoty nastavit implicitně, následujícím způsobem:
+Přidružená hodnota člena výčtu je přiřazena implicitně nebo explicitně. Pokud deklarace člena výčtu má inicializátor *constant_expression* , hodnota tohoto konstantního výrazu implicitně převedená na nadřízený typ výčtu je přidružená hodnota člena výčtu. Pokud deklarace člena výčtu nemá žádný inicializátor, je jeho přidružená hodnota nastavena implicitně následujícím způsobem:
 
-*  Pokud je člen výčtu první člen výčtu deklarovaný ve výčtu typu, je jeho přidruženou hodnotu nula.
-*  V opačném případě se přidružená hodnota člena výčtu získá zvýšením přidružená hodnota textový předchozí člen výčtu o jednu. Tato vyšší hodnota musí být v rozsahu hodnot, které může být reprezentován základní typ, jinak dojde k chybě kompilace.
+*  Pokud je člen výčtu prvním členem výčtu deklarovaným v typu výčtu, jeho přidružená hodnota je nula.
+*  V opačném případě se přidružená hodnota člena výčtu získá zvýšením přidružené hodnoty textu před výčtem, který je členem. Tato zvýšená hodnota musí být v rozsahu hodnot, které mohou být reprezentovány podkladovým typem, v opačném případě dojde k chybě při kompilaci.
 
-V příkladu
+Příklad
 
 ```csharp
 using System;
@@ -160,9 +160,9 @@ class Test
 }
 ```
 
-Vytiskne názvy členů výčtu a jejich přidružené hodnoty. Výstup bude:
+vytiskne názvy členů výčtu a jejich přidružené hodnoty. Výstup je:
 
-```
+```console
 Red = 0
 Green = 10
 Blue = 11
@@ -170,13 +170,13 @@ Blue = 11
 
 z následujících důvodů:
 
-*  člen výčtu `Red` se automaticky přiřadí hodnotu nula (protože nemá žádný inicializátor a je první člen výčtu);
-*  člen výčtu `Green` explicitně přiřazena hodnota `10`;
-*  a člen výčtu `Blue` je automaticky přiřazena hodnota větší než člena, který mu předchází pomocí textu.
+*  člen výčtu `Red` automaticky přiřadí hodnotu nula (protože nemá žádný inicializátor a je prvním členem výčtu);
+*  člen výčtu `Green` má explicitně udělenou hodnotu `10`;
+*  a člen výčtu `Blue` automaticky přiřazuje hodnotu vyšší než člen, který předá text.
 
-Přidružená hodnota člen výčtu není, může přímo nebo nepřímo, použijte hodnotu vlastní člen přidružené výčtu. Než toto omezení Cykličnost mohou odkazovat na jiné inicializátory členů výčtu, bez ohledu na jejich umístění textové volně inicializátory členů výčtu. V rámci inicializátor člena výčtu jsou hodnoty ostatních členů výčtu vždy považovány za typu základní typ, tak, aby přetypování nejsou nutné k odkazování na ostatní členy výčtu.
+Přidružená hodnota člena výčtu nesmí přímo ani nepřímo používat hodnotu vlastního přidruženého člena výčtu. Kromě tohoto omezení cyklace mohou Inicializátory členů výčtu volně odkazovat na jiné Inicializátory členů výčtu, bez ohledu na jejich textovou pozici. V rámci inicializátoru členů výčtu jsou hodnoty jiných členů výčtu vždy zpracovány jako typ jejich nadřazeného typu, takže přetypování není nutné při odkazování na jiné členy výčtu.
 
-V příkladu
+Příklad
 
 ```csharp
 enum Circular
@@ -186,22 +186,22 @@ enum Circular
 }
 ```
 
-výsledkem chyba kompilace, protože prohlášení o `A` a `B` jsou cyklické. `A` závisí na `B` explicitně, a `B` závisí na `A` implicitně.
+dojde k chybě v době kompilace, protože deklarace `A` a `B` jsou cyklické. `A` závisí explicitně na `B` a `B` je implicitně závislá na `A`.
 
-Jsou členové výčtu s názvem a obor způsobem přesně obdobná na pole v rámci třídy. Rozsah člen výčtu je tělo jeho nadřazený typ výčtu. V daném oboru členy výčtu může být podle jejich jednoduchý název. Název na člena výčtu musí být kvalifikován s názvem typu výčtu, od jiného kódu. Členů výčtu nemají žádné deklarovaná přístupnost – člen výčtu je přístupný, pokud jeho nadřazený typ výčtu je přístupný.
+Členy výčtu jsou pojmenovány a vymezeny způsobem, který je přesně podobný polím v rámci tříd. Rozsah člena výčtu je tělo jeho obsahujícího typu výčtu. V rámci tohoto oboru můžou být členy výčtu odkazováni podle jejich jednoduchého názvu. Ze všech ostatních kódů musí být název člena výčtu kvalifikován názvem jeho typu výčtu. Členové výčtu nemají žádné deklarované přístupnost – člen výčtu je přístupný, pokud je jeho nadřazený typ výčtu přístupný.
 
-## <a name="the-systemenum-type"></a>Typ System.Enum
+## <a name="the-systemenum-type"></a>Typ System. Enum
 
-Typ `System.Enum` je abstraktní základní třída všech typů výčtu (to se liší a liší se od základní typ typu výčtu) a členy zděděné z `System.Enum` jsou k dispozici v libovolný typ výčtu. Převod na uzavřené určení ([zabalení převody](types.md#boxing-conversions)) existuje z libovolného typu výčtu na `System.Enum`a unboxingového převodu ([rozbalení převody](types.md#unboxing-conversions)) existuje z `System.Enum` na libovolný typ výčtu.
+Typ `System.Enum` je abstraktní základní třída všech typů výčtu (to je rozdílné a odlišná od základního typu typu výčtu) a členy zděděné z `System.Enum` jsou k dispozici v jakémkoli typu výčtu. Převod zabalení ([převody zabalení](types.md#boxing-conversions)) existuje z libovolného typu výčtu na `System.Enum` a převod rozbalení ([převody rozbalení](types.md#unboxing-conversions)) existuje z `System.Enum` na libovolný typ výčtu.
 
-Všimněte si, že `System.Enum` není samotné *enum_type*. Místo toho je *class_type* z kterého jsou všechny *enum_type*s jsou odvozeny. Typ `System.Enum` dědí z typu `System.ValueType` ([typ The System.ValueType](types.md#the-systemvaluetype-type)), který zase dědí z typu `object`. V době běhu, hodnota typu `System.Enum` může být `null` nebo odkaz zabalené hodnoty libovolného typu výčtu.
+Všimněte si, že `System.Enum` není *enum_type*. Místo toho je *class_type* , ze kterého jsou odvozeny všechny *enum_typey*. Typ `System.Enum` dědí z typu `System.ValueType` ([typ System. ValueType](types.md#the-systemvaluetype-type)), který naopak dědí z typu `object`. V době běhu může být hodnota typu `System.Enum` `null` nebo odkaz na zabalenou hodnotu libovolného typu výčtu.
 
-## <a name="enum-values-and-operations"></a>Hodnoty výčtu a operace
+## <a name="enum-values-and-operations"></a>Výčtové hodnoty a operace
 
-Každý typ výčtu definuje odlišný typ; konverzi explicitní výčet ([výčet explicitní převody](conversions.md#explicit-enumeration-conversions)) je nutné k převodu mezi výčtovým typem a celočíselného typu, nebo mezi dvěma typy výčtu. Sadu hodnot, které může přijmout typ výčtu není omezena jeho členy výčtu. Konkrétně se libovolná hodnota základního typu výčtu lze převést na typ výčtu a odlišné platná hodnota daného typu výčtu.
+Každý typ výčtu definuje odlišný typ; pro převod mezi výčtovým typem a integrálním typem nebo mezi dvěma typy výčtu se vyžaduje explicitní převod výčtu ([explicitní převody výčtu](conversions.md#explicit-enumeration-conversions)). Sada hodnot, na jejichž základě může typ výčtu pobírat, není omezena členy výčtu. Konkrétně jakákoli hodnota nadřazeného typu výčtu může být převedena na typ výčtu a je odlišná platná hodnota tohoto typu výčtu.
 
-Členové výčtu mají typ jejich nadřazeným typem výčtu (s výjimkou v rámci jiné inicializátory členů výčtu: naleznete v tématu [členy výčtu](enums.md#enum-members)). Hodnota člen výčtu deklarovaný v typu výčtu `E` s přidruženou hodnotu `v` je `(E)v`.
+Členy výčtu mají typ svého obsahujícího výčtového typu (s výjimkou jiných inicializátorů členů výčtu: viz [výčet členů](enums.md#enum-members)). Hodnota člena výčtu deklarovaného v typu výčtu `E` s přidruženou hodnotou `v` je `(E)v`.
 
-U hodnot typu výčtu typů lze použít následující operátory: `==`, `!=`, `<`, `>`, `<=`, `>=`  ([operátory porovnání výčet](expressions.md#enumeration-comparison-operators)) , binární `+`  ([operátor sčítání](expressions.md#addition-operator)), binární `-`  ([operátor odčítání](expressions.md#subtraction-operator)), `^`, `&` , `|`  ([Logické operátory výčet](expressions.md#enumeration-logical-operators)), `~`  ([operátor bitového doplňku](expressions.md#bitwise-complement-operator)), `++` a `--`  ([Příponové operátory Inkrementace a dekrementace operátory](expressions.md#postfix-increment-and-decrement-operators) a [předpony Inkrementace a dekrementace operátory](expressions.md#prefix-increment-and-decrement-operators)).
+Následující operátory lze použít na hodnoty typů výčtu: `==`, `!=`, `<`, `>`, `<=`, `>=` @ no__t-6 ([operátory porovnání výčtu](expressions.md#enumeration-comparison-operators)), binární `+` @ no__t-9 ([operátor sčítání](expressions.md#addition-operator)), binární 1 @ no__ t-12 ([operátor odčítání](expressions.md#subtraction-operator)), 4, 5, 6 @ no__t-17 ([logické operátory výčtu](expressions.md#enumeration-logical-operators)), 9 @ no__t-20 ([Operátor bitového doplňku](expressions.md#bitwise-complement-operator)), 2 a 3 @ no__t-24 ([přírůstek přípony a operátory snížení](expressions.md#postfix-increment-and-decrement-operators) a [operátory přírůstku a snížení předpony](expressions.md#prefix-increment-and-decrement-operators)).
 
-Každý typ výčtu je automaticky odvozen ze třídy `System.Enum` (která, pak je odvozena z `System.ValueType` a `object`). Proto zděděné metody a vlastnosti této třídy lze použít u hodnot typu výčtu.
+Každý typ výčtu je automaticky odvozen od třídy `System.Enum` (což je naopak odvozeno z `System.ValueType` a `object`). Proto lze zděděné metody a vlastnosti této třídy použít pro hodnoty typu výčtu.

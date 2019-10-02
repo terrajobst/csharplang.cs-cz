@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 8bc4bf6310fb8a8457beee167f18d30aaca10a8e
-ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
+ms.openlocfilehash: 300d5fc2a2fadd98472d73c122226146605b01dd
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 09/10/2019
-ms.locfileid: "70876891"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71703973"
 ---
 # <a name="introduction"></a>Úvod
 
@@ -36,11 +36,11 @@ class Hello
 ```
 
 C#zdrojové soubory mají obvykle příponu `.cs`souboru. Za předpokladu, že program "Hello, World" je uložen `hello.cs`v souboru, program může být zkompilován s kompilátorem společnosti Microsoft C# pomocí příkazového řádku
-```
+```console
 csc hello.cs
 ```
 který vytváří spustitelné sestavení s názvem `hello.exe`. Výstup vytvořený touto aplikací při spuštění je
-```
+```console
 Hello, World
 ```
 
@@ -91,7 +91,7 @@ namespace Acme.Collections
 ```
 deklaruje třídu s názvem `Stack` v oboru názvů s názvem. `Acme.Collections` Plně kvalifikovaný název této třídy je `Acme.Collections.Stack`. Třída obsahuje několik členů: pole s `top`názvem, dvě metody pojmenované `Push` a `Pop`a vnořená třída s názvem `Entry`. Třída dále obsahuje tři členy: pole s názvem `next`, pole s názvem `data`a konstruktor. `Entry` Za předpokladu, že zdrojový kód příkladu je uložen v souboru `acme.cs`, příkazový řádek
 
-```
+```console
 csc /t:library acme.cs
 ```
 zkompiluje příklad jako knihovnu (kód bez `Main` vstupního bodu) a vytvoří sestavení s názvem. `acme.dll`
@@ -119,12 +119,12 @@ class Test
 ```
 Pokud je program `test.cs`uložen v souboru, když `test.cs` je zkompilován, `acme.dll` `/r` sestavení lze odkazovat pomocí možnosti kompilátoru:
 
-```
+```console
 csc /r:acme.dll test.cs
 ```
 Tím se vytvoří spustitelné sestavení s `test.exe`názvem, které při spuštění vytvoří výstup:
 
-```
+```console
 100
 10
 1
@@ -180,9 +180,9 @@ Následující tabulka shrnuje C#číselné typy.
 |                   | 16       | `ushort`  | 0... 65, 535 |
 |                   | 32       | `uint`    | 0... 4, 294, 967, 295 |
 |                   | 64       | `ulong`   | 0... 18, 446, 744, 073, 709, 551, 615 |
-| Plovoucí desetinná čárka    | 32       | `float`   | 1,5 × 10 ^ − 45 až 3,4 × 10 ^ 38, 7 – přesnost číslic |
+| Číslo s plovoucí desetinnou čárkou    | 32       | `float`   | 1,5 × 10 ^ − 45 až 3,4 × 10 ^ 38, 7 – přesnost číslic |
 |                   | 64       | `double`  | 5,0 × 10 ^ − 324 a 1,7 × 10 ^ 308, přesnost na 15 číslic |
-| Desetinné číslo           | 128      | `decimal` | 1,0 × 10 ^ − 28 až 7,9 × 10 ^ 28, 28 číslic – přesnost |
+| Decimal           | 128      | `decimal` | 1,0 × 10 ^ − 28 až 7,9 × 10 ^ 28, 28 číslic – přesnost |
 
 C#programy používají ***deklarace typů*** k vytváření nových typů. Deklarace typu Určuje název a členy nového typu. C#Pět kategorií typů je uživatelsky definované: typy tříd, typy struktury, typy rozhraní, výčtové typy a typy delegátů.
 
@@ -275,8 +275,8 @@ Následující tabulka shrnuje C#operátory, které obsahují kategorie operáto
 |                                  | `x - y`           | Odčítání, odebrání delegátů |
 | SHIFT                            | `x << y`          | Posun doleva |
 |                                  | `x >> y`          | Posun doprava |
-| Relační testování a testování typu      | `x < y`           | Menší než |
-|                                  | `x > y`           | Větší než |
+| Relační testování a testování typu      | `x < y`           | Je menší než |
+|                                  | `x > y`           | Je větší než |
 |                                  | `x <= y`          | Menší nebo rovno |
 |                                  | `x >= y`          | Větší nebo rovno |
 |                                  | `x is T`          | Vrátí `true` ,`T`Pokud `x` je, jinak`false` |
@@ -595,7 +595,7 @@ Point p2 = new Point(10, 20);
 ```
 Paměť obsazená objektem je automaticky uvolněna, pokud se objekt již nepoužívá. Není ani možné explicitně zrušit přidělení objektů v C#.
 
-### <a name="members"></a>Členové
+### <a name="members"></a>Members
 
 Členy třídy jsou buď ***statické členy*** , nebo ***členy instance***. Statické členy patří ke třídám a členy instance patří do objektů (instance tříd).
 
@@ -605,17 +605,17 @@ Následující tabulka poskytuje přehled druhů členů, které třída může 
 | __Člen__   | __Popis__ |
 |------------  |-----------------|
 | Konstanty    | Konstantní hodnoty přidružené ke třídě |
-| Pole       | Proměnné třídy |
+| Fields (Pole)       | Proměnné třídy |
 | Metody      | Výpočty a akce, které mohou být provedeny třídou |
-| Vlastnosti   | Akce spojené s čtením a zápisem s názvem vlastnosti třídy |
+| properties   | Akce spojené s čtením a zápisem s názvem vlastnosti třídy |
 | Indexery     | Akce přidružené k indexování instancí třídy, jako je pole |
-| Události       | Oznámení, která mohou být vygenerována třídou |
+| Duration       | Oznámení, která mohou být vygenerována třídou |
 | Operátory    | Převody a operátory výrazů podporované třídou |
 | Konstruktory | Akce vyžadované pro inicializaci instancí třídy nebo samotné třídy |
 | Destruktory  | Akce, které se mají provést před tím, než se instance třídy trvale zahodí |
 | Typy        | Vnořené typy deklarované třídou |
 
-### <a name="accessibility"></a>Usnadnění
+### <a name="accessibility"></a>Přístupnost
 
 Každý člen třídy má přidruženou přístupnost, která řídí oblasti textu programu, které mají přístup k členu. Existuje pět možných forem usnadnění přístupu. Tyto jsou shrnuté v následující tabulce.
 
@@ -683,7 +683,7 @@ Point a = new Point(10, 20);
 Point b = new Point3D(10, 20, 30);
 ```
 
-### <a name="fields"></a>Pole
+### <a name="fields"></a>Fields (Pole)
 
 Pole je proměnná, která je přidružena ke třídě nebo s instancí třídy.
 
@@ -1138,7 +1138,7 @@ List<string> list2 = new List<string>(10);
 ```
 Na rozdíl od jiných členů nejsou konstruktory instancí zděděny a třída nemá žádné konstruktory instancí jiné než ty, které jsou ve třídě skutečně deklarovány. Pokud pro třídu není zadán konstruktor instance, bude automaticky zadáno prázdné číslo bez parametrů.
 
-#### <a name="properties"></a>Vlastnosti
+#### <a name="properties"></a>properties
 
 ***Vlastnosti*** jsou přirozené rozšíření polí. Oba se nazývají členové s přidruženými typy a syntaxe pro přístup k polím a vlastnostem je stejná. Na rozdíl od polí ale vlastnosti neoznačují umístění úložiště. Místo toho mají vlastnosti ***přistupující objekty*** , které určují příkazy, které mají být provedeny, když jsou jejich hodnoty čteny nebo zapsány.
 
@@ -1164,7 +1164,7 @@ Přístupové objekty vlastnosti mohou být virtuální. Pokud deklarace vlastno
 
 ***Indexer*** je člen, který umožňuje, aby objekty byly indexovány stejným způsobem jako pole. Indexer je deklarován jako vlastnost s tím rozdílem, že název člena je `this` následován seznamem parametrů napsaným mezi `[` oddělovači a `]`. Parametry jsou k dispozici v přistupujícím objektu indexeru. Podobně jako u vlastností mohou být indexery pro čtení i zápis, jen pro čtení a přístup k nástroji indexeru, které mohou být virtuální.
 
-Třída deklaruje jeden indexer pro čtení a zápis, který `int` přebírá parametr. `List` Indexer umožňuje indexovat `List` instance s `int` hodnotami. Příklad
+Třída deklaruje jeden indexer pro čtení a zápis, který `int` přebírá parametr. `List` Indexer umožňuje indexovat `List` instance s `int` hodnotami. Například
 
 ```csharp
 List<string> names = new List<string>();
@@ -1178,7 +1178,7 @@ for (int i = 0; i < names.Count; i++) {
 ```
 Indexery mohou být přetíženy, což znamená, že třída může deklarovat více indexerů za předpokladu, že počet nebo typy jejich parametrů se liší.
 
-#### <a name="events"></a>Události
+#### <a name="events"></a>Duration
 
 ***Událost*** je člen, který umožňuje třídě nebo objektu poskytovat oznámení. Událost je deklarována jako pole s tím rozdílem, že deklarace `event` zahrnuje klíčové slovo a typ musí být delegovaný typ.
 
@@ -1400,7 +1400,7 @@ public class EditBox: IControl, IDataBound
     public void Bind(Binder b) {...}
 }
 ```
-Pokud třída nebo struktura implementuje konkrétní rozhraní, instance této třídy nebo struktury lze implicitně převést na tento typ rozhraní. Příklad
+Pokud třída nebo struktura implementuje konkrétní rozhraní, instance této třídy nebo struktury lze implicitně převést na tento typ rozhraní. Například
 
 ```csharp
 EditBox editBox = new EditBox();
@@ -1486,7 +1486,7 @@ enum Alignment: sbyte
 ```
 Jak je znázorněno v předchozím příkladu, deklarace člena výčtu může zahrnovat konstantní výraz, který určuje hodnotu člena. Hodnota konstanty pro každého člena výčtu musí být v rozsahu nadřazeného typu výčtu. Když deklarace člena výčtu explicitně neurčí hodnotu, členovi se předává hodnota nula (Pokud se jedná o první člen v typu výčtu) nebo hodnota dříve předcházejícího člena výčtu plus jedna.
 
-Hodnoty výčtu lze převést na integrální hodnoty a naopak pomocí přetypování typů. Příklad
+Hodnoty výčtu lze převést na integrální hodnoty a naopak pomocí přetypování typů. Například
 
 ```csharp
 int i = (int)Color.Blue;        // int i = 2;

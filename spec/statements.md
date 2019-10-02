@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 94346034a667ad4af26796c0c4bbc96d6ed79aba
-ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
+ms.openlocfilehash: 7248a91976c479dc1b6b64b799639635617a7bec
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 09/10/2019
-ms.locfileid: "70876836"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71704046"
 ---
 # <a name="statements"></a>Příkazy
 
@@ -41,7 +41,7 @@ void F(bool b) {
         int i = 44;
 }
 ```
-Výsledkem je chyba při kompilaci, protože `if` příkaz vyžaduje *embedded_statement* , nikoli *příkaz* pro svou větev if. Pokud byl tento kód povolen, proměnná `i` by byla deklarována, ale nebyla nikdy použita. Všimněte si však, že `i`vložením deklarace do bloku je platný příklad.
+má za následek chybu při kompilaci, protože příkaz `if` vyžaduje *embedded_statement* , nikoli *příkaz* pro svou větev if. Pokud byl tento kód povolen, proměnná `i` by byla deklarována, ale nebyla nikdy použita. Všimněte si však, že `i`vložením deklarace do bloku je platný příklad.
 
 ## <a name="end-points-and-reachability"></a>Koncové body a dosažitelnost
 
@@ -254,9 +254,9 @@ local_variable_initializer
     ;
 ```
 
-*Local_variable_type* *local_variable_declaration* buď přímo určuje typ proměnných zavedených deklarací, nebo označuje identifikátor `var` , který má být typu odvozen na základě inicializátor. Po typu následuje seznam *local_variable_declarator*, z nichž každá zavádí novou proměnnou. *Local_variable_declarator* se skládá z *identifikátoru* , který proměnnou pojmenovává, volitelně následovaný "`=`" tokenem a *local_variable_initializer* , který poskytuje počáteční hodnotu proměnné.
+*Local_variable_type* *local_variable_declaration* buď přímo určuje typ proměnných zavedených deklarací, nebo označuje identifikátor `var`, že typ by měl být odvozen na základě inicializátoru. Po typu následuje seznam *local_variable_declarator*, z nichž každá zavádí novou proměnnou. *Local_variable_declarator* se skládá z *identifikátoru* , který proměnnou pojmenovává, volitelně následovaný tokenem "`=`" a *local_variable_initializer* , který poskytuje počáteční hodnotu proměnné.
 
-V kontextu deklarace lokální proměnné funguje var jako kontextové klíčové slovo ([klíčová slova](lexical-structure.md#keywords)). Pokud je *local_variable_type* zadán jako `var` a žádný typ s názvem `var` není v oboru, deklarace je ***implicitně typovou deklarací lokální proměnné***, jejíž typ je odvozen od typu přidruženého inicializátoru. vyjádření. Implicitně typované deklarace lokálních proměnných podléhá následujícím omezením:
+V kontextu deklarace lokální proměnné funguje var jako kontextové klíčové slovo ([klíčová slova](lexical-structure.md#keywords)). Pokud je *local_variable_type* zadán jako `var` a žádný typ s názvem `var` není v oboru, deklarace je ***implicitně typovou deklarací lokální proměnné***, jejíž typ je odvozen z typu přidruženého výrazu inicializátoru. Implicitně typované deklarace lokálních proměnných podléhá následujícím omezením:
 
 *  *Local_variable_declaration* nemůže obsahovat více *local_variable_declarator*s.
 *  *Local_variable_declarator* musí zahrnovat *local_variable_initializer*.
@@ -331,7 +331,7 @@ constant_declarator
     ;
 ```
 
-*Typ* *local_constant_declaration* určuje typ konstant zavedený deklarací. Po typu následuje seznam *constant_declarator*, z nichž každá zavádí novou konstantu. *Constant_declarator* se skládá z *identifikátoru* , který obsahuje název konstanty následovaný "`=`" tokenem následovaným *constant_expression* ([konstantními výrazy](expressions.md#constant-expressions)), které poskytují hodnotu konstanty.
+*Typ* *local_constant_declaration* určuje typ konstant zavedený deklarací. Po typu následuje seznam *constant_declarator*, z nichž každá zavádí novou konstantu. *Constant_declarator* sestává z *identifikátoru* , který pojmenovává konstantu následovanou tokenem "`=`" následovaným *constant_expression* ([konstantními výrazy](expressions.md#constant-expressions)), které poskytují hodnotu konstanty.
 
 *Typ* a *constant_expression* deklarace místní konstanty musí splňovat stejná pravidla jako deklarace konstantního člena ([konstanty](classes.md#constants)).
 
@@ -441,11 +441,11 @@ switch_label
     ;
 ```
 
-*Switch_statement* se skládá z klíčového `switch`slova následovaného výrazem v závorkách (nazývaný výraz Switch) následovaným *switch_block*. *Switch_block* se skládá z nuly nebo více *switch_section*s uzavřenými závorkami. Každý *switch_section* se skládá z jednoho nebo více *switch_label*, po kterých následuje *statement_list* ([seznamy příkazů](statements.md#statement-lists)).
+*Switch_statement* se skládá z klíčového slova `switch` následované výrazem v závorkách (nazývaný výraz Switch) následovaným *switch_block*. *Switch_block* se skládá z nuly nebo více *switch_section*s uzavřenými závorkami. Každý *switch_section* se skládá z jednoho nebo více *switch_label*, po kterých následuje *statement_list* ([seznamy příkazů](statements.md#statement-lists)).
 
 Typ`switch` ***řízení*** příkazu je vytvořen výrazem přepínače.
 
-*  Pokud je `sbyte`typ výrazu přepínače `ushort`, `byte`, `short` ,,`uint` ,,`long` ,`char`,, ,`string`nebo `int` `ulong` `bool`  *enum_type*, nebo pokud se jedná o typ s možnou hodnotou null odpovídající jednomu z těchto typů, pak to je typ `switch` řízení příkazu.
+*  Pokud je typ výrazu přepínače `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `bool`, `char`, 0 nebo *enum_type*, nebo pokud se jedná o typ s možnou hodnotou null, který odpovídá jednomu z těchto typů a je to typ řízení příkazu 2.
 *  V opačném případě musí existovat přesně jeden uživatelem definovaný implicitní převod ([uživatelem definované převody](conversions.md#user-defined-conversions)) z typu výrazu Switch na jeden z následujících možných typů řízení `sbyte`:, `byte`,, `ushort` `short` , `int` ,`uint`, ,`char`,, nebo`string`, typ s možnou hodnotou null, který odpovídá jednomu z těchto typů. `ulong` `long`
 *  V opačném případě, pokud žádný takový implicitní převod neexistuje nebo pokud existuje více než jeden takový implicitní převod, dojde k chybě při kompilaci.
 
@@ -634,7 +634,7 @@ do_statement
 `do` Příkaz se spustí takto:
 
 *  Ovládací prvek se přenese do vloženého příkazu.
-*  Když a pokud ovládací prvek dosáhne koncového bodu vloženého příkazu (případně z provádění `continue` příkazu), je vyhodnocen *Boolean_expression* ([booleovské výrazy](expressions.md#boolean-expressions)). Je-li logický výraz `true`výsledkem, je ovládací prvek převeden na začátek `do` příkazu. V opačném případě je ovládací prvek převeden na koncový bod `do` příkazu.
+*  Když a pokud ovládací prvek dosáhne koncového bodu vloženého příkazu (případně z spuštění příkazu `continue`), vyhodnotí se *Boolean_expression* ([booleovské výrazy](expressions.md#boolean-expressions)). Je-li logický výraz `true`výsledkem, je ovládací prvek převeden na začátek `do` příkazu. V opačném případě je ovládací prvek převeden na koncový bod `do` příkazu.
 
 `do` V rámci vloženého příkazu `break` příkazu může být příkaz ([příkaz break](statements.md#the-break-statement)) použit k přenosu `do` ovládacího prvku na koncový bod příkazu (takže koncová iterace vloženého příkazu) a `continue` příkaz ([příkaz Continue](statements.md#the-continue-statement)) lze použít k přenosu řízení na koncový bod vloženého příkazu.
 
@@ -682,20 +682,20 @@ Příkaz for se spustí takto:
 
 *  Pokud je přítomen *for_initializer* , Inicializátory proměnných nebo výrazy příkazů jsou spouštěny v pořadí, ve kterém jsou zapsány. Tento krok se provádí jenom jednou.
 *  Pokud je přítomen *for_condition* , vyhodnotí se.
-*  Pokud *for_condition* není k dispozici nebo pokud dojde k vyhodnocení `true`, řízení se přenese do vloženého příkazu. Když a pokud ovládací prvek dosáhne koncového bodu vloženého příkazu (případně z provádění `continue` příkazu), jsou výrazy *for_iterator*, pokud existují, vyhodnocovány v sekvenci a poté je provedena další iterace, počínaje vyhodnocení *for_condition* v kroku výše.
-*  Pokud je přítomen *for_condition* a vyhodnocení `false`, řízení je převedeno na `for` koncový bod příkazu.
+*  Pokud *for_condition* k dispozici nebo pokud vyhodnocení vyhodnocuje `true`, ovládací prvek se přenese do vloženého příkazu. Když a pokud ovládací prvek dosáhne koncového bodu vloženého příkazu (pravděpodobně z spuštění příkazu `continue`), jsou výrazy *for_iterator*, pokud existují, vyhodnocovány v sekvenci a poté je provedena další iterace, počínaje vyhodnocení *for_condition* v kroku výše.
+*  Pokud je přítomna *for_condition* a vyhodnocení vede `false`, řízení se převede na koncový bod příkazu `for`.
 
-`for` V rámci vloženého příkazu `break` příkazu může být příkaz ([příkaz break](statements.md#the-break-statement)) použit k přenosu `for` ovládacího prvku na koncový bod příkazu (takže koncová iterace vloženého příkazu) a `continue` příkaz ([příkaz Continue](statements.md#the-continue-statement)) se dá použít k přenosu řízení na koncový bod vloženého příkazu (takže se spustí *for_iterator* a `for` provádí se další iterace příkazu, počínaje *for_condition*).
+V rámci vloženého příkazu příkazu `for` lze použít příkaz `break` ([příkaz break](statements.md#the-break-statement)) k přenosu řízení na koncový bod příkazu `for` (takže koncová iterace vloženého příkazu) a příkaz `continue` ([ Příkaz Continue (pokračovat](statements.md#the-continue-statement)) lze použít k přenosu řízení na koncový bod vloženého příkazu (čímž se spustí *for_iterator* a provedení jiné iterace příkazu `for`, počínaje *for_condition*).
 
 Vložený příkaz `for` příkazu je dosažitelný, pokud je splněna jedna z následujících podmínek:
 
-*  Příkaz je dosažitelný a není k dispozici žádný *for_condition.* `for`
-*  Příkaz je dosažitelný a je přítomen *for_condition* a nemá konstantní hodnotu `false`. `for`
+*  Příkaz `for` je dosažitelný a není k dispozici žádný *for_condition* .
+*  Příkaz `for` je dosažitelný a je přítomen *for_condition* a nemá konstantní hodnotu `false`.
 
 Koncový bod `for` příkazu je dosažitelný, pokud je splněna alespoň jedna z následujících podmínek:
 
 *  Příkaz obsahuje `break` dostupný příkaz, který ukončí příkaz.`for` `for`
-*  Příkaz je dosažitelný a je přítomen *for_condition* a nemá konstantní hodnotu `true`. `for`
+*  Příkaz `for` je dosažitelný a je přítomen *for_condition* a nemá konstantní hodnotu `true`.
 
 ### <a name="the-foreach-statement"></a>Příkaz foreach
 
@@ -707,14 +707,14 @@ foreach_statement
     ;
 ```
 
-*Typ* a *identifikátor* `foreach` příkazu deklaruje ***proměnnou iterace*** příkazu. Pokud je `var`identifikátor přidělen jako local_variable_type a žádný typ s názvem není v oboru, proměnná iterace je označována jako implicitně typovou proměnnou iterace a jejím typem je typ prvku `var` `foreach` , jak je uvedeno níže. Proměnná iterace odpovídá místní proměnné určené jen pro čtení s oborem, který se rozšíří přes vložený příkaz. Během provádění `foreach` příkazu představuje proměnná iterace prvek kolekce, pro který je iterace právě prováděna. K chybě při kompilaci dojde v případě, že se vložený příkaz pokusí změnit proměnnou iterace (prostřednictvím přiřazení nebo `++` operátorů a `--` ) nebo předat proměnnou iterace jako `ref` parametr `out` or.
+*Typ* a *identifikátor* `foreach` příkazu deklaruje ***proměnnou iterace*** příkazu. Pokud se identifikátor `var` předává jako *local_variable_type*a žádný typ s názvem `var` je v oboru, proměnná iterace je označována jako ***implicitně typovou proměnnou iterace***a jejím typem je typ elementu `foreach`. , jak je uvedeno níže. Proměnná iterace odpovídá místní proměnné určené jen pro čtení s oborem, který se rozšíří přes vložený příkaz. Během provádění `foreach` příkazu představuje proměnná iterace prvek kolekce, pro který je iterace právě prováděna. K chybě při kompilaci dojde v případě, že se vložený příkaz pokusí změnit proměnnou iterace (prostřednictvím přiřazení nebo `++` operátorů a `--` ) nebo předat proměnnou iterace jako `ref` parametr `out` or.
 
 V následujících případech pro `IEnumerable`zkrácení, `IEnumerator` `IEnumerable<T>` , a `IEnumerator<T>` odkazují na odpovídající typy v oborech názvů `System.Collections` a `System.Collections.Generic`.
 
 Nejprve zpracování příkazu foreach v době kompilace Určuje ***typ kolekce***, ***typ enumerátoru*** a ***typ elementu*** výrazu. Toto určení pokračuje následujícím způsobem:
 
 *  Pokud typ `X` *výrazu* je typ pole, pak existuje implicitní `X` referenční `IEnumerable` převod z na rozhraní (od `System.Array` implementace tohoto rozhraní). ***Typ kolekce*** je `IEnumerable` rozhraní, ***typ enumerátoru*** je `IEnumerator` rozhraní a ***typ prvku*** je typ prvku typu `X`pole.
-*  Pokud je `X` `IEnumerable` [](conversions.md#implicit-dynamic-conversions)typ výrazu poté, existuje implicitní převod z výrazu na rozhraní (implicitní dynamické převody). `dynamic` ***Typ kolekce*** je `IEnumerable` rozhraní a ***typ enumerátoru*** je `IEnumerator` rozhraní. `dynamic` `object` Pokud je identifikátorpřidělenjakolocal_variable_type,pakjetypprvku,jinak.`var`
+*  Pokud je `X` `IEnumerable` [](conversions.md#implicit-dynamic-conversions)typ výrazu poté, existuje implicitní převod z výrazu na rozhraní (implicitní dynamické převody). `dynamic` ***Typ kolekce*** je `IEnumerable` rozhraní a ***typ enumerátoru*** je `IEnumerator` rozhraní. Pokud je identifikátor `var` zadán jako *local_variable_type* , pak je ***typ prvku*** `dynamic`, v opačném případě je `object`.
 *  V opačném případě určete, `X` zda má typ `GetEnumerator` odpovídající metodu:
    * Proveďte vyhledávání členů u typu `X` s identifikátorem `GetEnumerator` bez argumentů typu. Pokud vyhledávání členů nevytvoří shodu, nebo vytvoří nejednoznačnost, nebo vytvoří shodu, která není skupinou metod, vyhledejte vyčíslitelné rozhraní, jak je popsáno níže. Doporučuje se vystavovat upozornění, pokud vyhledávání členů vytvoří cokoli s výjimkou skupiny metod nebo neodpovídá.
    * Proveďte rozlišení přetížení pomocí výsledné skupiny metod a prázdného seznamu argumentů. Pokud výsledkem rozlišení přetížení nejsou žádné použitelné metody, výsledkem je nejednoznačnost nebo výsledkem je jediná nejlepší metoda, ale tato metoda je statická nebo není veřejná, vyhledejte vyčíslitelné rozhraní, jak je popsáno níže. Doporučuje se vydávat upozornění, pokud řešení přetížení vytvoří cokoli kromě nejednoznačné metody veřejné instance nebo žádné použitelné metody.
@@ -750,11 +750,11 @@ je pak rozbalen na:
 }
 ```
 
-Proměnná `e` není viditelná ani přístupná k výrazu `x` nebo vloženému příkazu nebo žádnému jinému zdrojovému kódu tohoto programu. Proměnná `v` je určena jen pro čtení v příkazu Embedded. Pokud není k dispozici explicitní převod ([explicitní převody](conversions.md#explicit-conversions)) z `T` typu (typ elementu) na `V` ( *local_variable_type* v příkazu foreach), je vytvořena chyba a nejsou provedeny žádné další kroky. Pokud `x` má hodnotu `null`, `System.NullReferenceException` je vyvolána v době běhu.
+Proměnná `e` není viditelná ani přístupná k výrazu `x` nebo vloženému příkazu nebo žádnému jinému zdrojovému kódu tohoto programu. Proměnná `v` je určena jen pro čtení v příkazu Embedded. Pokud není k dispozici explicitní převod ([explicitní převody](conversions.md#explicit-conversions)) z `T` (typ elementu) na `V` ( *local_variable_type* v příkazu foreach), je vytvořena chyba a nejsou provedeny žádné další kroky. Pokud `x` má hodnotu `null`, `System.NullReferenceException` je vyvolána v době běhu.
 
 Implementace má povolenou implementaci daného příkazu foreach, například z důvodů výkonu, pokud je chování konzistentní s výše uvedeným rozšířením.
 
-Umístění `v` uvnitř smyčky while je důležité pro způsob, jakým je zachycena všemi anonymními funkcemi, ke kterým dochází v *embedded_statement*.
+Umístění `v` uvnitř smyčky while je důležité pro to, aby bylo zachyceno všemi anonymními funkcemi, ke kterým došlo v *embedded_statement*.
 
 Příklad:
 ```csharp
@@ -831,7 +831,7 @@ class Test
 }
 ```
 Výstup vyprodukovaný je následující:
-```csharp
+```console
 1.2 2.3 3.4 4.5 5.6 6.7 7.8 8.9
 ```
 
@@ -890,7 +890,7 @@ class Test
 bloky přidružené ke dvěma `try` příkazům jsou spouštěny před přesměrováním ovládacího prvku na cíl příkazu skoku. `finally`
 
 Výstup vyprodukovaný je následující:
-```
+```console
 Before break
 Innermost finally block
 Outermost finally block
@@ -984,7 +984,7 @@ class Test
 ```
 `goto` příkaz se používá k přenosu řízení z vnořeného oboru.
 
-Cíl `goto case` příkazu je seznam příkazů v `switch` příkazu bezprostředně ohraničujícího příkaz ( `case` [příkaz switch](statements.md#the-switch-statement)), který obsahuje popisek s danou konstantní hodnotou. `switch` `switch` [](conversions.md#implicit-conversions)Pokud příkaz není uzavřený příkazem, pokud constant_expression není implicitně konvertibilní (implicitní převody) na typ řízení nejbližšího ohraničujícího příkazu, nebo pokud `goto case` nejbližší ohraničující `switch` příkaz `case` neobsahuje popisek s danou konstantní hodnotou, dojde k chybě při kompilaci.
+Cíl `goto case` příkazu je seznam příkazů v `switch` příkazu bezprostředně ohraničujícího příkaz ( `case` [příkaz switch](statements.md#the-switch-statement)), který obsahuje popisek s danou konstantní hodnotou. Pokud příkaz `goto case` není uzavřený příkazem `switch`, není-li *constant_expression* implicitně převoditelný ([implicitní převod](conversions.md#implicit-conversions)) na typ řízení nejbližšího ohraničujícího příkazu `switch` nebo pokud nejbližší nadřazený objekt příkaz `switch` neobsahuje popisek `case` s danou konstantní hodnotou, dojde k chybě při kompilaci.
 
 Cíl `goto default` příkazu je seznam příkazů v `switch` příkazu bezprostředně ohraničujícího příkaz ( `default` [příkaz switch](statements.md#the-switch-statement)), který obsahuje popisek. Pokud příkaz není ohraničen `switch` příkazem, nebo `switch` Pokud nejbližší nadřazený příkaz `default` neobsahuje popisek, dojde k chybě při kompilaci. `goto default`
 
@@ -1092,13 +1092,13 @@ Existují tři možné formy `try` příkazů:
 *  `try` Blok následovaný`finally` blokem.
 *  Blok následovaný jedním nebo více `catch` bloky následovanými `finally` blokem. `try`
 
-`System.Exception` `System.Exception` `System.Exception`Když klauzule určuje exception_specifier, musí být typ, typ, který je odvozen z nebo typ parametru typu, který má (nebo podtříd) jako jeho efektivní základní třídu. `catch`
+Když klauzule `catch` určuje *exception_specifier*, musí být typ `System.Exception`, typ, který je odvozen od `System.Exception` nebo typu parametru typu, který má `System.Exception` (nebo jeho podtřídu) jako efektivní základní třídu.
 
-Když klauzule určuje jak exception_specifier s *identifikátorem*, je deklarována ***Proměnná výjimky*** daného názvu a typu. `catch` Proměnná výjimky odpovídá místní proměnné s rozsahem, který překračuje `catch` klauzuli. Během provádění *exception_filter* a *bloku*představuje proměnná výjimky Aktuálně zpracovávanou výjimku. Pro účely jednoznačné kontroly přiřazení je proměnná výjimky považována za jednoznačně přiřazenou v celém oboru.
+Když klauzule `catch` určuje jak *exception_specifier* s *identifikátorem*, je deklarována ***Proměnná výjimky*** daného názvu a typu. Proměnná výjimky odpovídá místní proměnné s rozsahem, který překračuje `catch` klauzuli. Během provádění *exception_filter* a *bloku*představuje proměnná výjimky Aktuálně zpracovávanou výjimku. Pro účely jednoznačné kontroly přiřazení je proměnná výjimky považována za jednoznačně přiřazenou v celém oboru.
 
 Pokud klauzule nezahrnuje název proměnné výjimky, není nemožné získat přístup k objektu výjimky ve filtru a `catch` bloku. `catch`
 
-Klauzule, která neurčuje *exception_specifier* , se nazývá obecná `catch` klauzule. `catch`
+Klauzule `catch`, která neurčuje *exception_specifier* , se nazývá obecná klauzule `catch`.
 
 Některé programovací jazyky mohou podporovat výjimky, které nejsou reprezentovány jako objekt odvozený z `System.Exception`, i když takové výjimky by nikdy neměly být C# generovány kódem. K zachycení `catch` takových výjimek se dá použít obecná klauzule. Proto obecná `catch` klauzule je sémanticky odlišná od jednoho, který určuje typ `System.Exception`, v tom, že předchozí může také zachytit výjimky z jiných jazyků.
 
@@ -1138,13 +1138,13 @@ class Test
 }
 ```
 Metoda `F` zachytí výjimku, zapisuje do konzoly nějaké diagnostické informace, změní proměnnou výjimky a znovu vyvolá výjimku. Výjimka, která je znovu vyvolána, je původní výjimka, takže výstup vytvářený je:
-```
+```console
 Exception in F: G
 Exception in Main: G
 ```
 
 Pokud první blok catch vyvolal `e` místo opětovného vyvolání aktuální výjimky, vyprodukovaný výstup by byl následující:
-```
+```console
 Exception in F: G
 Exception in Main: F
 ```
@@ -1218,7 +1218,7 @@ lock_statement
     ;
 ```
 
-Výraz `lock` příkazu musí znamenat hodnotu typu, který je známý jako *reference_type*. Pro výraz `lock` příkazu není nikdy proveden žádný implicitní převod na zabalení ([převody zabalení](conversions.md#boxing-conversions)), a proto se jedná o chybu při kompilaci, která označuje hodnotu *value_type*.
+Výraz příkazu `lock` musí poznamenat hodnotu typu, který je známý jako *reference_type*. Pro výraz příkazu `lock` se někdy neprovádí žádný implicitní převod na zabalení ([převody zabalení](conversions.md#boxing-conversions)), a proto se jedná o chybu při kompilaci pro výraz, který označuje hodnotu *value_type*.
 
 `lock` Příkaz formuláře
 ```csharp
@@ -1276,7 +1276,7 @@ resource_acquisition
 
 ***Prostředek*** je třída nebo struktura, která implementuje `System.IDisposable`rozhraní, které zahrnuje jednu metodu bez parametrů s názvem. `Dispose` Kód, který používá prostředek, může zavolat `Dispose` , aby označoval, že prostředek již není potřeba. Pokud `Dispose` není voláno, pak automatické vyřazení nakonec probíhá jako důsledek uvolňování paměti.
 
-Pokud je forma *resource_acquisition* *local_variable_declaration* , pak typ *local_variable_declaration* musí být buď `dynamic` nebo typ, který lze implicitně převést na. `System.IDisposable` Pokud je tvar výrazu *resource_acquisition* , pak tento výraz musí být implicitně převoditelné `System.IDisposable`na.
+Pokud je forma *resource_acquisition* *local_variable_declaration* , pak typ *local_variable_declaration* musí být buď `dynamic`, nebo typ, který lze implicitně převést na `System.IDisposable`. Pokud je tvar výrazu *resource_acquisition* , je nutné tento výraz implicitně převést na `System.IDisposable`.
 
 Místní proměnné deklarované v *resource_acquisition* jsou jen pro čtení a musí zahrnovat inicializátor. K chybě při kompilaci dojde v případě, že se vložený příkaz pokusí změnit tyto místní proměnné (prostřednictvím přiřazení nebo `++` operátorů a `--` ), přebírat jejich adresu nebo předat `ref` parametry nebo `out` .
 
@@ -1390,7 +1390,7 @@ yield_statement
 
 Existuje několik omezení, kde `yield` se může zobrazit příkaz, jak je popsáno v následujícím tématu.
 
-*  Jedná se o chybu `yield` při kompilaci pro příkaz (z obou formulářů), který se zobrazí mimo *method_body*, *operator_body* nebo *accessor_body* .
+*  Jedná se o chybu při kompilaci pro příkaz `yield` (z obou formulářů), který se zobrazí mimo *method_body*, *operator_body* nebo *accessor_body* .
 *  Jedná se o chybu při kompilaci pro `yield` příkaz (z obou formulářů), který se má objevit uvnitř anonymní funkce.
 *  Jedná se o chybu při kompilaci pro `yield` příkaz (z obou formulářů), který se má objevit `finally` v klauzuli `try` příkazu.
 *  Jedná se o chybu `yield return` při kompilaci, aby se příkaz objevil kdekoli `try` v příkazu, který obsahuje jakékoli `catch` klauzule.

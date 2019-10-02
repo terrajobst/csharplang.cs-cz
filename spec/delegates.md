@@ -1,22 +1,22 @@
 ---
-ms.openlocfilehash: 994b22f5375d57cfc4c7537c64345a27ddf3e416
-ms.sourcegitcommit: 09e0ddec3bb6aa99b7340158bbac86a5a8243b43
+ms.openlocfilehash: d162d4b6a489032dcdfca9094a39d88fd03d4013
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66193878"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71704100"
 ---
 # <a name="delegates"></a>Delegáty
 
-Delegáty umožňují scénáře další jazyky, jako je například C++, Pascal a Modula – mít řešit pomocí ukazatele na funkce. Na rozdíl od ukazatelů na funkce C++ ale delegáti jsou plně objektově orientované a na rozdíl od C++ ukazatelů na členské funkce, delegáti zapouzdřit instance objektu a metody.
+Delegáti umožňují scénáře, které jsou adresovány C++s ukazateli na funkce jinými jazyky – například, Pascal a modul. Na rozdíl C++ od ukazatelů na funkce jsou však delegáti plně orientované na objekty a na rozdíl C++ od ukazatelů na členské funkce, delegáty zapouzdřují instanci objektu i metodu.
 
-Deklarace delegáta definuje třídu, která je odvozena od třídy `System.Delegate`. Instanci delegáta zapouzdřuje seznam vyvolání, což je seznam jedné nebo několika metod, z nichž každý se označuje jako volatelné entity. Pro instanci metody, volatelných entity se skládá z instance a metodu pro tuto instanci. Pro statické metody volatelných entity se skládá z právě metodu. Vyvolání delegáta instance s odpovídající sadu argumentů způsobí, že se všechny entity volatelných delegáta má být volána s danou sadu argumentů.
+Deklarace delegáta definuje třídu, která je odvozena od třídy `System.Delegate`. Instance delegáta zapouzdřuje seznam vyvolání, což je seznam jedné nebo více metod, z nichž každý je označován jako volatelné entity. Pro metody instance se volatelné entity skládají z instance a metody v dané instanci. U statických metod se volatelné entity skládá jenom z metody. Vyvolání instance delegáta s vhodnou sadou argumentů způsobí, že každá z entit volání delegáta bude vyvolána s danou sadou argumentů.
 
-Zajímavé a užitečné vlastnictví instanci delegáta je, že ho neznáte nebo záleží tříd, metod, které zapouzdřuje; vše, co je důležité je, že tyto metody být kompatibilní ([delegovat deklarace](delegates.md#delegate-declarations)) s typem delegáta. Díky tomu delegáti dokonale hodí pro vyvolání "anonymní".
+Zajímavou a užitečnou vlastností instance delegáta je, že neznají ani nezáleží na třídách metod, které zapouzdřují. to vše je v tom, že tyto metody jsou kompatibilní ([deklarace delegátů](delegates.md#delegate-declarations)) s typem delegáta. Díky tomu jsou delegáti dokonale uzpůsobeni pro volání "anonymous".
 
-## <a name="delegate-declarations"></a>Deklarace delegáta
+## <a name="delegate-declarations"></a>Deklarace delegátů
 
-A *delegate_declaration* je *type_declaration* ([typ deklarace](namespaces.md#type-declarations)), který deklaruje nový typ delegáta.
+*Delegate_declaration* je *type_declaration* ([deklarace typu](namespaces.md#type-declarations)), který deklaruje nový typ delegáta.
 
 ```antlr
 delegate_declaration
@@ -35,23 +35,23 @@ delegate_modifier
     ;
 ```
 
-Je chyba kompilace pro stejný modifikátor se zobrazí více než jednou v deklaraci delegáta.
+Jedná se o chybu při kompilaci, aby se stejný modifikátor v deklaraci delegáta zobrazoval víckrát.
 
-`new` Modifikátor je povolené jenom u delegátů deklarované v rámci jiného typu, v takovém případě určuje, že takové delegáta skryje zděděný člen se stejným názvem, jak je popsáno v [new – modifikátor](classes.md#the-new-modifier).
+Modifikátor `new` je povolen pouze u delegátů deklarovaných v jiném typu. v takovém případě určuje, že tento delegát skrývá zděděný člen se stejným názvem, jak je popsáno v tématu [nový modifikátor](classes.md#the-new-modifier).
 
-`public`, `protected`, `internal`, A `private` řídit modifikátory přístupnosti typu delegáta. V závislosti na kontextu, ve kterém dochází k deklaraci delegáta, nemůže mu umožnit některé tyto modifikátory ([deklarovaná přístupnost](basic-concepts.md#declared-accessibility)).
+Modifikátory `public`, `protected`, `internal` a `private` řídí přístupnost typu delegáta. V závislosti na kontextu, ve kterém dojde k deklaraci delegáta, nemusí být některé z těchto modifikátorů povoleny ([deklarovaná přístupnost](basic-concepts.md#declared-accessibility)).
 
 Název typu delegáta je *identifikátor*.
 
-Volitelný *formal_parameter_list* Určuje parametry delegáta a *typ* určuje návratový typ delegáta.
+Volitelné *formal_parameter_list* Určuje parametry delegáta a *Typ označuje návratový* typ delegátu.
 
-Volitelný *variant_type_parameter_list* ([seznamy parametru typu Variant](interfaces.md#variant-type-parameter-lists)) určuje parametry typu delegátu, samotného.
+Volitelné *variant_type_parameter_list* ([seznamy parametrů typu variant](interfaces.md#variant-type-parameter-lists)) určuje parametry typu samotného delegáta.
 
-Návratový typ typ delegáta musí být buď `void`, nebo bezpečný výstup ([Variance bezpečnosti](interfaces.md#variance-safety)).
+Návratový typ typu delegáta musí být buď `void`, nebo bezpečný pro výstup ([zabezpečení odchylky](interfaces.md#variance-safety)).
 
-Všechny typy formálních parametrů typu delegáta musí odpovídat vstup typově bezpečné. Kromě toho některé `out` nebo `ref` typy parametrů musí být také výstup typově bezpečné. Poznámka: to dokonce i `out` parametry musejí být vstup typově bezpečný, kvůli omezením platformy pro základní spuštění.
+Všechny formální typy parametrů typu delegáta musí být bezpečné pro vstup. Kromě toho musí být všechny typy parametrů `out` nebo `ref` také bezpečné pro výstup. Všimněte si, že i parametry `out` jsou nutné k bezpečnému vstupu z důvodu omezení základní spouštěcí platformy.
 
-Typy delegátů v jazyce C# jsou název ekvivalentní, není strukturálně ekvivalentní. Dva typy různých delegáta, které mají stejný parametr konkrétně obsahuje seznam a vrátit typ jsou považovány za delegáta různé typy. Však může instance dvou různých ale strukturálně ekvivalentní delegujících typů porovnat jako rovnocenné ([delegovat operátory rovnosti](expressions.md#delegate-equality-operators)).
+Typy delegátů C# v jsou ekvivalentní název, ne strukturální ekvivalent. Konkrétně dva různé typy delegátů, které mají stejný seznam parametrů a návratový typ, se považují za jiné typy delegátů. Nicméně instance dvou jedinečných, ale strukturovaných ekvivalentních typů delegátů, mohou porovnat jako EQUAL ([operátory rovnosti delegátů](expressions.md#delegate-equality-operators)).
 
 Příklad:
 
@@ -73,9 +73,9 @@ class B
 }
 ```
 
-Metody `A.M1` a `B.M1` musí být kompatibilní s typy delegáta `D1` a `D2` , protože mají stejný typ a seznam parametrů vracet; však tyto typy delegátů jsou dva různé typy, takže už nejsou zaměnitelné. Metody `B.M2`, `B.M3`, a `B.M4` nejsou kompatibilní s typy delegáta `D1` a `D2`, protože mají různé typy vrácené hodnoty nebo seznamy parametrů.
+Metody `A.M1` a `B.M1` jsou kompatibilní s typy delegátů `D1` a `D2`, protože mají stejný návratový typ a seznam parametrů; Tyto typy delegátů jsou však dva různé typy, takže nejsou zaměnitelné. Metody `B.M2`, `B.M3` a `B.M4` jsou nekompatibilní s typy delegátů `D1` a `D2`, protože mají odlišné návratové typy nebo seznamy parametrů.
 
-Podobně jako ostatní deklarace obecného typu se musí předávat argumenty typu a vytvořte typ vytvořeného delegáta. Typy parametrů a návratový typ delegáta konstruovaný typ jsou vytvořené pro každý z parametrů typu v deklaraci delegáta nahraďte argument typu pro typ vytvořeného delegátu. Výsledný návratový typ a typy parametrů se používají při určování, které metody jsou kompatibilní s typem delegáta vytvořený. Příklad:
+Podobně jako jiné deklarace obecného typu musí být předány argumenty typu pro vytvoření typu konstruovaného delegáta. Typy parametrů a návratový typ konstruovaného typu delegáta jsou vytvořeny nahrazením pro každý parametr typu v deklaraci delegáta odpovídajícím argumentem typu vytvořeného typu delegáta. Výsledný návratový typ a typy parametrů se používají při určování, které metody jsou kompatibilní s vytvořeným typem delegáta. Příklad:
 
 ```csharp
 delegate bool Predicate<T>(T value);
@@ -87,17 +87,17 @@ class X
 }
 ```
 
-Metoda `X.F` kompatibilní s typem delegáta `Predicate<int>` a metodu `X.G` kompatibilní s typem delegáta `Predicate<string>` .
+Metoda `X.F` je kompatibilní s typem delegáta `Predicate<int>` a metoda `X.G` je kompatibilní s typem delegáta `Predicate<string>`.
 
-Jediný způsob, jak deklarovat typ delegáta je prostřednictvím *delegate_declaration*. Typ delegáta je typu třídy, který je odvozen z `System.Delegate`. Typy delegátů jsou implicitně `sealed`, takže není povoleno pro odvození libovolný typ z typu delegáta. Také není povolený pro odvození třídy nedelegující typ z `System.Delegate`. Všimněte si, že `System.Delegate` je sám není typ delegáta; je typ třídy, ze které jsou odvozeny všechny typy delegátů.
+Jediným způsobem, jak deklarovat typ delegáta, je prostřednictvím *delegate_declaration*. Typ delegáta je typ třídy, která je odvozena z `System.Delegate`. Typy delegátů jsou implicitně `sealed`, takže není přípustné odvozovat žádný typ z typu delegáta. Není také přípustné odvodit typ třídy bez delegáta z `System.Delegate`. Všimněte si, že `System.Delegate` není samotný typ delegáta. je to typ třídy, ze které jsou odvozeny všechny typy delegátů.
 
-C# poskytuje zvláštní syntaxi pro delegáta instance a vyvolání. Kromě vytváření instancí všechny operace, který lze použít na třídu nebo instanci třídy lze také použít delegát třídy nebo instance, v uvedeném pořadí. Zejména je možné získat přístup ke členům `System.Delegate` typu pomocí syntaxe přístup obvykle člena.
+C#poskytuje speciální syntaxi pro vytvoření instance delegáta a vyvolání. S výjimkou vytváření instancí lze všechny operace, které lze použít na instanci třídy nebo třídy, použít také pro třídu nebo instanci delegáta v uvedeném pořadí. Konkrétně je možné přistupovat ke členům typu `System.Delegate` prostřednictvím běžné syntaxe přístupu členů.
 
-Sadu metod, které jsou zapouzdřena objektem instanci delegáta se nazývá seznam volání. Když je vytvořena instance delegáta ([delegovat kompatibility](delegates.md#delegate-compatibility)) z jedné metody zapouzdřuje metody a jeho vyvolávacím seznamu obsahuje pouze jednu položku. Ale kombinaci dvě instance s jinou hodnotu než null delegáta seznamy volání jsou zřetězeny – v pořadí vlevo operandem pak pravý operand – tvoří nový seznam vyvolání, která obsahuje dvě nebo více položek.
+Sada metod zapouzdřovaná instancí delegáta se nazývá seznam vyvolání. Při vytvoření instance delegáta ([Kompatibilita s delegováním](delegates.md#delegate-compatibility)) z jediné metody zapouzdří tuto metodu a seznam volání obsahuje pouze jednu položku. Nicméně pokud jsou kombinovány dvě instance delegátů, které nejsou null, jsou jejich seznamy volání zřetězeny – v levém operandu objednávky pak pravý operand – pro vytvoření nového seznamu volání, který obsahuje dvě nebo více položek.
 
-Delegáti jsou kombinované pomocí binárního souboru `+` ([operátor sčítání](expressions.md#addition-operator)) a `+=` operátory ([složené přiřazení](expressions.md#compound-assignment)). Delegát je možné odebrat ze kombinaci delegátů pomocí binárního souboru `-` ([operátor odčítání](expressions.md#subtraction-operator)) a `-=` operátory ([složené přiřazení](expressions.md#compound-assignment)). Delegáty lze porovnání rovnosti ([delegovat operátory rovnosti](expressions.md#delegate-equality-operators)).
+Delegáti jsou kombinováni pomocí binárního `+` ([operátor sčítání](expressions.md#addition-operator)) a operátorů `+=` ([složené přiřazení](expressions.md#compound-assignment)). Delegáta lze odebrat z kombinace delegátů pomocí binárního `-` ([operátor odčítání](expressions.md#subtraction-operator)) a operátorů `-=` ([složené přiřazení](expressions.md#compound-assignment)). Delegáty lze porovnávat s rovností ([delegované operátory rovnosti](expressions.md#delegate-equality-operators)).
 
-Následující příklad ukazuje vytvoření instance počtu delegátů a uvádí jejich odpovídající volání:
+Následující příklad ukazuje vytváření instancí řady delegátů a jejich odpovídající seznamy volání:
 
 ```csharp
 delegate void D(int x);
@@ -122,23 +122,23 @@ class Test
 }
 ```
 
-Když `cd1` a `cd2` jsou vytvořena instance, každá zapouzdření jednu metodu. Když `cd3` je vytvořena instance, má seznam vyvolání ze dvou způsobů `M1` a `M2`v tomto pořadí. `cd4`v seznamu vyvolání obsahuje `M1`, `M2`, a `M1`v tomto pořadí. Nakonec `cd5`společnosti obsahuje seznam vyvolání `M1`, `M2`, `M1`, `M1`, a `M2`v tomto pořadí. Další příklady kombinování delegátů (také odebrat jako), najdete v článku [delegovat vyvolání](delegates.md#delegate-invocation).
+Při vytváření instance `cd1` a `cd2` všechny zapouzdřují jednu metodu. Pokud je vytvořena instance `cd3`, má seznam volání dvou metod, `M1` a `M2`, v tomto pořadí. seznam volání `cd4` obsahuje `M1`, `M2` a `M1` v tomto pořadí. Seznam volání `cd5` obsahuje `M1`, `M2`, `M1`, `M1` a `M2` v tomto pořadí. Další příklady kombinování delegátů (stejně jako odebírání) najdete v tématu [delegování volání](delegates.md#delegate-invocation).
 
-## <a name="delegate-compatibility"></a>Delegát kompatibility
+## <a name="delegate-compatibility"></a>Kompatibilita delegáta
 
-Metoda nebo delegát `M` je ***kompatibilní*** s typem delegáta `D` Pokud jsou splněny všechny z následujících akcí:
+Metoda nebo delegát `M` je ***kompatibilní*** s typem delegáta `D`, pokud jsou splněny všechny následující podmínky:
 
-*  `D` a `M` mít stejný počet parametrů a každý parametr `D` má stejnou `ref` nebo `out` modifikátory jako odpovídající parametr v `M`.
-*  Pro každý parametr hodnoty (parametr bez `ref` nebo `out` modifikátor), konverzi identity ([Identity převod](conversions.md#identity-conversion)) nebo implicitní převod odkazu ([odkaz na implicitní převody](conversions.md#implicit-reference-conversions)) z parametrů typu v `D` do odpovídajícího parametru typu v `M`.
-*  Pro každou `ref` nebo `out` parametr, parametr typu v `D` je stejný jako typ parametru v `M`.
-*  Existuje identity nebo implicitní referenční převod z návratového typu `M` na návratový typ `D`.
+*  `D` a `M` mají stejný počet parametrů a každý parametr v `D` má stejné modifikátory `ref` nebo `out` jako odpovídající parametr v `M`.
+*  Pro každý parametr hodnoty (parametr bez modifikátoru `ref` nebo `out`) existuje převod identity ([převod identity](conversions.md#identity-conversion)) nebo implicitní převod odkazu ([implicitní převody odkazů](conversions.md#implicit-reference-conversions)) z typu parametru v `D` na odpovídající typ parametru v `M`.
+*  Pro každý parametr `ref` nebo `out` je typ parametru v `D` stejný jako typ parametru v `M`.
+*  Identita nebo implicitní převod odkazu existují z návratového typu `M` do návratového typu `D`.
 
-## <a name="delegate-instantiation"></a>Vytvoření instance delegáta
+## <a name="delegate-instantiation"></a>Instance delegáta
 
-Se vytvoří instanci delegáta *delegate_creation_expression* ([delegovat vytváření výrazů](expressions.md#delegate-creation-expressions)) nebo převod na typ delegáta. Nově vytvořený delegát instance se pak odkazuje na buď:
+Instance delegáta je vytvořena pomocí *delegate_creation_expression* ([výrazy pro vytvoření delegáta](expressions.md#delegate-creation-expressions)) nebo převod na typ delegáta. Nově vytvořená instance delegáta pak odkazuje na jednu z těchto:
 
-*  Statická metoda, která odkazuje *delegate_creation_expression*, nebo
-*  Cílový objekt (což nesmí být `null`) a instanční metodu odkazuje *delegate_creation_expression*, nebo
+*  Statická metoda, na kterou se odkazuje v *delegate_creation_expression*, nebo
+*  Cílový objekt (nemůže být `null`) a metoda instance, na kterou se odkazuje v *delegate_creation_expression*, nebo
 *  Jiný delegát.
 
 Příklad:
@@ -163,19 +163,19 @@ class Test
 }
 ```
 
-Po vytvoření instance, instance delegátů vždy odkazovat na stejném cílovém objektu a metody. Mějte na paměti, když dvou delegátů jsou zkombinované nebo jeden se odebere z jiného nové výsledky delegáta s vlastním seznamu vyvolání; vyvolání seznam delegátů kombinaci, nebo odebrání zůstanou beze změny.
+Po vytvoření instance Delegáti instance vždy odkazují na stejný cílový objekt a metodu. Pamatujte na to, že pokud jsou dva Delegáti zkombinováni nebo když je jeden z nich odebraný, nové delegáty mají za následek vlastní seznam volání. seznamy volání delegátů, které se kombinují nebo odeberou, zůstávají beze změny.
 
 ## <a name="delegate-invocation"></a>Volání delegáta
 
-C# poskytuje zvláštní syntaxi pro volání delegáta. Když uživatel vyvolá instanci delegáta jinou hodnotu než null, jehož seznamu vyvolání obsahuje jednu položku, vyvolá jednu metodu s byl zadán a vrátí stejnou hodnotu jako odkazovaný stejné argumenty metody. (Viz [delegáta volání](expressions.md#delegate-invocations) podrobné informace o volání delegáta.) Pokud dojde k výjimce při volání těchto delegáta a tato výjimka není zachycena v metodě, která byla vyvolána, vyhledávání pro klauzuli catch výjimky pokračuje v metodě, která volá delegáta, jako by měla tato metoda volána přímo označuje metodu, ke kterému delegovat.
+C#poskytuje speciální syntaxi pro vyvolání delegáta. Pokud je vyvolána nenulová instance delegáta, jejíž seznam volání obsahuje jednu položku, vyvolá jednu metodu se stejnými argumenty, která byla zadána, a vrátí stejnou hodnotu jako metoda, která je odkazována na metodu. (Další informace o vyvolání delegáta najdete v tématu věnovaném [voláním delegáta](expressions.md#delegate-invocations) .) Pokud dojde k výjimce během vyvolání takového delegáta a tato výjimka není zachycena v metodě, která byla vyvolána, hledání klauzule catch pro výjimku pokračuje v metodě, která se nazývá delegát, jako by tato metoda měla přímý odkaz na Metoda, na kterou se odkazuje tento delegát.
 
-Vyvolání delegáta instance, jejíž volání seznam obsahuje několik záznamů pokračuje tak, že každá z metod v seznamu vyvolání synchronně, vyvolá v pořadí. Každá metoda tedy volána je předán stejnou sadu argumentů, protože byl zadán pro instanci delegáta. Pokud taková volání delegáta obsahuje odkaz na parametry ([odkazovat na parametry](classes.md#reference-parameters)), dojde k každé volání metody s odkazem na stejnou proměnnou, budou změny na tuto proměnnou podle jedné metody v seznamu vyvolání je viditelné pro další metody vyvolání seznamu dolů. Pokud volání delegáta zahrnuje výstupní parametry nebo návratovou hodnotu, jejich konečnou hodnotu budou přicházet z vyvolání delegáta poslední v seznamu.
+Vyvolání instance delegáta, jejíž seznam volání obsahuje více položek, se pokračuje vyvoláním každé z metod v seznamu vyvolání, synchronně v daném pořadí. Každá metoda, která má být volána, je předána stejnou sadou argumentů, jako byla předána instanci delegáta. Pokud takové vyvolání delegáta zahrnuje referenční parametry ([referenční parametry](classes.md#reference-parameters)), jednotlivé metody vyvolání budou provedeny s odkazem na stejnou proměnnou. změny v této proměnné podle jedné metody v seznamu volání budou viditelné i pro metody v rozevíracím seznamu vyvolání. Pokud vyvolání delegáta zahrnuje výstupní parametry nebo návratovou hodnotu, jejich konečná hodnota bude pocházet z volání posledního delegáta v seznamu.
 
-Pokud dojde k výjimce během zpracování volání těchto delegáta a tato výjimka není zachycena v metodě, která byla vyvolána, vyhledávání pro klauzuli catch výjimka pokračuje v metodě, která volá se, že delegát a jakékoli metody níže nejsou vyvolány seznamu vyvolání.
+Pokud dojde k výjimce během zpracování vyvolání takového delegáta a tato výjimka není zachycena v metodě, která byla vyvolána, hledání klauzule catch pro výjimku pokračuje v metodě, která se nazývá delegát, a dalšími metodami mimo jiné. seznam volání není vyvolán.
 
-Pokus o vyvolání instanci delegáta, jehož hodnota je null za následek výjimku typu `System.NullReferenceException`.
+Při pokusu o vyvolání instance delegáta, jejíž hodnota je null, dojde k výjimce typu `System.NullReferenceException`.
 
-Následující příklad ukazuje, jak vytvořit instanci, kombinovat, odebrat nebo vyvoláte:
+Následující příklad ukazuje, jak vytvořit instance, kombinovat, odebrat a vyvolat delegáty:
 
 ```csharp
 using System;
@@ -238,13 +238,13 @@ class Test
 }
 ```
 
-Jak je znázorněno v příkazu `cd3 += cd1;`, delegát může být k dispozici v seznamu vyvolání více než jednou. V takovém případě stačí vyvolá se jednou za výskyt. V seznamu vyvolání takovou situaci při odebrání tohoto delegátu posledního výskytu v seznamu vyvolání je skutečně odebrat.
+Jak je znázorněno v příkazu `cd3 += cd1;`, delegát může být přítomen v seznamu volání několikrát. V tomto případě je jednoduše vyvolána jednou pro každý výskyt. V seznamu volání, jako je například, když je tento delegát odebrán, je poslední výskyt v seznamu volání ten, který je skutečně odebraný.
 
-Bezprostředně před provedením poslední příkaz `cd3 -= cd1;`, delegát `cd3` odkazuje na seznam prázdný volání. Chcete-li odebrat delegáta z prázdného seznamu (nebo odebrat neexistující delegáta formu neprázdného seznamu), není to chyba.
+Bezprostředně před provedením závěrečného příkazu, `cd3 -= cd1;`, delegát `cd3` odkazuje na prázdný seznam volání. Pokus o odebrání delegáta z prázdného seznamu (nebo pro odebrání neexistujícího delegáta ze seznamu, který není prázdný) není chyba.
 
-Výstup vytvořený je:
+Vytvářený výstup je:
 
-```
+```console
 C.M1: -1
 C.M2: -2
 C.M1: 10

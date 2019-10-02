@@ -1,20 +1,20 @@
 ---
-ms.openlocfilehash: 1c3d05674f8f7b69e70e0d9e06021537fc45f7ed
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: ff31585520c9090ad92893a930327112743c8e77
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488490"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71704010"
 ---
 # <a name="basic-concepts"></a>Základní koncepty
 
 ## <a name="application-startup"></a>Spuštění aplikace
 
-Sestavení, který má ***vstupní bod*** je volána ***aplikace***. Pokud je aplikace spustit nový ***aplikační domény*** se vytvoří. Několik různých instancí aplikace může existovat ve stejném počítači ve stejnou dobu, a každý má své vlastní domény aplikace.
+Sestavení, které má ***vstupní bod*** , se nazývá ***aplikace***. Při spuštění aplikace se vytvoří nová ***doména aplikace*** . V jednom počítači může existovat několik různých instancí aplikace současně a každá z nich má svou vlastní doménu aplikace.
 
-Domény aplikace umožňuje izolace aplikací tak, že funguje jako kontejner pro stav aplikace. Domény aplikace funguje jako kontejner a hranice pro typy definované v aplikaci a knihovny tříd, které používá. Typy načtena do jedné domény aplikace se liší od stejného typu načtena do jiné domény aplikace a instance objektů nejsou sdíleny přímo mezi doménami aplikace. Například každá doména aplikace má vlastní kopii statické proměnné pro tyto typy a statický konstruktor pro typ je spustit maximálně jednou pro každé aplikační doméně. Implementace je zdarma k poskytování specifický pro implementaci zásad nebo mechanismy pro vytváření a ničení aplikačních domén.
+Doména aplikace umožňuje izolaci aplikace působit jako kontejner pro stav aplikace. Doména aplikace funguje jako kontejner a hranice pro typy definované v aplikaci a knihovny tříd, které používá. Typy načtené do jedné domény aplikace se liší od stejného typu načteného do jiné domény aplikace a instance objektů nejsou přímo sdíleny mezi doménami aplikace. Každý aplikační doména má například vlastní kopii statických proměnných pro tyto typy a statický konstruktor pro typ je spuštěn nejvýše jednou pro doménu aplikace. Implementace jsou bezplatné pro poskytování zásad nebo mechanismů specifických pro implementaci pro vytváření a zničení aplikačních domén.
 
-***Spuštění aplikace*** nastane, pokud prostředí provádění volání určené metody, která se označuje jako vstupní bod aplikace. Tuto metodu vstupního bodu je vždy pojmenováno `Main`a může mít jednu z následujících podpisech:
+***Spuštění aplikace*** nastane, pokud spouštěcí prostředí volá určenou metodu, která je označována jako vstupní bod aplikace. Tato metoda vstupního bodu je vždy pojmenována `Main` a může mít jednu z následujících signatur:
 
 ```csharp
 static void Main() {...}
@@ -26,54 +26,54 @@ static int Main() {...}
 static int Main(string[] args) {...}
 ```
 
-Jak je znázorněno, může volitelně vrátit vstupním bodem `int` hodnotu. To vrátit hodnota se používá v ukončení aplikace ([ukončení aplikace](basic-concepts.md#application-termination)).
+Jak je znázorněno, vstupní bod může volitelně vracet hodnotu `int`. Tato návratová hodnota se používá při ukončení aplikace ([ukončení aplikace](basic-concepts.md#application-termination)).
 
-Vstupní bod může mít jeden formální parametr. Tento parametr může mít libovolný název, ale musí být typu parametru `string[]`. Pokud je k dispozici formální parametr, vytvoří prostředí pro spouštění a předá `string[]` argument obsahující argumenty příkazového řádku, které bylo zadané při spuštění aplikace. `string[]` Nikdy argument má hodnotu null, ale může mít nulovou délku, pokud nebyly zadány žádné argumenty příkazového řádku.
+Vstupní bod může volitelně mít jeden formální parametr. Parametr může mít libovolný název, ale typ parametru musí být `string[]`. Pokud je přítomný formální parametr, spouštěcí prostředí vytvoří a předá argumentu `string[]` obsahující argumenty příkazového řádku, které byly zadány při spuštění aplikace. Argument `string[]` nikdy nemá hodnotu null, ale v případě, že nebyly zadány žádné argumenty příkazového řádku, může mít nulovou délku.
 
-Od C# podporuje metodu přetížení, třídy nebo struktury může obsahovat několik definic některé metody, pokud každý má jiný podpis. Ale v jediném programu, žádné třídy nebo struktury může obsahovat více než jednu metodu s názvem `Main` jehož definice kvalifikuje to má být použit jako vstupní bod aplikace. Další přetížené verze `Main` jsou povolené, ale pokud mají více než jeden parametr nebo jejich jediným parametrem je jiné než typu `string[]`.
+Vzhledem C# k tomu, že podporuje přetížení metody, třída nebo struktura může obsahovat více definicí některé metody, pokud každý má jiný podpis. V rámci jednoho programu však žádná třída ani struktura nesmí obsahovat více než jednu metodu s názvem `Main`, jejíž definice je vyhodnocena jako vstupní bod aplikace. Další přetížené verze `Main` jsou povoleny, avšak za předpokladu, že mají více než jeden parametr nebo je jejich jediný parametr jiný než typ `string[]`.
 
-Aplikace lze vytvořit více tříd nebo struktur. Je možné pro více než jeden z těchto tříd nebo struktur obsahuje metodu nazvanou `Main` jehož definice kvalifikuje to má být použit jako vstupní bod aplikace. V takových případech musíte použít externího mechanismu (jako je například možnost příkazového řádku kompilátoru) vyberte jednu z těchto `Main` metody jako vstupní bod.
+Aplikace může být tvořena více třídami nebo strukturami. Je možné, aby více než jedna z těchto tříd nebo struktur obsahovala metodu nazvanou `Main`, jejíž definice je určena k použití jako vstupní bod aplikace. V takových případech je nutné použít externí mechanismus (například možnost kompilátoru příkazového řádku) k výběru jedné z těchto metod `Main` jako vstupního bodu.
 
-V jazyce C# každé metody musí být definován jako člen třídy nebo struktury. Obvykle je deklarovaná přístupnost ([deklarovaná přístupnost](basic-concepts.md#declared-accessibility)) metody je určeno modifikátory přístupu ([modifikátorů přístupu](classes.md#access-modifiers)) zadanou v jeho deklaraci a podobně deklarovaný Přístupnost typu se určuje podle přístupu modifikátory přístupu zadaná v jeho deklaraci. Aby dané metody daného typu bude volat musí být typu a členu přístupné. Vstupní bod aplikace, ale je zvláštní případ. Konkrétně spouštěcí prostředí mají přístup k vstupní bod aplikace bez ohledu na jeho deklarovaná přístupnost a bez ohledu na to je deklarovaná přístupnost její nadřazený typ deklarace.
+V C#nástroji musí být každá metoda definována jako člen třídy nebo struktury. Deklarace deklarovaného přístupnosti ([deklarované přístupnosti](basic-concepts.md#declared-accessibility)) metody jsou obvykle určeny modifikátory přístupu ([modifikátory přístupu](classes.md#access-modifiers)) určenými v deklaraci a podobně deklarovaná přístupnost typu je určena modifikátory přístupu zadané v deklaraci. Aby bylo možné volat danou metodu daného typu, musí být typ i člen přístupný. Vstupní bod aplikace je však zvláštní případ. Konkrétně spouštěcí prostředí má přístup ke vstupnímu bodu aplikace bez ohledu na jeho deklaraci, a to bez ohledu na deklaraci přístupnosti jejich nadřazených typů deklarací.
 
-Metodu vstupního bodu aplikace nemusí být v deklaraci obecné třídy.
+Metoda vstupního bodu aplikace nemůže být v deklaraci obecné třídy.
 
-V ostatních ohledech metody vstupního bodu chovají jako ty, které nejsou vstupní body.
+Ve všech ostatních ohledech se metody vstupního bodu chovají stejně jako ty, které nejsou vstupními body.
 
 ## <a name="application-termination"></a>Ukončení aplikace
 
-***Ukončení aplikace*** vrátí řízení do prostředí pro spuštění.
+***Ukončení aplikace*** vrátí řízení spouštěcímu prostředí.
 
-Pokud návratový typ aplikace ***vstupní bod*** je metoda `int`, vrácená hodnota slouží jako aplikace ***stavový kód ukončení***. Účelem tohoto kódu je umožnit komunikaci úspěšné či neúspěšné spuštění prostředí.
+Pokud je návratový typ metody ***vstupního bodu*** aplikace `int`, vrácená hodnota slouží jako ***kód stavu ukončení***aplikace. Účelem tohoto kódu je umožnění komunikace s úspěchem nebo selháním spouštěcího prostředí.
 
-Pokud je návratový typ metodu vstupního bodu `void`, dosáhnout pravou složenou závorku (`}`), který ukončí metody nebo provádění `return` příkaz, který nemá žádný výraz výsledkem stavový kód ukončení `0`.
+Pokud je návratový typ metody vstupního bodu `void`, dosáhnete pravé složené závorky (`}`), která tuto metodu ukončí, nebo provedením příkazu `return`, který nemá žádný výraz, výsledkem je stavový kód ukončení `0`.
 
-Před ukončení aplikace, jsou volány destruktory všech objektů, které ještě nebyly vynuceno uvolnění paměti, pokud takové vyčistit došlo k potlačení (voláním metody knihovny `GC.SuppressFinalize`, například).
+Před ukončením aplikace jsou destruktory pro všechny své objekty, které ještě nebyly shromažďovány do paměti, volány, pokud takové vyčištění nebylo potlačeno (voláním metody knihovny `GC.SuppressFinalize`).
 
 ## <a name="declarations"></a>Deklarace
 
-Deklarace v programu v jazyce C# definuje rozložení na základní prvky programu. Programy jazyka C# jsou uspořádané pomocí oborů názvů ([obory názvů](namespaces.md)), který může obsahovat typ deklarace a deklarace vnořené oboru názvů. Zadejte prohlášení ([typ deklarace](namespaces.md#type-declarations)) se používají k definování tříd ([třídy](classes.md)), struktur ([struktury](structs.md)), rozhraní ([rozhraní](interfaces.md) ), výčtů ([výčty](enums.md)) a delegáti ([delegáti](delegates.md)). Seznam typů členů v deklaraci typu závisí na formuláři deklaraci typu. Například, deklarace tříd může obsahovat deklarace konstanty ([konstanty](classes.md#constants)), pole ([pole](classes.md#fields)), metody ([metody](classes.md#methods)), vlastností ([ Vlastnosti](classes.md#properties)), události ([události](classes.md#events)), indexery ([indexery](classes.md#indexers)), operátory ([operátory](classes.md#operators)), konstruktory instancí ([ Konstruktory instancí](classes.md#instance-constructors)), statické konstruktory ([statické konstruktory](classes.md#static-constructors)), destruktory ([destruktory](classes.md#destructors)) a vnořené typy ([vnořené typy](classes.md#nested-types)).
+Deklarace v C# programu definují prvky prvku programu. C#programy jsou uspořádány pomocí oborů názvů ([obory](namespaces.md)názvů), které mohou obsahovat deklarace typu a vnořené deklarace oboru názvů. Deklarace typu ([deklarace typu](namespaces.md#type-declarations)) se používají k definování tříd ([tříd](classes.md)), struktur ([struktur](structs.md)), rozhraní ([rozhraní](interfaces.md)), výčtů ([výčtů](enums.md)) a delegátů ([delegátů](delegates.md)). Typy členů povolených v deklaraci typu závisí na formuláři deklarace typu. Deklarace třídy mohou například obsahovat deklarace pro konstanty ([konstanty](classes.md#constants)), pole ([pole](classes.md#fields)), metody ([metody](classes.md#methods)), vlastnosti ([vlastnosti](classes.md#properties)), události ([události](classes.md#events)), indexery ([indexery](classes.md#indexers)), operátory ([operátoři](classes.md#operators)), konstruktory instancí ([konstruktory instancí](classes.md#instance-constructors)), statické konstruktory ([statické konstruktory](classes.md#static-constructors)), destruktory ([destruktory](classes.md#destructors)) a vnořené typy ([vnořené typy](classes.md#nested-types)).
 
-Definuje název v deklaraci ***místa deklarace*** , ke které patří deklarace. S výjimkou přetížení členů ([podpisy a přetížení](basic-concepts.md#signatures-and-overloading)), je chyba kompilace mít dva nebo více deklarací, které zavádějí členy se stejným názvem v prostoru deklarace. Nikdy je možné místo deklarace obsahující různé druhy členů se stejným názvem. Například místo deklarace můžete, nikdy neobsahuje pole a metody se stejným názvem.
+Deklarace definuje název v ***prostoru deklarace*** , ke kterému patří deklarace. S výjimkou přetížených členů ([signatury a přetížení](basic-concepts.md#signatures-and-overloading)) se jedná o chybu při kompilaci, která má dvě nebo více deklarací, které zavádějí členy se stejným názvem v prostoru deklarací. V prostoru deklarací není nikdy možné obsahovat různé druhy členů se stejným názvem. Například prostor deklarace nesmí nikdy obsahovat pole a metodu se stejným názvem.
 
-Existuje několik různých typů prostorů prohlášení, jak je popsáno v následující.
+Existuje několik různých typů prostorů deklarací, jak je popsáno v následujícím tématu.
 
-*  V rámci všech zdrojových souborů programu *namespace_member_declaration*s s uzavíracím žádné *namespace_declaration* členem jedné kombinované deklaraci místo volána ***globální deklarace místo***.
-*  V rámci všech zdrojových souborů programu *namespace_member_declaration*s v rámci *namespace_declaration*, které mají stejný plně kvalifikovaný obor názvů jsou členy jedné kombinované deklaraci místo.
-*  Každou deklaraci rozhraní, třídy nebo struktury vytvoří nové prohlášení prostor. Názvy jsou zavedeny do tohoto prostoru deklarace prostřednictvím *class_member_declaration*s, *struct_member_declaration*s, *interface_member_declaration*s, nebo *type_parameter*s. S výjimkou konstruktor instance přetížené deklarace a statický konstruktor deklarace, třídy nebo struktury nemohou obsahovat deklarace člena se stejným názvem jako třída nebo struktura. Třídy, struktury nebo rozhraní umožňuje deklaraci přetížené metody, indexery. Kromě toho třídě nebo struktuře umožňuje deklaraci instance přetížené konstruktory a operátory. Například třídy, struktury nebo rozhraní může obsahovat více deklarace metod se stejným názvem, pokud tyto deklarace metody se liší v jejich podpisu ([podpisy a přetížení](basic-concepts.md#signatures-and-overloading)). Všimněte si, že základní třídy se nepočítají do místa deklarace třídy a základních rozhraní nepočítají do místa deklarace rozhraní. Proto odvozené třídy nebo rozhraní může deklarovat člena se stejným názvem jako zděděného člena. Tento člen se říká, že ***skrýt*** zděděný člen.
-*  Každou deklaraci delegáta vytvoří nové prohlášení prostor. Názvy jsou zavedeny do tohoto prostoru deklarace prostřednictvím formální parametry (*fixed_parameter*s a *parameter_array*s) a *type_parameter*s.
-*  Každou deklaraci výčtu vytvoří nové prohlášení prostor. Názvy jsou zavedeny do tohoto prostoru deklarace prostřednictvím *enum_member_declarations*.
-*  Každou deklaraci metody, indexer deklarace, operátor, deklarace konstruktoru instance a anonymní funkce vytvoří nový prostor deklarace volá ***místa deklarace lokální proměnné***. Názvy jsou zavedeny do tohoto prostoru deklarace prostřednictvím formální parametry (*fixed_parameter*s a *parameter_array*s) a *type_parameter*s. Tělo funkce člena nebo anonymní funkce, pokud existuje, se považuje za být vnořen v rámci deklarace lokální proměnné místa. Jedná se o chybu pro prostor deklarace lokální proměnné a prostor vnořené deklarace lokální proměnné tak, aby obsahovala elementy se stejným názvem. Díky tomu se v rámci oboru vnořené deklarace není možné k deklarování místní proměnné nebo konstantní se stejným názvem jako místní proměnná nebo konstantní v nadřazeném místa deklarace. Je možné pro dvě deklarace mezery obsahovat elementy se stejným názvem jako ani jedna deklarace prostor obsahuje druhý.
-*  Každý *bloku* nebo *switch_block* , a také *pro*, *foreach* a *pomocí* vytvoří příkaz, deklarace lokální proměnné prostoru pro místní proměnné a místní konstanty. Názvy jsou zavedeny do tohoto prostoru deklarace prostřednictvím *local_variable_declaration*s a *local_constant_declaration*s. Všimněte si, že jsou vnořené bloky, ke kterým dochází jako nebo v rámci těla členské funkce nebo anonymní funkce v rámci deklarace lokální proměnné prostoru deklarované pomocí těchto funkcí pro své parametry. Proto se bude chyba, která máte třeba metodu s místní proměnné a parametr se stejným názvem.
-*  Každý *bloku* nebo *switch_block* vytvoří samostatné prohlášení prostor pro popisky. Názvy jsou zavedeny do tohoto prostoru deklarace prostřednictvím *labeled_statement*s a názvy jsou odkazovány prostřednictvím *goto_statement*s. ***Popisek místa deklarace*** bloku zahrnuje jakékoli vnořené bloky. Proto ve vnořeném bloku není možné deklarovat popisek se stejným názvem jako popisek z vnějšího bloku.
+*  V rámci všech zdrojových souborů programu *namespace_member_declaration*s bez ohraničujícího *namespace_declaration* jsou členy jednoho kombinovaného prostoru deklarací, který se nazývá ***globální prostor deklarací***.
+*  V rámci všech zdrojových souborů programu *namespace_member_declaration*s v *namespace_declaration*s, které mají stejný plně kvalifikovaný obor názvů, jsou členy jednoho kombinovaného prostoru deklarací.
+*  Každá deklarace třídy, struktury nebo rozhraní vytvoří nové místo deklarace. Názvy jsou představeny do tohoto prostoru deklarací prostřednictvím *class_member_declaration*s, *struct_member_declaration*s, *interface_member_declaration*s nebo *type_parameter*s. Výjimkou jsou deklarace konstruktoru přetížené instance a deklarace statických konstruktorů, třídy nebo struktury nemůžou obsahovat deklaraci členu se stejným názvem jako třída nebo struktura. Třída, struktura nebo rozhraní povolují deklaraci přetížených metod a indexerů. Třída nebo struktura navíc umožňuje deklaraci přetížených konstruktorů instancí a operátorů. Například třída, struktura nebo rozhraní mohou obsahovat více deklarací metod se stejným názvem, za předpokladu, že se tyto deklarace metod liší v podpisu ([signatury a přetížení](basic-concepts.md#signatures-and-overloading)). Všimněte si, že základní třídy nepřispívají k prostoru deklarací třídy a základní rozhraní nepřispívají k prostoru deklarací rozhraní. Proto odvozená třída nebo rozhraní může deklarovat člen se stejným názvem jako zděděný člen. Tento člen je označován za účelem ***skrytí*** zděděného člena.
+*  Každá deklarace delegáta vytvoří nové místo deklarace. Názvy jsou představeny do tohoto prostoru deklarací prostřednictvím formálních parametrů (*fixed_parameter*s a *parameter_array*s) a *type_parameter*s.
+*  Každá deklarace výčtu vytvoří nové místo deklarace. Názvy jsou představeny do tohoto prostoru deklarací prostřednictvím *enum_member_declarations*.
+*  Každá deklarace metody, deklarace indexeru, deklarace operátoru, deklarace konstruktoru instance a anonymní funkce vytvoří nové místo deklarace s názvem ***místní proměnná proměnné Space***. Názvy jsou představeny do tohoto prostoru deklarací prostřednictvím formálních parametrů (*fixed_parameter*s a *parameter_array*s) a *type_parameter*s. Tělo členu funkce nebo anonymní funkce, pokud existuje, je považováno za vnořené v rámci prostoru deklarace místní proměnné. Jedná se o chybu pro místní prostor deklarace proměnné a vnořené místo deklarace místní proměnné, které obsahuje prvky se stejným názvem. Proto v rámci vnořeného prostoru deklarací není možné deklarovat místní proměnnou nebo konstantu se stejným názvem jako místní proměnná nebo konstanta v ohraničujícím prostoru deklarace. Je možné, že dva prostory deklarace obsahují prvky se stejným názvem, pokud ani prostor deklarace neobsahuje.
+*  Každý *blok* nebo *switch_block* , stejně jako příkaz *for*, *foreach* a *using* , vytvoří místní prostor deklarací proměnných pro lokální proměnné a místní konstanty. Názvy jsou představeny do tohoto prostoru deklarací prostřednictvím *local_variable_declaration*s a *local_constant_declaration*s. Všimněte si, že bloky, ke kterým dochází jako nebo v těle členu funkce nebo anonymní funkce, jsou vnořené v rámci prostoru deklarací místní proměnné deklarované pomocí těchto funkcí pro své parametry. Proto se jedná o chybu, například metoda s místní proměnnou a parametr se stejným názvem.
+*  Každý *blok* nebo *switch_block* vytvoří samostatný prostor deklarací pro popisky. Názvy jsou představeny do tohoto prostoru deklarací prostřednictvím *labeled_statement*s a názvy jsou odkazovány prostřednictvím *goto_statement*s. ***Prostor deklarace popisku*** bloku obsahuje všechny vnořené bloky. Proto v rámci vnořeného bloku není možné deklarovat popisek se stejným názvem jako popisek v ohraničujícím bloku.
 
-Textové pořadí, ve kterém jsou deklarovány názvy je obecně žádný význam. Zejména textové pořadí není důležité pro deklaraci a použití oborů názvů, konstanty, metody, vlastnosti, události, indexery, operátory, konstruktory instancí, destruktory, statické konstruktory a typy. Deklarace záleží na pořadí následujícími způsoby:
+Textové pořadí, ve kterém jsou názvy deklarovány, je obecně bez významu. Konkrétně textové pořadí není významné pro deklaraci a použití oborů názvů, konstant, metod, vlastností, událostí, indexerů, operátorů, konstruktorů instancí, destruktorů, statických konstruktorů a typů. Pořadí deklarací je významné v následujících ohledech:
 
-*  Pořadí deklarace pro pole deklarace a místní deklarace proměnné určuje pořadí, ve kterém jsou prováděna jejich inicializátory (pokud existuje).
-*  Lokální proměnné musí být definovány před jejich použitím ([obory](basic-concepts.md#scopes)).
-*  Deklarace pořadí deklarací členů výčtu ([členy výčtu](enums.md#enum-members)) je důležité, když *constant_expression* hodnoty jsou vynechány.
+*  Pořadí deklarací pro deklarace polí a deklarace místních proměnných Určuje pořadí, ve kterém jsou provedeny jejich Inicializátory (pokud existují).
+*  Lokální proměnné musí být definovány předtím, než se použijí ([rozsahy](basic-concepts.md#scopes)).
+*  Pořadí deklarací pro deklarace členů výčtu ([členy výčtu](enums.md#enum-members)) je důležité, pokud jsou vynechány hodnoty *constant_expression* .
 
-Místo deklarace oboru názvů je "Otevřít zakončeno" a dvěma obor názvů, které deklarace se stejným plně kvalifikovaným názvem přispívat na stejné místo prohlášení. Příklad
+Prostor deklarací oboru názvů je "otevřený konec" a dvě deklarace oboru názvů se stejným plně kvalifikovaným názvem přispívají do stejného prostoru deklarace. Například
 ```csharp
 namespace Megacorp.Data
 {
@@ -92,9 +92,9 @@ namespace Megacorp.Data
 }
 ```
 
-výše uvedené dvě deklarace oboru názvů přispívat na stejné místo prohlášení, v tomto případě deklarovat dvě třídy s plně kvalifikované názvy `Megacorp.Data.Customer` a `Megacorp.Data.Order`. Vzhledem k tomu, že dvě deklarace přispívat na stejné místo prohlášení, to by způsobila Chyba kompilace pokud každá obsahovala deklaraci třídy se stejným názvem.
+Dvě deklarace oboru názvů výše přispívají do stejného prostoru deklarace. v tomto případě deklaruje dvě třídy s plně kvalifikovanými názvy `Megacorp.Data.Customer` a `Megacorp.Data.Order`. Vzhledem k tomu, že dvě deklarace přispívají ke stejnému prostoru deklarace, by to vedlo k chybě při kompilaci, pokud každá z nich obsahuje deklaraci třídy se stejným názvem.
 
-Jak je uvedeno výše místo prohlášení bloku zahrnuje jakékoli vnořené bloky. Díky tomu se v následujícím příkladu `F` a `G` metody způsobit chybu kompilace, protože název `i` je deklarovaný ve vnějším bloku a nejde deklarovat ve vnitřním bloku. Ale `H` a `I` metod jsou platné od obou `i`společnosti jsou deklarovány v samostatných blocích-nested.
+Jak je uvedeno výše, místo deklarace bloku obsahuje všechny vnořené bloky. Proto v následujícím příkladu metody `F` a `G` mají za následek chybu při kompilaci, protože název `i` je deklarován ve vnějším bloku a nemůže být znovu deklarován ve vnitřním bloku. Nicméně metody `H` a `I` jsou platné, protože dva `i` jsou deklarovány v samostatných nevnořených blocích.
 
 ```csharp
 class A
@@ -131,126 +131,126 @@ class A
 }
 ```
 
-## <a name="members"></a>Členové
+## <a name="members"></a>Members
 
-Obory názvů a typy mají ***členy***. Členy entity jsou obecně dostupné prostřednictvím úplný název, který začíná na odkaz na entitu, za nímž následuje "`.`" token, následovaný název člena.
+Obory názvů a typy mají ***členy***. Členové entity jsou všeobecně k dispozici prostřednictvím kvalifikovaného názvu, který začíná odkazem na entitu a za ním následuje token "`.`" následovaný názvem člena.
 
-Členy typu jsou buď deklarovány v deklaraci typu nebo ***zděděné*** ze základní třídy typu. Pokud typ dědí ze základní třídy, všechny členy základní třídy, s výjimkou instance konstruktory, destruktory a statické konstruktory stanou členy odvozeného typu. Je deklarovaná přístupnost člena základní třídy neřídí, zda člen zděděný – dědičnosti rozšiřuje do jakéhokoli členu, který není konstruktor instance, statický konstruktor nebo destruktor. Ale nemusí být přístupné v odvozeném typu, buď z důvodu jeho deklarovaná přístupnost zděděného člena ([deklarovaná přístupnost](basic-concepts.md#declared-accessibility)) nebo protože je skrytá deklarací v samotném typu ([skrytí prostřednictvím dědičnost](basic-concepts.md#hiding-through-inheritance)).
+Členy typu jsou deklarovány buď v deklaraci typu, nebo ***zděděny*** ze základní třídy typu. Když typ dědí ze základní třídy, všichni členové základní třídy, s výjimkou konstruktorů instancí, destruktorů a statických konstruktorů, se stanou členy odvozeného typu. Deklarovaná přístupnost člena základní třídy neurčuje, jestli je člen zděděný – dědičnost rozšiřuje na jakýkoliv člen, který není konstruktorem instance, statický konstruktor nebo destruktor. Zděděný člen však nemusí být přístupný v odvozeném typu, buď z důvodu deklarovaného přístupnosti ([deklarovaného přístupnosti](basic-concepts.md#declared-accessibility)), nebo vzhledem k tomu, že je skrytý deklarací v samotném typu ([skrytím prostřednictvím dědičnosti](basic-concepts.md#hiding-through-inheritance)).
 
-### <a name="namespace-members"></a>Namespace členy
+### <a name="namespace-members"></a>Členové oboru názvů
 
-Obory názvů a typy, které mají žádný nadřazený obor názvů jsou členy ***globální obor názvů***. To odpovídá přímo názvy deklarované v deklaraci globálního místa.
+Obory názvů a typy, které nemají obor názvů nadřazených, jsou členy ***globálního oboru názvů***. To odpovídá přímo názvům deklarovaným v globálním prostoru deklarací.
 
-Obory názvů a typy deklarované v rámci oboru názvů jsou členy tohoto oboru názvů. To odpovídá přímo názvy deklarované v prostoru deklarace oboru názvů.
+Obory názvů a typy deklarované v rámci oboru názvů jsou členy tohoto oboru názvů. To odpovídá přímo názvům deklarovaným v prostoru deklarací oboru názvů.
 
-Obory názvů nemá žádné omezení přístupu. Není možné deklarovat privátní, chráněné nebo interní oborů názvů a názvy oborů názvů jsou vždy veřejně přístupná.
+Obory názvů nemají žádná omezení přístupu. Není možné deklarovat privátní, chráněné nebo interní obory názvů a názvy oborů názvů jsou vždy veřejně přístupné.
 
-### <a name="struct-members"></a>Členy struktury
+### <a name="struct-members"></a>Členové struktury
 
-Členy struktury jsou členy deklarované ve struktuře a členy zděděné od přímé základní třídy struktura, obsahovat `System.ValueType` a nepřímá základní třída `object`.
+Členy struktury jsou členové deklarované ve struktuře a členy zděděné z přímé základní třídy struktury `System.ValueType` a nepřímou základní třídou `object`.
 
-Členové jednoduchý typ. odpovídají přímo na členy struktury alias typu pomocí jednoduchého typu:
+Členové jednoduchého typu odpovídají přímo členům typu struktury s aliasem jednoduchý typ:
 
-*  Členové `sbyte` jsou členy `System.SByte` struktury.
-*  Členové `byte` jsou členy `System.Byte` struktury.
-*  Členové `short` jsou členy `System.Int16` struktury.
-*  Členové `ushort` jsou členy `System.UInt16` struktury.
-*  Členové `int` jsou členy `System.Int32` struktury.
-*  Členové `uint` jsou členy `System.UInt32` struktury.
-*  Členové `long` jsou členy `System.Int64` struktury.
-*  Členové `ulong` jsou členy `System.UInt64` struktury.
-*  Členové `char` jsou členy `System.Char` struktury.
-*  Členové `float` jsou členy `System.Single` struktury.
-*  Členové `double` jsou členy `System.Double` struktury.
-*  Členové `decimal` jsou členy `System.Decimal` struktury.
-*  Členové `bool` jsou členy `System.Boolean` struktury.
+*  Členy `sbyte` jsou členy struktury `System.SByte`.
+*  Členy `byte` jsou členy struktury `System.Byte`.
+*  Členy `short` jsou členy struktury `System.Int16`.
+*  Členy `ushort` jsou členy struktury `System.UInt16`.
+*  Členy `int` jsou členy struktury `System.Int32`.
+*  Členy `uint` jsou členy struktury `System.UInt32`.
+*  Členy `long` jsou členy struktury `System.Int64`.
+*  Členy `ulong` jsou členy struktury `System.UInt64`.
+*  Členy `char` jsou členy struktury `System.Char`.
+*  Členy `float` jsou členy struktury `System.Single`.
+*  Členy `double` jsou členy struktury `System.Double`.
+*  Členy `decimal` jsou členy struktury `System.Decimal`.
+*  Členy `bool` jsou členy struktury `System.Boolean`.
 
-### <a name="enumeration-members"></a>Členy výčtu
+### <a name="enumeration-members"></a>Členové výčtu
 
-Členy výčtu jsou deklarovány ve výčtu konstant a členy zděděné od přímé základní třídy výčtu `System.Enum` a nepřímé třídy base `System.ValueType` a `object`.
+Členy výčtu jsou konstanty deklarované ve výčtu a členy zděděné z přímé základní třídy výčtu `System.Enum` a nepřímé základní třídy `System.ValueType` a `object`.
 
-### <a name="class-members"></a>Členy třídy
+### <a name="class-members"></a>Členové třídy
 
-Členy třídy jsou členy deklarované ve třídě a členy zděděné ze základní třídy (s výjimkou třídy `object` který nemá žádnou základní třídu). Členy zděděné ze základní třídy zahrnují konstanty, pole, metody, vlastnosti, události, indexery, operátory a typy základní třídy, ale není instance konstruktory, destruktory a statické konstruktory základní třídy. Bez ohledu na jejich přístupnost jsou zděděné členy základní třídy.
+Členy třídy jsou členy deklarované ve třídě a členy zděděné ze základní třídy (kromě třídy `object`, která nemá žádnou základní třídu). Členy zděděné ze základní třídy zahrnují konstanty, pole, metody, vlastnosti, události, indexery, operátory a typy základní třídy, ale ne konstruktory instancí, destruktory a statické konstruktory základní třídy. Členové základní třídy jsou děděni bez ohledu na jejich přístupnost.
 
-Deklarace třídy mohou obsahovat deklarace konstanty, pole, metody, vlastnosti, události, indexery, operátory, konstruktory instancí, destruktory, statické konstruktory a typy.
+Deklarace třídy může obsahovat deklarace konstant, pole, metody, vlastnosti, události, indexery, operátory, konstruktory instancí, destruktorů, statických konstruktorů a typů.
 
-Členové `object` a `string` odpovídají přímo členy typů tříd, alias:
+Členy `object` a `string` odpovídají přímo členům typů třídy, které aliasují:
 
-*  Členové `object` jsou členy `System.Object` třídy.
-*  Členové `string` jsou členy `System.String` třídy.
+*  Členové `object` jsou členy třídy `System.Object`.
+*  Členové `string` jsou členy třídy `System.String`.
 
 ### <a name="interface-members"></a>Členy rozhraní
 
-Členy rozhraní jsou členy deklarované v rozhraní a ve všech základních rozhraní rozhraní. Členy ve třídě `object` nejsou, přísně vzato členy libovolné rozhraní ([členy rozhraní](interfaces.md#interface-members)). Ale členy ve třídě `object` jsou k dispozici prostřednictvím člen vyhledávání v libovolný typ rozhraní ([člen vyhledávání](expressions.md#member-lookup)).
+Členy rozhraní jsou členy deklarované v rozhraní a ve všech základních rozhraních rozhraní. Členové třídy `object` nejsou, výhradně řečeno, členové libovolného rozhraní ([Členové rozhraní](interfaces.md#interface-members)). Nicméně členové třídy `object` jsou k dispozici prostřednictvím vyhledávání členů v jakémkoli typu rozhraní ([vyhledávání členů](expressions.md#member-lookup)).
 
-### <a name="array-members"></a>Členy pole
+### <a name="array-members"></a>Členové pole
 
-Členy pole jsou členy zděděné z třídy `System.Array`.
+Členy pole jsou členové děděni ze třídy `System.Array`.
 
-### <a name="delegate-members"></a>Delegát členy
+### <a name="delegate-members"></a>Členové delegáta
 
-Členové delegáta jsou členy zděděné z třídy `System.Delegate`.
+Členové delegáta jsou členy dědění ze třídy `System.Delegate`.
 
 ## <a name="member-access"></a>Přístup ke členům
 
-Deklarace členů umožňují řídit přístup ke členu. Usnadnění přístupu člena je vytvořeno je deklarovaná přístupnost ([deklarovaná přístupnost](basic-concepts.md#declared-accessibility)) člena kombinovat s přístupnosti bezprostředně nadřazeného typu, pokud existuje.
+Deklarace členů umožňují kontrolu nad přístupem členů. Přístupnost člena je založena na deklaraci přístupnosti ([deklarovaný přístup](basic-concepts.md#declared-accessibility)) člena v kombinaci s přístupností bezprostředně obsahujícího typu, pokud existuje.
 
-Když je povolen přístup k určitým členem, člen se říká, že ***přístupné***. Naopak při přístupu k určitým členem je zakázané, člen se říká, že ***nepřístupný***. Je povolen přístup ke členovi textové umístění, ve kterém probíhá přístup je obsažen v tak doména přístupnosti ([usnadnění domén](basic-concepts.md#accessibility-domains)) člena.
+Když je povolený přístup ke konkrétnímu členu, bude se jednat o člena, který je ***přístupný***. Naopak, pokud je zakázaný přístup ke konkrétnímu členovi, říká se, že je ***nepřístupný***. Přístup ke členu je povolený, když je textové umístění, ve kterém se přístup provádí, zahrnuté v doméně přístupnosti ([domény přístupnosti](basic-concepts.md#accessibility-domains)) člena.
 
 ### <a name="declared-accessibility"></a>Deklarovaná přístupnost
 
-***Deklarovaná přístupnost*** člena může být jedna z následujících akcí:
+***Deklarovaná přístupnost*** člena může být jedna z následujících:
 
-*  Public, který je vybrán zahrnutím `public` modifikátor v deklaraci člena. Intuitivní význam `public` je "přístup mimo jiné".
-*  Chráněný, což je vybraná zahrnutím `protected` modifikátor v deklaraci člena. Intuitivní význam `protected` je "přístup omezen na obsahující třídu nebo typy odvozené ze třídy obsahující".
-*  Interní, který je vybrán zahrnutím `internal` modifikátor v deklaraci člena. Intuitivní význam `internal` je "přístup omezen na tento program".
-*  Chráněné vnitřní (tj. chráněné nebo interní), která se zvolila včetně `protected` a `internal` modifikátor v deklaraci člena. Intuitivní význam `protected internal` "přístup omezen na tento program nebo typy odvozené od třídy obsahující".
-*  Privátní, který je vybrán zahrnutím `private` modifikátor v deklaraci člena. Intuitivní význam `private` je "přístup omezen na obsahující typ".
+*  Public, který je vybrán zahrnutím modifikátoru `public` v deklaraci členu. Intuitivní význam `public` je "Access not Unlimited".
+*  Protected, který je vybrán zahrnutím modifikátoru `protected` v deklaraci členu. Intuitivní význam `protected` je "přístup omezený na obsahující třídu nebo typy odvozené z nadřazené třídy".
+*  Interní, který je vybrán zahrnutím modifikátoru `internal` v deklaraci členu. Intuitivní význam `internal` je "přístup omezený na tento program".
+*  Chráněn interní (tj. chráněný nebo interní), který je vybrán zahrnutím `protected` a modifikátoru `internal` v deklaraci členu. Intuitivní význam `protected internal` je "přístup omezený na tento program nebo typy odvozené z nadřazené třídy".
+*  Private, který je vybrán zahrnutím modifikátoru `private` v deklaraci členu. Intuitivní význam `private` je "přístup omezený na obsažený typ".
 
-V závislosti na kontextu, ve kterém přijímá deklarace člena umístíte, jsou povoleny pouze určité typy deklarovaná přístupnost. Kromě toho při deklaraci členské neobsahuje žádné modifikátory přístupu, kontext, ve kterém probíhá deklarace Určuje výchozí deklarovaná přístupnost.
+V závislosti na kontextu, ve kterém je deklarace členů provedena, jsou povoleny pouze určité typy deklarovaného usnadnění. Kromě toho, když deklarace člena neobsahuje žádné modifikátory přístupu, určuje kontext, ve kterém se deklarace provede, výchozí deklarovaná přístupnost.
 
-*  Obory názvů mají implicitně `public` deklarovaná přístupnost. Deklarace oboru názvů jsou povoleny žádné modifikátory přístupu.
-*  Typy deklarované v jednotkách kompilace nebo obory názvů můžou mít `public` nebo `internal` deklarované usnadnění přístupu a výchozí `internal` deklarovaná přístupnost.
-*  Členy třídy lze mít pět typů deklarovaná přístupnost a ve výchozím nastavení `private` deklarovaná přístupnost. (Všimněte si, že typ deklarované jako člen třídy, může mít některý z pěti typů deklarovaná přístupnost, že typ deklarovaný s členem oboru názvů můžou mít jenom `public` nebo `internal` deklarovaná přístupnost.)
-*  Členy struktury mohou mít `public`, `internal`, nebo `private` deklarované usnadnění přístupu a výchozí `private` deklaraci přístupnost, protože jsou implicitně zapečetěné struktury. Členy struktury zavedený – struktura (který je, nejsou děděna této struktury) nemůže mít `protected` nebo `protected internal` deklarovaná přístupnost. (Všimněte si, že typ deklarovaný jako člen struktury mohou mít `public`, `internal`, nebo `private` deklarovaná přístupnost, že typ deklarovaný s členem oboru názvů můžou mít jenom `public` nebo `internal` deklarovaná přístupnost.)
-*  Členy rozhraní mají implicitně `public` deklarovaná přístupnost. Deklarace člena rozhraní jsou povoleny žádné modifikátory přístupu.
-*  Členy výčtu mají implicitně `public` deklarovaná přístupnost. U člena deklarací výčtu jsou povoleny žádné modifikátory přístupu.
+*  Obory názvů mají implicitně `public` deklarované přístupnosti. U deklarací oboru názvů nejsou povoleny žádné modifikátory přístupu.
+*  Typy deklarované v kompilačních jednotkách nebo oborech názvů můžou mít `public` nebo `internal` deklarované přístupnosti a výchozí hodnoty `internal` deklarované přístupnosti.
+*  Členové třídy mohou mít kterýkoli z pěti druhů deklarovaného přístupnosti a výchozí hodnoty pro `private` deklarované přístupnosti. (Všimněte si, že typ deklarovaný jako člen třídy může mít kterýkoli z pěti druhů deklarovaného usnadnění, zatímco typ deklarovaný jako člen oboru názvů může mít pouze @no__t deklarované přístupnosti-0 nebo `internal`.)
+*  Členové struktury můžou mít `public`, `internal` nebo `private` deklarované přístupnosti a výchozí hodnoty `private` deklarované přístupnosti, protože struktury jsou implicitně zapečetěné. Členy struktury představené ve struktuře (to znamená, že není zděděná touto strukturou) nemůžou mít deklaraci s deklarací `protected` nebo `protected internal`. (Všimněte si, že typ deklarovaný jako člen struktury může mít `public`, `internal` nebo `private` deklarovaná přístupnost, zatímco typ deklarovaný jako člen oboru názvů může mít jenom `public` nebo `internal` deklarovaný přístup.)
+*  Členy rozhraní mají implicitně @no__t deklarované přístupnosti-0. V deklaracích členů rozhraní nejsou povoleny žádné modifikátory přístupu.
+*  Členové výčtu mají implicitně `public` deklarované přístupnosti. Pro deklarace členů výčtu nejsou povoleny žádné modifikátory přístupu.
 
-### <a name="accessibility-domains"></a>Usnadnění domén
+### <a name="accessibility-domains"></a>Domény přístupnosti
 
-***Doména přístupnosti*** člena se skládá z (pravděpodobně nesouvislý) části textu programu, ve kterém je povolen přístup ke členu. Pro účely definování tak doména přístupnosti člena, je označen jako člen ***nejvyšší úrovně*** Pokud není deklarován v rámci typu, a je označen jako člen ***vnořené*** případě, že je deklarována v rámci jiného typu. Kromě toho ***programu text*** programu je definován tak, že všechny programu text obsažen ve všech zdrojových souborech programu a textem programu typ je definován tak, že všechny obsažené v textu programu *type_declaration*s tohoto typu (včetně, případně také typy, které jsou vnořené v rámci typu).
+***Doména přístupnosti*** člena se skládá z (případně nesouvislých) oddílů textu programu, ve kterém je povolený přístup ke členu. Pro účely definování domény přístupnosti člena je člen označován jako ***nejvyšší úroveň*** , pokud není deklarován v rámci typu, a člen je označován jako ***vnořený*** v případě, že je deklarován v rámci jiného typu. Kromě toho ***text*** programu programu je definován jako veškerý text programu obsažený ve všech zdrojových souborech programu a text programu typu je definován jako veškerý text programu obsažený v *type_declaration*s daného typu (včetně, typy, které jsou vnořené v rámci typu).
 
-Doména přístupnosti člena předdefinovaný typ (například `object`, `int`, nebo `double`) neomezený.
+Doména přístupnosti předdefinovaného typu (například `object`, `int` nebo `double`) je neomezená.
 
-Doména přístupnosti člena na nejvyšší úrovni nevázaný typ `T` ([vázaný a nevázaných typy](types.md#bound-and-unbound-types)), který je deklarován v programu `P` je definovaná následujícím způsobem:
+Doména přístupnosti nevázaného typu `T` ([vázané a nevázané typy](types.md#bound-and-unbound-types)), která je deklarována v programu `P` je definována takto:
 
-*  Pokud je deklarovaná přístupnost člena `T` je `public`, tak doména přístupnosti člena `T` je text programu `P` a libovolného programu, který odkazuje na `P`.
-*  Pokud je deklarovaná přístupnost člena `T` je `internal`, tak doména přístupnosti člena `T` je text programu `P`.
+*  Pokud je deklarovaná přístupnost z `T` `public`, doména přístupnosti `T` je text programu `P` a jakýkoli program, který odkazuje na `P`.
+*  Pokud je deklarovaná přístupnost z `T` `internal`, doména přístupnosti `T` je text programu `P`.
 
-Z těchto definic následuje, tak doména přístupnosti člena nejvyšší úrovně nevázaný typ je vždy alespoň textem programu program, který typ je deklarován.
+Z těchto definic se řídí tím, že doména přístupnosti typu bez vazby na nejvyšší úrovni je vždy alespoň text programu programu, ve kterém je tento typ deklarován.
 
-Doména přístupnosti pro konstruovaný typ. `T<A1, ..., An>` je průsečík domény přístupnosti typu nevázaný parametr generického typu `T` a usnadnění domény argumentů typu `A1, ..., An`.
+Doména přístupnosti pro konstruovaný typ `T<A1, ..., An>` je průnik domény přístupnosti nevázaného obecného typu `T` a domény přístupnosti argumentů typu `A1, ..., An`.
 
-Doména přístupnosti vnořeného člena `M` deklarovaného v typu `T` v rámci programu `P` je definována takto (konstatujme, že `M` pravděpodobně sám může být typ):
+Doména přístupnosti vnořeného člena `M` deklarovaného v typu `T` v rámci programu `P` je definována takto (s označením, že by mohlo být typ samotného `M`):
 
-*  Pokud je deklarovaná přístupnost člena `M` je `public`, tak doména přístupnosti člena `M` je doména přístupnosti člena `T`.
-*  Pokud je deklarovaná přístupnost člena `M` je `protected internal`, umožněte `D` být sjednocení textem programu `P` a textem programu libovolného typu odvozené z `T`, který je deklarován mimo `P`. Doména přístupnosti člena `M` je průsečík domény přístupnosti typu `T` s `D`.
-*  Pokud je deklarovaná přístupnost člena `M` je `protected`, umožněte `D` být sjednocení textem programu `T` a textem programu libovolného typu odvozené z `T`. Doména přístupnosti člena `M` je průsečík domény přístupnosti typu `T` s `D`.
-*  Pokud je deklarovaná přístupnost člena `M` je `internal`, tak doména přístupnosti člena `M` je průsečík domény přístupnosti typu `T` s textem programu `P`.
-*  Pokud je deklarovaná přístupnost člena `M` je `private`, tak doména přístupnosti člena `M` je text programu `T`.
+*  Pokud je deklarovaná přístupnost z `M` `public`, doména přístupnosti `M` je doména přístupnosti `T`.
+*  Pokud je deklarovaná přístupnost z `M` `protected internal`, nechte `D` sjednocení textu programu `P` a text programu libovolného typu odvozeného z `T`, který je deklarovaný mimo `P`. Doména přístupnosti `M` je průnik domény přístupnosti `T` s `D`.
+*  Pokud je deklarovaná přístupnost z `M` `protected`, nechte `D` sjednocení textu programu `T` a text programu libovolného typu odvozeného z `T`. Doména přístupnosti `M` je průnik domény přístupnosti `T` s `D`.
+*  Pokud je deklarovaná přístupnost z `M` `internal`, doména přístupnosti `M` je průnik domény přístupnosti `T` s textem programu `P`.
+*  Pokud je deklarovaná přístupnost z `M` `private`, doména přístupnosti `M` je text programu `T`.
 
-Z tyto definice vyplývá, že doména přístupnosti vnořeného člena je vždy alespoň textem programu typu, ve kterém člen je deklarovaný. Kromě toho vyplývá, tak doména přístupnosti člena se nikdy výstižnějších než doména přístupnosti typu, ve kterém člen je deklarovaný.
+Z těchto definic následuje, že doména přístupnosti vnořeného člena je vždy alespoň text programu typu, ve kterém je člen deklarován. Navíc následuje za tím, že doména přístupnosti člena není nikdy více zahrnutá než doména přístupnosti typu, ve kterém je člen deklarovaný.
 
-Intuitivní řečeno pokud typ nebo člen `M` je přístup, následující kroky jsou vyhodnoceny Ujistěte se, že je povolen přístup:
+V intuitivním smyslu jsou při přístupu k typu nebo členu `M` vyhodnoceny následující kroky, které zajistí, že přístup je povolen:
 
-*  První, pokud `M` je deklarována v rámci typu (oproti kompilační jednotky nebo oboru názvů), Chyba kompilace nastane, pokud tento typ není dostupný.
-*  Když se poté `M` je `public`, je povolen přístup.
-*  Jinak, pokud `M` je `protected internal`, přístup je povolený, pokud se vyskytuje v programu, ve kterém `M` je teď deklarována, nebo pokud dojde k v rámci třídy odvozené z třídy, ve které `M` je deklarovaný a probíhá prostřednictvím odvozené Typ třídy ([chráněného přístupu pro instanci členy](basic-concepts.md#protected-access-for-instance-members)).
-*  Jinak, pokud `M` je `protected`, přístup je povolený, pokud k němu dojde v rámci třídy, ve které `M` je teď deklarována, nebo pokud dojde k v rámci třídy odvozené z třídy, ve které `M` je deklarovaný a probíhá prostřednictvím odvozené Typ třídy ([chráněného přístupu pro instanci členy](basic-concepts.md#protected-access-for-instance-members)).
-*  Jinak, pokud `M` je `internal`, pokud se vyskytuje v programu, ve kterém smí obsahovat přístup `M` je deklarována.
-*  Jinak, pokud `M` je `private`, pokud k němu dojde v rámci typu, ve kterém smí obsahovat přístup `M` je deklarována.
-*  V opačném případě tento typ nebo člen je přístupný a dojde k chybě kompilace.
+*  První, pokud je `M` deklarována v rámci typu (na rozdíl od kompilační jednotky nebo oboru názvů), dojde k chybě při kompilaci, pokud tento typ není přístupný.
+*  Pokud je `M` `public`, přístup je povolen.
+*  V opačném případě, pokud je `M` `protected internal`, přístup je povolen, pokud k tomu dojde v programu, ve kterém je deklarována `M` nebo pokud k ní dojde v rámci třídy odvozené od třídy, ve které je deklarována `M` a provedena prostřednictvím odvozené třídy typu ([chráněno přístup pro členy instance](basic-concepts.md#protected-access-for-instance-members).
+*  V opačném případě, pokud je `M` `protected`, přístup je povolen, pokud se vyskytuje v rámci třídy, ve které je deklarována `M`, nebo pokud k ní dojde v rámci třídy odvozené od třídy, ve které je deklarována `M` a provedena prostřednictvím odvozené třídy typu ([chráněno přístup pro členy instance](basic-concepts.md#protected-access-for-instance-members).
+*  V opačném případě, pokud je `M` `internal`, přístup je povolen, pokud k tomu dojde v programu, ve kterém je deklarována `M`.
+*  V opačném případě, pokud je `M` `private`, přístup je povolen, pokud k němu dojde v rámci typu, ve kterém je deklarována `M`.
+*  V opačném případě je typ nebo člen nepřístupný a dojde k chybě při kompilaci.
 
 V příkladu
 ```csharp
@@ -282,19 +282,19 @@ internal class B
     }
 }
 ```
-třídy a členy mají následující usnadnění domén:
+třídy a členové mají následující domény přístupnosti:
 
-*  Doména přístupnosti člena `A` a `A.X` neomezený.
-*  Doména přístupnosti člena `A.Y`, `B`, `B.X`, `B.Y`, `B.C`, `B.C.X`, a `B.C.Y` je text programu obsahující programu.
-*  Doména přístupnosti člena `A.Z` je text programu `A`.
-*  Doména přístupnosti člena `B.Z` a `B.D` je text programu `B`, včetně textem programu `B.C` a `B.D`.
-*  Doména přístupnosti člena `B.C.Z` je text programu `B.C`.
-*  Doména přístupnosti člena `B.D.X` a `B.D.Y` je text programu `B`, včetně textem programu `B.C` a `B.D`.
-*  Doména přístupnosti člena `B.D.Z` je text programu `B.D`.
+*  Doména přístupnosti `A` a `A.X` je neomezená.
+*  Doména přístupnosti `A.Y`, `B`, `B.X`, `B.Y`, `B.C`, `B.C.X` a `B.C.Y` je text programu obsahujícího programu.
+*  Doména přístupnosti `A.Z` je text programu `A`.
+*  Doména přístupnosti `B.Z` a `B.D` je text programu `B`, včetně textu programu `B.C` a `B.D`.
+*  Doména přístupnosti `B.C.Z` je text programu `B.C`.
+*  Doména přístupnosti `B.D.X` a `B.D.Y` je text programu `B`, včetně textu programu `B.C` a `B.D`.
+*  Doména přístupnosti `B.D.Z` je text programu `B.D`.
 
-Jak ukazuje příklad, tak doména přístupnosti člena se nikdy větší než u nadřazeného typu. Například i když všechny `X` členové mají veřejné deklarovaná přístupnost, vše kromě `A.X` usnadnění domén, které jsou omezeny nadřazeného typu.
+Jak ukazuje příklad, doména přístupnosti člena není nikdy větší než v nadřazeném typu. Například i v případě, že všichni členové `X` mají veřejnou deklaraci přístupnosti, všechny ale `A.X` mají domény přístupnosti, které jsou omezeny nadřazeným typem.
 
-Jak je popsáno v [členy](basic-concepts.md#members), odvozené typy dědí všechny členy základní třídy, s výjimkou pro instanci konstruktory, destruktory a statické konstruktory. To zahrnuje i soukromé členy základní třídy. Doména přístupnosti člena soukromý člen ale obsahuje pouze textem programu typu, ve kterém člen je deklarovaný. V příkladu
+Jak je popsáno v tématu [Členové](basic-concepts.md#members), jsou všechny členy základní třídy, s výjimkou konstruktorů instancí, destruktorů a statických konstruktorů, děděny odvozenými typy. To zahrnuje i soukromé členy základní třídy. Doména přístupnosti privátního člena však obsahuje pouze text programu typu, ve kterém je člen deklarován. V příkladu
 ```csharp
 class A
 {
@@ -312,19 +312,19 @@ class B: A
     }
 }
 ```
-`B` třída dědí soukromému členu `x` z `A` třídy. Protože je privátní člen, je dostupná jenom v rámci *class_body* z `A`. Proto přístup k `b.x` orientovaný `A.F` metody, ale selže v `B.F` metody.
+Třída `B` dědí z privátního člena `x` ze třídy `A`. Vzhledem k tomu, že člen je soukromý, je přístupný pouze v rámci *class_body* `A`. Proto se přístup k `b.x` v metodě `A.F` zdaří, ale v metodě `B.F` se nezdaří.
 
-### <a name="protected-access-for-instance-members"></a>Chráněného přístupu pro členy instance
+### <a name="protected-access-for-instance-members"></a>Chráněný přístup pro členy instance
 
-Při `protected` člena instance je přistupováno mimo textem programu třídy, ve kterém je deklarována, a kdy `protected internal` člena instance je přístupná mimo textem programu program, ve kterém je deklarována, přístup musí proběhnout v rámci deklarace třídy, která je odvozena z třídy, ve kterém je deklarována. Kromě toho přístup je potřeba provést prostřednictvím instance typu odvozené třídy nebo typu třídy zkonstruovat z něj. Toto omezení zabraňuje v přístupu k chráněným členům jiné odvozené třídy i v případě, že členové jsou zděděny ze stejné základní třídy jedné odvozené třídy.
+Pokud je člen instance `protected` přístupný mimo text programu třídy, ve které je deklarována, a pokud je člen instance `protected internal` přístupný mimo text programu, ve kterém je deklarován, přístup musí probíhat v rámci třídy. deklarace, která je odvozena z třídy, ve které je deklarována. Kromě toho je nutné přístup provést prostřednictvím instance daného typu odvozené třídy nebo z něj vytvořeného typu třídy. Toto omezení zabrání jedné odvozené třídě v přístupu k chráněným členům jiných odvozených tříd, a to i v případě, že jsou členové děděni ze stejné základní třídy.
 
-Umožní `B` být základní třídu, která deklaruje člen chráněnou instanci `M`a nechat `D` být třída odvozená z `B`. V rámci *class_body* z `D`, přístup k `M` můžete provést jednu z následujících forem:
+Nechejte `B` jako základní třídu, která deklaruje člena chráněné instance `M` a nechte `D` třídu, která je odvozena od `B`. V rámci *class_body* `D` může mít přístup k `M` jednu z následujících forem:
 
-*  Neúplného *type_name* nebo *primary_expression* formuláře `M`.
-*  A *primary_expression* formuláře `E.M`, zadaný typ `E` je `T` nebo třída odvozená z `T`, kde `T` je typ třídy `D`, nebo typ třídy. zkonstruovat z `D`
-*  A *primary_expression* formuláře `base.M`.
+*  Nekvalifikovaný *TYPE_NAME* nebo *primary_expression* formuláře `M`.
+*  *Primary_expression* formuláře `E.M`, za předpokladu, že typ `E` je `T` nebo třída odvozená od `T`, kde `T` je typ třídy `D` nebo typ třídy vytvořený z `D`.
+*  *Primary_expression* formuláře `base.M`.
 
-Kromě těchto forem přístup odvozené třídy přístup k chráněné instance konstruktoru základní třídy v *constructor_initializer* ([inicializátory konstruktoru](classes.md#constructor-initializers)).
+Kromě těchto forem přístupu může odvozená třída přistupovat k konstruktoru chráněné instance základní třídy v *constructor_initializer* ([Inicializátory konstruktoru](classes.md#constructor-initializers)).
 
 V příkladu
 ```csharp
@@ -346,7 +346,7 @@ public class B: A
     }
 }
 ```
-v rámci `A`, je možné přístup `x` prostřednictvím instance obou `A` a `B`, protože v obou případech přístup probíhá přes instanci `A` nebo třída odvozená z `A`. Ale v rámci `B`, není možné přistupovat k `x` prostřednictvím instance `A`, protože `A` není odvozen od `B`.
+v rámci `A` je možné získat přístup k `x` prostřednictvím instancí obou `A` a `B`, protože v obou případech dojde k přístupu prostřednictvím instance `A` nebo třídy odvozené od `A`. V rámci `B` však není možné získat přístup k `x` prostřednictvím instance `A`, protože `A` není odvozena od `B`.
 
 V příkladu
 ```csharp
@@ -367,25 +367,25 @@ class D<T>: C<T>
     }
 }
 ```
-tři přiřazení `x` se nepovoluje, protože všechny probíhat přes instance typů tříd, které jsou zhotoveny z obecného typu.
+tři přiřazení `x` jsou povolena, protože všechna probíhají prostřednictvím instancí typů tříd konstruovaných z obecného typu.
 
 ### <a name="accessibility-constraints"></a>Omezení přístupnosti
 
-Několik konstrukce v jazyce C# vyžaduje typ být ***přinejmenším stejně dostupná jako*** člena nebo jiného typu. Typ `T` říká, že je dostupná jako člen nebo typ `M` Pokud doména přístupnosti člena `T` je nadstavbou jazyka tak doména přístupnosti člena `M`. Jinými slovy `T` je přinejmenším stejně dostupná jako `M` Pokud `T` je dostupný ve všech kontextech, ve kterém `M` přístupný.
+Několik konstrukcí v C# jazyce vyžaduje, aby byl typ ***aspoň dostupný jako*** člen nebo jiný typ. Typ `T` se považuje za nepřístupný jako člen nebo typ `M`, pokud je doména přístupnosti `T` nadmnožinou domény přístupnosti v úrovni `M`. Jinými slovy, `T` je alespoň tak přístupný jako `M`, pokud je `T` přístupná ve všech kontextech, ve kterých je dostupná `M`.
 
-Existují následující omezení pro usnadnění:
+Existují následující omezení přístupnosti:
 
-*  Přímou základní třídu typu třídy musí být přinejmenším stejně dostupná jako typ třídy.
-*  Explicitní základní rozhraní typu rozhraní musí být přinejmenším stejně dostupná jako samotného typu rozhraní.
-*  Návratový typ a typy parametrů typu delegáta musí být přinejmenším stejně dostupná jako samotného typu delegáta.
-*  Typ konstanty musí být přinejmenším stejně dostupná jako konstanta samotný.
-*  Typ pole musí být přinejmenším stejně dostupná jako vlastní pole.
-*  Návratový typ a typy parametrů metody musí být přinejmenším stejně dostupná jako metoda sama.
-*  Typ vlastnosti musí být přinejmenším stejně dostupná jako samotné vlastnosti.
-*  Typ události musí být přinejmenším stejně dostupná jako samotné události.
-*  Typ a parametrem typy indexer musí být přinejmenším stejně dostupná jako samotný indexeru.
-*  Návratový typ a typy parametrů operátoru musí být přinejmenším stejně dostupná jako operátor.
-*  Typy parametrů konstruktoru instance musí být přinejmenším stejně dostupná jako konstruktor instance, samotného.
+*  Přímá základní třída typu třídy musí být alespoň tak přístupná jako typ třídy samotné.
+*  Explicitní základní rozhraní typu rozhraní musí být alespoň tak přístupná jako typ rozhraní.
+*  Návratový typ a typy parametrů typu delegáta musí být k dispozici alespoň jako typ delegáta.
+*  Typ konstanty musí být alespoň tak přístupný jako konstanta sama.
+*  Typ pole musí být alespoň tak přístupný jako pole samotné.
+*  Návratový typ a typy parametrů metody musí být k dispozici alespoň jako metoda samotná.
+*  Typ vlastnosti musí být alespoň tak přístupný jako vlastnost sama.
+*  Typ události musí být alespoň tak přístupný jako událost samotná.
+*  Typy a parametry indexeru musí být alespoň tak přístupné jako indexer samotný.
+*  Návratový typ a typy parametrů operátoru musí být k dispozici alespoň jako samotný operátor.
+*  Typy parametrů konstruktoru instance musí být alespoň tak přístupné jako samotný konstruktor instance.
 
 V příkladu
 ```csharp
@@ -393,7 +393,7 @@ class A {...}
 
 public class B: A {...}
 ```
-`B` třídy výsledkem chyba kompilace, protože `A` není dostupné jako `B`.
+Třída `B` má za následek chybu při kompilaci, protože `A` není alespoň tak přístupná jako `B`.
 
 Podobně v příkladu
 ```csharp
@@ -408,29 +408,29 @@ public class B
     public A H() {...}
 }
 ```
-`H` metoda `B` výsledkem chyba kompilace, protože návratový typ `A` není dostupný jako metodu.
+Metoda `H` v `B` má za následek chybu při kompilaci, protože návratový typ `A` není alespoň tak přístupný jako metoda.
 
-## <a name="signatures-and-overloading"></a>Podpisy a přetížení
+## <a name="signatures-and-overloading"></a>Signatury a přetížení
 
-Metody, konstruktory instancí, indexery a operátory jsou charakteristické jejich ***podpisy***:
+Metody, konstruktory instancí, indexery a operátory jsou charakterizovány svými ***signaturami***:
 
-*  Podpis metody se skládá z názvu metody, počet parametrů typu a typ a typ (hodnota, odkaz nebo výstup) každý z jejích formálních parametrů v pořadí zleva doprava. Pro tyto účely je identifikován libovolný typ parametru metody, nacházející se v typu formálního parametru není podle názvu, ale podle jeho pořadové číslo pozice v seznamu argumentů typu metody. Podpis metody konkrétně nezahrnuje návratovým typem, `params` modifikátor, který může být zadáno pro parametr úplně vpravo ani omezení parametru typu volitelné.
-*  Podpis konstruktoru instance se skládá z typu a druh (hodnota, odkaz nebo výstup) každý z jejích formálních parametrů v pořadí zleva doprava. Podpis konstruktoru instance výslovně nezahrnete `params` modifikátor, který může být zadáno pro parametr úplně vpravo.
-*  Podpis indexeru se skládá z typu každý z jejích formálních parametrů v pořadí zleva doprava. Podpis indexer konkrétně neobsahuje typ elementu ani obsahuje `params` modifikátor, který může být zadáno pro parametr úplně vpravo.
-*  Podpis operátora se skládá z názvu operátoru a typu každý z jejích formálních parametrů v pořadí zleva doprava. Podpis operátora konkrétně neobsahuje typ výsledku.
+*  Signatura metody se skládá z názvu metody, počtu parametrů typu a typu a druhu (hodnota, odkaz nebo výstup) každého jeho formálního parametru, který je považován za v pořadí zleva doprava. Pro tyto účely je jakýkoli parametr typu metody, která se vyskytuje v typu formálního parametru, identifikován jako není jeho názvem, ale podle jeho ordinální pozice v seznamu argumentů typu metody. Signatura metody konkrétně neobsahuje návratový typ, modifikátor `params`, který může být zadán pro parametr Right-nejvíc, ani volitelná omezení parametrů typu.
+*  Signatura konstruktoru instance se skládá z typu a druhu (hodnota, odkaz nebo výstup) každého jeho formálního parametru, který je považován za v pořadí zleva doprava. Signatura konstruktoru konstruktoru konkrétně neobsahuje modifikátor `params`, který může být zadán pro parametr Right-nejvíc.
+*  Signatura indexeru se skládá z typu každého ze svých formálních parametrů, které se považují za v pořadí zleva doprava. Podpis indexeru konkrétně nezahrnuje typ elementu, ani neobsahuje modifikátor `params`, který může být zadán pro parametr Right-nejvíc.
+*  Signatura operátoru se skládá z názvu operátoru a typu každého z jeho formálních parametrů, které se považují za v pořadí zleva doprava. Podpis operátora konkrétně neobsahuje typ výsledku.
 
-Podpisy jsou povolení mechanismus pro ***přetížení*** členů třídy, struktury a rozhraní:
+Signatury jsou mechanismy povolování pro ***přetížení*** členů ve třídách, strukturách a rozhraních:
 
-*  Přetěžování metod povoluje třídy, struktury nebo rozhraní, chcete-li deklarovat více metod se stejným názvem, poskytuje jejich podpisy musí být jedinečné v rámci této třídy, struktury nebo rozhraní.
-*  Přetížení konstruktory instancí umožňuje třídě nebo struktuře, chcete-li deklarovat více instančních konstruktorech, pokud jejich podpisy jsou jedinečné v rámci této třídy nebo struktury.
-*  Přetížení indexerů umožňuje třídy, struktury nebo rozhraní, chcete-li deklarovat několik indexerů, pokud jejich podpisy jsou jedinečné v rámci této třídy, struktury nebo rozhraní.
-*  Přetížení operátorů umožňuje třídě nebo struktuře, chcete-li deklarovat více operátorů se stejným názvem, poskytuje jejich podpisy musí být jedinečné v rámci této třídy nebo struktury.
+*  Přetížení metod umožňuje třídy, struktury nebo rozhraní deklarovat více metod se stejným názvem, pokud jsou jejich podpisy v rámci této třídy, struktury nebo rozhraní jedinečné.
+*  Přetížení konstruktorů instancí umožňuje třídě nebo struktuře deklarovat více konstruktorů instancí za předpokladu, že jejich signatury jsou v rámci této třídy nebo struktury jedinečné.
+*  Přetížení indexerů umožňuje třídy, struktury nebo rozhraní deklarovat více indexerů za předpokladu, že jejich signatury jsou v rámci této třídy, struktury nebo rozhraní jedinečné.
+*  Přetížení operátorů umožňuje třídě nebo struktuře deklarovat více operátorů se stejným názvem, pokud jsou jejich podpisy v rámci této třídy nebo struktury jedinečné.
 
-I když `out` a `ref` modifikátorech parametrů jsou považovány za součást podpisu, členy deklarované v jeden typ se nemůže lišit v podpisu výhradně nástrojem `ref` a `out`. Chyba kompilace nastane, pokud dva členy jsou deklarovány v rámci stejného typu s podpisy, které bude stejný, když všechny parametry v obou metodách s `out` modifikátory byly změněny na `ref` modifikátory. Pro jiné účely odpovídajících podpis (například skryjete nebo přepsání), `ref` a `out` jsou považovány za součást podpisu a navzájem neodpovídají. (Toto omezení je, aby byl C# programům snadno přeložit a spusťte na běžné Language infrastruktury (CLI), která neposkytuje způsob, jak definovat metody, které se liší pouze v `ref` a `out`.)
+I když jsou modifikátory parametrů `out` a `ref` považovány za součást signatury, členy deklarované v jednom typu se nemohou lišit v signatuře pouze pomocí `ref` a `out`. K chybě při kompilaci dojde, pokud jsou dva členové deklarováni v rámci stejného typu s signaturami, které by byly stejné, pokud se všechny parametry v obou metodách s modifikátory `out` změnily na modifikátory `ref`. Pro jiné účely porovnávání signatur (například skrytí nebo přepsání) `ref` a `out` se považují za součást podpisu a vzájemně se neshodují. (Toto omezení je umožněno C# snadné překladu programů na Common Language Infrastructure (CLI), což neposkytuje způsob, jak definovat metody, které se liší pouze v `ref` a `out`.)
 
-Pro účely podpisy, typy `object` a `dynamic` jsou považovány za totéž. Členy deklarované v jeden typ nelze proto se liší v podpisu výhradně nástrojem `object` a `dynamic`.
+Pro účely signatur se typy `object` a `dynamic` považují za stejné. Členy deklarované v jednom typu se proto nemohou lišit v signatuře pouze pomocí `object` a `dynamic`.
 
-Následující příklad ukazuje sadu deklarace přetížené metody společně s jejich podpisy.
+Následující příklad ukazuje sadu přetížených deklarací metod spolu s jejich podpisy.
 ```csharp
 interface ITest
 {
@@ -454,37 +454,37 @@ interface ITest
 }
 ```
 
-Všimněte si, že všechny `ref` a `out` modifikátorech parametrů ([parametry metody](classes.md#method-parameters)) jsou součástí podpis. Proto `F(int)` a `F(ref int)` jsou jedinečné podpisy. Ale `F(ref int)` a `F(out int)` nelze deklarovat v rámci stejné rozhraní, protože se liší jejich podpisy výhradně nástrojem `ref` a `out`. Všimněte si také, aby návratový typ a `params` modifikátor nejsou součástí podpis, takže ho není možné přetížení založené výhradně na návratový typ nebo zahrnutí nebo vyloučení `params` modifikátor. Jako takové deklarace metody `F(int)` a `F(params string[])` určené výše vyústí v chybu kompilace.
+Všimněte si, že všechny modifikátory parametrů `ref` a `out` ([parametry metody](classes.md#method-parameters)) jsou součástí signatury. Proto jsou jedinečné signatury `F(int)` a `F(ref int)`. @No__t-0 a `F(out int)` však nelze deklarovat v rámci stejného rozhraní, protože jejich signatury se liší pouze pomocí `ref` a `out`. Všimněte si také, že návratový typ a modifikátor `params` nejsou součástí signatury, takže není možné přetížit pouze na základě návratového typu nebo při zahrnutí nebo vyloučení modifikátoru `params`. V takovém případě deklarace metod `F(int)` a `F(params string[])`, které byly zjištěny výše, mají za následek chybu při kompilaci.
 
-## <a name="scopes"></a>Obory
+## <a name="scopes"></a>Oboru
 
-***Oboru*** názvu je oblast textu programu, ve kterém je možné k odkazování na entity deklarované podle názvu bez kvalifikace názvu. Může být obory ***vnořené***, a vnitřní obor může předeklarovat význam názvu z vnějšího oboru (to ale neodebere omezení stanovené [deklarace](basic-concepts.md#declarations) , že ve vnořeném bloku není možná pro deklarování místní proměnné se stejným názvem jako místní proměnnou v nadřízeném bloku). Název z vnějšího oboru je pak říká, že ***skryté*** v oblasti program text vztahuje na vnitřní a přístup k vnější název je možné jenom ručním kvalifikováním názvu.
+***Rozsah*** názvu je oblast textu programu, ve které je možné odkazovat na entitu deklarované názvem bez kvalifikace názvu. Obory mohou být ***vnořené***a vnitřní rozsah může znovu deklarovat význam názvu z vnějšího oboru (to však neodebere omezení uložené [deklaracemi](basic-concepts.md#declarations) , které v rámci vnořeného bloku není možné deklarovat místní proměnnou s stejný název jako místní proměnná v ohraničujícím bloku). Název z vnějšího oboru se pak bude považovat za ***skrytý*** v oblasti textu programu, který je pokrytý vnitřním rozsahem, a přístup k vnějšímu názvu je možný jenom pomocí kvalifikovaného názvu.
 
-*  Obor členem oboru názvů deklarována *namespace_member_declaration* ([Namespace členy](namespaces.md#namespace-members)) s žádný nadřazený *namespace_declaration* je celého programu text.
-*  Obor členem oboru názvů deklarována *namespace_member_declaration* v rámci *namespace_declaration* jehož plně kvalifikovaný název je `N` je *namespace_body*  z každé *namespace_declaration* jehož plně kvalifikovaný název je `N` nebo začíná `N`, následované tečkou.
-*  Obor názvu určené *extern_alias_directive* rozloženo *using_directive*s, *global_attributes* a *namespace_member_ deklarace*s jeho bezprostředně nadřazeného kompilace částí nebo těle oboru názvů. *Extern_alias_directive* není přispívat všemi novými členy do prostoru základní deklarace. Jinými slovy *extern_alias_directive* není přenosné, ale místo toho ovlivňuje pouze kompilaci jednotky nebo oboru názvů text ve kterém se vyskytuje.
-*  Obor názvu definován ani importován podle *using_directive* ([direktiv Using](namespaces.md#using-directives)) rozšiřuje přes *namespace_member_declaration*s  *compilation_unit* nebo *namespace_body* ve kterém *using_directive* vyvolá. A *using_directive* zpřístupnit nula nebo více názvů, typ nebo člen názvy v rámci konkrétní *compilation_unit* nebo *namespace_body*, ale ne přispívat všemi novými členy do prostoru základní deklarace. Jinými slovy *using_directive* není přenosné, ale místo toho má vliv pouze *compilation_unit* nebo *namespace_body* ve kterém se vyskytuje.
-*  Obor parametr typu deklarován *type_parameter_list* na *class_declaration* ([třídy deklarací](classes.md#class-declarations)) je *class_base*, *type_parameter_constraints_clause*s, a *class_body* tohoto *class_declaration*.
-*  Obor parametr typu deklarován *type_parameter_list* na *struct_declaration* ([deklarace struktury](structs.md#struct-declarations)) je *struct_interfaces* , *type_parameter_constraints_clause*s, a *struct_body* tohoto *struct_declaration*.
-*  Obor parametr typu deklarován *type_parameter_list* na *interface_declaration* ([rozhraní deklarace](interfaces.md#interface-declarations)) je *interface_base* , *type_parameter_constraints_clause*s, a *interface_body* tohoto *interface_declaration*.
-*  Obor parametr typu deklarován *type_parameter_list* na *delegate_declaration* ([delegovat deklarace](delegates.md#delegate-declarations)) je *typ*, *formal_parameter_list*, a *type_parameter_constraints_clause*s, který *delegate_declaration*.
-*  Obor člen deklarován *class_member_declaration* ([tělo třídy](classes.md#class-body)) je *class_body* ve kterém dochází k deklaraci. Kromě toho oboru členu třídy rozšiřuje na *class_body* z nich odvozené třídy, které jsou součástí tak doména přístupnosti ([usnadnění domén](basic-concepts.md#accessibility-domains)) člena.
-*  Obor člen deklarován *struct_member_declaration* ([členy struktury](structs.md#struct-members)) je *struct_body* ve kterém dochází k deklaraci.
-*  Obor člen deklarován *enum_member_declaration* ([členy výčtu](enums.md#enum-members)) je *enum_body* ve kterém dochází k deklaraci.
-*  Obor parametr deklarovaný v *method_declaration* ([metody](classes.md#methods)) je *method_body* tohoto *method_declaration*.
-*  Obor parametr deklarovaný v *indexer_declaration* ([indexery](classes.md#indexers)) je *accessor_declarations* tohoto *indexer_declaration*.
-*  Obor parametr deklarovaný v *operator_declaration* ([operátory](classes.md#operators)) je *bloku* tohoto *operator_declaration*.
-*  Obor parametr deklarovaný v *constructor_declaration* ([Instance konstruktory](classes.md#instance-constructors)) je *constructor_initializer* a *bloku* tohoto *constructor_declaration*.
-*  Obor parametr deklarovaný v *lambda_expression* ([výrazy anonymní funkce](expressions.md#anonymous-function-expressions)) je *anonymous_function_body* tohoto *lambda_ výraz*
-*  Obor parametr deklarovaný v *anonymous_method_expression* ([výrazy anonymní funkce](expressions.md#anonymous-function-expressions)) je *bloku* tohoto *anonymous_method _expression*.
-*  Obor popisku deklarované v *labeled_statement* ([příkazy s popiskem](statements.md#labeled-statements)) je *bloku* ve kterém dochází k deklaraci.
-*  Lokální proměnná deklarovaná v rozsahu *local_variable_declaration* ([místní deklarace proměnné](statements.md#local-variable-declarations)) je blok ve kterém dochází k deklaraci.
-*  Lokální proměnná deklarovaná v rozsahu *switch_block* z `switch` – příkaz ([příkazu switch](statements.md#the-switch-statement)) je *switch_block*.
-*  Lokální proměnná deklarovaná v rozsahu *for_initializer* z `for` – příkaz ([pro příkaz](statements.md#the-for-statement)) je *for_initializer*,  *for_condition*, *for_iterator*a uzavřeného *příkaz* z `for` příkazu.
-*  Obor lokální konstanta deklarované v *local_constant_declaration* ([místní deklarace konstantní](statements.md#local-constant-declarations)) je blok ve kterém dochází k deklaraci. Jde chybu v době kompilace k odkazování na lokální konstanta v textové pozici, která předchází jeho *constant_declarator*.
-*  Obor proměnné deklarované jako součást *foreach_statement*, *using_statement*, *lock_statement* nebo *query_expression* je Určuje rozšíření dané konstrukce.
+*  Rozsah člena oboru názvů deklarovaného *namespace_member_declaration* ([členy oboru názvů](namespaces.md#namespace-members)) bez ohraničujícího *namespace_declaration* je celý text programu.
+*  Rozsah člena oboru názvů deklarovaného *namespace_member_declaration* v rámci *namespace_declaration* , jehož plně kvalifikovaný název je `N` je *namespace_body* každého *namespace_declaration* , jehož plně kvalifikovaný název je `N` nebo začíná na `N` následovaný tečkou.
+*  Rozsah názvu definovaného *extern_alias_directive* se rozšíří přes *using_directive*s, *global_attributes* a *namespace_member_declaration*s jeho bezprostředně obsahující část kompilační jednotky nebo oboru názvů. *Extern_alias_directive* nepřispívá žádnému novému členu do podkladového prostoru deklarací. Jinými slovy, *extern_alias_directive* není tranzitivní, ale místo toho ovlivňuje pouze kompilační jednotku nebo tělo oboru názvů, ve kterém se vyskytuje.
+*  Rozsah názvu definovaného nebo importovaného pomocí[direktiv](namespaces.md#using-directives) *using_directive* (using) se rozšiřuje na *namespace_member_declaration*s *compilation_unit* nebo *namespace_body* , ve kterém *using_directive* dojde k. *Using_directive* může mít nula nebo více názvů, typů nebo členů, které jsou k dispozici v rámci konkrétního *compilation_unit* nebo *namespace_body*, ale nepřispívají žádné nové členy do podkladového prostoru deklarací. Jinými slovy, *using_directive* není tranzitivní, ale má vliv pouze na *compilation_unit* nebo *namespace_body* , ve kterém se vyskytuje.
+*  Rozsah parametru typu deklarovaného *type_parameter_list* na *class_declaration* ([deklarace tříd](classes.md#class-declarations)) je *class_base*, *type_parameter_constraints_clause*s a *class_body*  *class_declaration*.
+*  Rozsah parametru typu deklarovaného *type_parameter_list* na *struct_declaration* ([deklarace struktury](structs.md#struct-declarations)) je *struct_interfaces*, *type_parameter_constraints_clause*s a *struct_body* to *struct_declaration*.
+*  Rozsah parametru typu deklarovaného *type_parameter_list* na *interface_declaration* ([deklarace rozhraní](interfaces.md#interface-declarations)) je *interface_base*, *type_parameter_constraints_clause*s a *interface_body* z tohoto *interface_declaration*.
+*  Rozsah parametru typu deklarovaného *type_parameter_list* na *delegate_declaration* ([deklarace delegáta](delegates.md#delegate-declarations)) je *typ*, *formal_parameter_list*a *type_parameter_constraints_clause* s tohoto *delegate_declaration*.
+*  Rozsah člena deklarovaného *class_member_declaration* ([tělo třídy](classes.md#class-body)) je *class_body* , ve kterém k deklaraci dojde. Kromě toho rozsah člena třídy rozšiřuje na *class_body* těch odvozených tříd, které jsou zahrnuty v doméně přístupnosti ([domény](basic-concepts.md#accessibility-domains)přístupnosti) člena.
+*  Rozsah člena deklarovaného *struct_member_declaration* ([členy struktury](structs.md#struct-members)) je *struct_body* , ve kterém k deklaraci dojde.
+*  Rozsah člena deklarovaného *enum_member_declaration* ([členy výčtu](enums.md#enum-members)) je *enum_body* , ve kterém k deklaraci dojde.
+*  Rozsah parametru deklarovaného v *method_declaration* ([metody](classes.md#methods)) je *method_body* tohoto *method_declaration*.
+*  Rozsah parametru deklarovaného v *indexer_declaration* ([indexerech](classes.md#indexers)) je *accessor_declarations* tohoto *indexer_declaration*.
+*  Rozsah parametru deklarovaného v *operator_declaration* ([Operators](classes.md#operators)) je *blok* tohoto *operator_declaration*.
+*  Rozsah parametru deklarovaného v *constructor_declaration* ([konstruktory instance](classes.md#instance-constructors)) je *constructor_initializer* a *blok* tohoto *constructor_declaration*.
+*  Rozsah parametru deklarovaného v *lambda_expression* ([anonymní výrazy funkce](expressions.md#anonymous-function-expressions)) je *anonymous_function_body* tohoto *lambda_expression*
+*  Rozsah parametru deklarovaného v *anonymous_method_expression* ([anonymní výrazy funkce](expressions.md#anonymous-function-expressions)) je *blok* tohoto *anonymous_method_expression*.
+*  Rozsah popisku deklarovaného v *labeled_statement* ([příkazy s popiskem](statements.md#labeled-statements)) je *blok* , ve kterém k deklaraci dojde.
+*  Rozsah místní proměnné deklarované v *local_variable_declaration* ([místní proměnné deklarace](statements.md#local-variable-declarations)) je blok, ve kterém k deklaraci dojde.
+*  Rozsah místní proměnné deklarované v @no__t *switch_block* příkazu-1 ([příkaz switch](statements.md#the-switch-statement)) je *switch_block*.
+*  Rozsah místní proměnné deklarované v @no__t *for_initializer* příkazu-1 ([pro příkaz for](statements.md#the-for-statement)) je *for_initializer*, *for_condition*, *for_iterator*a obsažený *příkaz* příkaz `for`
+*  Rozsah místní konstanty deklarované v *local_constant_declaration* ([místní konstanta deklarace](statements.md#local-constant-declarations)) je blok, ve kterém k deklaraci dojde. Jedná se o chybu při kompilaci, která odkazuje na místní konstantu v textové pozici, která předchází jeho *constant_declarator*.
+*  Rozsah proměnné deklarované jako součást *foreach_statement*, *using_statement*, *lock_statement* nebo *query_expression* je určen rozšířením dané konstrukce.
 
-V rámci oboru názvů, třídy, struktury nebo výčtu člen je možné odkazovat na člen v textové pozici, která předchází deklarace člena. Příklad
+V rámci rozsahu oboru názvů, třídy, struktury nebo člena výčtu je možné odkazovat na člen v textové pozici, která předchází deklaraci členu. Například
 ```csharp
 class A
 {
@@ -495,9 +495,9 @@ class A
     int i = 0;
 }
 ```
-Tady je platný pro `F` k odkazování na `i` dříve, než je deklarována.
+Tady je platný pro `F`, aby odkazoval na `i` před tím, než se deklaruje.
 
-V rámci oboru místní proměnná, je chyba kompilace k odkazování na místní proměnnou v textové pozici, která předchází *local_variable_declarator* lokální proměnné. Příklad
+V rámci rozsahu místní proměnné se jedná o chybu při kompilaci, která odkazuje na místní proměnnou na textové pozici, která předchází *local_variable_declarator* místní proměnné. Například
 ```csharp
 class A
 {
@@ -519,11 +519,11 @@ class A
 }
 ```
 
-V `F` výše uvedené metody, první přiřazení k `i` konkrétně neodkazuje na pole deklarovaná ve vnějším oboru. Místo toho se odkazuje na místní proměnné a je výsledkem chyba kompilace, protože textový předchází deklarace proměnné. V `G` metody, použití `j` v inicializátoru pro deklaraci `j` je platný, protože použití nepředchází *local_variable_declarator*. V `H` metody, následné *local_variable_declarator* správně odkazuje na místní proměnná deklarovaná v předchozím kroku *local_variable_declarator* v rámci stejného  *local_variable_declaration*.
+V metodě `F` výše první přiřazení `i` konkrétně neodkazuje na pole deklarované ve vnějším oboru. Místo toho odkazuje na místní proměnnou a má za následek chybu při kompilaci, protože předá deklaraci proměnné. V metodě `G` je použití `j` v inicializátoru pro deklaraci `j` platné, protože použití nepředchází rozhraní *local_variable_declarator*. V metodě `H` se následující *local_variable_declarator* správně odkazuje na místní proměnnou deklarovanou v dřívější *local_variable_declarator* v rámci stejné *local_variable_declaration*.
 
-Pravidla oboru místních proměnných slouží k zajištění, že význam názvu použít v kontextu výrazu je vždy stejné v rámci bloku. Pokud obor lokální proměnné můžete rozšířit jenom z jeho deklarace do konce bloku, v předchozím příkladu by první přiřazení přiřadit k proměnné instance a druhé přiřazení by přiřadit místní proměnnou, by mohl vést k chyby při kompilaci šlo novější změnu řazení příkazy bloku.
+Pravidla oboru pro lokální proměnné jsou navržena tak, aby zaručila, že význam názvu používaného v kontextu výrazu je vždy stejný v rámci bloku. Pokud byl rozsah místní proměnné rozšířen pouze z deklarace na konec bloku, pak v příkladu výše se první přiřazení přiřadí proměnné instance a druhé přiřazení by se mohlo přiřazovat k místní proměnné, což může vést k chyby při kompilaci, pokud byly příkazy bloku později přeuspořádány.
 
-Význam názvu v rámci bloku se může lišit v závislosti na kontextu, ve kterém se používá název. V příkladu
+Význam názvu v rámci bloku se může lišit v závislosti na kontextu, ve kterém je název použit. V příkladu
 ```csharp
 using System;
 
@@ -542,17 +542,17 @@ class Test
     }
 }
 ```
-název `A` se používá v kontextu výrazu k odkazování na místní proměnnou `A` a v kontextu typu odkazovat na třídu `A`.
+název `A` se používá v kontextu výrazu pro odkazování na místní proměnnou `A` a v kontextu typu pro odkazování na třídu `A`.
 
 ### <a name="name-hiding"></a>Skrytí názvu
 
-Obor entity obvykle zahrnuje další textem programu místa, než je deklarace entity. Zejména oboru entita může obsahovat deklarace, které zavádějí nové prostory deklarace obsahující entity se stejným názvem. Takové deklarace způsobit subjektem původní stane ***skryté***. Naopak entity se říká, že ***viditelné*** Pokud není skrytý.
+Rozsah entity obvykle zahrnuje větší text programu než místo deklarace entity. Konkrétně rozsah entity může zahrnovat deklarace, které zavádějí nové prostory deklarací obsahující entity se stejným názvem. Tyto deklarace způsobí, že původní entita bude ***Skrytá***. Naopak entita je označována jako ***viditelná*** , pokud není skrytá.
 
-Skrývání názvů nastane, pokud obory překrývat prostřednictvím vnoření a kdy obory překrývat prostřednictvím dědičnosti. Vlastnosti dva druhy skrytí jsou popsány v následujících částech.
+K skrývání názvů dojde, když se obory překrývají prostřednictvím vnořování a když se obory překrývají prostřednictvím dědičnosti. Vlastnosti dvou typů skrytí jsou popsány v následujících částech.
 
-#### <a name="hiding-through-nesting"></a>Skrytí prostřednictvím vnoření
+#### <a name="hiding-through-nesting"></a>Skrytí prostřednictvím vnořování
 
-Skrytí názvu prostřednictvím vnoření může nastat v důsledku vnořené obory názvů nebo typy v oborech názvů, v důsledku vnořené typy v rámci třídy nebo struktury a v důsledku parametr a místní deklarace proměnné.
+Název, který se skrývá prostřednictvím vnořování, může nastat jako výsledek vnořování oborů názvů nebo typů v oborech názvů jako výsledek vnořování typů v rámci tříd nebo struktur, a v důsledku deklarací parametrů a místních proměnných.
 
 V příkladu
 ```csharp
@@ -569,9 +569,9 @@ class A
     }
 }
 ```
-v rámci `F` proměnná instance, metoda `i` je skrytý místní proměnná `i`, ale v rámci `G` metody `i` stále odkazuje na proměnnou instance.
+v rámci metody `F` je proměnná instance `i` skrytá místní proměnnou `i`, ale v rámci metody `G`, `i` stále odkazuje na proměnnou instance.
 
-Název ve vnitřním oboru je skryt název ve vnějším oboru, skryje všechny přetížené výskyty s tímto názvem. V příkladu
+Když název ve vnitřním oboru skrývá název ve vnějším oboru, skryje všechny přetížené výskyty daného názvu. V příkladu
 ```csharp
 class Outer
 {
@@ -590,19 +590,19 @@ class Outer
     }
 }
 ```
-volání `F(1)` vyvolá `F` deklarované v `Inner` protože všechny vnější výskyty `F` skryty pomocí vnitřní deklarace. Ze stejného důvodu volání `F("Hello")` výsledkem chyba kompilace.
+volání `F(1)` vyvolá `F` deklarované v `Inner`, protože vnitřní deklarace má skryté všechny vnější výskyty `F`. Ze stejného důvodu volání `F("Hello")` způsobí chybu při kompilaci.
 
 #### <a name="hiding-through-inheritance"></a>Skrytí prostřednictvím dědičnosti
 
-Skrytí názvu prostřednictvím dědičnosti vyvolá se v případě třídy nebo struktury předeklarovat názvy, které byly zděděny ze základních tříd. Tento typ skrývání názvů má jednu z následujících forem:
+K skrývání názvů prostřednictvím dědičnosti dojde, když třídy nebo struktury znovu deklaruje názvy, které byly děděny ze základních tříd. Tento typ názvu skrývání má jednu z následujících forem:
 
-*  – Konstanta, pole, vlastnosti, události nebo typ byl zaveden ve třídě nebo struktuře skryje všechny členy základní třídy se stejným názvem.
-*  Metody zavedené ve třídě nebo struktuře skryje všechny členy jiné metody základní třídy se stejným názvem a všechny metody základní třídy se stejným podpisem (název metody a počet parametrů, modifikátory a typy).
-*  Indexer zavedený ve třídě nebo struktuře skryje všechny základní třídy indexerů se stejným podpisem (počet parametrů a typů).
+*  Konstanta, pole, vlastnost, událost nebo typ zavedený ve třídě nebo struktuře skrývá všechny členy základní třídy se stejným názvem.
+*  Metoda zavedená ve třídě nebo struktuře skrývá všechny členy základní třídy bez metod se stejným názvem a všechny metody základní třídy se stejným podpisem (název metody a počet parametrů, modifikátory a typy).
+*  Indexer zavedený ve třídě nebo struktuře skrývá všechny základní třídy indexery se stejnou signaturou (počet parametrů a typy).
 
-Pravidla pro deklarace operátoru ([operátory](classes.md#operators)) znemožnit odvozené třídy za účelem deklarovat operátor se stejným podpisem jako operátor v základní třídě. Proto operátory nikdy skrýt mezi sebou.
+Pravidla řídící deklarace operátorů ([operátory](classes.md#operators)) znemožňují, aby odvozená třída deklarovala operátor se stejnou signaturou jako operátor v základní třídě. Proto operátory nikdy neskrývají.
 
-Rozporu s skrytí názvu z vnějšího oboru, skrytí přístupový název ze zděděných oboru způsobí, že upozornění, aby oznámený. V příkladu
+V rozporu s skrytím názvu z vnějšího oboru způsobí skrytí přístupového názvu z zděděného oboru upozornění. V příkladu
 ```csharp
 class Base
 {
@@ -614,9 +614,9 @@ class Derived: Base
     public void F() {}        // Warning, hiding an inherited name
 }
 ```
-deklarace `F` v `Derived` způsobí, že aby oznámený upozornění. Skrytí zděděného název není výslovně chybu, protože, který bude bránit samostatný vývoj základních tříd. Například výše situace může mít přijít, protože na novější verzi `Base` zavedená `F` metodu, která nebyla k dispozici ve starší verzi této třídy. Výše uvedené situace je chyba, pak všechny změny provedené na základní třídu v knihovně tříd samostatně vyvíjených může potenciálně způsobit odvozené třídy stanou neplatnými.
+deklarace `F` v `Derived` způsobí, že bude Hlášeno upozornění. Skrytí zděděného názvu není specificky chyba, protože by to vedlo k samostatnému vývoji základních tříd. Výše uvedená situace mohla například nastat, protože novější verze `Base` zavedla metodu `F`, která nebyla přítomna v dřívější verzi třídy. V výše uvedené situaci došlo k chybě, takže jakákoli změna základní třídy v knihovně tříd oddělené verze by mohla potenciálně způsobit, že odvozené třídy stanou být neplatné.
 
-Toto upozornění způsobeno skrytí zděděného název lze odstranit pomocí `new` modifikátor:
+Upozornění způsobené skrytím zděděného názvu lze odstranit pomocí modifikátoru `new`:
 ```csharp
 class Base
 {
@@ -629,9 +629,9 @@ class Derived: Base
 }
 ```
 
-`new` Modifikátor znamená, že `F` v `Derived` je "nové", a je ve skutečnosti určen ke skrytí zděděného člena.
+Modifikátor `new` označuje, že `F` v `Derived` je "nové" a že je skutečně určeno pro skrytí zděděného člena.
 
-Deklarace nový člen skrývá zděděný člen pouze v rámci oboru nového člena.
+Deklarace nového člena skrývá zděděného člena pouze v rámci oboru nového člena.
 
 ```csharp
 class Base
@@ -650,11 +650,11 @@ class MoreDerived: Derived
 }
 ```
 
-V příkladu výše, deklarace `F` v `Derived` skryje `F` , který byl zděděn od `Base`, ale od nové `F` v `Derived` má privátní přístup, jeho rozsah nerozšiřuje `MoreDerived` . Proto volání `F()` v `MoreDerived.G` je platný a vyvolá `Base.F`.
+V předchozím příkladu deklarace `F` v `Derived` skrývá `F`, která byla zděděná od `Base`, ale vzhledem k tomu, že nové `F` v `Derived` má privátní přístup, jeho obor se nerozšiřuje na `MoreDerived`. Proto je volání `F()` v `MoreDerived.G` platné a vyvolá `Base.F`.
 
-## <a name="namespace-and-type-names"></a>Namespace a zadejte názvy
+## <a name="namespace-and-type-names"></a>Obor názvů a názvy typů
 
-V několika kontextech C# program vyžadovat *namespace_name* nebo *type_name* zadání.
+Několik kontextů v C# programu vyžaduje zadání *namespace_name* nebo *TYPE_NAME* .
 
 ```antlr
 namespace_name
@@ -672,59 +672,59 @@ namespace_or_type_name
     ;
 ```
 
-A *namespace_name* je *namespace_or_type_name* , který odkazuje na obor názvů. Po řešení, jak je popsáno níže, *namespace_or_type_name* z *namespace_name* musí odkazovat na názvový prostor, nebo v opačném případě dojde k chybě kompilace. Žádné argumenty typu ([argumenty typu](types.md#type-arguments)) mohou být přítomny v *namespace_name* (pouze pro typy mohou mít argumenty typu).
+*Namespace_name* je *namespace_or_type_name* , který odkazuje na obor názvů. Po vyřešení popsané níže musí *namespace_or_type_name* *namespace_name* odkazovat na obor názvů, jinak dojde k chybě při kompilaci. V *namespace_name* se nesmí vyskytovat žádné argumenty typu ([argumenty typu](types.md#type-arguments)) (argumenty typu můžou mít jenom typy).
 
-A *type_name* je *namespace_or_type_name* odkazující k typu. Po řešení, jak je popsáno níže, *namespace_or_type_name* z *type_name* musí odkazovat na typ, nebo v opačném případě dojde k chybě kompilace.
+*TYPE_NAME* je *namespace_or_type_name* , který odkazuje na typ. Následující řešení, jak je popsáno níže, *namespace_or_type_name* *TYPE_NAME* musí odkazovat na typ nebo jinak dojde k chybě při kompilaci.
 
-Pokud *namespace_or_type_name* kvalifikovaný alias-členem jeho význam se, jak je popsáno v [Namespace alias kvalifikátory](namespaces.md#namespace-alias-qualifiers). V opačném případě *namespace_or_type_name* obsahuje jednu ze čtyř podob:
+Pokud je *namespace_or_type_name* členem kvalifikovaného aliasu, jak je popsáno v [kvalifikátorech aliasů oboru názvů](namespaces.md#namespace-alias-qualifiers). V opačném případě má *namespace_or_type_name* jednu ze čtyř forem:
 
 *  `I`
 *  `I<A1, ..., Ak>`
 *  `N.I`
 *  `N.I<A1, ..., Ak>`
 
-kde `I` je jediným identifikátorem `N` je *namespace_or_type_name* a `<A1, ..., Ak>` je volitelný *type_argument_list*. Pokud ne *type_argument_list* je zadán, vezměte v úvahu `k` být nula.
+Pokud je `I` jediným identifikátorem, `N` je *namespace_or_type_name* a `<A1, ..., Ak>` je volitelná *type_argument_list*. Pokud není zadán žádný *type_argument_list* , zvažte `k`, aby byla nulová.
 
-Význam *namespace_or_type_name* je stanoven následujícím způsobem:
+Význam *namespace_or_type_name* se určuje takto:
 
-*   Pokud *namespace_or_type_name* má formu `I` nebo formuláře `I<A1, ..., Ak>`:
-    * Pokud `K` je nula a *namespace_or_type_name* se zobrazí v deklaraci obecné metody ([metody](classes.md#methods)) a pokud tato deklarace obsahuje parametr typu ([typu Parametry](classes.md#type-parameters)) s názvem `I`, pak bude *namespace_or_type_name* odkazuje na parametr typu.
-    * Jinak, pokud *namespace_or_type_name* se zobrazí v rámci deklarace typu a potom pro každý typ instance `T` ([typ instance](classes.md#the-instance-type)) začíná s typem instance daného typu deklarace a budete pokračovat s typem instance deklaraci nadřazené třídu nebo strukturu (pokud existuje):
-        * Pokud `K` je nula a deklarace `T` obsahuje parametr typu s názvem `I`, pak bude *namespace_or_type_name* odkazuje na parametr typu.
-        * Jinak, pokud *namespace_or_type_name* se zobrazí v těle deklarace typu a `T` nebo jakýkoli z jeho základních typů obsahuje vnořené přístupné typu s názvem `I` a `K`  parametry typu, pak bude *namespace_or_type_name* odkazuje na tento typ vytvořený s argumenty daného typu. Pokud existuje více než jeden takový typ, je vybraný typ deklarovaný v rámci více odvozeného typu. Všimněte si, že členové bez typu (konstanty, pole, metody, vlastnosti, indexery, operátory, konstruktory instancí, destruktory a statické konstruktory) a členy typů s různým počtem parametrů typu jsou ignorovány při určování význam *namespace_or_type_name*.
-    * Pokud byly úspěšné, pak pro každý obor názvů v předchozích krocích `N`začíná s oborem názvů, ve kterém *namespace_or_type_name* dojde, pokračujte v každé nadřazeného oboru názvů (pokud existuje) a končící globální obor názvů následující kroky jsou vyhodnocen, dokud se entita nachází:
-        * Pokud `K` je nula a `I` je název oboru názvů v `N`, pak:
-            * Pokud umístění ve kterém *namespace_or_type_name* dojde k není uzavřen v deklaraci oboru názvů pro `N` a obsahuje deklaraci oboru názvů *extern_alias_directive* nebo *using_alias_directive* , která přidruží název `I` s oborem názvů nebo typ, pak bude *namespace_or_type_name* je nejednoznačný a dojde k chybě kompilace.
+*   Pokud má *namespace_or_type_name* formu `I` nebo ve formě `I<A1, ..., Ak>`:
+    * Pokud je `K` nula a *namespace_or_type_name* se zobrazí v deklaraci obecné metody ([metody](classes.md#methods)) a pokud tato deklarace obsahuje parametr typu ([parametry typu](classes.md#type-parameters)) s názvem @ no__t-4, pak *namespace_or_type_ název* odkazuje na tento parametr typu.
+    * V opačném případě, pokud se *namespace_or_type_name* objeví v rámci deklarace typu, pak pro každý typ instance @ no__t-1 ([typ instance](classes.md#the-instance-type)), počínaje typem instance této deklarace typu a pokračování s typem instance každého ohraničující deklarace třídy nebo struktury (pokud existuje):
+        * Pokud je `K` nula a deklarace `T` obsahuje parametr typu s názvem @ no__t-2, pak *namespace_or_type_name* odkazuje na tento parametr typu.
+        * Jinak, pokud se *namespace_or_type_name* objeví v těle deklarace typu a `T` nebo jakýkoli z jeho základních typů, obsahuje vnořený přístupný typ s parametry @ no__t-2 a `K` @ no__t-4Type, pak *namespace_or_type _name* odkazuje na tento typ sestavený pomocí daných argumentů typu. Pokud existuje více než jeden takový typ, je vybrán typ deklarovaný v rámci více odvozeného typu. Všimněte si, že netypové členy (konstanty, pole, metody, vlastnosti, indexery, operátory, konstruktory instancí, destruktory a statické konstruktory) a členy typu s jiným počtem parametrů typu jsou ignorovány při určení významu *namespace_or_type_name*.
+    * Pokud předchozí kroky byly neúspěšné, potom pro každý obor názvů @ no__t-0 počínaje oborem názvů, ve kterém dojde k *namespace_or_type_name* , pokračuje s každým ohraničujícím oborem názvů (pokud existuje) a končí globálním oborem názvů: kroky jsou vyhodnocovány, dokud se neumístí entita:
+        * Pokud je `K` nula a `I` je název oboru názvů v @ no__t-2, pak:
+            * Pokud je umístění, kde se nachází *namespace_or_type_name* , uzavřeno deklarací oboru názvů pro `N` a deklarace oboru názvů obsahuje *extern_alias_directive* nebo *using_alias_directive* , který přidruží název @ No __t-4 s oborem názvů nebo typem, *namespace_or_type_name* je dvojznačný a dojde k chybě při kompilaci.
             * V opačném případě *namespace_or_type_name* odkazuje na obor názvů s názvem `I` v `N`.
-        * Jinak, pokud `N` obsahuje přístupného typu s názvem `I` a `K`  parametry typu, pak:
-            * Pokud `K` je nula a umístění, kde *namespace_or_type_name* dojde k není uzavřen v deklaraci oboru názvů pro `N` a obsahuje deklaraci oboru názvů *extern_alias_directive*  nebo *using_alias_directive* , která přidruží název `I` s oborem názvů nebo typ, pak bude *namespace_or_type_name* je nejednoznačný a kompilace dojde k chybě.
-            * V opačném případě *namespace_or_type_name* odkazuje na typ vytvořený s argumenty daného typu.
-        * Jinak, pokud umístění ve kterém *namespace_or_type_name* dojde k není uzavřen v deklaraci oboru názvů pro `N`:
-            * Pokud `K` je nula a obsahuje deklaraci oboru názvů *extern_alias_directive* nebo *using_alias_directive* , která přidruží název `I` s importovaným oborem názvů nebo typ, pak bude *namespace_or_type_name* odkazuje na tento obor názvů nebo typ.
-            * Jinak, pokud deklarace oborů názvů a typ importované tímto seznamem *using_namespace_directive*s a *using_alias_directive*s deklarace oboru názvů obsahovat přesně jeden přístupný typ. s názvem `I` a `K`  parametry typu, pak bude *namespace_or_type_name* odkazuje na tento typ vytvořený s argumenty daného typu.
-            * Jinak, pokud deklarace oborů názvů a typ importované tímto seznamem *using_namespace_directive*s a *using_alias_directive*s deklarace oboru názvů obsahovat více než jeden přístupný typ. s názvem `I` a `K`  parametry typu, pak bude *namespace_or_type_name* je nejednoznačný a dojde k chybě.
-    * V opačném případě *namespace_or_type_name* je nedefinovaný a dojde k chybě kompilace.
-*  V opačném případě *namespace_or_type_name* má formu `N.I` nebo formuláře `N.I<A1, ..., Ak>`. `N` jako první vyřeší *namespace_or_type_name*. Pokud se rozlišení `N` neproběhne úspěšně, dojde k chybě kompilace. V opačném případě `N.I` nebo `N.I<A1, ..., Ak>` vyřešen následujícím způsobem:
-    * Pokud `K` je nula a `N` odkazuje na obor názvů a `N` obsahuje vnořené oboru názvů s názvem `I`, pak bude *namespace_or_type_name* odkazuje na tomto vnořené oboru názvů.
-    * Jinak, pokud `N` odkazuje na obor názvů a `N` obsahuje přístupného typu s názvem `I` a `K`  parametry typu, pak bude *namespace_or_type_name* odkazuje k danému typu s argumenty daného typu.
-    * Jinak, pokud `N` odkazuje na typ třídy nebo struktury (pravděpodobně konstruovaný) a `N` nebo některý z jeho základních tříd obsahovat vnořené přístupné typu s názvem `I` a `K`  zadejte parametry a potom *namespace_or_type_name* odkazuje na tento typ vytvořený s argumenty daného typu. Pokud existuje více než jeden takový typ, je vybraný typ deklarovaný v rámci více odvozeného typu. Všimněte si, že pokud význam `N.I` určen jako součást řešení specifikace základní třídy `N` pak přímé základní třídy `N` se považuje za objekt ([základních tříd](classes.md#base-classes)).
-    * V opačném případě `N.I` je neplatný *namespace_or_type_name*, a dojde k chybě kompilace.
+        * Jinak, pokud `N` obsahuje přístupný typ s parametry Name @ no__t-1 a `K` @ no__t-3type, pak:
+            * Pokud je `K` nula a umístění, kde se nachází *namespace_or_type_name* , je uzavřeno deklarací oboru názvů pro `N` a deklarace oboru názvů obsahuje *extern_alias_directive* nebo *using_alias_directive* , které Přidruží název @ no__t-5 k oboru názvů nebo typu, *namespace_or_type_name* je nejednoznačný a dojde k chybě při kompilaci.
+            * V opačném případě *namespace_or_type_name* odkazuje na typ sestavený pomocí daných argumentů typu.
+        * V opačném případě, pokud je umístění, kde se nachází *namespace_or_type_name* , uzavřeno deklarací oboru názvů pro `N`:
+            * Pokud je `K` nula a deklarace oboru názvů obsahuje *extern_alias_directive* nebo *using_alias_directive* , který přidruží název @ no__t-3 k importovanému oboru názvů nebo typu, pak *namespace_or_type_name* odkazuje na to. obor názvů nebo typ.
+            * V opačném případě, pokud obory názvů a deklarace typů importované pomocí *using_namespace_directive*s a *using_alias_directive*s deklarací oboru názvů obsahují přesně jeden přístupný typ s názvem @ no__t-2 a `K` @ no__t-4Type parametry, pak *namespace_or_type_name* odkazuje na tento typ sestavený pomocí daných argumentů typu.
+            * V opačném případě, pokud obory názvů a deklarace typů importované pomocí *using_namespace_directive*s a *using_alias_directive*s deklarací oboru názvů obsahují více než jeden přístupný typ s názvem @ no__t-2 a `K` @ no__t-4Type parametry, pak *namespace_or_type_name* je nejednoznačný a dojde k chybě.
+    * V opačném případě *namespace_or_type_name* není definován a dojde k chybě při kompilaci.
+*  V opačném případě je *namespace_or_type_name* ve tvaru `N.I` nebo ve formuláři `N.I<A1, ..., Ak>`. `N` se nejprve vyřeší jako *namespace_or_type_name*. Pokud řešení `N` není úspěšné, dojde k chybě při kompilaci. V opačném případě `N.I` nebo `N.I<A1, ..., Ak>` se přeloží následujícím způsobem:
+    * Pokud je `K` nula a `N` odkazuje na obor názvů a `N` obsahuje vnořený obor názvů s názvem `I`, pak *namespace_or_type_name* odkazuje na tento vnořený obor názvů.
+    * Jinak, pokud `N` odkazuje na obor názvů a `N` obsahuje přístupný typ s parametry Name @ no__t-2 a `K` @ no__t-4Type, pak *namespace_or_type_name* odkazuje na tento typ sestavený pomocí daných argumentů typu.
+    * V opačném případě, pokud `N` odkazuje na (případně konstruovaný) typ třídy nebo struktury a `N` nebo některá z jeho základních tříd obsahuje vnořený přístupný typ s parametry @ no__t-2 a `K` @ no__t-4Type, pak *namespace_or_type_name* odkazuje na typ vytvořený pomocí daných argumentů typu. Pokud existuje více než jeden takový typ, je vybrán typ deklarovaný v rámci více odvozeného typu. Všimněte si, že pokud je význam `N.I` určován jako součást řešení specifikace základní třídy `N`, je přímá základní třída `N` považována za Object ([základní třídy](classes.md#base-classes)).
+    * V opačném případě je `N.I` neplatný *namespace_or_type_name*a dojde k chybě při kompilaci.
 
-A *namespace_or_type_name* smí odkazovat na statickou třídu ([statické třídy](classes.md#static-classes)) pouze v případě
+*Namespace_or_type_name* je povolený odkazování na statickou třídu ([statické třídy](classes.md#static-classes)) jenom v případě, že
 
-*  *Namespace_or_type_name* je `T` v *namespace_or_type_name* formuláře `T.I`, nebo
-*  *Namespace_or_type_name* je `T` v *typeof_expression* ([seznamy argumentů](expressions.md#argument-lists)1) ve formátu `typeof(T)`.
+*  *Namespace_or_type_name* je `T` ve *namespace_or_type_name* ve formě `T.I` nebo
+*  *Namespace_or_type_name* je `T` v *typeof_expression* ([seznam argumentů](expressions.md#argument-lists)1) formuláře `typeof(T)`.
 
 ### <a name="fully-qualified-names"></a>Plně kvalifikované názvy
 
-Každý obor názvů a typ má ***plně kvalifikovaný název***, který jednoznačně identifikuje obor názvů nebo typ mimo všechny ostatní. Plně kvalifikovaný název oboru názvů nebo typ `N` je stanoven následujícím způsobem:
+Každý obor názvů a typ má ***plně kvalifikovaný název***, který jednoznačně identifikuje obor názvů nebo typ mezi všemi ostatními. Plně kvalifikovaný název oboru názvů nebo typu `N` je určen následujícím způsobem:
 
-*  Pokud `N` patří do globálního oboru názvů a jeho plně kvalifikovaný název je `N`.
-*  V opačném případě je jeho plně kvalifikovaný název `S.N`, kde `S` je plně kvalifikovaný název oboru názvů nebo typ, ve kterém `N` je deklarována.
+*  Pokud je `N` členem globálního oboru názvů, jeho plně kvalifikovaný název je `N`.
+*  V opačném případě je jeho plně kvalifikovaný název `S.N`, kde `S` je plně kvalifikovaný název oboru názvů nebo typu, ve kterém je deklarována `N`.
 
-Jinými slovy, plně kvalifikovaný název `N` je kompletní hierarchické cesty identifikátorů, které vedly k `N`od globálního oboru názvů. Protože každý člen obor názvů nebo typ musí mít jedinečný název, následuje plně kvalifikovaný název oboru názvů nebo typ je vždy jedinečný.
+Jinými slovy je plně kvalifikovaný název `N` úplnou hierarchickou cestu identifikátorů, které vedou k `N` počínaje globálním oborem názvů. Vzhledem k tomu, že každý člen oboru názvů nebo typu musí mít jedinečný název, následuje za tím, že plně kvalifikovaný název oboru názvů nebo typu je vždycky jedinečný.
 
-Následující příklad ukazuje několik deklarací oboru názvů a typ spolu s jejich přidružených plně kvalifikovaných názvů.
+Následující příklad ukazuje několik deklarací obor názvů a typů spolu s přidruženými plně kvalifikovanými názvy.
 ```csharp
 class A {}                // A
 
@@ -749,21 +749,21 @@ namespace X.Y             // X.Y
 
 ## <a name="automatic-memory-management"></a>Automatická správa paměti
 
-C# používá Automatická správa paměti, která vaši vývojáři z ručně přidělování a uvolňování paměti obsazena objekty. Zásady správy paměti automatické implementují ***systému uvolňování paměti***. Životní cyklus správy paměti objektu vypadá takto:
+C#využívá automatickou správu paměti, která vývojářům uvolňuje v ručním přidělování a uvolňování paměti obsazené objekty. Automatické zásady správy paměti jsou implementované systémem ***uvolňování***paměti. Životní cyklus správy paměti objektu je následující:
 
-1. Při vytvoření objektu se pro něj přidělené paměti, spusťte konstruktoru a objekt považován za provozu.
-2. Pokud objekt nebo libovolné části, nemůže mít přístup všechny možné pokračování provádění, než spuštění destruktory, objekt je považován za už používá a bude vhodné pro zničení. Kompilátor jazyka C# a systému uvolňování paměti můžou rozhodnout pro analýzu kódu k určení, které odkazuje na objekt lze v budoucnu. Například pokud místní proměnná, která je v oboru je pouze existující odkaz na objekt, ale tuto místní proměnnou se nikdy označuje všechny možné pokračování provádění aktuálního spuštění bodu v postupu, uvolňování může (ale není potřeba) považovat objektu jako už používá.
-3. Po nárok zničení objektu na některé později tento parametr nezadáte čas destruktoru ([destruktory](classes.md#destructors)) (pokud existuje) pro spuštění objektu. Za normálních okolností destruktor objektu se spustí pouze jednou, ale specifický pro implementaci rozhraní API mohou povolit toto chování k přepsání.
-4. Po spuštění destruktoru objektu, pokud daný objekt nebo libovolné části, není přístupná všechny možné pokračování provádění, včetně spuštění destruktory, objekt je považován za nedostupné a objekt se stane nárok na kolekci.
-5. A konečně někdy po objekt stane nárok na kolekci, systému uvolňování paměti uvolní paměti spojený s tímto objektem.
+1. Když je objekt vytvořen, je pro něj přidělena paměť, konstruktor je spuštěn a objekt je považován za dynamický.
+2. V případě, že k objektu nebo jakékoli jeho části nelze mít k dispozici žádné možné pokračování v provádění, jiné než spuštění destruktorů, objekt je považován za již nepoužit a bude způsobilý k zničení. C# Kompilátor a systém uvolňování paměti se můžou rozhodnout analyzovat kód a určit, které odkazy na objekt se můžou v budoucnu použít. Například pokud místní proměnná, která je v oboru, je jediným existujícím odkazem na objekt, ale tato místní proměnná nikdy neodkazuje na jakékoli možné pokračování spuštění z aktuálního bodu spuštění v proceduře, může být systém uvolňování paměti (ale není vyžadováno pro), aby byl objekt považován za již nepoužitý.
+3. Jakmile je objekt způsobilý k zničení, v některých nespecifikovaných pozdějších případech je spuštěn[destruktor (pokud existuje) pro](classes.md#destructors)daný objekt. Za normálních okolností je destruktor pro objekt spuštěn pouze jednou, i když rozhraní API specifická pro implementaci mohou toto chování přepsat.
+4. Po spuštění destruktoru pro objekt, pokud je k tomuto objektu nebo jakékoli části k němu nelze získat přístup jakýmkoli možným pokračováním v provádění, včetně spuštění destruktorů, je objekt považován za nedostupný a objekt se bude jednat o oprávněný pro kolekci.
+5. Nakonec, v některých případech, kdy se objekt bude oprávněn pro shromažďování, uvolní uvolňování paměti paměť přidruženou k tomuto objektu.
 
-Uvolňování paměti uchovává informace o použití objektu a využívá tyto informace, aby paměti rozhodnutích týkajících se správy, jako je například umístění v paměti vyhledejte nově vytvořený objekt, když se přesunout objekt a když objekt již není používán nebo nedostupný.
+Systém uvolňování paměti uchovává informace o použití objektů a používá tyto informace k tomu, aby bylo možné provádět rozhodnutí týkající se správy paměti, například kde v paměti vyhledat nově vytvořený objekt, kdy se má objekt přemístit, a když se objekt již nepoužívá nebo není přístupný.
 
-Stejně jako v jiných jazycích, které se předpokládá existenci systému uvolňování paměti C# je navržený tak, aby systému uvolňování paměti může implementovat řadu různých zásad správy paměti. Například C# nevyžaduje, aby spuštění destruktory nebo shromažďovat objekty jako přicházejí nebo, že destruktory spustit v libovolném pořadí nebo v libovolném konkrétním vlákně.
+Podobně jako u jiných jazyků, které předpokládají existence systému uvolňování C# paměti, je navrženo tak, aby systém uvolňování paměti mohl implementovat široké spektrum zásad správy paměti. C# Například nevyžaduje, aby byly destruktory spuštěny, nebo aby byly shromažďovány, jakmile jsou způsobilé, nebo že destruktory jsou spouštěny v libovolném konkrétním pořadí nebo v jakémkoli konkrétním vlákně.
 
-Řídí chování systému uvolňování paměti, do určité míry, prostřednictvím statických metod ve třídě `System.GC`. Tato třída slouží k vyžádání kolekce pravděpodobnější, destruktory spuštění (nebo nespuštěno) a tak dále.
+Chování systému uvolňování paměti lze na určitou míru ovládat prostřednictvím statických metod třídy `System.GC`. Tato třída se dá použít k podání žádosti o kolekci, destruktory, které se mají spustit (nebo nespouštět), a tak dále.
 
-Od systému uvolňování paměti může široké šířky při rozhodování, kdy se mají shromáždit objekty a spusťte destruktory, vyhovující implementace může vytvořit výstup, který se liší od, který je znázorněno v následujícím kódu. Program
+Vzhledem k tomu, že systém uvolňování paměti je povolený rozsáhlá Zeměpisná šířka při rozhodování o shromažďování objektů a spouštění destruktorů, může vyhovující implementace způsobit výstup, který se liší od toho, který je zobrazen v následujícím kódu. Program
 ```csharp
 using System;
 
@@ -797,19 +797,20 @@ class Test
     }
 }
 ```
-vytvoří instanci třídy `A` a instance třídy `B`. Tyto objekty stane oprávněnými pro uvolnění při proměnné `b` je přiřazena hodnota `null`, protože se po uplynutí této doby je možné pro uživatelem zapsaný kód pro přístup k nim. Výstup může být buď
-```
-Destruct instance of A
-Destruct instance of B
-```
-or
-```
-Destruct instance of B
-Destruct instance of A
-```
-protože jazyk ukládá bez omezení na pořadí, ve kterém jsou objekty uvolněna z paměti.
+Vytvoří instanci třídy `A` a instanci třídy `B`. Tyto objekty jsou vhodné pro uvolňování paměti, když je proměnné `b` přiřazena hodnota `null`, protože po této době není možné, aby k nim měl přístup žádný kód, který by byl vytvořen uživatelem. Výstup může být buď
 
-V případech, malý může být důležité rozdíl mezi "nárok zničení" a "nárok na kolekci". Například
+```console
+Destruct instance of A
+Destruct instance of B
+```
+nebo
+```console
+Destruct instance of B
+Destruct instance of A
+```
+vzhledem k tomu, že jazyk ukládá žádná omezení v pořadí, ve kterém jsou objekty uvolněny z paměti.
+
+V nejemných případech může být rozdíl mezi "způsobilým zničením" a "způsobilou pro kolekci" důležitý. Například
 ```csharp
 using System;
 
@@ -858,24 +859,24 @@ class Test
 }
 ```
 
-Ve výše uvedené program, pokud se rozhodne systému uvolňování paměti ke spuštění destruktor `A` před destruktor `B`, může to být výstup tohoto programu:
-```
+Pokud se ve výše uvedeném programu systém uvolňování paměti rozhodne spustit destruktor `A` před Destruktorem `B`, může být výstup tohoto programu následující:
+```console
 Destruct instance of A
 Destruct instance of B
 A.F
 RefA is not null
 ```
 
-Všimněte si, že i když instance `A` nebyl používán a `A`společnosti byl spuštěn destruktor, je stále možné metody `A` (v tomto případě `F`) k volání z jiné destruktor. Také si všimněte, že může způsobit spuštění destruktoru objektu autentický z hlavní program znovu. V takovém případě spouštění `B`je destruktor způsobila instance `A` , který byl dříve nečinnosti se zpřístupní z živého odkazu `Test.RefA`. Po volání `WaitForPendingFinalizers`, instanci `B` má nárok na kolekce, ale instance `A` není k dispozici, protože odkaz `Test.RefA`.
+Všimněte si, že i když se instance `A` nepoužívá a byl spuštěný destruktor `A`, je stále možné používat metody `A` (v tomto případě `F`), které mají být volány z jiného destruktoru. Všimněte si také, že při spuštění destruktoru může dojít k opakovanému použití objektu v programu hlavní. V takovém případě spuštění destruktoru `B` způsobilo, že instance `A`, která se dřív nepoužívala k zpřístupnění z živého odkazu `Test.RefA`. Po volání `WaitForPendingFinalizers` je instance `B` způsobilá pro kolekci, ale instance `A` není z důvodu referenčního `Test.RefA`.
 
-Abyste předešli zmatení a neočekávané chování, je obecně vhodné pro destruktory provádět čištění jenom s daty uloženými v jejich vlastní polím objektu a nechcete provádět všechny akce v odkazované objekty nebo statická pole.
+Aby nedošlo k nejasnostem a neočekávanému chování, je obecně vhodné, aby destruktory prováděly pouze čištění dat uložených ve vlastních polích objektu a aby neprováděly žádné akce s odkazovanými objekty nebo statickými poli.
 
-Se o alternativu k použití destruktorů umožňuje implementovat třídu `System.IDisposable` rozhraní. To umožňuje klientovi k určení toho, kdy k uvolnění prostředků objektu, obvykle tak přístup k objektu jako prostředek v objektu `using` – příkaz ([pomocí příkazu](statements.md#the-using-statement)).
+Alternativou k použití destruktorů je umožnit třídě implementovat rozhraní `System.IDisposable`. To umožňuje klientovi objektu určit, kdy uvolnit prostředky objektu, obvykle přístupem k objektu jako prostředku v příkazu `using` ([příkaz using](statements.md#the-using-statement)).
 
-## <a name="execution-order"></a>Pořadí provádění
+## <a name="execution-order"></a>Pořadí spouštění
 
-Spuštění programu v jazyce C# pokračuje tak, aby vedlejší účinky jednotlivých provádění vlákna jsou zachovány při provádění kritické body. A ***vedlejší účinek*** je definován jako čtení nebo zápisu pole s modifikátorem volatile, zápis stálé proměnné, zápis do externího prostředku a vyvolává výjimku. Spuštění nutné pro body, ve kterých musí být zachovány pořadí těchto vedlejší účinky jsou odkazy na pole s modifikátorem volatile ([pole s modifikátorem Volatile](classes.md#volatile-fields)), `lock` příkazy ([příkaz lock](statements.md#the-lock-statement)), a vytváření a ukončení vlákna. Prostředí pro spuštění je zdarma, chcete-li změnit pořadí provádění programu v C# v souladu s následujícími omezeními:
+Spuštění C# programu pokračuje tak, že vedlejší účinky každého zpracovávaného vlákna jsou zachovány v kritických bodech provádění. ***Vedlejší efekt*** je definován jako čtení nebo zápis nestálého pole, zápis do nestálé proměnné, zápis do externího prostředku a vyvolání výjimky. Kritické body provádění, při kterých je třeba zachovat pořadí těchto vedlejších účinků, jsou odkazy na nestálá pole ([pole s modifikátorem volatile](classes.md#volatile-fields)), příkazy `lock` ([příkaz Lock](statements.md#the-lock-statement)) a vytvoření a ukončení vlákna. Spouštěcí prostředí je zdarma, aby bylo možné změnit pořadí provádění C# programu, a to s těmito omezeními:
 
-*  Závislost na data se zachovají v rámci vlákno provádění. To znamená hodnotu každé proměnné je vypočítán jako by všechny příkazy ve vlákně byly provedeny v původní pořadí programu.
-*  Inicializace pořadí pravidel jsou zachovány ([inicializace pole](classes.md#field-initialization) a [proměnné inicializátory](classes.md#variable-initializers)).
-*  Pořadí vedlejší účinky je zachováno s ohledem na volatile čtení a zápisy ([pole s modifikátorem Volatile](classes.md#volatile-fields)). Kromě toho prostředí pro spouštění nemusí vyhodnocení součástí výrazu, jestli můžete zjistit, že hodnota tohoto výrazu se nepoužívá a že žádné vedlejší účinky potřebné vytvářeny (včetně všech volání metody nebo přístup k pole s modifikátorem volatile). Když dojde k přerušení provádění programu asynchronní událostí (například výjimka vyvolaná objektem jiného vlákna), není zaručeno, že pozorovatelný vedlejší účinky jsou viditelné v původní pořadí programu.
+*  Závislost dat se zachovává v rámci vlákna provádění. To znamená, že hodnota každé proměnné je vypočítána jako v případě, že všechny příkazy ve vlákně byly provedeny v původní pořadí programu.
+*  Pravidla pro pořadí inicializace jsou zachována ([inicializace polí](classes.md#field-initialization) a [Inicializátory proměnných](classes.md#variable-initializers)).
+*  Pořadí vedlejších účinků je zachováno s ohledem na nestálá čtení a zápisy ([pole s stálým](classes.md#volatile-fields)počtem). Kromě toho prostředí pro spuštění nemusí vyhodnotit část výrazu, pokud může odvodit, že hodnota tohoto výrazu není použita a že nejsou vytvořeny žádné požadované vedlejší účinky (včetně jakékoli příčiny způsobené voláním metody nebo přístupu k nestálému poli). Když je provádění programu přerušeno asynchronní událostí (například výjimka vyvolaná jiným vláknem), není zaručeno, že pozorovatelé vedlejší účinky jsou viditelné v původním pořadí programu.

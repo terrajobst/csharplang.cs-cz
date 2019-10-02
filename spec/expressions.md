@@ -1,72 +1,72 @@
 ---
-ms.openlocfilehash: 130898a8b5a7b8eb986b314cb4cf78038e840b02
-ms.sourcegitcommit: 09e0ddec3bb6aa99b7340158bbac86a5a8243b43
+ms.openlocfilehash: f61039abd6bd557ac0ea625e6aac1c8bafa57b02
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66193932"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71704077"
 ---
 # <a name="expressions"></a>Výrazy
 
-Výraz je posloupnost operátorů a operandů. Tato kapitola definuje syntaxe pořadí vyhodnocení operandů a operátory a výrazy význam.
+Výraz je sekvence operátorů a operandů. Tato kapitola definuje syntaxi, pořadí vyhodnocování operandů a operátorů a význam výrazů.
 
-## <a name="expression-classifications"></a>Klasifikacích výraz
+## <a name="expression-classifications"></a>Klasifikace výrazů
 
-Výraz je klasifikován tak jeden z následujících akcí:
+Výraz je klasifikován jako jeden z následujících:
 
-*  Hodnota. Každá hodnota má přidruženého typu.
-*  Proměnná. Každá proměnná je přidružen typ, jmenovitě deklarovaný typ proměnné.
-*  Obor názvů. Výraz s této klasifikace může být použit pouze jako levé straně *member_access* ([přístup ke členu](expressions.md#member-access)). V libovolném kontextu výrazu jsou klasifikovány jako obor názvů způsobí chybu kompilace.
-*  Typ. Výraz s této klasifikace může být použit pouze jako levé straně *member_access* ([přístup ke členu](expressions.md#member-access)), nebo jako operand pro `as` – operátor ([operátor as ](expressions.md#the-as-operator)), `is` – operátor ([je operátor](expressions.md#the-is-operator)), nebo `typeof` – operátor ([operátor typeof](expressions.md#the-typeof-operator)). V libovolném kontextu jsou klasifikovány jako typ výrazu způsobí chybu kompilace.
-*  Metoda skupinu, která je sada přetížené metody, výsledkem vyhledávání člena ([člen vyhledávání](expressions.md#member-lookup)). Skupinu metod. může mít přidruženou instanci výraz a seznam argumentů přidruženého typu. Při vyvolání metody instance, bude výsledkem vyhodnocení výrazu instance instance reprezentována `this` ([tento přístup](expressions.md#this-access)). Skupinu metod. je povolen v *invocation_expression* ([výrazy typu Invocation](expressions.md#invocation-expressions)), *delegate_creation_expression* ([delegovat vytváření výrazy](expressions.md#delegate-creation-expressions)) a jako levé straně je operátor a může být implicitně převeden na typ delegáta kompatibilní ([Metoda skupiny převody](conversions.md#method-group-conversions)). V libovolném kontextu výrazu jsou klasifikovány jako skupinu metod způsobí chybu kompilace.
-*  Literál null. Výraz s této klasifikace lze implicitně převést na typ odkazu nebo typ připouštějící hodnotu Null.
-*  Anonymní funkce. Výraz s této klasifikace lze implicitně převést na typ kompatibilní delegáta nebo typu stromu výrazu.
-*  Přístup k vlastnosti. Každý přístup k vlastnosti je přidružen typ, jmenovitě typ vlastnosti. Přístup k vlastnosti kromě toho může mít přidruženou instanci výrazu. Když přístupový objekt ( `get` nebo `set` bloku) instance je vyvolán přístup k vlastnostem, výsledek vyhodnocení výrazu instance se změní instance reprezentována `this` ([tento přístup](expressions.md#this-access)).
-*  Přístup k události. Každý přístup k události je přidružen typ, jmenovitě typ události. Kromě toho události přístupu může mít přidruženou instanci výrazu. O událost přístupu se může zobrazit jako operand levé straně `+=` a `-=` operátory ([události přiřazení](expressions.md#event-assignment)). V libovolném kontextu výrazu jsou klasifikovány jako událost přístupu způsobí chybu kompilace.
-*  Přístup indexeru. Každý přístup indexeru je přidružen typ, a to typ elementu indexeru. Kromě toho přístup indexeru má přidruženou instanci výraz a seznam argumentů přidružený. Když přístupový objekt ( `get` nebo `set` bloku) z indexeru přístup, je vyvolána, výsledek vyhodnocení výrazu instance se změní instance reprezentována `this` ([tento přístup](expressions.md#this-access)) a výsledek tohoto objektu hodnocení seznamu argumentů se změní na seznamu parametrů vyvolání.
-*  Nothing. Proběhne, když je výraz vyvolání metody s návratovým typem `void`. Výraz klasifikován jako nic je platná pouze v kontextu *statement_expression* ([příkazy výrazů](statements.md#expression-statements)).
+*  Hodnota. Každá hodnota má přidružený typ.
+*  Proměnná. Každá proměnná má přidružený typ, konkrétně deklarovaný typ proměnné.
+*  Obor názvů. Výraz s touto klasifikací se může vyskytovat jenom jako levá strana *member_access* ([přístup ke členům](expressions.md#member-access)). V jakémkoli jiném kontextu výraz klasifikovaný jako obor názvů způsobí chybu při kompilaci.
+*  Typ. Výraz s touto klasifikací se může vyskytovat jenom jako levá strana *member_access* ([přístup ke členu](expressions.md#member-access)) nebo jako Operand operátoru `as` ([operátor as](expressions.md#the-as-operator)), operátor `is` (operátor[is](expressions.md#the-is-operator)) nebo @no __t-6 – operátor ([operátor typeof](expressions.md#the-typeof-operator)) V jakémkoli jiném kontextu výraz klasifikovaný jako typ způsobí chybu při kompilaci.
+*  Skupina metod, která je sadou přetížených metod, která vyplývají z vyhledávání členů ([vyhledávání členů](expressions.md#member-lookup)). Skupina metod může mít přidružený výraz instance a přidružený seznam argumentů typu. Když je vyvolána metoda instance, výsledek vyhodnocení výrazu instance se projeví jako instance reprezentované `this` ([Tento přístup](expressions.md#this-access)). Skupina metod je povolena ve *invocation_expression* ([výrazy vyvolání](expressions.md#invocation-expressions)), *delegate_creation_expression* ([výrazy pro vytváření delegátů](expressions.md#delegate-creation-expressions)) a jako levou stranu operátoru is a může být implicitně. převedeno na kompatibilní typ delegáta ([převody skupin metod](conversions.md#method-group-conversions)). V jakémkoli jiném kontextu výraz klasifikovaný jako skupina metod způsobí chybu při kompilaci.
+*  Literál s hodnotou null. Výraz s touto klasifikací se dá implicitně převést na typ odkazu nebo na typ s možnou hodnotou null.
+*  Anonymní funkce. Výraz s touto klasifikací lze implicitně převést na kompatibilní typ delegáta nebo strom výrazu.
+*  Přístup k vlastnosti. Každý přístup k vlastnosti má přidružený typ, konkrétně typ vlastnosti. Kromě toho může mít přístup k vlastnosti přidružený výraz instance. Když je vyvolán přistupující objekt (blok `get` nebo `set`) vlastnosti instance, výsledek vyhodnocení výrazu instance se projeví jako instance reprezentované `this` ([Tento přístup](expressions.md#this-access)).
+*  Přístup k události. Každý přístup k události má přidružený typ, konkrétně typ události. Kromě toho může mít přístup k události přidružený výraz instance. Přístup k události se může zobrazit jako levý operand operátorů `+=` a `-=` ([přiřazení události](expressions.md#event-assignment)). V jakémkoli jiném kontextu výraz klasifikovaný jako přístup k události způsobí chybu při kompilaci.
+*  Přístup indexeru Každý přístup k indexeru má přidružený typ, konkrétně typ prvku indexeru. Kromě toho má k přístupu indexeru přidružený výraz instance a seznam přidružených argumentů. Když je vyvolán přistupující objekt (blok `get` nebo `set`) přístupu indexeru, výsledek vyhodnocení výrazu instance se projeví jako instance reprezentované `this` ([Tento přístup](expressions.md#this-access)) a výsledek vyhodnocení seznamu argumentů se projeví jako seznam parametrů vyvolání
+*  Žádným. K tomu dochází, když je výraz voláním metody s návratovým typem `void`. Výraz klasifikovaný jako Nothing je platný pouze v kontextu *statement_expression* ([příkazy výrazu](statements.md#expression-statements)).
 
-Konečný výsledek výrazu se nikdy obor názvů, typ, metodu skupiny nebo přístup k události. Místo toho jak bylo uvedeno výše, tyto výrazy jsou zprostředkující konstrukce, které jsou povolené jenom v určitých kontextech.
+Konečný výsledek výrazu není nikdy obor názvů, typ, skupina metod ani přístup k události. Namísto toho, jak je uvedeno výše, jsou tyto kategorie výrazů zprostředkující konstrukce, které jsou povoleny pouze v určitých kontextech.
 
-Přístup k vlastnosti nebo přístup indexeru je vždy překlasifikován sám jako hodnotu pomocí provádí vyvolání *načtení přístupového objektu* nebo *nastavení přístupového objektu*. Zejména přístupový objekt je určen podle kontextu vlastnost nebo indexovací člen přístupu: Pokud je cílem přiřazení, přístup *nastavení přístupového objektu* se vyvolá, aby přiřadí novou hodnotu ([jednoduché přiřazení](expressions.md#simple-assignment)). V opačném případě *načtení přístupového objektu* se vyvolá k získání aktuální hodnoty ([hodnot výrazů](expressions.md#values-of-expressions)).
+Přístup k vlastnosti nebo k indexeru je vždy překlasifikován jako hodnota prostřednictvím vyvolání *přístupového objektu Get* nebo přístupového *objektu set*. Konkrétní přistupující objekt je určen kontextem vlastnosti nebo přístupu indexeru: Pokud je přístup cílem přiřazení, vyvolá se *přistupující objekt set* , který přiřadí novou hodnotu ([jednoduché přiřazení](expressions.md#simple-assignment)). V opačném případě se vyvolá *přístupový objekt get* , který získá aktuální hodnotu ([hodnoty výrazů](expressions.md#values-of-expressions)).
 
 ### <a name="values-of-expressions"></a>Hodnoty výrazů
 
-Většina konstrukce, které se týkají výraz takže v konečném důsledku vyžaduje výraz, který má označení ***hodnota***. V takových případech Pokud skutečný výraz označuje obor názvů, typ, skupinu metod nebo nic, dojde k chybě kompilace. Ale pokud výraz označuje přístup k vlastnosti, indexeru přístupu nebo proměnná, hodnota pro vlastnost, indexer nebo proměnná je implicitně nahrazena:
+Většina konstrukcí, které zahrnují výraz, nakonec vyžadují výraz k označení ***hodnoty***. V takových případech, pokud skutečný výraz označuje obor názvů, typ, skupinu metod nebo nic, dojde k chybě při kompilaci. Nicméně pokud výraz označuje přístup k vlastnosti, přístup indexeru nebo proměnnou, hodnota vlastnosti, indexeru nebo proměnné je implicitně nahrazena:
 
-*  Hodnota proměnné je jednoduše hodnota aktuálně uložené v umístění úložiště, který je identifikován proměnné. Proměnná je třeba zvážit, jsou přiřazené ([jednoznačného přiřazení](variables.md#definite-assignment)) před jeho hodnotu lze získat nebo jinak dojde k chybě kompilace.
-*  Získá hodnota výraz přístupu k vlastnosti s vyvoláním *načtení přístupového objektu* vlastnosti. Pokud vlastnost nemá žádný *načtení přístupového objektu*, dojde k chybě kompilace. V opačném případě vyvolání členské funkce ([kompilace kontrolu dynamické přetížení](expressions.md#compile-time-checking-of-dynamic-overload-resolution)) se provádí, a výsledek volání se stane hodnotou výrazu přístup k vlastnosti.
-*  Hodnota výrazu přístup indexeru je získala při vyvolání *načtení přístupového objektu* indexeru. Pokud nemá žádné indexeru *načtení přístupového objektu*, dojde k chybě kompilace. V opačném případě vyvolání členské funkce ([kompilace kontrolu dynamické přetížení](expressions.md#compile-time-checking-of-dynamic-overload-resolution)) se provádí v argumentu seznamu přidružená k výrazu přístup indexeru a výsledek volání se stane hodnota výrazu přístup indexeru.
+*  Hodnota proměnné je jednoduše hodnota, která je aktuálně uložena v umístění úložiště identifikovaném proměnnou. Proměnná musí být považována za jednoznačně přiřazenou ([jednoznačné přiřazení](variables.md#definite-assignment)), než se hodnota Získá nebo v opačném případě dojde k chybě při kompilaci.
+*  Hodnota výrazu přístupu k vlastnosti je získána vyvoláním *přístupového objektu Get* vlastnosti. Pokud vlastnost nemá žádný *přistupující objekt get*, dojde k chybě při kompilaci. V opačném případě se provede vyvolání člena funkce ([Kontrola dynamického přetěžování při kompilaci](expressions.md#compile-time-checking-of-dynamic-overload-resolution)) a výsledek vyvolání se stává hodnotou výrazu přístupu k vlastnosti.
+*  Hodnota výrazu přístupu indexeru se získá vyvoláním *přístupové metody Get* indexeru. Pokud indexer nemá *přístup k Get*, dojde k chybě při kompilaci. V opačném případě je provedeno vyvolání člena funkce ([Kontrola dynamického přetěžování při kompilaci](expressions.md#compile-time-checking-of-dynamic-overload-resolution)) se seznamem argumentů přidruženým k výrazu přístupu indexeru a výsledek vyvolání se stává hodnotou přístupu indexeru. vyjádření.
 
-## <a name="static-and-dynamic-binding"></a>Statické a dynamické vazby
+## <a name="static-and-dynamic-binding"></a>Statická a dynamická vazba
 
-Procesu, který určuje význam operace na základě typu nebo hodnota základních výrazů (argumenty, operandy, příjemci) se často označuje jako ***vazby***. Pro instanci význam volání metody závisí na typu příjemce a argumenty. Význam operátoru je určen na základě typu operandů.
+Proces určení významu operace v závislosti na typu nebo hodnotě výrazů prvků (argumenty, operandy, přijímače) se často označují jako ***vazby***. Například význam volání metody je určen podle typu přijímače a argumentů. Význam operátoru je určen na základě typu jeho operandů.
 
-V jazyce C# významu operace je obvykle určena v době kompilace, založená na kompilaci typu z jeho základních výrazů. Podobně pokud výraz obsahuje chybu, chyba rozpoznáno a Ohlášeno kompilátorem. Tento postup se označuje jako ***statické vazby***.
+Ve C# smyslu operace je obvykle určena v době kompilace na základě typu za kompilace svých základních výrazů. Podobně pokud výraz obsahuje chybu, je zjištěna chyba a hlášena kompilátorem. Tento přístup je známý jako ***statická vazba***.
 
-Ale pokud je výraz dynamického výrazu (tj. nemá typ `dynamic`) to znamená, že všechny vazby, který je součástí by měla vycházet z jeho typ za běhu (tj. skutečný typ objektu je označuje za běhu) místo typu má v za kompilace. Vazba tato operace je proto odložena až do doby, kde je operace má být proveden za běhu programu. To se označuje jako ***dynamické vazby***.
+Nicméně pokud je výraz dynamický výraz (tj. má typ `dynamic`), znamená to, že jakákoli vazba, na kterou se podílí, by měla být založena na typu běhu (tj. skutečný typ objektu, který označuje za běhu), a nikoli typu, v němž má čas kompilace. Vazba takové operace je proto odložena až do doby, kdy má být operace provedena během chodu programu. Tento postup se označuje jako ***dynamická vazba***.
 
-Když se operace dynamicky vazba, žádné nebo téměř žádné kontrola se neprovádí kompilátorem. Místo toho pokud vazbu za běhu selže, jsou hlášeny chyby jako výjimky za běhu.
+Je-li operace dynamicky svázána, je kompilátorem provedena pouze malá nebo žádná kontrola. Místo toho, pokud se vazba za běhu nezdařila, jsou chyby hlášeny jako výjimky za běhu.
 
-Následující operace v jazyce C# jsou v souladu s vazby:
+Následující operace v C# nástroji jsou předmětem vazby:
 
 *  Přístup ke členu: `e.M`
-*  Volání metody: `e.M(e1, ..., eN)`
-*  Volání delegáta:`e(e1, ..., eN)`
-*  Přístup k prvkům: `e[e1, ..., eN]`
+*  Vyvolání metody: `e.M(e1, ..., eN)`
+*  Volání delegáta: `e(e1, ..., eN)`
+*  Přístup k elementu: `e[e1, ..., eN]`
 *  Vytvoření objektu: `new C(e1, ..., eN)`
-*  Přetížení unárních operátorů: `+`, `-`, `!`, `~`, `++`, `--`, `true`, `false`
-*  Přetížené operátory binární: `+`, `-`, `*`, `/`, `%`, `&`, `&&`, `|`, `||`, `??`, `^`, `<<` , `>>`, `==`,`!=`, `>`, `<`, `>=`, `<=`
-*  Operátory přiřazení: `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`, `<<=`, `>>=`
+*  Přetížené unární operátory: `+`, `-`, `!`, `~`, `++`, `--`, `true`, `false`
+*  Přetížené binární operátory: `+`, `-`, `*`, `/`, `%`, `&`, `&&`, `|`, `||`, `??`, 1 @no__t 2, 3, 4, 6, 7, 8
+*  Operátory přiřazení: `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`, `<<=`, 0
 *  Implicitní a explicitní převody
 
-Pokud se jedná o žádné dynamické výrazy jazyka C# výchozí statické vazby, což znamená, že typy kompilace základních výrazů se používají v procesu výběru. Ale po dynamického výrazu jedné z nich základních výrazů v operacích výše uvedené operace místo dynamicky vázán.
+Pokud nejsou zapojeny žádné dynamické výrazy C# , výchozí hodnota je statická vazba, což znamená, že jsou v procesu výběru použity typy výrazů v čase kompilace. Pokud je však jeden ze základních výrazů v operacích uvedených výše dynamickým výrazem, operace je místo toho dynamicky svázána.
 
-### <a name="binding-time"></a>Doba vazby
+### <a name="binding-time"></a>Čas vazby
 
-Statická vazba probíhá v době kompilace, zatímco dynamická vazba se provádí v době běhu. V následujících částech se termín ***doba vazby*** odkazuje na za kompilace nebo za běhu, v závislosti na tom, kdy vazba probíhá.
+Statická vazba probíhá v době kompilace, zatímco v době běhu probíhá dynamická vazba. V následujících částech pojem ***Doba vazby*** odkazuje buď na čas kompilace, nebo za běhu v závislosti na tom, kdy dojde k vazbě.
 
-Následující příklad ukazuje názory statické a dynamické vazby a doby vazby:
+Následující příklad znázorňuje pojem statické a dynamické vazby a dobu vazby:
 ```csharp
 object  o = 5;
 dynamic d = 5;
@@ -76,102 +76,102 @@ Console.WriteLine(o);  // static  binding to Console.WriteLine(object)
 Console.WriteLine(d);  // dynamic binding to Console.WriteLine(int)
 ```
 
-První dvě volání jsou staticky vázány: přetížení `Console.WriteLine` se vybere na základě typu kompilace svého argumentu. Doba vazby tedy za kompilace.
+První dvě volání jsou staticky svázána: přetížení `Console.WriteLine` je vybráno na základě typu kompilace jejich argumentu. Proto je čas vytvoření vazby v čase kompilace.
 
-Třetí volání dynamicky vázán: přetížení `Console.WriteLine` se vybere na základě typu za běhu svého argumentu. Důvodem je argument dynamického výrazu – jeho typ za kompilace je `dynamic`. Doba vazby pro třetí volání je tedy za běhu.
+Třetí volání je dynamicky svázáno: přetížení `Console.WriteLine` je vybráno na základě běhového typu argumentu. K tomu dochází, protože argument je dynamický výraz – jeho typ při kompilaci je `dynamic`. Proto je čas vazby za třetí volání za běhu.
 
-### <a name="dynamic-binding"></a>Dynamické vazby
+### <a name="dynamic-binding"></a>Dynamická vazba
 
-Účelem dynamické vazby je umožňuje programům C# pro interakci s ***dynamických objektů***, například systém typů objektů, které se neřídí běžných pravidel jazyka C#. Dynamické objekty mohou být objekty v jiných programovacích jazycích systémech různých typů nebo mohou být objekty, které jsou nastavené pro implementaci sémantiky vlastní vazby pro různé operace prostřednictvím kódu programu.
+Účelem dynamické vazby je povolit C# programům pracovat s ***dynamickými objekty***, tj. objekty, které nedodržují normální pravidla systému C# typů. Dynamické objekty mohou být objekty z jiných programovacích jazyků s různými systémy typů, nebo mohou být objekty, které jsou programově nastaveny k implementaci sémantiky vytváření vazeb pro různé operace.
 
-Mechanismus, pomocí kterého dynamický objekt implementuje vlastní sémantiku je definován implementací. V příslušném rozhraní – znovu definován implementací – je implementováno dynamických objektů na signál pro C# doba běhu, ke kterým mají zvláštní sémantiku. Díky tomu se pokaždé, když se operace na dynamický objekt se dynamicky vázán, sémantika vlastní vazby, ne ty jazyka C# uvedené v tomto dokumentu, převzít kontrolu nad.
+Mechanismus, kterým dynamický objekt implementuje svou vlastní sémantiku je definována implementace. Dané rozhraní zadané pro implementaci je znovu definováno – je implementováno dynamickými objekty k signalizaci za C# běhu, které mají speciální sémantiku. Proto vždy, když jsou operace s dynamickým objektem dynamicky svázány, jejich vlastní sémantika vazby namísto těch C# , které jsou zadány v tomto dokumentu, převezmou.
 
-Účely dynamické vazby je chcete povolit vzájemné spolupráce s dynamickými objekty, C# umožňuje dynamické vazby u všech objektů, ať už jsou dynamické nebo ne. To umožňuje zajistit plynulejší integraci dynamických objektů, jako výsledky operací s nimi samy o sobě může být dynamické objekty, ale jsou stále typu Neznámý na programátorovi v době kompilace. Dynamické vazby také může pomoct eliminovat náchylné založenými na reflexi kódu i v případě, že nejsou žádné objekty, které jsou zahrnuté dynamických objektů.
+I když je účel dynamické vazby umožněna spolupráce s dynamickými objekty, C# umožňuje dynamickou vazbu na všech objektech, bez ohledu na to, zda jsou dynamické. To umožňuje plynulou integraci dynamických objektů, protože výsledky operací na nich nemusejí být dynamické objekty, ale v době kompilace jsou stále typu, který není známý pro programátory. Dynamická vazba také může přispět k eliminaci kódu založeného na reflexi, i když žádné nesouvisející objekty nejsou dynamické objekty.
 
-Následující části popisují pro každý konstrukce v jazyce přesně při dynamické vazby se používá, co kompilaci kontrolu za – Pokud se použije některý – a jaké kompilaci výrazu and výsledek klasifikace je.
+Následující oddíly popisují jednotlivé konstrukce v jazyce přesně tehdy, když je aplikována dynamická vazba, která kontrola doby kompilace – Pokud je použita libovolná a jaké je výsledek kompilace a klasifikace výrazu.
 
-### <a name="types-of-constituent-expressions"></a>Typy základních výrazů
+### <a name="types-of-constituent-expressions"></a>Typy výrazů prvků
 
-Při operaci je staticky vázán, typ výrazu základní (např. příjemce, argument, index nebo operand) je vždy považuje za kompilace typ tohoto výrazu.
+Je-li operace staticky svázána, typ výrazu elementu (například přijímač, argument, index nebo operand) je vždy považován za typ doby kompilace tohoto výrazu.
 
-Když se operace dynamicky vazba, typ základní výrazu je určen různými způsoby v závislosti na kompilaci typu základní výraz:
+Je-li operace dynamicky svázána, je typ výrazu elementu určován různými způsoby v závislosti na typu při kompilaci výrazu prvku:
 
-*  Základní výraz typu kompilace `dynamic` je považován za mít typ skutečnou hodnotu, která se výraz vyhodnotí za běhu
-*  Základní výraz, jehož typ za kompilace je parametr typu má mít typ, který typ parametru je vázán na za běhu
-*  Jinak základní výraz je považován za mít jeho typ za kompilace.
+*  Výraz prvku typu kompilace `dynamic` se považuje za typ skutečné hodnoty, na kterou se výraz vyhodnotí za běhu.
+*  Výraz prvku, jehož typ kompilace je, se považuje za parametr typu, který má typ, ke kterému je vázán parametr typu za běhu.
+*  V opačném případě je výraz prvku považován za jeho typ při kompilaci.
 
 ## <a name="operators"></a>Operátory
 
-Výrazy se vytvářejí na základě ***operandy*** a ***operátory***. Operátory výrazu označují operace, které chcete použít pro operandy. Příklady operátorů `+`, `-`, `*`, `/`, a `new`. Příklady operandy: literály, pole, místní proměnné a výrazy.
+Výrazy jsou vytvořené z ***operandů*** a ***operátorů***. Operátory výrazu označují, které operace se mají použít u operandů. Příklady operátorů zahrnují `+`, `-`, `*` `/`, a .`new` Příklady operandů zahrnují literály, pole, místní proměnné a výrazy.
 
 Existují tři typy operátorů:
 
-*  Unární operátory. Unární operátory používají jeden operand a použijte buď předpony (jako `--x`) nebo přípony zápis (například `x++`).
-*  Binární operátory. Binární operátory přebírají dva operandy a všechny používají infixová notace (například `x + y`).
-*  Ternární operátor. Pouze jeden Ternární operátor `?:`, existuje; má tři operandy a používá infix zápis (`c ? x : y`).
+*  Unární operátory. Unární operátory přebírají jeden operand a používají buď zápis předpony (například `--x`) nebo notaci přípony (například `x++`).
+*  Binární operátory. Binární operátory přebírají dva operandy a používají zápis vpony (například `x + y`).
+*  Ternární operátor Pouze jeden Ternární operátor, `?:`, existuje; využívá tři operandy a používá notaci vpony (`c ? x : y`).
 
-Pořadí vyhodnocení operátorů ve výrazu má vliv ***prioritu*** a ***asociativita*** operátorů ([Priorita a asociativita operátora](expressions.md#operator-precedence-and-associativity)) .
+Pořadí vyhodnocení operátorů ve výrazu je určeno ***prioritou*** a ***asociativita*** operátorů ([Priorita operátorů a asociativita](expressions.md#operator-precedence-and-associativity)).
 
-Operandy ve výrazu jsou vyhodnoceny zleva doprava. Například v `F(i) + G(i++) * H(i)`, metoda `F` jsou volány pomocí původní hodnota `i`, then – metoda `G` volána s původní hodnota `i`a nakonec – metoda `H` je volána s novou hodnotou `i`. Toto je oddělené od a nesouvisejících priorita operátorů.
+Operandy ve výrazu jsou vyhodnocovány zleva doprava. Například v `F(i) + G(i++) * H(i)` je metoda `F` volána pomocí staré hodnoty `i`, pak metoda `G` je volána se starou hodnotou `i` a nakonec metoda `H` je volána s novou hodnotou `i`. To je oddělené od a s prioritou operátoru.
 
-Některé operátory lze ***přetížené***. Přetížení operátoru umožňuje uživatelem definovaný operátor implementace rozhraní u operací zadat, pokud jeden nebo oba operandy jsou uživatelem definované třídě nebo struktuře typu ([přetížení operátoru](expressions.md#operator-overloading)).
+Některé operátory mohou být ***přetíženy***. Přetížení operátoru umožňuje zadat uživatelsky definované implementace operátorů pro operace, kde jeden nebo oba operandy jsou uživatelsky definované třídy nebo typu struktury ([Přetěžování operátorů](expressions.md#operator-overloading)).
 
-### <a name="operator-precedence-and-associativity"></a>Priorita a asociativita operátora
+### <a name="operator-precedence-and-associativity"></a>Priorita operátorů a asociativita
 
-Pokud výraz obsahuje více operátorů ***prioritu*** operátorů určuje pořadí, ve kterém jsou jednotlivé operátory vyhodnocovány. Například výraz `x + y * z` se vyhodnotí jako `x + (y * z)` vzhledem k tomu, `*` operátor má vyšší prioritu než binární soubor `+` – operátor. Přednost operátoru pokládáme stav, definicí jeho přidružené gramatiky výroby. Například *additive_expression* se skládá z posloupnost *multiplicative_expression*s oddělené `+` nebo `-` operátory, což `+` a `-` nižší prioritu než operátory `*`, `/`, a `%` operátory.
+Pokud výraz obsahuje více operátorů, ***Priorita*** operátorů řídí pořadí, ve kterém jsou jednotlivé operátory vyhodnocovány. Například výraz `x + y * z` je vyhodnocen jako `x + (y * z)`, protože operátor `*` má vyšší prioritu než binární operátor `+`. Priorita operátoru je založena na definici své související provozní gramatiky. Například *additive_expression* se skládá z sekvence *multiplicative_expression*s oddělenými operátory `+` nebo `-`, takže operátory `+` a `-` budou mít nižší prioritu než `*` `/` a @no__ operátory t-8.
 
-Následující tabulka shrnuje všechny operátory v pořadí dle priority od nejvyšší po nejnižší:
+Následující tabulka shrnuje všechny operátory v pořadí podle priority od nejvyšších po nejnižší:
 
-| __Oddíl__                                                                                   | __Kategorie__                | __Operátory__ | 
+| __Section__                                                                                   | __Kategorie__                | __Operátory__ | 
 |-----------------------------------------------------------------------------------------------|-----------------------------|---------------|
 | [Primární výrazy](expressions.md#primary-expressions)                                     | Primární                     | `x.y`  `f(x)`  `a[x]`  `x++`  `x--`  `new`  `typeof`  `default`  `checked`  `unchecked`  `delegate` | 
 | [Unární operátory](expressions.md#unary-operators)                                             | Unární                       | `+`  `-`  `!`  `~`  `++x`  `--x`  `(T)x` | 
-| [Aritmetické operátory](expressions.md#arithmetic-operators)                                   | Násobení              | `*`  `/`  `%` | 
-| [Aritmetické operátory](expressions.md#arithmetic-operators)                                   | Additive                    | `+`  `-`      | 
+| [Aritmetické operátory](expressions.md#arithmetic-operators)                                   | Multiplikativní              | `*`  `/`  `%` | 
+| [Aritmetické operátory](expressions.md#arithmetic-operators)                                   | Přičítáním                    | `+`  `-`      | 
 | [Operátory posunutí](expressions.md#shift-operators)                                             | SHIFT                       | `<<`  `>>`    | 
-| [Operátory relační a typové zkoušky](expressions.md#relational-and-type-testing-operators) | Relační a typové zkoušky | `<`  `>`  `<=`  `>=`  `is`  `as` | 
-| [Operátory relační a typové zkoušky](expressions.md#relational-and-type-testing-operators) | Rovnost                    | `==`  `!=`    | 
+| [Relační operátory a operátory testování typů](expressions.md#relational-and-type-testing-operators) | Relační testování a testování typu | `<`  `>`  `<=`  `>=`  `is`  `as` | 
+| [Relační operátory a operátory testování typů](expressions.md#relational-and-type-testing-operators) | Rovnost                    | `==`  `!=`    | 
 | [Logické operátory](expressions.md#logical-operators)                                         | Logický operátor AND                 | `&`           | 
 | [Logické operátory](expressions.md#logical-operators)                                         | Logický operátor XOR                 | `^`           | 
 | [Logické operátory](expressions.md#logical-operators)                                         | Logický operátor OR                  | <code>&#124;</code>           |
 | [Podmíněné logické operátory](expressions.md#conditional-logical-operators)                 | Podmiňovací operátor AND             | `&&`          | 
 | [Podmíněné logické operátory](expressions.md#conditional-logical-operators)                 | Podmiňovací operátor OR              | <code>&#124;&#124;</code>          | 
-| [Null operátor sloučení](expressions.md#the-null-coalescing-operator)                   | Nulové sloučení             | `??`          | 
+| [Operátor slučování s hodnotou null](expressions.md#the-null-coalescing-operator)                   | Nulové sloučení             | `??`          | 
 | [Podmíněný operátor](expressions.md#conditional-operator)                                   | Podmiňovací operátor                 | `?:`          | 
-| [Operátory přiřazení](expressions.md#assignment-operators), [výrazy anonymní funkce](expressions.md#anonymous-function-expressions)  | Přiřazení a výraz lambda | `=`  `*=`  `/=`  `%=`  `+=`  `-=`  `<<=`  `>>=`  `&=`  `^=`  <code>&#124;=</code>  `=>` | 
+| [Operátory přiřazení](expressions.md#assignment-operators), [anonymní výrazy funkcí](expressions.md#anonymous-function-expressions)  | Přiřazení a výraz lambda | `=`  `*=`  `/=`  `%=`  `+=`  `-=`  `<<=`  `>>=`  `&=`  `^=`  <code>&#124;=</code>  `=>` | 
 
-V případě operand mezi dva operátory se stejnou prioritou – ovládací prvky pořadí, ve kterém jsou operace prováděny asociativity operátorů:
+Když dojde k operandu mezi dvěma operátory se stejnou prioritou, asociativita operátor řídí pořadí, ve kterém jsou operace prováděny:
 
-*  S výjimkou operátory přiřazení a null operátor sloučení, všechny binární operátory jsou ***asociativní zleva***, což znamená, že operace se provádějí zleva doprava. Například `x + y + z` se vyhodnotí jako `(x + y) + z`.
-*  Operátory přiřazení, null operátor sloučení a podmiňovací operátor (`?:`) jsou ***asociativní zprava***, což znamená, že operace se provádějí zprava doleva. Například `x = y = z` se vyhodnotí jako `x = (y = z)`.
+*  S výjimkou operátorů přiřazení a slučovacího operátoru null jsou všechny binární operátory ***asociativní***, což znamená, že operace jsou prováděny zleva doprava. Například `x + y + z` je vyhodnocen jako `(x + y) + z`.
+*  Operátory přiřazení, operátor sloučení null a podmíněný operátor (`?:`) jsou ***asociativní zprava***, což znamená, že operace jsou prováděny zprava doleva. Například `x = y = z` je vyhodnocen jako `x = (y = z)`.
 
-Přednost a asociativita operátorů lze ovládat pomocí závorek. Například `x + y * z` nejprve vynásobí `y` podle `z` a pak přidá výsledek, který má `x`, ale `(x + y) * z` nejprve přidá `x` a `y` a pak vynásobí výsledků `z`.
+Priority a asociativita lze ovládat pomocí závorek. Například `x + y * z` nejprve vynásobí `y` hodnotou `z` a následně výsledek přidá do `x`, ale `(x + y) * z` nejprve přidá `x` a `y` a pak výsledek vynásobí `z`.
 
-### <a name="operator-overloading"></a>Přetížení operátoru
+### <a name="operator-overloading"></a>Přetěžování operátoru
 
-Všechny jednočlenné a binární operátory mají předdefinované implementace, které jsou automaticky dostupné v libovolný výraz. Kromě předdefinovaných implementací, uživatelsky definované implementace může být zavedeno zahrnutím `operator` prohlášení do třídy a struktury ([operátory](classes.md#operators)). Uživatelem definovaný operátor implementace vždy přednost před implementací předdefinovaný operátor: Pouze pokud neexistují žádné použitelné uživatelem definovaný operátor implementace bude brát předdefinovaný operátor implementace, jak je popsáno v [unární operátor rozlišení přetěžování](expressions.md#unary-operator-overload-resolution) a [binární operátor přetížení rozlišení](expressions.md#binary-operator-overload-resolution).
+Všechny unární a binární operátory mají předdefinované implementace, které jsou automaticky k dispozici v jakémkoli výrazu. Kromě předdefinovaných implementací lze uživatelsky definované implementace začlenit zahrnutím `operator` deklarací do tříd a struktur ([Operators](classes.md#operators)). Uživatelsky definované implementace operátoru vždycky mají přednost před předdefinovanými implementacemi operátorů: Pouze v případě, že neexistují žádné použitelné uživatelsky definované implementace operátoru, budou použity předdefinované implementace operátoru, jak je popsáno v tématu [řešení přetížení unárního operátoru](expressions.md#unary-operator-overload-resolution) a [rozlišení přetížení binárního operátoru](expressions.md#binary-operator-overload-resolution).
 
-***Očekával se přetěžovatelný unární operátory*** jsou:
+***Přetížené unární operátory*** jsou:
 ```csharp
 +   -   !   ~   ++   --   true   false
 ```
 
-I když `true` a `false` nejsou explicitně použít ve výrazech (a proto nejsou zahrnuty v tabulce priority v [Priorita a asociativita operátora](expressions.md#operator-precedence-and-associativity)), protože jsou jsou považovány za operátory vyvolána v několika kontextech výraz: logické výrazy ([logické výrazy](expressions.md#boolean-expressions)) a výrazy, které obsahují podmínku ([Podmiňovací operátor](expressions.md#conditional-operator)) a podmíněné logické operátory ([podmíněné logické operátory](expressions.md#conditional-logical-operators)).
+I když `true` a `false` se ve výrazech nepoužívají explicitně (a proto nejsou zahrnuty v tabulce priorit v [prioritě operátorů a asociativita](expressions.md#operator-precedence-and-associativity)), považují se za operátory, protože jsou vyvolány v několika výrazech. kontexty: logické výrazy ([logické výrazy](expressions.md#boolean-expressions)) a výrazy týkající se podmíněného ([podmíněného](expressions.md#conditional-operator)) a podmíněných logických operátorů ([podmíněných logických](expressions.md#conditional-logical-operators)operátorů).
 
-***Očekával se přetěžovatelný binární operátory*** jsou:
+***Přetížené binární operátory*** jsou:
 ```csharp
 +   -   *   /   %   &   |   ^   <<   >>   ==   !=   >   <   >=   <=
 ```
 
-Mohou být přetíženy pouze operátory, které jsou uvedené výše. Zejména, není možné přetížit přístup ke členu, volání metody nebo `=`, `&&`, `||`, `??`, `?:`, `=>`, `checked`, `unchecked`, `new`, `typeof`, `default`, `as`, a `is` operátory.
+Pouze operátory uvedené výše mohou být přetíženy. Konkrétně není možné přetížit přístup ke členům, vyvolání metody ani `=`, `&&` `||`, `??`, `?:`, `=>`, `checked`, `unchecked`, `new`, `typeof`, 0, 1 a 2.
 
-Při je binární operátor přetížen, odpovídající operátor přiřazení, pokud existuje, je také implicitně přetížená. Například přetížení operátoru `*` je také přetížení operátoru `*=`. Toto je popsáno dále v [složené přiřazení](expressions.md#compound-assignment). Všimněte si, že operátor přiřazení (`=`) se nedají přetěžovat. Přiřazení vždy provádí jednoduché kopírování bitové hodnoty do proměnné.
+Při přetížení binárního operátoru je odpovídající operátor přiřazení také implicitně přetížený. Například přetížení operátoru `*` je také přetížením operátoru `*=`. Tento postup je podrobněji popsán v tématu [složené přiřazení](expressions.md#compound-assignment). Všimněte si, že samotný operátor přiřazení (`=`) nemůže být přetížený. Přiřazení vždy provádí jednoduchou bitovou kopii hodnoty do proměnné.
 
-Operace, jako například přetypování `(T)x`, jsou přetížené poskytnutím uživatelem definované převody ([uživatelem definované převody](conversions.md#user-defined-conversions)).
+Operace přetypování, jako je například `(T)x`, jsou přetíženy poskytnutím uživatelsky definovaných převodů ([uživatelem definované převody](conversions.md#user-defined-conversions)).
 
-Přístup k elementu, jako například `a[x]`, není považováno za očekával se přetěžovatelný operátor. Místo toho uživatelem definované indexování se podporuje na indexery ([indexery](classes.md#indexers)).
+Přístup k prvkům, jako je například `a[x]`, není považován za přetížený operátor. Místo toho je uživatelsky definované indexování podporováno prostřednictvím indexerů ([indexerů](classes.md#indexers)).
 
-Ve výrazech operátory je odkazováno pomocí zápisu operátor a v deklaracích, operátory jsou odkazovány pomocí funkční zápis. Následující tabulka znázorňuje vztah mezi funkční zápisy jednočlenné a binární operátory a operátor. V první položce *op* označuje všechny očekával se přetěžovatelný unární operátor předpony. V položce druhý *op* označuje příponový unární `++` a `--` operátory. V položce třetí *op* označuje všechny očekával se přetěžovatelný binární operátor.
+Ve výrazech jsou operátory odkazovány pomocí zápisu operátorů a v deklaracích jsou operátory odkazovány pomocí funkčního zápisu. Následující tabulka ukazuje vztah mezi operátorem a funkčními zápisy pro unární a binární operátory. V první položce *op* označuje jakýkoli přetížený operátor unární předpony. Ve druhé položce *op* označuje unární příponu `++` a `--`. Třetí položka *op* označuje jakýkoli přetížený binární operátor.
 
 
 | __Zápis operátoru__ | __Funkční zápis__ |
@@ -180,44 +180,44 @@ Ve výrazech operátory je odkazováno pomocí zápisu operátor a v deklaracíc
 | `x op`                | `operator op(x)`        | 
 | `x op y`              | `operator op(x,y)`      | 
 
-Uživatelem definovaný operátor deklarace vždy vyžadují alespoň jeden z parametrů typu třídy nebo struktury, obsahující deklarace operátoru. Proto není možné pro uživatelem definovaný operátor mít stejný podpis jako předdefinovaný operátor.
+Deklarace operátoru definované uživatelem vždy vyžadují, aby alespoň jeden z parametrů byl typu třídy nebo struktury, který obsahuje deklaraci operátoru. Proto není možné, aby uživatelem definovaný operátor měl stejnou signaturu jako předdefinovaný operátor.
 
-Uživatelem definovaný operátor deklarace nelze upravit, syntaxe, Priorita a asociativita operátora. Například `/` operátor je vždy binárních operátorů, vždy má úroveň priority zadané v [Priorita a asociativita operátora](expressions.md#operator-precedence-and-associativity)a vždy je asociativní zprava doleva.
+Deklarace uživatelem definovaných operátorů nemůže měnit syntaxi, prioritu ani asociativita operátoru. Například operátor `/` je vždy binárním operátorem, vždy má úroveň priority specifikovanou v [prioritě operátorů a asociativita](expressions.md#operator-precedence-and-associativity)a je vždy asociativní zprava.
 
-I když je možné pro uživatelem definovaný operátor provádět jakékoli výpočty, které ho pleases, implementace, které výsledky než ty, kteří budou intuitivně se důrazně nedoporučuje. Například implementace `operator ==` musí porovnat dva operandy na rovnost a vrátí odpovídající `bool` výsledek.
+I když je možné, aby uživatelsky definovaný operátor prováděl jakékoli výpočty, implementace, které vytváří jiné výsledky než ty, které jsou intuitivní, se důrazně nedoporučuje. Například implementace `operator ==` by měla porovnat dva operandy pro rovnost a vracet odpovídající `bool` výsledek.
 
-Popisy jednotlivých operátorech v [primární výrazy](expressions.md#primary-expressions) prostřednictvím [podmíněné logické operátory](expressions.md#conditional-logical-operators) zadejte předdefinované implementace operátorů a veškerá další pravidla, které se vztahují Každý operátor. Ujistěte se, popisy použijte podmínek ***unární operátor rozlišení přetěžování***, ***binárním operátorem rozlišení přetěžování***, a ***číselné povýšení***, definice, které jsou najít v následujících částech.
+Popisy jednotlivých operátorů v [primárních výrazech](expressions.md#primary-expressions) prostřednictvím [podmíněných logických operátorů](expressions.md#conditional-logical-operators) určují předdefinované implementace operátorů a všechna další pravidla, která platí pro každý operátor. Popisy využívají výrazy ***unárního přetížení operátoru***, ***rozlišení přetížení binárního operátoru***a ***číselnou povýšení***, definice, které se nacházejí v následujících částech.
 
-### <a name="unary-operator-overload-resolution"></a>Řešení přetížení unární operátor
+### <a name="unary-operator-overload-resolution"></a>Unární rozlišení přetížení operátoru
 
-Operace formuláře `op x` nebo `x op`, kde `op` se očekával se přetěžovatelný unární operátor a `x` je výraz typu `X`, zpracování následujícím způsobem:
+Operace formuláře `op x` nebo `x op`, kde `op` je přetížený unární operátor a `x` je výraz typu `X`, zpracován následujícím způsobem:
 
-*  Sadu Release candidate uživatelsky definované operátory poskytované `X` pro operaci `operator op(x)` je určen pomocí pravidel pro [Release Candidate uživatelsky definované operátory](expressions.md#candidate-user-defined-operators).
-*  Pokud sadu Release candidate uživatelsky definované operátory není prázdná, to bude sadu operátorů Release candidate pro operaci. V opačném případě předdefinované unární `operator op` implementací, včetně jejich zdvižené formulářů, stane sadu operátorů Release candidate pro operaci. Předdefinované implementace daný operátor jsou uvedeny v popisu operátoru ([primární výrazy](expressions.md#primary-expressions) a [unárních operátorů](expressions.md#unary-operators)).
-*  Pravidla rozlišení přetížení [rozlišení přetěžování](expressions.md#overload-resolution) aplikují i na sadu operátorů Release candidate vybrat nejlepší operátor s ohledem na seznam argumentů `(x)`, a tento operátor změní výsledek přetížení Proces překladu. Pokud se nepodaří určit přetížení k výběru jednoho nejlepší operátoru, dojde k chybě vazby čas.
+*  Sada kandidátů definovaných uživatelem, které poskytuje `X` pro operaci `operator op(x)`, je určena pomocí pravidel [kandidátů definovaných uživatelem](expressions.md#candidate-user-defined-operators).
+*  Pokud sada kandidátů definovaných uživatelem není prázdná, pak se jedná o sadu kandidátických operátorů pro operaci. V opačném případě se předdefinovaná unární implementace `operator op`, včetně jejich vypadlých formulářů, stanou sadou kandidátů pro operaci. Předdefinované implementace daného operátoru jsou zadány v popisu operátoru ([primární výrazy](expressions.md#primary-expressions) a [unární operátory](expressions.md#unary-operators)).
+*  Pravidla rozlišení přetížení [rozlišení přetěžování](expressions.md#overload-resolution) jsou aplikována na sadu kandidátních operátorů pro výběr nejlepšího operátoru s ohledem na seznam argumentů `(x)`. Tento operátor se projeví v důsledku procesu rozlišení přetížení. Pokud Rozlišení přetěžování nedokáže vybrat jeden nejlepší operátor, dojde k chybě při vazbě.
 
-### <a name="binary-operator-overload-resolution"></a>Binární operátor rozlišení přetížení
+### <a name="binary-operator-overload-resolution"></a>Rozlišení přetížení binárního operátoru
 
-Operace formuláře `x op y`, kde `op` se očekával se přetěžovatelný binární operátor `x` je výraz typu `X`, a `y` je výraz typu `Y`, zpracování následujícím způsobem:
+Operace formuláře `x op y`, kde `op` je přetížený binární operátor, `x` je výraz typu `X` a `y` je výraz typu `Y`, zpracován následujícím způsobem:
 
-*  Sadu Release candidate uživatelsky definované operátory poskytované `X` a `Y` pro operaci `operator op(x,y)` je určen. Sada zahrnuje union operátorů Release candidate poskytované `X` operátory a operátory Release candidate poskytované `Y`, každý určené pomocí pravidel pro [Release Candidate uživatelsky definované operátory](expressions.md#candidate-user-defined-operators). Pokud `X` a `Y` jsou stejného typu, nebo pokud `X` a `Y` jsou odvozeny z běžné základní typ, pak sdílené Release candidate operátory vyskytovat jenom v sadě kombinované jednou.
-*  Pokud sadu Release candidate uživatelsky definované operátory není prázdná, to bude sadu operátorů Release candidate pro operaci. V opačném případě předdefinovaný binární `operator op` implementací, včetně jejich zdvižené formulářů, stane sadu operátorů Release candidate pro operaci. Předdefinované implementace daný operátor jsou uvedeny v popisu operátoru ([aritmetické operátory](expressions.md#arithmetic-operators) prostřednictvím [podmíněné logické operátory](expressions.md#conditional-logical-operators)). Pro předdefinované operátory výčtu a delegáta jen operátory považovat za jsou definované typem enum nebo delegate, který je typ vazby time jeden z operandů.
-*  Pravidla rozlišení přetížení [rozlišení přetěžování](expressions.md#overload-resolution) aplikují i na sadu operátorů Release candidate vybrat nejlepší operátor s ohledem na seznam argumentů `(x,y)`, a tento operátor změní výsledek přetížení Proces překladu. Pokud se nepodaří určit přetížení k výběru jednoho nejlepší operátoru, dojde k chybě vazby čas.
+*  Je určena sada kandidátů definovaných uživatelem, které poskytuje `X` a `Y` pro operaci `operator op(x,y)`. Sada se skládá z sjednocení operátorů kandidátů, které poskytuje `X` a kandidátské operátory poskytované `Y`, z nichž každá je určena pomocí pravidel [operátorů kandidáta definovaných uživatelem](expressions.md#candidate-user-defined-operators). Pokud jsou `X` a `Y` stejného typu, nebo pokud `X` a `Y` jsou odvozeny ze společného základního typu, pak jsou sdílené kandidáty operátory provedeny pouze v kombinované sadě.
+*  Pokud sada kandidátů definovaných uživatelem není prázdná, pak se jedná o sadu kandidátických operátorů pro operaci. V opačném případě se předdefinovaná binární implementace `operator op`, včetně jejich vypadlých formulářů, stane sadou kandidátů pro tuto operaci. Předdefinované implementace daného operátoru jsou zadány v popisu operátoru ([aritmetické operátory](expressions.md#arithmetic-operators) prostřednictvím [podmíněných logických operátorů](expressions.md#conditional-logical-operators)). U předdefinovaných operátorů výčtu a delegátů jsou považovány za ty, které jsou definovány výčtovým typem nebo typem delegáta, který je typem pro dobu vazby jednoho z operandů.
+*  Pravidla rozlišení přetížení [rozlišení přetěžování](expressions.md#overload-resolution) jsou aplikována na sadu kandidátních operátorů pro výběr nejlepšího operátoru s ohledem na seznam argumentů `(x,y)`. Tento operátor se projeví v důsledku procesu rozlišení přetížení. Pokud Rozlišení přetěžování nedokáže vybrat jeden nejlepší operátor, dojde k chybě při vazbě.
 
-### <a name="candidate-user-defined-operators"></a>Uživatelem definované operátory Release Candidate
+### <a name="candidate-user-defined-operators"></a>Kandidátské operátory definované uživatelem
 
-Typ zadaný `T` a operace `operator op(A)`, kde `op` se očekával se přetěžovatelný operátor a `A` je seznam argumentů, sadu Release candidate uživatelsky definované operátory poskytované `T` pro `operator op(A)` je určen následujícím způsobem:
+Při zadání typu `T` a operace `operator op(A)`, kde `op` je přetížený operátor a `A` je seznam argumentů, sada kandidátů definovaných uživatelem, kterou poskytují `T` pro `operator op(A)`, je určena následujícím způsobem:
 
-*  Určení typu `T0`. Pokud `T` je typ připouštějící hodnotu Null, `T0` je základní typ, v opačném případě `T0` rovná `T`.
-*  Pro všechny `operator op` deklarace v `T0` a všechny zrušeno formy takových operátorů, pokud platí aspoň jeden – operátor ([použitelná funkce člena](expressions.md#applicable-function-member)) s ohledem na seznam argumentů `A`, pak sada operátory Release Candidate se skládá z takových příslušných operátorů v `T0`.
-*  Jinak, pokud `T0` je `object`, sadu operátorů Release candidate je prázdný.
-*  V opačném případě poskytuje sadu operátorů Release candidate `T0` sadu Release candidate operátory poskytované přímé základní třídy `T0`, nebo efektivní základní třídu `T0` Pokud `T0` je parametr typu.
+*  Určete typ `T0`. Pokud je `T` typem s možnou hodnotou null, `T0` je jeho nadřízený typ, jinak `T0` se rovná `T`.
+*  U všech deklarací `operator op` v `T0` a všech vydaných formách takových operátorů platí, že pokud je použit alespoň jeden operátor ([platný člen funkce](expressions.md#applicable-function-member)) s ohledem na seznam argumentů `A`, pak sada kandidátů, která se skládá ze všech takových příslušné operátory v `T0`.
+*  V opačném případě, pokud je `T0` `object`, sada kandidát Operators je prázdná.
+*  Jinak sada kandidátů, kterou poskytuje `T0`, je sada kandidátů, kterou poskytuje přímá základní třída `T0` nebo účinná základní třída `T0`, pokud `T0` je parametr typu.
 
-### <a name="numeric-promotions"></a>Číselné propagačních akcí
+### <a name="numeric-promotions"></a>Číselné propagační akce
 
-Číselné povýšení se skládá z automaticky provádět určité implicitní převody operandů předdefinované jednočlenné a binární číselný operátory. Číselné promoakce není odlišné mechanismus, ale spíše efekt použití předdefinované operátory řešení přetížení. Číselné povýšení konkrétně nemá vliv na vyhodnocení operátory definované uživatelem, i když je možné implementovat uživatelsky definované operátory vykazovat podobné účinky.
+Číselná propagace se skládá z automatického provádění určitých implicitních převodů operandů předdefinovaných unárních a binárních číselných operátorů. Číselná propagace není odlišným mechanismem, ale místo toho, aby se použilo Rozlišení přetěžování na předdefinované operátory. Číselná propagace konkrétně neovlivňuje hodnocení uživatelsky definovaných operátorů, i když uživatelsky definované operátory mohou být implementovány tak, aby se projevily podobné účinky.
 
-Jako příklad číselné povýšení, vezměte v úvahu předdefinované implementace binárního souboru `*` operátor:
+Jako příklad číselné povýšení zvažte předdefinované implementace binárního operátoru `*`:
 
 ```csharp
 int operator *(int x, int y);
@@ -229,30 +229,30 @@ double operator *(double x, double y);
 decimal operator *(decimal x, decimal y);
 ```
 
-Při přetížení pravidla řešení ([rozlišení přetěžování](expressions.md#overload-resolution)) se použijí pro tuto sadu operátorů, je vybrat první operátory, pro které existuje implicitní převody z typů operand efekt. Například pro operaci `b * s`, kde `b` je `byte` a `s` je `short`, vybere rozlišení přetížení `operator *(int,int)` jako nejlepší operátor. Proto efekt je, že `b` a `s` jsou převedeny na `int`, a typ výsledku je `int`. Podobně pro operaci `i * d`, kde `i` je `int` a `d` je `double`, vybere rozlišení přetížení `operator *(double,double)` jako nejlepší operátor.
+Když se pro tuto sadu operátorů aplikují pravidla rozlišení přetížení ([rozlišení přetížení](expressions.md#overload-resolution)), efekt je vybrat první z operátorů, pro které existují implicitní převody z typů operandů. Například pro operaci `b * s`, kde `b` je `byte` a `s` je `short`, řešení přetížení vybere `operator *(int,int)` jako nejlepší operátor. Proto platí, že `b` a `s` jsou převedeny na `int` a typ výsledku je `int`. Podobně pro operaci `i * d`, kde `i` je `int` a `d` je `double`, řešení přetížení vybere `operator *(double,double)` jako nejlepší operátor.
 
-#### <a name="unary-numeric-promotions"></a>Unární číselné propagačních akcí
+#### <a name="unary-numeric-promotions"></a>Unární číselné propagační akce
 
-Pro operandy předdefinovaného dojde k povýšení číselné unární `+`, `-`, a `~` unárních operátorů. Unární číselné povýšení jednoduše se skládá z převodu operandy typu `sbyte`, `byte`, `short`, `ushort`, nebo `char` na typ `int`. Kromě toho pro unární `-` operátor unární číselné povýšení převede operandy typu `uint` na typ `long`.
+Unární číselná propagace nastane pro operandy unárních operátorů `+`, `-` a `~`. Unární číselná propagace jednoduše sestává z převodu operandů typu `sbyte`, `byte`, `short`, `ushort` nebo `char` na typ `int`. Pro unární operátor `-` navíc unární číselná propagace převádí operandy typu `uint` na typ `long`.
 
-#### <a name="binary-numeric-promotions"></a>Binární číselný propagačních akcí
+#### <a name="binary-numeric-promotions"></a>Binární číselné propagační akce
 
-Pro operandy předdefinovaného dojde k binární číselný povýšení `+`, `-`, `*`, `/`, `%`, `&`, `|`, `^`, `==`, `!=`, `>`, `<`, `>=`, a `<=` binární operátory. Oba operandy binární číselný povýšení implicitně převede na společný typ, který se v případě – relační operátory stane typ výsledku operace. Binární číselný povýšení se skládá z použití následující pravidla v pořadí, ve kterém jsou uvedeny zde:
+Pro operandy předdefinovaných `+`, `-`, `*`, `/`, `%`, `&`, `|`, `^`, `==`, `!=`, 0, 1, 2 a 3 binárních operátorů dojde k binárnímu navýšení číselného povýšení. Binární číselná propagace implicitně převede oba operandy na společný typ, který, v případě nerelačních operátorů, se také změní na výsledný typ operace. Binární číselná propagace se skládá z použití následujících pravidel v pořadí, v jakém se zobrazují:
 
-*  Pokud některý operand je typu `decimal`, je druhý operand je převeden na typ `decimal`, nebo pokud je druhý operand je typu, dojde k chybě vazby čas `float` nebo `double`.
-*  Jinak, pokud některý operand je typu `double`, je druhý operand je převeden na typ `double`.
-*  Jinak, pokud některý operand je typu `float`, je druhý operand je převeden na typ `float`.
-*  Jinak, pokud některý operand je typu `ulong`, je druhý operand je převeden na typ `ulong`, nebo pokud je druhý operand je typu, dojde k chybě vazby čas `sbyte`, `short`, `int`, nebo `long`.
-*  Jinak, pokud některý operand je typu `long`, je druhý operand je převeden na typ `long`.
-*  Jinak, pokud některý operand je typu `uint` a druhý operand je typu `sbyte`, `short`, nebo `int`, jsou oba operandy převedeny na typ `long`.
-*  Jinak, pokud některý operand je typu `uint`, je druhý operand je převeden na typ `uint`.
-*  Jinak jsou oba operandy převedeny na typ `int`.
+*  Pokud je operand typu `decimal`, je druhý operand převeden na typ `decimal` nebo dojde k chybě při vazbě v případě, že druhý operand je typu `float` nebo `double`.
+*  V opačném případě, pokud je jeden operand typu `double`, je druhý operand převeden na typ `double`.
+*  V opačném případě, pokud je jeden operand typu `float`, je druhý operand převeden na typ `float`.
+*  V opačném případě, pokud je jeden operand typu `ulong`, je druhý operand převeden na typ `ulong` nebo dojde k chybě při vazbě, pokud je druhý operand typu `sbyte`, `short`, `int` nebo `long`.
+*  V opačném případě, pokud je jeden operand typu `long`, je druhý operand převeden na typ `long`.
+*  V opačném případě, pokud je jeden operand typu `uint` a druhý operand je typu `sbyte`, `short` nebo `int`, jsou oba operandy převedeny na typ `long`.
+*  V opačném případě, pokud je jeden operand typu `uint`, je druhý operand převeden na typ `uint`.
+*  V opačném případě jsou oba operandy převedeny na typ `int`.
 
-Všimněte si, že první pravidlo nepovoluje žádné operace, které kombinovat `decimal` typ s `double` a `float` typy. Následující pravidlo ze skutečnosti, že neexistují žádné implicitní převody mezi `decimal` typ a `double` a `float` typy.
+Všimněte si, že první pravidlo zakáže všechny operace, které budou kombinovat typ `decimal` s typy `double` a `float`. Pravidlo následuje ze skutečnosti, že neexistují žádné implicitní převody mezi typem `decimal` a typy `double` a `float`.
 
-Všimněte si také, že není možné pro operand typu `ulong` Pokud je druhý operand je celočíselný typ se znaménkem. Důvodem je, že neexistuje žádné celočíselného typu, který může představovat celou škálu `ulong` a také podepsaných integrálních typů.
+Všimněte si také, že není možné, aby operand byl typu `ulong`, pokud je druhý operand typu se znaménkem integrálu. Důvodem je, že neexistuje žádný integrální typ, který by mohl představovat plný rozsah `ulong`, jakož i podepsaný integrální typ.
 
-V obou případech výše výraz přetypování lze explicitně převést na typ, který je kompatibilní s je druhý operand jeden operand.
+V obou výše uvedených případech lze výraz přetypování použít k explicitnímu převodu jednoho operandu na typ, který je kompatibilní s druhým operandem.
 
 V příkladu
 ```csharp
@@ -260,7 +260,7 @@ decimal AddPercent(decimal x, double percent) {
     return x * (1.0 + percent / 100.0);
 }
 ```
-Doba vazby chybě dochází, protože `decimal` nelze bude vynásobené hodnotou `double`. Explicitně převedením Druhý operand, který se problém nevyřeší `decimal`, následujícím způsobem:
+dojde k chybě při vazbě, protože `decimal` nelze vynásobit `double`. Chybu lze vyřešit explicitním převodem druhého operandu na `decimal`, a to následujícím způsobem:
 
 ```csharp
 decimal AddPercent(decimal x, double percent) {
@@ -268,17 +268,17 @@ decimal AddPercent(decimal x, double percent) {
 }
 ```
 
-### <a name="lifted-operators"></a>Zdvižené operátory
+### <a name="lifted-operators"></a>Zrušené operátory
 
-***Zrušeno vs. operátory*** povolit předdefinované a uživatelem definované operátory, které pracují s typy hodnot neumožňující hodnotu lze použít také s možnou hodnotou Null formuláře z těchto typů. Zdvižené operátory se vytvářejí na základě předdefinovaných a uživatelem definované operátory, které splňují určité požadavky, jak je popsáno v následujících tématech:
+Přenesené ***operátory*** povolují předdefinované a uživatelsky definované operátory, které pracují s typy hodnot, které neumožňují hodnotu null, pro použití s připouštějící formuláře těchto typů. Přenesené operátory jsou vyrobeny z předdefinovaných a uživatelem definovaných operátorů, které splňují určité požadavky, jak je popsáno v následujícím tématu:
 
-*   Unárních operátorů
+*   Pro unární operátory
 
     ```csharp
     +  ++  -  --  !  ~
     ```
 
-    zdvižené formulář operátoru existuje, pokud jsou typy operandů a výsledek oba typy hodnot neumožňující hodnotu. Zdvižené formuláře je vytvořený tak, že přidáte jediného `?` Modifikátor pro typy operandů a výsledek. Zdvižené operátor vytvoří hodnotu null, je-li operand hodnotu null. V opačném případě operátor zdvižené rozbalí operand, použije operátor základní a zabalí výsledek.
+    Vyzdvižený tvar operátoru existuje, pokud operandy a typy výsledků jsou typy hodnot bez hodnoty null. Převedený formulář je vytvořen přidáním jednoho modifikátoru `?` do typu operand a výsledek. Vyzdvižený operátor vytvoří hodnotu null, pokud je operand null. V opačném případě převedený operátor zruší zalomení operandu, použije základní operátor a zabalí výsledek.
 
 *   Pro binární operátory
 
@@ -286,7 +286,7 @@ decimal AddPercent(decimal x, double percent) {
     +  -  *  /  %  &  |  ^  <<  >>
     ```
 
-    zdvižené formulář operátoru existuje-li operand a výsledek typy jsou všechny typy hodnot neumožňující hodnotu. Zdvižené formuláře je vytvořený tak, že přidáte jediného `?` Modifikátor pro každý typ operandu a výsledek. Zdvižené operátor vytvoří hodnotu null, pokud jeden nebo oba operandy hodnotu null (se výjimka `&` a `|` provozovatelé `bool?` zadejte, jak je popsáno v [logické logické operátory](expressions.md#boolean-logical-operators)). V opačném případě operátor zdvižené rozbalí operandy, použije operátor základní a zabalí výsledek.
+    Vyzdvižený tvar operátoru existuje, pokud jsou typy operandů a výsledků všechny typy hodnot bez hodnoty null. Vyzdvižený formulář je vytvořen přidáním jednoho modifikátoru `?` do každého operandu a typu výsledku. Převedený operátor vytvoří hodnotu null, pokud je jeden nebo oba operandy NULL (výjimkou jsou operátory `&` a `|` typu `bool?`, jak je popsáno v tématu [logické logické operátory](expressions.md#boolean-logical-operators)). V opačném případě Vyzdvižený operátor rozbalí operandy, použije základní operátor a zabalí výsledek.
 
 *   Pro operátory rovnosti
 
@@ -294,7 +294,7 @@ decimal AddPercent(decimal x, double percent) {
     ==  !=
     ```
 
-    zdvižené formulář operátoru existuje-li typy operandů jsou typy hodnot neumožňující hodnotu a zda je typ výsledku `bool`. Zdvižené formuláře je vytvořený tak, že přidáte jediného `?` Modifikátor pro každý typ operandu. Operátor zdvižené bere v úvahu rovnosti dvou hodnot null a hodnota null nerovnost na libovolnou hodnotu jinou hodnotu než null. Pokud jsou oba operandy jinou hodnotu než null, zdvižené operátor, který se rozbalí operandy a použije základní operátoru pro vytvoření `bool` výsledek.
+    Vyzdvižený tvar operátoru existuje, pokud typy operandů jsou typy hodnot bez hodnoty null a je-li typ výsledku `bool`. Vyzdvižený formulář je vytvořen přidáním jednoho modifikátoru `?` do každého typu operandu. Předaný operátor považuje dvě hodnoty null za stejné a hodnota null se nerovná žádné hodnotě, která není null. Pokud jsou oba operandy nenulové, Vyzdvižený operátor rozbalí operandy a aplikuje základní operátor k výrobě výsledku `bool`.
 
 *   Pro relační operátory
 
@@ -302,110 +302,110 @@ decimal AddPercent(decimal x, double percent) {
     <  >  <=  >=
     ```
 
-    zdvižené formulář operátoru existuje-li typy operandů jsou typy hodnot neumožňující hodnotu a zda je typ výsledku `bool`. Zdvižené formuláře je vytvořený tak, že přidáte jediného `?` Modifikátor pro každý typ operandu. Zdvižené operátor vytvoří hodnotu `false` Pokud jeden nebo oba operandy jsou null. V opačném případě operátor zdvižené rozbalí operandy a použije základní operátoru pro vytvoření `bool` výsledek.
+    Vyzdvižený tvar operátoru existuje, pokud typy operandů jsou typy hodnot bez hodnoty null a je-li typ výsledku `bool`. Vyzdvižený formulář je vytvořen přidáním jednoho modifikátoru `?` do každého typu operandu. Převedený operátor vytvoří hodnotu `false`, pokud je jeden nebo oba operandy NULL. V opačném případě převedený operátor rozbalí operandy a aplikuje příslušný operátor, aby vytvořil výsledek `bool`.
 
-## <a name="member-lookup"></a>Člen vyhledávání
+## <a name="member-lookup"></a>Vyhledávání členů
 
-Člen vyhledávání je proces, kterým se určuje podle názvu v kontextu typu. Člen vyhledávání může dojít v rámci vyhodnocování *simple_name* ([jednoduché názvy](expressions.md#simple-names)) nebo *member_access* ([přístup ke členu](expressions.md#member-access)) v výraz. Pokud *simple_name* nebo *member_access* vyskytuje se jako *primary_expression* ze *invocation_expression* ([ Volání metod](expressions.md#method-invocations)), člen se říká, že má být volána.
+Vyhledávání členů je proces, při kterém je určen význam názvu v kontextu typu. Vyhledávání členů může nastat jako součást vyhodnocení *simple_name* ([jednoduchých názvů](expressions.md#simple-names)) nebo *member_access* ([přístupu ke členu](expressions.md#member-access)) ve výrazu. Pokud k *simple_name* nebo *member_access* dojde jako *primary_expression* *invocation_expression* ([vyvolání metod](expressions.md#method-invocations)), člen je označován jako vyvolán.
 
-Pokud je člen metody nebo události, nebo pokud je konstanta, pole nebo vlastnost typu delegáta ([delegáti](delegates.md)) nebo typ `dynamic` ([dynamického typu](types.md#the-dynamic-type)), pak člen je označen jako *nevyvolatelný*.
+Pokud je členem metoda nebo událost, nebo pokud se jedná o konstantu, pole nebo vlastnost buď typu delegáta ([Delegáti](delegates.md)), nebo typu `dynamic` ([dynamický typ](types.md#the-dynamic-type)), pak je člen označován jako *nevyvolatelný*.
 
-Člen vyhledávání bere v úvahu nejen názvu členem, ale také počet parametrů typu, který člen má a určuje, zda je přístupný člen. Pro účely vyhledávání člen obecné metody a vnořených obecných typech mají počet parametrů typu, které jsou uvedené v jejich odpovídajících deklarací a všechny ostatní členové mají nulové parametry typu.
+Vyhledávání členů nebere v úvahu nejen název členu, ale také počet parametrů typu, které má člen a zda je člen přístupný. Pro účely vyhledávání členů mají obecné metody a vnořené obecné typy počet parametrů typu uvedených v příslušných deklaracích a všichni ostatní členové mají nulové parametry typu.
 
-Člen vyhledávání názvu `N` s `K`  zadejte parametry typu `T` zpracování následujícím způsobem:
+Vyhledávání členů názvu @ no__t-0 s parametry `K` @ no__t-2type v typu @ no__t-3 je zpracováno následujícím způsobem:
 
-*  První, sadu přístupní členové s názvem `N` závisí:
-    * Pokud `T` je parametr typu sjednocení sad přístupní členové s názvem je sada `N` v jednotlivých typů stanoveno, omezení pro primární nebo sekundární omezení ([omezení parametru typu](classes.md#type-parameter-constraints)) pro  `T`, spolu s sadu přístupní členové s názvem `N` v `object`.
-    * V opačném případě sada zahrnuje vše je přístupné ([přístup ke členu](basic-concepts.md#member-access)) členové s názvem `N` v `T`, včetně zděděných členů a přístupní členové s názvem `N` v `object`. Pokud `T` konstruovaný typ, je získat sadu členů nahrazením argumentů typu, jak je popsáno v [členy sestavené typy](classes.md#members-of-constructed-types). Členy, které patří `override` modifikátor jsou vyloučeny ze sady.
-*  Dále, pokud `K` je nula, všechny vnořené typy deklarací, jejichž zahrnují parametry typu se odeberou. Pokud `K` není nulový, všichni členové s jiným číslem typu parametry se odeberou. Všimněte si, že `K` je nula, metody s parametry nejsou odebrány od procesu odvození typu typ ([odvození typu](expressions.md#type-inference)) možné odvodit argumenty typu.
-*  Další, pokud je člen *vyvolána*, to všechno bez-*nevyvolatelný* členy jsou odebrány z objektu set.
-*  V dalším kroku členy, které jsou skryté členy jiné se odeberou ze sady. Pro každého člena `S.M` v sadě, kde `S` typ, ve kterém je člen `M` je teď deklarována, se použijí následující pravidla:
-    * Pokud `M` je – konstanta, pole, vlastnosti, události nebo člen výčtu, pak všechny členy deklarované v základní typ `S` se odeberou ze sady.
-    * Pokud `M` je deklarace typu, pak všechny jiné typy deklarovaný v základní typ `S` se odeberou ze sady, a všechny deklarace s stejný počet parametrů typu jako `M` deklarovaný v základní typ `S` jsou odebrány ze sady.
-    * Pokud `M` je metoda, pak všechny členy jiné metody deklarované v základní typ `S` se odeberou ze sady.
-*  V dalším kroku členy rozhraní, které jsou skryté členy třídy jsou odebrány z objektu set. Tento krok má vliv pouze, pokud `T` je parametr typu a `T` i základní třída má jiné než `object` a efektivní rozhraní neprázdný nastavit ([omezení parametru typu](classes.md#type-parameter-constraints)). Pro každého člena `S.M` v sadě, kde `S` typ, ve kterém je člen `M` je teď deklarována, pokud se použijí následující pravidla `S` deklarace třídy je jiné než `object`:
-    * Pokud `M` je – konstanta, pole, vlastnosti, události, člen výčtu nebo deklarace typu, pak všechny členy deklarované v deklaraci rozhraní jsou odebrány z objektu set.
-    * Pokud `M` je metoda, pak všechny členy jiné metody deklarované v deklaraci rozhraní se odeberou ze sady a všech metod se stejným podpisem jako `M` deklarované v rozhraní deklarace se odeberou ze sady.
-*  Nakonec odebrání skryté členy, se určit výsledek vyhledávání:
-    * Pokud sada obsahuje jeden člen, který není metoda, je tento člen výsledků vyhledávání.
-    * Jinak, pokud sada obsahuje pouze metody, pak tato skupina metod je výsledek vyhledávání.
-    * V opačném případě vyhledávání je nejednoznačný a dojde k chybě vazby čas.
+*  Nejprve je určena sada přístupných členů s názvem @ no__t-0:
+    * Pokud je parametrem typu `T`, pak je množina sjednocení sad přístupných členů s názvem @ no__t-1 v každém z typů určených jako primární omezení nebo sekundární omezení ([omezení parametrů typu](classes.md#type-parameter-constraints)) pro @ no__t-3 společně se sadou přístupní členové s názvem @ no__t-4 v `object`.
+    * V opačném případě se sada skládá ze všech přístupných členů ([přístupu členů](basic-concepts.md#member-access)) s názvem @ no__t-1 v @ no__t-2, včetně zděděných členů a přístupných členů s názvem @ no__t-3 v `object`. Pokud je `T` konstruovaný typ, sada členů je získána nahrazením argumentů typu, jak je popsáno v tématu [Členové konstruovaných typů](classes.md#members-of-constructed-types). Členy, které obsahují modifikátor `override`, jsou vyloučeny ze sady.
+*  Pokud je `K` nula, všechny vnořené typy, jejichž deklarace zahrnují parametry typu, se odeberou. Pokud `K` není nula, budou odebrány všechny členy s jiným počtem parametrů typu. Všimněte si, že pokud `K` je nula, metody s parametry typu nejsou odebrány, protože proces odvození typu ([odvození typu](expressions.md#type-inference)) může být schopný odvodit argumenty typu.
+*  Dále, pokud je člen *vyvolán*, všechny*nenevyvolatelný* členové budou ze sady odebrány.
+*  Dále jsou členové, kteří jsou skryti jinými členy, ze sady odebrány. Pro každý člen `S.M` v sadě, kde `S` je typ, ve kterém je deklarován člen @ no__t-2, jsou použita následující pravidla:
+    * Pokud je `M` konstantou, polem, vlastností, událostí nebo výčtovým členem, pak jsou ze sady odebrány všechny členy deklarované v základním typu `S`.
+    * Pokud je `M` deklarace typu, pak všechny netypy deklarované v základním typu `S` jsou ze sady odebrány a všechny deklarace typu se stejným počtem parametrů typu jako `M` deklarované v základním typu `S` jsou ze sady odebrány.
+    * Pokud je metoda `M`, pak všechny členy, které nejsou deklarovány v základním typu `S`, budou ze sady odebrány.
+*  Dále jsou členy rozhraní skryté ze sady odebrány. Tento krok má efekt pouze v případě, že `T` je parametr typu a `T` má platnou základní třídu kromě `object` a neprázdnou sadu platných rozhraní ([omezení parametrů typu](classes.md#type-parameter-constraints)). Pro každý členský `S.M` v sadě, kde `S` je typ, ve kterém je deklarován člen `M`, jsou použita následující pravidla, pokud `S` je deklarace třídy jiná než `object`:
+    * Pokud `M` je konstanta, pole, vlastnost, událost, člen výčtu nebo deklarace typu, pak všechny členy deklarované v deklaraci rozhraní jsou ze sady odebrány.
+    * Pokud je metoda `M`, pak všechny členy, které nejsou deklarovány v deklaraci rozhraní, jsou ze sady odebrány a všechny metody se stejným podpisem jako `M` deklarované v deklaraci rozhraní jsou ze sady odebrány.
+*  Nakonec, po odebrání skrytých členů, se určí výsledek vyhledávání:
+    * Pokud se sada skládá z jednoho člena, který není metodou, pak je tento člen výsledkem vyhledávání.
+    * V opačném případě, pokud sada obsahuje pouze metody, pak je tato skupina metod výsledkem vyhledávání.
+    * V opačném případě je vyhledávání dvojznačné a dojde k chybě při vazbě.
 
-Pro člen vyhledávání v jiné typy než typy parametrů a rozhraní a člen vyhledávání v rozhraní, která jsou výhradně jednoduchou dědičností (každé rozhraní v řetězu dědičnosti má přesně žádnou nebo jednu přímou základní rozhraní), je efekt pravidla vyhledávání jednoduše, která odvozena základních členů skrýt členy s totožným názvem a signaturou. Tyto jednoduché dědičnosti vyhledávání nejsou nikdy nejednoznačný. Nejednoznačnosti, které může být mohou vyplývat z vyhledávání člena v rozhraní vícenásobné dědičnosti jsou popsány v [rozhraní přístup ke členu](interfaces.md#interface-member-access).
+Pro vyhledávání členů v jiných typech než parametry typu a rozhraní a vyhledávání členů v rozhraních, která jsou výhradně jedinou dědičností (každé rozhraní v řetězu dědičnosti má přesně nula nebo jedno přímé základní rozhraní), je efekt vyhledávacích pravidel pouze odvoditelné členy skryjí základní členy se stejným názvem nebo signaturou. Tato vyhledávání s jednou dědičností nejsou nikdy dvojznačná. Nejednoznačnosti, které mohou nastat při hledání členů v rozhraních vícenásobné dědičnosti, jsou popsány v tématu [přístup ke členu rozhraní](interfaces.md#interface-member-access).
 
 ### <a name="base-types"></a>Základní typy
 
-Pro účely člen vyhledávání, typ `T` se považuje za mají následující základní typy:
+Pro účely vyhledávání členů je typ `T` považován za následující základní typy:
 
-*  Pokud `T` je `object`, pak `T` nemá žádný základní typ.
-*  Pokud `T` je *enum_type*, základní typy `T` jsou typy tříd `System.Enum`, `System.ValueType`, a `object`.
-*  Pokud `T` je *struct_type*, základní typy `T` jsou typy tříd `System.ValueType` a `object`.
+*  Pokud je `T` `object`, pak `T` nemá žádný základní typ.
+*  Pokud `T` je *enum_type*, základní typy `T` jsou typy tříd `System.Enum`, `System.ValueType` a `object`.
+*  Pokud `T` je *struct_type*, základní typy `T` jsou typy třídy `System.ValueType` a `object`.
 *  Pokud `T` je *class_type*, základní typy `T` jsou základní třídy `T`, včetně typu třídy `object`.
-*  Pokud `T` je *interface_type*, základní typy `T` jsou základní rozhraní `T` a typ třídy `object`.
-*  Pokud `T` je *array_type*, základní typy `T` jsou typy tříd `System.Array` a `object`.
-*  Pokud `T` je *delegate_type*, základní typy `T` jsou typy tříd `System.Delegate` a `object`.
+*  Pokud `T` je *INTERFACE_TYPE*, základní typy `T` jsou základními rozhraními `T` a typem třídy `object`.
+*  Pokud `T` je *array_type*, základní typy `T` jsou typy třídy `System.Array` a `object`.
+*  Pokud `T` je *delegate_type*, základní typy `T` jsou typy třídy `System.Delegate` a `object`.
 
-## <a name="function-members"></a>Členové – funkce
+## <a name="function-members"></a>Členové funkce
 
-Funkční členy jsou členy, které obsahují spustitelné příkazy. Funkční členy jsou vždy členy typů a nemůžou být členy skupiny obory názvů. C# definuje následující kategorie funkcí členů:
+Členy funkce jsou členy, které obsahují spustitelné příkazy. Členové funkce jsou vždy členy typu a nemohou být členy oborů názvů. C#definuje následující kategorie členů funkcí:
 
 *  Metody
-*  Vlastnosti
-*  Události
+*  properties
+*  Duration
 *  Indexery
 *  Uživatelem definované operátory
 *  Konstruktory instancí
 *  Statické konstruktory
 *  Destruktory
 
-S výjimkou destruktory a statické konstruktory (což nesmí být volány explicitně) jsou spuštěny příkazy součástí členy funkce prostřednictvím volání členské funkce. Skutečná syntaxe pro zápis volání členské funkce závisí na kategorii členu konkrétní funkce.
+S výjimkou destruktorů a statických konstruktorů (které nelze vyvolat explicitně) jsou příkazy, které jsou obsaženy v členech funkce, spouštěny prostřednictvím vyvolání členů funkce. Skutečná syntaxe pro zápis člena funkce závisí na konkrétní kategorii člena funkce.
 
-Seznam argumentů ([seznamy argumentů](expressions.md#argument-lists)) z členské funkce volání poskytuje skutečné hodnoty nebo odkazy na proměnné parametrů členské funkce.
+Seznam argumentů ([seznamy argumentů](expressions.md#argument-lists)) vyvolání člena funkce poskytuje skutečné hodnoty nebo odkazy na proměnné pro parametry člena funkce.
 
-Volání obecné metody mohou použít odvození typu k určení sady argumenty typu pro metodu. Tento proces je popsán v [odvození typu](expressions.md#type-inference).
+Volání obecných metod mohou využívat odvození typu pro určení sady argumentů typu, které mají být předávány metodě. Tento proces je popsán v tématu [odvození typu](expressions.md#type-inference).
 
-Volání metody, indexery, operátory a konstruktory instancí využívat řešení přetížení pro určení, které Release candidate sadu členů funkce vyvolat. Tento proces je popsán v [rozlišení přetěžování](expressions.md#overload-resolution).
+Volání metod, indexerů, operátorů a konstruktorů instancí využívají rozlišení přetěžování k určení, které z kandidátních sad členů funkce mají být vyvolány. Tento proces je popsán v tématu [řešení přetížení](expressions.md#overload-resolution).
 
-Po chvíli vazba byla zjištěna členem určitou funkci, pravděpodobně prostřednictvím řešení přetížení volání členské funkce skutečný proces za běhu je popsáno v [kontrolu dynamické přetíženíkompilace](expressions.md#compile-time-checking-of-dynamic-overload-resolution).
+Po zjištění konkrétního člena funkce v době vytváření vazby, případně prostřednictvím řešení přetížení, je skutečný proces spuštění volání členu funkce popsán v [době kompilace dynamického překladu přetížení](expressions.md#compile-time-checking-of-dynamic-overload-resolution).
 
-Následující tabulka shrnuje zpracování, které u něho v konstruktorech zahrnující šesti kategorií funkce členy, které lze explicitně vyvolat. V tabulce `e`, `x`, `y`, a `value` označení výrazy, které jsou klasifikovány jako proměnné nebo hodnoty, `T` Určuje výraz, který jsou klasifikovány jako typ, `F` je jednoduchý název metody a `P` je jednoduchý název vlastnosti.
+Následující tabulka shrnuje zpracování, které je provedeno v konstrukcích, které zahrnují šest kategorií členů funkce, které lze explicitně vyvolat. V tabulce `e`, `x`, `y` a `value` označují výrazy klasifikované jako proměnné nebo hodnoty, `T` označuje výraz klasifikovaný jako typ, `F` je jednoduchý název metody a `P` je jednoduchý název vlastnosti.
 
 
-| __Konstrukce__     | __Příklad__    | __Popis__ |
+| __Contains__     | __Příklad__    | __Popis__ |
 |-------------------|----------------|-----------------|
-| Volání metody | `F(x,y)`       | Řešení přetížení se použije pro výběr nejlepší metody `F` v obsahující třídy nebo struktury. Metoda je volána s seznamu argumentů `(x,y)`. Pokud metoda není `static`, je výraz instance `this`. | 
-|                   | `T.F(x,y)`     | Řešení přetížení se použije pro výběr nejlepší metody `F` ve třídě nebo struktuře `T`. Chyba vazby za nastane, pokud metoda není `static`. Metoda je volána s seznamu argumentů `(x,y)`. | 
-|                   | `e.F(x,y)`     | Řešení přetížení se použije k výběru nejvhodnější způsob F v třídy, struktury nebo rozhraní uvedena v každém typu `e`. Pokud je metoda, dojde k chybě doba vazby `static`. Metoda je volána s výraz instance `e` a seznam argumentů `(x,y)`. | 
-| Přístup k vlastnosti   | `P`            | `get` Přistupující objekt vlastnosti `P` v obsahující třídy nebo struktury je vyvolána. Pokud dojde k chybě kompilace `P` je jen pro zápis. Pokud `P` není `static`, je výraz instance `this`. | 
-|                   | `P = value`    | `set` Přistupující objekt vlastnosti `P` v obsahující třídy nebo struktury je vyvolán pomocí seznamu argumentů `(value)`. Pokud dojde k chybě kompilace `P` je jen pro čtení. Pokud `P` není `static`, je výraz instance `this`. | 
-|                   | `T.P`          | `get` Přistupující objekt vlastnosti `P` ve třídě nebo struktuře `T` je vyvolána. Pokud dojde k chybě kompilace `P` není `static` nebo, pokud `P` je jen pro zápis. | 
-|                   | `T.P = value`  | `set` Přistupující objekt vlastnosti `P` ve třídě nebo struktuře `T` vyvolání seznamu argumentů `(value)`. Pokud dojde k chybě kompilace `P` není `static` nebo, pokud `P` je jen pro čtení. | 
-|                   | `e.P`          | `get` Přistupující objekt vlastnosti `P` v třídy, struktury nebo rozhraní uvedena v každém typu `e` vyvolání výraz instance `e`. Pokud dojde k chybě vazby čas `P` je `static` nebo, pokud `P` je jen pro zápis. | 
-|                   | `e.P = value`  | `set` Přistupující objekt vlastnosti `P` v třídy, struktury nebo rozhraní uvedena v každém typu `e` vyvolání výraz instance `e` a seznam argumentů `(value)`. Pokud dojde k chybě vazby čas `P` je `static` nebo, pokud `P` je jen pro čtení. | 
-| Přístup k události      | `E += value`   | `add` Přístupového objektu události `E` v obsahující třídy nebo struktury je vyvolána. Pokud `E` není statická, je výraz instance `this`. | 
-|                   | `E -= value`   | `remove` Přístupového objektu události `E` v obsahující třídy nebo struktury je vyvolána. Pokud `E` není statická, je výraz instance `this`. | 
-|                   | `T.E += value` | `add` Přístupového objektu události `E` ve třídě nebo struktuře `T` je vyvolána. Pokud dojde k chybě vazby čas `E` není statická. | 
-|                   | `T.E -= value` | `remove` Přístupového objektu události `E` ve třídě nebo struktuře `T` je vyvolána. Pokud dojde k chybě vazby čas `E` není statická. | 
-|                   | `e.E += value` | `add` Přístupového objektu události `E` v třídy, struktury nebo rozhraní uvedena v každém typu `e` vyvolání výraz instance `e`. Pokud dojde k chybě vazby čas `E` je statická. | 
-|                   | `e.E -= value` | `remove` Přístupového objektu události `E` v třídy, struktury nebo rozhraní uvedena v každém typu `e` vyvolání výraz instance `e`. Pokud dojde k chybě vazby čas `E` je statická. | 
-| Přístup indexeru    | `e[x,y]`       | Řešení přetížení se použije k výběru nejvhodnější indexer v třídy, struktury nebo rozhraní uvedena v každém typu e. `get` Vyvolání přistupující objekt indexer s výrazem instance `e` a seznam argumentů `(x,y)`. Pokud indexeru je jen pro zápis, dojde k chybě vazby – za. | 
-|                   | `e[x,y] = value` | Řešení přetížení se použije k výběru nejvhodnější indexer v třídy, struktury nebo rozhraní uvedena v každém typu `e`. `set` Vyvolání přistupující objekt indexer s výrazem instance `e` a seznam argumentů `(x,y,value)`. Pokud indexeru je jen pro čtení, dojde k chybě vazby – za. | 
-| Operátor vyvolání | `-x`         | Řešení přetížení se použije k výběru nejvhodnější unární operátor v dané třídy nebo struktury uvedena v každém typu `x`. Vybraný operátor vyvolání seznamu argumentů `(x)`. | 
-|                     | `x + y`      | Řešení přetížení se použije k výběru nejvhodnější binární operátor v třídy nebo struktury, které jsou uvedeny typy `x` a `y`. Vybraný operátor vyvolání seznamu argumentů `(x,y)`. | 
-| Vyvolání konstruktoru instance | `new T(x,y)` | Řešení přetížení se použije k výběru nejvhodnější konstruktor instance ve třídě nebo struktuře `T`. Vyvolání konstruktoru instance seznamu argumentů `(x,y)`. | 
+| Vyvolání metody | `F(x,y)`       | Rozlišení přetěžování je použito pro výběr nejlepší metody `F` v nadřazené třídě nebo struktuře. Metoda je vyvolána se seznamem argumentů `(x,y)`. Pokud metoda není `static`, je výraz instance `this`. | 
+|                   | `T.F(x,y)`     | Rozlišení přetěžování je použito pro výběr nejlepší metody `F` ve třídě nebo struktuře `T`. Pokud není metoda `static`, dojde k chybě v době vazby. Metoda je vyvolána se seznamem argumentů `(x,y)`. | 
+|                   | `e.F(x,y)`     | Rozlišení přetěžování je použito pro výběr nejlepší metody F ve třídě, struktuře nebo rozhraní zadané typem `e`. Pokud je metoda `static`, dojde k chybě při vazbě. Metoda je vyvolána s výrazem instance `e` a seznamem argumentů `(x,y)`. | 
+| Přístup k vlastnosti   | `P`            | Vyvolá se přistupující objekt `get` vlastnosti `P` v nadřazené třídě nebo struktuře. Pokud je `P` pouze pro zápis, dojde k chybě v době kompilace. Pokud `P` není `static`, výraz instance je `this`. | 
+|                   | `P = value`    | Přístupový objekt `set` vlastnosti `P` v nadřazené třídě nebo struktuře je vyvolán se seznamem argumentů `(value)`. Pokud je `P` jen pro čtení, dojde k chybě při kompilaci. Pokud `P` není `static`, výraz instance je `this`. | 
+|                   | `T.P`          | Vyvolá se přistupující objekt `get` vlastnosti `P` ve třídě nebo struktuře `T`. Pokud `P` není `static` nebo pokud `P` je pouze pro zápis, dojde k chybě v době kompilace. | 
+|                   | `T.P = value`  | Přístupový objekt `set` vlastnosti `P` ve třídě nebo struktuře `T` je vyvolán pomocí seznamu argumentů `(value)`. K chybě při kompilaci dojde, pokud `P` není `static` nebo pokud je `P` jen pro čtení. | 
+|                   | `e.P`          | Přistupující objekt `get` vlastnosti `P` ve třídě, struktuře nebo rozhraní zadané typem `e` je vyvolán s výrazem instance `e`. Pokud je hodnota `P` `static` nebo pokud je `P` pouze pro zápis, dojde k chybě při vazbě. | 
+|                   | `e.P = value`  | Přistupující objekt `set` vlastnosti `P` ve třídě, struktuře nebo rozhraní zadané typem `e` je vyvolán s výrazem instance `e` a seznamem argumentů `(value)`. Pokud je `P` `static` nebo pokud je `P` jen pro čtení, dojde k chybě při vazbě. | 
+| Přístup k události      | `E += value`   | Byl vyvolán přistupující objekt `add` události `E` v nadřazené třídě nebo struktuře. Pokud `E` není statická, je výraz instance `this`. | 
+|                   | `E -= value`   | Byl vyvolán přistupující objekt `remove` události `E` v nadřazené třídě nebo struktuře. Pokud `E` není statická, je výraz instance `this`. | 
+|                   | `T.E += value` | Je vyvolán přistupující objekt `add` události `E` ve třídě nebo struktuře `T`. Pokud `E` není statická, dojde k chybě při vazbě. | 
+|                   | `T.E -= value` | Je vyvolán přistupující objekt `remove` události `E` ve třídě nebo struktuře `T`. Pokud `E` není statická, dojde k chybě při vazbě. | 
+|                   | `e.E += value` | Přistupující objekt `add` události `E` ve třídě, struktuře nebo rozhraní zadané typem `e` je vyvolán s výrazem instance `e`. Pokud je `E` statický, dojde k chybě při vazbě. | 
+|                   | `e.E -= value` | Přistupující objekt `remove` události `E` ve třídě, struktuře nebo rozhraní zadané typem `e` je vyvolán s výrazem instance `e`. Pokud je `E` statický, dojde k chybě při vazbě. | 
+| Přístup indexeru    | `e[x,y]`       | Rozlišení přetěžování je použito pro výběr nejlepšího indexeru ve třídě, struktuře nebo rozhraní, které je zadáno pomocí typu e. Přístupový objekt `get` indexeru je vyvolán s výrazem instance `e` a seznamem argumentů `(x,y)`. V případě, že je indexer určen pouze pro zápis, dojde k chybě při vazbě. | 
+|                   | `e[x,y] = value` | Rozlišení přetěžování je použito pro výběr nejlepšího indexeru ve třídě, struktuře nebo rozhraní zadaného typem `e`. Přístupový objekt `set` indexeru je vyvolán s výrazem instance `e` a seznamem argumentů `(x,y,value)`. V případě, že je indexer určen jen pro čtení, dojde k chybě při vazbě. | 
+| Vyvolání operátoru | `-x`         | Rozlišení přetěžování je použito pro výběr nejlepšího unárního operátoru ve třídě nebo struktuře zadané typem `x`. Vybraný operátor je vyvolán se seznamem argumentů `(x)`. | 
+|                     | `x + y`      | Rozlišení přetěžování je použito pro výběr nejlepšího binárního operátoru v třídách nebo strukturách daných typy `x` a `y`. Vybraný operátor je vyvolán se seznamem argumentů `(x,y)`. | 
+| Vyvolání konstruktoru instance | `new T(x,y)` | Rozlišení přetěžování je použito pro výběr nejlepšího konstruktoru instance ve třídě nebo struktuře `T`. Konstruktor instance je vyvolán se seznamem argumentů `(x,y)`. | 
 
 ### <a name="argument-lists"></a>Seznamy argumentů
 
-Každý člen a delegáta volání funkce obsahuje seznam argumentů, které poskytuje skutečné hodnoty nebo odkazy na proměnné parametrů členské funkce. Syntaxe pro zadání seznamu argumentů volání členské funkce závisí na kategorii členu funkce:
+Každý člen funkce a volání delegáta obsahují seznam argumentů, který poskytuje skutečné hodnoty nebo odkazy na proměnné pro parametry člena funkce. Syntaxe pro určení seznamu argumentů vyvolání člena funkce závisí na kategorii člena funkce:
 
-*  Pro instanci konstruktorů, metod, indexerů a delegátů, argumenty jsou zadané jako *argument_list*, jak je popsáno níže. Pro indexery, při vyvolání `set` přístupový objekt, v seznamu argumentů navíc obsahuje výraz zadaný jako pravý operand operátoru přiřazení.
-*  Pro vlastnosti, je prázdný seznam argumentů, při vyvolání `get` přístupový objekt a skládá se z výraz zadaný jako pravý operand operátoru přiřazení při vyvolání `set` přistupujícího objektu.
-*  Pro události, seznam argumentů se skládá z výraz zadaný jako pravý operand `+=` nebo `-=` operátor.
-*  Pro uživatelsky definované operátory seznamu argumentů se skládá z jediného operandu unární operátor nebo dva operandy binární operátor.
+*  Pro konstruktory instancí, metody, indexery a delegáty jsou argumenty zadány jako *argument_list*, jak je popsáno níže. U indexerů při vyvolání přístupového objektu `set` zahrnuje seznam argumentů také výraz zadaný jako pravý operand operátoru přiřazení.
+*  V případě vlastností je seznam argumentů prázdný při vyvolání přístupového objektu `get` a skládá se z výrazu zadaného jako pravý operand operátoru přiřazení při vyvolání přístupového objektu `set`.
+*  V případě událostí se seznam argumentů skládá z výrazu zadaného jako pravý operand operátoru `+=` nebo `-=`.
+*  V případě uživatelem definovaných operátorů se seznam argumentů skládá z jednoho operandu unárního operátoru nebo dvou operandů binárního operátoru.
 
-Argumenty vlastnosti ([vlastnosti](classes.md#properties)), události ([události](classes.md#events)) a uživatelsky definované operátory ([operátory](classes.md#operators)) jsou vždy předány jako parametry s hodnotou ([ Hodnoty parametrů](classes.md#value-parameters)). Argumenty indexery ([indexery](classes.md#indexers)) jsou vždy předány jako parametry s hodnotou ([hodnoty parametrů](classes.md#value-parameters)) nebo pole parametrů ([pole parametrů](classes.md#parameter-arrays)). Parametry odkazu a výstup nejsou podporovány pro tyto kategorie funkce členů.
+Argumenty vlastností ([vlastnosti](classes.md#properties)), události ([události](classes.md#events)) a uživatelsky definované operátory ([operátory](classes.md#operators)) jsou vždy předány jako parametry hodnoty ([parametry hodnot](classes.md#value-parameters)). Argumenty indexerů ([indexerů](classes.md#indexers)) jsou vždy předány jako parametry hodnoty ([parametry hodnot](classes.md#value-parameters)) nebo pole parametrů ([pole parametrů](classes.md#parameter-arrays)). Parametry reference a Output nejsou podporovány pro tyto kategorie členů funkce.
 
-Argumenty vyvolání konstruktoru, metoda, indexer nebo delegáta instance jsou zadány jako *argument_list*:
+Argumenty konstruktoru instance, metody, indexeru nebo delegovaného volání jsou zadány jako *argument_list*:
 
 ```antlr
 argument_list
@@ -427,51 +427,51 @@ argument_value
     ;
 ```
 
-*Argument_list* obsahuje jeden nebo více *argument*s, oddělené čárkami. Každý argument se skládá z volitelné *argument_name* následovaný *argument_value*. *Argument* s *argument_name* se označuje jako ***pojmenovaný argument***, že *argument* bez  *argument_name* je ***poziční argument***. Jedná se o chybu pro poziční argument, který se zobrazí za pojmenovaným argumentem v *argument_list*.
+*Argument_list* se skládá z jednoho nebo více *argumentů*, které jsou odděleny čárkami. Každý argument se skládá z volitelného *argument_name* následovanýho *argument_value*. *Argument* s *argument_name* je označován jako ***pojmenovaný argument***, zatímco *Argument* bez *argument_name* je ***poziční argument***. Je-li pozice argumentu uvedena po pojmenovaném argumentu v *argument_list*, jedná se o chybu.
 
-*Argument_value* můžete provést jednu z následujících forem:
+*Argument_value* může mít jednu z následujících forem:
 
-*  *Výraz*, což indikuje, že argument je předán jako parametr hodnoty ([hodnoty parametrů](classes.md#value-parameters)).
-*  Klíčové slovo `ref` následovaný *variable_reference* ([odkazy na proměnné](variables.md#variable-references)), což indikuje, že argument je předán jako parametr odkazu ([odkazovat na parametry ](classes.md#reference-parameters)). Proměnná musí být jednoznačně přiřazena ([jednoznačného přiřazení](variables.md#definite-assignment)) předtím, než může být předán jako parametr odkazu. Klíčové slovo `out` následovaný *variable_reference* ([odkazy na proměnné](variables.md#variable-references)), což indikuje, že argument je předán jako výstupní parametr ([výstupních parametrů](classes.md#output-parameters)). Proměnná je považován za jednoznačně přiřazené ([jednoznačného přiřazení](variables.md#definite-assignment)) po volání členské funkce ve které se předá proměnná jako výstupní parametr.
+*  *Výraz*, který označuje, že argument je předán jako parametr hodnoty ([parametry hodnoty](classes.md#value-parameters)).
+*  Klíčové slovo `ref` následované *variable_reference* ([odkazy na proměnné](variables.md#variable-references)), které značí, že argument je předán jako referenční parametr ([referenční parametry](classes.md#reference-parameters)). Proměnná musí být jednoznačně přiřazena ([jednoznačné přiřazení](variables.md#definite-assignment)) předtím, než může být předána jako parametr reference. Klíčové slovo `out` následované *variable_reference* ([odkazy na proměnné](variables.md#variable-references)), které značí, že argument je předán jako výstupní parametr ([výstupní parametry](classes.md#output-parameters)). Proměnná se považuje za jednoznačně přiřazená ([jednoznačné přiřazení](variables.md#definite-assignment)) za voláním členů funkce, ve kterém je proměnná předána jako výstupní parametr.
 
 #### <a name="corresponding-parameters"></a>Odpovídající parametry
 
-Pro každý argument v seznamu argumentů musí existovat odpovídající parametr v členské funkci nebo vyvolání delegáta.
+Pro každý argument v seznamu argumentů musí být příslušný parametr v členu funkce nebo vyvolán delegát.
 
-Seznam parametrů používaných tímto se určuje následujícím způsobem:
+Seznam parametrů použitý v následujícím příkladu je určen následujícím způsobem:
 
-*  Pro virtuální metody a indexery definované ve třídách seznam parametrů se vybere od nejkonkrétnější deklarace nebo přepsat z členské funkce, počínaje statický typ příjemce a prohledávat jejích základních tříd.
-*  Pro metody rozhraní a indexery, seznam parametrů výběru formuláře nejspecifičtější definice člena, počínaje typ rozhraní a prohledávat základních rozhraní. Pokud seznam jedinečných parametrů nenajde, je vytvořen seznam parametrů s nepřístupný názvy a žádné volitelné parametry, tak, aby volání nelze použít pojmenované parametry nebo vynechejte volitelné argumenty.
-*  Pro částečné metody se používá parametr seznam definující deklarace částečné metody.
-*  Pro všechny ostatní funkce členy a delegáti je pouze jeden seznam parametrů, které se bude používat.
+*  Pro virtuální metody a indexery definované ve třídách je seznam parametrů převzat z nejvíce specifické deklarace nebo přepsání člena funkce, počínaje statickým typem příjemce a hledáním v rámci jeho základních tříd.
+*  Pro metody rozhraní a indexery je seznam parametrů vybrán z konkrétní definice člena, počínaje typem rozhraní a hledáním v základních rozhraních. Není-li nalezen žádný jedinečný seznam parametrů, je vytvořen seznam parametrů s nepřístupnými jmény a bez volitelných parametrů, aby vyvolání nemohlo používat pojmenované parametry nebo vynechat volitelné argumenty.
+*  Pro částečné metody je použit seznam parametrů definující deklaraci částečné metody.
+*  Pro všechny ostatní členy a delegáty funkcí je pouze jeden seznam parametrů, který je použit.
 
-Pozice argumentu nebo parametr se definuje jako počet argumentů nebo parametry předcházející v seznam argumentů nebo seznamu parametrů.
+Pozice argumentu nebo parametru je definována jako počet argumentů nebo parametrů předcházejících v seznamu argumentů nebo seznamu parametrů.
 
-Odpovídající parametry pro argumenty pro členské funkce jsou vytvořeny následujícím způsobem:
+Odpovídající parametry pro argumenty členů funkce jsou vytvořeny následujícím způsobem:
 
-*  Argumenty v *argument_list* konstruktory instancí, metod, indexerů a delegátů:
-    * Poziční argument, kde dochází k dlouhodobého parametr na stejné pozici v seznamu parametrů odpovídá tomuto parametru.
-    * Poziční argument členské funkce s polem parametrů vyvolání v podobě normální odpovídá pole parametrů, které se musí vyskytovat na stejné pozici v seznamu parametrů.
-    * Poziční argument členské funkce s polem parametrů vyvolání v podobě rozšířené žádná pevná parametr kde dojde k na stejné pozici v seznamu parametrů, odpovídá na prvek v poli parametrů.
-    * Pojmenovaný argument odpovídající parametru se stejným názvem v seznamu parametrů.
-    * Pro indexery, při vyvolání `set` přístupový objekt, výraz zadaný jako pravý operand operátoru přiřazení odpovídá implicitní `value` parametr `set` deklarace přistupujícího objektu.
-*  Pro vlastnosti, při vyvolání `get` existuje přístupový objekt se žádné argumenty. Při vyvolání `set` přístupový objekt, výraz zadaný jako pravý operand operátoru přiřazení odpovídá implicitní `value` parametr `set` deklarace přistupujícího objektu.
-*  Uživatelem definované unárních operátorů (včetně převodů) jeden operand odpovídá jeden parametr deklarace operátoru.
-*  Pro binární operátory definované uživatelem levý operand odpovídá na první parametr a pravý operand odpovídá druhý parametr deklarace operátoru.
+*  Argumenty v *argument_list* konstruktorů instancí, metod, indexerů a delegátů:
+    * Poziční argument, ve kterém se vyskytuje pevný parametr na stejné pozici v seznamu parametrů, odpovídá tomuto parametru.
+    * Poziční argument členu funkce s polem parametrů vyvolaným v jeho normálním formuláři odpovídá poli parametrů, které se musí vyskytovat na stejné pozici v seznamu parametrů.
+    * Poziční argument členu funkce s polem parametrů vyvolaným v rozbaleném formuláři, kde žádný pevný parametr neprobíhá na stejné pozici v seznamu parametrů, odpovídá prvku v poli parametrů.
+    * Pojmenovaný argument odpovídá parametru se stejným názvem v seznamu parametrů.
+    * U indexerů při vyvolání přístupového objektu `set` odpovídá výraz zadaný jako pravý operand operátoru přiřazení implicitní parametr `value` deklarace přístupového objektu `set`.
+*  U vlastností při vyvolání přístupového objektu `get` nejsou žádné argumenty. Při vyvolání přístupového objektu `set` odpovídá výraz zadaný jako pravý operand operátoru přiřazení implicitní parametr `value` deklarace přístupového objektu `set`.
+*  V případě uživatelem definovaných unárních operátorů (včetně převodů) odpovídá jeden operand jednomu parametru deklarace operátoru.
+*  V případě uživatelem definovaných binárních operátorů odpovídá levý operand prvnímu parametru a pravý operand odpovídá druhému parametru deklarace operátoru.
 
-#### <a name="run-time-evaluation-of-argument-lists"></a>Vyhodnocení seznamů argumentů
+#### <a name="run-time-evaluation-of-argument-lists"></a>Zkušební doba běhu seznamů argumentů
 
-Při zpracování volání členské funkce za běhu ([kompilace kontrolu dynamické přetížení](expressions.md#compile-time-checking-of-dynamic-overload-resolution)), výrazy nebo odkazy na proměnné seznamu argumentů se vyhodnocují v pořadí zleva doprava, jako následující:
+Během běhu při vyvolání člena funkce ([Kontrola dynamického přetěžování při kompilaci](expressions.md#compile-time-checking-of-dynamic-overload-resolution)) jsou výrazy nebo odkazy na proměnné seznamu argumentů vyhodnocovány v pořadí zleva doprava následujícím způsobem:
 
-*  Hodnota parametru, je vyhodnocen výraz argumentu a implicitní převod ([implicitních převodů](conversions.md#implicit-conversions)) do odpovídajícího parametru typu provést. Výsledná hodnota bude počáteční hodnota parametru hodnotu ve volání funkce člena.
-*  Pro parametr odkaz nebo výstup reference proměnné je vyhodnocena a výsledný umístění úložiště, změní umístění úložiště, který je reprezentován parametrem ve volání funkce člena. Pokud odkaz na proměnnou zadána jako parametr odkaz nebo výstup je prvek pole *reference_type*, kontrolu za běhu se provádí za účelem zajištění, že typ prvku pole je stejný jako typ parametru. Pokud tato kontrola neúspěšná, `System.ArrayTypeMismatchException` je vyvolána výjimka.
+*  Pro parametr hodnoty je vyhodnocen výraz argumentu a je proveden implicitní převod ([implicitní převody](conversions.md#implicit-conversions)) na odpovídající typ parametru. Výsledná hodnota se stala počáteční hodnotou parametru value ve volání členu funkce.
+*  Pro odkaz nebo výstupní parametr je vyhodnocen odkaz na proměnnou a výsledné umístění úložiště se bude umístěním úložiště reprezentovaným parametrem ve volání člena funkce. Pokud je odkaz na proměnnou zadaný jako odkaz nebo výstupní parametr prvkem pole *reference_type*, provede se kontrola za běhu, aby se zajistilo, že typ prvku pole je stejný jako typ parametru. Pokud se tato chyba kontroly nezdařila, je vyvolána `System.ArrayTypeMismatchException`.
 
-Metody, indexery a konstruktory instancí může deklarovat jejich krajní pravý parametr bude pole parametrů ([pole parametrů](classes.md#parameter-arrays)). Tyto funkce členy jsou vyvolány v jejich normálním formuláře nebo v jejich rozšířené podobě, v závislosti na které se vztahuje ([použít funkční člen](expressions.md#applicable-function-member)):
+Metody, indexery a konstruktory instancí mohou deklarovat svůj parametr, který je nejvíce vpravo, aby bylo pole parametrů ([pole parametrů](classes.md#parameter-arrays)). Tyto členy funkce jsou vyvolány v jejich normálním tvaru nebo v rozbaleném formuláři v závislosti na tom, která z nich je použita ([příslušný člen funkce](expressions.md#applicable-function-member)):
 
-*  Po vyvolání členské funkce s polem parametrů v podobě normální argument pro pole parametrů musí být jediný výraz, který je implicitně převést ([implicitních převodů](conversions.md#implicit-conversions)) na typ pole parametrů. V tomto případě pole parametrů funguje přesně jako hodnotu parametru.
-*  Po vyvolání členské funkce s polem parametrů v podobě rozšířené vyvolání musíte zadat nuly nebo více poziční argumenty pro pole parametrů, kde každý argument je výraz, který je implicitně převést ([implicitní převody](conversions.md#implicit-conversions)) na typ elementu pole parametrů. V takovém případě vyvolání vytvoří instanci typu parametru pole s délkou odpovídající počet argumentů, inicializuje prvky instance pole s hodnotami daný argument a používá instanci nově vytvořené pole jako skutečný argument.
+*  Je-li člen funkce s polem parametrů vyvolána v normálním tvaru, argument zadaný pro pole parametrů musí být jeden výraz, který je implicitně převeden ([implicitní převod](conversions.md#implicit-conversions)) na typ pole parametrů. V tomto případě pole parametrů funguje přesně jako parametr hodnoty.
+*  Pokud je v rozbaleném formuláři vyvolána člen funkce s polem parametrů, musí být volání zadáno nula nebo více pozičních argumentů pro pole parametrů, kde každý argument je výraz, který je implicitně převoditelný ([implicitní převody ](conversions.md#implicit-conversions)) na typ prvku pole parametrů. V tomto případě vyvolání vytvoří instanci typu pole parametru s délkou odpovídající počtu argumentů, inicializuje prvky instance pole pomocí daných hodnot argumentů a použije nově vytvořenou instanci pole jako aktuální. Argument.
 
-Výrazy seznam argumentů jsou vždy vyhodnoceny v pořadí, ve kterém jsou zapsány. Díky tomu se v příkladu
+Výrazy seznamu argumentů jsou vždy vyhodnocovány v pořadí, ve kterém jsou zapsány. Proto příklad
 ```csharp
 class Test
 {
@@ -487,12 +487,12 @@ class Test
 }
 ```
 Vytvoří výstup
-```
+```console
 x = 0, y = 1, z = 2
 x = 4, y = -1, z = 3
 ```
 
-Pravidla pole společné odchylky ([kovariance polí](arrays.md#array-covariance)) povolit hodnotu typu pole `A[]` byl odkaz na instanci typu pole `B[]`, pokud existuje implicitní referenční převod z `B` do `A`. Z důvodu tato pravidla, pokud prvek pole *reference_type* je předán jako parametr odkaz nebo výstup, je potřeba zajistit, že typ skutečným prvkem pole je stejná jako parametru kontrolu za běhu. V příkladu
+Pravidla koodchylky pole ([kovariance pole](arrays.md#array-covariance)) povolují hodnotu typu pole `A[]`, aby byla odkazem na instanci typu pole `B[]`, za předpokladu, že se implicitní převod odkazu vyskytuje z `B` na `A`. Z důvodu těchto pravidel platí, že když je prvek pole *reference_type* předán jako odkazový nebo výstupní parametr, je vyžadována kontrola za běhu, aby se zajistilo, že skutečný typ prvku pole je stejný jako parametr. V příkladu
 ```csharp
 class Test
 {
@@ -506,32 +506,32 @@ class Test
     }
 }
 ```
-druhé volání `F` způsobí, že `System.ArrayTypeMismatchException` vyvolání, protože typ skutečným prvkem `b` je `string` a ne `object`.
+druhé vyvolání `F` způsobí vyvolání `System.ArrayTypeMismatchException`, protože skutečný typ prvku `b` je `string` a nikoli `object`.
 
-Při vyvolání členské funkce s polem parametrů v podobě rozšířené, volání se zpracovává stejně, jako kdyby výraz vytvoření pole s inicializátorem pole ([pole vytváření výrazů](expressions.md#array-creation-expressions)) byl vložen kolem rozšířené parametry. Mějme například deklarace
+Když je v rozbaleném formuláři vyvolána člen funkce s polem parametrů, je volání zpracováno přesně tak, jako by byl vložen výraz vytvoření pole s inicializátorem pole ([výrazy vytvoření pole](expressions.md#array-creation-expressions)) kolem rozšířených parametrů. Například s ohledem na deklaraci
 ```csharp
 void F(int x, int y, params object[] args);
 ```
-Následující volání formuláři Rozšířené metody
+následující vyvolání rozšířené formy metody
 ```csharp
 F(10, 20);
 F(10, 20, 30, 40);
 F(10, 20, 1, "hello", 3.0);
 ```
-přesně odpovídají
+odpovídat přesně na
 ```csharp
 F(10, 20, new object[] {});
 F(10, 20, new object[] {30, 40});
 F(10, 20, new object[] {1, "hello", 3.0});
 ```
 
-Všimněte si zejména, pokud nejsou žádné argumenty pro pole parametrů se vytvoří prázdné pole.
+Konkrétně si všimněte, že prázdné pole je vytvořeno, pokud jsou pro pole parametrů zadány nula argumentů.
 
-Pokud argumenty jsou vynechány z členské funkce s odpovídající volitelné parametry, výchozí argumenty deklarace členské funkce jsou implicitně předány. Protože jsou vždy konstantní, jejich vyhodnocení neovlivní pořadí vyhodnocování zbývajících argumentů.
+Pokud jsou argumenty vynechány od členu funkce s odpovídajícími nepovinnými parametry, výchozí argumenty deklarace člena funkce budou implicitně předány. Vzhledem k tomu, že jsou vždycky konstantní, jejich hodnocení nebude mít vliv na pořadí vyhodnocení zbývajících argumentů.
 
 ### <a name="type-inference"></a>Odvození typu
 
-Při volání obecné metody bez zadání argumentů, ***odvození typu*** proces pokusí odvodit typ argumenty pro volání. Přítomnost odvození typu umožňuje pohodlnější syntaxi pro volání obecné metody a umožňuje programátorovi, aby se vyhnout zadávání informací o typu redundantní. Mějme například deklarace metody:
+Při volání obecné metody bez určení argumentů typu se proces ***odvození typu*** pokusí odvodit argumenty typu pro volání. Přítomnost odvození typu umožňuje, aby se pro volání obecné metody používala pohodlnější syntaxe a aby programátor nezadal redundantní informace o typu. Například s ohledem na deklaraci metody:
 ```csharp
 class Chooser
 {
@@ -542,169 +542,169 @@ class Chooser
     }
 }
 ```
-je možné vyvolat `Choose` metody bez explicitního určení argumentu typu:
+je možné vyvolat metodu `Choose` bez explicitního určení argumentu typu:
 ```csharp
 int i = Chooser.Choose(5, 213);                 // Calls Choose<int>
 
 string s = Chooser.Choose("foo", "bar");        // Calls Choose<string>
 ```
 
-Prostřednictvím odvození typu proměnné, argumenty typu `int` a `string` se stanoví z argumentů metody.
+V rámci odvození typu jsou argumenty typu `int` a `string` určeny z argumentů metody.
 
-Dojde k odvození typu při zpracování časově vazbu volání metody ([volání metod](expressions.md#method-invocations)) a probíhá před krokem rozlišení přetížení volání. Když konkrétní metody skupiny je zadaný ve volání metody a jako součást volání metody nejsou zadány žádné argumenty typu, odvození typu platí pro každý obecnou metodu skupinu metod. Pokud bude úspěšné odvození typu proměnné, argumenty typu slouží k určení typů argumentů pro následné přetížení. Pokud řešení přetížení vybere obecné metody jako ta, která se má vyvolat, argumenty typu slouží jako skutečný typ argumenty pro vyvolání. Pokud se nepodaří odvození typu proměnné pro konkrétní metody, této metodě není součástí řešení přetížení. Selhání odvození typu, v a sám sebe, nezpůsobí chybu v době vazby. Však to často vede k chybu v době vazby při řešení přetížení pak nepodaří najít žádné použitelné metody.
+K odvození typu dojde jako součást zpracování volání metody v době vazby ([vyvolání metod](expressions.md#method-invocations)) a provádí se před krokem vyřešení přetížení volání. Pokud je konkrétní skupina metod určena v volání metody a žádné argumenty typu nejsou zadány jako součást volání metody, odvození typu je aplikováno na každou obecnou metodu ve skupině metod. Pokud odvození typu je úspěšné, pak se k určení typů argumentů pro následné řešení přetížení použijí argumenty odvozených typů. Pokud řešení přetížení zvolí obecnou metodu jako metodu, která má být vyvolána, pak jsou argumenty odvozeného typu použity jako skutečné argumenty typu pro vyvolání. Pokud je odvození typu pro určitou metodu neúspěšné, tato metoda není součástí řešení přetížení. Selhání pro odvození typu, v a samotné, nezpůsobí chybu při vazbě. Nicméně často vede k chybě při vazbě v případě, že řešení přetížení pak nenalezne žádné použitelné metody.
 
-Pokud zadaný počet argumentů, které se liší od počtu parametrů v metodě, pak okamžitě odvození. V opačném případě Předpokládejme, že obecné metody obsahuje následující podpis:
+Pokud se zadaný počet argumentů liší od počtu parametrů v metodě, pak se rozhraní odvození okamžitě nezdařilo. V opačném případě Předpokládejme, že obecná metoda má následující signaturu:
 ```csharp
 Tr M<X1,...,Xn>(T1 x1, ..., Tm xm)
 ```
 
-Pomocí volání metody formuláře `M(E1...Em)` úlohou odvození typu je najít jedinečnou argumentů `S1...Sn` pro každý z parametrů typu `X1...Xn` tak, aby volání `M<S1...Sn>(E1...Em)` vstupuje v platnost.
+Pomocí volání metody formuláře `M(E1...Em)` úloha typu odvození je najít jedinečné argumenty typu `S1...Sn` pro každý parametr typu `X1...Xn`, takže volání `M<S1...Sn>(E1...Em)` bude platné.
 
-Během procesu odvození každý parametr typu `Xi` je buď *oprava* na určitý typ `Si` nebo *nevyřešené* s přidruženou sadu *hranice*. Každá hranice je nějaký typ `T`. Zpočátku každý typ proměnné `Xi` je laťky s prázdnou sadou mezí.
+Během procesu odvození každého parametru typu `Xi` je buď *pevně* nastavená na konkrétní typ `Si` nebo *unfixed* s přidruženou sadou *hranic*. Každá z mezí je typu `T`. Zpočátku je každá proměnná typu `Xi` neopravena s prázdnou sadou mezí.
 
-Odvození typu proměnné se provádí ve fázích. Jednotlivé fáze se pokusí odvodit argumenty typu pro další proměnné typu závislosti na zjištěních předchozí fáze. První fáze provede některé počáteční závěry mezí, zatímco druhá fáze oprav typ proměnné na konkrétní typy a odvodí z nich další hranice. Druhá fáze může být třeba několikrát opakuje.
+Odvození typu se provádí ve fázích. Každá fáze se pokusí odvodit argumenty typu pro více proměnných typu na základě zjištění předchozí fáze. První fáze vytvoří několik počátečních odvození hranic, zatímco druhá fáze opraví proměnné typu na konkrétní typy a odvodí další meze. Druhá fáze se možná bude muset opakovat několikrát.
 
-*Poznámka:* Typ odvození probíhá nejen při volání obecné metody. Odvození typu pro převod skupin metoda je popsaná v [odvození pro převod skupin metoda typu](expressions.md#type-inference-for-conversion-of-method-groups) a najít nejlepší společný typ sada výrazů je popsána v [hledání nejlepší společný typ sady výrazů](expressions.md#finding-the-best-common-type-of-a-set-of-expressions).
+*Poznámka:* Odvození typu bude provedeno nejen při volání obecné metody. Odvození typu pro převod skupin metod je popsáno v tématu [odvození typu pro převod skupin metod](expressions.md#type-inference-for-conversion-of-method-groups) a nalezení nejlepšího společného typu sady výrazů je popsána v tématu [vyhledání nejlepšího typu](expressions.md#finding-the-best-common-type-of-a-set-of-expressions)sady výrazů.
 
 #### <a name="the-first-phase"></a>První fáze
 
-Pro každou argumentů metody `Ei`:
+Pro každý argument metody `Ei`:
 
-*   Pokud `Ei` je anonymní funkce *odvození typu explicitní parametr* ([explicitní parametr typu závěry](expressions.md#explicit-parameter-type-inferences)) se provádí z `Ei` do `Ti`
-*   Jinak, pokud `Ei` má typ `U` a `xi` je hodnota parametru o *dolní mez odvození* tvoří *z* `U` *k* `Ti`.
-*   Jinak, pokud `Ei` má typ `U` a `xi` je `ref` nebo `out` parametr pak *přesná odvození* tvoří *z* `U` *k* `Ti`.
-*   V opačném případě se provádí bez odvození pro tento argument.
+*   Pokud je `Ei` anonymní funkce, provede se *explicitní odvození typu parametru* ([odvození typu explicitního typu parametru](expressions.md#explicit-parameter-type-inferences)) z `Ei` na `Ti`.
+*   V opačném případě, pokud `Ei` má typ `U` a `xi` je parametr hodnoty, pak se pro *odvození dolní hranice* vytvoří *od* `U` *do* `Ti`.
+*   V opačném případě, pokud `Ei` má typ `U` a `xi` je parametrem `ref` nebo `out`, pak bude *Přesná odvozená* *od* `U` *až* `Ti`.
+*   V opačném případě není pro tento argument provedeno odvození.
 
 
 #### <a name="the-second-phase"></a>Druhá fáze
 
-Druhá fáze probíhá následujícím způsobem:
+Druhá fáze pokračuje následujícím způsobem:
 
-*   Všechny *nevyřešené* typ proměnné `Xi` které nikoli *závisí na* ([závislost](expressions.md#dependence)) jakékoli `Xj` jsou pevné ([řešení](expressions.md#fixing)).
-*   Pokud neexistuje žádný takový typ proměnné, všechny *nevyřešené* typ proměnné `Xi` jsou *oprava* pro které všechny tyto uchování:
-    *   Existuje alespoň jednu proměnnou typu `Xj` , který závisí na `Xi`
-    *   `Xi` má jiné prázdnou sadu mezí
-*   Pokud neexistuje žádný takový typ proměnné a stále dochází k *nevyřešené* typ proměnné, typu odvození selže.
-*   Jinak, pokud žádné další *nevyřešené* proměnné typu neexistuje, proběhne úspěšně odvození typu proměnné.
-*   Jinak pro všechny argumenty `Ei` s odpovídající typ parametru `Ti` kde *výstupní typy* ([výstupní typy](expressions.md#output-types)) obsahují *nevyřešené* Zadejte proměnné `Xj` ale *typů vstupu* ([typů vstupu](expressions.md#input-types)) nepodporují, *výstup odvození typu* ([závěry typ výstupu ](expressions.md#output-type-inferences)) se provádí *z* `Ei` *k* `Ti`. Druhá fáze se pak opakuje.
+*   Všechny *neopravené* proměnné typu `Xi`, které *nezávisí na* ([závislost](expressions.md#dependence)) jakékoli `Xj` jsou opraveny ([Oprava](expressions.md#fixing)).
+*   Pokud žádné takové proměnné typu neexistují, jsou *opraveny* všechny proměnné *nefixního* typu `Xi`, pro které jsou všechny následující podrženy:
+    *   Existuje alespoň jedna proměnná typu `Xj`, která závisí na `Xi`.
+    *   `Xi` má neprázdnou sadu mezí.
+*   Pokud žádné takové proměnné typu neexistují a existují stále *nepevné* proměnné typu, odvození typu se nezdařilo.
+*   V opačném případě, pokud žádné další *nepevné* proměnné typu existují, odvození typu je úspěšné.
+*   Jinak platí, že[](expressions.md#input-types) [](expressions.md#output-types) *pro všechny argumenty `Ei` s odpovídajícím typem parametru `Ti`, kde výstupní typy (výstupní typy) obsahují nepevné proměnné typu `Xj`, ale vstupní typy (vstupní typy) nepodporují. odvození typu výstupu* ([odvození typu výstupu](expressions.md#output-type-inferences)) se provádí *z* 1 *do* 3. Druhá fáze se pak opakuje.
 
-#### <a name="input-types"></a>Vstupní typy.
+#### <a name="input-types"></a>Typy vstupu
 
-Pokud `E` je skupinu metod nebo implicitně typované anonymní funkce a `T` je delegát typu nebo typu stromu výrazu a všechny typy parametrů `T` jsou *typů vstupu* z `E` *s typem* `T`.
+Pokud je `E` skupina metod nebo implicitně typové anonymní funkce a `T` je typ delegáta nebo strom výrazů, pak všechny typy parametrů `T` jsou *vstupní typy* `E` *s typem* `T`.
 
 ####  <a name="output-types"></a>Výstupní typy
 
-Pokud `E` skupinu metod nebo anonymní funkce a `T` typu nebo typu stromu výrazu pak návratový typ je delegát `T` je *výstupní typ* `E` *s typem*  `T`.
+Pokud je `E` skupinou metod nebo anonymní funkcí a `T` je typ delegáta nebo typ stromu výrazu, pak návratový typ `T` je *výstupní typ* `E` *s typem* `T`.
 
-#### <a name="dependence"></a>Závislost
+#### <a name="dependence"></a>Drog
 
-*Nevyřešené* proměnná typu `Xi` *závisí přímo na* proměnnou typu laťky `Xj` po dobu některé argument `Ek` s typem `Tk` `Xj` Vyvolá se v *typ vstupu* z `Ek` s typem `Tk` a `Xi` probíhá *typ výstupu* z `Ek` s typem `Tk`.
+*Neopravená* proměnná typu `Xi` *závisí přímo na* nepevné proměnné typu `Xj`, pokud pro některý argument `Ek` s typem `Tk` `Xj` dojde v *vstupním typu* `Ek` s typem `Tk` a 0 dochází v  *Typ výstupu* 2 s typem 3.
 
-`Xj` *závisí na* `Xi` Pokud `Xj` *závisí přímo na* `Xi` nebo, pokud `Xi` *závisí přímo na* `Xk` a `Xk` *závisí na* `Xj`. Tedy "závisí na" přechodné, ale ne reflexivní uzavření "závisí přímo na".
+`Xj` *závisí na* `Xi`, pokud `Xj` *závisí přímo na* `Xi` nebo pokud `Xi` závisí *přímo na* `Xk` a `Xk` *závisí na* 1. Proto "závisí na" je přenosný, ale ne reflexivní uzavření "závisí přímo na".
 
-#### <a name="output-type-inferences"></a>Výstupní typ závěry
+#### <a name="output-type-inferences"></a>Odvození typu výstupu
 
-*Výstup odvození typu* tvoří *z* výraz `E` *k* typu `T` následujícím způsobem:
+*Odvození typu výstupu* je provedeno *z* výrazu `E` *na* typ `T` následujícím způsobem:
 
-*  Pokud `E` je anonymní funkce s odvozený návratový typ `U` ([Inferred návratový typ](expressions.md#inferred-return-type)) a `T` není typ delegáta nebo typu stromu výrazu s návratovým typem `Tb`, pak *dolní mez odvození* ([dolní mez závěry](expressions.md#lower-bound-inferences)) se provádí *z* `U` *k* `Tb`.
-*  Jinak, pokud `E` je skupinu metod a `T` není typ delegáta nebo typu stromu výrazu se typy parametrů `T1...Tk` a návratový typ `Tb`a rozlišení přetížení `E` s typy `T1...Tk` dává Jediná metoda s návratovým typem `U`, o *dolní mez odvození* tvoří *z* `U` *k* `Tb`.
-*  Jinak, pokud `E` je výraz s typem `U`, o *dolní mez odvození* tvoří *z* `U` *k* `T`.
-*  V opačném případě nebudou provedeny žádné závěry.
+*  Je-li `E` anonymní funkce s odvozeným návratovým typem `U` ([odvozený návratový typ](expressions.md#inferred-return-type)) a `T` je typ delegáta nebo typ stromu výrazu s návratovým typem `Tb`, pak *odvození s nižší vazbou* ([odvození s nižšími hranicemi](expressions.md#lower-bound-inferences)) provede se *z* `U` *až* 0.
+*  V opačném případě, pokud `E` je skupina metod a `T` je typ delegáta nebo typ stromu výrazů s typy parametrů `T1...Tk` a návratový typ `Tb` a řešení přetížení `E` s typy `T1...Tk` vydává jedinou metodu s návratovým typem `U`. , pak je *odvozený* *od* `U` *k* 1.
+*  V opačném případě, pokud je `E` výraz s typem `U`, pak se *odvození dolní hranice* provede *od* `U` *do* `T`.
+*  Jinak nejsou provedeny žádné odvozené.
 
-#### <a name="explicit-parameter-type-inferences"></a>Explicitní parametr typu závěry
+#### <a name="explicit-parameter-type-inferences"></a>Explicitní odvození typu parametru
 
-*Odvození typu explicitní parametr* tvoří *z* výraz `E` *k* typu `T` následujícím způsobem:
+*Explicitní odvození typu parametru* je provedeno *z* výrazu `E` *na* typ `T` následujícím způsobem:
 
-*  Pokud `E` je explicitně anonymní funkce se typy parametrů `U1...Uk` a `T` není typ delegáta nebo typu stromu výrazu se typy parametrů `V1...Vk` pak pro každou `Ui` *přesné odvození* ([přesná závěry](expressions.md#exact-inferences)) se provádí *z* `Ui` *k* odpovídající `Vi`.
+*  Pokud je `E` explicitně typové anonymní funkce s typy parametrů `U1...Uk` a `T` je typ delegáta nebo typ stromu výrazů s typy parametrů `V1...Vk` potom pro každé `Ui` je proveden [](expressions.md#exact-inferences) *přesný odvození (neodvozeno). z* `Ui` *na* odpovídající 0.
 
-#### <a name="exact-inferences"></a>Přesné závěry
+#### <a name="exact-inferences"></a>Přesná odvozená
 
-*Přesná odvození* *z* typu `U` *k* typu `V` se provádí následujícím způsobem:
+*Přesné odvození* *z* typu `U` *na* typ `V` je provedeno následujícím způsobem:
 
-*  Pokud `V` je jedním z *nevyřešené* `Xi` pak `U` je přidána do sady přesné mezí pro `Xi`.
+*  Pokud je `V` jednou z *neopravených* `Xi`, `U` se přidá do sady přesných hranic pro `Xi`.
 
-*  Jinak, nastaví `V1...Vk` a `U1...Uk` určuje kontrolu, pokud platí kterákoli z následujících případech:
+*  V opačném případě se nastaví `V1...Vk` a `U1...Uk` tím, že se zjistí, jestli platí některý z následujících případů:
 
-   *  `V` je typ pole `V1[...]` a `U` je typem pole `U1[...]` stejného řádu
-   *  `V` je typ `V1?` a `U` je typ `U1?`
-   *  `V` je konstruovaný typ `C<V1...Vk>`a `U` je konstruovaný typ. `C<U1...Uk>`
+   *  `V` je typ pole `V1[...]` a `U` je typ pole `U1[...]` stejného rozměru.
+   *  `V` je typ `V1?` a `U` je typ `U1?`.
+   *  `V` je konstruovaný typ `C<V1...Vk>`and `U` je konstruovaný typ `C<U1...Uk>`.
 
-   Pokud pak platí kterákoli z těchto případů *přesná odvození* tvoří *z* každý `Ui` *k* odpovídající `Vi`.
+   Pokud se některý z těchto případů použije, bude proveden *přesný odvození* *z* každé `Ui` *k* odpovídajícímu `Vi`.
 
-*  V opačném případě nebudou provedeny žádné závěry.
+*  Jinak nejsou k dispozici žádná odvozená.
 
-#### <a name="lower-bound-inferences"></a>Dolní mez závěry
+#### <a name="lower-bound-inferences"></a>Odvození s nižší vazbou
 
-A *dolní mez odvození* *z* typu `U` *k* typu `V` se provádí následujícím způsobem:
+*Odvození s nižší vazbou* *z* typu `U` *na* typ `V` je provedeno následujícím způsobem:
 
-*  Pokud `V` je jedním z *nevyřešené* `Xi` pak `U` je přidat do sady dolní meze `Xi`.
-*  Jinak, pokud `V` je typ `V1?`a `U` je typ `U1?` pak dolní mez odvození se provádí z `U1` k `V1`.
-*  Jinak, nastaví `U1...Uk` a `V1...Vk` určuje kontrolu, pokud platí kterákoli z následujících případech:
-   *  `V` je typ pole `V1[...]` a `U` je typem pole `U1[...]` (nebo parametr typu, jehož efektivní základní typ je `U1[...]`) ze stejné pořadí
-   *  `V` je jedním z `IEnumerable<V1>`, `ICollection<V1>` nebo `IList<V1>` a `U` je jednorozměrné pole typu `U1[]`(nebo parametr typu, jehož efektivní základní typ je `U1[]`)
-   *  `V` je konstruovaný typ třídy, struktury, rozhraní nebo delegát `C<V1...Vk>` a je jedinečný typ `C<U1...Uk>` tak, aby `U` (nebo pokud `U` je parametr typu, její základní třída nebo členem její sada efektivní rozhraní) je stejné jako, dědí z (přímo nebo nepřímo), nebo implementuje (přímo nebo nepřímo) `C<U1...Uk>`.
+*  Pokud je `V` jednou z *neopravených* `Xi`, `U` se přidá do sady dolních mezí pro `Xi`.
+*  V opačném případě, pokud `V` je typ `V1?`and `U` je typ `U1?`, pak je od `U1` k `V1` proveden nižší vázaný odvození.
+*  V opačném případě se nastaví `U1...Uk` a `V1...Vk` tím, že se zjistí, jestli platí některý z následujících případů:
+   *  `V` je typ pole `V1[...]` a `U` je typ pole `U1[...]` (nebo parametr typu, jehož účinný základní typ je `U1[...]`) stejného pořadí.
+   *  `V` je jedním z `IEnumerable<V1>`, `ICollection<V1>` nebo `IList<V1>` a `U` je jednorozměrné pole typu `U1[]` (nebo parametr typu, jehož účinný základní typ je `U1[]`).
+   *  `V` je konstruovaný typ třídy, struktury, rozhraní nebo delegáta `C<V1...Vk>` a existuje jedinečný typ `C<U1...Uk>`, například `U` (nebo, pokud `U` je parametr typu, jeho účinná základní třída nebo jakýkoli člen jeho efektivní sady rozhraní) je stejný jako , dědí z (přímo nebo nepřímo) nebo implementuje (přímo nebo nepřímo) `C<U1...Uk>`.
 
-      (Omezení "jedinečnost" znamená, že v případě rozhraní `C<T> {} class U: C<X>, C<Y> {}`, pak žádný odvození, provádí při odvozování z `U` k `C<T>` protože `U1` může být `X` nebo `Y`.)
+      ("Jedinečnost" omezení znamená, že v případě rozhraní `C<T> {} class U: C<X>, C<Y> {}` není při odvodit od `U` do `C<T>` provedena žádná odvození, protože `U1` by mohla být `X` nebo `Y`.)
 
-   Pokud platí kterákoli z těchto případů, pak se provádí odvození *z* každý `Ui` *k* odpovídající `Vi` následujícím způsobem:
+   Pokud se některý z těchto případů aplikuje, odvození *z* každé `Ui` *k* odpovídajícímu `Vi` je provedeno následujícím způsobem:
 
-   *  Pokud `Ui` není známa jako typ odkazu a *přesná odvození* tvoří
-   *  Jinak, pokud `U` je typem pole o *dolní mez odvození* provedení
-   *  Jinak, pokud `V` je `C<V1...Vk>` pak odvození závisí na parametr typu i tý `C`:
-      *  Pokud se jedná se o kovariantní o *dolní mez odvození* tvoří.
-      *  Pokud je kontravariantní pak *horní mez odvození* tvoří.
-      *  Pokud je invariantní pak *přesná odvození* tvoří.
-*  V opačném případě nebudou provedeny žádné závěry.
+   *  Pokud `Ui` není znám jako typ odkazu, pak je proveden *přesný odvození*
+   *  V opačném případě, pokud `U` je typ pole, bude provedeno *odvození dolní hranice* .
+   *  V opačném případě, pokud `V` je `C<V1...Vk>` pak odvození závisí na parametru i-th typu `C`:
+      *  Pokud je kovariantní, je provedeno *odvození s nižší vazbou* .
+      *  Pokud je kontravariantní, je provedeno *odvození horní meze* .
+      *  Pokud je neutrální, pak je proveden *přesný odvození* .
+*  Jinak nejsou provedeny žádné odvozené.
 
-#### <a name="upper-bound-inferences"></a>Horní mez závěry
+#### <a name="upper-bound-inferences"></a>Odvozené vazby na horní hranice
 
-*Horní mez odvození* *z* typu `U` *k* typu `V` se provádí následujícím způsobem:
+*Odvození horní meze* *z* typu `U` *na* typ `V` je provedeno následujícím způsobem:
 
-*  Pokud `V` je jedním z *nevyřešené* `Xi` pak `U` je přidat do sady horní mez pro `Xi`.
-*  Jinak, nastaví `V1...Vk` a `U1...Uk` určuje kontrolu, pokud platí kterákoli z následujících případech:
-   *  `U` je typ pole `U1[...]` a `V` je typem pole `V1[...]` stejného řádu
-   *  `U` je jedním z `IEnumerable<Ue>`, `ICollection<Ue>` nebo `IList<Ue>` a `V` je jednorozměrné pole typu `Ve[]`
-   *  `U` je typ `U1?` a `V` je typ `V1?`
-   *  `U` je vytvořený třídy, struktury, rozhraní nebo delegát typu `C<U1...Uk>` a `V` (přímo nebo nepřímo) je třída, struktura, rozhraní nebo delegát typu, který se shoduje s dědí z (přímo nebo nepřímo) nebo implementuje jedinečný typ `C<V1...Vk>`
+*  Pokud je `V` jednou z *neopravených* `Xi`, `U` se přidá do sady horních mezí pro `Xi`.
+*  V opačném případě se nastaví `V1...Vk` a `U1...Uk` tím, že se zjistí, jestli platí některý z následujících případů:
+   *  `U` je typ pole `U1[...]` a `V` je typ pole `V1[...]` stejného rozměru.
+   *  `U` je jedním z `IEnumerable<Ue>`, `ICollection<Ue>` nebo `IList<Ue>` a `V` je jednorozměrné pole typu `Ve[]`.
+   *  `U` je typ `U1?` a `V` je typ `V1?`.
+   *  `U` je konstrukce třídy, struktury, rozhraní nebo typu delegáta `C<U1...Uk>` a `V` je třída, struktura, rozhraní nebo typ delegáta, který je totožný s, dědí z (přímo nebo nepřímo) nebo implementuje (přímo nebo nepřímo) jedinečný typ `C<V1...Vk>`.
 
-      (Omezení "jedinečnost" znamená, že pokud budeme mít `interface C<T>{} class V<Z>: C<X<Z>>, C<Y<Z>>{}`, pak žádný odvození, provádí při odvozování z `C<U1>` k `V<Q>`. Závěry nejsou provedeny z `U1` buď `X<Q>` nebo `Y<Q>`.)
+      (Omezení jedinečnosti znamená, že pokud máme `interface C<T>{} class V<Z>: C<X<Z>>, C<Y<Z>>{}`, není při odvodit od `C<U1>` do `V<Q>` provedena žádná odvození. Odvození není provedeno z `U1` do buď `X<Q>` nebo `Y<Q>`.)
 
-   Pokud platí kterákoli z těchto případů, pak se provádí odvození *z* každý `Ui` *k* odpovídající `Vi` následujícím způsobem:
-   *  Pokud `Ui` není známa jako typ odkazu a *přesná odvození* tvoří
-   *  Jinak, pokud `V` typ pole je pak *horní mez odvození* provedení
-   *  Jinak, pokud `U` je `C<U1...Uk>` pak odvození závisí na parametr typu i tý `C`:
-      *  Pokud se jedná se o kovariantní pak *horní mez odvození* tvoří.
-      *  Pokud je kontravariantní o *dolní mez odvození* tvoří.
-      *  Pokud je invariantní pak *přesná odvození* tvoří.
-*  V opačném případě nebudou provedeny žádné závěry.   
+   Pokud se některý z těchto případů aplikuje, odvození *z* každé `Ui` *k* odpovídajícímu `Vi` je provedeno následujícím způsobem:
+   *  Pokud `Ui` není znám jako typ odkazu, pak je proveden *přesný odvození*
+   *  V opačném případě, pokud `V` je typ pole, je proveden *odvození horní meze*
+   *  V opačném případě, pokud `U` je `C<U1...Uk>` pak odvození závisí na parametru i-th typu `C`:
+      *  Pokud je kovariantní, pak se provede *odvození horní meze* .
+      *  Pokud je kontravariantní, je provedeno *odvození s nižší vazbou* .
+      *  Pokud je neutrální, pak je proveden *přesný odvození* .
+*  Jinak nejsou provedeny žádné odvozené.   
 
-#### <a name="fixing"></a>Oprava
+#### <a name="fixing"></a>Opravě
 
-*Nevyřešené* proměnná typu `Xi` sadu hranice je *oprava* následujícím způsobem:
+*Nepevná* proměnná typu `Xi` se sadou mezí je *opravena* následujícím způsobem:
 
-*  Sada *Release candidate typy* `Uj` začíná jako sadu v sadě hranice pro všechny typy `Xi`.
-*  Následně prozkoumáme každý mez pro `Xi` pak: Pro každý přesné mez `U` z `Xi` všechny typy `Uj` které nejsou identické s `U` se odeberou ze sady Release candidate. Pro každý dolní mez `U` z `Xi` všechny typy `Uj` do nichž je *není* implicitní převod z `U` se odeberou ze sady Release candidate. Pro každý horní mez `U` z `Xi` všechny typy `Uj` z nichž je *není* implicitní převod na `U` se odeberou ze sady Release candidate.
-*  Pokud mezi zbývající typy Release candidate `Uj` je jedinečný typ `V` ze které je implicitní převod na všech ostatních Release candidate typů, pak `Xi` je pevně `V`.
-*  V opačném případě odvození typu nezdaří.
+*  Sada *typů kandidátů* `Uj` začíná jako sada všech typů v sadě mezí pro `Xi`.
+*  Pak prověříme všechny vazby pro `Xi` v tuto akci: Pro každý přesný vázaný `U` z `Xi` všechny typy `Uj`, které nejsou identické s `U`, se ze sady kandidátů odeberou. Pro každý dolní mez `U` z `Xi` všechny typy `Uj`, na *které není implicitní* převod z `U` odebraný ze sady kandidátů. Pro každé horní vázané `U` z `Xi` všechny typy `Uj`, ze *kterých není implicitní* převod na `U`, se ze sady kandidátů odeberou.
+*  Pokud se jedná o zbývající typy kandidátů `Uj` existuje jedinečný typ `V`, ze kterého existuje implicitní převod na všechny jiné typy kandidátů, pak `Xi` je pevně nastavená na `V`.
+*  V opačném případě se odvození typu nezdařilo.
 
-#### <a name="inferred-return-type"></a>Odvozený návratový typ.
+#### <a name="inferred-return-type"></a>Odvozený návratový typ
 
-Odvozený typ vrácené hodnoty anonymní funkci `F` se používá při překladu typu odvození a přetížení. Odvozený návratový typ lze určit pouze pro anonymní funkce, kde všech parametrů, které typy jsou označovány buď protože jsou výslovně uvedené, zajišťována konverzi anonymní funkce nebo vyvozen při odvození typu na nadřazeném obecné volání metody.
+Odvozený návratový typ anonymní funkce `F` se používá při odvozování typu a řešení přetížení. Odvozený návratový typ lze určit pouze pro anonymní funkci, kde jsou známy všechny typy parametrů, buď protože jsou explicitně uděleny, poskytnuté prostřednictvím konverze anonymní funkce nebo odvozené při odvozování typu v nadřazeném obecném prvku. volání metody.
 
-***Odvodit typ výsledku*** je stanoven následujícím způsobem:
+***Odvozený typ výsledku*** je určen následujícím způsobem:
 
-*  Pokud tělo `F` je *výraz* , která má typ, pak typ odvozený výsledku `F` je typ tohoto výrazu.
-*  Pokud tělo `F` je *bloku* a sada výrazů v bloku `return` příkazů má doporučené společný typ `T` ([hledání nejlepší společný typ sada výrazů](expressions.md#finding-the-best-common-type-of-a-set-of-expressions)), pak odvozený typ výsledku `F` je `T`.
-*  V opačném případě nejde odvodit typ výsledku pro `F`.
+*  Pokud je tělo `F` *výraz* , který má typ, pak odvozený typ výsledku `F` je typ tohoto výrazu.
+*  Pokud je tělo `F` *blok* a sada výrazů v příkazech `return` bloku má nejlepší společný typ `T` ([hledání nejlepšího společného typu sady výrazů](expressions.md#finding-the-best-common-type-of-a-set-of-expressions)), pak odvozený typ výsledku `F` je `T`.
+*  V opačném případě nelze typ výsledku odvodit pro `F`.
 
-***Odvodit návratový typ*** je stanoven následujícím způsobem:
+***Odvozený návratový typ*** je určen následujícím způsobem:
 
-*  Pokud `F` je asynchronní a tělo `F` je výrazem jsou klasifikovány jako nic ([výrazu klasifikace](expressions.md#expression-classifications)), nebo blok příkazů, kde mají žádné návratové příkazy výrazů, odvozený návratový typ je `System.Threading.Tasks.Task`
-*  Pokud `F` je asynchronní a má typ odvozené výsledek `T`, odvozený návratový typ je `System.Threading.Tasks.Task<T>`.
-*  Pokud `F` je jiné asynchronní a má typ odvozené výsledek `T`, odvozený návratový typ je `T`.
-*  V opačném případě nejde odvodit návratový typ pro `F`.
+*  Pokud je `F` asynchronní a tělo `F` je buď výraz klasifikovaný jako Nothing ([klasifikace výrazů](expressions.md#expression-classifications)), nebo blok příkazu, pokud žádné návratové příkazy nemají výrazy, odvozený návratový typ je `System.Threading.Tasks.Task`.
+*  Pokud je `F` asynchronní a má odvozený typ výsledku `T`, odvozený návratový typ je `System.Threading.Tasks.Task<T>`.
+*  Pokud je `F` neasynchronní a má odvozený typ výsledku `T`, odvozený návratový typ je `T`.
+*  Jinak nelze odvodit návratový typ pro `F`.
 
-Jako příklad zahrnující anonymní funkce odvození typu, zvažte `Select` metodu rozšíření deklarovat v `System.Linq.Enumerable` třídy:
+Jako příklad odvození typu zahrnujícího anonymní funkce zvažte, že metoda rozšíření `Select` deklarovaná ve třídě `System.Linq.Enumerable`:
 ```csharp
 namespace System.Linq
 {
@@ -720,165 +720,165 @@ namespace System.Linq
 }
 ```
 
-Za předpokladu, že `System.Linq` obor názvů byla importována pomocí `using` klauzule a zadané třídy `Customer` s `Name` vlastnost typu `string`, `Select` metodu je možné vybrat názvy seznam zákazníků:
+Za předpokladu, že se obor názvů `System.Linq` importoval s klauzulí `using` a třída `Customer` s vlastností `Name` typu `string`, lze použít metodu `Select` k výběru názvů seznamu zákazníků:
 ```csharp
 List<Customer> customers = GetCustomerList();
 IEnumerable<string> names = customers.Select(c => c.Name);
 ```
 
-Volání metody rozšíření ([volání metod rozšíření](expressions.md#extension-method-invocations)) z `Select` zpracovává přepis volání do volání statické metody:
+Volání rozšiřující metody ([vyvolání rozšiřujících metod](expressions.md#extension-method-invocations)) `Select` se zpracovává přepsáním vyvolání do statické metody vyvolání:
 ```csharp
 IEnumerable<string> names = Enumerable.Select(customers, c => c.Name);
 ```
 
-Vzhledem k tomu, že argumenty typu nejsou explicitně zadané, odvození typu je použít k odvození argumenty typu. Nejprve je potřeba `customers` argument má vztah k `source` parametr odvození `T` bude `Customer`. Potom pomocí anonymní funkce zadejte procesu odvození popsané výš, `c` je daný typ `Customer`a výraz `c.Name` souvisí s návratový typ `selector` parametr, odvození `S` bude `string`. Proto je ekvivalentní k vyvolání
+Vzhledem k tomu, že argumenty typu nebyly explicitně zadány, použije se odvození typu k odvození argumentů typu. Nejprve argument `customers` souvisí s parametrem `source`, odvozením `T` bude `Customer`. Pak pomocí procesu odvozování anonymního typu funkce, který je popsaný výše, `c` předaný typ `Customer` a výraz `c.Name` se vztahuje na návratový typ parametru `selector`, odvodit `S` na `string`. Proto je vyvolání ekvivalentní
 ```csharp
 Sequence.Select<Customer,string>(customers, (Customer c) => c.Name)
 ```
 a výsledek je typu `IEnumerable<string>`.
 
-Následující příklad ukazuje, jak anonymní typ funkce odvození umožňuje informace o typu "tok" mezi argumenty ve volání obecné metody. Zadané metody:
+Následující příklad ukazuje, jak odvození typu anonymní funkce umožňuje informace typu "Flow" mezi argumenty v rámci obecného volání metody. Zadaná metoda:
 ```csharp
 static Z F<X,Y,Z>(X value, Func<X,Y> f1, Func<Y,Z> f2) {
     return f2(f1(value));
 }
 ```
 
-Odvození typu připouštějícího pro vyvolání:
+Odvození typu pro vyvolání:
 ```csharp
 double seconds = F("1:15:30", s => TimeSpan.Parse(s), t => t.TotalSeconds);
 ```
-Probíhá následujícím způsobem: První, argument `"1:15:30"` souvisí s `value` parametr odvození `X` bude `string`. Potom, parametr první anonymní funkce `s`, dostane odvozený typ `string`a výraz `TimeSpan.Parse(s)` souvisí s návratovým typem `f1`, odvození `Y` bude `System.TimeSpan`. Nakonec parametr druhý anonymní funkce `t`, dostane odvozený typ `System.TimeSpan`a výraz `t.TotalSeconds` souvisí s návratovým typem `f2`, odvození `Z` bude `double`. Proto je výsledek volání typu `double`.
+pokračuje následujícím způsobem: Nejprve argument `"1:15:30"` souvisí s parametrem `value`, odvozením `X` bude `string`. Pak parametr první anonymní funkce `s` má odvozený typ `string` a výraz `TimeSpan.Parse(s)` se vztahuje na návratový typ `f1`, odvodit `Y` na `System.TimeSpan`. Nakonec parametr druhé anonymní funkce `t` má odvozený typ `System.TimeSpan` a výraz `t.TotalSeconds` se vztahuje na návratový typ `f2`, odvodit `Z` na `double`. Proto je výsledek vyvolání typu `double`.
 
-#### <a name="type-inference-for-conversion-of-method-groups"></a>Odvození typu pro převod skupin – metoda
+#### <a name="type-inference-for-conversion-of-method-groups"></a>Odvození typu pro převod skupin metod
 
-Podobně jako u volání obecné metody se odvození typu musí také použít při skupinu metod `M` obsahující obecnou metodu je převeden na delegáta daného typu `D` ([Metoda skupiny převody](conversions.md#method-group-conversions)). Zadané metody
+Podobně jako u volání obecných metod musí být odvození typu použito také v případě, že skupina metod `M` obsahující obecnou metodu, je převedena na daný typ delegáta `D` ([Převod skupin metod](conversions.md#method-group-conversions)). Daná metoda
 ```csharp
 Tr M<X1...Xn>(T1 x1 ... Tm xm)
 ```
-a skupina metod `M` přiřazením na typ delegáta `D` úlohou odvození typu je najít argumenty typu `S1...Sn` tak, aby výraz:
+a skupina metod `M` přiřazená k typu delegáta `D` úloha typu odvození je hledání argumentů typu `S1...Sn`, takže výraz:
 ```csharp
 M<S1...Sn>
 ```
-stane se kompatibilní ([delegovat deklarace](delegates.md#delegate-declarations)) s `D`.
+bude kompatibilní ([deklarace delegátů](delegates.md#delegate-declarations)) s `D`.
 
-Na rozdíl od algoritmus odvození typu pro volání obecné metody, v tomto případě existují pouze argument *typy*, žádný argument *výrazy*. Zejména, neexistují žádné anonymní funkce a proto není nutné více fázích odvození.
+Na rozdíl od algoritmu odvození typu pro volání obecných metod, v tomto případě jsou k dispozici pouze *typy*argumentů, žádné *výrazy*argumentů. Konkrétně nejsou k dispozici žádné anonymní funkce, a proto není potřeba více fází odvození.
 
-Místo toho všechny `Xi` jsou považovány za *nevyřešené*a *dolní mez odvození* tvoří *z* každému typu argumentu `Uj` z `D` *k* odpovídající typ parametru `Tj` z `M`. Pokud pro některou `Xi` nebyly nalezeny žádné hranice, typ odvození. V opačném případě všechny `Xi` jsou *oprava* odpovídající `Si`, které jsou výsledkem odvození typu proměnné.
+Místo *toho se všechny* `Xi` považují za *neopravené*a *z* každého typu argumentu `Uj` `D` *k* odpovídajícímu typu parametru `Tj` `M`. Pokud se nenašly žádné meze `Xi`, odvození typu se nezdařilo. Jinak všechny `Xi` jsou *opraveny* na odpovídající `Si`, což jsou výsledek odvození typu.
 
-#### <a name="finding-the-best-common-type-of-a-set-of-expressions"></a>Vyhledání nejlepších společný typ sada výrazů
+#### <a name="finding-the-best-common-type-of-a-set-of-expressions"></a>Hledání nejlepšího běžného typu sady výrazů
 
-V některých případech se musí odvodit pro sadu výrazů stejného typu. Zejména typy elementů implicitně typovaná pole a návratové typy anonymní funkce s *bloku* úřadů, které se nacházejí v tímto způsobem.
+V některých případech je třeba odvodit společný typ pro sadu výrazů. Konkrétně jsou v tomto způsobu nalezeny typy prvků implicitně typovaného pole a návratové typy anonymních funkcí s poli *Block* .
 
-Intuitivně, vzhledem k sadě výrazů `E1...Em` tento odvození by měl být ekvivalentní volání metody
+V intuitivním případě s ohledem na sadu výrazů `E1...Em` Toto odvození by mělo být ekvivalentní volání metody.
 ```csharp
 Tr M<X>(X x1 ... X xm)
 ```
 s `Ei` jako argumenty.
 
-Přesněji řečeno, odvození začíná *nevyřešené* proměnná typu `X`. *Výstupní typ závěry* pak vyvinou *z* každý `Ei` *k* `X`. Nakonec `X` je *oprava* a pokud je úspěšná, výsledný typ `S` je Výsledný nejlepší společný typ pro výraz. Pokud neexistuje žádný takový `S` existuje, výrazy mají žádné doporučené společný typ.
+Odvození je přesnější a začíná *nepevným* typem proměnné `X`. *Odvození typu výstupu* pak probíhá *z* každé `Ei` *na* `X`. Nakonec je `X` *opraven* a v případě úspěchu je výsledný typ `S` výsledným nejlépe běžným typem pro výrazy. Pokud žádné takové `S` neexistuje, výrazy nemají žádný nejlepší běžný typ.
 
 ### <a name="overload-resolution"></a>Rozlišení přetěžování
 
-Řešení přetížení se doba vazby mechanismus pro výběr nejlepší funkce člena k vyvolání zadaný seznam argumentů a sadu Release candidate funkce členů. Řešení přetížení vybere členské funkce k vyvolání v následujících různých kontextech v rámci jazyka C#:
+Rozlišení přetěžování je mechanizmus pro dobu vazby pro výběr nejlepšího člena funkce pro vyvolání daného seznamu argumentů a sady kandidátních členů funkce. Řešení přetížení vybere člena funkce k vyvolání v následujících odlišných kontextech v rámci C#:
 
-*  Vyvolání metody s názvem v *invocation_expression* ([volání metod](expressions.md#method-invocations)).
-*  Vyvolání konstruktoru instance s názvem v *object_creation_expression* ([výrazy vytvoření objektu](expressions.md#object-creation-expressions)).
-*  Vyvolání indexeru přistupující objekt prostřednictvím *element_access* ([přístup k prvkům](expressions.md#element-access)).
-*  Vyvolání předdefinovaných nebo uživatelem definovaný operátor odkazuje ve výrazu ([unární operátor rozlišení přetěžování](expressions.md#unary-operator-overload-resolution) a [binárním operátorem rozlišení přetěžování](expressions.md#binary-operator-overload-resolution)).
+*  Vyvolání metody s názvem v *invocation_expression* ([vyvolání metod](expressions.md#method-invocations)).
+*  Vyvolání konstruktoru instance s názvem v *object_creation_expression* ([výrazy pro vytváření objektů](expressions.md#object-creation-expressions)).
+*  Volání přístupového objektu indexeru prostřednictvím *element_access* ([přístup k elementu](expressions.md#element-access)).
+*  Vyvolání předdefinovaného uživatelem definovaného operátoru, na který se odkazuje ve výrazu ([rozlišení přetížení unárního](expressions.md#unary-operator-overload-resolution) operátoru a [rozlišení přetížení binárního operátoru](expressions.md#binary-operator-overload-resolution)).
 
-Každá z těchto kontextech definuje sadu Release candidate funkce členů a seznamu argumentů svůj vlastní jedinečný způsobem, jak je podrobně popsán v části výše uvedených. Například sadu kandidáty pro volání metody nezahrnuje metody označené `override` ([člen vyhledávání](expressions.md#member-lookup)), a metody základní třídy nejsou kandidáty pokud platí všechny metody v odvozené třídě ([ Volání metod](expressions.md#method-invocations)).
+Každý z těchto kontextů definuje sadu kandidátních členů a seznam argumentů vlastním jedinečným způsobem, jak je popsáno podrobněji v částech uvedených výše. Například sada kandidátů pro vyvolání metody nezahrnuje metody označené `override` ([vyhledávání členů](expressions.md#member-lookup)) a metody v základní třídě nejsou kandidáty, pokud je jakákoliv metoda v odvozené třídě platná ([vyvolání metod](expressions.md#method-invocations)).
 
-Jakmile se zjistily členy funkce Release candidate a seznam argumentů, výběr nejlepší členské funkce je stejná ve všech případech:
+Po identifikaci členů kandidáta funkce a seznamu argumentů je výběr nejlepšího člena funkce stejný ve všech případech:
 
-*  Zadaný sadu členů funkce použít Release candidate, nejlepší funkce člena v tom, že sada se nachází. Pokud sada obsahuje pouze jeden člen funkce, je daný člen funkce nejlepší členské funkce. V opačném případě je nejlepší členské funkce člena jednu funkci, která je obecně lepší než všechny ostatní funkce členy s ohledem na zadaného seznamu argumentů, za předpokladu, že každý člen funkce je ve srovnání s všichni členové funkce pomocí pravidel v [ Lepší členské funkce](expressions.md#better-function-member). Pokud existuje přesně jeden člen funkce, která je obecně lepší než všechny ostatní funkce členové, pak je nejednoznačné volání funkce člena a dojde k chybě vazby čas.
+*  Vzhledem k sadě příslušných členů kandidátních funkcí se nachází nejlepší člen funkce v této sadě. Pokud sada obsahuje pouze jeden člen funkce, pak je tento člen funkce nejlepším členem funkce. V opačném případě je nejlepším členem funkce jeden člen funkce, který je lepší než všechny ostatní členy funkce s ohledem na daný seznam argumentů za předpokladu, že každý člen funkce je porovnán se všemi ostatními členy funkce pomocí pravidel v [lepší funkci. člen](expressions.md#better-function-member). Pokud není k dispozici přesně jeden člen funkce, který je lepší než všechny ostatní členy funkce, pak dojde k nejednoznačnému vyvolání člena funkce a dojde k chybě při vazbě.
 
-V dalších částech definovat přesně význam podmínky ***použitelná funkce člena*** a ***lepší členské funkce***.
+V následujících oddílech jsou definovány přesné významy ***platných členů funkce*** a ***lepšího člena funkce***.
 
-#### <a name="applicable-function-member"></a>Člen příslušné funkce
+#### <a name="applicable-function-member"></a>Příslušný člen funkce
 
-Členské funkce se říká, že ***použitelná funkce člena*** s ohledem na seznam argumentů `A` Pokud jsou splněny všechny z následujících akcí:
+Člen funkce je označován jako ***příslušný člen funkce*** s ohledem na seznam argumentů `A`, pokud jsou splněny všechny následující podmínky:
 
-*  Každý argument v `A` odpovídá parametru v deklaraci členské funkce, jak je popsáno v [odpovídající parametry](expressions.md#corresponding-parameters), a žádné parametry, které odpovídá žádný argument je volitelný parametr.
-*  Pro každý argument v `A`, předávání režimu argumentu parametrů (například, hodnota `ref`, nebo `out`) je stejný jako režim parametru předávání příslušného parametru a
-   *  pro parametr hodnoty nebo pole parametrů, implicitní převod ([implicitních převodů](conversions.md#implicit-conversions)) existuje v argumentu na typ odpovídající parametr nebo
-   *  pro `ref` nebo `out` parametr, typ argumentu je stejné jako odpovídající parametr typu. Po všech `ref` nebo `out` parametr je alias pro předaného argumentu.
+*  Každý argument v `A` odpovídá parametru v deklaraci členu funkce, jak je popsáno v [odpovídajících parametrech](expressions.md#corresponding-parameters), a jakýkoli parametr, na který žádný argument neodpovídá, je volitelným parametrem.
+*  Pro každý argument v `A` je režim předání parametru argumentu (tj. hodnota, `ref` nebo `out`) totožný s parametrem předávání odpovídajícího parametru.
+   *  pro parametr hodnoty nebo pole parametrů existuje implicitní převod ([implicitní převody](conversions.md#implicit-conversions)) z argumentu na typ odpovídajícího parametru nebo
+   *  pro parametr `ref` nebo `out` je typ argumentu totožný s typem odpovídajícího parametru. Po všech případech je parametr `ref` nebo `out` alias pro předaný argument.
 
-Funkce člena, která zahrnuje parametr pole Pokud je člen funkce použít podle výše uvedených pravidel, se říká fungovaly v jeho ***normalizačním formuláři***. Pokud člen funkce, která zahrnuje parametr pole se nedá použít v podobě normální, členské funkce může být místo toho použít v jeho ***rozšířit formuláře***:
+Pro člena funkce, který obsahuje pole parametrů, pokud je člen funkce použitelný výše uvedenými pravidly, říká se, že se má použít v ***normální podobě***. Pokud člen funkce, který obsahuje pole parametrů, není použitelný v normálním tvaru, člen funkce může být použit v ***rozbaleném formátu***:
 
-*  Rozšířené formuláře je vytvořený tak, že nahradíte pole parametrů v deklaraci členské funkce s hodnotou nula nebo více parametrů hodnotu parametru typu prvku pole, tento počet argumentů v seznamu argumentů `A` odpovídá celkové počet parametrů. Pokud `A` má menší počet argumentů, než je počet parametrů pevné v deklaraci členské funkce, rozšířené formu členské funkce nelze zkonstruovat a se tedy nedá použít.
-*  V opačném případě se vztahuje Pokud pro každý argument v rozšířené formuláře `A` režim předávání parametru argumentu je stejný jako režim parametru předávání příslušného parametru a
-   *  pro parametr pevná hodnota nebo hodnota parametru vytvořené rozšíření implicitní převod ([implicitních převodů](conversions.md#implicit-conversions)) existuje z typu argumentu na typ odpovídající parametr nebo
-   *  pro `ref` nebo `out` parametr, typ argumentu je stejné jako odpovídající parametr typu.
+*  Rozbalený formulář se vytvoří tak, že nahradí pole parametrů v deklaraci členu funkce nula nebo více parametrů hodnot typu prvku pole parametrů tak, aby počet argumentů v seznamu argumentů `A` odpovídal celkovému počtu. parametrů. Pokud `A` má méně argumentů než počet pevných parametrů v deklaraci členu funkce, rozbalená forma členu funkce nemůže být vytvořena a není proto platná.
+*  V opačném případě je rozšířený formulář použitelný, pokud pro každý argument v `A` je režim předávání parametru argumentu totožný s parametrem předávání odpovídajícího parametru a
+   *  pro parametr pevné hodnoty nebo parametr hodnoty, který byl vytvořen rozšířením, existuje implicitní převod ([implicitní převod](conversions.md#implicit-conversions)) z typu argumentu na typ odpovídajícího parametru nebo
+   *  pro parametr `ref` nebo `out` je typ argumentu totožný s typem odpovídajícího parametru.
 
-#### <a name="better-function-member"></a>Lepší členské funkce
+#### <a name="better-function-member"></a>Lepší člen funkce
 
-Pro účely stanovení lepší členské funkce je vytvořen seznam stripped-down argumentů A obsahující pouze výrazy argument sami v pořadí, ve kterém jsou uvedeny v původní seznam argumentů.
+Pro účely určení lepšího člena funkce je vytvořen seznam argumentů, který obsahuje pouze výrazy argumentů v pořadí, v jakém jsou uvedeny v seznamu původní argument.
 
-Parametr uvádí pro jednotlivé funkce Release candidate, do které jsou členy vytvořeny následujícím způsobem:
+Seznamy parametrů pro každý člen kandidátních funkcí jsou konstruovány následujícím způsobem:
 
-*  Rozšířené forma se používá, pokud bylo použitelné pouze ve formuláři Rozšířené členské funkce.
-*  Volitelné parametry bez odpovídající argumentů se odeberou ze seznamu parametrů
-*  Parametry jsou přeuspořádají, aby k nim dojde na stejné pozici jako příslušný argument v seznamu argumentů.
+*  Rozšířený formulář se používá v případě, že byl člen funkce použit pouze v rozbaleném formuláři.
+*  Volitelné parametry bez odpovídajících argumentů se ze seznamu parametrů odeberou.
+*  Parametry jsou přeuspořádané tak, že se vyskytují na stejné pozici jako odpovídající argument v seznamu argumentů.
 
-Zadaný seznam argumentů `A` sadu výrazy argumentu `{E1, E2, ..., En}` a dva členy příslušné funkce `Mp` a `Mq` se typy parametrů `{P1, P2, ..., Pn}` a `{Q1, Q2, ..., Qn}`, `Mp` je definován jako ***lepší členské funkce*** než `Mq` Pokud
+Předaný seznam argumentů `A` se sadou výrazů argumentů `{E1, E2, ..., En}` a dvou platných členů funkce `Mp` a `Mq` s typy parametrů `{P1, P2, ..., Pn}` a `{Q1, Q2, ..., Qn}`, `Mp` je definován jako ***lepší člen funkce*** než `Mq`, pokud
 
-*  pro každý argument implicitní převod z `Ex` k `Qx` není lepší než implicitní převod z `Ex` k `Px`, a
-*  pro nejméně jeden argument, převod z `Ex` k `Px` je obecně lepší než převod z `Ex` k `Qx`.
+*  u každého argumentu je implicitní převod z `Ex` na `Qx` lepší než implicitní převod z `Ex` na `Px` a
+*  pro alespoň jeden argument je převod z `Ex` na `Px` lepší než převod z `Ex` na `Qx`.
 
-Při provádění vyhodnocení, pokud `Mp` nebo `Mq` platí v podobě rozšířené, pak `Px` nebo `Qx` odkazuje na parametr ve formuláři rozbaleného seznamu parametrů.
+Pokud se provádí toto vyhodnocení, je-li v rozbalené formě použit parametr `Mp` nebo `Mq`, odkaz `Px` nebo `Qx` odkazuje na parametr v rozšířené podobě seznamu parametrů.
 
-V případě, že parametr typu pořadí `{P1, P2, ..., Pn}` a `{Q1, Q2, ..., Qn}` jsou ekvivalentní (to znamená každou `Pi` má konverzi identity do odpovídajících `Qi`), se použijí následující pravidla shody, v pořadí, chcete-li určit, tím lepší Členské funkce.
+V případě, že parametry typu parametru @ no__t-0 a `{Q1, Q2, ..., Qn}` jsou ekvivalentní (to znamená, že každý `Pi` má převod identity na odpovídající `Qi`), jsou použita následující pravidla pro dělení na propojení, aby bylo možné určit lepší člen funkce.
 
-*  Pokud `Mp` je neobecnou metodu a `Mq` je obecná metoda, pak `Mp` je obecně lepší než `Mq`.
-*  Jinak, pokud `Mp` lze použít v podobě normální a `Mq` má `params` pole a platí jenom v podobě rozšířené, pak `Mp` je obecně lepší než `Mq`.
-*  Jinak, pokud `Mp` prohlásil více parametrů než `Mq`, pak `Mp` je obecně lepší než `Mq`. Tato situace může nastat, pokud obě metody mají `params` pole a jsou použitelné jenom v rozšířené formuláře.
-*  Jinak pokud všechny parametry `Mp` mít odpovídající argument, že výchozí argumenty nahrazené za nejméně jeden volitelný parametr `Mq` pak `Mp` je obecně lepší než `Mq`.
-*  Jinak, pokud `Mp` má zvláštní typy parametrů než `Mq`, pak `Mp` je obecně lepší než `Mq`. Umožní `{R1, R2, ..., Rn}` a `{S1, S2, ..., Sn}` představují typů bez instancí a nerozbalený parametrů `Mp` a `Mq`. `Mp`na typy parametrů jsou podrobnější než `Mq`Pokud pro každý parametr `Rx` není méně specifické než `Sx`a pro nejméně jeden parametr, `Rx` je konkrétnější než `Sx`:
-   *  Parametr typu je méně specifické než beztypový parametr.
-   *  Rekurzivně, konstruovaný typ je konkrétnější než jiné konstruovaný typ (se stejným číslem argumenty typu), pokud alespoň jeden argument typu je konkrétnější a žádný argument typu je méně specifické než argument typu v jiném.
-   *  Typ pole je konkrétnější než jiný typ pole (s stejný počet rozměrů), pokud je typ prvku prvního konkrétnější než druhý typ elementu.
-*  Jinak Pokud jeden člen je operátor zrušeno a druhý je operátor zdvižené,-zrušeno ten je lepší.
-*  V opačném případě je lepší ani členské funkce.
+*  Pokud je `Mp` neobecnou metodou a `Mq` je obecná metoda, pak `Mp` je lepší než `Mq`.
+*  Jinak, pokud je `Mp` použitelný v normálním tvaru a `Mq` má pole `params` a je použitelné pouze v rozbaleném formuláři, pak `Mp` je lepší než `Mq`.
+*  Jinak, pokud `Mp` má více deklarované parametry než `Mq`, pak `Mp` je lepší než `Mq`. K tomu může dojít, pokud obě metody mají @no__t pole-0 a jsou použitelné pouze v rozbalených formulářích.
+*  Jinak, pokud všechny parametry `Mp` mají odpovídající argument, zatímco výchozí argumenty je potřeba nahradit aspoň u jednoho volitelného parametru v `Mq`, `Mp` je lepší než `Mq`.
+*  Jinak, pokud `Mp` má konkrétnější typy parametrů než `Mq`, pak `Mp` je lepší než `Mq`. Let `{R1, R2, ..., Rn}` a `{S1, S2, ..., Sn}` představuje Nerozbalené a nerozšiřované typy parametrů `Mp` a `Mq`. typy parametrů `Mp` jsou konkrétnější než `Mq`, pokud pro každý parametr `Rx` není méně specifická než `Sx` a pro alespoň jeden parametr je `Rx` konkrétnější než `Sx`:
+   *  Parametr typu je méně specifický než parametr bez typu.
+   *  Rekurzivně, konstruovaný typ je konkrétnější než jiný konstruovaný typ (se stejným počtem argumentů typu), pokud je alespoň jeden argument typu konkrétnější a žádný argument typu není méně specifický než odpovídající argument typu v druhé.
+   *  Typ pole je konkrétnější než jiný typ pole (se stejným počtem rozměrů), pokud typ prvku prvního je konkrétnější než typ elementu druhé.
+*  V opačném případě, pokud je jeden člen jako nezdvižený operátor a druhý je předaný operátor, je lepší, než je nezatížený.
+*  V opačném případě není ani člen funkce lepší.
 
-#### <a name="better-conversion-from-expression"></a>Lepší převod z výrazu
+#### <a name="better-conversion-from-expression"></a>Lepší převod výrazu
 
-Zadaný implicitní převod `C1` , která převede z výrazu `E` na typ `T1`a implicitní převod `C2` , která převede z výrazu `E` na typ `T2`, `C1` je ***lepší převod*** než `C2` Pokud `E` přesně neodpovídá `T2` a obsahuje alespoň jeden z následujících akcí:
+Předaný implicitní převod `C1`, který se převede z výrazu `E` na typ `T1` a implicitní převod `C2`, který se převede z výrazu `E` na typ `T2`, `C1` je ***lepší převod*** než `C2`, pokud @no__ t-9 neodpovídá přesně 0 a nejméně jeden z následujících blokování:
 
-* `E` přesně odpovídá `T1` ([přesně odpovídající výraz](expressions.md#exactly-matching-expression))
-* `T1` je lepší cílem převod než `T2` ([lepší převod cílové](expressions.md#better-conversion-target))
+* `E` odpovídá přesně `T1` ([přesně odpovídající výraz](expressions.md#exactly-matching-expression))
+* `T1` je lepším cílem převodu než `T2` ([cíl pro lepší převod](expressions.md#better-conversion-target)).
 
-#### <a name="exactly-matching-expression"></a>Přesně odpovídající výraz
+#### <a name="exactly-matching-expression"></a>Přesně shodný výraz
 
-Zadaný výraz `E` a typ `T`, `E` přesně odpovídá `T` pokud obsahuje jeden z následujících akcí:
+Vzhledem k výrazu `E` a typu `T` `E` přesně odpovídá `T`, pokud je k dispozici jeden z následujících typů:
 
-*  `E` má typ `S`, a převod identity `S` do `T`
-*  `E` je anonymní funkce `T` je typ delegátu `D` nebo typu stromu výrazu `Expression<D>` a obsahuje jeden z následujících akcí:
-   *  Odvozený návratový typ `X` existuje pro `E` v rámci seznamu parametrů `D` ([Inferred návratový typ](expressions.md#inferred-return-type)), a převod identity `X` na návratový typ `D`
-   *  Buď `E` je jiné asynchronní a `D` má návratový typ `Y` nebo `E` je asynchronní a `D` má návratový typ `Task<Y>`, a obsahuje jeden z následujících akcí:
-      * Tělo `E` je výraz, který přesně odpovídá `Y`
-      * Tělo `E` je blok příkazů, kde každý návratový příkaz vrátí výraz, který přesně odpovídá `Y`
+*  `E` má typ `S` a v `S` na `T` existuje převod identity.
+*  `E` je anonymní funkce, `T` je buď typ delegáta `D`, nebo typ stromu výrazu `Expression<D>` a jedna z následujících možností obsahuje:
+   *  Odvozený návratový typ `X` existuje pro `E` v kontextu seznamu parametrů `D` ([odvozený návratový typ](expressions.md#inferred-return-type)) a převod identity existuje z `X` na návratový typ `D`.
+   *  Buď `E` je neasynchronní a `D` má návratový typ `Y` nebo `E` je asynchronní a `D` má návratový typ `Task<Y>` a jeden z následujících blokování:
+      * Tělo `E` je výraz, který přesně odpovídá `Y`.
+      * Tělo `E` je blok příkazu, kde každý příkaz return vrátí výraz, který přesně odpovídá `Y`.
 
-#### <a name="better-conversion-target"></a>Lepší převod cíl
+#### <a name="better-conversion-target"></a>Lepší cíl převodu
 
-Uvedené dva různé typy `T1` a `T2`, `T1` je cílem převod lepší než `T2` Pokud žádný implicitní převod z `T2` k `T1` existuje, a obsahuje alespoň jeden z následujících akcí:
+Zadané dva různé typy `T1` a `T2` `T1` je lepším cílem převodu než `T2`, pokud neexistuje implicitní převod z `T2` na `T1` a nejméně jeden z následujících blokování:
 
-*  Implicitní převod z `T1` k `T2` existuje
-*  `T1` je typ delegátu `D1` nebo typu stromu výrazu `Expression<D1>`, `T2` je typ delegátu `D2` nebo typu stromu výrazu `Expression<D2>`, `D1` má návratový typ `S1` a jeden z obsahuje následující:
-   * `D2` vrací typ void
-   * `D2` má návratový typ `S2`, a `S1` je cílem převod lepší než `S2`
-*  `T1` je `Task<S1>`, `T2` je `Task<S2>`, a `S1` je cílem převod lepší než `S2`
-*  `T1` je `S1` nebo `S1?` kde `S1` je celočíselný typ se znaménkem, a `T2` je `S2` nebo `S2?` kde `S2` je celočíselný typ bez znaménka. Konkrétně:
-   * `S1` je `sbyte` a `S2` je `byte`, `ushort`, `uint`, nebo `ulong`
-   * `S1` je `short` a `S2` je `ushort`, `uint`, nebo `ulong`
-   * `S1` je `int` a `S2` je `uint`, nebo `ulong`
-   * `S1` je `long` a `S2` je `ulong`
+*  Implicitní převod z `T1` na `T2` existuje.
+*  `T1` je buď typ delegáta `D1` nebo typ stromu výrazu `Expression<D1>`, `T2` je buď typ delegáta `D2`, nebo typ stromu výrazu `Expression<D2>`, `D1` má návratový typ `S1` a jeden z následujících blokování :
+   * `D2` je vracející typ void.
+   * `D2` má návratový typ `S2` a `S1` je lepším cílem převodu než `S2`.
+*  `T1` je `Task<S1>`, `T2` je `Task<S2>` a `S1` je lepším cílem převodu než `S2`.
+*  `T1` je `S1` nebo `S1?`, kde `S1` je celočíselný typ se znaménkem a `T2` je `S2` nebo `S2?`, kde `S2` je celočíselný typ bez znaménka. Určen
+   * `S1` je `sbyte` a `S2` je `byte`, `ushort`, `uint` nebo `ulong`.
+   * `S1` je `short` a `S2` je `ushort`, `uint` nebo `ulong`.
+   * `S1` je `int` a `S2` je `uint` nebo `ulong`.
+   * `S1` je `long` a `S2` je `ulong`.
 
-#### <a name="overloading-in-generic-classes"></a>Přetížení v obecné třídy
+#### <a name="overloading-in-generic-classes"></a>Přetížení v obecných třídách
 
-Podpisy, jak je deklarován musí být jedinečný, je možné, že nahrazení argumentů typu výsledkem identickými podpisy. V takových případech pravidla shody výše uvedené řešení přetížení vybere nejspecifičtější člena.
+I když signatury, které jsou deklarovány, musí být jedinečné, je možné, že nahrazení argumentů typu vede k identickým podpisům. V takových případech se pravidla, která jsou ve výše uvedeném Rozlišení přetěžování, budou vybírat nejvíce konkrétního člena.
 
-Následující příklady ukazují přetížení, které jsou platné a neplatné podle tohoto pravidla:
+Následující příklady znázorňují přetížení, které jsou platné a neplatné podle tohoto pravidla:
 
 ```csharp
 interface I1<T> {...}
@@ -910,66 +910,66 @@ class G2<U,V>
 }
 ```
 
-### <a name="compile-time-checking-of-dynamic-overload-resolution"></a>Kompilace kontrolu dynamické přetížení
+### <a name="compile-time-checking-of-dynamic-overload-resolution"></a>Kontrola dynamického překladu přetížení při kompilaci
 
-Pro operace s nejvíce dynamicky vazbou sadu možné kandidáty pro rozlišení neznámé v době kompilace. V některých případech ale sadu Release candidate je známý v době kompilace:
+Pro většinu dynamicky vázaných operací není sada možných kandidátů na rozlišení v době kompilace neznámá. V některých případech je však kandidátská sada známá v době kompilace:
 
-*  Volání statické metody s dynamických argumentů
-*  Pokud příjemce není výraz dynamického volání metod instance
-*  Pokud příjemce není výraz dynamického volání indexeru
-*  Volání konstruktoru pomocí dynamických argumentů
+*  Volání statických metod s dynamickými argumenty
+*  Metoda instance volá, kde příjemce není dynamický výraz.
+*  Indexer volá, kde příjemce není dynamický výraz.
+*  Konstruktor volá s dynamickými argumenty.
 
-V těchto případech se provádí omezené kontrola v době kompilace pro každého kandidáta zobrazíte, pokud některý z nich může být použít v době běhu. Tato kontrola se skládá z následujících kroků:
+V těchto případech je k dispozici omezená doba kompilace pro každého kandidáta, aby bylo možné zjistit, zda by některá z nich mohla být použita v době běhu. Tato kontrolu se skládá z následujících kroků:
 
-*  Odvození částečného typu: Jakýkoli typ argumentu, který přímo nebo nepřímo není závislý na argumentu typu `dynamic` odvozena pomocí pravidel pro [odvození typu](expressions.md#type-inference). Zbývající argumenty typu nejsou známé.
-*  Kontrola použitelnosti částečné: Použitelnost proběhne podle [použít funkční člen](expressions.md#applicable-function-member), ale ignoruje parametry, jejichž typy neznámé.
-*  Pokud žádný kandidát předá tento test, dojde k chybě v době kompilace.
+*  Odvození částečného typu: Jakýkoli argument typu, který není závislý přímo ani nepřímo na argumentu typu `dynamic` je odvozený pomocí pravidel [odvození typu](expressions.md#type-inference). Zbývající argumenty typu nejsou známy.
+*  Částečná kontroly použitelnosti: Použitelnost je kontrolována v závislosti na [platném členu funkce](expressions.md#applicable-function-member), ale ignoruje parametry, jejichž typy jsou neznámé.
+*  Pokud žádný kandidát neprojde tímto testem, dojde k chybě při kompilaci.
 
-### <a name="function-member-invocation"></a>Volání funkce člena
+### <a name="function-member-invocation"></a>Vyvolání člena funkce
 
-Tato část popisuje proces, který se provádí v době běhu k vyvolání konkrétní funkce člena. Předpokládá se, že proces doba vazby již určil konkrétního členu, který chcete vyvolat, případně s použitím rozlišení přetěžování na sadu Release candidate funkční členy.
+Tato část popisuje proces, který probíhá za běhu k vyvolání konkrétního člena funkce. Předpokládá se, že proces vytvoření vazby již určil konkrétního člena k vyvolání, pravděpodobně použitím řešení přetížení pro sadu kandidátních členů funkce.
 
-Pro účely popisu vyvolání procesu jsou členy funkce rozdělit do dvou kategorií:
+Pro účely popisu procesu vyvolání jsou členové funkce rozděleni do dvou kategorií:
 
-*  Funkce statických členů. Toto jsou konstruktory instancí, statické metody, přistupující objekty statické vlastnosti a operátory definované uživatelem. Funkce statických členů jsou vždy nevirtuální.
-*  Členy instance funkce. Toto jsou metody instance, přistupující objekty vlastnosti instance a přístupové objekty indexeru. Členy instance funkce jsou nevirtuální nebo virtuální a jsou vždy vyvolána na konkrétní instanci. Instanci se počítají tak, že výraz instance a bude dostupný v rámci členských funkcí jako `this` ([tento přístup](expressions.md#this-access)).
+*  Členové statických funkcí. Jedná se o konstruktory instancí, statické metody, přistupující objekty statických vlastností a uživatelsky definované operátory. Členy statických funkcí jsou vždy nevirtuální.
+*  Členové funkce instance. Jedná se o metody instancí, přistupující objekty vlastnosti instance a přistupující objekty indexeru. Členy funkce instance jsou buď nevirtuální, nebo virtuální a jsou vždy vyvolány na konkrétní instanci. Instance je vypočítána výrazem instance a je zpřístupněna v rámci člena funkce jako `this` ([Tento přístup](expressions.md#this-access)).
 
-Zpracování za běhu volání členských funkcí se skládá z následujících kroků, kde `M` je členské funkce a v případě `M` je členem instance `E` je výraz instance:
+Běhové zpracování vyvolání členů funkce se skládá z následujících kroků, kde `M` je členem funkce a pokud `M` je členem instance, `E` je výraz instance:
 
-*  Pokud `M` členem statické funkce:
-   * Seznam argumentů je vyhodnocen, jak je popsáno v [seznamy argumentů](expressions.md#argument-lists).
-   * `M` je vyvolána.
+*  Pokud je `M` členem statické funkce:
+   * Seznam argumentů je vyhodnocován, jak je popsáno v [seznamech argumentů](expressions.md#argument-lists).
+   * `M`je vyvolána.
 
-*  Pokud `M` je členem instance funkce deklarované v *value_type*:
-   * `E` je vyhodnocen. Je-li toto vyhodnocení způsobí výjimku, jsou spuštěny žádné další kroky.
-   * Pokud `E` není jsou klasifikovány jako proměnnou a dočasný místní proměnná `E`typ je vytvořen a hodnota `E` je přiřazená k této proměnné. `E` je pak překlasifikován sám jako odkaz na tento dočasný místní proměnné. Dočasná proměnná je dostupné jako `this` v rámci `M`, ale ne v žádným jiným způsobem. Proto pouze tehdy, když `E` je true proměnné je možné pro volajícího, aby sledovat změny, které `M` provede `this`.
-   * Seznam argumentů je vyhodnocen, jak je popsáno v [seznamy argumentů](expressions.md#argument-lists).
-   * `M` je vyvolána. Proměnná odkazuje `E` stane proměnná odkazuje `this`.
+*  Pokud `M` je člen funkce instance deklarované v *value_type*:
+   * je vyhodnocena hodnota `E`. Pokud toto vyhodnocení způsobí výjimku, nejsou provedeny žádné další kroky.
+   * Pokud `E` není klasifikován jako proměnná, je vytvořena dočasná lokální proměnná typu `E` a hodnota `E` je přiřazena k této proměnné. `E` je pak znovu klasifikován jako odkaz na tuto dočasnou místní proměnnou. Dočasná proměnná je k dispozici jako `this` v rámci `M`, ale ne jiným způsobem. Proto pouze v případě, že `E` je skutečná proměnná, může volající sledovat změny, které `M` dává `this`.
+   * Seznam argumentů je vyhodnocován, jak je popsáno v [seznamech argumentů](expressions.md#argument-lists).
+   * `M`je vyvolána. Proměnná, na kterou odkazuje `E`, se stala proměnnou, na kterou odkazuje `this`.
 
-*  Pokud `M` je členem instance funkce deklarované v *reference_type*:
-   * `E` je vyhodnocen. Je-li toto vyhodnocení způsobí výjimku, jsou spuštěny žádné další kroky.
-   * Seznam argumentů je vyhodnocen, jak je popsáno v [seznamy argumentů](expressions.md#argument-lists).
-   * Pokud typ `E` je *value_type*, převod na uzavřené určení ([zabalení převody](types.md#boxing-conversions)) se provádí za účelem převodu `E` na typ `object`, a `E` se považuje za Chcete-li být typu `object` v následujících krocích. V takovém případě `M` může být jenom členem `System.Object`.
-   * Hodnota `E` je zaškrtnuté políčko platný. Pokud hodnota `E` je `null`, `System.NullReferenceException` je vyvolána, a že jsou provedeny žádné další kroky.
-   * Implementace členské funkce k vyvolání se určuje:
-     * Pokud je typ vazby time `E` je rozhraní, členské funkce k vyvolání je implementace `M` poskytuje run-time typu instance odkazované procedurou `E`. Tento člen funkce je určeno použitím z pravidel mapování rozhraní ([mapování rozhraní](interfaces.md#interface-mapping)) k určení provádění `M` poskytuje run-time typu instance odkazované procedurou `E`.
-     * Jinak, pokud `M` členem virtuální funkce, je člen funkce k vyvolání provádění `M` poskytuje run-time typu instance odkazované procedurou `E`. Tento člen funkce je určeno použitím z pravidel pro určení implementace Většina odvozených ([virtuální metody](classes.md#virtual-methods)) z `M` s ohledem na run-time typu instance odkazované procedurou `E`.
-     * V opačném případě `M` je člen bez virtuální funkce a členské funkce k vyvolání `M` samotný.
-   * Implementace členské funkce nadefinovali v předchozím kroku, je vyvolána. Objekt odkazovaný zadaným parametrem `E` stane objekt odkazovaný zadaným parametrem `this`.
+*  Pokud `M` je člen funkce instance deklarované v *reference_type*:
+   * je vyhodnocena hodnota `E`. Pokud toto vyhodnocení způsobí výjimku, nejsou provedeny žádné další kroky.
+   * Seznam argumentů je vyhodnocován, jak je popsáno v [seznamech argumentů](expressions.md#argument-lists).
+   * Pokud je typ `E` *value_type*, převod na zabalení (převody na[zabalení](types.md#boxing-conversions)) provede převod `E` na typ `object` a `E` se považuje za typ `object` v následujících krocích. V tomto případě by `M` mohla být jenom členem `System.Object`.
+   * Hodnota `E` je zkontrolována jako platná. Pokud je hodnota `E` `null`, je vyvolána `System.NullReferenceException` a nejsou provedeny žádné další kroky.
+   * Je určena implementace členu funkce k vyvolání:
+     * Pokud je typ doby vazby `E` rozhraním, člen funkce, který se má vyvolat, je implementace `M` poskytnutá typem za běhu instance, na kterou odkazuje `E`. Tento člen funkce je určen pomocí pravidel mapování rozhraní ([mapování rozhraní](interfaces.md#interface-mapping)) k určení implementace `M` poskytnutého typem za běhu instance, na kterou odkazuje `E`.
+     * V opačném případě, pokud je `M` členem virtuální funkce, je člen funkce, který se má volat, implementace `M` poskytnutého typem za běhu instance, na kterou odkazuje `E`. Tento člen funkce je určen použitím pravidel pro určení nejvíce odvozené implementace ([virtuální metody](classes.md#virtual-methods)) `M` s ohledem na typ modulu runtime instance, na kterou odkazuje `E`.
+     * V opačném případě je `M` členem nevirtuální funkce a člen funkce, který se má vyvolat, je `M`.
+   * Je vyvolána implementace členu funkce určená v kroku výše. Objekt, na který odkazuje `E`, se stal objektem, na který odkazuje `this`.
 
-#### <a name="invocations-on-boxed-instances"></a>Volání na zabalený instancí
+#### <a name="invocations-on-boxed-instances"></a>Vyvolání u zabalených instancí
 
-Členské funkce implementované v *value_type* lze vyvolat pomocí zabalený instanci, která *value_type* v následujících situacích:
+Člen funkce implementovaný ve *value_type* může být vyvolán prostřednictvím zabalené instance tohoto *value_type* v následujících situacích:
 
-*  Kdy je člen funkce `override` metody zděděné z typu `object` a je vyvolána prostřednictvím výrazu instance typu `object`.
-*  Když členské funkce je implementace funkce člena rozhraní a je vyvolána prostřednictvím výrazu instance *interface_type*.
-*  Členské funkce je při vyvolání prostřednictvím delegáta.
+*  Když je člen funkce `override` metody zděděné z typu `object` a vyvolá se pomocí výrazu instance typu `object`.
+*  Když je člen funkce implementací člena funkce rozhraní a je vyvolán prostřednictvím výrazu instance *INTERFACE_TYPE*.
+*  Když je člen funkce vyvolán prostřednictvím delegáta.
 
-V těchto situacích pevně určené instance se považuje za obsahovat proměnnou *value_type*, a že tato proměnná bude proměnná odkazuje `this` v rámci volání členské funkce. Konkrétně to znamená, že při vyvolání funkce člena pevně určené instance, je možné pro členské funkce ke změně hodnoty obsažené v pevně určené instance.
+V těchto situacích je zabalená instance považována za obsahující proměnnou *value_type*a tato proměnná se na proměnnou, na kterou odkazuje `this` v rámci vyvolání člena funkce. Konkrétně to znamená, že pokud je člen funkce vyvolán na zabalenou instanci, může člen funkce změnit hodnotu obsaženou v zabalené instanci.
 
 ## <a name="primary-expressions"></a>Primární výrazy
 
-Primární výrazy zahrnují nejjednodušší typy výrazů.
+Primární výrazy obsahují nejjednodušší formy výrazů.
 
 ```antlr
 primary_expression
@@ -1002,23 +1002,23 @@ primary_no_array_creation_expression
     ;
 ```
 
-Primární výrazy jsou rozděleny mezi *array_creation_expression*s a *primary_no_array_creation_expression*s. Výraz vytvoření pole se zpracuje tímto způsobem, místo výpis společně s další jednoduchý výraz formuláře, umožňuje gramatiky tak potenciálně matoucí kódu, jako
+Primární výrazy jsou rozdělené mezi *array_creation_expression*s a *primary_no_array_creation_expression*s. Tímto způsobem se s použitím výrazu pro vytvoření pole vytvoří výraz, spíše než jeho výpis spolu s dalšími formuláři jednoduchých výrazů umožňuje, aby gramatika zakázala potenciálně matoucí kód, jako např.
 ```csharp
 object o = new int[3][1];
 ```
-které by jinak interpretován jako
+které by jinak bylo interpretováno jako
 ```csharp
 object o = (new int[3])[1];
 ```
 
 ### <a name="literals"></a>Literály
 
-A *primary_expression* , který se skládá z *literálu* ([literály](lexical-structure.md#literals)) je klasifikován jako hodnotu.
+*Primary_expression* , který se skládá z *literálu* ([literály](lexical-structure.md#literals)), je klasifikován jako hodnota.
 
 
 ### <a name="interpolated-strings"></a>Interpolované řetězce
 
-*Interpolated_string_expression* se skládá z `$` znaménka následovaného pravidelného či verbatim řetězcový literál, ve které otvory odděleny `{` a `}`, uzavřete výrazy a formátování specifikace. Interpolovaný řetězcový výraz ale je výsledkem *interpolated_string_literal* , které bylo přerušeno na jednotlivé tokeny, jak je popsáno v [interpolované řetězce literálů](lexical-structure.md#interpolated-string-literals).
+*Interpolated_string_expression* se skládá z znaku `$` následovaného regulárním nebo doslovném řetězcovým literálem, přičemž jsou ohraničeny díry, oddělené `{` a `}`, uzavřít výrazy a specifikace formátování. Výraz interpolovaná řetězcové konstanty je výsledkem *interpolated_string_literal* , který byl rozdělen na jednotlivé tokeny, jak je popsáno v [interpolovaná řetězcové literály](lexical-structure.md#interpolated-string-literals).
 
 ```antlr
 interpolated_string_expression
@@ -1050,30 +1050,30 @@ interpolated_verbatim_string_body
     ;
 ```
 
-*Constant_expression* interpolaci musí mít implicitní převod na `int`.
+*Constant_expression* v interpolaci musí mít implicitní převod na `int`.
 
-*Interpolated_string_expression* klasifikovaný jako hodnotu. Pokud je okamžitě převést na `System.IFormattable` nebo `System.FormattableString` s konverzi implicitní interpolovaném řetězci ([implicitní interpolované řetězce převody](conversions.md#implicit-interpolated-string-conversions)), má interpolovaný řetězcový výraz tohoto typu. V opačném případě má typ `string`.
+*Interpolated_string_expression* je klasifikován jako hodnota. Pokud je okamžitě převedena na `System.IFormattable` nebo `System.FormattableString` s implicitním interpolacem interpolovaná řetězcové konverzemi ([implicitní interpolované převody řetězců](conversions.md#implicit-interpolated-string-conversions)), výraz řetězce má tento typ. V opačném případě má typ `string`.
 
-Pokud je typem interpolovaného řetězce `System.IFormattable` nebo `System.FormattableString`, význam je volání `System.Runtime.CompilerServices.FormattableStringFactory.Create`. Pokud je typ `string`, význam výrazu je volání `string.Format`. V obou případech se seznamem argumentů volání se skládá z formátu řetězcový literál s zástupné symboly pro každý interpolace a argument pro každý výraz odpovídá místo zástupné znaky.
+Pokud je typ interpolované řetězcové `System.IFormattable` nebo `System.FormattableString`, znamená to, že se jedná o volání `System.Runtime.CompilerServices.FormattableStringFactory.Create`. Pokud je typ `string`, význam výrazu je volání `string.Format`. V obou případech se seznam argumentů volání skládá z řetězcového literálu formátu se zástupnými symboly pro každou interpolaci a argument pro každý výraz odpovídající držitelům umístění.
 
-Formát řetězcového literálu se vypočte takto, kde `N` je počet interpolace v *interpolated_string_expression*:
+Řetězcový literál formátu je konstruován takto, kde `N` je počet interpolů v *interpolated_string_expression*:
 
-*  Pokud *interpolated_regular_string_whole* nebo *interpolated_verbatim_string_whole* následuje `$` podepsat, pak tento token je literál řetězce formátu.
-*  Formát řetězcového literálu, jinak se skládá z: 
+*  Pokud *interpolated_regular_string_whole* nebo *interpolated_verbatim_string_whole* následuje symbol `$`, pak je řetězcový literál formátu tímto tokenem.
+*  V opačném případě se řetězcový literál formátu skládá z: 
    *  První *interpolated_regular_string_start* nebo *interpolated_verbatim_string_start*
-   *  Pak pro každé číslo `I` z `0` k `N-1`: 
-      * Desítkový zápis `I`
-      * Když se poté odpovídající *interpolace* má *constant_expression*, `,` (čárka), za nímž následuje Desítková vyjádření hodnoty *constant_expression*
-      * Pak bude *interpolated_regular_string_mid*, *interpolated_regular_string_end*, *interpolated_verbatim_string_mid* nebo *interpolated_ verbatim_string_end* hned za odpovídající interpolace.
+   *  Potom pro každé číslo `I` od `0` do `N-1`: 
+      * Desítková reprezentace `I`
+      * V případě, že odpovídající *interpolace* má *constant_expression*, je `,` (čárka) následovaná desítkovou reprezentací hodnoty *constant_expression* .
+      * Pak *interpolated_regular_string_mid*, *interpolated_regular_string_end*, *interpolated_verbatim_string_mid* nebo *interpolated_verbatim_string_end* hned za odpovídající interpolaci.
 
-Další argumenty jsou jednoduše *výrazy* z *interpolace* (pokud existuje), v pořadí.
+Následující argumenty jsou jednoduše *výrazy* z *interpolace* (pokud existují), v daném pořadí.
 
-TODO: příklady.
+TODO: příklady
 
 
 ### <a name="simple-names"></a>Jednoduché názvy
 
-A *simple_name* identifikátor, může volitelně následovat seznam argumentů typu se skládá ze:
+*Simple_name* se skládá z identifikátoru, volitelně následovaný seznamem argumentů typu:
 
 ```antlr
 simple_name
@@ -1081,37 +1081,37 @@ simple_name
     ;
 ```
 
-A *simple_name* je buď ve formátu `I` nebo formuláře `I<A1,...,Ak>`, kde `I` je jediným identifikátorem a `<A1,...,Ak>` je volitelný *type_argument_list*. Pokud ne *type_argument_list* je zadán, vezměte v úvahu `K` být nula. *Simple_name* je vyhodnocen a klasifikovat následujícím způsobem:
+*Simple_name* je jedna z těchto formulářů `I` nebo z formuláře `I<A1,...,Ak>`, kde `I` je jeden identifikátor a `<A1,...,Ak>` je volitelná *type_argument_list*. Pokud není zadán žádný *type_argument_list* , zvažte `K`, aby byla nulová. *Simple_name* je vyhodnocen a klasifikován následujícím způsobem:
 
-*  Pokud `K` je nula a *simple_name* se zobrazí v rámci *bloku* a, pokud *bloku*společnosti (nebo nadřazeném *bloku*společnosti) místní Deklarace proměnné místa ([deklarace](basic-concepts.md#declarations)) obsahuje místní proměnná, parametr nebo konstanta s názvem `I`, pak bude *simple_name* odkazuje na tuto místní proměnnou parametr nebo konstantu a je klasifikován jako na proměnnou nebo hodnotu.
-*  Pokud `K` je nula a *simple_name* se zobrazí v těle deklarace obecné metody a pokud tato deklarace obsahuje parametr typu s názvem `I`, pak bude *simple_name*odkazuje na parametr typu.
-*  Jinak pro každý typ instance `T` ([typ instance](classes.md#the-instance-type)), počínaje instance typu bezprostředně vložená deklarace typu a budete pokračovat s typem instance každé nadřazené třídu nebo strukturu deklarace (pokud existuje):
-   *  Pokud `K` je nula a deklarace `T` obsahuje parametr typu s názvem `I`, pak bude *simple_name* odkazuje na parametr typu.
-   *  Jinak, pokud člen vyhledávání ([člen vyhledávání](expressions.md#member-lookup)) z `I` v `T` s `K`  argumenty typu vytváří shoda:
-      * Pokud `T` je typ instance bezprostředně nadřazeného typu třídy nebo struktury a vyhledávání označuje jeden nebo více metod, výsledek je skupina metoda s výrazem přidruženou instanci `this`. Pokud byl zadán seznam argumentů typu se používá při volání obecné metody ([volání metod](expressions.md#method-invocations)).
-      * Jinak, pokud `T` je typ instance bezprostředně nadřazeného typu třídy nebo struktury, pokud vyhledávání identifikuje člena instance, a pokud odkaz nastane v těle konstruktoru instance, metoda instance nebo přístupový objekt instance výsledek je stejný jako přístup ke členu ([přístup ke členu](expressions.md#member-access)) ve formátu `this.I`. K tomu může dojít pouze při `K` je nula.
-      * Jinak, výsledek je stejný jako přístup ke členu ([přístup ke členu](expressions.md#member-access)) ve formátu `T.I` nebo `T.I<A1,...,Ak>`. V takovém případě je chyba doba vazby pro *simple_name* k odkazování na člena instance.
+*  Pokud je hodnota `K` nula a *simple_name* se zobrazí v *bloku* a v případě *, že*prostor deklarace místní proměnné (nebo ohraničujícího *bloku*) ([deklarace](basic-concepts.md#declarations)) obsahuje místní proměnnou, parametr nebo konstantu s hodnotou název @ no__t-6, potom *simple_name* odkazuje na tuto místní proměnnou, parametr nebo konstantu a je klasifikován jako proměnná nebo hodnota.
+*  Pokud `K` je nula a *simple_name* se zobrazí v těle deklarace obecné metody a pokud tato deklarace obsahuje parametr typu s názvem @ no__t-2, pak *simple_name* odkazuje na tento parametr typu.
+*  V opačném případě pro každý typ instance @ no__t-0 ([typ instance](classes.md#the-instance-type)), počínaje typem instance bezprostředně ohraničujícího typ deklarace a pokračování s typem instance každé nadřazené třídy nebo deklarace struktury (pokud existuje):
+   *  Pokud je `K` nula a deklarace `T` obsahuje parametr typu s názvem @ no__t-2, pak *simple_name* odkazuje na tento parametr typu.
+   *  V opačném případě, pokud vyhledávání členů ([vyhledávání členů](expressions.md#member-lookup)) `I` v `T` s argumenty `K` @ no__t-4Type vytvoří shodu:
+      * Pokud `T` je typ instance bezprostředně ohraničujícího typu třídy nebo struktury a vyhledávání identifikuje jednu nebo více metod, výsledkem je skupina metod s přidruženým výrazem instance `this`. Pokud byl zadán seznam argumentů typu, je použit při volání obecné metody ([vyvolání metod](expressions.md#method-invocations)).
+      * V opačném případě, pokud `T` je typ instance bezprostředně ohraničujícího typu třídy nebo struktury, pokud vyhledávání identifikuje člen instance a v případě, že k odkazu dojde v těle konstruktoru instance, metody instance nebo přistupujícího objektu instance, výsledek je stejný jako členský přístup ([členský přístup](expressions.md#member-access)) formuláře `this.I`. K tomu může dojít pouze v případě, že je hodnota `K` nulová.
+      * V opačném případě je výsledek stejný jako členský přístup ([členský přístup](expressions.md#member-access)) formuláře `T.I` nebo `T.I<A1,...,Ak>`. V tomto případě se jedná o chybu při vazbě, kterou *simple_name* odkazuje na člen instance.
 
-*  Jinak pro každý obor názvů `N`začíná s oborem názvů, ve kterém *simple_name* dojde, budete pokračovat s každý nadřazený obor názvů (pokud existuje) a konče globální obor názvů následující kroky jsou vyhodnocen, dokud se entita nachází:
-   *  Pokud `K` je nula a `I` je název oboru názvů v `N`, pak:
-      * Pokud umístění ve kterém *simple_name* dojde k není uzavřen v deklaraci oboru názvů pro `N` a obsahuje deklaraci oboru názvů *extern_alias_directive* nebo  *using_alias_directive* , která přidruží název `I` s oborem názvů nebo typ, pak bude *simple_name* je nejednoznačný a dojde k chybě kompilace.
+*  V opačném případě pro každý obor názvů @ no__t-0 počínaje oborem názvů, ve kterém dojde k *simple_name* , pokračuje v každém ohraničujícím oboru názvů (pokud existuje) a končí globálním oborem názvů, jsou vyhodnoceny následující kroky, dokud není nalezena entita:
+   *  Pokud je `K` nula a `I` je název oboru názvů v @ no__t-2, pak:
+      * Pokud je umístění, kde se nachází *simple_name* , uzavřeno deklarací oboru názvů pro `N` a deklarace oboru názvů obsahuje *extern_alias_directive* nebo *using_alias_directive* , který přidruží název @ no__t-4 k obor názvů nebo typ, *simple_name* je nejednoznačný a dojde k chybě při kompilaci.
       * V opačném případě *simple_name* odkazuje na obor názvů s názvem `I` v `N`.
-   *  Jinak, pokud `N` obsahuje přístupného typu s názvem `I` a `K`  parametry typu, pak:
-      * Pokud `K` je nula a umístění, kde *simple_name* dojde k není uzavřen v deklaraci oboru názvů pro `N` a obsahuje deklaraci oboru názvů *extern_alias_directive*nebo *using_alias_directive* , která přidruží název `I` s oborem názvů nebo typ, pak bude *simple_name* je nejednoznačný a dojde k chybě kompilace.
-      * V opačném případě *namespace_or_type_name* odkazuje na typ vytvořený s argumenty daného typu.
-   *  Jinak, pokud umístění ve kterém *simple_name* dojde k není uzavřen v deklaraci oboru názvů pro `N`:
-      * Pokud `K` je nula a obsahuje deklaraci oboru názvů *extern_alias_directive* nebo *using_alias_directive* , která přidruží název `I` s importovaným oborem názvů nebo typ, pak bude *simple_name* odkazuje na tento obor názvů nebo typ.
-      * Jinak, pokud deklarace oborů názvů a typ importované tímto seznamem *using_namespace_directive*s a *using_static_directive*s deklarace oboru názvů obsahovat právě jeden typ přístupné nebo rozšíření statický člen s názvem `I` a `K`  parametry typu, pak bude *simple_name* odkazuje na tento typ nebo člen vytvořený s argumenty daného typu.
-      * Jinak, pokud jsou obory názvů a typy importoval *using_namespace_directive*s deklarace oboru názvů obsahovat více než jeden dostupný typ nebo statický člen rozšiřující metoda s názvem `I` a `K`  parametry typu, pak bude *simple_name* je nejednoznačný a dojde k chybě.
+   *  Jinak, pokud `N` obsahuje přístupný typ s parametry Name @ no__t-1 a `K` @ no__t-3type, pak:
+      * Pokud je `K` nula a umístění, kde se nachází *simple_name* , je uzavřeno deklarací oboru názvů pro `N` a deklarace oboru názvů obsahuje *extern_alias_directive* nebo *using_alias_directive* , který přidruží k název @ no__t-5 s oborem názvů nebo typem, *simple_name* je nejednoznačný a dojde k chybě při kompilaci.
+      * V opačném případě *namespace_or_type_name* odkazuje na typ sestavený pomocí daných argumentů typu.
+   *  V opačném případě, pokud je umístění, kde se nachází *simple_name* , uzavřeno deklarací oboru názvů pro @ no__t-1:
+      * Pokud je `K` nula a deklarace oboru názvů obsahuje *extern_alias_directive* nebo *using_alias_directive* , který přidruží název @ no__t-3 k importovanému oboru názvů nebo typu, pak *simple_name* odkazuje na tento obor názvů nebo textový.
+      * V opačném případě, pokud obory názvů a deklarace typů importované pomocí *using_namespace_directive*s a *using_static_directive*s deklarací oboru názvů obsahují přesně jeden přístupný typ nebo statický člen bez přípony s názvem @ no__ parametry t-2 a `K` @ no__t-4Type, pak *simple_name* odkazuje na tento typ nebo člen vytvořený pomocí daných argumentů typu.
+      * V opačném případě, pokud obory názvů a typy importované do *using_namespace_directive*s deklarací oboru názvů obsahují více než jeden přístupný typ nebo statický člen nerozšiřující metody, který má název @ no__t-1 a `K` @ no__t-3type parametry, *simple_name* je nejednoznačný a dojde k chybě.
 
-   Mějte na paměti, že celý tento krok je přesně paralelní na odpovídající krok zpracování *namespace_or_type_name* ([Namespace a zadejte názvy](basic-concepts.md#namespace-and-type-names)).
+   Všimněte si, že celý krok je přesně rovnoběžný s odpovídajícím krokem při zpracování *namespace_or_type_name* ([obor názvů a názvy typů](basic-concepts.md#namespace-and-type-names)).
 
-*  V opačném případě *simple_name* je nedefinovaný a dojde k chybě kompilace.
+*  V opačném případě *simple_name* není definován a dojde k chybě při kompilaci.
 
 
-### <a name="parenthesized-expressions"></a>Výrazy v závorkách.
+### <a name="parenthesized-expressions"></a>Výrazy v závorkách
 
-A *parenthesized_expression* se skládá ze *výraz* uzavřený do závorek.
+*Parenthesized_expression* se skládá z *výrazu* uzavřeného v závorkách.
 
 ```antlr
 parenthesized_expression
@@ -1119,11 +1119,11 @@ parenthesized_expression
     ;
 ```
 
-A *parenthesized_expression* se vyhodnocuje na základě vyhodnocení *výraz* v závorkách. Pokud *výraz* v závorkách označuje obor názvů nebo typ, dojde k chybě kompilace. V opačném případě výsledek *parenthesized_expression* je výsledkem vyhodnocení uzavřeného *výraz*.
+*Parenthesized_expression* se vyhodnocuje vyhodnocením *výrazu* v závorkách. Pokud *výraz* v závorkách označuje obor názvů nebo typ, dojde k chybě při kompilaci. V opačném případě výsledek *parenthesized_expression* je výsledkem vyhodnocení obsaženého *výrazu*.
 
 ### <a name="member-access"></a>Přístup ke členům
 
-A *member_access* se skládá z *primary_expression*, *predefined_type*, nebo *qualified_alias_member*následovaný "`.`"token a po něm *identifikátor*volitelně následovaný *type_argument_list*.
+*Member_access* se skládá z *primary_expression*, *predefined_type*nebo *qualified_alias_member*, po kterém následuje token "`.`" následovaný *identifikátorem*, volitelně následovaným *type_argument_list* .
 
 ```antlr
 member_access
@@ -1138,50 +1138,50 @@ predefined_type
     ;
 ```
 
-*Qualified_alias_member* produkčním prostředí je definována v [Namespace alias kvalifikátory](namespaces.md#namespace-alias-qualifiers).
+Výroba *qualified_alias_member* je definována v [kvalifikátorech aliasů oboru názvů](namespaces.md#namespace-alias-qualifiers).
 
-A *member_access* je buď ve formátu `E.I` nebo formuláře `E.I<A1, ..., Ak>`, kde `E` je primární výraz, `I` je jediným identifikátorem a `<A1, ..., Ak>` je volitelný  *type_argument_list*. Pokud ne *type_argument_list* je zadán, vezměte v úvahu `K` být nula.
+*Member_access* je jedna z těchto formulářů `E.I` nebo z formuláře `E.I<A1, ..., Ak>`, kde `E` je primární výraz, `I` je jeden identifikátor a `<A1, ..., Ak>` je volitelná *type_argument_list*. Pokud není zadán žádný *type_argument_list* , zvažte `K`, aby byla nulová.
 
-A *member_access* s *primary_expression* typu `dynamic` dynamicky vázán ([dynamické vazby](expressions.md#dynamic-binding)). V tomto případě kompilátor klasifikuje přístup ke členu jako přístup k vlastnosti typu `dynamic`. Pravidly dole určit význam *member_access* se pak použijí v době běhu, místo kompilaci typu run-time typu *primary_expression*. Pokud tato klasifikace za běhu vede na skupinu metod, pak musí být přístup ke členu *primary_expression* ze *invocation_expression*.
+*Member_access* s *primary_expression* typu `dynamic` je dynamicky vázaná ([dynamická vazba](expressions.md#dynamic-binding)). V tomto případě kompilátor klasifikuje přístup členů jako vlastnost přístupu typu `dynamic`. Níže uvedená pravidla určující význam *member_access* se pak použijí v době běhu, a to pomocí běhového typu místo při kompilaci *primary_expression*. Pokud tato klasifikace za běhu vede na skupinu metod, musí být přístup člena *primary_expression* typu *invocation_expression*.
 
-*Member_access* je vyhodnocen a klasifikovat následujícím způsobem:
+*Member_access* je vyhodnocen a klasifikován následujícím způsobem:
 
-*  Pokud `K` je nula a `E` je obor názvů a `E` obsahuje vnořené oboru názvů s názvem `I`, výsledek je tento obor názvů.
-*  Jinak, pokud `E` je obor názvů a `E` obsahuje přístupného typu s názvem `I` a `K`  zadejte parametry, výsledkem je vytvořen s daným typem argumenty typu.
-*  Pokud `E` je *predefined_type* nebo *primary_expression* klasifikovat jako typ, pokud `E` se nejedná o parametr typu a pokud člen vyhledávání ([člen vyhledávání](expressions.md#member-lookup)) z `I` v `E` s `K`  parametry typu vytváří shodu, pak `E.I` je vyhodnocen a klasifikovat následujícím způsobem:
-   *  Pokud `I` identifikuje typ, výsledek je vytvořen s daným typem argumenty typu.
-   *  Pokud `I` identifikuje jednu nebo více metod, výsledek je skupinu metod s žádný výraz přidruženou instanci. Pokud byl zadán seznam argumentů typu se používá při volání obecné metody ([volání metod](expressions.md#method-invocations)).
-   *  Pokud `I` identifikuje `static` vlastnost a potom výsledek je přístup k vlastnosti s žádný výraz přidruženou instanci.
-   *  Pokud `I` identifikuje `static` pole:
-      * Pokud je datové pole `readonly` a odkaz proběhne mimo statický konstruktor třídy nebo struktury, ve kterém je deklarována pole a výsledkem je hodnota, konkrétně hodnota statické pole `I` v `E`.
-      * Jinak, výsledek je proměnná, konkrétně statické pole `I` v `E`.
-   *  Pokud `I` identifikuje `static` události:
-      * Pokud dojde k odkazu v rámci třídy nebo struktury, ve kterém je deklarována jako události a události byla deklarovaná bez *event_accessor_declarations* ([události](classes.md#events)), pak `E.I` se právě zpracovává. jakoby `I` byly statické pole.
-      * Jinak výsledkem je přístup k události pomocí žádný výraz přidruženou instanci.
-   *  Pokud `I` identifikuje konstantě, a výsledkem je hodnota, konkrétně hodnota této konstanty.
-    * Pokud `I` identifikuje na člena výčtu a výsledkem je hodnota, konkrétně hodnotu tohoto člena výčtu.
-    * V opačném případě `E.I` je odkaz na člena je neplatný a dojde k chybě kompilace.
-*  Pokud `E` přístup k vlastnostem, přístup indexeru, proměnné nebo hodnotu, jehož typ je `T`a člen vyhledávání ([člen vyhledávání](expressions.md#member-lookup)) z `I` v `T` s `K`  argumenty typu vytváří shodu, pak `E.I` je vyhodnocen a klasifikovat následujícím způsobem:
-   *  První, pokud `E` vlastnost nebo indexer přístup, je hodnota vlastnosti nebo získat přístup indexeru ([hodnot výrazů](expressions.md#values-of-expressions)) a `E` přeřazených jako hodnotu.
-   *  Pokud `I` identifikuje jednu nebo více metod, výsledek je skupinu metod s výrazem přidruženou instanci `E`. Pokud byl zadán seznam argumentů typu se používá při volání obecné metody ([volání metod](expressions.md#method-invocations)).
+*  Pokud je `K` nula a `E` je obor názvů a `E` obsahuje vnořený obor názvů s názvem @ no__t-3, pak je výsledkem tento obor názvů.
+*  V opačném případě, pokud `E` je obor názvů a `E` obsahuje přístupný typ s parametry Name @ no__t-2 a `K` @ no__t-4Type, pak je výsledkem typ sestavený pomocí daných argumentů typu.
+*  Pokud je `E` *predefined_type* nebo *primary_expression* klasifikovaný jako typ, pokud `E` není parametr typu, a pokud vyhledávání členů ([vyhledávání členů](expressions.md#member-lookup)) `I` v `E` @no__t s parametrem-7 @ no__t-8type vytvoří shodu, pak je `E.I` vyhodnocena a klasifikována následujícím způsobem:
+   *  Pokud `I` identifikuje typ, pak je výsledkem typ konstruovaný pomocí daných argumentů typu.
+   *  Pokud `I` identifikuje jednu nebo více metod, pak je výsledkem skupina metod bez přidruženého výrazu instance. Pokud byl zadán seznam argumentů typu, je použit při volání obecné metody ([vyvolání metod](expressions.md#method-invocations)).
+   *  Pokud `I` identifikuje vlastnost `static`, pak je výsledkem přístup k vlastnosti bez přidruženého výrazu instance.
+   *  Pokud `I` identifikuje pole `static`:
+      * Pokud je pole `readonly` a odkaz se nachází mimo statický konstruktor třídy nebo struktury, ve které je pole deklarováno, pak je výsledkem hodnota, konkrétně hodnota statického pole @ no__t-1 v @ no__t-2.
+      * V opačném případě je výsledkem proměnná, konkrétně pole static @ no__t-0 v @ no__t-1.
+   *  Pokud `I` identifikuje událost `static`:
+      * Pokud se odkaz vyskytuje v rámci třídy nebo struktury, ve které je událost deklarována, a událost byla deklarována bez *event_accessor_declarations* ([events](classes.md#events)), pak `E.I` je zpracována přesně, jako by byla `I` statická pole.
+      * V opačném případě je výsledkem přístup k události bez přidruženého výrazu instance.
+   *  Pokud `I` identifikuje konstantu, pak je výsledkem hodnota, jmenovitě hodnota této konstanty.
+    * Pokud `I` identifikuje člen výčtu, pak je výsledkem hodnota, konkrétně hodnota tohoto člena výčtu.
+    * V opačném případě je `E.I` neplatný odkaz na člena a dojde k chybě při kompilaci.
+*  Pokud `E` je přístup k vlastnostem, přístup k indexeru, proměnná nebo hodnota, typ, který je @ no__t-1 a vyhledávání členů ([vyhledávání členů](expressions.md#member-lookup)) `I` v `T` s argumenty `K` @ no__t-6type, je vyhodnocena a pak `E.I`. klasifikované následujícím způsobem:
+   *  První, pokud `E` je vlastnost nebo přístup indexeru, je získána hodnota vlastnosti nebo přístupu indexeru ([hodnoty výrazů](expressions.md#values-of-expressions)) a `E` je překlasifikována jako hodnota.
+   *  Pokud `I` identifikuje jednu nebo více metod, pak je výsledkem skupina metod s přidruženým výrazem instance `E`. Pokud byl zadán seznam argumentů typu, je použit při volání obecné metody ([vyvolání metod](expressions.md#method-invocations)).
    *  Pokud `I` identifikuje vlastnost instance,
-      * Pokud `E` je `this`, `I` identifikuje automaticky implementované vlastnosti ([automaticky implementované vlastnosti](classes.md#automatically-implemented-properties)) bez setter a odkaz nastane v rámci konstruktoru instance pro Typ třídy nebo struktury `T`, výsledek je proměnná, konkrétně pole Skrytá zálohování pro automatickou vlastnost Dal `I` v instanci `T` určené pomocí `this`.
-      * Jinak, výsledkem je přístup k vlastnosti s výrazem přidruženou instanci `E`.
-   *  Pokud `T` je *class_type* a `I` pole instance, která identifikuje *class_type*:
-      * Pokud hodnota `E` je `null`, o `System.NullReferenceException` je vyvolána výjimka.
-      * Jinak, pokud je datové pole `readonly` a odkaz proběhne mimo konstruktor instance třídy, ve kterém je deklarována pole a výsledkem je hodnota, konkrétně hodnota pole `I` v objekt odkazovaný zadaným parametrem `E`.
-      * Jinak, výsledek je proměnná, konkrétně pole `I` v objekt odkazovaný zadaným parametrem `E`.
-   *  Pokud `T` je *struct_type* a `I` pole instance, která identifikuje *struct_type*:
-      * Pokud `E` je hodnota, nebo pokud je datové pole `readonly` a odkaz proběhne mimo konstruktor instance struktury, ve kterém je deklarována pole a výsledkem je hodnota, konkrétně hodnota pole `I` v dána instance – struktura  `E`.
-      * Jinak, výsledek je proměnná, konkrétně pole `I` v instanci struktury Dal `E`.
-   *  Pokud `I` identifikuje instanci události:
-      * Pokud dojde k odkazu v rámci třídy nebo struktury, ve kterém je deklarována jako události a události byla deklarovaná bez *event_accessor_declarations* ([události](classes.md#events)), a nedojde k jako odkaz Levá strana příkazu `+=` nebo `-=` operátor, pak `E.I` se právě zpracovává jako `I` bylo pole instance.
-      * Jinak, výsledkem je přístup k události s výrazem přidruženou instanci `E`.
-*  V opačném případě je proveden pokus o zpracování `E.I` jako volání metody rozšíření ([volání metod rozšíření](expressions.md#extension-method-invocations)). Když se to nepovede, `E.I` je odkaz na člena je neplatný a dojde k chybě vazby čas.
+      * Pokud je `E` `this`, `I` identifikuje automaticky implementovanou vlastnost ([automaticky implementované vlastnosti](classes.md#automatically-implemented-properties)) bez metody setter a odkaz se objeví v rámci konstruktoru instance pro třídu nebo typ struktury `T`, pak výsledek je proměnná, konkrétně skryté pole zálohování pro automatickou vlastnost zadanou parametrem `I` v instanci `T`, kterou používá `this`.
+      * V opačném případě je výsledkem přístup k vlastnosti s přidruženým výrazem instance @ no__t-0.
+   *  Pokud `T` je *class_type* a `I` identifikuje pole instance daného *class_type*:
+      * Pokud je hodnota `E` `null`, je vyvolána `System.NullReferenceException`.
+      * V opačném případě, pokud je pole `readonly` a odkaz se vyskytuje mimo konstruktor instance třídy, ve které je pole deklarováno, pak výsledek je hodnota, jmenovitá hodnota pole @ no__t-1 v objektu, na který odkazuje @ no__t-2.
+      * V opačném případě výsledkem je proměnná, konkrétně pole @ no__t-0 v objektu, na který odkazuje @ no__t-1.
+   *  Pokud `T` je *struct_type* a `I` identifikuje pole instance daného *struct_type*:
+      * Pokud je `E` hodnota, nebo pokud je pole `readonly` a odkaz se objeví mimo konstruktor instance struktury, ve které je pole deklarováno, pak je výsledkem hodnota, konkrétně hodnota pole @ no__t-2 v instanci struktury, kterou má hodnota @ no__t-3.
+      * V opačném případě výsledkem je proměnná, konkrétně pole @ no__t-0 v instanci struct dané @ no__t-1.
+   *  Pokud `I` identifikuje událost instance:
+      * Pokud se odkaz vyskytuje v rámci třídy nebo struktury, ve které je událost deklarována, a událost byla deklarována bez *event_accessor_declarations* ([events](classes.md#events)) a odkaz se nevyskytuje jako levá strana operátoru `+=` nebo `-=` a pak je `E.I` zpracována přesně, jako by `I` bylo polem instance.
+      * V opačném případě je výsledkem přístup k události s přidruženým výrazem instance @ no__t-0.
+*  V opačném případě se pokusí zpracovat `E.I` jako volání rozšiřující metody ([vyvolání rozšiřující metody](expressions.md#extension-method-invocations)). Pokud se to nepovede, `E.I` je neplatný odkaz na člena a dojde k chybě při vazbě.
 
-#### <a name="identical-simple-names-and-type-names"></a>Stejný jednoduchý název a názvy typů
+#### <a name="identical-simple-names-and-type-names"></a>Stejné jednoduché názvy a názvy typů
 
-V přístupu ke členu formuláře `E.I`, pokud `E` je jediným identifikátorem a pokud význam `E` jako *simple_name* ([jednoduché názvy](expressions.md#simple-names)) je konstanta, pole, vlastnost, lokální proměnná ani parametr stejného typu jako význam `E` jako *type_name* ([Namespace a zadejte názvy](basic-concepts.md#namespace-and-type-names)), pak oba možných významů z `E` jsou povolené. Dva možné význam `E.I` nejsou nikdy nejednoznačný, protože `I` nutně musí být členem typu `E` v obou případech. Jinými slovy, pravidlo jednoduše umožňuje přístup na statické členy a vnořené typy `E` kde kompilace by jinak mají došlo k chybě. Příklad:
+V případě členství ve formuláři `E.I`, pokud `E` je jediný identifikátor, a pokud je význam `E` jako *simple_name* ([jednoduché názvy](expressions.md#simple-names)) konstanta, pole, vlastnost, místní proměnná nebo parametr se stejným typem jako hodnota `E` jako *TYPE_NAME* ([obor názvů a názvy typů](basic-concepts.md#namespace-and-type-names)), jsou povoleny oba možné významy `E`. Dvě možné významy `E.I` nikdy nejednoznačné, protože `I` musí být nutně členem typu `E` v obou případech. Jinými slovy pravidlo jednoduše povoluje přístup ke statickým členům a vnořeným typům `E`, kde by jinak došlo k chybě při kompilaci. Příklad:
 ```csharp
 struct Color
 {
@@ -1206,40 +1206,40 @@ class A
 }
 ```
 
-#### <a name="grammar-ambiguities"></a>Gramatika nejednoznačnosti
+#### <a name="grammar-ambiguities"></a>Nejednoznačnost gramatiky
 
-Výroby pro *simple_name* ([jednoduché názvy](expressions.md#simple-names)) a *member_access* ([přístup ke členu](expressions.md#member-access)) může mít za následek nejednoznačnosti v Gramatika výrazů. Například příkaz:
-```
+Výroby pro *simple_name* ([jednoduché názvy](expressions.md#simple-names)) a *member_access* ([přístup do členů](expressions.md#member-access)) mohou vést k nejednoznačnosti v gramatice pro výrazy. Například příkaz:
+```csharp
 F(G<A,B>(7));
 ```
-možné interpretovat jako volání `F` se dvěma argumenty, `G < A` a `B > (7)`. Alternativně se dá interpretovat jako volání `F` s jedním argumentem, který je volání obecné metody `G` pomocí dva argumenty typu a pravidelné jeden argument.
+může být interpretován jako volání `F` se dvěma argumenty, `G < A` a `B > (7)`. Alternativně může být interpretován jako volání `F` s jedním argumentem, což je volání obecné metody @ no__t-1 se dvěma argumenty typu a jedním regulárním argumentem.
 
-Pokud posloupnost tokeny můžete analyzovat (v kontextu) jako *simple_name* ([jednoduché názvy](expressions.md#simple-names)), *member_access* ([přístup ke členu](expressions.md#member-access)), nebo *pointer_member_access* ([přístupu k členovi](unsafe-code.md#pointer-member-access)) končí *type_argument_list* ([argumenty typu](types.md#type-arguments)), Token hned za uzavírací `>` token je zkontrolován. Pokud je jeden z
+Pokud je možné sekvenci tokenů analyzovat (v kontextu) jako *simple_name* ([jednoduché názvy](expressions.md#simple-names)), *member_access* ([přístup ke členu](expressions.md#member-access)) nebo *pointer_member_access* ([Přístup člena ukazatele](unsafe-code.md#pointer-member-access)) končící na *type_argument_ list* ([argumenty typu](types.md#type-arguments)): vyhodnotí se token hned za uzavíracím tokenem `>`. Pokud je jeden z
 ```csharp
 (  )  ]  }  :  ;  ,  .  ?  ==  !=  |  ^
 ```
-pak bude *type_argument_list* se uchovávají v rámci *simple_name*, *member_access* nebo *pointer_member_access* a jakékoli Další možné parsovat posloupnost tokeny se zahodí. V opačném případě *type_argument_list* se nepovažuje za součást *simple_name*, *member_access* nebo *pointer_member_access*i v případě, že neexistuje žádná možné parsovat sekvence tokenů. Všimněte si, že tato pravidla se použijí při analýze *type_argument_list* v *namespace_or_type_name* ([Namespace a zadejte názvy](basic-concepts.md#namespace-and-type-names)). Příkaz
+*type_argument_list* se pak uchová jako součást *simple_name*, *member_access* nebo *pointer_member_access* a jakékoli další možné analýzy sekvence tokenů se zahodí. V opačném případě se *type_argument_list* nepovažuje za součást *simple_name*, *member_access* nebo *pointer_member_access*, a to i v případě, že není k dispozici žádné jiné možné analýzy sekvence tokenů. Všimněte si, že tato pravidla nejsou aplikována při analýze *type_argument_list* v *namespace_or_type_name* ([obor názvů a názvy typů](basic-concepts.md#namespace-and-type-names)). Příkaz
 ```csharp
 F(G<A,B>(7));
 ```
-podle tohoto pravidla se, se bude interpretovat jako volání `F` s jedním argumentem, který je volání obecné metody `G` pomocí dva argumenty typu a pravidelné jeden argument. Příkazy
+bude podle tohoto pravidla interpretován jako volání `F` s jedním argumentem, což je volání obecné metody `G` se dvěma argumenty typu a jedním regulárním argumentem. Příkazy
 ```csharp
 F(G < A, B > 7);
 F(G < A, B >> 7);
 ```
-bude každý interpretovat jako volání `F` se dvěma argumenty. Příkaz
+všechna budou interpretována jako volání `F` se dvěma argumenty. Příkaz
 ```csharp
 x = F < A > +y;
 ```
-budou interpretovány jako méně než operátor větší než operátor, operátor a Unární plus, jako by měl byl zapsán příkaz `x = (F < A) > (+y)`, místo jako *simple_name* s *type_argument_list* Následuje operátor plus binární soubor. V příkazu
+bude interpretován jako operátor menší než, operátor větší než a unární operátor plus, jako kdyby byl příkaz napsán `x = (F < A) > (+y)` namísto jako *simple_name* s *type_argument_list* následovaným binárním operátorem Plus. V příkazu
 ```csharp
 x = y is C<T> + z;
 ```
 tokeny `C<T>` jsou interpretovány jako *namespace_or_type_name* s *type_argument_list*.
 
-### <a name="invocation-expressions"></a>Výrazy typu Invocation
+### <a name="invocation-expressions"></a>Výrazy vyvolání
 
-*Invocation_expression* se používá k volání metody.
+*Invocation_expression* se používá k vyvolání metody.
 
 ```antlr
 invocation_expression
@@ -1247,52 +1247,52 @@ invocation_expression
     ;
 ```
 
-*Invocation_expression* dynamicky vázán ([dynamické vazby](expressions.md#dynamic-binding)) Pokud obsahuje nejméně jednu z následujících akcí:
+*Invocation_expression* je dynamicky svázán ([dynamická vazba](expressions.md#dynamic-binding)), pokud alespoň jedna z následujících možností obsahuje:
 
-* *Primary_expression* má typ kompilace `dynamic`.
-* Alespoň jeden argument nepovinný *argument_list* má typ kompilace `dynamic` a *primary_expression* nemá typ delegáta.
+* *Primary_expression* má typ doby kompilace `dynamic`.
+* Nejméně jeden argument volitelného *argument_list* má typ doby kompilace `dynamic` a *primary_expression* nemá typ delegáta.
 
-V tomto případě kompilátor klasifikuje *invocation_expression* jako hodnotu typu `dynamic`. Pravidly dole určit význam *invocation_expression* se pak použijí v době běhu, run-time typu místo kompilaci typu těch, které *primary_expression* a argumenty, které mají typ kompilace `dynamic`. Pokud *primary_expression* nemá typ kompilace `dynamic`, pak volání metody projde Kontrola času kompilace omezená, jak je popsáno v [kompilace kontrolu dynamické přetížení ](expressions.md#compile-time-checking-of-dynamic-overload-resolution).
+V tomto případě kompilátor klasifikuje *invocation_expression* jako hodnotu typu `dynamic`. Níže uvedená pravidla určující význam *invocation_expression* se pak použijí v době běhu, a to pomocí běhového typu místo za kompilace pro *primary_expression* a argumenty, které mají typ doby kompilace @no_ _T – 2. Pokud *primary_expression* nemá typ doby kompilace `dynamic`, pak volání metody bude mít za následek omezené doby kompilace, jak je popsáno v tématu [Kontrola dynamického přetěžování při kompilaci](expressions.md#compile-time-checking-of-dynamic-overload-resolution).
 
-*Primary_expression* ze *invocation_expression* musí být metoda skupiny nebo hodnotu *delegate_type*. Pokud *primary_expression* je skupinu metod *invocation_expression* je volání metody ([volání metod](expressions.md#method-invocations)). Pokud *primary_expression* . má hodnotu *delegate_type*, *invocation_expression* vyvolání delegáta ([delegáta volání](expressions.md#delegate-invocations)). Pokud *primary_expression* není skupinu metod ani hodnotu *delegate_type*, dojde k chybě vazby čas.
+*Primary_expression* *invocation_expression* musí být skupinou metod nebo hodnotou *delegate_type*. Pokud je *primary_expression* skupinou metod, *invocation_expression* je volání metody ([vyvolání](expressions.md#method-invocations)metod). Pokud je *primary_expression* hodnotou *delegate_type*, *invocation_expression* je volání delegáta ([vyvolání delegátů](expressions.md#delegate-invocations)). Pokud *primary_expression* není ani skupina metod ani hodnota *delegate_type*, dojde k chybě při vazbě.
 
-Volitelný *argument_list* ([seznamy argumentů](expressions.md#argument-lists)) obsahuje hodnoty nebo odkazy na proměnné pro parametry metody.
+Volitelné *argument_list* ([seznamy argumentů](expressions.md#argument-lists)) poskytují hodnoty nebo odkazy na proměnné pro parametry metody.
 
-Výsledek vyhodnocení výrazu *invocation_expression* klasifikovaný následujícím způsobem:
+Výsledek vyhodnocení *invocation_expression* je klasifikován následujícím způsobem:
 
-*  Pokud *invocation_expression* vyvolá metoda nebo delegát, který vrátí `void`, výsledek má hodnotu nothing. Výraz, který je klasifikován jako nic je povolený jenom v kontextu *statement_expression* ([příkazy výrazů](statements.md#expression-statements)) nebo jako text *lambda_expression*([Výrazy anonymní funkce](expressions.md#anonymous-function-expressions)). Jinak dojde k chybě vazby čas.
-*  Jinak výsledkem je hodnota typu vrácené z metody nebo delegáta.
+*  Pokud *invocation_expression* vyvolá metodu nebo delegáta, který vrací `void`, výsledek není Nothing. Výraz, který je klasifikován jako Nothing, je povolen pouze v kontextu *statement_expression* ([příkazy výrazu](statements.md#expression-statements)) nebo jako tělo *lambda_expression* ([anonymní výrazy Functions](expressions.md#anonymous-function-expressions)). V opačném případě dojde k chybě při vazbě.
+*  V opačném případě je výsledkem hodnota typu vráceného metodou nebo delegátem.
 
-#### <a name="method-invocations"></a>Volání metod
+#### <a name="method-invocations"></a>Vyvolání metod
 
-Pro volání metody *primary_expression* z *invocation_expression* musí být skupinu metod. Skupinu metod identifikuje jednu metodu, která se má vyvolat nebo sadu přetížených metod, ze kterého mohou vybírat konkrétní metody, která se má vyvolat. V druhém případě je stanovení konkrétní metoda k vyvolání založené na poskytované typy argumentů v kontextu *argument_list*.
+Pro vyvolání metody musí být *primary_expression* metody *invocation_expression* skupinou metod. Skupina metod identifikuje jednu metodu, která se má vyvolat, nebo sadu přetížených metod, ze kterých se má vybrat konkrétní metoda, která se má vyvolat. V druhém případě je určení konkrétní metody vyvolání odvozeno z kontextu poskytnutého typy argumentů v *argument_list*.
 
-Vazby – čas zpracování volání metody formuláře `M(A)`, kde `M` je skupina – metoda (verzovaným *type_argument_list*), a `A` je volitelný *argument_ seznam*, se skládá z následujících kroků:
+Zpracování volání metody formuláře `M(A)`, kde `M` je skupina metod (případně včetně *type_argument_list*) a `A` je volitelná *argument_list*, sestává z následujících kroků:
 
-*  Sadu metod pro volání metody je vytvořený. Pro každou metodu `F` přidružené ke skupině metoda `M`:
-   *  Pokud `F` není obecná, `F` je Release candidate při:
-      * `M` nemá žádný seznam argumentů typu a
-      * `F` lze použít s ohledem na `A` ([použít funkční člen](expressions.md#applicable-function-member)).
-   *  Pokud `F` je obecný a `M` nemá žádný seznam argumentů typu `F` je Release candidate při:
-      * Odvození typu ([odvození typu](expressions.md#type-inference)) úspěšná, odvozování seznam argumentů pro volání, a
-      * Jakmile se argumenty typu jsou substituovány za parametry typu odpovídající metoda, všechny sestavené typy v seznamu parametrů F vyhovět jejich omezením ([neodpovídajících omezení](types.md#satisfying-constraints)) a seznamu parametrů `F` lze použít s ohledem na `A` ([použít funkční člen](expressions.md#applicable-function-member)).
-   *  Pokud `F` je obecný a `M` obsahuje seznam argumentů typu, `F` je Release candidate při:
-      * `F` byly zadány v seznamu argumentů typu má stejný počet parametrů typu metoda a
-      * Jakmile se argumenty typu jsou substituovány za parametry typu odpovídající metoda, všechny sestavené typy v seznamu parametrů F vyhovět jejich omezením ([neodpovídajících omezení](types.md#satisfying-constraints)) a seznamu parametrů `F` lze použít s ohledem na `A` ([použít funkční člen](expressions.md#applicable-function-member)).
-*  Sadu metod Release candidate je omezit tak, aby obsahovala pouze metody ze nejvíce odvozené typy: Pro každou metodu `C.F` v sadě, kde `C` je typ, ve kterém metoda `F` je teď deklarována, všechny metody deklarované v základní typ `C` se odeberou ze sady. Kromě toho pokud `C` typu třídy je jiné než `object`, všechny metody deklarované v rozhraní typu se odeberou ze sady. (Toto druhé pravidlo pouze nemá vliv při výsledek vyhledávání člena pro parametr typu s efektivní základní třídy, než je objekt a efektivní rozhraní neprázdný nastavit skupinu metod.)
-*  Pokud výslednou sadu metod je prázdný, další zpracování podél následující kroky jsou opuštěných a místo toho proveden pokus o zpracování volání jako volání metody rozšíření ([volání metod rozšíření](expressions.md#extension-method-invocations)). Pokud se to nepodaří, neexistují žádné použitelné metody a dojde k chybě vazby čas.
-*  Nejlepší metody sadu metod Release candidate je identifikován pomocí pravidel rozlišení přetížení [rozlišení přetěžování](expressions.md#overload-resolution). Pokud nebylo možné identifikovat jeden nejlepší metody, je nejednoznačné volání metody a dojde k chybě vazby čas. Při překladu přetížení parametrů Obecné metody jsou považovány za po nahrazení argumentů typu (zadaný, nebo vyvozen) pro odpovídající typ parametry metody.
-*  Poslední zvolené nejlepší metody ověřování:
-   * Metoda ověření v kontextu skupinu metod: Nejlepší metodou je statickou metodu, musí mít skupinu metod. výsledkem *simple_name* nebo *member_access* prostřednictvím typu. Nejlepší způsob je metoda instance, musí mít skupinu metod. výsledkem *simple_name*, *member_access* prostřednictvím proměnné nebo hodnotu, nebo *base_access*. Pokud ani jedno z těchto požadavků je hodnota true, dojde k chybě vazby čas.
-   * Pokud je nejlepší metodou je obecná metoda, zadejte argumenty (poskytnuté nebo odvozené) jsou porovnávána s omezením ([neodpovídajících omezení](types.md#satisfying-constraints)) deklarovat v obecné metody. Pokud některý z argumentů typu nevyhovuje odpovídající omezení u parametru typu, dojde k chybě vazby čas.
+*  Sada kandidátních metod pro vyvolání metody je vytvořena. Pro každou metodu `F` přidruženou ke skupině metod `M`:
+   *  Pokud je `F` neobecné, `F` je kandidátem v těchto případech:
+      * `M` nemá žádný typ seznamu argumentů a
+      * `F` platí pro `A` ([platný člen funkce](expressions.md#applicable-function-member)).
+   *  Pokud je `F` obecný a `M` nemá žádný seznam argumentů typu, `F` je kandidátem v těchto případech:
+      * Odvození typu ([odvození typu](expressions.md#type-inference)) je úspěšné, odvození seznamu argumentů typu pro volání a
+      * Jakmile jsou argumenty odvozených typů nahrazeny odpovídajícími parametry typu metody, všechny vytvořené typy v seznamu parametrů F splní svá omezení ([splňující omezení](types.md#satisfying-constraints)) a seznam parametrů `F` lze použít s v souvislosti s `A` ([platný člen funkce](expressions.md#applicable-function-member)).
+   *  Pokud je `F` obecný a `M` obsahuje seznam argumentů typu, `F` je kandidátem v těchto případech:
+      * `F` má stejný počet parametrů typu metody, které byly zadány v seznamu argumentů typu.
+      * Jakmile jsou argumenty typu nahrazeny odpovídajícími parametry typu metody, všechny vytvořené typy v seznamu parametrů F splní svá omezení ([splňující omezení](types.md#satisfying-constraints)) a seznam parametrů `F` je použitelný s ohledem na `A` ([platný člen funkce](expressions.md#applicable-function-member)).
+*  Sada kandidátních metod je zmenšena tak, aby obsahovala pouze metody z nejvíc odvozených typů: Pro každou metodu `C.F` v sadě, kde `C` je typ, ve kterém je metoda `F` deklarována, všechny metody deklarované v základním typu `C` jsou ze sady odebrány. Kromě toho, pokud `C` je typ třídy jiný než `object`, všechny metody deklarované v typu rozhraní jsou ze sady odebrány. (Toto druhé pravidlo má vliv pouze v případě, že skupina metod byla výsledkem vyhledávání členů u parametru typu, který má platnou základní třídu jinou než objekt a neprázdnou sadu efektivních rozhraní.)
+*  Pokud je výsledná sada kandidátních metod prázdná, pak je další zpracování v následujících krocích opuštěno a místo toho je proveden pokus o zpracování vyvolání jako volání metody rozšíření ([vyvolání rozšiřující metody](expressions.md#extension-method-invocations)). Pokud se to nepovede, neexistují žádné použitelné metody a dojde k chybě při vazbě.
+*  Nejlepší metoda sady kandidátních metod je identifikována pomocí pravidel řešení přetížení v rámci [rozlišení přetížení](expressions.md#overload-resolution). Pokud nelze identifikovat jednu nejlepší metodu, volání metody je nejednoznačné a dojde k chybě při vazbě. Při provádění řešení přetížení jsou parametry obecné metody zváženy po nahrazení argumentů typu (dodaných nebo odvozených) pro odpovídající parametry typu metody.
+*  Konečné ověření zvolené nejlepší metody je provedeno:
+   * Metoda je ověřena v kontextu skupiny metod: Pokud je nejlepší metodou statická metoda, skupina metod musí být výsledkem *simple_name* nebo *member_access* prostřednictvím typu. Pokud je nejlepším způsobem metoda instance, skupina metod musí mít výsledek z *simple_name*, *member_access* prostřednictvím proměnné nebo hodnoty nebo *base_access*. Pokud ani jedna z těchto požadavků není pravdivá, dojde k chybě při vazbě.
+   * Pokud je nejlepší metodou obecná metoda, jsou argumenty typu (dodané nebo odvozené) zkontrolovány proti omezením ([vyhovujícím omezením](types.md#satisfying-constraints)) deklarovaným v obecné metodě. Pokud jakýkoli argument typu nesplňuje odpovídající omezení pro parametr typu, dojde k chybě při vazbě.
 
-Jakmile metodu byla vybrána a ověřený v době vazby výše uvedené kroky, skutečné vyvolání za běhu se zpracovává podle pravidel objektů volání členské funkce popsané v [kompilace kontrolu dynamické přetížení ](expressions.md#compile-time-checking-of-dynamic-overload-resolution).
+Jakmile je metoda vybrána a ověřována v době vytvoření vazby výše uvedenými kroky, je skutečné vyvolání za běhu zpracováno podle pravidel volání člena funkce popsaných v tématu [Kontrola dynamického přetěžování při kompilaci](expressions.md#compile-time-checking-of-dynamic-overload-resolution).
 
-Intuitivní efekt výše popsaná pravidla překladu je následujícím způsobem: Vyhledat konkrétní metody vyvolané volání metody, začněte s typ označený volání metody a pokračovat, dokud nebude nalezen alespoň jednu metodu použít, přístupná, bez přepsání deklarace celým řetězcem dědičnosti. Následně odvození typu proměnné a řešení v sadě použít, přístupná, bez přepsání metody deklarované v tomto typu přetížení a vyvolat metodu tedy vybrali. Pokud nebyla nalezena žádná metoda, zkuste místo toho zpracovat volání jako volání metody rozšíření.
+Intuitivní efekt výše popsaných pravidel řešení je následující: Chcete-li najít konkrétní metodu volanou voláním metody, začněte typem označeným voláním metody a přejděte do řetězce dědičnosti, dokud není nalezena alespoň jedna platná, dostupná, nepřepisovaná deklarace metody. Pak proveďte odvození typu a rozlišení přetěžování v sadě použitelných, přístupných metod, které nejsou deklarovány v tomto typu a zavolejte metodu, která je vybrána. Pokud nebyla nalezena žádná metoda, zkuste místo toho zpracovat vyvolání jako volání metody rozšíření.
 
-#### <a name="extension-method-invocations"></a>Volání metod rozšíření
+#### <a name="extension-method-invocations"></a>Vyvolání metod rozšíření
 
-Ve volání metody ([volání na instancích zabalený](expressions.md#invocations-on-boxed-instances)) jednoho z formuláře
+V volání metody ([vyvolání u zabalených instancí](expressions.md#invocations-on-boxed-instances)) jednoho z formulářů
 ```csharp
 expr . identifier ( )
 
@@ -1302,9 +1302,9 @@ expr . identifier < typeargs > ( )
 
 expr . identifier < typeargs > ( args )
 ```
-Pokud normálním zpracování volání najde žádné použitelné metody, je proveden pokus o zpracování konstrukce jako volání metody rozšíření. Pokud *expr* nebo některý z *args* má typ kompilace `dynamic`, rozšiřující metody se nepoužije.
+Pokud normální zpracování vyvolání nenajde žádné použitelné metody, je proveden pokus o zpracování konstrukce jako volání metody rozšíření. Pokud *expr* nebo kterákoli z *argumentů* má typ doby kompilace `dynamic`, metody rozšíření nebudou použity.
 
-Cílem je najít nejlepší *type_name* `C`, takže může proběhnout odpovídající volání statické metody:
+Cílem je najít nejlepší *type_name* `C`, aby mohlo dojít k odpovídajícím voláním statické metody:
 ```csharp
 C . identifier ( expr )
 
@@ -1315,25 +1315,25 @@ C . identifier < typeargs > ( expr )
 C . identifier < typeargs > ( expr , args )
 ```
 
-Metody rozšíření `Ci.Mj` je ***oprávněné*** pokud:
+Metoda rozšíření `Ci.Mj` je ***způsobila*** v případě, že:
 
-*  `Ci` je jiná než obecná, ne vnořené třídy
+*  `Ci` je neobecná nevnořená třída.
 *  Název `Mj` je *identifikátor*
-*  `Mj` je přístupný a použitelný, při použití na argumenty jako statická metoda, jak je uvedeno výše
-*  Existuje implicitní identity, odkaz nebo převod na uzavřené určení z *expr* typu první parametr `Mj`.
+*  `Mj` je přístupná a použitelná při použití na argumenty jako statická metoda, jak je uvedeno výše.
+*  Implicitní identita, odkaz nebo převod zabalení existují z *výrazu expr* na typ prvního parametru `Mj`.
 
-Hledání `C` probíhá následujícím způsobem:
+Hledání `C` pokračuje následujícím způsobem:
 
-*  Od nejbližší uzavírající deklarace oboru názvů, pokračujte v každé nadřazené deklarace oboru názvů a konče obsahující kompilační jednotky byly provedeny po sobě jdoucích pokusy o vyhledání kandidátských sadu rozšiřujících metod:
-   * Pokud daný obor názvů nebo kompilace jednotka přímo obsahuje neobecný typ deklarace `Ci` s oprávněné rozšiřující metody `Mj`, pak sada z těchto metod rozšíření je sada Release candidate.
-   * Pokud se typy `Ci` importované tímto seznamem *using_static_declarations* a přímo deklarovány v oborech názvů importované tímto seznamem *using_namespace_directive*s v daném oboru názvů nebo kompilace jednotce přímo obsahují metody rozšíření oprávněné `Mj`, pak sada z těchto metod rozšíření je sada Release candidate.
-*  Pokud není nastaven žádný kandidát nenajde v libovolné nadřazené jednotce prohlášení nebo kompilace obor názvů, dojde k chybě v době kompilace.
-*  V opačném případě řešení přetížení se použije na verzi Release candidate popsaného v ([rozlišení přetěžování](expressions.md#overload-resolution)). Pokud se nenajde žádný jediné nejlepší metody, dojde k chybě kompilace.
-*  `C` je typ, ve kterém je nejlepší metody deklarován jako metody rozšíření.
+*  Počínaje rozhraním nejbližší ohraničující deklarace oboru názvů pokračuje v každé deklaraci ohraničujícího oboru názvů a končí obsahující kompilační jednotka, pro nalezení kandidátních metod rozšíření je možné provést následující pokusy:
+   * Pokud zadaný obor názvů nebo kompilační jednotka přímo obsahuje deklarace neobecného typu `Ci` s oprávněnými metodami rozšíření `Mj`, pak sada těchto metod rozšíření je kandidátská sada.
+   * Pokud typy `Ci` importované pomocí *using_static_declarations* a přímo deklarované v oborech názvů importovaných pomocí *using_namespace_directive*s v daném oboru názvů nebo jednotce kompilace přímo obsahují opravňující metody rozšíření `Mj`, pak sada těchto rozšiřujících metod je kandidátská sada.
+*  Pokud se v žádné ohraničující deklaraci oboru názvů nebo jednotce kompilace nenajde žádná sada kandidátů, dojde k chybě při kompilaci.
+*  V opačném případě se rozlišení přetěžování aplikuje na sadu kandidátů, jak je popsáno v tématu ([řešení přetížení](expressions.md#overload-resolution)). Pokud se nenajde žádná nejlepší metoda, dojde k chybě při kompilaci.
+*  `C` je typ, ve kterém je nejlepší metoda deklarována jako metoda rozšíření.
 
-Pomocí `C` jako cíl, volání metody, které pak zpracovány jako volání statické metody ([kompilace kontrolu dynamické přetížení](expressions.md#compile-time-checking-of-dynamic-overload-resolution)).
+Pokud jako cíl použijete `C`, volání metody se pak zpracuje jako volání statické metody ([při kontrole dynamického překladu přetěžování za kompilace](expressions.md#compile-time-checking-of-dynamic-overload-resolution)).
 
-Výše uvedená pravidla znamená, že metody instance přednost metody rozšíření, že rozšiřující metody, které jsou k dispozici v oboru názvů vnitřní deklarace přednost rozšiřující metody, které jsou dostupné na vnější obor názvů deklarace a rozšíření metody s deklarací přímo v oboru názvů přednost metody rozšíření importován Tento stejný obor názvů pomocí direktivy oboru názvů. Příklad:
+Předchozí pravidla znamenají, že metody instance mají přednost před rozšiřujícími metodami, tyto metody rozšíření dostupné v deklaracích vnitřních oborů názvů mají přednost před rozšiřujícími metodami dostupnými v deklaracích vnějších oborů názvů a s tímto rozšířením. metody deklarované přímo v oboru názvů mají přednost před metodami rozšíření importovanými do stejného oboru názvů s použitím direktivy Namespace. Příklad:
 ```csharp
 public static class E
 {
@@ -1369,7 +1369,7 @@ class X
 }
 ```
 
-V tomto příkladu `B`metoda má přednost před první metodu rozšíření, a `C`metoda má přednost před obě metody rozšíření.
+V příkladu má metoda `B` přednost před první metodou rozšíření a metoda `C` má přednost před oběma metodami rozšíření.
 
 ```csharp
 public static class C
@@ -1410,26 +1410,26 @@ namespace N2
 ```
 
 Výstup tohoto příkladu je:
-```
+```console
 E.F(1)
 D.G(2)
 C.H(3)
 ```
-`D.G` má přednost před `C.G`, a `E.F` má přednost před obě `D.F` a `C.F`.
+`D.G` má přednost před `C.G` a `E.F` má přednost před `D.F` a `C.F`.
 
-#### <a name="delegate-invocations"></a>Vyvolání delegáta
+#### <a name="delegate-invocations"></a>Volání delegátů
 
-Pro vyvolání typu delegáta *primary_expression* z *invocation_expression* musí být hodnota *delegate_type*. Navíc vzhledem k tomu *delegate_type* funkce člena se stejným seznamem parametrů jako *delegate_type*, *delegate_type* musí být příslušný () [Použitelná funkce člena](expressions.md#applicable-function-member)) s ohledem na *argument_list* z *invocation_expression*.
+Pro vyvolání delegáta musí být *primary_expression* hodnoty *invocation_expression* hodnotou *delegate_type*. Vzhledem k tomu, že je *delegate_type* členem funkce se stejným seznamem parametrů jako *delegate_type*, musí být *delegate_type* platný ([platný člen funkce](expressions.md#applicable-function-member)) s ohledem na *argument_ seznam* *invocation_expression*
 
-Za běhu zpracování volání delegáta formuláře `D(A)`, kde `D` je *primary_expression* z *delegate_type* a `A` je volitelné *argument_list*, se skládá z následujících kroků:
+Běhové zpracování volání delegáta ve formě `D(A)`, kde `D` je *primary_expression* *delegate_type* a `A` je volitelná *argument_list*, skládá se z následujících kroků:
 
-*  `D` je vyhodnocen. Je-li toto vyhodnocení způsobí výjimku, jsou spuštěny žádné další kroky.
-*  Hodnota `D` je zaškrtnuté políčko platný. Pokud hodnota `D` je `null`, `System.NullReferenceException` je vyvolána, a že jsou provedeny žádné další kroky.
-*  V opačném případě `D` je odkaz na instanci delegáta. Volání členské funkce ([kompilace kontrolu dynamické přetížení](expressions.md#compile-time-checking-of-dynamic-overload-resolution)) se provádí na všech volatelných entit v seznamu vyvolání delegáta. Volatelný entit skládající se z instance a metoda instance služby je instance pro vyvolání instance obsaženého v entitě volatelná aplikacemi.
+*  je vyhodnocena hodnota `D`. Pokud toto vyhodnocení způsobí výjimku, nejsou provedeny žádné další kroky.
+*  Hodnota `D` je zkontrolována jako platná. Pokud je hodnota `D` `null`, je vyvolána `System.NullReferenceException` a nejsou provedeny žádné další kroky.
+*  V opačném případě `D` odkaz na instanci delegáta. Volání členů funkce ([Kontrola dynamického přetěžování při kompilaci](expressions.md#compile-time-checking-of-dynamic-overload-resolution)) se provádí na každé z těchto entit v seznamu volání delegáta. Pro volatelné entity skládající se z instance a metody instance je instance vyvolání instance obsažena v entitě, která se nedá volat.
 
 ### <a name="element-access"></a>Přístup k prvkům
 
-*Element_access* se skládá z *primary_no_array_creation_expression*a po něm "`[`" token a po něm *argument_list*a po něm " `]`"token. *Argument_list* obsahuje jeden nebo více *argument*s, oddělené čárkami.
+*Element_access* se skládá z *primary_no_array_creation_expression*, po kterém následuje token "`[`" následovaný *argument_listem*, za kterým následuje token "`]`". *Argument_list* se skládá z jednoho nebo více *argumentů*, které jsou odděleny čárkami.
 
 ```antlr
 element_access
@@ -1437,51 +1437,51 @@ element_access
     ;
 ```
 
-*Argument_list* ze *element_access* nesmí obsahovat `ref` nebo `out` argumenty.
+*Argument_list* *element_access* není povoleno obsahovat argumenty `ref` nebo `out`.
 
-*Element_access* dynamicky vázán ([dynamické vazby](expressions.md#dynamic-binding)) Pokud obsahuje nejméně jednu z následujících akcí:
+*Element_access* je dynamicky svázán ([dynamická vazba](expressions.md#dynamic-binding)), pokud alespoň jedna z následujících možností obsahuje:
 
-* *Primary_no_array_creation_expression* má typ kompilace `dynamic`.
-* Nejméně jeden výraz *argument_list* má typ kompilace `dynamic` a *primary_no_array_creation_expression* nemá typ pole.
+* *Primary_no_array_creation_expression* má typ doby kompilace `dynamic`.
+* Nejméně jeden výraz *argument_list* má typ doby kompilace `dynamic` a *primary_no_array_creation_expression* nemá typ pole.
 
-V tomto případě kompilátor klasifikuje *element_access* jako hodnotu typu `dynamic`. Pravidly dole určit význam *element_access* se pak použijí v době běhu, run-time typu místo kompilaci typu těch, které *primary_no_array_creation_expression*a *argument_list* výrazy, které mají typ kompilace `dynamic`. Pokud *primary_no_array_creation_expression* nemá typu v době kompilace `dynamic`, pak přístup k prvkům projde Kontrola času kompilace omezená, jak je popsáno v [kontrolu dynamická kompilace Rozlišení přetěžování](expressions.md#compile-time-checking-of-dynamic-overload-resolution).
+V tomto případě kompilátor klasifikuje *element_access* jako hodnotu typu `dynamic`. Níže uvedená pravidla určující význam *element_access* se pak použijí za běhu za běhu za použití běhového typu místo pro typ doby kompilace pro *primary_no_array_creation_expression* a *argument_list* . výrazy, které mají typ pro dobu kompilace `dynamic`. Pokud *primary_no_array_creation_expression* nemá typ pro dobu kompilace `dynamic`, pak přístup k elementu bude podstoupit omezená doba kompilace, jak je popsáno v tématu [Kontrola dynamického přetěžování přetížení v době kompilace](expressions.md#compile-time-checking-of-dynamic-overload-resolution).
 
-Pokud *primary_no_array_creation_expression* z *element_access* . má hodnotu *array_type*, *element_access* je Array – přístup ([pole přístup](expressions.md#array-access)). V opačném případě *primary_no_array_creation_expression* musí být proměnná nebo hodnota třídy, struktury nebo typu rozhraní, který má jeden nebo více členů indexer, v takovém případě *element_access* je přístup indexeru ([přístup indexeru](expressions.md#indexer-access)).
+Pokud je *primary_no_array_creation_expression* typu *element_access* hodnotou *array_type*, *element_access* je přístup k poli ([přístup k poli](expressions.md#array-access)). V opačném případě musí být *primary_no_array_creation_expression* proměnnou nebo hodnotou třídy, struktury nebo typu rozhraní, která má jednoho nebo více členů indexeru. v takovém případě je *element_access* přístup k indexeru ([přístup indexeru](expressions.md#indexer-access)).
 
 #### <a name="array-access"></a>Přístup k poli
 
-Pro přístup k poli *primary_no_array_creation_expression* z *element_access* musí být hodnota *array_type*. Kromě toho *argument_list* pole přístup nesmí obsahovat pojmenované argumenty. Počet výrazů v *argument_list* musí být stejné jako pořadí *array_type*, a každý výraz musí být typu `int`, `uint`, `long`, `ulong`, nebo musí být implicitně převeditelný na jeden nebo více z těchto typů.
+Pro přístup k poli musí být *primary_no_array_creation_expression* hodnoty *element_access* hodnotou *array_type*. Kromě toho nepovoluje *argument_list* přístupu k poli obsahovat pojmenované argumenty. Počet výrazů v *argument_list* musí být stejný jako pořadí *array_type*a každý výraz musí být typu `int`, `uint`, `long`, `ulong`, nebo musí být implicitně převoditelné na jeden nebo více těchto typů.
 
-Výsledek vyhodnocení výrazu přístup k poli je proměnná typu prvku pole, konkrétně prvku pole zvolila hodnoty výrazů v *argument_list*.
+Výsledek vyhodnocení přístupu k poli je proměnná typu prvku pole, jmenovitým prvkem pole vybraným hodnotami (y) výrazů v *argument_list*.
 
-Zpracování za běhu přístup k poli formuláře `P[A]`, kde `P` je *primary_no_array_creation_expression* ze *array_type* a `A` je *argument_list*, se skládá z následujících kroků:
+Běhové zpracování přístupu k poli ve formátu `P[A]`, kde `P` je *primary_no_array_creation_expression* *array_type* a `A` je *argument_list*, skládá se z následujících kroků:
 
-*  `P` je vyhodnocen. Je-li toto vyhodnocení způsobí výjimku, jsou spuštěny žádné další kroky.
-*  Výrazy indexu *argument_list* se vyhodnocují v pořadí zleva doprava. Vyhodnocení výrazu každý index implicitní převod ([implicitních převodů](conversions.md#implicit-conversions)) se provádí na jednu z následujících typů: `int`, `uint`, `long`, `ulong`. První typ v tomto seznamu, pro kterou existuje implicitní převod je vybrán. Například pokud Indexový výraz je typu `short` pak implicitní převod na `int` provádí, protože implicitní převody z `short` k `int` a z `short` k `long` jsou možné. Pokud limit vyhodnocení výrazu indexu nebo následné implicitní převod způsobí výjimku, žádné další indexové výrazy jsou vyhodnoceny a žádné další provádění kroků.
-*  Hodnota `P` je zaškrtnuté políčko platný. Pokud hodnota `P` je `null`, `System.NullReferenceException` je vyvolána, a že jsou provedeny žádné další kroky.
-*  Hodnota každý výraz v *argument_list* je porovnávána s skutečné mezí jednotlivých rozměrů pole instance odkazuje `P`. Pokud jeden nebo více hodnot je mimo rozsah, `System.IndexOutOfRangeException` je vyvolána, a že jsou provedeny žádné další kroky.
-*  Umístění prvku pole, které jsou uvedena v každém výrazů indexu je vypočítán a toto umístění bude výsledek přístup k poli.
+*  je vyhodnocena hodnota `P`. Pokud toto vyhodnocení způsobí výjimku, nejsou provedeny žádné další kroky.
+*  Výrazy indexu *argument_list* jsou vyhodnocovány v pořadí zleva doprava. Po vyhodnocení každého indexového výrazu se provede implicitní převod ([implicitní převody](conversions.md#implicit-conversions)) na jeden z následujících typů: `int`, `uint`, `long`, `ulong`. První typ v tomto seznamu, pro který existuje implicitní převod. Například pokud je Indexový výraz typu `short`, pak je proveden implicitní převod na `int`, protože implicitní převody z `short` na `int` a z `short` na `long` jsou možné. Pokud vyhodnocení výrazu indexu nebo následný implicitní převod způsobí výjimku, nejsou vyhodnoceny žádné další indexové výrazy a nejsou spuštěny žádné další kroky.
+*  Hodnota `P` je zkontrolována jako platná. Pokud je hodnota `P` `null`, je vyvolána `System.NullReferenceException` a nejsou provedeny žádné další kroky.
+*  Hodnota každého výrazu v *argument_list* je zkontrolována proti skutečným hranicím jednotlivých dimenzí instance pole, na kterou odkazuje `P`. Pokud jedna nebo více hodnot je mimo rozsah, je vyvolána `System.IndexOutOfRangeException` a nejsou provedeny žádné další kroky.
+*  Je vypočítáno umístění elementu pole uvedeného v indexových výrazech a toto umístění se projeví v důsledku přístupu k poli.
 
 #### <a name="indexer-access"></a>Přístup indexeru
 
-Pro přístup indexeru *primary_no_array_creation_expression* z *element_access* musí být proměnná nebo hodnota třídy, struktury nebo typ rozhraní, a tento typ musí implementovat jednu nebo více indexery, které se dají použít s ohledem na *argument_list* z *element_access*.
+Pro přístup indexeru musí být *primary_no_array_creation_expression* objektu *element_access* proměnnou nebo hodnotou třídy, struktury nebo typu rozhraní a tento typ musí implementovat jeden nebo více indexerů, které jsou použitelné s ohledem na *argument_list* *element_access*.
 
-Vazba čas zpracování přístupového indexer formuláře `P[A]`, kde `P` je *primary_no_array_creation_expression* třídy, struktury nebo rozhraní typu `T`, a `A` je *argument_list*, se skládá z následujících kroků:
+Zpracování přístupu indexeru z formuláře `P[A]`, kde `P` je *primary_no_array_creation_expression* typu třídy, struktury nebo rozhraní `T` a `A` je *argument_list*, skládá se z následujících uvedené
 
-*  Sada indexery poskytované `T` je vytvořený. Sada se skládá ze všech indexerů, které jsou deklarované v `T` nebo základního typu `T` , které nejsou `override` deklarace a jsou v aktuálním kontextu k dispozici ([přístup ke členu](basic-concepts.md#member-access)).
-*  Sada je omezit na tyto indexerů, které jsou použitelné a nikoli podle jinými indexery. Následující pravidla platí pro každý indexer `S.I` v sadě, kde `S` je typ, ve kterém indexeru `I` je deklarována jako:
-   * Pokud `I` se nedá použít s ohledem na `A` ([použitelná funkce člena](expressions.md#applicable-function-member)), pak `I` je odebrán ze sady.
-   * Pokud `I` lze použít s ohledem na `A` ([použitelná funkce člena](expressions.md#applicable-function-member)), pak všechny indexery deklarovaný v základní typ `S` se odeberou ze sady.
-   * Pokud `I` lze použít s ohledem na `A` ([použitelná funkce člena](expressions.md#applicable-function-member)) a `S` typu třídy je jiné než `object`, všechny indexery deklarované v rozhraní se odeberou ze sady.
-*  Pokud výslednou sadu Release candidate indexerů je prázdný, pak neexistují žádné použitelné indexery a dojde k chybě vazby čas.
-*  Nejlepší indexer sadu Release candidate indexerů je identifikován pomocí pravidel rozlišení přetížení [rozlišení přetěžování](expressions.md#overload-resolution). Pokud jeden nejlepší indexer nelze identifikovat, přístup indexeru je nejednoznačný a dojde k chybě vazby čas.
-*  Výrazy indexu *argument_list* se vyhodnocují v pořadí zleva doprava. Výsledek zpracování přístup indexeru je výraz jsou klasifikovány jako přístup indexeru. Výraz přístup indexeru odkazuje na indexer nadefinovali v předchozím kroku a má přidruženou instanci výraz `P` a seznam argumentů přidružený `A`.
+*  Sada indexerů, kterou poskytuje `T`, je vytvořena. Sada se skládá ze všech indexerů deklarovaných v `T` nebo základní typ `T`, které nejsou deklaracemi `override` a jsou přístupné v aktuálním kontextu ([přístup ke členům](basic-concepts.md#member-access)).
+*  Tato sada se zmenší na ty indexery, které jsou k dispozici, a ne skryté jinými indexery. Následující pravidla jsou použita pro každý indexer `S.I` v sadě, kde `S` je typ, ve kterém je deklarován indexer `I`:
+   * Pokud `I` nelze použít s ohledem na `A` ([platný člen funkce](expressions.md#applicable-function-member)), je `I` odebrán ze sady.
+   * Pokud je `I` použitelný s ohledem na `A` ([platný člen funkce](expressions.md#applicable-function-member)), pak jsou ze sady odebrány všechny indexery deklarované v základním typu `S`.
+   * Pokud je `I` použitelný s ohledem na `A` ([příslušný člen funkce](expressions.md#applicable-function-member)) a `S` je typ třídy jiný než `object`, všechny indexery deklarované v rozhraní jsou ze sady odebrány.
+*  Pokud je výsledná sada kandidátských indexerů prázdná, neexistují žádné odpovídající indexery a dojde k chybě při vazbě.
+*  Nejlepší indexer sady kandidátských indexerů se identifikuje pomocí pravidel řešení přetížení v rámci [rozlišení přetížení](expressions.md#overload-resolution). Pokud nelze identifikovat jeden nejlepší indexer, přístup k indexeru je nejednoznačný a dojde k chybě při vazbě.
+*  Výrazy indexu *argument_list* jsou vyhodnocovány v pořadí zleva doprava. Výsledkem zpracování přístupu indexeru je výraz klasifikovaný jako přístup indexeru. Výraz přístupu indexeru odkazuje na indexer určený v kroku výše a má přidružený výraz instance `P` a seznam přidružených argumentů `A`.
 
-V závislosti na kontextu, ve kterém se používá, přístup indexeru způsobí, že volání buď *načtení přístupového objektu* nebo *nastavení přístupového objektu* indexeru. Pokud přístup indexeru je cílem přiřazení, *nastavení přístupového objektu* se vyvolá, aby přiřadí novou hodnotu ([jednoduché přiřazení](expressions.md#simple-assignment)). Ve všech ostatních případech *načtení přístupového objektu* se vyvolá k získání aktuální hodnoty ([hodnot výrazů](expressions.md#values-of-expressions)).
+V závislosti na kontextu, ve kterém se používá, přístup indexeru způsobí vyvolání buď přístupového *objektu Get* , nebo *přístupového objektu* pro indexer. Pokud je přístup indexerem cílem přiřazení, vyvolá se *přistupující objekt set* , který přiřadí novou hodnotu ([jednoduché přiřazení](expressions.md#simple-assignment)). Ve všech ostatních případech je vyvolán *přistupující objekt get* , který získá aktuální hodnotu ([hodnoty výrazů](expressions.md#values-of-expressions)).
 
 ### <a name="this-access"></a>Tento přístup
 
-A *this_access* se skládá z vyhrazené slovo `this`.
+*This_Access* se skládá z rezervovaného slova `this`.
 
 ```antlr
 this_access
@@ -1489,20 +1489,20 @@ this_access
     ;
 ```
 
-A *this_access* smí obsahovat pouze v *bloku* konstruktor instance, metoda instance nebo přístupový objekt instance. Má jednu z následujících význam:
+*This_Access* je povolen pouze v *bloku* konstruktoru instance, metodě instance nebo přistupujícího objektu instance. Má jeden z následujících významů:
 
-*  Když `this` je používán *primary_expression* v rámci konstruktoru instance třídy, je klasifikován jako hodnotu. Typ hodnoty je typ instance ([typ instance](classes.md#the-instance-type)) třídy, ve kterém dojde k použití a hodnota je odkaz na objekt, který vytváří.
-*  Když `this` je používán *primary_expression* v rámci metody instance nebo přístupový objekt instance třídy, je klasifikován jako hodnotu. Typ hodnoty je typ instance ([typ instance](classes.md#the-instance-type)) třídy, ve kterém dojde k použití a hodnota je odkaz na objekt, pro kterou byla vyvolána metoda nebo přístupový objekt.
-*  Když `this` je používán *primary_expression* v rámci konstruktoru instance struktury, je klasifikován jako proměnnou. Typ proměnné je typ instance ([typ instance](classes.md#the-instance-type)) struktury, ve kterém dojde k použití a představuje proměnnou struktury vytváří. `this` Proměnné konstruktor instance struktury se chová stejně jako `out` parametr typu struct – konkrétně to znamená, že proměnná musí být jednoznačně přiřazena v jednotlivých cestách spuštění instance konstruktor.
-*  Když `this` je používán *primary_expression* v rámci metody instance nebo přístupový objekt instance struktury, je klasifikován jako proměnnou. Typ proměnné je typ instance ([typ instance](classes.md#the-instance-type)) struktury, ve kterém dochází k použití.
-   * Pokud metoda nebo přístupový objekt není iterátor ([iterátory](classes.md#iterators)), `this` proměnná představuje strukturu, pro který se vyvolala metodu nebo přistupující objekt a jak se bude chovat stejně jako `ref` parametr typu Struktura.
-   * Pokud metoda nebo přístupový objekt iterátoru, `this` proměnná představuje kopii struktury, pro který byla vyvolána metoda nebo přístupový objekt a chová stejně jako hodnota parametru typu Struktura.
+*  Pokud je `this` použit v *primary_expression* v rámci konstruktoru instance třídy, je klasifikován jako hodnota. Typ hodnoty je typ instance ([typ instance](classes.md#the-instance-type)) třídy, ve které dojde k použití, a hodnota je odkaz na vytvořený objekt.
+*  Pokud se `this` používá v *primary_expression* v rámci metody instance nebo přístupového objektu instance třídy, je klasifikována jako hodnota. Typ hodnoty je typ instance ([typ instance](classes.md#the-instance-type)) třídy, ve které dojde k použití, a hodnota je odkaz na objekt, pro který byla metoda nebo přistupující objekt vyvolána.
+*  Pokud je `this` použit v *primary_expression* v rámci konstruktoru instance struktury, je klasifikován jako proměnná. Typ proměnné je typ instance ([typ instance](classes.md#the-instance-type)) struktury, ve které dojde k použití, a proměnná představuje vytvořenou strukturu. Proměnná `this` konstruktoru instance struktury se chová stejně jako parametr `out` typu struktury – konkrétně to znamená, že proměnná musí být jednoznačně přiřazena v každé cestě spuštění konstruktoru instance.
+*  Pokud se `this` používá v *primary_expression* v rámci metody instance nebo přístupového objektu instance struktury, je klasifikován jako proměnná. Typ proměnné je typ instance ([typ instance](classes.md#the-instance-type)) struktury, ve které dojde k použití.
+   * Pokud metoda nebo přistupující objekt není iterátor ([iterátory](classes.md#iterators)), proměnná `this` představuje strukturu, pro kterou byla metoda nebo přistupující objekt vyvolána, a chová se stejně jako parametr `ref` typu struktury.
+   * Pokud je metoda nebo přistupující objekt iterátor, proměnná `this` představuje kopii struktury, pro kterou byla metoda nebo přistupující objekt vyvolána, a chová se stejně jako parametr hodnoty typu struktury.
 
-Použití `this` v *primary_expression* v jiném kontextu než jsou výše uvedené je chyba kompilace. Zejména, není možné odkazovat na `this` v statická metoda, přístupový objekt statické vlastnosti, nebo *variable_initializer* deklarace pole.
+Použití `this` v *primary_expression* v jiném kontextu, než je uvedeno výše, je chyba při kompilaci. Konkrétně není možné odkazovat na `this` ve statické metodě, přístupovém objektu statické vlastnosti nebo v *variable_initializer* deklarace pole.
 
 ### <a name="base-access"></a>Základní přístup
 
-A *base_access* se skládá z vyhrazené slovo `base` následována buď "`.`" token a identifikátor nebo s *argument_list* uzavřeny do hranatých závorek:
+*Base_access* se skládá z rezervovaného slova `base` následované tokenem "`.`" a identifikátorem nebo *argument_list* uzavřeným v hranatých závorkách:
 
 ```antlr
 base_access
@@ -1511,13 +1511,13 @@ base_access
     ;
 ```
 
-A *base_access* slouží k přístupu k členům základní třídy, které jsou skryté členy podobně pojmenovaných v aktuální třídě nebo struktuře. A *base_access* smí obsahovat pouze v *bloku* konstruktor instance, metoda instance nebo přístupový objekt instance. Když `base.I` v třídě nebo struktuře, dojde k `I` musí označení člena základní třídy této třídy nebo struktury. Podobně když `base[E]` ve třídě, vyvolá se v základní třídě musí existovat odpovídající indexer.
+*Base_access* se používá pro přístup ke členům základní třídy, které jsou skryté podobným názvem členy v aktuální třídě nebo struktuře. *Base_access* je povolen pouze v *bloku* konstruktoru instance, metodě instance nebo přistupujícího objektu instance. Pokud `base.I` dojde ve třídě nebo struktuře, `I` musí poznamenat člena základní třídy této třídy nebo struktury. Podobně platí, že pokud ve třídě dojde k `base[E]`, musí v základní třídě existovat příslušný indexer.
 
-Během vazby *base_access* výrazy formuláře `base.I` a `base[E]` vyhodnocují stejně, jako kdyby byly napsány `((B)this).I` a `((B)this)[E]`, kde `B` je základní třídou třídy nebo struktury, ve kterém dojde k vytvoření. Proto `base.I` a `base[E]` odpovídají `this.I` a `this[E]`, s výjimkou `this` se pohlíží jako instance základní třídy.
+V době vazby jsou výrazy *base_access* formuláře `base.I` a `base[E]` vyhodnocovány přesně, jako kdyby byly napsány `((B)this).I` a `((B)this)[E]`, kde `B` je základní třídou třídy nebo struktury, ve které konstrukce probíhá. Proto `base.I` a `base[E]` odpovídají `this.I` a `this[E]`, s výjimkou `this` se zobrazuje jako instance základní třídy.
 
-Když *base_access* odkazuje na virtuální funkce člena (metoda, vlastnost nebo indexer), určení funkce člena, který má být vyvolán při spuštění ([kompilace kontrolu dynamické přetížení ](expressions.md#compile-time-checking-of-dynamic-overload-resolution)) se změní. Člen funkce, která je vyvolána je určen tím, že hledá implementace Většina odvozených ([virtuální metody](classes.md#virtual-methods)) z členské funkce s ohledem na `B` (místo s ohledem na typu za běhu `this`, jako by obvykle v jiných základní přístup). Díky tomu se v rámci `override` z `virtual` členské funkce *base_access* můžete použít k vyvolání zděděná implementace metody členské funkce. Pokud odkazuje členské funkce *base_access* je abstraktní, dojde k chybě vazby čas.
+Pokud *base_access* odkazuje na člen virtuální funkce (metoda, vlastnost nebo indexer), určení toho, který člen funkce se má vyvolat za běhu ([Kontrola dynamického přetěžování při kompilaci](expressions.md#compile-time-checking-of-dynamic-overload-resolution)), se změní. Vyvolaný člen funkce je určen tak, že najde největší odvozenou implementaci ([virtuální metody](classes.md#virtual-methods)) člena funkce s ohledem na `B` (místo z hlediska běhového typu `this`, jako by byl obvykle v nezákladním přístupu). . Proto v rámci `override` členu funkce `virtual` lze *base_access* použít k vyvolání zděděné implementace členu funkce. Pokud je člen funkce, na který odkazuje *base_access* , abstraktní, dojde k chybě při vazbě.
 
-### <a name="postfix-increment-and-decrement-operators"></a>Příponové operátory Inkrementace a dekrementace operátory
+### <a name="postfix-increment-and-decrement-operators"></a>Operátory přírůstku a snížení přípony
 
 ```antlr
 post_increment_expression
@@ -1529,48 +1529,48 @@ post_decrement_expression
     ;
 ```
 
-Operand operace přípony zvýšení nebo snížení musí být výraz jsou klasifikovány jako proměnné, přístup k vlastnosti nebo indexeru přístupu. Výsledkem operace je hodnota stejného typu jako operand.
+Operandem operace zvýšení nebo snížení přípony musí být výraz klasifikovaný jako proměnná, přístup k vlastnosti nebo přístup indexeru. Výsledkem operace je hodnota stejného typu jako operand.
 
-Pokud *primary_expression* má typ kompilace `dynamic` pak operátor, který je vázán dynamicky ([dynamické vazby](expressions.md#dynamic-binding)), *post_increment_expression*nebo *post_decrement_expression* má typ kompilace `dynamic` a za běhu pomocí typu za běhu se použijí následující pravidla *primary_expression*.
+Pokud má *primary_expression* typ při kompilaci `dynamic`, operátor je dynamicky svázán ([dynamická vazba](expressions.md#dynamic-binding)), *post_increment_expression* nebo *post_decrement_expression* má typ doby kompilace `dynamic`. a následující pravidla jsou použita v době běhu pomocí běhového typu *primary_expression*.
 
-Je-li zvýšit operand příponový operace dekrementace je vlastnost nebo indexer přístup, vlastnost nebo indexer musí mít obě `get` a `set` přistupujícího objektu. Pokud to není tento případ, dojde k chybě vazby čas.
+Pokud je operandem operace přírůstku nebo snížení přípony vlastnost nebo indexer, vlastnost nebo indexer musí mít přístup k `get` i k přístupovému objektu `set`. Pokud se nejedná o tento případ, dojde k chybě při vazbě.
 
-Unární operátor rozlišení přetěžování ([unární operátor rozlišení přetěžování](expressions.md#unary-operator-overload-resolution)) se použije k výběru na konkrétní operátor implementace. Předdefinované `++` a `--` operátory existovat pro následující typy: `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char` , `float`, `double`, `decimal`a jakýkoli typ výčtu. Předdefinované `++` operátory návratová hodnota vytváří přidáním 1 operand a předdefinované `--` operátory návratová hodnota vytváří tak, že se 1 z operand. V `checked` kontextu, pokud výsledek této sčítání a odčítání je mimo rozsah typu výsledku a typ výsledku je integrální typ nebo typ výčtu `System.OverflowException` je vyvolána výjimka.
+Pro výběr implementace konkrétního operátoru je použito rozlišení přetížení unárního operátoru ([rozlišení přetížení unárního operátoru](expressions.md#unary-operator-overload-resolution)). Předdefinované operátory `++` a `--` existují v následujících typech: `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, 0, 1, 2, 3 a jakýkoli typ výčtu. Předdefinované operátory `++` vrací hodnotu vytvořenou přidáním 1 k operandu a předdefinované operátory `--` vrátí hodnotu vytvořenou odečtením hodnoty 1 od operandu. V kontextu `checked` je-li výsledek tohoto sčítání nebo odčítání mimo rozsah výsledného typu a typ výsledku je celočíselný typ nebo typ výčtu, je vyvolána `System.OverflowException`.
 
-Zpracování za běhu přípony přírůstek nebo snížení operace formuláře `x++` nebo `x--` se skládá z následujících kroků:
+Běhové zpracování přírůstku nebo operace snížení přípony na formuláři `x++` nebo `x--` se skládá z následujících kroků:
 
-*   Pokud `x` je klasifikován jako proměnnou:
-    * `x` je vyhodnocen pro vytvoření proměnné.
-    * Hodnota `x` se uloží.
-    * S použitím uložené hodnoty z je vyvolána zvoleném operátorovi `x` jako svůj argument.
-    * Hodnota vrácená operátorem je uložen v umístění Dal vyhodnocení `x`.
-    * Uložená hodnota `x` výsledek operace.
-*   Pokud `x` klasifikovaný jako vlastnost nebo indexovací člen přístupu:
-    * Výraz instance (Pokud `x` není `static`) a v seznamu argumentů (Pokud `x` představuje přístup k indexer) přidružené k `x` jsou vyhodnocovány, a výsledky se používají v následné `get` a `set` přístupový objekt volání.
-    * `get` Přistupující objekt `x` je vyvolána a vrácené hodnoty se uloží.
-    * S použitím uložené hodnoty z je vyvolána zvoleném operátorovi `x` jako svůj argument.
-    * `set` Přistupující objekt `x` vyvolání hodnota vrácená operátorem jako jeho `value` argument.
-    * Uložená hodnota `x` výsledek operace.
+*   Je-li hodnota `x` klasifikována jako proměnná:
+    * `x` se vyhodnotí, aby se vytvořila proměnná.
+    * Hodnota `x` je uložena.
+    * Vybraný operátor je vyvolán s uloženou hodnotou `x` jako argument.
+    * Hodnota vrácená operátorem je uložena v umístění uvedeném vyhodnocením `x`.
+    * Uložená hodnota `x` se stala výsledkem operace.
+*   Pokud je `x` klasifikován jako vlastnost nebo přístup indexeru:
+    * Výraz instance (Pokud `x` není `static`) a seznam argumentů (Pokud `x` je indexerový přístup) přidružený k `x` jsou vyhodnoceny a výsledky se používají v následujících @no__t – 4 a `set` volání přistupujícího objektu.
+    * Vyvolá se přistupující objekt `get` `x` a vrácená hodnota se uloží.
+    * Vybraný operátor je vyvolán s uloženou hodnotou `x` jako argument.
+    * Přistupující objekt `set` `x` je vyvolán s hodnotou vrácenou operátorem jako jeho argument `value`.
+    * Uložená hodnota `x` se stala výsledkem operace.
 
-`++` a `--` operátory také podporují předpony ([předpony Inkrementace a dekrementace operátory](expressions.md#prefix-increment-and-decrement-operators)). Obvykle, výsledek `x++` nebo `x--` je hodnota `x` před provedením operace, zatímco výsledek `++x` nebo `--x` je hodnota `x` po provedení této operace. V obou případech `x` sám po provedení této operace má stejnou hodnotu.
+Operátory `++` a `--` také podporují zápis předpony ([operátory přírůstku a snížení předpony](expressions.md#prefix-increment-and-decrement-operators)). Výsledek `x++` nebo `x--` je obvykle hodnota `x` před operací, zatímco výsledek `++x` nebo `--x` je hodnota `x` po operaci. V obou případech má `x` samé hodnotu po operaci.
 
-`operator ++` Nebo `operator --` implementace lze vyvolat pomocí uplatněna přípona nebo předpona zápisu. Není možné mít samostatné operátor implementace pro zápisy dva.
+Implementaci `operator ++` nebo `operator --` lze vyvolat pomocí přípony nebo notace předpony. Pro tyto dva zápisy není možné mít implementace samostatného operátoru.
 
-### <a name="the-new-operator"></a>New – operátor
+### <a name="the-new-operator"></a>Operátor New
 
-`new` Operátor se používá k vytvoření nové instance typů.
+Operátor `new` slouží k vytváření nových instancí typů.
 
-Existují tři formy `new` výrazy:
+Existují tři formy `new` výrazů:
 
-*  Výrazy vytváření objektů se používají k vytvoření nové instance typů tříd a typů hodnot.
-*  Výrazy vytvoření pole se používají k vytvoření nové instance typy polí.
-*  Výrazy vytvoření delegáta se používají k vytvoření nové instance delegáta typů.
+*  Výrazy vytvoření objektu slouží k vytváření nových instancí typů tříd a hodnot.
+*  Výrazy vytváření polí slouží k vytváření nových instancí typů polí.
+*  Výrazy vytvoření delegáta slouží k vytváření nových instancí typů delegátů.
 
-`new` Operátor zahrnuje vytvoření instance typu, ale nutně neznamená dynamické přidělování paměti. Konkrétně se instance typů hodnot vyžadují žádné další paměť nad rámec proměnné, ve kterých se nacházejí, a dojde k žádné dynamické přidělení při `new` slouží k vytvoření instancí typů hodnot.
+Operátor `new` implikuje vytvoření instance typu, ale nemusí nutně znamenat dynamické přidělování paměti. Konkrétně instance typů hodnot nevyžadují žádnou další paměť nad rámec, ve kterém jsou umístěny, a žádná dynamická alokace není k dispozici, když `new` slouží k vytváření instancí typů hodnot.
 
-#### <a name="object-creation-expressions"></a>Výrazy vytváření objektů
+#### <a name="object-creation-expressions"></a>Výrazy pro vytváření objektů
 
-*Object_creation_expression* umožňuje vytvořit novou instanci třídy *class_type* nebo *value_type*.
+*Object_creation_expression* se používá k vytvoření nové instance třídy *class_type* nebo *value_type*.
 
 ```antlr
 object_creation_expression
@@ -1584,44 +1584,44 @@ object_or_collection_initializer
     ;
 ```
 
-*Typ* ze *object_creation_expression* musí být *class_type*, *value_type* nebo *type_parameter* . *Typ* nemůže být `abstract` *class_type*.
+*Typ* *object_creation_expression* musí být *class_type*, *value_type* nebo *type_parameter*. *Typ* nemůže být `abstract` *class_type*.
 
-Volitelný *argument_list* ([seznamy argumentů](expressions.md#argument-lists)) je povolený jenom v případě *typ* je *class_type* nebo *struct_ typ*.
+Volitelné *argument_list* ([seznamy argumentů](expressions.md#argument-lists)) jsou povoleny pouze v případě, že je *typ typu* *class_type* nebo *struct_type*.
 
-Vytvoření výrazu objektu lze vynechat seznam argumentů konstruktoru a uzavírající závorky za předpokladu, že obsahuje objekt inicializátor nebo inicializátor kolekce. Vynechání seznamu argumentů konstruktoru a uzavírající závorky je ekvivalentní se zadáním prázdným seznamem argumentů.
+Výraz pro vytvoření objektu může vynechat seznam argumentů konstruktoru a uzavřít závorky, pokud obsahuje inicializátor objektu nebo inicializátor kolekce. Vynechání seznamu argumentů konstruktoru a uzavíracích závorek je ekvivalentem zadání prázdného seznamu argumentů.
 
-Zpracování výrazu vytvoření objektu, který obsahuje objekt inicializátor nebo inicializátor kolekce se skládá z první zpracování konstruktor instance a potom zpracování zadaná pomocí inicializátoru objektů (inicializacíčlenneboelement[ Inicializátory objektu](expressions.md#object-initializers)) nebo inicializátor kolekce ([inicializátory kolekce](expressions.md#collection-initializers)).
+Zpracování výrazu vytvoření objektu, který obsahuje inicializátor objektu nebo inicializátor kolekce, se skládá z prvního zpracování konstruktoru instance a následným zpracováním inicializace členů nebo elementů zadaných inicializátorem objektu ([ Inicializátory objektů](expressions.md#object-initializers)) nebo inicializátor kolekce ([inicializátory kolekce](expressions.md#collection-initializers)).
 
-Pokud některý z argumentů volitelné *argument_list* má typ kompilace `dynamic` pak bude *object_creation_expression* dynamicky vázán ([dynamické vazby](expressions.md#dynamic-binding)) a za běhu pomocí typu za běhu z těchto argumentů se použijí následující pravidla *argument_list* , které mají typ času kompilace `dynamic`. Ale při vytvoření objektu Kontrola času kompilace omezené jak je popsáno v [kompilace kontrolu dynamické přetížení](expressions.md#compile-time-checking-of-dynamic-overload-resolution).
+Pokud některý z argumentů v volitelné *argument_list* má typ pro dobu kompilace `dynamic`, *object_creation_expression* je dynamicky svázán ([dynamická vazba](expressions.md#dynamic-binding)) a následující pravidla jsou použita za běhu za běhu pomocí rutiny run-time. Typ argumentů *argument_list* , které mají typ doby kompilace `dynamic`. Vytvoření objektu však podchází omezené době kompilace, jak je popsáno v tématu [Kontrola dynamického přetěžování při kompilaci](expressions.md#compile-time-checking-of-dynamic-overload-resolution).
 
-Zpracování doba vazby *object_creation_expression* formuláře `new T(A)`, kde `T` je *class_type* nebo *value_type* a `A` je volitelný *argument_list*, se skládá z následujících kroků:
+Zpracování *object_creation_expression* formuláře v čase vazby `new T(A)`, kde `T` je *class_type* nebo *value_type* a `A` je volitelné *argument_list*, sestává z následujících kroků:
 
-*   Pokud `T` je *value_type* a `A` není k dispozici:
-    * *Object_creation_expression* je vyvolání výchozího konstruktoru. Výsledek *object_creation_expression* je hodnota typu `T`, a to výchozí hodnota pro `T` jak jsou definovány v [typ The System.ValueType](types.md#the-systemvaluetype-type).
+*   Pokud je `T` *value_type* a `A` není k dispozici:
+    * *Object_creation_expression* je výchozí vyvolání konstruktoru. Výsledek *object_creation_expression* je hodnota typu `T`, konkrétně výchozí hodnota pro `T`, jak je definována v [typu System. ValueType](types.md#the-systemvaluetype-type).
 *   Jinak, pokud `T` je *type_parameter* a `A` není k dispozici:
-    * Pokud žádná hodnota typu omezení nebo omezení konstruktoru ([omezení parametru typu](classes.md#type-parameter-constraints)) byl zadán pro `T`, dojde k chybě vazby čas.
-    * Výsledek *object_creation_expression* je hodnota typu za běhu, svázané parametr typu, jmenovitě výsledek volání výchozího konstruktoru typu. Run-time typu může být typem odkazu nebo hodnotového typu.
+    * Pokud pro `T` není zadáno omezení typu hodnoty nebo omezení konstruktoru ([omezení parametrů typu](classes.md#type-parameter-constraints)), dojde k chybě při vazbě.
+    * Výsledek *object_creation_expression* je hodnota běhového typu, ke kterému byl parametr typu vázán, konkrétně výsledek vyvolání výchozího konstruktoru tohoto typu. Typ běhu může být odkazový typ nebo typ hodnoty.
 *   Jinak, pokud `T` je *class_type* nebo *struct_type*:
-    * Pokud `T` je `abstract` *class_type*, dojde k chybě kompilace.
-    * Konstruktor instance, který má být vyvolán je určen pomocí pravidel rozlišení přetížení [rozlišení přetěžování](expressions.md#overload-resolution). Sada konstruktory instancí Release candidate zahrnuje všechny dostupné instance konstruktory deklarované v `T` které se dají použít s ohledem na `A` ([použít funkční člen](expressions.md#applicable-function-member)). Pokud sadu Release candidate konstruktory instancí je prázdná nebo jediný konstruktor instance nejlepší nelze identifikovat, dojde k chybě vazby čas.
-    * Výsledkem *object_creation_expression* je hodnota typu `T`, konkrétně hodnota vytvořen zavoláním konstruktoru instance nadefinovali v předchozím kroku.
-*  V opačném případě *object_creation_expression* není platný, a dojde k chybě vazby čas.
+    * Pokud `T` je `abstract` *class_type*, dojde k chybě při kompilaci.
+    * Konstruktor instance, který se má vyvolat, je určen pomocí pravidel řešení přetížení v [rozlišení přetěžování](expressions.md#overload-resolution). Sada konstruktorů instancí kandidátů se skládá ze všech přístupných konstruktorů instancí deklarovaných v `T`, které platí pro `A` ([platný člen funkce](expressions.md#applicable-function-member)). Pokud je sada konstruktorů instancí kandidátů prázdná nebo pokud jeden nejlepší konstruktor instance nelze identifikovat, dojde k chybě při vazbě.
+    * Výsledek *object_creation_expression* je hodnota typu `T`, jmenovitá hodnota vytvořená vyvoláním konstruktoru instance určeného v kroku výše.
+*  V opačném případě je *object_creation_expression* neplatný a dojde k chybě při vazbě.
 
-I v případě, *object_creation_expression* je dynamicky vázán, typ kompilace je stále `T`.
+I v případě, že je *object_creation_expression* dynamicky svázán, je typ kompilace stále `T`.
 
-Zpracování za běhu *object_creation_expression* formuláře `new T(A)`, kde `T` je *class_type* nebo *struct_type* a `A` je volitelný *argument_list*, se skládá z následujících kroků:
+Běhové zpracování *object_creation_expression* formuláře `new T(A)`, kde `T` je *class_type* nebo *struct_type* a `A` je volitelná *argument_list*, sestává z následujících kroků:
 
 *   Pokud `T` je *class_type*:
-    * Vytvoření nové instance třídy `T` je přidělen. Pokud není k dispozici dostatek paměti k přidělení nové instance `System.OutOfMemoryException` je vyvolána, a že jsou provedeny žádné další kroky.
-    * Všechna pole nové instance jsou inicializovány na výchozí hodnoty ([výchozí hodnoty](variables.md#default-values)).
-    * Podle pravidel objektů volání členské funkce je volána konstruktor instance ([kompilace kontrolu dynamické přetížení](expressions.md#compile-time-checking-of-dynamic-overload-resolution)). Odkaz na nově přidělenou instanci automaticky předána do konstruktoru instance a instance je přístupný z v rámci tohoto konstruktoru jako `this`.
+    * Je přidělena nová instance třídy `T`. Pokud není k dispozici dostatek paměti pro přidělení nové instance, je vyvolána `System.OutOfMemoryException` a nejsou provedeny žádné další kroky.
+    * Všechna pole nové instance jsou inicializována na výchozí hodnoty ([výchozí hodnoty](variables.md#default-values)).
+    * Konstruktor instance je vyvolán v souladu s pravidly vyvolání člena funkce ([Kontrola při kompilaci dynamického přetěžování](expressions.md#compile-time-checking-of-dynamic-overload-resolution)). Odkaz na nově přidělenou instanci je automaticky předán konstruktoru instance a k instanci lze v rámci tohoto konstruktoru přistoupit jako `this`.
 *   Pokud `T` je *struct_type*:
-    * Instance typu `T` vytvoří dočasnou proměnnou místního přidělení. Od verze konstruktoru instance *struct_type* je potřeba jednoznačně přiřadit hodnotu každému poli instance vytváří, není inicializace dočasné proměnné, je nezbytné.
-    * Podle pravidel objektů volání členské funkce je volána konstruktor instance ([kompilace kontrolu dynamické přetížení](expressions.md#compile-time-checking-of-dynamic-overload-resolution)). Odkaz na nově přidělenou instanci automaticky předána do konstruktoru instance a instance je přístupný z v rámci tohoto konstruktoru jako `this`.
+    * Instance typu `T` je vytvořena přidělením dočasné místní proměnné. Vzhledem k tomu, že konstruktor instance třídy *struct_type* je vyžadován k omezení přiřazení hodnoty každému poli instance, kterou vytváříte, není nutné inicializovat dočasnou proměnnou.
+    * Konstruktor instance je vyvolán v souladu s pravidly vyvolání člena funkce ([Kontrola při kompilaci dynamického přetěžování](expressions.md#compile-time-checking-of-dynamic-overload-resolution)). Odkaz na nově přidělenou instanci je automaticky předán konstruktoru instance a k instanci lze v rámci tohoto konstruktoru přistoupit jako `this`.
 
 #### <a name="object-initializers"></a>Inicializátory objektů
 
-***Objektu inicializátoru*** určuje hodnoty pro nula nebo více polí, vlastnosti nebo indexované prvků objektu.
+***Inicializátor objektu*** určuje hodnoty pro nula nebo více polí, vlastností nebo indexovaných prvků objektu.
 
 ```antlr
 object_initializer
@@ -1648,19 +1648,19 @@ initializer_value
     ;
 ```
 
-Inicializátor objektu se skládá z posloupnost inicializátory členů, ohraničená `{` a `}` tokeny a oddělené čárkami. Každý *member_initializer* určuje cíle pro inicializaci. *Identifikátor* nutné pojmenovat přístupné pole nebo vlastnost objektu inicializována, že *argument_list* ohraničeno hranaté závorky, musíte zadat argumenty pro indexer přístupné na objekt, který je inicializován. Jedná se o chybu pro inicializátoru objektu, který chcete zahrnout více než jeden inicializátor členu pro stejné pole nebo vlastnost.
+Inicializátor objektu se skládá z sekvence inicializátorů členů, které jsou uzavřeny tokeny `{` a `}` a oddělené čárkami. Každý *member_initializer* určuje cíl pro inicializaci. *Identifikátor* musí pojmenovat přístupné pole nebo vlastnost objektu, který je inicializován, zatímco *argument_list* uzavřený v hranatých závorkách musí zadat argumenty pro přístupný indexer u objektu, který se inicializuje. Pokud má inicializátor objektu zahrnout více než jeden inicializátor členů pro stejné pole nebo vlastnost, jedná se o chybu.
 
-Každý *initializer_target* následuje znak rovná se a výrazu, inicializátoru objektu nebo inicializátor kolekce. Není možné pro výrazy v inicializátoru objektu, který neodkazuje na nově vytvořený objekt, který je inicializace.
+Každý *initializer_target* je následován symbolem rovná se a buď výraz, inicializátor objektu nebo inicializátor kolekce. Pro výrazy v inicializátoru objektu není možné odkazovat na nově vytvořený objekt, který inicializuje.
 
-Inicializátor členu, který určuje výraz, až se zpracují znaménko rovná se stejným způsobem jako přiřazení ([jednoduché přiřazení](expressions.md#simple-assignment)) k cíli.
+Inicializátor člena, který určuje výraz po zpracování znaménka rovná se, se zpracovává stejným způsobem jako přiřazení ([jednoduché přiřazení](expressions.md#simple-assignment)) k cíli.
 
-Inicializátor členu, který určuje inicializátoru objektu po znaménko rovná se ***inicializátor vnořeného objektu***, to znamená inicializace vloženého objektu. Namísto přiřazení nové hodnoty pro pole nebo vlastnost, jsou považovány přiřazení v inicializátoru vnořený objekt za přiřazení pro členy pole nebo vlastnost. Inicializátory objektů vnořené nejde použít s typem hodnoty vlastnosti nebo pole jen pro čtení s typem hodnoty.
+Inicializátor členu, který určuje inicializátor objektu po znaménku rovná se ***vnořeným objektem***, tj. inicializací vloženého objektu. Namísto přiřazení nové hodnoty k poli nebo vlastnosti jsou přiřazení v inicializátoru vnořeného objektu považována za přiřazení členů pole nebo vlastnosti. Inicializátory vnořených objektů nelze použít pro vlastnosti s typem hodnoty nebo pro pole jen pro čtení s typem hodnoty.
 
-Inicializátor členu, který určuje inicializátoru kolekce po inicializaci vložené kolekce znaménko rovná se. Namísto přiřazení novou kolekci do cílového pole, vlastnost nebo indexer, jsou prvky uvedené v inicializátoru přidat do kolekce odkazuje cíl. Cíl musí být typu kolekce, který splňuje požadavky uvedené v [inicializátory kolekce](expressions.md#collection-initializers).
+Inicializátor člena, který určuje inicializátor kolekce po znaménku rovná se, představuje inicializaci vložené kolekce. Namísto přiřazení nové kolekce k cílovému poli, vlastnosti nebo indexeru jsou prvky zadané v inicializátoru přidány do kolekce, na kterou odkazuje cíl. Cíl musí být typu kolekce, který splňuje požadavky zadané v [inicializátorech kolekce](expressions.md#collection-initializers).
 
-Argumenty, které mají index inicializátor vždy se vyhodnotí pouze jednou. Díky tomu se i v případě, že argumenty skončit, získávání nikdy použit (např. z důvodu prázdný inicializátor vnořeného), bude se vyhodnocují hlediska jejich vedlejších účinků.
+Argumenty inicializátoru indexu budou vždy vyhodnocovány právě jednou. Proto i v případě, že argumenty nejsou nikdy použity (například z důvodu prázdného vnořeného inicializátoru), budou vyhodnoceny pro své vedlejší účinky.
 
-Následující třída reprezentuje bod se souřadnicemi dvě:
+Následující třída reprezentuje bod se dvěma souřadnicemi:
 ```csharp
 public class Point
 {
@@ -1671,7 +1671,7 @@ public class Point
 }
 ```
 
-Instance `Point` může být vytvořeno a inicializováno následujícím způsobem:
+Instanci `Point` lze vytvořit a inicializovat následujícím způsobem:
 ```csharp
 Point a = new Point { X = 0, Y = 1 };
 ```
@@ -1682,7 +1682,7 @@ __a.X = 0;
 __a.Y = 1; 
 Point a = __a;
 ```
-kde `__a` je dočasná proměnná jinak neviditelné a nejsou přístupné. Následující třída reprezentuje obdélník vytvořené z dva body:
+kde `__a` je jinak neviditelná a nepřístupná dočasná proměnná. Následující třída představuje obdélník vytvořený ze dvou bodů:
 ```csharp
 public class Rectangle
 {
@@ -1693,7 +1693,7 @@ public class Rectangle
 }
 ```
 
-Instance `Rectangle` může být vytvořeno a inicializováno následujícím způsobem:
+Instanci `Rectangle` lze vytvořit a inicializovat následujícím způsobem:
 ```csharp
 Rectangle r = new Rectangle {
     P1 = new Point { X = 0, Y = 1 },
@@ -1713,9 +1713,9 @@ __p2.Y = 3;
 __r.P2 = __p2; 
 Rectangle r = __r;
 ```
-kde `__r`, `__p1` a `__p2` jsou dočasné proměnné, které jsou jinak neviditelné a nejsou přístupné.
+kde `__r`, `__p1` a `__p2` jsou dočasné proměnné, které jsou jinak skryté a nedostupné.
 
-Pokud `Rectangle`pro konstruktor přiděluje dvě vložené `Point` instancí
+Pokud konstruktor `Rectangle` přidělí dvě vložené instance `Point`.
 ```csharp
 public class Rectangle
 {
@@ -1726,7 +1726,7 @@ public class Rectangle
     public Point P2 { get { return p2; } }
 }
 ```
-Následující konstruktor umožňuje inicializovat vložený `Point` instance namísto přiřazení nových instancí:
+následující konstruktor lze použít k inicializaci vložených instancí `Point` namísto přiřazení nových instancí:
 ```csharp
 Rectangle r = new Rectangle {
     P1 = { X = 0, Y = 1 },
@@ -1743,7 +1743,7 @@ __r.P2.Y = 3;
 Rectangle r = __r;
 ```
 
-Zadaný odpovídající definici jazyka C, v následujícím příkladu:
+V důsledku příslušné definice jazyka C, následující příklad:
 ```csharp
 var c = new C {
     x = true,
@@ -1754,7 +1754,7 @@ var c = new C {
     [1,2] = {}
 };
 ```
-je ekvivalentní k této sérii přiřazení:
+je ekvivalentem této řady přiřazení:
 ```csharp
 C __c = new C();
 __c.x = true;
@@ -1770,11 +1770,11 @@ __c[__i2,__i3].Add("b");
 int __i4 = 1, __i5 = 2;
 var c = __c;
 ```
-kde `__c`atd jsou generované proměnné, které jsou skryté a nepřístupný pro zdrojový kód. Všimněte si, že argumenty `[0,0]` je Vyhodnocená jenom jednou a argumenty `[1,2]` jsou vyhodnoceny jednou, i když se nikdy používají.
+kde `__c` atd. jsou generovány proměnné, které jsou neviditelné a nepřístupné ke zdrojovému kódu. Všimněte si, že argumenty pro `[0,0]` jsou vyhodnocovány pouze jednou a argumenty pro `[1,2]` jsou vyhodnoceny jednou, i když nejsou nikdy použity.
 
 #### <a name="collection-initializers"></a>Inicializátory kolekce
 
-Inicializátor kolekce určuje prvků kolekce.
+Inicializátor kolekce Určuje prvky kolekce.
 
 ```antlr
 collection_initializer
@@ -1796,16 +1796,16 @@ expression_list
     ;
 ```
 
-Inicializátor kolekce se skládá z posloupnost inicializátorů prvku, ohraničená `{` a `}` tokeny a oddělené čárkami. Každý prvek inicializátor určuje element, který má být přidána do objektu kolekce, který je inicializován a obsahuje seznam výrazů uzavřená v `{` a `}` tokeny a oddělené čárkami.  Inicializátor prvku jedním výrazem lze napsat bez závorek, ale pak nemůže být výraz přiřazení, aby se zabránilo nejednoznačnosti s inicializátory členů. *Non_assignment_expression* produkčním prostředí je definována v [výraz](expressions.md#expression).
+Inicializátor kolekce se skládá z sekvence inicializátorů elementů, které jsou uzavřeny tokeny `{` a `}` a oddělené čárkami. Každý inicializátor elementu určuje prvek, který má být přidán do objektu kolekce, který se inicializuje, a skládá se ze seznamu výrazů, které jsou uzavřeny `{` a `}` tokeny a odděleny čárkami.  Inicializátor elementu s jedním výrazem se dá zapsat bez složených závorek, ale nemůže být výrazem přiřazení, aby nedocházelo k nejednoznačnosti u inicializátorů členů. Výroba *non_assignment_expression* je definovaná ve [výrazu](expressions.md#expression).
 
-Následuje příklad výrazu vytvoření objektu, která obsahuje inicializátor kolekce:
+Následuje příklad výrazu vytvoření objektu, který obsahuje inicializátor kolekce:
 ```csharp
 List<int> digits = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 ```
 
-Objekt kolekce, do které se použije inicializátoru kolekce musí být typu, který implementuje `System.Collections.IEnumerable` nebo dojde k chybě kompilace. Pro každý zadaný element v pořadí, vyvolá inicializátor kolekce `Add` metodu na cílovém objektu se seznamem výrazu inicializátor prvku jako seznam argumentů, použití členu vyhledávání a řešení pro každé vyvolání přetížení. Proto objekt kolekce musí mít použitelnou metodu instance nebo rozšíření s názvem `Add` pro každý prvek inicializátoru.
+Objekt kolekce, pro který je použit inicializátor kolekce, musí být typu, který implementuje `System.Collections.IEnumerable` nebo dojde k chybě při kompilaci. U každého zadaného elementu v pořadí vyvolá inicializátor kolekce v cílovém objektu metodu `Add` se seznamem výrazů inicializátoru prvku jako seznam argumentů, použití normálního vyhledávání členů a rozlišení přetěžování pro každé vyvolání. Proto objekt kolekce musí mít platnou instanci nebo metodu rozšíření s názvem `Add` pro každý inicializátor elementu.
 
-Následující třída reprezentuje kontakt s názvem a seznam telefonních čísel:
+Následující třída reprezentuje kontakt s názvem a seznamem telefonních čísel:
 ```csharp
 public class Contact
 {
@@ -1818,7 +1818,7 @@ public class Contact
 }
 ```
 
-A `List<Contact>` může být vytvořeno a inicializováno následujícím způsobem:
+@No__t-0 lze vytvořit a inicializovat následujícím způsobem:
 ```csharp
 var contacts = new List<Contact> {
     new Contact {
@@ -1845,11 +1845,11 @@ __c2.PhoneNumbers.Add("650-555-0199");
 __clist.Add(__c2);
 var contacts = __clist;
 ```
-kde `__clist`, `__c1` a `__c2` jsou dočasné proměnné, které jsou jinak neviditelné a nejsou přístupné.
+kde `__clist`, `__c1` a `__c2` jsou dočasné proměnné, které jsou jinak skryté a nedostupné.
 
-#### <a name="array-creation-expressions"></a>Výrazy vytvoření pole
+#### <a name="array-creation-expressions"></a>Výrazy pro vytváření polí
 
-*Array_creation_expression* slouží k vytvoření nové instance *array_type*.
+*Array_creation_expression* se používá k vytvoření nové instance *array_type*.
 
 ```antlr
 array_creation_expression
@@ -1859,13 +1859,13 @@ array_creation_expression
     ;
 ```
 
-Výraz vytvoření pole ve formuláři první přiděluje pole instance typu, který je výsledkem odstraňuje všechny jednotlivé výrazy v seznamu výrazů. Například výraz vytvoření pole `new int[10,20]` vytvoří pole instance typu `int[,]`a výraz vytvoření pole `new int[10][,]` vytvoří pole typu `int[][,]`. Každý výraz v seznamu výrazů musí být typu `int`, `uint`, `long`, nebo `ulong`, nebo implicitně převést na jeden nebo více z těchto typů. Hodnota každý výraz určuje délku odpovídající dimenze v nově přidělenou pole instance. Protože rozměr pole musí být nezáporné, je chyba kompilace mít *constant_expression* se zápornou hodnotou v seznamu výrazů.
+Výraz vytvoření pole prvního formuláře přiděluje instanci pole typu, který je výsledkem odstranění každého jednotlivého výrazu ze seznamu výrazů. Například výraz vytvoření pole `new int[10,20]` vytvoří instanci pole typu `int[,]` a výraz pro vytvoření pole `new int[10][,]` vytvoří pole typu `int[][,]`. Každý výraz v seznamu výrazů musí být typu `int`, `uint`, `long` nebo `ulong` nebo implicitně převést na jeden nebo více těchto typů. Hodnota každého výrazu určuje délku odpovídající dimenze v nově přidělené instanci pole. Vzhledem k tomu, že délka dimenze pole musí být nezáporná, jedná se o chybu při kompilaci, která má v seznamu výrazů *constant_expression* se zápornou hodnotou.
 
-S výjimkou v kontextu unsafe ([nezabezpečený kontext](unsafe-code.md#unsafe-contexts)), rozložení polí není zadána.
+S výjimkou nebezpečného kontextu ([nezabezpečené](unsafe-code.md#unsafe-contexts)kontexty) je rozložení polí Neurčeno.
 
-Pokud výraz vytvoření pole ve formuláři první obsahuje inicializátor pole, každý výraz v seznamu výrazů musí být konstanta a počet rozměrů a dimenze délky určený seznam výrazů musí odpovídat názvům inicializátor pole.
+Pokud výraz pro vytvoření pole prvního formuláře obsahuje inicializátor pole, každý výraz v seznamu výrazů musí být konstanta a délka pořadí a dimenze, které jsou určeny seznamem výrazů, musí odpovídat hodnotám inicializátoru pole.
 
-Ve výraz vytvoření pole formuláře druhý nebo třetí řád specifikátor typu nebo řazení zadané pole musí odpovídat inicializátor pole. Délky jednotlivých dimenze jsou odvozeny z počtu prvků v každém z odpovídajících úrovní vnoření inicializátoru pole. Proto výraz
+Ve výrazu pro vytvoření pole druhého nebo třetího formuláře musí pořadí zadaného typu pole nebo specifikátoru řazení odpovídat hodnotě inicializátoru pole. Jednotlivé délky dimenzí jsou odvozeny z počtu prvků v každé z odpovídajících úrovní vnoření inicializátoru pole. Proto výraz
 ```csharp
 new int[,] {{0, 1}, {2, 3}, {4, 5}}
 ```
@@ -1874,39 +1874,39 @@ přesně odpovídá
 new int[3, 2] {{0, 1}, {2, 3}, {4, 5}}
 ```
 
-Výraz vytvoření pole ve formuláři třetí se označuje jako ***implicitně typované výraz vytvoření pole***. S tím rozdílem, že typ elementu pole není uvedena explicitní, ale určena jako nejlépe společný typ je podobné pro druhý formulář ([hledání nejlepší společný typ sada výrazů](expressions.md#finding-the-best-common-type-of-a-set-of-expressions)) sady výrazů v poli inicializátor. Pro multidimenzionální pole například jednoho, kde *rank_specifier* obsahuje nejméně jednu čárku, tato sada zahrnuje všechny *výraz*s součástí vnořené *array_initializer*s.
+Výraz pro vytvoření pole třetího formuláře je označován jako ***implicitně typový výraz vytvoření pole***. Je podobný druhému formuláři s tím rozdílem, že typ elementu pole není explicitně přidělen, ale je určen jako nejlepší společný typ ([hledání nejlepšího společného typu sady výrazů](expressions.md#finding-the-best-common-type-of-a-set-of-expressions)) sady výrazů v inicializátoru pole. Pro multidimenzionální pole, tj. jeden, kde *rank_specifier* obsahuje alespoň jednu čárku, tato sada zahrnuje všechny *výrazy*, které byly nalezeny ve vnořených *array_initializer*.
 
-Inicializátory polí jsou popsány dále v [Inicializátory pole](arrays.md#array-initializers).
+Inicializátory polí jsou podrobněji popsány v [inicializátorech polí](arrays.md#array-initializers).
 
-Výsledek vyhodnocení výrazu výraz vytvoření pole je klasifikován jako hodnotu, konkrétně odkaz na nově přidělenou pole instance. Zpracování za běhu výraz vytvoření pole se skládá z následujících kroků:
+Výsledek vyhodnocení výrazu vytvoření pole je klasifikován jako hodnota, konkrétně odkaz na nově přidělenou instanci pole. Zpracování výrazu pro vytvoření pole se skládá z následujících kroků:
 
-*  Výrazy délka dimenze *expression_list* se vyhodnocují v pořadí zleva doprava. Vyhodnocení každý výraz implicitní převod ([implicitních převodů](conversions.md#implicit-conversions)) se provádí na jednu z následujících typů: `int`, `uint`, `long`, `ulong`. První typ v tomto seznamu, pro kterou existuje implicitní převod je vybrán. Pokud limit vyhodnocení výrazu nebo následné implicitní převod způsobí výjimku, žádné další výrazy jsou vyhodnoceny a jsou provedeny žádné další kroky.
-*  Vypočítané hodnoty pro délky dimenzí se ověří následujícím způsobem. Pokud jeden nebo více hodnot je menší než nula, `System.OverflowException` je vyvolána, a že jsou provedeny žádné další kroky.
-*  Instance pole s délkou dané dimenze je přidělen. Pokud není k dispozici dostatek paměti k přidělení nové instance `System.OutOfMemoryException` je vyvolána, a že jsou provedeny žádné další kroky.
+*  Výrazy délky dimenze *expression_list* jsou vyhodnocovány v pořadí, zleva doprava. Po vyhodnocení každého výrazu se provede implicitní převod ([implicitní převody](conversions.md#implicit-conversions)) na jeden z následujících typů: `int`, `uint`, `long`, `ulong`. První typ v tomto seznamu, pro který existuje implicitní převod. Pokud vyhodnocení výrazu nebo následný implicitní převod způsobí výjimku, nebudou vyhodnoceny žádné další výrazy a nejsou spuštěny žádné další kroky.
+*  Vypočítané hodnoty pro délky dimenzí jsou ověřeny následujícím způsobem. Pokud je jedna nebo více hodnot menší než nula, je vyvolána `System.OverflowException` a nejsou provedeny žádné další kroky.
+*  Je přidělena instance pole s danými délkami dimenzí. Pokud není k dispozici dostatek paměti pro přidělení nové instance, je vyvolána `System.OutOfMemoryException` a nejsou provedeny žádné další kroky.
 *  Všechny prvky nové instance pole jsou inicializovány na výchozí hodnoty ([výchozí hodnoty](variables.md#default-values)).
-*  Pokud výraz vytvoření pole obsahuje inicializátor pole, každý výraz v inicializátoru pole je vyhodnocen a přiřazen do svého odpovídajícího prvku pole. Hodnocení a přiřazení se provádějí v pořadí výrazy jsou napsané v inicializátoru pole – jinými slovy, prvky jsou inicializovány ve vzestupném pořadí index s zvýšení první rozměr nejvíce vpravo. Pokud zkušební daného výrazu nebo následné přiřazení odpovídající prvek pole způsobí výjimku, žádné další prvky jsou inicializovány (a zbývající prvky budou mít výchozí hodnoty).
+*  Pokud výraz pro vytvoření pole obsahuje inicializátor pole, pak se každý výraz v inicializátoru pole vyhodnotí a přiřadí odpovídajícímu prvku pole. Vyhodnocení a přiřazení jsou prováděny v pořadí, ve kterém jsou výrazy zapsány v inicializátoru pole – jinými slovy, prvky jsou inicializovány ve vzestupném pořadí indexů, přičemž výše uvedená dimenze nejvíce roste. Pokud vyhodnocení daného výrazu nebo následné přiřazení k odpovídajícímu elementu pole způsobí výjimku, nebudou inicializovány žádné další prvky (a zbývající prvky budou mít výchozí hodnoty).
 
-Výraz vytvoření pole umožňuje vytvoření instance pole s prvky typu pole, ale prvky takové pole musí být inicializován ručně. Například příkaz
+Výraz pro vytvoření pole povoluje vytvoření instance pole s prvky typu pole, ale prvky takového pole musí být manuálně inicializovány. Například příkaz
 ```csharp
 int[][] a = new int[100][];
 ```
-Vytvoří jednorozměrné pole 100 elementy typu `int[]`. Počáteční hodnota každý element je `null`. Není možné pro stejný výraz vytvoření pole se také vytvořit instanci dílčí pole a příkaz
+Vytvoří jednorozměrné pole s 100 prvky typu `int[]`. Počáteční hodnota každého prvku je `null`. Je možné, že stejný výraz vytvoření pole také nemůže vytvořit instanci dílčích polí a příkaz
 ```csharp
 int[][] a = new int[100][5];        // Error
 ```
-výsledkem chyba kompilace. Vytvoření instance dílčí pole je nutné místo toho provést ručně, jako v
+má za následek chybu při kompilaci. Instance dílčích polí musí být provedena ručně, jako v
 ```csharp
 int[][] a = new int[100][];
 for (int i = 0; i < 100; i++) a[i] = new int[5];
 ```
 
-Pokud má pole polí "obdélníkový" tvar, který je dílčí pole je všechny stejnou délku, je výhodnější používat vícerozměrné pole. V předchozím příkladu vytvoření instance pole polí vytvoří objekty 101 – jedno pole vnější a 100 dílčí pole. Naproti tomu
+Když pole pole má tvar "obdélníkový", který je v případě, že jsou dílčí pole všechny stejné délky, je efektivnější použít multidimenzionální pole. Ve výše uvedeném příkladu vytváří instance pole polí objekty 101 – jedno vnější pole a 100 dílčích polí. Naproti tomu
 ```csharp
 int[,] = new int[100, 5];
 ```
-vytvoří pouze jeden objekt, dvourozměrné pole a provede přidělení v jediném příkazu.
+vytvoří pouze jeden objekt, dvourozměrné pole a provede přidělení v jednom příkazu.
 
-Následují příklady vytváření výrazů implicitně typované pole:
+Následují příklady implicitně typované výrazy vytváření pole:
 ```csharp
 var a = new[] { 1, 10, 100, 1000 };                       // int[]
 
@@ -1917,9 +1917,9 @@ var c = new[,] { { "hello", null }, { "world", "!" } };   // string[,]
 var d = new[] { 1, "one", 2, "two" };                     // Error
 ```
 
-Posledního výrazu způsobí chybu kompilace, protože ani `int` ani `string` implicitně převést na druhé a tady je již nejlépe běžné zadejte. Výraz vytvoření pole explicitně musí použít v tomto případě třeba určující typ, který má být `object[]`. Můžete také jeden z prvků lze převést na běžné základní typ, který by pak můžou stát typ odvozený element.
+Poslední výraz způsobí chybu při kompilaci, protože žádná z `int` ani `string` je implicitně převoditelná na druhou, a proto neexistuje žádný nejlepší společný typ. V tomto případě musí být použit explicitní výraz pro vytvoření pole, například zadání typu, který má být `object[]`. Alternativně je možné jeden z prvků přetypovat na společný základní typ, který by pak představoval odvozený typ elementu.
 
-Implicitně typovaná pole vytváření výrazů je možné kombinovat s inicializátory anonymních objektů ([anonymní objekt vytváření výrazů](expressions.md#anonymous-object-creation-expressions)) vytvořte anonymně zadané datové struktury. Příklad:
+Výrazy vytváření implicitně typovaného pole lze kombinovat s Inicializátory anonymních objektů ([výrazy vytváření anonymních objektů](expressions.md#anonymous-object-creation-expressions)) k vytváření anonymních typů datových struktur. Příklad:
 ```csharp
 var contacts = new[] {
     new {
@@ -1933,9 +1933,9 @@ var contacts = new[] {
 };
 ```
 
-#### <a name="delegate-creation-expressions"></a>Výrazy vytvoření delegáta
+#### <a name="delegate-creation-expressions"></a>Výrazy vytváření delegátů
 
-A *delegate_creation_expression* umožňuje vytvořit novou instanci třídy *delegate_type*.
+*Delegate_creation_expression* se používá k vytvoření nové instance *delegate_type*.
 
 ```antlr
 delegate_creation_expression
@@ -1943,31 +1943,31 @@ delegate_creation_expression
     ;
 ```
 
-Argument výraz vytvářející delegáta musí být skupinu metod, anonymní funkce nebo hodnota typ času kompilace `dynamic` nebo *delegate_type*. Pokud je argumentem skupinu metod, identifikuje metodu a pro metodu instance objektu, pro který chcete vytvořit delegáta. Pokud argument je anonymní funkce přímo definuje parametry a tělo metody delegáta cíle. Pokud je argument hodnota identifikuje instanci delegáta, které chcete vytvořit kopii.
+Argument výrazu vytvoření delegáta musí být skupina metod, anonymní funkce nebo hodnota buď typu času kompilace `dynamic` nebo *delegate_type*. Pokud je argumentem skupina metod, identifikuje metodu a pro metodu instance objekt, pro který chcete vytvořit delegáta. Pokud je argumentem anonymní funkce, přímo definuje parametry a tělo metody v cíli delegáta. Pokud je argumentem hodnota, která identifikuje instanci delegáta, pro kterou chcete vytvořit kopii.
 
-Pokud *výraz* má typ kompilace `dynamic`, *delegate_creation_expression* dynamicky vázán ([dynamické vazby](expressions.md#dynamic-binding)) a následující pravidla platí se za běhu pomocí typu za běhu *výraz*. V opačném případě pravidla se použijí v době kompilace.
+Pokud má *výraz* typ doby kompilace `dynamic`, je *delegate_creation_expression* dynamicky svázán ([dynamická vazba](expressions.md#dynamic-binding)) a níže uvedená pravidla jsou použita v době běhu pomocí běhového typu *výrazu*. V opačném případě pravidla jsou použita v době kompilace.
 
-Vazba čas zpracování *delegate_creation_expression* formuláře `new D(E)`, kde `D` je *delegate_type* a `E` je *výraz* , se skládá z následujících kroků:
+Zpracování *delegate_creation_expression* formuláře v čase vazby `new D(E)`, kde `D` je *delegate_type* a `E` je *výraz*, skládá se z následujících kroků:
 
-*  Pokud `E` je skupina metodu, výraz vytvoření delegáta je zpracována stejným způsobem jako převod skupin – metoda ([převody skupiny – metoda](conversions.md#method-group-conversions)) z `E` k `D`.
-*  Pokud `E` je anonymní funkce, výraz vytvoření delegáta je zpracována stejným způsobem jako konverzi anonymní funkce ([anonymní funkce převody](conversions.md#anonymous-function-conversions)) z `E` k `D`.
-*  Pokud `E` je hodnota, `E` musí být kompatibilní ([delegovat deklarace](delegates.md#delegate-declarations)) s `D`, a výsledkem je odkaz na nově vytvořený delegát typu `D` , který odkazuje na stejnou vyvolání jako seznam `E`. Pokud `E` není kompatibilní s `D`, dojde k chybě kompilace.
+*  Pokud je `E` skupinou metod, je výraz vytvoření delegáta zpracován stejným způsobem jako převod skupiny metod ([Převod skupin metod](conversions.md#method-group-conversions)) z `E` na `D`.
+*  Pokud je `E` anonymní funkce, je výraz vytvoření delegáta zpracován stejným způsobem jako anonymní převod funkce ([anonymní převody funkcí](conversions.md#anonymous-function-conversions)) z `E` na `D`.
+*  Pokud je `E` hodnota, musí být `E` kompatibilní ([deklarace delegátů](delegates.md#delegate-declarations)) s `D` a výsledkem je odkaz na nově vytvořený delegát typu `D`, který odkazuje na stejný seznam volání jako `E`. Pokud `E` není kompatibilní s `D`, dojde k chybě při kompilaci.
 
-Zpracování za běhu *delegate_creation_expression* formuláře `new D(E)`, kde `D` je *delegate_type* a `E` je *výraz* , se skládá z následujících kroků:
+Běhové zpracování *delegate_creation_expression* formuláře `new D(E)`, kde `D` je *delegate_type* a `E` je *výraz*, skládá se z následujících kroků:
 
-*   Pokud `E` je skupina metodu, výraz vytvoření delegáta se vyhodnotí jako převod skupin – metoda ([převody skupiny – metoda](conversions.md#method-group-conversions)) z `E` k `D`.
-*   Pokud `E` je anonymní funkce, vytvoření delegáta se vyhodnotí jako konverzi anonymní funkce z `E` k `D` ([anonymní funkce převody](conversions.md#anonymous-function-conversions)).
-*   Pokud `E` . má hodnotu *delegate_type*:
-    * `E` je vyhodnocen. Je-li toto vyhodnocení způsobí výjimku, jsou spuštěny žádné další kroky.
-    * Pokud hodnota `E` je `null`, `System.NullReferenceException` je vyvolána, a že jsou provedeny žádné další kroky.
-    * Nová instance typu delegáta `D` je přidělen. Pokud není k dispozici dostatek paměti k přidělení nové instance `System.OutOfMemoryException` je vyvolána, a že jsou provedeny žádné další kroky.
-    * Novou instanci delegáta je inicializována pomocí seznamu vyvolání jako instanci delegáta Dal `E`.
+*   Pokud je `E` skupinou metod, vyhodnotí se výraz vytvoření delegáta jako převod skupiny metod ([převody skupin metod](conversions.md#method-group-conversions)) z `E` na `D`.
+*   Pokud je `E` anonymní funkce, vytvoření delegáta se vyhodnotí jako anonymní konverze funkce z `E` na `D` ([anonymní převody funkcí](conversions.md#anonymous-function-conversions)).
+*   Pokud `E` je hodnota *delegate_type*:
+    * je vyhodnocena hodnota `E`. Pokud toto vyhodnocení způsobí výjimku, nejsou provedeny žádné další kroky.
+    * Pokud je hodnota `E` `null`, je vyvolána `System.NullReferenceException` a nejsou provedeny žádné další kroky.
+    * Je přidělena nová instance typu delegáta `D`. Pokud není k dispozici dostatek paměti pro přidělení nové instance, je vyvolána `System.OutOfMemoryException` a nejsou provedeny žádné další kroky.
+    * Nová instance delegáta se inicializuje se stejným seznamem vyvolání jako instance delegáta zadaná `E`.
 
-Seznamu vyvolání delegáta je určena při delegáta je vytvořena instance a pak zůstává konstantní po celou dobu života delegáta. Jinými slovy není možné po vytvoření změnit volatelných entity cílového delegáta. Při dvou delegátů jsou zkombinované nebo jeden se odebere z jiného ([delegovat deklarace](delegates.md#delegate-declarations)), Nový delegát výsledky; nemá žádné existující delegáta jeho obsah změnit.
+Seznam volání delegáta je určen při vytváření instance delegáta a pak zůstává konstantní pro celou dobu života delegáta. Jinými slovy, nemůžete změnit cílovou entitu volat jako delegované, jakmile se vytvoří. Pokud jsou dva Delegáti zkombinováni nebo jeden z nich odebrán z jiné ([deklarace delegátů](delegates.md#delegate-declarations)), nové výsledky delegáta; u žádného existujícího delegáta se změnil jeho obsah.
 
-Není možné k vytvoření delegáta, který odkazuje na vlastnost, indexer, uživatelem definovaný operátor, konstruktor instance, destruktor nebo statický konstruktor.
+Není možné vytvořit delegáta, který odkazuje na vlastnost, indexer, uživatelsky definovaný operátor, konstruktor instance, destruktor nebo statický konstruktor.
 
-Jak je popsáno výše, při vytvoření delegáta z metody skupiny, seznam formálních parametrů a návratový typ delegáta zjistit, které z přetížených metod k výběru. V příkladu
+Jak je popsáno výše, při vytvoření delegáta ze skupiny metod, seznam formálních parametrů a návratový typ delegáta určují, které z přetížených metod vybrat. V příkladu
 ```csharp
 delegate double DoubleFunc(double x);
 
@@ -1984,11 +1984,11 @@ class A
     }
 }
 ```
-`A.f` pole je inicializována pomocí delegáta, který odkazuje na druhý `Square` metoda vzhledem k tomu, že tato metoda přesně odpovídá seznamu formálních parametrů a návratový typ `DoubleFunc`. Měl druhý `Square` metoda nebyly k dispozici, za kompilace by došlo k chybě.
+pole `A.f` je inicializováno pomocí delegáta, který odkazuje na druhou metodu `Square`, protože tato metoda přesně odpovídá seznamu formálních parametrů a návratový typ `DoubleFunc`. Nebyla nalezena druhá metoda `Square`, došlo k chybě při kompilaci.
 
-#### <a name="anonymous-object-creation-expressions"></a>Anonymní objekt vytváření výrazů
+#### <a name="anonymous-object-creation-expressions"></a>Výrazy pro vytváření anonymních objektů
 
-*Anonymous_object_creation_expression* slouží k vytvoření objektu anonymního typu.
+*Anonymous_object_creation_expression* se používá k vytvoření objektu anonymního typu.
 
 ```antlr
 anonymous_object_creation_expression
@@ -2013,11 +2013,11 @@ member_declarator
     ;
 ```
 
-Inicializátor anonymních objektů deklaruje anonymního typu a vrátí instance daného typu. Anonymní typ není typem nameless třídy, který dědí přímo z `object`. Členové anonymního typu jsou posloupnost odvodit z inicializátoru anonymní objekt použitý k vytvoření instance typu vlastnosti jen pro čtení. Konkrétně inicializátor anonymních objektů ve formátu
+Inicializátor anonymního objektu deklaruje anonymní typ a vrátí instanci tohoto typu. Anonymní typ je Nameless typ třídy, který dědí přímo z `object`. Členové anonymního typu jsou sekvence vlastností jen pro čtení odvozeny od inicializátoru anonymního objektu použitého k vytvoření instance typu. Konkrétně inicializátor anonymních objektů ve formuláři
 ```csharp
 new { p1 = e1, p2 = e2, ..., pn = en }
 ```
-deklaruje anonymního typu formuláře
+deklaruje anonymní typ formuláře.
 ```csharp
 class __Anonymous1
 {
@@ -2042,11 +2042,11 @@ class __Anonymous1
     public override int GetHashCode() { ... }
 }
 ```
-kde každý `Tx` je typ odpovídající výraz `ex`. Výraz použitý v *member_declarator* musí být typu. Díky tomu se jedná o chybu kompilace výrazu v *member_declarator* na hodnotu null nebo je anonymní funkce. Také se jedná o chybu kompilace pro výraz unsafe typu.
+kde každý `Tx` je typ odpovídajícího výrazu `ex`. Výraz použitý v *member_declarator* musí mít typ. Proto se jedná o chybu při kompilaci pro výraz v *member_declarator* , který má být null nebo anonymní funkce. Také se jedná o chybu při kompilaci, aby výraz měl nezabezpečený typ.
 
-Názvy anonymního typu a parametru k jeho `Equals` metody jsou automaticky generovány v kompilátoru a se nedá odkazovat v textu programu.
+Názvy anonymního typu a parametru jeho metody `Equals` jsou automaticky generovány kompilátorem a nelze na něj odkazovat v textu programu.
 
-Ve stejném programu vytvoří dvě inicializátory anonymních objektů určující posloupnost vlastnosti stejné názvy a typy v době kompilace ve stejném pořadí výskyty stejného anonymního typu.
+V rámci stejného programu budou dva Inicializátory anonymních objektů, které určují sekvenci vlastností se stejnými názvy a typy pro kompilaci ve stejném pořadí, vytvořit instance stejného anonymního typu.
 
 V příkladu
 ```csharp
@@ -2054,26 +2054,26 @@ var p1 = new { Name = "Lawnmower", Price = 495.00 };
 var p2 = new { Name = "Shovel", Price = 26.95 };
 p1 = p2;
 ```
-přiřazení na posledním řádku je povolen, protože `p1` a `p2` jsou stejné anonymního typu.
+přiřazení na posledním řádku je povoleno, protože `p1` a `p2` jsou stejného anonymního typu.
 
-`Equals` a `GetHashcode` metody anonymních typů přepište metody zděděné z `object`a jsou definovány z hlediska `Equals` a `GetHashcode` vlastností tak, aby dva výskyty stejného anonymního typu jsou si rovny Pokud a pouze v případě, že jejich vlastnosti jsou stejné.
+Metody `Equals` a `GetHashcode` v anonymních typech přepisují metody děděné z `object` a jsou definovány ve smyslu `Equals` a `GetHashcode` vlastností, aby se dva instance stejného anonymního typu rovnaly pouze tehdy, pokud jsou všechny jejich vlastnosti. výši.
 
-Deklarátor členské lze zkrátit na jednoduchý název ([odvození typu](expressions.md#type-inference)), přístup ke členu ([kompilace kontrolu dynamické přetížení](expressions.md#compile-time-checking-of-dynamic-overload-resolution)), základní přístup ([základní přístup](expressions.md#base-access)) nebo člen null podmíněný přístup ([Null podmíněné výrazy jako inicializátory projekce](expressions.md#null-conditional-expressions-as-projection-initializers)). Tento postup se nazývá ***projekce inicializátor*** a představuje zkratku pro deklaraci a přiřazení k vlastnosti se stejným názvem. Konkrétně deklarátory členů formulářů
+Člen deklarátor může být zkrácen na jednoduchý název ([odvození typu](expressions.md#type-inference)), přístup ke členu ([Kontrola při kompilaci dynamického překladu přetížení](expressions.md#compile-time-checking-of-dynamic-overload-resolution)), základní přístup ([základní přístup](expressions.md#base-access)) nebo hodnota null podmíněného přístupu člena ([ Podmíněné výrazy s hodnotou null jako Inicializátory projekce](expressions.md#null-conditional-expressions-as-projection-initializers). Tento postup se nazývá ***inicializátor projekce*** a je zkrácený pro deklaraci a přiřazení na vlastnost se stejným názvem. Konkrétně členské deklarátory formuláře
 ```csharp
 identifier
 expr.identifier
 ```
-jsou přesně odpovídá následující příkaz, v uvedeném pořadí:
+jsou přesně stejné jako v následujícím pořadí:
 ```csharp
 identifier = identifier
 identifier = expr.identifier
 ```
 
-Proto v inicializátoru projekce *identifikátor* vybere hodnota a pole nebo vlastnost, ke kterému je přiřazena hodnota. Inicializátor projekce intuitivně, projekty, nejen hodnotu, ale také název hodnoty.
+Proto v inicializátoru projekce *identifikátor* vybere jak hodnotu, tak pole nebo vlastnost, ke kterým je přiřazena hodnota. Intuitivní, projekty inicializátorů projekce nestačí pouze jako hodnota, ale také název hodnoty.
 
-### <a name="the-typeof-operator"></a>Typeof – operátor
+### <a name="the-typeof-operator"></a>Operátor typeof
 
-`typeof` Operátor se používá k získání `System.Type` pro typ objektu.
+Operátor `typeof` slouží k získání objektu `System.Type` pro typ.
 
 ```antlr
 typeof_expression
@@ -2097,21 +2097,21 @@ comma
     ;
 ```
 
-První formulář *typeof_expression* se skládá z `typeof` – klíčové slovo následované v závorce *typ*. Výsledkem výrazu tohoto formuláře je `System.Type` pro zvolený typ objektu. Existuje pouze jeden `System.Type` objekt daného typu. To znamená, že pro typ `T`, `typeof(T) == typeof(T)` má vždy hodnotu true. *Typ* nemůže být `dynamic`.
+První forma *typeof_expression* se skládá z klíčového slova `typeof` následovaného *typem*v závorkách. Výsledek výrazu tohoto formuláře je objekt `System.Type` pro zadaný typ. Pro libovolný daný typ je k dispozici pouze jeden objekt `System.Type`. To znamená, že pro typ @ no__t-0 `typeof(T) == typeof(T)` je vždycky true. *Typ* nemůže být `dynamic`.
 
-Tedy o druhou podobu *typeof_expression* se skládá z `typeof` – klíčové slovo následované v závorce *unbound_type_name*. *Unbound_type_name* je velmi podobný *type_name* ([Namespace a zadejte názvy](basic-concepts.md#namespace-and-type-names)) s tím rozdílem, že *unbound_type_name* obsahuje *generic_dimension_specifier*s kde *type_name* obsahuje *type_argument_list*s. Když operand *typeof_expression* je sekvence tokenů, který splňuje gramatiky obou *unbound_type_name* a *type_name*, zejména pokud obsahuje ani *generic_dimension_specifier* ani *type_argument_list*, posloupnost tokeny se považuje za *type_name*. Význam *unbound_type_name* je stanoven následujícím způsobem:
+Druhá forma *typeof_expression* se skládá z klíčového slova `typeof` následovaného *unbound_type_nameem*v závorkách. *Unbound_type_name* je velmi podobný jako *TYPE_NAME* ([obor názvů a názvy typů](basic-concepts.md#namespace-and-type-names)) s tím rozdílem, že *unbound_type_name* obsahuje *generic_dimension_specifier*, kde *TYPE_NAME* obsahuje *type_ argument_list*s. Když je operandem *typeof_expression* sekvence tokenů, které vyhovují gramatikám obou *unbound_type_name* a *TYPE_NAME*, konkrétně v případě, že neobsahuje ani *generic_dimension_specifier* ani *type_argument _List*se pořadí tokenů považuje za *TYPE_NAME*. Význam *unbound_type_name* je určen následovně:
 
-*  Převod sekvence tokenů *type_name* nahrazením každého *generic_dimension_specifier* s *type_argument_list* mají stejný počet čárkami a klíčové slovo `object` jako každý *type_argument*.
-*  Vyhodnocení výsledný *type_name*, při ignoruje všechny omezeními parametrů typů.
-*  *Unbound_type_name* přeloží na nevázaný parametr generického typu přidružené výsledný konstruovaný typ ([vázaný a nevázaných typy](types.md#bound-and-unbound-types)).
+*  Převeďte sekvenci tokenů na *TYPE_NAME* nahrazením každého *generic_dimension_specifier* řetězcem *type_argument_list* , který má stejný počet čárek a klíčové slovo `object` jako každé *type_argument*.
+*  Vyhodnotí výsledný *TYPE_NAME*a ignoruje všechna omezení parametrů typu.
+*  *Unbound_type_name* překládá na nevázaný obecný typ přidružený k výslednému konstruovanému typu ([vázané a nevázané typy](types.md#bound-and-unbound-types)).
 
-Výsledkem *typeof_expression* je `System.Type` objektu pro výsledný nevázaných obecného typu.
+Výsledkem *typeof_expression* je objekt `System.Type` pro výsledný nevázaný obecný typ.
 
-Třetí forma *typeof_expression* se skládá z `typeof` – klíčové slovo následované v závorce `void` – klíčové slovo. Výsledkem výrazu tohoto formuláře je `System.Type` objekt, který reprezentuje neexistence typu. Typ objektu vrácený `typeof(void)` se liší od typu objekt vrácený pro libovolného typu. Tento objekt speciální typ je užitečné v knihovnách tříd, umožňujících reflexe do metody v jazyce, ve kterém chcete způsob, jak reprezentaci návratový typ jakoukoli metodu, včetně void metody instance těchto metod `System.Type`.
+Třetí forma *typeof_expression* se skládá z klíčového slova `typeof` následované klíčovým slovem `void` v závorkách. Výsledek výrazu tohoto formuláře je objekt `System.Type`, který představuje absenci typu. Objekt typu vrácený funkcí `typeof(void)` je odlišný od objektu Type vráceného pro libovolný typ. Tento speciální objekt typu je užitečný v knihovnách tříd, které umožňují reflexi do metod v jazyce, kde tyto metody mají mít způsob, jak vyjádřit návratový typ jakékoli metody, včetně metod void, s instancí `System.Type`.
 
-`typeof` Operátor lze použít pro parametr typu. Výsledkem je `System.Type` objektu pro typ za běhu, která byla vázána na parametr typu. `typeof` Operátoru lze také na konstruovaný typ nebo nevázaný parametr generického typu ([vázaný a nevázaných typy](types.md#bound-and-unbound-types)). `System.Type` Objektu pro nevázaný parametr generického typu není stejný jako `System.Type` objekt typu instance. Typ instance je vždy uzavřený konstruovaný typ v době běhu tak jeho `System.Type` objektu závisí na argumenty typu modulu runtime používá, zatímco nevázaný parametr generického typu nemá žádné argumenty typu.
+Operátor `typeof` lze použít pro parametr typu. Výsledkem je objekt `System.Type` pro typ modulu runtime, který byl svázán s parametrem typu. Operátor `typeof` lze také použít pro konstruovaný typ nebo nevázaný obecný typ ([vázané a nevázané typy](types.md#bound-and-unbound-types)). Objekt `System.Type` pro nevázaný obecný typ není stejný jako objekt `System.Type` typu instance. Typ instance je vždy uzavřený konstruovaný typ za běhu, takže jeho objekt `System.Type` závisí na používaných argumentech běhového typu, zatímco obecný typ bez vazby nemá žádné argumenty typu.
 
-V příkladu
+Příklad
 ```csharp
 using System;
 
@@ -2142,8 +2142,8 @@ class Test
     }
 }
 ```
-vytvoří následující výstup:
-```
+Vytvoří následující výstup:
+```console
 System.Int32
 System.Int32
 System.String
@@ -2157,11 +2157,11 @@ X`1[T]
 
 Všimněte si, že `int` a `System.Int32` jsou stejného typu.
 
-Všimněte si také, že výsledek `typeof(X<>)` není závislý na argument typu, ale výsledek `typeof(X<T>)` nepodporuje.
+Všimněte si také, že výsledek `typeof(X<>)` není závislý na argumentu typu, ale výsledkem `typeof(X<T>)`.
 
-### <a name="the-checked-and-unchecked-operators"></a>Operátory zaškrtnuto a nezaškrtnuto
+### <a name="the-checked-and-unchecked-operators"></a>Kontrolované a nezaškrtnuté operátory
 
-`checked` a `unchecked` operátory jsou slouží ke kontrole, ***kontextu kontroly přetečení*** integrálového typu aritmetické operace a převody.
+Operátory `checked` a `unchecked` slouží k řízení ***kontextu kontroly přetečení*** pro aritmetické operace a převody integrálního typu.
 
 ```antlr
 checked_expression
@@ -2173,27 +2173,27 @@ unchecked_expression
     ;
 ```
 
-`checked` Operátor vyhodnotí uzavřeného výrazu ve zkontrolovaném kontextu a `unchecked` operátor vyhodnotí uzavřeného výrazu v nezkontrolovaném kontextu. A *checked_expression* nebo *unchecked_expression* přesně odpovídá *parenthesized_expression* ([výrazech se závorkami](expressions.md#parenthesized-expressions)), s tím rozdílem, že omezením výraz je vyhodnocen v dané kontroly kontextu přetečení.
+Operátor `checked` vyhodnocuje obsažený výraz v kontrolovaném kontextu a operátor `unchecked` vyhodnocuje obsažený výraz v nekontrolovaném kontextu. *Checked_expression* nebo *unchecked_expression* odpovídá přesně *parenthesized_expression* ([výrazům v závorkách](expressions.md#parenthesized-expressions)) s tím rozdílem, že obsažený výraz je vyhodnocen v daném kontextu kontroly přetečení. .
 
-Přetečení kontrola kontextu je možné řídit také prostřednictvím `checked` a `unchecked` příkazy ([příkazy zaškrtnuto a nezaškrtnuto](statements.md#the-checked-and-unchecked-statements)).
+Kontext kontroly přetečení lze také ovládat pomocí příkazů `checked` a `unchecked` ([příkazy Checked a unchecked](statements.md#the-checked-and-unchecked-statements)).
 
-Tyto operace jsou ovlivněny kontroly kontextu stanovené přetečení `checked` a `unchecked` operátorů a příkazů:
+Následující operace jsou ovlivněny kontextem kontroly přetečení vytvořeným operátory `checked` a `unchecked` a příkazy:
 
-*  Předdefinované `++` a `--` unárních operátorů ([Příponové operátory Inkrementace a dekrementace operátory](expressions.md#postfix-increment-and-decrement-operators) a [předpony Inkrementace a dekrementace operátory](expressions.md#prefix-increment-and-decrement-operators)), když je celočíselný operand Zadejte.
-*  Předdefinované `-` unárního operátoru ([unární operátor minus](expressions.md#unary-minus-operator)), když je operand typu celé číslo.
-*  Předdefinované `+`, `-`, `*`, a `/` binárních operátorů ([aritmetické operátory](expressions.md#arithmetic-operators)), pokud jsou oba operandy integrální typy.
-*  Explicitních číselných převodů ([explicitních číselných převodů](conversions.md#explicit-numeric-conversions)) z jednoho celočíselného typu na jiný celočíselný typ nebo z `float` nebo `double` na celočíselný typ.
+*  Předdefinované operátory `++` a `--` (operátory[přírůstku a](expressions.md#postfix-increment-and-decrement-operators) snížení [předpony a operátory přírůstku a snížení](expressions.md#prefix-increment-and-decrement-operators)), pokud je operand integrálního typu.
+*  Předdefinovaný operátor `-` (Unární[operátor mínus](expressions.md#unary-minus-operator)), pokud je operand integrálního typu.
+*  Předdefinované `+`, `-`, `*` a binární operátory `/` ([aritmetické operátory](expressions.md#arithmetic-operators)), jsou-li oba operandy integrálního typu.
+*  Explicitní číselné převody ([explicitní číselné převody](conversions.md#explicit-numeric-conversions)) z jednoho integrálního typu na jiný celočíselný typ nebo z `float` nebo `double` na celočíselný typ.
 
-Při jedné z výše uvedených operací vytvoření výsledku, který je příliš velký pro reprezentaci typu cílového, kontext, ve které operaci provádí ovládací prvky výsledné chování:
+Když jedna z výše uvedených operací vytvoří výsledek, který je příliš velký pro reprezentaci v cílovém typu, kontext, ve kterém je operace provedena, řídí výsledné chování:
 
-*  V `checked` kontextu, pokud je operace konstantní výraz ([konstantní výrazy](expressions.md#constant-expressions)), dojde k chybě kompilace. Jinak, pokud se operace provádí za běhu, `System.OverflowException` je vyvolána výjimka.
-*  V `unchecked` je rozdělená do kontextu, výsledek se zahodí všechny nejvyšším bity, které se nevejdou do cílového typu.
+*  Pokud je operace v kontextu `checked` konstantní výraz ([konstantní výrazy](expressions.md#constant-expressions)), dojde k chybě při kompilaci. V opačném případě, pokud je operace provedena v době běhu, je vyvolána `System.OverflowException`.
+*  V kontextu `unchecked` je výsledek zkrácen tím, že zahodí všechny bity s vysokým pořadím, které se nevejdou do cílového typu.
 
-Pro nekonstantní výrazy (výrazy, které jsou vyhodnocovány v době běhu), které se nenacházejí žádné `checked` nebo `unchecked` operátory nebo příkazy, je výchozí přetečení kontrola kontextu `unchecked` Pokud externí faktory (jako je například kompilátor přepínače a konfiguraci prostředí spuštění) vyžadují `checked` hodnocení.
+Pro nekonstantní výrazy (výrazy, které jsou vyhodnocovány za běhu), které nejsou uzavřeny žádnými operátory nebo příkazy `checked` nebo `unchecked`, je výchozí kontext kontroly přetečení `unchecked`, pokud nedošlo k externím faktorům (například přepínačům kompilátoru a Konfigurace prostředí spuštění) volání `checked` vyhodnocení.
 
-Pro konstantní výrazy (výrazy, které může být plně vyhodnocen v době kompilace), je vždy kontroly kontextu přetečení výchozí `checked`. Pokud není konstantní výraz se explicitně umístí do `unchecked` kontextu přetečení, ke kterým dochází při vyhodnocení za kompilace výrazu vždy způsobit chyby kompilace.
+V případě konstantních výrazů (výrazy, které mohou být plně vyhodnocovány v době kompilace) je výchozí kontext kontroly přetečení vždy `checked`. Pokud není konstantní výraz explicitně umístěn v kontextu `unchecked`, přetečení, ke kterým dojde během kompilace výrazu, vždy způsobí chyby při kompilaci.
 
-Není ovlivněna tělo anonymní funkce `checked` nebo `unchecked` kontextech, ve kterých dojde k anonymní funkce.
+Tělo anonymní funkce není ovlivněno `checked` nebo `unchecked` kontexty, ve kterých se anonymní funkce vyskytuje.
 
 V příkladu
 ```csharp
@@ -2215,7 +2215,7 @@ class Test
     }
 }
 ```
-vzhledem k tomu, že ani jeden z výrazů může být vyhodnocen v době kompilace, jsou hlášeny žádné chyby kompilace. V době běhu `F` vyvolá metoda výjimku `System.OverflowException`a `G` metoda vrátí-727379968 (nižší 32 bitů výsledek mimo rozsah). Chování `H` metoda závisí na výchozí přetečení kontrola kontext kompilace, ale je buď stejná jako `F` nebo stejná jako `G`.
+nejsou hlášeny žádné chyby při kompilaci, protože není možné vyhodnotit žádné výrazy v době kompilace. V době běhu vyvolá metoda `F` `System.OverflowException` a metoda `G` vrátí-727379968 (dolní 32 bity z rozsahu mimo rozsah). Chování metody `H` závisí na výchozím kontextu kontroly přetečení pro kompilaci, ale je buď stejné jako `F` nebo stejné jako `G`.
 
 V příkladu
 ```csharp
@@ -2237,9 +2237,9 @@ class Test
     }
 }
 ```
-přetečení, ke kterým dochází při vyhodnocování konstantní výrazy u `F` a `H` způsobit chyby kompilace nahlásit, protože jsou výrazy vyhodnocovány v `checked` kontextu. Přetečení také vyvolá se při vyhodnocení konstantního výrazu v `G`, ale protože vyhodnocení se provádí `unchecked` kontextu, není hlášena přetečení.
+k přetečení, ke kterým dochází při vyhodnocení konstantních výrazů v `F` a `H` způsobí, že budou hlášeny chyby při kompilaci, protože výrazy jsou vyhodnocovány v kontextu `checked`. K přetečení dojde také při vyhodnocení konstantního výrazu v `G`, ale vzhledem k tomu, že probíhá vyhodnocení v kontextu `unchecked`, přetečení není hlášeno.
 
-`checked` a `unchecked` operátory ovlivní pouze kontroly kontext pro tyto operace, které jsou obsaženy pomocí textu v rámci přetečení "`(`"a"`)`" tokeny. Operátory nemají žádný vliv na funkce členy, které jsou vyvolány jako výsledek vyhodnocení výrazu omezením. V příkladu
+Operátory `checked` a `unchecked` ovlivňují pouze kontext kontroly přetečení u těchto operací, které jsou v textu obsaženy v tokenech "`(`" a "`)`". Operátory nemají žádný vliv na členy funkce, které jsou vyvolány v důsledku vyhodnocení obsaženého výrazu. V příkladu
 ```csharp
 class Test
 {
@@ -2252,9 +2252,9 @@ class Test
     }
 }
 ```
-použití `checked` v `F` nemá vliv na vyhodnocení `x * y` v `Multiply`, takže `x * y` je vyhodnocen v přetečení výchozí kontrola kontextu.
+použití `checked` v `F` nemá vliv na vyhodnocení `x * y` v `Multiply`, takže `x * y` je vyhodnoceno ve výchozím kontextu kontroly přetečení.
 
-`unchecked` Operátor je vhodné při zápisu konstanty z podepsaných integrálních typů v šestnáctkové soustavě. Příklad:
+Operátor `unchecked` je vhodný při psaní konstanty podepsaných integrálních typů v šestnáctkovém zápisu. Příklad:
 ```csharp
 class Test
 {
@@ -2264,13 +2264,13 @@ class Test
 }
 ```
 
-Obě výše šestnáctkové konstanty jsou typu `uint`. Protože konstanty jsou mimo `int` v rozsahu, aniž by `unchecked` operátorů, přetypování na `int` byste mohli vytvořit chyby kompilace.
+Oba šestnáctkové konstanty jsou typu `uint`. Vzhledem k tomu, že jsou konstanty mimo rozsah `int` bez operátoru `unchecked`, přetypování na `int` by způsobilo chyby při kompilaci.
 
-`checked` a `unchecked` operátorů a příkazů umožňují programátorům ovládat některé aspekty některé číselné výpočty. Chování některé numerické operátory však závisí na datové typy jeho operandů. Například vždy vynásobí dvě desetinná místa má za následek výjimku při přetečení i v rámci explicitně `unchecked` vytvořit. Obdobně součin dvou čísel s plovoucí čárkou nikdy výsledky v výjimku při přetečení i v rámci explicitně `checked` vytvořit. Kromě toho ostatní operátory jsou nikdy ovlivněny režimu kontroly, zda výchozí nebo explicitní.
+Operátory a příkazy `checked` a `unchecked` umožňují programátorům řídit určité aspekty některých číselných výpočtů. Chování některých numerických operátorů ale závisí na datových typech operandů. Například násobení dvou desetinných míst vždy způsobí výjimku přetečení i v rámci explicitního `unchecked` konstrukce. Podobně násobení dvou objektů float nikdy nevede k výjimce přetečení i v rámci explicitního `checked` konstrukce. Kromě toho jiné operátory nejsou nikdy ovlivněny režimem kontroly, bez ohledu na to, zda jsou výchozí nebo explicitní.
 
-### <a name="default-value-expressions"></a>Výrazy s výchozími hodnotami
+### <a name="default-value-expressions"></a>výrazy výchozích hodnot
 
-Výraz výchozí hodnoty se používá k získání výchozí hodnota ([výchozí hodnoty](variables.md#default-values)) typu. Výraz výchozí hodnoty se obvykle používá pro parametry typu, protože nemusí být známé, pokud parametr typu je typ hodnoty nebo typ odkazu. (Neexistuje žádný převod z `null` literál na parametr typu. Pokud je parametr typu je znám jako typ odkazu.)
+Výchozí hodnota výrazu je použita k získání výchozí hodnoty ([výchozí hodnoty](variables.md#default-values)) typu. Obvykle je výraz výchozí hodnoty použit pro parametry typu, protože nemusí být znám, pokud je parametr typu hodnotový typ nebo odkazový typ. (Žádný převod neexistuje z literálu `null` na parametr typu, pokud parametr typu není známý jako odkazový typ.)
 
 ```antlr
 default_value_expression
@@ -2278,14 +2278,14 @@ default_value_expression
     ;
 ```
 
-Pokud *typ* v *default_value_expression* vyhodnotí v době běhu na typ odkazu, výsledkem je `null` převést na typu. Pokud *typ* v *default_value_expression* vyhodnotí v době běhu na typ hodnoty, výsledkem je *value_type*výchozí hodnota ([výchozí Konstruktory](types.md#default-constructors)).
+Pokud *typ* v *default_value_expression* vyhodnocuje za běhu na odkazový typ, výsledek je `null` převeden na tento typ. Pokud je *typ* ve *default_value_expression* vyhodnocen za běhu na hodnotový typ, výsledkem je výchozí hodnota *value_type*([výchozí konstruktory](types.md#default-constructors)).
 
-A *default_value_expression* je konstantní výraz ([konstantní výrazy](expressions.md#constant-expressions)) Pokud je typ typem odkazu nebo parametr typu, který je znám jako typ odkazu ([parametr typu omezení](classes.md#type-parameter-constraints)). Kromě toho *default_value_expression* je konstantní výraz, pokud je typ některý z následujících typů hodnot: `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char`, `float`, `double`, `decimal`, `bool`, nebo libovolný typ výčtu.
+*Default_value_expression* je konstantní výraz ([konstantní výrazy](expressions.md#constant-expressions)), pokud je typ odkazový typ nebo parametr typu, který je známý jako odkazový typ ([omezení parametrů typu](classes.md#type-parameter-constraints)). Kromě toho je *default_value_expression* konstantní výraz, pokud je typ jedním z následujících typů hodnot: `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char`, 0, 1, 2, 3 nebo jakýkoli typ výčtu.
 
 
-### <a name="nameof-expressions"></a>Výrazy Nameof
+### <a name="nameof-expressions"></a>Výrazy nameof
 
-A *nameof_expression* slouží k získání název programu entity jako konstanty typu řetězec.
+*Nameof_expression* se používá k získání názvu entity programu jako konstantního řetězce.
 
 ```antlr
 nameof_expression
@@ -2306,29 +2306,29 @@ named_entity_target
     ;
 ```
 
-Gramaticky vzato *named_entity* operand je vždy výraz. Protože `nameof` není rezervované klíčové slovo, výraz nameof je vždy syntakticky dvojznačný pomocí volání jednoduchý název `nameof`. Kvůli kompatibilitě, pokud vyhledávání názvu ([jednoduché názvy](expressions.md#simple-names)) názvu `nameof` proběhne úspěšně, je považován za výraz *invocation_expression* – bez ohledu na to, zda je při vyvolání právní. V opačném případě se jedná *nameof_expression*.
+Gramaticky řečeno, operand *named_entity* je vždy výraz. Protože `nameof` není rezervované klíčové slovo, výraz nameof je vždycky syntakticky dvojznačný s voláním jednoduchého názvu `nameof`. Z důvodu kompatibility, pokud je vyhledávání názvů ([jednoduché názvy](expressions.md#simple-names)) `nameof` úspěšné, výraz se považuje za *invocation_expression* , bez ohledu na to, zda je vyvolání právní. V opačném případě se jedná o *nameof_expression*.
 
-Význam *named_entity* z *nameof_expression* znamená ho jako výraz; to znamená, buď jako *simple_name*, *base_access*  nebo *member_access*. Nicméně pokud vyhledávání je popsáno v [jednoduché názvy](expressions.md#simple-names) a [přístup ke členu](expressions.md#member-access) způsobí chybu, protože člen instance nebyla nalezena ve statickém kontextu *nameof_expression*vytváří žádné takové chyby.
+Význam *named_entityu* *nameof_expression* je jeho význam jako výraz; To znamená buď jako *simple_name*, *base_access* nebo *member_access*. Nicméně pokud vyhledávání popsané v [jednoduchých názvech](expressions.md#simple-names) a [přístupu ke členům](expressions.md#member-access) má za následek chybu, protože člen instance byl nalezen ve statickém kontextu, *nameof_expression* nevytváří žádnou takovou chybu.
 
-Je chyba kompilace pro *named_entity* určit skupinu metod. Chcete-li mít *type_argument_list*. Jedná se chybu čas kompilace *named_entity_target* mít typ `dynamic`.
+Jedná se o chybu při kompilaci pro *named_entity* určení skupiny metod, která má *type_argument_list*. Jedná se o chybu v době kompilace, kterou může *named_entity_target* mít typ `dynamic`.
 
-A *nameof_expression* je konstantní výraz typu `string`, a nemá žádný vliv za běhu. Konkrétně jeho *named_entity* , není hodnocena a je ignorován pro účely analýzy jednoznačného přiřazení ([obecná pravidla pro jednoduché výrazy](variables.md#general-rules-for-simple-expressions)). Její hodnota je poslední identifikátor *named_entity* před volitelné koncový *type_argument_list*, transformovaný následujícím způsobem:
+*Nameof_expression* je konstantní výraz typu `string` a nemá žádný vliv za běhu. Konkrétně není vyhodnocena jeho *named_entity* a je ignorována pro účely přesné analýzy přiřazení ([Obecná pravidla pro jednoduché výrazy](variables.md#general-rules-for-simple-expressions)). Jeho hodnota je poslední identifikátor *named_entity* před nepovinným konečným *type_argument_list*, transformované následujícím způsobem:
 
-* Předpona "`@`", pokud použijete, se odebere.
-* Každý *unicode_escape_sequence* se transformuje na jeho odpovídající znak Unicode.
-* Žádné *formatting_characters* se odeberou.
+* Předpona "`@`", pokud je použita, je odebrána.
+* Každý *unicode_escape_sequence* se transformuje na příslušný znak Unicode.
+* Všechny *formatting_characters* se odeberou.
 
-Jedná se o stejné transformace použita v [identifikátory](lexical-structure.md#identifiers) při testování rovnosti mezi identifikátory.
+Jedná se o stejné transformace použité v [identifikátorech](lexical-structure.md#identifiers) při testování rovnosti mezi identifikátory.
 
-TODO: Příklady
+TODO: příklady
 
-### <a name="anonymous-method-expressions"></a>Výrazy anonymní metoda
+### <a name="anonymous-method-expressions"></a>Anonymní výrazy metod
 
-*Anonymous_method_expression* je jedním ze dvou způsobů definování anonymní funkce. Ty jsou podrobně popsány v [výrazy anonymní funkce](expressions.md#anonymous-function-expressions).
+*Anonymous_method_expression* je jedním ze dvou způsobů definování anonymní funkce. Tyto jsou dále popsány ve [výrazech anonymních funkcí](expressions.md#anonymous-function-expressions).
 
 ## <a name="unary-operators"></a>Unární operátory
 
-`?`, `+`, `-`, `!`, `~`, `++`, `--`, Vícesměrového vysílání, a `await` operátory označují jako unární operátory.
+Operátory `?`, `+`, `-`, `!`, `~`, `++`, `--`, cast a `await` se nazývají unární operátory.
 
 ```antlr
 unary_expression
@@ -2346,11 +2346,11 @@ unary_expression
     ;
 ```
 
-Pokud operand *unary_expression* má typ kompilace `dynamic`, je vázán dynamicky ([dynamické vazby](expressions.md#dynamic-binding)). V tomto případě typ době kompilace *unary_expression* je `dynamic`, a rozlišení je popsáno níže se provede v době běhu pomocí run-time typu operandu.
+Pokud má operand *unary_expression* typ při kompilaci `dynamic`, je dynamicky svázán ([dynamická vazba](expressions.md#dynamic-binding)). V tomto případě je typ doby kompilace *unary_expression* `dynamic` a řešení popsané níže bude provedeno za běhu pomocí běhového typu operandu.
 
-### <a name="null-conditional-operator"></a>Null – podmíněný operátor
+### <a name="null-conditional-operator"></a>Podmíněný operátor s hodnotou null
 
-Operátor podmíněného null seznam operací platí pro operand pouze v případě, že operand je jiná než null. Jinak je výsledek použití operátoru `null`.
+Podmíněný operátor s hodnotou null aplikuje seznam operací na operand pouze v případě, že tento operand je jiný než null. V opačném případě je výsledek použití operátoru `null`.
 
 ```antlr
 null_conditional_expression
@@ -2366,79 +2366,79 @@ null_conditional_operations
     ;
 ```
 
-Přístup ke členu a operací přístupu k elementu, (které mohou být samy podmíněných null), jakož i volání může obsahovat seznam operací.
+Seznam operací může zahrnovat přístup členů a operace přístupu k prvkům (které mohou být samy o hodnotě null) a také vyvolání.
 
-Například výraz `a.b?[0]?.c()` je *null_conditional_expression* s *primary_expression* `a.b` a *null_conditional_operations* `?[0]` (přístup k prvkům podmíněných null), `?.c` (člen null podmíněný přístup) a `()` (vyvolání).
+Například výraz `a.b?[0]?.c()` je *null_conditional_expression* s *primary_expression* `a.b` a *null_conditional_operations* `?[0]` (přístup k prvku s hodnotou null), `?.c` (podmíněný člen s hodnotou null). přístup) a `()` (vyvolání).
 
-Pro *null_conditional_expression* `E` s *primary_expression* `P`, umožněte `E0` se výraz získaný pomocí textu odstraněním úvodního `?`ze všech *null_conditional_operations* z `E` , které mají jednu. Koncepčně `E0` je výraz, který bude vyhodnocen, pokud žádná z kontroly hodnoty null reprezentována `?`s najít `null`.
+U *null_conditional_expression* `E` s *primary_expression* `P` nechejte `E0` výraz získaný pomocí textu, který odstraní úvodní `?` od každého *null_conditional_operationsu* `E`. máte jednu z nich. Koncepční, `E0` je výraz, který se vyhodnotí, pokud žádná z kontrol null reprezentovaných `?` nenalezne `null`.
 
-Navíc umožňují `E1` se výraz získaný pomocí textu odstraněním úvodního `?` z jenom na prvního *null_conditional_operations* v `E`. To může vést k *primární výraz* (pokud existuje pouze jedna `?`) nebo do jiného *null_conditional_expression*.
+Také `E1` být výraz získaný textovým odebráním počátečního `?` z pouze prvního *null_conditional_operations* v `E`. To může vést k *primárnímu výrazu* (pokud existuje jen jeden `?`) nebo na jiný *null_conditional_expression*.
 
-Například pokud `E` je výraz `a.b?[0]?.c()`, pak `E0` je výraz `a.b[0].c()` a `E1` je výraz `a.b[0]?.c()`.
+Pokud je například `E` výraz `a.b?[0]?.c()`, pak `E0` je výraz `a.b[0].c()` a `E1` je výraz `a.b[0]?.c()`.
 
-Pokud `E0` klasifikovaný jako nothing, pak `E` klasifikovaný jako nothing. V opačném případě E je klasifikován jako hodnotu.
+Je-li hodnota `E0` klasifikována jako Nothing, je `E` klasifikována jako Nothing. V opačném případě je E klasifikován jako hodnota.
 
-`E0` a `E1` slouží k určení význam `E`:
+`E0` a `E1` se používají k určení významu `E`:
 
-*  Pokud `E` vyskytuje se jako *statement_expression* význam `E` je stejný jako příkaz
+*  Pokud `E` nastane jako *statement_expression* , význam `E` je stejný jako příkaz
 
    ```csharp
    if ((object)P != null) E1;
    ```
 
-   s tím rozdílem, že P je vyhodnocen pouze jednou.
+   s výjimkou, že P je vyhodnocována pouze jednou.
 
-*  Jinak, pokud `E0` je klasifikován tak, co dojde k chybě kompilace.
+*  V opačném případě, pokud je `E0` klasifikována jako Nothing, dojde k chybě při kompilaci.
 
-*  V opačném případě nechat `T0` být typu `E0`.
+*  V opačném případě nechte `T0` typu `E0`.
 
-   *  Pokud `T0` je parametr typu, který není známé jako odkaz na typ nebo hodnotu Null, dojde k chybě kompilace.
+   *  Pokud `T0` je parametr typu, který není známý jako odkazový typ nebo typ hodnoty, který neumožňuje hodnotu null, dojde k chybě při kompilaci.
 
-   *  Pokud `T0` typu hodnotu Null, je typu `E` je `T0?`a význam `E` je stejný jako
+   *  Pokud je `T0` typ hodnoty, který neumožňuje hodnotu null, pak je typ `E` `T0?` a význam `E` je stejný jako
 
       ```csharp
       ((object)P == null) ? (T0?)null : E1
       ```
 
-      s tím rozdílem, že `P` se vyhodnotí pouze jednou.
+      s výjimkou, že `P` je vyhodnocena pouze jednou.
 
-   *  V opačném případě je T0 typu E a význam E je stejný jako
+   *  V opačném případě typ E je T0 a význam E je stejný jako
 
       ```csharp
       ((object)P == null) ? null : E1
       ```
 
-      s tím rozdílem, že `P` se vyhodnotí pouze jednou.
+      s výjimkou, že `P` je vyhodnocena pouze jednou.
 
-Pokud `E1` sama o sobě *null_conditional_expression*, pak tato pravidla se použijí znovu, vnoření testy pro `null` až nebudou existovat žádné další `?`společnosti, a zmenšili jsme výraz úplně dolů primární výraz `E0`.
+Pokud je `E1` sám o sobě *null_conditional_expression*, pak se znovu aplikují tato pravidla a vnořování testů pro `null`, dokud nejsou žádné další `?`, a výraz byl zmenšen tak, aby byl na primárním výrazu `E0`.
 
-Například pokud výraz `a.b?[0]?.c()` vyskytuje se jako příkaz výraz, stejně jako v příkazu:
+Například pokud výraz `a.b?[0]?.c()` nastane jako výraz příkazu, jako v příkazu:
 ```csharp
 a.b?[0]?.c();
 ```
-je ekvivalentní k jeho význam:
+jeho význam je stejný jako:
 ```csharp
 if (a.b != null) a.b[0]?.c();
 ```
-což znovu je totéž jako:
+který je opět stejný jako:
 ```csharp
 if (a.b != null) if (a.b[0] != null) a.b[0].c();
 ```
-S tím rozdílem, že `a.b` a `a.b[0]` se vyhodnocují jenom jednou.
+S výjimkou, že `a.b` a `a.b[0]` jsou vyhodnocovány pouze jednou.
 
-Pokud k němu dojde v kontextu, pokud jeho hodnota se používá, například:
+Pokud k tomu dojde v kontextu, ve kterém je použita jeho hodnota, jako v:
 ```csharp
 var x = a.b?[0]?.c();
 ```
-a za předpokladu, že typ posledním volání není typu hodnotu Null, je ekvivalentní k jeho význam:
+a za předpokladu, že typ finálního vyvolání není typ hodnoty, který neumožňuje hodnotu null, jeho význam je ekvivalentní:
 ```csharp
 var x = (a.b == null) ? null : (a.b[0] == null) ? null : a.b[0].c();
 ```
-S tím rozdílem, že `a.b` a `a.b[0]` se vyhodnocují jenom jednou.
+s výjimkou, že `a.b` a `a.b[0]` jsou vyhodnocovány pouze jednou.
 
-#### <a name="null-conditional-expressions-as-projection-initializers"></a>Null podmíněné výrazy jako inicializátory projekce
+#### <a name="null-conditional-expressions-as-projection-initializers"></a>Podmíněné výrazy s hodnotou null jako Inicializátory projekce
 
-Null – podmíněný výraz je povolen pouze jako *member_declarator* v *anonymous_object_creation_expression* ([anonymní objekt vytváření výrazů](expressions.md#anonymous-object-creation-expressions)) Pokud končí přístup ke členu (volitelně null podmíněné). Tento požadavek gramaticky, může být vyjádřený jako:
+Podmíněný výraz s hodnotou null je povolen pouze jako *member_declarator* v *anonymous_object_creation_expression* (výrazy pro[vytváření anonymních objektů](expressions.md#anonymous-object-creation-expressions)), pokud je ukončen s přístupem člena (volitelně null-Conditional). Gramaticky lze tento požadavek vyjádřit takto:
 
 ```antlr
 null_conditional_member_access
@@ -2447,11 +2447,11 @@ null_conditional_member_access
     ;
 ```
 
-Toto je zvláštní případ gramatiky *null_conditional_expression* výše. Produkčních prostředích *member_declarator* v [anonymní objekt vytváření výrazů](expressions.md#anonymous-object-creation-expressions) zahrnuje pouze *null_conditional_member_access*.
+Toto je speciální případ gramatiky pro *null_conditional_expression* výše. Výroba pro *member_declarator* ve [výrazech vytváření anonymních objektů](expressions.md#anonymous-object-creation-expressions) pak zahrnuje pouze *null_conditional_member_access*.
 
-#### <a name="null-conditional-expressions-as-statement-expressions"></a>Null – podmíněné výrazy jako výrazy příkazu
+#### <a name="null-conditional-expressions-as-statement-expressions"></a>Podmíněné výrazy s hodnotou null jako výrazy příkazu
 
-Null – podmíněný výraz je povolen pouze jako *statement_expression* ([příkazy výrazů](statements.md#expression-statements)) Pokud končí vyvolání. Tento požadavek gramaticky, může být vyjádřený jako:
+Podmíněný výraz s hodnotou null je povolen pouze jako *statement_expression* ([příkazy výrazu](statements.md#expression-statements)), pokud končí voláním. Gramaticky lze tento požadavek vyjádřit takto:
 
 ```antlr
 null_conditional_invocation_expression
@@ -2459,12 +2459,12 @@ null_conditional_invocation_expression
     ;
 ```
 
-Toto je zvláštní případ gramatiky *null_conditional_expression* výše. Produkčních prostředích *statement_expression* v [příkazy výrazů](statements.md#expression-statements) zahrnuje pouze *null_conditional_invocation_expression*.
+Toto je speciální případ gramatiky pro *null_conditional_expression* výše. Výroba pro *statement_expression* v [příkazech výrazu](statements.md#expression-statements) pak obsahuje jenom *null_conditional_invocation_expression*.
 
 
 ### <a name="unary-plus-operator"></a>Jednočlenný operátor plus
 
-Operace formuláře `+x`, unárního operátoru rozlišení přetěžování ([unární operátor rozlišení přetěžování](expressions.md#unary-operator-overload-resolution)) se použije k výběru na konkrétní operátor implementace. Operand je převeden na typ parametru zvoleném operátorovi a typ výsledku je návratový typ operátoru. Předdefinované Unární plus operátory jsou:
+Pro vybírání konkrétní implementace operátoru se používá pro operaci formuláře `+x`, rozlišení přetížení unárního operátoru ([řešení přetížení unárního operátoru](expressions.md#unary-operator-overload-resolution)). Operand je převeden na typ parametru vybraného operátoru a typ výsledku je návratový typ operátoru. Předdefinované unární operátory Plus jsou:
 
 ```csharp
 int operator +(int x);
@@ -2476,33 +2476,33 @@ double operator +(double x);
 decimal operator +(decimal x);
 ```
 
-Pro každý z těchto operátorů výsledkem je jednoduše hodnota operandu.
+Pro každý z těchto operátorů je výsledkem jednoduše hodnota operandu.
 
 ### <a name="unary-minus-operator"></a>Unární operátor minus
 
-Operace formuláře `-x`, unárního operátoru rozlišení přetěžování ([unární operátor rozlišení přetěžování](expressions.md#unary-operator-overload-resolution)) se použije k výběru na konkrétní operátor implementace. Operand je převeden na typ parametru zvoleném operátorovi a typ výsledku je návratový typ operátoru. Předdefinované negace operátory jsou:
+Pro vybírání konkrétní implementace operátoru se používá pro operaci formuláře `-x`, rozlišení přetížení unárního operátoru ([řešení přetížení unárního operátoru](expressions.md#unary-operator-overload-resolution)). Operand je převeden na typ parametru vybraného operátoru a typ výsledku je návratový typ operátoru. Předdefinované operátory negace jsou:
 
-*  Celé číslo negace:
+*  Negace typu Integer:
 
    ```csharp
    int operator -(int x);
    long operator -(long x);
    ```
 
-   Výsledkem je vypočítán odečtením `x` od nuly. Pokud hodnota `x` je nejmenší reprezentovatelnou hodnotu typu operandu (-2 ^ 31 pro `int` nebo -2 ^ 63 pro `long`), pak matematické negaci `x` není reprezentovatelná v typu operandu. Pokud k tomu dojde v rámci `checked` kontextu, `System.OverflowException` je vyvolána, pokud se vyskytuje v `unchecked` kontextu, výsledkem je hodnota operandu a není hlášena přetečení.
+   Výsledek je vypočítán odčítáním `x` od nuly. Pokud je hodnota `x` nejmenší reprezentovatelné hodnoty typu operandu (-2 ^ 31 pro `int` nebo-2 ^ 63 pro `long`), pak se matematické negace `x` neprezentují v rámci typu operandu. Pokud k tomu dojde v kontextu `checked`, je vyvolána `System.OverflowException`; Pokud k tomu dojde v kontextu `unchecked`, výsledkem je hodnota operandu a přetečení není hlášeno.
 
-   Pokud je operand operátoru negace typu `uint`, je převeden na typ `long`, a typ výsledku je `long`. Výjimkou je pravidlo, které povoluje `int` hodnota -2147483648 (-2 ^ 31) má být zapsán jako desítkové celé číslo literálu ([literály celých čísel](lexical-structure.md#integer-literals)).
+   Pokud je Operand operátoru negace typu `uint`, je převeden na typ `long` a typ výsledku je `long`. Výjimkou je pravidlo, které povoluje zápis hodnoty `int`-2147483648 (-2 ^ 31) jako desítkový celočíselný literál ([literály typu Integer](lexical-structure.md#integer-literals)).
 
-   Pokud je operand operátoru negace typu `ulong`, dojde k chybě kompilace. Výjimkou je pravidlo, které povoluje `long` hodnota -9223372036854775808 (-2 ^ 63) má být zapsán jako desítkové celé číslo literálu ([literály celých čísel](lexical-structure.md#integer-literals)).
+   Pokud je Operand operátoru negace typu `ulong`, dojde k chybě při kompilaci. Výjimka je pravidlo, které povoluje zápis hodnoty `long` Value-9223372036854775808 (-2 ^ 63) jako desítkový celočíselný literál ([literály typu Integer](lexical-structure.md#integer-literals)).
 
-*  S plovoucí desetinnou čárkou negace:
+*  Negace plovoucí desetinné čárky:
 
    ```csharp
    float operator -(float x);
    double operator -(double x);
    ```
 
-   Výsledkem je hodnota `x` jeho symbolem obrácený. Pokud `x` NaN, je vrácená hodnota je také NaN.
+   Výsledkem je hodnota `x` s jeho znaménkem obráceným. Pokud je `x` NaN, výsledek je také NaN.
 
 *  Desetinné negace:
 
@@ -2510,20 +2510,20 @@ Operace formuláře `-x`, unárního operátoru rozlišení přetěžování ([u
    decimal operator -(decimal x);
    ```
 
-   Výsledkem je vypočítán odečtením `x` od nuly. Je ekvivalentní k použití unární mínus – operátor typu Decimal negace `System.Decimal`.
+   Výsledek je vypočítán odčítáním `x` od nuly. Desítková negace je ekvivalentní k použití unárního operátoru mínus typu `System.Decimal`.
 
 ### <a name="logical-negation-operator"></a>Logický operátor negace
 
-Operace formuláře `!x`, unárního operátoru rozlišení přetěžování ([unární operátor rozlišení přetěžování](expressions.md#unary-operator-overload-resolution)) se použije k výběru na konkrétní operátor implementace. Operand je převeden na typ parametru zvoleném operátorovi a typ výsledku je návratový typ operátoru. Existuje pouze jeden předdefinovaný logický operátor negace:
+Pro vybírání konkrétní implementace operátoru se používá pro operaci formuláře `!x`, rozlišení přetížení unárního operátoru ([řešení přetížení unárního operátoru](expressions.md#unary-operator-overload-resolution)). Operand je převeden na typ parametru vybraného operátoru a typ výsledku je návratový typ operátoru. Existuje pouze jeden předdefinovaný logický operátor negace:
 ```csharp
 bool operator !(bool x);
 ```
 
-Tento operátor vypočítá Logická negace operand: Pokud je operand `true`, výsledkem je `false`. Pokud je operand `false`, výsledkem je `true`.
+Tento operátor vypočítá logickou negaci operandu: Pokud je operand `true`, výsledek je `false`. Pokud je operand `false`, výsledek je `true`.
 
 ### <a name="bitwise-complement-operator"></a>Operátor bitového doplňku
 
-Operace formuláře `~x`, unárního operátoru rozlišení přetěžování ([unární operátor rozlišení přetěžování](expressions.md#unary-operator-overload-resolution)) se použije k výběru na konkrétní operátor implementace. Operand je převeden na typ parametru zvoleném operátorovi a typ výsledku je návratový typ operátoru. Předdefinované bitového doplňku operátory jsou:
+Pro vybírání konkrétní implementace operátoru se používá pro operaci formuláře `~x`, rozlišení přetížení unárního operátoru ([řešení přetížení unárního operátoru](expressions.md#unary-operator-overload-resolution)). Operand je převeden na typ parametru vybraného operátoru a typ výsledku je návratový typ operátoru. Předdefinované bitové operátory doplňku jsou:
 ```csharp
 int operator ~(int x);
 uint operator ~(uint x);
@@ -2531,17 +2531,17 @@ long operator ~(long x);
 ulong operator ~(ulong x);
 ```
 
-Pro každý z těchto operátorů je výsledek operace bitový doplněk `x`.
+Pro každý z těchto operátorů je výsledkem operace bitový doplněk `x`.
 
-Každý typ výčtu `E` implicitně poskytuje následující operátor bitového doplňku:
+Každý typ výčtu `E` implicitně poskytuje následující bitový operátor doplňku:
 
 ```csharp
 E operator ~(E x);
 ```
 
-Výsledek vyhodnocení výrazu `~x`, kde `x` je výraz typu výčtu `E` s podkladovým typem `U`, je stejný jako vaše rozhodnutí vyzkoušet `(E)(~(U)x)`, s tím rozdílem, že převod `E` je vždy provést, protože pokud v `unchecked` kontextu ([operátory zaškrtnuto a nezaškrtnuto](expressions.md#the-checked-and-unchecked-operators)).
+Výsledek vyhodnocení `~x`, kde `x` je výraz typu výčtu `E` s podkladovým typem `U`, je naprosto stejný jako vyhodnocování `(E)(~(U)x)` s tím rozdílem, že převod na `E` je vždy proveden jako if v kontextu `unchecked` ( [Zkontrolovaných a nekontrolovaných operátorů](expressions.md#the-checked-and-unchecked-operators)).
 
-### <a name="prefix-increment-and-decrement-operators"></a>Předpona Inkrementace a dekrementace operátory
+### <a name="prefix-increment-and-decrement-operators"></a>Operátory inkrementace a dekrementace předpony
 
 ```antlr
 pre_increment_expression
@@ -2553,33 +2553,33 @@ pre_decrement_expression
     ;
 ```
 
-Operand operace předponu zvýšení nebo snížení musí být výraz jsou klasifikovány jako proměnné, přístup k vlastnosti nebo indexeru přístupu. Výsledkem operace je hodnota stejného typu jako operand.
+Operandem operace zvýšení nebo snížení předpony musí být výraz klasifikovaný jako proměnná, přístup k vlastnosti nebo přístup indexeru. Výsledkem operace je hodnota stejného typu jako operand.
 
-Je-li zvýšit operand předponu operace dekrementace je vlastnost nebo indexer přístup, vlastnost nebo indexer musí mít obě `get` a `set` přistupujícího objektu. Pokud to není tento případ, dojde k chybě vazby čas.
+Pokud je operandem operace zvýšení nebo snížení předpony vlastnost nebo indexer, vlastnost nebo indexer musí mít přístup k `get` i k přístupovému objektu `set`. Pokud se nejedná o tento případ, dojde k chybě při vazbě.
 
-Unární operátor rozlišení přetěžování ([unární operátor rozlišení přetěžování](expressions.md#unary-operator-overload-resolution)) se použije k výběru na konkrétní operátor implementace. Předdefinované `++` a `--` operátory existovat pro následující typy: `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char` , `float`, `double`, `decimal`a jakýkoli typ výčtu. Předdefinované `++` operátory návratová hodnota vytváří přidáním 1 operand a předdefinované `--` operátory návratová hodnota vytváří tak, že se 1 z operand. V `checked` kontextu, pokud výsledek této sčítání a odčítání je mimo rozsah typu výsledku a typ výsledku je integrální typ nebo typ výčtu `System.OverflowException` je vyvolána výjimka.
+Pro výběr implementace konkrétního operátoru je použito rozlišení přetížení unárního operátoru ([rozlišení přetížení unárního operátoru](expressions.md#unary-operator-overload-resolution)). Předdefinované operátory `++` a `--` existují v následujících typech: `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, 0, 1, 2, 3 a jakýkoli typ výčtu. Předdefinované operátory `++` vrací hodnotu vytvořenou přidáním 1 k operandu a předdefinované operátory `--` vrátí hodnotu vytvořenou odečtením hodnoty 1 od operandu. V kontextu `checked` je-li výsledek tohoto sčítání nebo odčítání mimo rozsah výsledného typu a typ výsledku je celočíselný typ nebo typ výčtu, je vyvolána `System.OverflowException`.
 
-Zpracování za běhu předponu Inkrementace nebo dekrementace operace formuláře `++x` nebo `--x` se skládá z následujících kroků:
+Běhové zpracování operace zvýšení nebo snížení předpony ve formátu `++x` nebo `--x` se skládá z následujících kroků:
 
-*   Pokud `x` je klasifikován jako proměnnou:
-    * `x` je vyhodnocen pro vytvoření proměnné.
-    * S použitím hodnoty z je vyvolána zvoleném operátorovi `x` jako svůj argument.
-    * Hodnota vrácená operátorem je uložen v umístění Dal vyhodnocení `x`.
-    * Hodnota vrácená operátorem změní výsledek operace.
-*   Pokud `x` klasifikovaný jako vlastnost nebo indexovací člen přístupu:
-    * Výraz instance (Pokud `x` není `static`) a v seznamu argumentů (Pokud `x` představuje přístup k indexer) přidružené k `x` jsou vyhodnocovány, a výsledky se používají v následné `get` a `set` přístupový objekt volání.
-    * `get` Přistupující objekt `x` je vyvolána.
-    * Vybraný operátor je volána s hodnotou vrácenou `get` přístupového objektu jako svůj argument.
-    * `set` Přistupující objekt `x` vyvolání hodnota vrácená operátorem jako jeho `value` argument.
-    * Hodnota vrácená operátorem změní výsledek operace.
+*   Je-li hodnota `x` klasifikována jako proměnná:
+    * `x` se vyhodnotí, aby se vytvořila proměnná.
+    * Vybraný operátor je vyvolán s hodnotou `x` jako argument.
+    * Hodnota vrácená operátorem je uložena v umístění uvedeném vyhodnocením `x`.
+    * Hodnota vrácená operátorem se vrátí k výsledku operace.
+*   Pokud je `x` klasifikován jako vlastnost nebo přístup indexeru:
+    * Výraz instance (Pokud `x` není `static`) a seznam argumentů (Pokud `x` je indexerový přístup) přidružený k `x` jsou vyhodnoceny a výsledky se používají v následujících @no__t – 4 a `set` volání přistupujícího objektu.
+    * Vyvolá se přistupující objekt `get` `x`.
+    * Vybraný operátor je vyvolán s hodnotou vrácenou přistupujícím objektem `get` jako argument.
+    * Přistupující objekt `set` `x` je vyvolán s hodnotou vrácenou operátorem jako jeho argument `value`.
+    * Hodnota vrácená operátorem se vrátí k výsledku operace.
 
-`++` a `--` také podporují Příponové operátory zápis ([Příponové operátory Inkrementace a dekrementace operátory](expressions.md#postfix-increment-and-decrement-operators)). Obvykle, výsledek `x++` nebo `x--` je hodnota `x` před provedením operace, zatímco výsledek `++x` nebo `--x` je hodnota `x` po provedení této operace. V obou případech `x` sám po provedení této operace má stejnou hodnotu.
+Operátory `++` a `--` také podporují notaci přípon ([operátory přírůstku a snížení přípony](expressions.md#postfix-increment-and-decrement-operators)). Výsledek `x++` nebo `x--` je obvykle hodnota `x` před operací, zatímco výsledek `++x` nebo `--x` je hodnota `x` po operaci. V obou případech má `x` samé hodnotu po operaci.
 
-`operator++` Nebo `operator--` implementace lze vyvolat pomocí uplatněna přípona nebo předpona zápisu. Není možné mít samostatné operátor implementace pro zápisy dva.
+Implementaci `operator++` nebo `operator--` lze vyvolat pomocí přípony nebo notace předpony. Pro tyto dva zápisy není možné mít implementace samostatného operátoru.
 
-### <a name="cast-expressions"></a>Výrazy přetypování
+### <a name="cast-expressions"></a>Výrazy cast
 
-A *cast_expression* slouží k explicitnímu převodu výrazu na daného typu.
+*Cast_expression* se používá k explicitnímu převodu výrazu na daný typ.
 
 ```antlr
 cast_expression
@@ -2587,22 +2587,22 @@ cast_expression
     ;
 ```
 
-A *cast_expression* formuláře `(T)E`, kde `T` je *typ* a `E` je *unary_expression*, provádí explicitní převod ([explicitních převodů](conversions.md#explicit-conversions)) hodnoty `E` na typ `T`. Pokud neexistuje žádný explicitní převod z `E` k `T`, dojde k chybě vazby čas. Jinak výsledkem je hodnota vytvářených explicitní převod. Výsledek je vždy klasifikován jako hodnotu, i když `E` označuje proměnnou.
+*Cast_expression* formuláře `(T)E`, kde `T` je *typ* a `E` je *unary_expression*, provede explicitní převod ([explicitní převody](conversions.md#explicit-conversions)) hodnoty `E` na typ `T`. Pokud neexistuje žádný explicitní převod z `E` na `T`, dojde k chybě při vazbě. V opačném případě je výsledkem hodnota vytvořená explicitním převodem. Výsledek je vždy klasifikován jako hodnota, i když `E` označuje proměnnou.
 
-Gramatika *cast_expression* vede k určité syntaktické nejednoznačnosti. Například výraz `(x)-y` buď možné interpretovat jako *cast_expression* (přetypování z `-y` na typ `x`) nebo jako *additive_expression* v kombinaci s *parenthesized_expression* (které vypočítá hodnotu `x - y)`.
+Gramatika pro *cast_expression* způsobuje určité syntaktické nejednoznačnosti. Například výraz `(x)-y` může být interpretován jako *cast_expression* (přetypování `-y` na typ `x`) nebo jako *additive_expression* v kombinaci s *parenthesized_expression* (který vypočítá hodnotu `x - y)`.
 
-Chcete-li vyřešit *cast_expression* nejasnosti, existuje následující pravidlo: Pořadí jednoho nebo více *token*s ([prázdné znaky](lexical-structure.md#white-space)) uzavřený v závorkách je považován za spuštění *cast_expression* pouze v případě, že platí alespoň jedna z následujících akcí:
+Pro vyřešení nejednoznačnosti *cast_expression* existuje následující pravidlo: Sekvence jednoho nebo více *tokenů*s ([prázdné místo](lexical-structure.md#white-space)) uzavřená v závorkách je považována za začátek *cast_expression* pouze v případě, že je splněna alespoň jedna z následujících podmínek:
 
-*  Sekvence tokenů je správná gramatika pro *typ*, ale ne pro *výraz*.
-*  Posloupnost tokeny je správná gramatika pro *typ*, a hned za pravými závorkami token je token "`~`", token "`!`", token "`(`",  *identifikátor* ([znak – řídicí sekvence Unicode](lexical-structure.md#unicode-character-escape-sequences)), *literálu* ([literály](lexical-structure.md#literals)), nebo všechny *– klíčové slovo*([Klíčová slova](lexical-structure.md#keywords)) s výjimkou `as` a `is`.
+*  Pořadí tokenů je správná gramatika pro *typ*, ale ne pro *výraz*.
+*  Pořadí tokenů je správné gramatiky pro daný *typ*a token hned za pravou závorkou je token "`~`", token "`!`", token "`(`", *identifikátor* ([znak Unicode řídicí sekvence ](lexical-structure.md#unicode-character-escape-sequences)), *literál* ([literály](lexical-structure.md#literals)) nebo libovolná *klíčová slova* ([klíčová slova](lexical-structure.md#keywords)) s výjimkou 0 a 1.
 
-Termín "správná gramatika" nad znamená pouze to, že posloupnost tokeny musí odpovídat konkrétní gramatické produkčního prostředí. To konkrétně nebere v úvahu skutečné význam všechny základní identifikátory. Například pokud `x` a `y` jsou identifikátory, pak `x.y` je správná gramatika pro typ, i v případě `x.y` není ve skutečnosti označení typu.
+Termín "správná gramatika" výše znamená pouze to, že pořadí tokenů musí odpovídat konkrétní gramatické výrobě. Konkrétně nebere v úvahu skutečný význam jakýchkoli identifikátorů prvků. Například pokud `x` a `y` jsou identifikátory, pak `x.y` je správná gramatika pro typ, a to i v případě, že `x.y` není ve skutečnosti označení typu.
 
-Z pravidla mnohoznačnosti vyplývá, že pokud `x` a `y` jsou identifikátory, `(x)y`, `(x)(y)`, a `(x)(-y)` jsou *cast_expression*s, ale `(x)-y` není, i v případě `x` identifikuje typ. Ale pokud `x` je klíčové slovo, který identifikuje předdefinovaný typ (například `int`), pak se všechny čtyři způsoby *cast_expression*s (protože takové klíčové slovo nebylo možné pravděpodobně výraz samostatně).
+Následující pravidlo nejednoznačnosti sleduje, že pokud `x` a `y` jsou identifikátory, `(x)y`, `(x)(y)` a `(x)(-y)` jsou *cast_expression*s, ale `(x)-y` není, i když `x` identifikuje typ. Pokud je však `x` klíčové slovo, které identifikuje předdefinovaný typ (například `int`), pak všechny čtyři formuláře jsou *cast_expression*s (protože takové klíčové slovo by nebylo pravděpodobně výrazem samotné).
 
 ### <a name="await-expressions"></a>Výrazy await
 
-Operátor await se používá k vyhodnocení nadřazené asynchronní funkce pozastavit až do dokončení asynchronní operace reprezentovány operandem.
+Operátor await se používá k pozastavení vyhodnocení ohraničující asynchronní funkce, dokud není dokončena asynchronní operace reprezentované operandem.
 
 ```antlr
 await_expression
@@ -2610,57 +2610,57 @@ await_expression
     ;
 ```
 
-*Await_expression* je povolený jenom v těle asynchronní funkci ([iterátory](classes.md#iterators)). V rámci nejbližšího obklopujícího asynchronní funkce *await_expression* nelze provádět v těchto umístěních:
+*Await_expression* je povolený jenom v těle asynchronní funkce ([iterátory](classes.md#iterators)). V rámci nejbližší ohraničující asynchronní funkce se *await_expression* nemusí vyskytovat na těchto místech:
 
-*  Uvnitř anonymní funkce. vnořené (bez asynchronní)
+*  Uvnitř vnořené (neasynchronní) anonymní funkce
 *  Uvnitř bloku *lock_statement*
-*  V nezabezpečeném kontextu.
+*  V nezabezpečeném kontextu
 
-Všimněte si, že *await_expression* nemůže nastat ve většině případů v rámci *query_expression*, protože ty jsou syntakticky transformuje na použití jiných asynchronní výrazy lambda.
+Všimněte si, že *await_expression* nemůže být na většině míst v rámci *query_expression*, protože jsou syntakticky transformované na použití neasynchronních výrazů lambda.
 
-V asynchronní funkci `await` nelze použít jako identifikátor. Proto neexistuje žádná syntaktická byla zjištěna dvojznačnost mezi výrazy await a různé výrazy zahrnující identifikátory. Mimo asynchronních funkcí `await` funguje jako normální identifikátor.
+Uvnitř asynchronní funkce nelze použít `await` jako identifikátor. Z tohoto důvodu není k dispozici žádná syntaktická nejednoznačnost mezi výrazy await a různými výrazy zahrnujícími identifikátory. Mimo asynchronní funkce `await` funguje jako běžný identifikátor.
 
-Operand *await_expression* je volána ***úloh***. Představuje asynchronní operaci, která může nebo nemusí být v době dokončení *await_expression* vyhodnocena. Je účel operátor await k pozastavení provádění nadřazené funkce asynchronní, dokud není dokončen očekávaný úkol a získat jeho výsledek.
+Operandem *await_expression* se říká ***úkol***. Představuje asynchronní operaci, která může nebo nemusí být dokončena v době, kdy je *await_expression* vyhodnoceno. Účelem operátoru await je pozastavení provádění nadřazené asynchronní funkce, dokud není dokončen očekávaný úkol, a pak získá výsledek.
 
-#### <a name="awaitable-expressions"></a>Očekávatelný výrazy
+#### <a name="awaitable-expressions"></a>Výrazy await
 
-Úloha výraz await musí být ***očekávatelný***. Výraz `t` může používat await, obsahuje jeden z následujících akcí:
+Je nutné, aby úkol výrazu await byl možné ***očekávat***. Výraz `t` je neočekávaný, pokud je k dispozici jeden z následujících:
 
-*  `t` je typu v době kompilace `dynamic`
-*  `t` má dostupné instance nebo rozšiřující metoda volá `GetAwaiter` bez parametrů a žádné parametry typu a návratový typ `A` pro které všechny tyto uchování:
-   * `A` implementuje rozhraní `System.Runtime.CompilerServices.INotifyCompletion` (nazývaným jako `INotifyCompletion` pro zkrácení)
-   * `A` má vlastnost instance přístupné, čitelné `IsCompleted` typu `bool`
-   * `A` je dostupná metoda instance `GetResult` bez parametrů a žádné parametry typu
+*  `t` je typ doby kompilace `dynamic`.
+*  `t` má přístupnou metodu instance nebo rozšíření nazvanou `GetAwaiter` bez parametrů a žádné parametry typu a návratový typ `A`, pro který všechna následující blokování:
+   * `A` implementuje rozhraní `System.Runtime.CompilerServices.INotifyCompletion` (dále označované jako `INotifyCompletion` pro zkrácení).
+   * `A` má přístupnou, čitelnou vlastnost instance `IsCompleted` typu `bool`.
+   * `A` má přístupnou metodu instance `GetResult` bez parametrů a žádné parametry typu.
 
-Účelem `GetAwaiter` metodou je použít k získání ***awaiter*** pro úlohu. Typ `A` je volána ***awaiter typ*** pro výraz await.
+Účelem metody `GetAwaiter` je získat pro úkol ***operátor await*** . Typ `A` se nazývá ***typ await*** pro výraz await.
 
-Účelem `IsCompleted` vlastnost je určit, pokud úloha je již dokončena. Pokud ano, není nutné pozastavit hodnocení.
+Účelem vlastnosti `IsCompleted` je určit, zda je úloha již dokončena. Pokud ano, není nutné pozastavit vyhodnocení.
 
-Účelem `INotifyCompletion.OnCompleted` metoda, je registrace "pokračování" k úkolu; to znamená delegáta (typu `System.Action`), která bude volána po dokončení úlohy.
+Účelem metody `INotifyCompletion.OnCompleted` je zaregistrování "pokračování" na úlohu; například delegát (typu `System.Action`), který bude vyvolán po dokončení úkolu.
 
-Účelem `GetResult` metodou je získat výsledek úkolu, jakmile je dokončená. Tento výsledek může být úspěšné dokončení, případně se je výsledná hodnota, nebo může být výjimku, která je vyvolána `GetResult` metody.
+Účelem metody `GetResult` je získat výsledek úkolu po jeho dokončení. Tento výsledek může být úspěšný, možná s výslednou hodnotou, nebo může být výjimka, která je vyvolána metodou `GetResult`.
 
-#### <a name="classification-of-await-expressions"></a>Výrazy await klasifikace
+#### <a name="classification-of-await-expressions"></a>Klasifikace výrazů await
 
-Výraz `await t` klasifikovaný stejným způsobem jako výraz `(t).GetAwaiter().GetResult()`. Proto pokud návratový typ `GetResult` je `void`, *await_expression* klasifikovaný jako nothing. Pokud má návratový typ jiný než void `T`, *await_expression* klasifikovaný jako hodnotu typu `T`.
+Výraz `await t` je klasifikován stejným způsobem jako výraz `(t).GetAwaiter().GetResult()`. Proto pokud je návratový typ `GetResult` `void`, *await_expression* je klasifikován jako Nothing. Pokud má návratový typ, který není typu void `T`, je *await_expression* klasifikován jako hodnota typu `T`.
 
-#### <a name="runtime-evaluation-of-await-expressions"></a>Výrazy await vyhodnocení modulu runtime
+#### <a name="runtime-evaluation-of-await-expressions"></a>Vyhodnocení za běhu pro výrazy await
 
-Za běhu, výraz `await t` se vyhodnotí takto:
+Výraz `await t` je za běhu vyhodnocen takto:
 
-*  Awaiter `a` je získanou vyhodnocením výrazu `(t).GetAwaiter()`.
-*  A `bool` `b` je získanou vyhodnocením výrazu `(a).IsCompleted`.
-*  Pokud `b` je `false` pak vyhodnocení závisí na tom, zda `a` implementuje rozhraní `System.Runtime.CompilerServices.ICriticalNotifyCompletion` (nazývaným jako `ICriticalNotifyCompletion` pro zkrácení). Tato kontrola se provádí na vazby čas; například v době běhu Pokud `a` má typ času kompilace `dynamic`a v době kompilace, jinak. Umožní `r` označení delegát pokračování ([iterátory](classes.md#iterators)):
-    * Pokud `a` neimplementuje `ICriticalNotifyCompletion`, pak výraz `(a as (INotifyCompletion)).OnCompleted(r)` vyhodnocena.
-    * Pokud `a` implementovat `ICriticalNotifyCompletion`, pak výraz `(a as (ICriticalNotifyCompletion)).UnsafeOnCompleted(r)` vyhodnocena.
-    * Vyhodnocení pak pozastavena a ovládací prvek se vrátí aktuální volajícímu asynchronní funkci.
-*  Buď ihned po (Pokud `b` byl `true`), nebo na novější vyvolání delegáta obnovení činnosti (Pokud `b` byl `false`), výraz `(a).GetResult()` vyhodnocena. Pokud vrátí hodnotu, je tato hodnota výsledku *await_expression*. Výsledek jinak má hodnotu nothing.
+*  Operátor await `a` se získá vyhodnocením výrazu `(t).GetAwaiter()`.
+*  @No__t-0 `b` se získá vyhodnocením výrazu `(a).IsCompleted`.
+*  Pokud je `b` `false`, vyhodnocování bude záviset na tom, zda `a` implementuje rozhraní `System.Runtime.CompilerServices.ICriticalNotifyCompletion` (dále označované jako `ICriticalNotifyCompletion` pro zkrácení). Tato kontroler se provádí v době vytváření vazby. To znamená za běhu, pokud `a` má typ čas kompilace `dynamic` a v čase kompilace v opačném případě. Let `r` označuje delegáta pokračování ([iterátory](classes.md#iterators)):
+    * Pokud `a` neimplementuje `ICriticalNotifyCompletion`, je vyhodnocen výraz `(a as (INotifyCompletion)).OnCompleted(r)`.
+    * Pokud `a` implementuje `ICriticalNotifyCompletion`, je vyhodnocen výraz `(a as (ICriticalNotifyCompletion)).UnsafeOnCompleted(r)`.
+    * Vyhodnocení je pak pozastaveno a řízení je vráceno aktuálnímu volajícímu asynchronní funkce.
+*  Výraz `(a).GetResult()` se vyhodnotí hned po (Pokud `b` byl `true`) nebo při pozdějším vyvolání delegáta obnovení (pokud by `b` bylo `false`). Pokud vrátí hodnotu, je tato hodnota výsledkem *await_expression*. V opačném případě je výsledek Nothing.
 
-Awaiter implementaci metody rozhraní `INotifyCompletion.OnCompleted` a `ICriticalNotifyCompletion.UnsafeOnCompleted` by se měl delegáta `r` má být volána nejvýše jednou. V opačném případě nadřazené funkce asynchronní chování není definováno.
+Implementace volání metody rozhraní `INotifyCompletion.OnCompleted` a `ICriticalNotifyCompletion.UnsafeOnCompleted` by měla způsobit vyvolání delegáta `r`. V opačném případě chování ohraničující asynchronní funkce není definováno.
 
 ## <a name="arithmetic-operators"></a>Aritmetické operátory
 
-`*`, `/`, `%`, `+`, A `-` operátory jsou volány aritmetické operátory.
+Operátory `*`, `/`, `%`, `+` a `-` se nazývají aritmetické operátory.
 
 ```antlr
 multiplicative_expression
@@ -2677,15 +2677,15 @@ additive_expression
     ;
 ```
 
-Pokud operand aritmetický operátor má typ kompilace `dynamic`, pak je dynamicky vázán výraz ([dynamické vazby](expressions.md#dynamic-binding)). V tomto případě je kompilaci typu výrazu `dynamic`, a rozlišení je popsáno níže se provede v době běhu pomocí run-time typu těchto operandů, která mají typ kompilace `dynamic`.
+Pokud operand aritmetického operátoru má typ doby kompilace `dynamic`, je výraz dynamicky svázán ([dynamická vazba](expressions.md#dynamic-binding)). V tomto případě je typ doby kompilace výrazu `dynamic` a řešení popsané níže bude provedeno za běhu pomocí běhového typu u operandů, které mají typ doby kompilace `dynamic`.
 
 ### <a name="multiplication-operator"></a>Operátor násobení
 
-Operace formuláře `x * y`, binárním operátorem rozlišení přetěžování ([binárním operátorem rozlišení přetěžování](expressions.md#binary-operator-overload-resolution)) se použije k výběru na konkrétní operátor implementace. Operandy jsou převedeny na zvoleném operátorovi typy parametrů a typ výsledku je návratový typ operátoru.
+Pro vybírání konkrétní implementace operátoru se použije pro operaci formuláře `x * y`, rozlišení přetížení binárního operátoru ([rozlišení přetížení binárního operátoru](expressions.md#binary-operator-overload-resolution)). Operandy jsou převedeny na typy parametrů vybraného operátoru a typ výsledku je návratový typ operátoru.
 
-Operátory násobení předdefinované jsou uvedeny níže. Všechny operátory vypočítat součin `x` a `y`.
+Předdefinované operátory násobení jsou uvedeny níže. Všechny operátory počítají produkt `x` a `y`.
 
-*  Násobení celé číslo:
+*  Násobení celočíselného čísla:
 
    ```csharp
    int operator *(int x, int y);
@@ -2694,45 +2694,45 @@ Operátory násobení předdefinované jsou uvedeny níže. Všechny operátory 
    ulong operator *(ulong x, ulong y);
    ```
 
-   V `checked` kontextu, pokud je mimo rozsah typu výsledku, `System.OverflowException` je vyvolána výjimka. V `unchecked` kontextu, nezobrazují, přetečení a žádné významné implikovaný bits mimo rozsah typu výsledku se zahodí.
+   Pokud je produkt v kontextu `checked` mimo rozsah výsledného typu, je vyvolána `System.OverflowException`. V kontextu `unchecked` nejsou přetečení hlášeny a jakékoli významné bity vysokého řádu mimo rozsah výsledného typu jsou zahozeny.
 
 
-*  Násobení s plovoucí desetinnou čárkou:
+*  Násobení plovoucí desetinné čárky:
 
    ```csharp
    float operator *(float x, float y);
    double operator *(double x, double y);
    ```
 
-   Produkt se počítá podle pravidel objektů aritmetické IEEE 754. V následující tabulce jsou uvedeny výsledky všech možných kombinací nenulové hodnoty konečné, nul, nekonečno a NaN. V tabulce `x` a `y` jsou konečné kladné hodnoty. `z` je výsledkem `x * y`. Pokud je výsledek příliš velký pro cílový typ `z` je nekonečno. Pokud je výsledek příliš malá pro cílový typ `z` je nula.
+   Produkt se vypočítává podle pravidel aritmetické operace IEEE 754. V následující tabulce jsou uvedeny výsledky všech možných kombinací nenulových konečných hodnot, nul, nekonečno a NaN. V tabulce `x` a `y` jsou kladné konečné hodnoty. `z` je výsledkem `x * y`. Pokud je výsledek pro cílový typ příliš velký, `z` je nekonečno. Pokud je výsledek pro cílový typ příliš malý, `z` je nula.
 
    |      |      |      |     |     |      |      |     |
    |:----:|-----:|:----:|:---:|:---:|:----:|:----:|:----|
-   |      | + y   | -y   | +0  | -0  | + inf | -inf | NaN | 
-   | +x   | +z   | -z   | +0  | -0  | + inf | -inf | NaN | 
-   | -x   | -z   | +z   | -0  | +0  | -inf | + inf | NaN | 
+   |      | \+ y   | -y   | +0  | -0  | \+ INF | – INF | NaN | 
+   | +x   | +z   | -z   | +0  | -0  | \+ INF | – INF | NaN | 
+   | -x   | -z   | +z   | -0  | +0  | – INF | \+ INF | NaN | 
    | +0   | +0   | -0   | +0  | -0  | NaN  | NaN  | NaN | 
    | -0   | -0   | +0   | -0  | +0  | NaN  | NaN  | NaN | 
-   | + inf | + inf | -inf | NaN | NaN | + inf | -inf | NaN | 
-   | -inf | -inf | + inf | NaN | NaN | -inf | + inf | NaN | 
+   | \+ INF | \+ INF | – INF | NaN | NaN | \+ INF | – INF | NaN | 
+   | – INF | – INF | \+ INF | NaN | NaN | – INF | \+ INF | NaN | 
    | NaN  | NaN  | NaN  | NaN | NaN | NaN  | NaN  | NaN | 
 
-*  Desetinné násobení:
+*  Násobení desítkových čísel:
 
    ```csharp
    decimal operator *(decimal x, decimal y);
    ```
 
-   Pokud výsledná hodnota je příliš velká pro reprezentaci v jazyce `decimal` formátu, `System.OverflowException` je vyvolána výjimka. Pokud hodnota výsledku je příliš malá pro reprezentaci v jazyce `decimal` formátu, výsledek je nula. Škálování výsledek před všechny zaokrouhlení je součtem váhy dva operandy.
+   Pokud je výsledná hodnota příliš velká pro reprezentaci ve formátu `decimal`, je vyvolána `System.OverflowException`. Pokud je výsledná hodnota příliš malá, aby byla reprezentována ve formátu `decimal`, výsledek je nula. Měřítko výsledku, před jakýmkoli zaokrouhlením, je součtem stupnice dvou operandů.
 
-   Je ekvivalentní k použití operátor násobení typu Decimal násobení `System.Decimal`.
+   Násobení v desítkovém formátu je ekvivalentem použití operátoru násobení typu `System.Decimal`.
 
 
 ### <a name="division-operator"></a>Operátor dělení
 
-Operace formuláře `x / y`, binárním operátorem rozlišení přetěžování ([binárním operátorem rozlišení přetěžování](expressions.md#binary-operator-overload-resolution)) se použije k výběru na konkrétní operátor implementace. Operandy jsou převedeny na zvoleném operátorovi typy parametrů a typ výsledku je návratový typ operátoru.
+Pro vybírání konkrétní implementace operátoru se použije pro operaci formuláře `x / y`, rozlišení přetížení binárního operátoru ([rozlišení přetížení binárního operátoru](expressions.md#binary-operator-overload-resolution)). Operandy jsou převedeny na typy parametrů vybraného operátoru a typ výsledku je návratový typ operátoru.
 
-Předdefinované dělení operátory jsou uvedeny níže. Všechny operátory compute podíl `x` a `y`.
+Předdefinované operátory dělení jsou uvedeny níže. Všechny operátory počítají podíl `x` a `y`.
 
 *  Dělení celého čísla:
 
@@ -2743,50 +2743,50 @@ Předdefinované dělení operátory jsou uvedeny níže. Všechny operátory co
    ulong operator /(ulong x, ulong y);
    ```
 
-   Pokud hodnota pravého operandu je nula, `System.DivideByZeroException` je vyvolána výjimka.
+   Je-li hodnota pravého operandu nula, je vyvolána `System.DivideByZeroException`.
 
-   Rozdělení zaokrouhlí výsledek směrem k nule. Proto absolutní hodnota výsledku je největší možné číslo, které je menší než absolutní hodnota kvocientu dva operandy. Výsledkem může být nula nebo pozitivní při dva operandy mají stejné znaménko a nula nebo záporná, pokud mají dva operandy opačný příznaky.
+   Dělení zaokrouhlí výsledek směrem k nule. Proto absolutní hodnota výsledku je největší možné celé číslo, které je menší než nebo rovno absolutní hodnotě podílu dvou operandů. Výsledkem je nula nebo kladné, pokud dva operandy mají stejné znaménko a nula nebo záporné, pokud mají dva operandy opačné znaménko.
 
-   Pokud levý operand je nejmenší reprezentovatelné `int` nebo `long` hodnotu a pravý operand je `-1`, dojde k přetečení. V `checked` kontextu, způsobí to, že `System.ArithmeticException` (nebo jejich podtřída) Chcete-li být vyvolána. V `unchecked` kontextu, je definováno implementací, zda `System.ArithmeticException` (nebo jejich podtřída) je vyvolána nebo přetečení doprovází neohlášených výslednou hodnotu, přičemž levého operandu.
+   Pokud je levý operand nejmenší reprezentovatelné @no__t hodnoty-0 nebo `long` a pravý operand je `-1`, dojde k přetečení. V kontextu `checked` způsobí vyvolání `System.ArithmeticException` (nebo jeho podtříd). V kontextu `unchecked` je implementace definovaná jako k tomu, zda je vyvolána `System.ArithmeticException` (nebo podtřída), nebo přetečení nebude vykazovat výslednou hodnotou levého operandu.
 
-*  Dělení s pohyblivou čárkou:
+*  Dělení plovoucí desetinné čárky:
 
    ```csharp
    float operator /(float x, float y);
    double operator /(double x, double y);
    ```
 
-   Podíl se počítá podle pravidel objektů aritmetické IEEE 754. V následující tabulce jsou uvedeny výsledky všech možných kombinací nenulové hodnoty konečné, nul, nekonečno a NaN. V tabulce `x` a `y` jsou konečné kladné hodnoty. `z` je výsledkem `x / y`. Pokud je výsledek příliš velký pro cílový typ `z` je nekonečno. Pokud je výsledek příliš malá pro cílový typ `z` je nula.
+   Podíl se vypočítává podle pravidel aritmetické operace IEEE 754. V následující tabulce jsou uvedeny výsledky všech možných kombinací nenulových konečných hodnot, nul, nekonečno a NaN. V tabulce `x` a `y` jsou kladné konečné hodnoty. `z` je výsledkem `x / y`. Pokud je výsledek pro cílový typ příliš velký, `z` je nekonečno. Pokud je výsledek pro cílový typ příliš malý, `z` je nula.
 
    |      |      |      |      |      |      |      |      |
    |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
-   |      | + y   | -y   | +0   | -0   | + inf | -inf | NaN  | 
-   | +x   | +z   | -z   | + inf | -inf | +0   | -0   | NaN  | 
-   | -x   | -z   | +z   | -inf | + inf | -0   | +0   | NaN  | 
+   |      | \+ y   | -y   | +0   | -0   | \+ INF | – INF | NaN  | 
+   | +x   | +z   | -z   | \+ INF | – INF | +0   | -0   | NaN  | 
+   | -x   | -z   | +z   | – INF | \+ INF | -0   | +0   | NaN  | 
    | +0   | +0   | -0   | NaN  | NaN  | +0   | -0   | NaN  | 
    | -0   | -0   | +0   | NaN  | NaN  | -0   | +0   | NaN  | 
-   | + inf | + inf | -inf | + inf | -inf | NaN  | NaN  | NaN  | 
-   | -inf | -inf | + inf | -inf | + inf | NaN  | NaN  | NaN  | 
+   | \+ INF | \+ INF | – INF | \+ INF | – INF | NaN  | NaN  | NaN  | 
+   | – INF | – INF | \+ INF | – INF | \+ INF | NaN  | NaN  | NaN  | 
    | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | 
 
-*  Dělení desetinného čísla:
+*  Desetinné dělení:
 
    ```csharp
    decimal operator /(decimal x, decimal y);
    ```
 
-   Pokud hodnota pravého operandu je nula, `System.DivideByZeroException` je vyvolána výjimka. Pokud výsledná hodnota je příliš velká pro reprezentaci v jazyce `decimal` formátu, `System.OverflowException` je vyvolána výjimka. Pokud hodnota výsledku je příliš malá pro reprezentaci v jazyce `decimal` formátu, výsledek je nula. Škálování výsledek je nejmenší měřítko, které budou zachovány výsledek rovná nejbližší reprezentovatelné desítkovou hodnotu na true matematické výsledek.
+   Je-li hodnota pravého operandu nula, je vyvolána `System.DivideByZeroException`. Pokud je výsledná hodnota příliš velká pro reprezentaci ve formátu `decimal`, je vyvolána `System.OverflowException`. Pokud je výsledná hodnota příliš malá, aby byla reprezentována ve formátu `decimal`, výsledek je nula. Měřítko výsledku je nejmenší měřítko, které zachová výsledek, který se rovná nejbližší hodnotě v desítkové soustavě k skutečnému matematickému výsledku.
 
-   Dělení desetinného čísla je ekvivalentní k použití operátor dělení typu `System.Decimal`.
+   Desetinné dělení je ekvivalentní použití operátoru dělení typu `System.Decimal`.
 
 
-### <a name="remainder-operator"></a>Operátor zbytku
+### <a name="remainder-operator"></a>Operátor zbývající
 
-Operace formuláře `x % y`, binárním operátorem rozlišení přetěžování ([binárním operátorem rozlišení přetěžování](expressions.md#binary-operator-overload-resolution)) se použije k výběru na konkrétní operátor implementace. Operandy jsou převedeny na zvoleném operátorovi typy parametrů a typ výsledku je návratový typ operátoru.
+Pro vybírání konkrétní implementace operátoru se použije pro operaci formuláře `x % y`, rozlišení přetížení binárního operátoru ([rozlišení přetížení binárního operátoru](expressions.md#binary-operator-overload-resolution)). Operandy jsou převedeny na typy parametrů vybraného operátoru a typ výsledku je návratový typ operátoru.
 
-Předdefinované zbývající operátory jsou uvedeny níže. Všechny operátory vypočítat zbývající části rozdělení mezi `x` a `y`.
+Předdefinované zbývající operátory jsou uvedeny níže. Operátory všechny počítají zbývající část rozdělení mezi `x` a `y`.
 
-*  Zbývající celé číslo:
+*  Celočíselný zbytek:
 
    ```csharp
    int operator %(int x, int y);
@@ -2795,9 +2795,9 @@ Předdefinované zbývající operátory jsou uvedeny níže. Všechny operátor
    ulong operator %(ulong x, ulong y);
    ```
 
-   Výsledek `x % y` hodnota vytvořil `x - (x / y) * y`. Pokud `y` je nula, `System.DivideByZeroException` je vyvolána výjimka.
+   Výsledkem `x % y` je hodnota vytvořená `x - (x / y) * y`. Je-li hodnota `y` nula, je vyvolána `System.DivideByZeroException`.
 
-   Pokud levý operand je nejmenší `int` nebo `long` hodnotu a pravý operand je `-1`, `System.OverflowException` je vyvolána výjimka. V žádném případě nemá `x % y` vyvolání výjimky, kde `x / y` nemusí vyvolat výjimku.
+   Pokud je levý operand nejmenší hodnota `int` nebo `long` a pravý operand je `-1`, je vyvolána `System.OverflowException`. V žádném případě `x % y` vyvolá výjimku, kde `x / y` by nevolalo výjimku.
 
 *  Zbytek s plovoucí desetinnou čárkou:
 
@@ -2806,37 +2806,37 @@ Předdefinované zbývající operátory jsou uvedeny níže. Všechny operátor
    double operator %(double x, double y);
    ```
 
-   V následující tabulce jsou uvedeny výsledky všech možných kombinací nenulové hodnoty konečné, nul, nekonečno a NaN. V tabulce `x` a `y` jsou konečné kladné hodnoty. `z` je výsledkem `x % y` a je vypočítán jako `x - n * y`, kde `n` je největší možné číslo, které je menší než nebo rovna hodnotě `x / y`. Tato metoda výpočetních zbytek je obdobou, který používá pro celočíselné operandy, ale se liší od definice IEEE 754 (ve kterém `n` je celé číslo nejblíže `x / y`).
+   V následující tabulce jsou uvedeny výsledky všech možných kombinací nenulových konečných hodnot, nul, nekonečno a NaN. V tabulce `x` a `y` jsou kladné konečné hodnoty. `z` je výsledkem `x % y` a počítá se jako `x - n * y`, kde `n` je největší možné celé číslo, které je menší nebo rovno `x / y`. Tato metoda výpočtu zbytku je analogická jako u operandů typu Integer, ale liší se od definice IEEE 754 (v tom, že `n` je celé číslo nejbližší k `x / y`).
 
    |      |      |      |      |      |      |      |      |
    |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
-   |      | + y   | -y   | +0   | -0   | + inf | -inf | NaN  | 
+   |      | \+ y   | -y   | +0   | -0   | \+ INF | – INF | NaN  | 
    | +x   | +z   | +z   | NaN  | NaN  | x    | x    | NaN  | 
    | -x   | -z   | -z   | NaN  | NaN  | -x   | -x   | NaN  | 
    | +0   | +0   | +0   | NaN  | NaN  | +0   | +0   | NaN  | 
    | -0   | -0   | -0   | NaN  | NaN  | -0   | -0   | NaN  | 
-   | + inf | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | 
-   | -inf | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | 
+   | \+ INF | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | 
+   | – INF | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | 
    | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | 
 
-*  Desetinné zbývající:
+*  Desetinná část:
 
    ```csharp
    decimal operator %(decimal x, decimal y);
    ```
 
-   Pokud hodnota pravého operandu je nula, `System.DivideByZeroException` je vyvolána výjimka. Škálování výsledek před všechny zaokrouhlení větší stupnic dva operandy, a znaménko výsledku platí, pokud nenulová, je stejné jako u `x`.
+   Je-li hodnota pravého operandu nula, je vyvolána `System.DivideByZeroException`. Měřítko výsledku, před zaokrouhlením, je větší z škály dvou operandů a znaménko výsledku, pokud není nula, je stejné jako `x`.
 
-   Je ekvivalentní k použití operátor zbytku typu Decimal zbytek `System.Decimal`.
+   Desítkový zbytek je ekvivalentem použití operátoru zbytek typu `System.Decimal`.
 
 
 ### <a name="addition-operator"></a>Operátor sčítání
 
-Operace formuláře `x + y`, binárním operátorem rozlišení přetěžování ([binárním operátorem rozlišení přetěžování](expressions.md#binary-operator-overload-resolution)) se použije k výběru na konkrétní operátor implementace. Operandy jsou převedeny na zvoleném operátorovi typy parametrů a typ výsledku je návratový typ operátoru.
+Pro vybírání konkrétní implementace operátoru se použije pro operaci formuláře `x + y`, rozlišení přetížení binárního operátoru ([rozlišení přetížení binárního operátoru](expressions.md#binary-operator-overload-resolution)). Operandy jsou převedeny na typy parametrů vybraného operátoru a typ výsledku je návratový typ operátoru.
 
-Operátory sčítání předdefinované jsou uvedeny níže. Operátory sčítání předdefinované číselné a výčet typů, nalezení součtu dva operandy. Pokud jeden nebo oba operandy jsou typu String, zřetězení operátory sčítání předdefinované řetězcové vyjádření operandy.
+Předdefinované operátory sčítání jsou uvedeny níže. Pro číselné a výčtové typy jsou předdefinované operátory sčítání počítány součtem obou operandů. Když je jeden nebo oba operandy typu String, předdefinované operátory sčítání zřetězí řetězcovou reprezentaci operandů.
 
-*  Přidání celé číslo:
+*  Sčítání celého čísla:
 
    ```csharp
    int operator +(int x, int y);
@@ -2845,45 +2845,45 @@ Operátory sčítání předdefinované jsou uvedeny níže. Operátory sčítá
    ulong operator +(ulong x, ulong y);
    ```
 
-   V `checked` kontextu, pokud součet je mimo rozsah typu výsledku, `System.OverflowException` je vyvolána výjimka. V `unchecked` kontextu, nezobrazují, přetečení a žádné významné implikovaný bits mimo rozsah typu výsledku se zahodí.
+   Je-li v kontextu `checked`, je-li součet mimo rozsah výsledného typu, je vyvolána `System.OverflowException`. V kontextu `unchecked` nejsou přetečení hlášeny a jakékoli významné bity vysokého řádu mimo rozsah výsledného typu jsou zahozeny.
 
-*  Přidání s plovoucí desetinnou čárkou:
+*  Přidání plovoucí desetinné čárky:
 
    ```csharp
    float operator +(float x, float y);
    double operator +(double x, double y);
    ```
 
-   Součet je vypočítán podle pravidel objektů aritmetické IEEE 754. V následující tabulce jsou uvedeny výsledky všech možných kombinací nenulové hodnoty konečné, nul, nekonečno a NaN. V tabulce `x` a `y` jsou omezené nenulové hodnoty, a `z` je výsledkem `x + y`. Pokud `x` a `y` mají stejnou velikost, ale opačným znaménka, `z` je kladné nula. Pokud `x + y` je příliš velký pro reprezentaci typu cílového `z` je nekonečno s stejné znaménko jako `x + y`.
+   Součet se vypočítává podle pravidel aritmetické operace IEEE 754. V následující tabulce jsou uvedeny výsledky všech možných kombinací nenulových konečných hodnot, nul, nekonečno a NaN. V tabulce jsou `x` a `y` nenulové konečné hodnoty a `z` je výsledkem `x + y`. Pokud `x` a `y` mají stejnou velikost, ale opačné znaménko, `z` je kladné nula. Pokud je `x + y` příliš velký pro reprezentaci v cílovém typu, `z` je nekonečno se stejným znaménkem jako `x + y`.
 
    |      |      |      |      |      |      |      |
    |:----:|:----:|:----:|:----:|:----:|:----:|:----:|
-   |      | y    | +0   | -0   | + inf | -inf | NaN  | 
-   | x    | z    | x    | x    | + inf | -inf | NaN  | 
-   | +0   | y    | +0   | +0   | + inf | -inf | NaN  | 
-   | -0   | y    | +0   | -0   | + inf | -inf | NaN  | 
-   | + inf | + inf | + inf | + inf | + inf | NaN  | NaN  | 
-   | -inf | -inf | -inf | -inf | NaN  | -inf | NaN  | 
+   |      | Y    | +0   | -0   | \+ INF | – INF | NaN  | 
+   | x    | z    | x    | x    | \+ INF | – INF | NaN  | 
+   | +0   | Y    | +0   | +0   | \+ INF | – INF | NaN  | 
+   | -0   | Y    | +0   | -0   | \+ INF | – INF | NaN  | 
+   | \+ INF | \+ INF | \+ INF | \+ INF | \+ INF | NaN  | NaN  | 
+   | – INF | – INF | – INF | – INF | NaN  | – INF | NaN  | 
    | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | 
 
-*  Desetinné přidání:
+*  Sčítání desetinných míst:
 
    ```csharp
    decimal operator +(decimal x, decimal y);
    ```
 
-   Pokud výsledná hodnota je příliš velká pro reprezentaci v jazyce `decimal` formátu, `System.OverflowException` je vyvolána výjimka. Škálování výsledek před všechny zaokrouhlení, je větší stupnic dva operandy.
+   Pokud je výsledná hodnota příliš velká pro reprezentaci ve formátu `decimal`, je vyvolána `System.OverflowException`. Měřítko výsledku, před jakýmkoli zaokrouhlením, je větší z škály dvou operandů.
 
-   Je ekvivalentní k použití operátoru sčítání typu Decimal přidání `System.Decimal`.
+   Sčítání desetinných míst je ekvivalentní použití operátoru sčítání typu `System.Decimal`.
 
-*  Přidání výčtu. Každý typ výčtu implicitně poskytuje následující předdefinované operátory, kde `E` je typ výčtu a `U` je základní typ `E`:
+*  Sčítání výčtu. Každý typ výčtu implicitně poskytuje následující předdefinované operátory, kde `E` je typ výčtu a `U` je základní typ `E`:
 
    ```csharp
    E operator +(E x, U y);
    E operator +(U x, E y);
    ```
 
-   V době běhu těchto operátorů jsou vyhodnocovány stejným způsobem jako `(E)((U)x + (U)y)`.
+   V době běhu jsou tyto operátory vyhodnocovány přesně tak, jak `(E)((U)x + (U)y)`.
 
 *  Zřetězení řetězců:
 
@@ -2893,7 +2893,7 @@ Operátory sčítání předdefinované jsou uvedeny níže. Operátory sčítá
    string operator +(object x, string y);
    ```
 
-   Tato přetížení binárního souboru `+` provádět operátor zřetězení řetězců. Pokud je operand zřetězení řetězců `null`, je nahrazen prázdný řetězec. V opačném případě je některý argument jiné než řetězec převést na jeho řetězcovou reprezentaci vyvoláním virtuální `ToString` metody zděděné z typu `object`. Pokud `ToString` vrátí `null`, je nahrazen prázdný řetězec.
+   Tato přetížení binárního operátoru `+` provádí zřetězení řetězců. Pokud je operand zřetězení řetězců `null`, je nahrazen prázdný řetězec. V opačném případě je libovolný neřetězcový argument převeden na jeho řetězcové vyjádření vyvoláním metody Virtual `ToString` zděděné z typu `object`. Pokud `ToString` vrátí `null`, bude nahrazen prázdný řetězec.
 
    ```csharp
    using System;
@@ -2913,23 +2913,23 @@ Operátory sčítání předdefinované jsou uvedeny níže. Operátory sčítá
    }
    ```
 
-   Výsledek operátoru pro zřetězení řetězců je řetězec, který se skládá ze znaků levý operand, následované znaky pravého operandu. Nikdy nevrátí operátoru pro zřetězení řetězců `null` hodnotu. A `System.OutOfMemoryException` může být vyvolána, pokud není k dispozici dostatek paměti k přidělení výsledný řetězec.
+   Výsledek operátoru zřetězení řetězce je řetězec, který se skládá z znaků levého operandu následovaného znaky pravého operandu. Operátor zřetězení řetězců nikdy nevrací hodnotu `null`. @No__t-0 může být vyvolána, pokud není k dispozici dostatek paměti pro přidělení výsledného řetězce.
 
-*  Kombinaci delegátů. Každý typ delegáta implicitně poskytuje následující předdefinovaný operátor, kde `D` je typ delegátu:
+*  Kombinace delegátů. Každý typ delegáta implicitně poskytuje následující předdefinovaný operátor, kde `D` je typ delegáta:
 
    ```csharp
    D operator +(D x, D y);
    ```
 
-   Binární soubor `+` operátor provádí delegátů, pokud jsou oba operandy typu delegáta `D`. (Pokud operandy různých delegáta typy, dojde k chybě vazby čas.) Pokud je první operand `null`, výsledkem operace je hodnota druhého operandu (i v případě, že to je také `null`). Jinak, pokud je druhý operand `null`, pak výsledek operace hodnotu prvního operandu. Výsledek operace v opačném případě se nový delegát instance, která při vyvolání, vyvolá prvním operandem a poté vyvolá druhého operandu. Příklady delegátů, najdete v článku [operátor odčítání](expressions.md#subtraction-operator) a [delegovat vyvolání](delegates.md#delegate-invocation). Protože `System.Delegate` není typ delegáta, `operator`  `+` není definována.
+   Binární operátor `+` provádí kombinaci delegáta, pokud jsou oba operandy určitého typu delegáta `D`. (Pokud operandy mají odlišné typy delegátů, dojde k chybě při vazbě.) Pokud je první operand `null`, výsledkem operace je hodnota druhého operandu (i v případě, že je také `null`). V opačném případě, pokud je druhý operand `null`, pak výsledek operace je hodnota prvního operandu. V opačném případě je výsledkem operace nová instance delegáta, která při vyvolání vyvolá první operand a potom vyvolá druhý operand. Příklady kombinace delegátů naleznete v tématu [operátor odčítání](expressions.md#subtraction-operator) a [volání delegáta](delegates.md#delegate-invocation). Protože `System.Delegate` není typ delegáta, `operator` @ no__t-2 není pro něj definováno.
 
 ### <a name="subtraction-operator"></a>Operátor odčítání
 
-Operace formuláře `x - y`, binárním operátorem rozlišení přetěžování ([binárním operátorem rozlišení přetěžování](expressions.md#binary-operator-overload-resolution)) se použije k výběru na konkrétní operátor implementace. Operandy jsou převedeny na zvoleném operátorovi typy parametrů a typ výsledku je návratový typ operátoru.
+Pro vybírání konkrétní implementace operátoru se použije pro operaci formuláře `x - y`, rozlišení přetížení binárního operátoru ([rozlišení přetížení binárního operátoru](expressions.md#binary-operator-overload-resolution)). Operandy jsou převedeny na typy parametrů vybraného operátoru a typ výsledku je návratový typ operátoru.
 
-Předdefinované odčítání operátory jsou uvedeny níže. Operátory všechny odečíst `y` z `x`.
+Předdefinované operátory odčítání jsou uvedeny níže. Všechny operátory odečtou `y` od `x`.
 
-*  Odčítání celé číslo:
+*  Celočíselná odčítání:
 
    ```csharp
    int operator -(int x, int y);
@@ -2938,25 +2938,25 @@ Předdefinované odčítání operátory jsou uvedeny níže. Operátory všechn
    ulong operator -(ulong x, ulong y);
    ```
 
-   V `checked` kontextu, pokud rozdíl je mimo rozsah typu výsledku, `System.OverflowException` je vyvolána výjimka. V `unchecked` kontextu, nezobrazují, přetečení a žádné významné implikovaný bits mimo rozsah typu výsledku se zahodí.
+   Pokud je rozdíl mimo rozsah výsledného typu, je vyvolána `System.OverflowException` v kontextu `checked`. V kontextu `unchecked` nejsou přetečení hlášeny a jakékoli významné bity vysokého řádu mimo rozsah výsledného typu jsou zahozeny.
 
-*  Odčítání s plovoucí desetinnou čárkou:
+*  Odčítání plovoucí desetinné čárky:
 
    ```csharp
    float operator -(float x, float y);
    double operator -(double x, double y);
    ```
 
-   Rozdíl je vypočítán podle pravidel objektů aritmetické IEEE 754. V následující tabulce jsou uvedeny výsledky všech možných kombinací nenulové hodnoty konečné, nul, nekonečno a hodnoty NaN. V tabulce `x` a `y` jsou omezené nenulové hodnoty, a `z` je výsledkem `x - y`. Pokud `x` a `y` jsou si rovny, `z` je kladné nula. Pokud `x - y` je příliš velký pro reprezentaci typu cílového `z` je nekonečno s stejné znaménko jako `x - y`.
+   Rozdíl se vypočítává podle pravidel aritmetické operace IEEE 754. V následující tabulce jsou uvedeny výsledky všech možných kombinací nenulových konečných hodnot, nul, nekonečno a hodnoty NaN. V tabulce jsou `x` a `y` nenulové konečné hodnoty a `z` je výsledkem `x - y`. Je-li hodnota `x` a `y` rovna nule, `z` je kladné nula. Pokud je `x - y` příliš velký pro reprezentaci v cílovém typu, `z` je nekonečno se stejným znaménkem jako `x - y`.
 
    |      |      |      |      |      |      |     |
    |:----:|:----:|:----:|:----:|:----:|:----:|:---:|
-   |      | y    | +0   | -0   | + inf | -inf | NaN | 
-   | x    | z    | x    | x    | -inf | + inf | NaN | 
-   | +0   | -y   | +0   | +0   | -inf | + inf | NaN | 
-   | -0   | -y   | -0   | +0   | -inf | + inf | NaN | 
-   | + inf | + inf | + inf | + inf | NaN  | + inf | NaN | 
-   | -inf | -inf | -inf | -inf | -inf | NaN  | NaN | 
+   |      | Y    | +0   | -0   | \+ INF | – INF | NaN | 
+   | x    | z    | x    | x    | – INF | \+ INF | NaN | 
+   | +0   | -y   | +0   | +0   | – INF | \+ INF | NaN | 
+   | -0   | -y   | -0   | +0   | – INF | \+ INF | NaN | 
+   | \+ INF | \+ INF | \+ INF | \+ INF | NaN  | \+ INF | NaN | 
+   | – INF | – INF | – INF | – INF | – INF | NaN  | NaN | 
    | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | NaN | 
 
 *  Desetinné odčítání:
@@ -2965,31 +2965,31 @@ Předdefinované odčítání operátory jsou uvedeny níže. Operátory všechn
    decimal operator -(decimal x, decimal y);
    ```
 
-   Pokud výsledná hodnota je příliš velká pro reprezentaci v jazyce `decimal` formátu, `System.OverflowException` je vyvolána výjimka. Škálování výsledek před všechny zaokrouhlení, je větší stupnic dva operandy.
+   Pokud je výsledná hodnota příliš velká pro reprezentaci ve formátu `decimal`, je vyvolána `System.OverflowException`. Měřítko výsledku, před jakýmkoli zaokrouhlením, je větší z škály dvou operandů.
 
-   Je ekvivalentní k použití operátoru odčítání typu Decimal odčítání `System.Decimal`.
+   Desetinné odčítání je ekvivalentem použití operátoru odčítání typu `System.Decimal`.
 
-*  Výčet odčítání. Každý typ výčtu implicitně poskytuje následující předdefinovaný operátor, kde `E` je typ výčtu a `U` je základní typ `E`:
+*  Odčítání výčtu. Každý typ výčtu implicitně poskytuje následující předdefinovaný operátor, kde `E` je typ výčtu a `U` je základní typ `E`:
 
    ```csharp
    U operator -(E x, E y);
    ```
 
-   Tento operátor se vyhodnotí přesně jako `(U)((U)x - (U)y)`. Jinými slovy, operátor, který vypočítá rozdíl mezi pořadové hodnoty `x` a `y`, a typ výsledku je základní typ výčtu.
+   Tento operátor je vyhodnocen přesně jako `(U)((U)x - (U)y)`. Jinými slovy, operátor vypočítá rozdíl mezi ordinálními hodnotami `x` a `y` a typ výsledku je základní typ výčtu.
 
    ```csharp
    E operator -(E x, U y);
    ```
 
-   Tento operátor se vyhodnotí přesně jako `(E)((U)x - y)`. Jinými slovy operátor, který odečte hodnotu od základní typ výčtu, což má za následek hodnotu výčtu.
+   Tento operátor je vyhodnocen přesně jako `(E)((U)x - y)`. Jinými slovy, operátor odečte hodnotu od základního typu výčtu a vrátí hodnotu výčtu.
 
-*  Odebrání delegovat. Každý typ delegáta implicitně poskytuje následující předdefinovaný operátor, kde `D` je typ delegátu:
+*  Odebrání delegáta. Každý typ delegáta implicitně poskytuje následující předdefinovaný operátor, kde `D` je typ delegáta:
 
    ```csharp
    D operator -(D x, D y);
    ```
 
-   Binární soubor `-` operátor provádí odebrání delegátů, pokud jsou oba operandy typu delegáta `D`. Pokud operandy typů různých delegátů, dojde k chybě vazby čas. Pokud je první operand `null`, je výsledek operace `null`. Jinak, pokud je druhý operand `null`, pak výsledek operace hodnotu prvního operandu. V opačném případě oba operandy představovat vyvolání seznamy ([delegovat deklarace](delegates.md#delegate-declarations)) má jednu nebo více položek a výsledkem je nový seznam vyvolání skládající se z prvního operandu seznam s položkami druhého operandu odebrán z je k dispozici seznam Druhý operand je správné souvislých podseznam při prvním.     (K určení rovnosti podseznam, jsou porovnány odpovídající položky jako operátor rovnosti delegáta ([delegovat operátory rovnosti](expressions.md#delegate-equality-operators)).) Jinak výsledkem je hodnota levého operandu. Ani jeden z operandů Zobrazí se změnilo v procesu. Pokud je druhý operand seznamu odpovídá několika dílčích souvislých položky v seznamu je první operand, odpovídající dílčí seznam úplně vpravo souvislých položek, které se odebere. Pokud je odebrání výsledkem je seznam prázdný, výsledkem je `null`. Příklad:
+   Binární operátor `-` provádí odebrání delegáta, pokud jsou oba operandy určitého typu delegáta `D`. Pokud mají operandy různé typy delegátů, dojde k chybě při vazbě. Pokud je první operand `null`, výsledek operace je `null`. V opačném případě, pokud je druhý operand `null`, pak výsledek operace je hodnota prvního operandu. V opačném případě oba operandy znázorňují seznamy volání ([deklarace delegátů](delegates.md#delegate-declarations)), které mají jednu nebo více položek, a výsledkem je nový seznam vyvolání, který se skládá ze seznamu prvního operandu s odebranými položkami druhého operandu za sekundu. seznam operandů je správný souvislý podseznam první z nich.     (Chcete-li určit rovnost podseznamu, odpovídající položky jsou porovnány s operátorem rovnosti delegáta ([operátory rovnosti delegátů](expressions.md#delegate-equality-operators)).) V opačném případě je výsledkem hodnota levého operandu. V procesu nejsou změněny ani žádné seznamy operandů. Pokud je v seznamu druhý operand shodný s více podseznamy souvislých položek v seznamu prvního operandu, je odebrán odpovídající podseznam sousedících položek. Pokud je výsledkem odebrání prázdný seznam, výsledek je @no__t – 0. Příklad:
 
    ```csharp
    delegate void D(int x);
@@ -3025,7 +3025,7 @@ Předdefinované odčítání operátory jsou uvedeny níže. Operátory všechn
 
 ## <a name="shift-operators"></a>Operátory posunutí
 
-`<<` a `>>` operátory jsou používány k provádění operací posunu bit.
+Operátory `<<` a `>>` se používají k provádění operací bitových posunutí.
 
 ```antlr
 shift_expression
@@ -3035,15 +3035,15 @@ shift_expression
     ;
 ```
 
-Pokud operand operátoru *shift_expression* má typ kompilace `dynamic`, a dynamicky je vázán výraz ([dynamické vazby](expressions.md#dynamic-binding)). V tomto případě je kompilaci typu výrazu `dynamic`, a rozlišení je popsáno níže se provede v době běhu pomocí run-time typu těchto operandů, která mají typ kompilace `dynamic`.
+Pokud má operand *shift_expression* typ při kompilaci `dynamic`, pak je výraz dynamicky svázán ([dynamická vazba](expressions.md#dynamic-binding)). V tomto případě je typ doby kompilace výrazu `dynamic` a řešení popsané níže bude provedeno za běhu pomocí běhového typu u operandů, které mají typ doby kompilace `dynamic`.
 
-Operace formuláře `x << count` nebo `x >> count`, binárním operátorem rozlišení přetěžování ([binárním operátorem rozlišení přetěžování](expressions.md#binary-operator-overload-resolution)) se použije k výběru na konkrétní operátor implementace. Operandy jsou převedeny na zvoleném operátorovi typy parametrů a typ výsledku je návratový typ operátoru.
+Pro vybírání implementace konkrétního operátora se použije pro operaci formuláře `x << count` nebo `x >> count`, řešení přetížení binárního operátoru ([rozlišení přetížení binárního operátoru](expressions.md#binary-operator-overload-resolution)). Operandy jsou převedeny na typy parametrů vybraného operátoru a typ výsledku je návratový typ operátoru.
 
-Při deklarování přetěžovaného operátoru shift, typ je první operand musí být vždy dané třídy nebo struktury obsahující deklarace operátoru a typu Druhý operand musí být vždy `int`.
+Při deklaraci přetíženého operátoru Shift musí být typ prvního operandu vždy třídou nebo strukturou obsahující deklaraci operátoru a typ druhého operandu musí být vždy `int`.
 
-Operátory posunutí předdefinované jsou uvedeny níže.
+Předdefinované operátory posunutí jsou uvedeny níže.
 
-*  Posun doleva:
+*  Posunout doleva:
 
    ```csharp
    int operator <<(int x, int count);
@@ -3052,9 +3052,9 @@ Operátory posunutí předdefinované jsou uvedeny níže.
    ulong operator <<(ulong x, int count);
    ```
 
-   `<<` Operátor staffhubu `x` doleva o počet bitů vypočítat, jak je popsáno níže.
+   Operátor `<<` posune `x` doleva o několik bitů vypočítaných podle popisu níže.
 
-   Nejvyšším bits mimo rozsah typu výsledku `x` jsou zahozeny, zbývající bity posunuty vlevo a nižšího řádu prázdný bitové pozice jsou nastaveny na hodnotu nula.
+   Vysoké pořadí bitů mimo rozsah výsledného typu `x` se zahodí, zbývající bity se posunou doleva a dolní pořadí prázdných pozic je nastavené na hodnotu nula.
 
 *  Posun doprava:
 
@@ -3065,26 +3065,26 @@ Operátory posunutí předdefinované jsou uvedeny níže.
    ulong operator >>(ulong x, int count);
    ```
 
-   `>>` Operátor staffhubu `x` doprava o počet bitů vypočítat, jak je popsáno níže.
+   Operátor `>>` posouvá `x` vpravo počtem bitů vypočítaných podle popisu níže.
 
-   Při `x` je typu `int` nebo `long`, bity nižšího řádu `x` jsou zahozeny, zbývající bity jsou posunuta doprava a implikovaný prázdný bitové pozice jsou nastaveny na nula, pokud `x` je nastaven na nezáporné a nastavte, pokud jeden `x` je záporný.
+   Pokud je `x` typu `int` nebo `long`, jsou zrušené bity `x` zahozeny, zbývající bity se posunou vpravo a vysoké prázdné bitové pozice jsou nastaveny na hodnotu nula, pokud je `x` nezáporné a nastavte na jednu, pokud je `x` záporné.
 
-   Když `x` je typu `uint` nebo `ulong`, bity nižšího řádu `x` jsou zahozeny, jsou zbývající bity posunuta doprava a implikovaný prázdný bitové pozice jsou nastaveny na hodnotu nula.
+   Pokud je `x` typu `uint` nebo `ulong`, jsou zahozeny dolní pořadí `x`, zbývající bity se posunou vpravo a vysoké pořadí prázdných pozic jsou nastaveny na hodnotu nula.
 
-Pro předdefinované operátory počet bitů, chcete-li posunout vypočítává následujícím způsobem:
+V případě předdefinovaných operátorů se počet bitů na posunutí vypočítá takto:
 
-*  Pokud typ `x` je `int` nebo `uint`, počet posunů je dán pět bity nižšího řádu `count`. Jinými slovy, počet posunů je vypočítán z `count & 0x1F`.
-*  Pokud typ `x` je `long` nebo `ulong`, počet posunů je dán šest bity nižšího řádu `count`. Jinými slovy, počet posunů je vypočítán z `count & 0x3F`.
+*  Pokud je typ `x` `int` nebo `uint`, je počet posunu dán dolním pěti bity `count`. Jinými slovy, počet posunů je vypočítán z `count & 0x1F`.
+*  Pokud je typ `x` `long` nebo `ulong`, je počet posunu dán nízkým počtem šesti bitů `count`. Jinými slovy, počet posunů je vypočítán z `count & 0x3F`.
 
-Pokud výsledný počet posunů je nula, operátory posunutí jednoduše vrátit hodnotu `x`.
+Pokud je počet výsledných posunutí nula, operátory posunutí jednoduše vrátí hodnotu `x`.
 
-Operace posunutí nikdy způsobit přetečení a produkuje stejné výsledky v `checked` a `unchecked` kontexty.
+Operace posunutí nikdy nezpůsobí přetečení a vytvářejí stejné výsledky v `checked` a kontextech `unchecked`.
 
-Pokud levý operand `>>` operátor je celočíselný typ se znaménkem, operátor, který provede aritmetický posun přímo ve které se šíří výhody nejvýznamnější bit (bit znaménka) operand na vyšší řád prázdný bitové pozice. Pokud levý operand `>>` operátor je celočíselný typ bez znaménka, operátor, který provádí logický posun přímo ve které implikovaný prázdný bitové pozice jsou vždy nastaveny na hodnotu nula. Pokud chcete provést opačný operace, které odvozen z typu operandu, je možné explicitní přetypování. Například pokud `x` je proměnná typu `int`, operace `unchecked((int)((uint)x >> y))` provede logický Posun vpravo `x`.
+V případě, že levý operand operátoru `>>` má podepsaný integrální typ, operátor provede aritmetické posunutí vpravo, kde je hodnota nejvýznamnějšího bitu (bit znaménka) operandu rozšířena na prázdné bitové pozice v horním pořadí. V případě, že levý operand operátoru `>>` je celočíselného typu bez znaménka, operátor provede logický posun vpravo ve vysokém pořadí prázdné bitové pozice jsou vždy nastaveny na hodnotu nula. Chcete-li provést opačnou operaci, která je odvozena od typu operandu, lze použít explicitní přetypování. Například pokud `x` je proměnná typu `int`, operace `unchecked((int)((uint)x >> y))` provede logický posun napravo od `x`.
 
-## <a name="relational-and-type-testing-operators"></a>Operátory relační a typové zkoušky
+## <a name="relational-and-type-testing-operators"></a>Relační operátory a operátory testování typů
 
-`==`, `!=`, `<`, `>`, `<=`, `>=`, `is` a `as` operátory jsou volány operátory relační a typové zkoušky.
+Operátory `==`, `!=`, `<`, `>`, `<=`, `>=`, `is` a `as` se nazývají relační operátory a operátory testování typu.
 
 ```antlr
 relational_expression
@@ -3104,29 +3104,29 @@ equality_expression
     ;
 ```
 
-`is` Operátor je popsána v [je operátor](expressions.md#the-is-operator) a `as` operátor je popsána v [operátor as](expressions.md#the-as-operator).
+Operátor `is` je popsán v operátoru [is](expressions.md#the-is-operator) a operátor `as` je popsán v [operátoru as](expressions.md#the-as-operator).
 
-`==`, `!=`, `<`, `>`, `<=` a `>=` operátory jsou ***operátory porovnání***.
+Operátory ***porovnání***jsou `==`, `!=`, `<`, `>`, `<=` a `>=`.
 
-Pokud má operand operátoru porovnání typů za kompilace `dynamic`, a dynamicky je vázán výraz ([dynamické vazby](expressions.md#dynamic-binding)). V tomto případě je kompilaci typu výrazu `dynamic`, a rozlišení je popsáno níže se provede v době běhu pomocí run-time typu těchto operandů, která mají typ kompilace `dynamic`.
+Pokud operand relačního operátoru má typ doby kompilace `dynamic`, pak je výraz dynamicky svázán ([dynamická vazba](expressions.md#dynamic-binding)). V tomto případě je typ doby kompilace výrazu `dynamic` a řešení popsané níže bude provedeno za běhu pomocí běhového typu u operandů, které mají typ doby kompilace `dynamic`.
 
-Operace formuláře `x` *op* `y`, kde *op* je relační operátor rozlišení přetížení ([binárním operátorem rozlišenípřetěžování](expressions.md#binary-operator-overload-resolution)) se použije k výběru na konkrétní operátor implementace. Operandy jsou převedeny na zvoleném operátorovi typy parametrů a typ výsledku je návratový typ operátoru.
+Pro provoz formuláře `x` *op* `y`, kde *op* je operátor porovnání, je pro výběr konkrétní implementace operátoru použito rozlišení přetížení ([rozlišení přetěžování binárních operátorů](expressions.md#binary-operator-overload-resolution)). Operandy jsou převedeny na typy parametrů vybraného operátoru a typ výsledku je návratový typ operátoru.
 
-Operátory předdefinované porovnání jsou popsány v následujících částech. Všechny předdefinované porovnávací operátory vrací výsledek typu `bool`, jak je popsáno v následující tabulce.
+Předdefinované operátory porovnání jsou popsány v následujících částech. Všechny předdefinované operátory porovnání vracejí výsledek typu `bool`, jak je popsáno v následující tabulce.
 
 
 | __Operace__ | __výsledek__                                                       |
 |---------------|------------------------------------------------------------------|
-| `x == y`      | `true` Pokud `x` rovná `y`, `false` jinak                 | 
-| `x != y`      | `true` Pokud `x` není roven `y`, `false` jinak             | 
-| `x < y`       | `true` Pokud `x` je menší než `y`, `false` jinak                | 
-| `x > y`       | `true` Pokud `x` je větší než `y`, `false` jinak             | 
-| `x <= y`      | `true` Pokud `x` je menší než nebo rovna hodnotě `y`, `false` jinak    | 
-| `x >= y`      | `true` Pokud `x` je větší než nebo rovna hodnotě `y`, `false` jinak | 
+| `x == y`      | `true`, pokud je `x` rovno `y`, `false`, jinak                 | 
+| `x != y`      | `true`, pokud `x` není rovno `y`, `false`, jinak             | 
+| `x < y`       | `true`, pokud `x` je menší než `y`, `false`, jinak                | 
+| `x > y`       | `true`, pokud `x` je větší než `y`, `false`, jinak             | 
+| `x <= y`      | `true`, pokud `x` je menší nebo rovno `y`, `false`, jinak    | 
+| `x >= y`      | `true`, pokud `x` je větší nebo rovno `y`, `false`, jinak | 
 
-### <a name="integer-comparison-operators"></a>Operátory porovnání celé číslo
+### <a name="integer-comparison-operators"></a>Operátory porovnání celých čísel
 
-Celé číslo předdefinované operátory porovnání jsou:
+Předdefinované celočíselné operátory porovnání jsou:
 ```csharp
 bool operator ==(int x, int y);
 bool operator ==(uint x, uint y);
@@ -3159,11 +3159,11 @@ bool operator >=(long x, long y);
 bool operator >=(ulong x, ulong y);
 ```
 
-Každý z těchto operátorů porovnání číselných hodnot dvě celočíselné operandy a vrátí `bool` hodnotu, která určuje, zda je konkrétní vztah `true` nebo `false`.
+Každý z těchto operátorů porovná číselné hodnoty dvou celočíselných operandů a vrátí hodnotu `bool`, která určuje, zda je konkrétní vztah `true` nebo `false`.
 
 ### <a name="floating-point-comparison-operators"></a>Operátory porovnání s plovoucí desetinnou čárkou
 
-Předdefinované s plovoucí desetinnou čárkou porovnávací operátory jsou:
+Předdefinované operátory porovnání s plovoucí desetinnou čárkou jsou:
 ```csharp
 bool operator ==(float x, float y);
 bool operator ==(double x, double y);
@@ -3184,23 +3184,23 @@ bool operator >=(float x, float y);
 bool operator >=(double x, double y);
 ```
 
-Operátory porovnání operandy pravidlům standardní IEEE 754:
+Operátory porovnávají operandy podle pravidel standardu IEEE 754:
 
-*  Pokud některý operand je NaN, výsledkem je `false` pro všechny operátory s výjimkou `!=`, pro který je výsledkem `true`. Pro jakékoli dva operandy `x != y` vždy vytváří stejný výsledek jako `!(x == y)`. Pokud jeden nebo oba operandy jsou však NaN, `<`, `>`, `<=`, a `>=` operátory záměrně neprodukují stejné výsledky jako Logická negace opačný operátor. Například, pokud buď z `x` a `y` NaN, pak je `x < y` je `false`, ale `!(x >= y)` je `true`.
-*  Pokud ani jeden operand není NaN, operátory porovnání hodnoty s plovoucí desetinnou čárkou dva operandy s ohledem na řazení
+*  Pokud je jeden z operandů NaN, výsledek je `false` pro všechny operátory s výjimkou `!=`, pro které je výsledek `true`. U všech dvou operandů `x != y` vždy vytvoří stejný výsledek jako `!(x == y)`. Pokud je však jeden nebo oba operandy NaN, operátory `<`, `>`, `<=` a `>=` nepřinesou stejné výsledky jako logickou negaci protějšího operátoru. Pokud je například jedna z `x` a `y` NaN, pak `x < y` je `false`, ale `!(x >= y)` je `true`.
+*  Pokud žádný operand není NaN, operátory porovnávají hodnoty dvou operandů s plovoucí desetinnou čárkou s ohledem na řazení.
 
-   ```
+   ```csharp
    -inf < -max < ... < -min < -0.0 == +0.0 < +min < ... < +max < +inf
    ```
 
-   kde `min` a `max` jsou nejnižší a nejvyšší kladné konečné hodnoty, které můžou být vyjádřeny v daném formátu s plovoucí desetinnou čárkou. Toto uspořádání významné důsledky jsou:
-   * Kladné a záporné nuly jsou považovány za shodné.
-   * Záporné nekonečno je považován za méně než všechny ostatní hodnoty, ale rovna jiné záporné nekonečno.
-   * Kladné nekonečno je považován za větší než všechny ostatní hodnoty, ale rovna jiné kladné nekonečno.
+   kde `min` a `max` jsou nejmenší a největší kladné hodnoty, které lze reprezentovat v daném formátu s plovoucí desetinnou čárkou. Mezi významné účinky tohoto řazení patří:
+   * Záporné a kladné nuly se považují za stejné.
+   * Záporné nekonečno je považováno za méně než všechny ostatní hodnoty, ale je rovno jinému zápornému nekonečnu.
+   * Kladné nekonečno je považováno za větší než všechny ostatní hodnoty, ale je rovno jinému kladnému nekonečnu.
 
-### <a name="decimal-comparison-operators"></a>Desetinné relační operátory
+### <a name="decimal-comparison-operators"></a>Operátory porovnávání desetinných míst
 
-Předdefinované desítkové porovnávací operátory jsou:
+Předdefinované operátory porovnávání desetinných míst jsou:
 ```csharp
 bool operator ==(decimal x, decimal y);
 bool operator !=(decimal x, decimal y);
@@ -3210,23 +3210,23 @@ bool operator <=(decimal x, decimal y);
 bool operator >=(decimal x, decimal y);
 ```
 
-Každý z těchto operátorů porovnání číselných hodnot dvě desetinné operandů a vrací `bool` hodnotu, která určuje, zda je konkrétní vztah `true` nebo `false`. Každé desetinné porovnání je ekvivalentní k použití odpovídající relační nebo operátor rovnosti typu `System.Decimal`.
+Každý z těchto operátorů porovná číselné hodnoty dvou desetinných operandů a vrátí hodnotu `bool`, která určuje, zda je konkrétní vztah `true` nebo `false`. Každé desetinné porovnání je ekvivalentní s použitím odpovídajícího relačního nebo operátoru rovnosti typu `System.Decimal`.
 
-### <a name="boolean-equality-operators"></a>Operátory rovnosti Boolean
+### <a name="boolean-equality-operators"></a>Logické operátory rovnosti
 
-Rovnost předdefinované logické operátory jsou:
+Předdefinované logické operátory rovnosti jsou:
 ```csharp
 bool operator ==(bool x, bool y);
 bool operator !=(bool x, bool y);
 ```
 
-Výsledek `==` je `true` Pokud mají oba `x` a `y` jsou `true` nebo pokud `x` a `y` jsou `false`. V opačném případě je výsledek `false`.
+Výsledek `==` je `true`, pokud jsou `x` i `y` `true` nebo pokud `x` a `y` jsou `false`. V opačném případě je výsledkem `false`.
 
-Výsledek `!=` je `false` Pokud mají oba `x` a `y` jsou `true` nebo pokud `x` a `y` jsou `false`. V opačném případě je výsledek `true`. Když jsou operandy typu `bool`, `!=` operátor vytvoří stejný výsledek jako `^` operátor.
+Výsledek `!=` je `false`, pokud jsou `x` i `y` `true` nebo pokud `x` a `y` jsou `false`. V opačném případě je výsledkem `true`. Pokud jsou operandy typu `bool`, operátor `!=` vytvoří stejný výsledek jako operátor `^`.
 
-### <a name="enumeration-comparison-operators"></a>Operátory porovnání výčet
+### <a name="enumeration-comparison-operators"></a>Operátory porovnání výčtu
 
-Každý typ výčtu implicitně poskytuje následující předdefinované relační operátory:
+Každý typ výčtu implicitně poskytuje následující předdefinované operátory porovnání:
 ```csharp
 bool operator ==(E x, E y);
 bool operator !=(E x, E y);
@@ -3236,33 +3236,33 @@ bool operator <=(E x, E y);
 bool operator >=(E x, E y);
 ```
 
-Výsledek vyhodnocení výrazu `x op y`, kde `x` a `y` jsou výrazy typu výčtu `E` s podkladovým typem `U`, a `op` je jedním z operátorů porovnání, je stejný jako vyhodnocení `((U)x) op ((U)y)`. Jinými slovy operátory porovnání typu výčtu jednoduše porovnat základní integrální hodnoty dva operandy.
+Výsledek vyhodnocení `x op y`, kde `x` a `y` jsou výrazy typu výčtu `E` s podkladovým typem `U` a `op` je jedním z relačních operátorů, je naprosto stejný jako vyhodnocování `((U)x) op ((U)y)`. Jinými slovy, operátory porovnání typu výčtu jednoduše porovnávají základní celočíselné hodnoty dvou operandů.
 
-### <a name="reference-type-equality-operators"></a>Operátory rovnosti pro typ odkazu
+### <a name="reference-type-equality-operators"></a>Operátory rovnosti typu odkazu
 
-Operátory rovnosti předdefinovaný odkaz typu jsou:
+Předdefinované operátory rovnosti referenčního typu jsou:
 ```csharp
 bool operator ==(object x, object y);
 bool operator !=(object x, object y);
 ```
 
-Operátory vrací výsledek porovnání dvou odkazy a zjistí rovnost či jiných rovnosti.
+Operátory vrátí výsledek porovnání dvou odkazů pro rovnost nebo nerovnost.
 
-Protože předdefinovaných odkazovací operátory rovnosti typu přijmout operandy typu `object`, se vztahují na všechny typy, které nedeklarujte příslušné `operator ==` a `operator !=` členy. Naopak všechny příslušné rovnosti uživatelem definované operátory efektivně skrýt předdefinované odkazovací operátory rovnosti typu.
+Vzhledem k tomu, že předdefinované operátory rovnosti typu odkazu přijímají operandy typu `object`, vztahují se na všechny typy, které nedeklarují příslušné členy `operator ==` a `operator !=`. Naopak všechny použitelné uživatelsky definované operátory rovnosti efektivně skryjí předdefinované operátory rovnosti typu odkazu.
 
-Operátory rovnosti typu předdefinovaných referenčních vyžadovat jeden z následujících akcí:
+Předdefinované operátory rovnosti referenčního typu vyžadují jednu z následujících možností:
 
-*  Oba operandy hodnotu typu ví *reference_type* nebo literál `null`. Kromě toho konverzi explicitní odkaz ([odkaz na explicitní převody](conversions.md#explicit-reference-conversions)) existuje z typu jeden z operandů typu je druhý operand.
-*  Jeden operand je hodnota typu `T` kde `T` je *type_parameter* a druhý operand je literál `null`. Kromě toho `T` nemá omezení typu hodnoty.
+*  Oba operandy jsou hodnota typu, který je známý jako *reference_type* nebo literál `null`. Kromě toho existuje explicitní převod odkazu ([explicitní převody odkazů](conversions.md#explicit-reference-conversions)) z typu jednoho operandu na typ druhého operandu.
+*  Jeden operand je hodnota typu `T`, kde `T` je *type_parameter* a druhý operand je literál `null`. Navíc `T` nemá omezení typu hodnoty.
 
-Pokud platí jedna z těchto podmínek, dojde k chybě vazby čas. Významné důsledky z těchto pravidel jsou:
+Pokud jedna z těchto podmínek není pravdivá, dojde k chybě při vazbě. Mezi významné důsledky těchto pravidel patří:
 
-*  Je chyba vazby za použití předdefinovaných odkazovací operátory rovnosti typ k porovnání dva odkazy, které jsou známé jako jiný v době vazby. Například, pokud doba vazby typy operandů jsou dva typy tříd `A` a `B`a pokud `A` ani `B` je odvozena z jiných, potom by bylo možné pro dva operandy, chcete-li odkazovat na stejný objekt. Operace proto se považuje za chybu v době vazby.
-*  Operátory rovnosti typu předdefinovaných referenčních neumožňují hodnotu operandy typu, který se má porovnat. Proto pokud typu Struktura deklaruje vlastní operátory rovnosti, není možné porovnat hodnoty tohoto typu struktury.
-*  Operátory rovnosti typu předdefinovaných referenčních nikdy nezpůsobí operace zabalení na výskyt svých operandů. Bylo by provádět tyto operace zabalení, protože odkazy do nově přiděleného zabalený instancí by nutně lišit od jiných odkazů na nemá význam.
-*  Pokud typ parametru typu operandu `T` je ve srovnání s `null`a za běhu typu `T` je typ hodnoty, je výsledkem porovnání `false`.
+*  Jedná se o chybu při vazbě k použití předdefinovaného operátoru rovnosti referenčního typu pro porovnání dvou odkazů, které se označují jako odlišné v době vytváření vazby. Například pokud jsou typy v čase vazby operandy dva typy třídy `A` a `B` a pokud ani `A` ani `B` jsou odvozeny od druhé, pak by nebylo možné, že dva operandy odkazují na stejný objekt. Proto se operace považuje za chybu při vazbě.
+*  Předdefinované operátory rovnosti referenčního typu nepovolují porovnání operandů typu hodnoty. Proto pokud typ struktury deklaruje své vlastní operátory rovnosti, není možné porovnat hodnoty tohoto typu struktury.
+*  Předdefinované operátory rovnosti typu odkazu nikdy nezpůsobí operace zabalení pro své operandy. To by znamenalo, že by se tyto operace zabalení prováděly, protože odkazy na nově přiřazené zabalené instance by se nutně lišily od všech ostatních odkazů.
+*  Pokud je operand typu parametru typu `T` porovnána s hodnotou `null` a typem běhu `T` je typ hodnoty, výsledkem porovnání je `false`.
 
-Následující příklad zkontroluje, zda je argument typu bez omezení parametru typu `null`.
+Následující příklad ověří, zda je argument typu parametru bez omezení typu `null`.
 ```csharp
 class C<T>
 {
@@ -3273,9 +3273,9 @@ class C<T>
 }
 ```
 
-`x == null` Konstrukce smí obsahovat i v případě `T` by mohly představovat typ hodnoty a výsledek je jednoduše definován jako `false` při `T` je typ hodnoty.
+Konstrukce `x == null` je povolena, i když `T` může představovat typ hodnoty a výsledek je jednoduše definován jako `false`, pokud `T` je typ hodnoty.
 
-Operace formuláře `x == y` nebo `x != y`, pokud je k dispozici žádná `operator ==` nebo `operator !=` existuje, rozlišení přetížení operátoru ([binárním operátorem rozlišení přetěžování](expressions.md#binary-operator-overload-resolution)) pravidla, která vybere operátor místo operátor rovnosti typ předdefinovaný odkaz. Je ale vždy možné vybrat operátor rovnosti předdefinovaných referenčních typu explicitně přetypováním jeden nebo oba operandy na typ `object`. V příkladu
+Pro provoz formuláře `x == y` nebo `x != y`, pokud existují jakékoli platné `operator ==` nebo `operator !=`, pravidla pro rozlišení přetížení operátoru ([řešení přetížení binárního operátoru](expressions.md#binary-operator-overload-resolution)) vybere tento operátor místo předdefinované typu odkazu. podnikatel. Je však vždy možné vybrat předdefinovaný operátor rovnosti typu odkazu explicitním přetypováním jednoho nebo obou operandů na typ `object`. Příklad
 ```csharp
 using System;
 
@@ -3292,16 +3292,16 @@ class Test
 }
 ```
 Vytvoří výstup
-```
+```console
 True
 False
 False
 False
 ```
 
-`s` a `t` proměnná odkazuje na dvou rozdílných `string` instancí, který obsahuje stejné znaky. První porovnání výstupy `True` protože předdefinované řetězcové operátor rovnosti ([řetězec operátory rovnosti](expressions.md#string-equality-operators)) je vybrána, když jsou oba operandy typu `string`. Všechny zbývající porovnání výstup `False` protože operátor rovnosti předdefinovaných referenčních typů je vybrána, když jeden nebo oba operandy jsou typu `object`.
+Proměnné `s` a `t` odkazují na dvě instance `string`, které obsahují stejné znaky. První porovnávací výstupy `True`, protože je vybrán předdefinovaný operátor rovnosti řetězců ([operátory rovnosti řetězců](expressions.md#string-equality-operators)), pokud jsou oba operandy typu `string`. Zbývající porovnávání všech výstupů `False`, protože je vybrán operátor rovnosti typu odkazu, když je jeden nebo oba operandy typu `object`.
 
-Všimněte si, že výše uvedené postup není smysl pro typy hodnot. V příkladu
+Všimněte si, že výše uvedená technika není smysluplná pro typy hodnot. Příklad
 ```csharp
 class Test
 {
@@ -3312,97 +3312,97 @@ class Test
     }
 }
 ```
-Vypíše `False` protože vytvořit odkazy na dvě samostatné instance položky CAST v poli `int` hodnoty.
+výstupy `False`, protože přetypování vytvoří odkazy na dvě samostatné instance zabalené hodnoty `int`.
 
 ### <a name="string-equality-operators"></a>Operátory rovnosti řetězců
 
-Jsou předdefinované řetězcové operátory rovnosti:
+Předdefinované řetězcové operátory rovnosti jsou:
 ```csharp
 bool operator ==(string x, string y);
 bool operator !=(string x, string y);
 ```
 
-Dvě `string` hodnoty jsou považovány za shodné, když je splněna jedna z následujících akcí:
+Dvě hodnoty `string` se považují za stejné, pokud je splněna jedna z následujících hodnot:
 
-*  Jsou obě hodnoty `null`.
-*  Odkazy na jinou hodnotu než null řetězec instancí, které mají stejné délky a stejné znaky v každé pozici znaku jsou obě hodnoty.
+*  Obě hodnoty jsou `null`.
+*  Obě hodnoty jsou odkazy, které nejsou null, na instance řetězců, které mají stejné délky a stejné znaky v každé pozici znaku.
 
-Operátory rovnosti řetězec porovnání hodnoty řetězce místo odkazy na řetězec. Když dvě instance samostatné řetězec obsahovat přesně stejnou sekvenci znaků, jsou hodnoty řetězce stejné, ale odkazy se liší. Jak je popsáno v [operátory rovnosti pro typ odkazu](expressions.md#reference-type-equality-operators), operátory rovnosti reference typu lze porovnat řetězec odkazy místo řetězcové hodnoty.
+Operátory rovnosti řetězců porovnávají řetězcové hodnoty, nikoli odkazy na řetězce. Pokud dvě samostatné instance řetězců obsahují přesně stejnou sekvenci znaků, jsou hodnoty řetězců stejné, ale odkazy se liší. Jak je popsáno v tématu [operátory rovnosti typu odkazu](expressions.md#reference-type-equality-operators), lze operátory rovnosti typu odkazu použít k porovnání odkazů na řetězce namísto řetězcových hodnot.
 
-### <a name="delegate-equality-operators"></a>Operátory rovnosti delegáta
+### <a name="delegate-equality-operators"></a>Operátory rovnosti delegátů
 
-Každý typ delegáta implicitně poskytuje následující předdefinované relační operátory:
+Každý typ delegáta implicitně poskytuje následující předdefinované operátory porovnání:
 
 ```csharp
 bool operator ==(System.Delegate x, System.Delegate y);
 bool operator !=(System.Delegate x, System.Delegate y);
 ```
 
-Instance dvou delegátů jsou považovány za shodné následujícím způsobem:
+Dvě instance delegáta jsou považovány za stejné jako následující:
 
-*  Pokud je jedna instance delegátů `null`, pokud jsou obě jsou shodné `null`.
-*  Pokud delegáty mají různé run-time typu nikdy jsou stejné.
-*  Pokud obě instance delegáta máte seznam volání ([delegovat deklarace](delegates.md#delegate-declarations)), tyto instance jsou stejné, a pouze v případě jejich vyvolání seznamy mají stejnou délku, a každá položka v seznamu vyvolání jeden z rovná (jak je definována níže) na odpovídající položku v pořadí, v seznamu vyvolání druhé strany.
+*  Pokud je jedna z instancí delegátů `null`, jsou shodné, pokud jsou `null`.
+*  Pokud mají delegáty jiný typ běhu, nejsou nikdy rovny.
+*  Pokud obě instance delegáta mají seznam volání ([deklarace delegátů](delegates.md#delegate-declarations)), jsou tyto instance stejné, pokud jsou jejich seznamy volání stejné délky, a každá položka v seznamu volání je stejná (jak je definováno níže) k odpovídajícímu záznam v pořadí v seznamu vyvolání.
 
-Rovnost hodnoty položky seznamu vyvolání platí následující pravidla:
+Následující pravidla určují rovnost položek seznamu volání:
 
-*  Pokud obě dvě seznamu položky vyvolání odkazovat na stejný statická metoda pak položky jsou stejné.
-*  Pokud dvě volání položky seznamu oba odkazují na stejný nestatickou metodu na stejném cílovém objektu (definované operátory rovnosti reference) položky jsou stejné.
-*  Vyvolání seznamu položek vytvořený ze zkušební verze sémanticky identických *anonymous_method_expression*s nebo *lambda_expression*s (pravděpodobně prázdná) stejnou sadou zachycené vnější proměnné instance se můžou (ale není nutné) musí rovnat.
+*  Pokud dvě položky seznamu volání odkazují na stejnou statickou metodu, pak jsou položky stejné.
+*  Pokud dvě položky seznamu volání odkazují na stejnou nestatickou metodu na stejném cílovém objektu (jak je definováno operátory rovnosti referencí), pak jsou položky stejné.
+*  Položky seznamu volání vytvořené z vyhodnocení sémanticky identických *anonymous_method_expression*s nebo *lambda_expression*s stejnou (možná prázdnou) sadou zachycených instancí vnějších proměnných jsou povolené (ale nevyžadují se). výši.
 
-### <a name="equality-operators-and-null"></a>Operátory rovnosti a null
+### <a name="equality-operators-and-null"></a>Operátory rovnosti a hodnota null
 
-`==` a `!=` operátory povolit jeden operand bude hodnota typem s možnou hodnotou Null a druhý, aby `null` literálu, i v případě, že pro operaci neexistuje žádný předdefinovaných nebo uživatelem definovaný operátor (v unlifted nebo zrušeno vs. formuláře).
+Operátory `==` a `!=` umožňují, aby jeden operand byl hodnota typu s možnou hodnotou null a druhý jako literál `null`, a to i v případě, že pro danou operaci neexistuje žádný předdefinovaný operátor nebo uživatelem definovaný operátor (v vyzdvižené nebo přezdvižené formě).
 
-Operace jednoho z formuláře
+Pro provoz jedné z forem
 ```csharp
 x == null
 null == x
 x != null
 null != x
 ```
-kde `x` je výraz typu s možnou hodnotou Null, pokud řešení přetížení operátoru ([binárním operátorem rozlišení přetěžování](expressions.md#binary-operator-overload-resolution)) se nedaří najít příslušné operátora, výsledek se místo toho vypočítá ze `HasValue` Vlastnost `x`. Konkrétně první dvě různými formami jsou přeloženy do `!x.HasValue`, a poslední dvě různými formami jsou přeloženy do `x.HasValue`.
+kde `x` je výraz typu s možnou hodnotou null, pokud řešení přetížení operátoru ([rozlišení přetížení binárního operátoru](expressions.md#binary-operator-overload-resolution)) nenajde příslušný operátor, výsledek je místo toho vypočítán z vlastnosti `HasValue` `x`. Konkrétně jsou první dva formuláře přeloženy do `!x.HasValue` a poslední dva formuláře jsou přeloženy do `x.HasValue`.
 
-### <a name="the-is-operator"></a>Is – operátor
+### <a name="the-is-operator"></a>Operátor is
 
-`is` Operátor se používá k dynamicky zkontrolujte, jestli je kompatibilní s daným typem run-time typu objektu. Výsledek operace `E is T`, kde `E` je výraz a `T` je typ, je logická hodnota hodnotu, která udává, zda `E` můžete úspěšně převeden na typ `T` převodem odkaz, zabalení převod, nebo unboxingového převodu. Operace se vyhodnotí takto, jakmile byla nahrazena argumentů typu pro všechny parametry typu:
+Operátor `is` slouží k dynamické kontrole, zda je typ běhu objektu kompatibilní s daným typem. Výsledek operace `E is T`, kde `E` je výraz a `T` je typ, je logická hodnota označující, zda lze `E` převést na typ `T` pomocí převodu odkazu, převodu zabalení nebo převodu rozbalení. Tato operace je vyhodnocena následujícím způsobem, poté, co byly argumenty typu nahrazeny pro všechny parametry typu:
 
-*  Pokud `E` je anonymní funkce, dojde k chybě kompilace
-*  Pokud `E` je skupinu metod nebo `null` literálu, pokud typ `E` je typem odkazu nebo typ připouštějící hodnotu Null a hodnota `E` je null, je výsledek false.
-*  V opačném případě nechat `D` představují dynamického typu `E` následujícím způsobem:
-   * Pokud typ `E` je typem odkazu `D` je run-time typu odkazu na instanci podle `E`.
-   * Pokud typ `E` je typ připouštějící hodnotu Null, `D` je základní typ tohoto typu s možnou hodnotou Null.
-   * Pokud typ `E` je typ hodnoty Null, `D` je typ `E`.
+*  Pokud je `E` anonymní funkce, dojde k chybě při kompilaci.
+*  Pokud je `E` skupinou metod nebo `null` literál, pokud je typ `E` odkazový typ nebo typ s možnou hodnotou null a hodnota `E` je null, výsledek je false.
+*  Jinak Nechť `D` představuje dynamický typ `E` následujícím způsobem:
+   * Pokud typ `E` je odkazový typ, `D` je běhový typ odkazu instance pomocí `E`.
+   * Pokud typ `E` je typ s možnou hodnotou null, `D` je základní typ tohoto typu s možnou hodnotou null.
+   * Pokud typ `E` je typ hodnoty, který neumožňuje hodnotu null, `D` je typ `E`.
 *  Výsledek operace závisí na `D` a `T` následujícím způsobem:
-   * Pokud `T` je typem odkazu, je výsledek true Pokud `D` a `T` jsou stejného typu, pokud `D` je typem odkazu a implicitní referenční převod z `D` k `T` existuje, nebo pokud `D` je typ hodnoty a převod na uzavřené určení z `D` k `T` existuje.
-   * Pokud `T` je typ připouštějící hodnotu Null, je výsledek true Pokud `D` je základní typ `T`.
-   * Pokud `T` je typ hodnoty Null, je výsledek true Pokud `D` a `T` jsou stejného typu.
-   * Výsledkem je, jinak false.
+   * Pokud je `T` odkazový typ, výsledek je true, pokud `D` a `T` mají stejný typ, pokud `D` je odkazový typ a implicitní referenční převod z `D` na `T` existuje, nebo pokud `D` je typ hodnoty a převod zabalení z `D`. na `T` existuje.
+   * Pokud je `T` typem s možnou hodnotou null, výsledek je true, pokud je `D` základní typ `T`.
+   * Pokud je `T` typ hodnoty, který neumožňuje hodnotu null, výsledek je true, pokud `D` a `T` jsou stejného typu.
+   * V opačném případě je výsledkem false.
 
-Všimněte si, že nejsou uznán uživatelem definované převody `is` operátor.
+Počítejte s tím, že uživatelsky definované převody nejsou považovány za operátor `is`.
 
 ### <a name="the-as-operator"></a>Operátor as
 
-`as` Operátor se používá k explicitnímu převodu hodnoty na typ daného odkazu nebo typ připouštějící hodnotu Null. Na rozdíl od výraz přetypování ([výrazy přetypování](expressions.md#cast-expressions)), `as` operátor nikdy nevyvolá výjimku. Místo toho, pokud zadaný převod není možný, výsledná hodnota je `null`.
+Operátor `as` slouží k explicitnímu převodu hodnoty na daný typ odkazu nebo na typ s možnou hodnotou null. Na rozdíl od výrazu přetypování ([výrazy přetypování](expressions.md#cast-expressions)) operátor `as` nikdy nevyvolá výjimku. Místo toho, pokud uvedený převod není možný, výsledná hodnota je `null`.
 
-V operaci formuláře `E as T`, `E` musí být výraz a `T` musí být typ odkazu, parametr typu známé jako typ odkazu nebo typ připouštějící hodnotu Null. Kromě toho aspoň jednu z následujících musí mít hodnotu true, nebo jinak dojde k chybě kompilace:
+V operaci formuláře `E as T` musí být `E` výraz a `T` musí být odkazový typ, parametr typu, který je známý jako typ odkazu, nebo typ s možnou hodnotou null. Kromě toho musí být alespoň jedna z následujících podmínek pravdivá nebo jinak dojde k chybě při kompilaci:
 
-*  Identita ([Identity převod](conversions.md#identity-conversion)), implicitní s možnou hodnotou Null ([implicitní převody typu s možnou hodnotou Null](conversions.md#implicit-nullable-conversions)), implicitní odkaz ([odkaz na implicitní převody](conversions.md#implicit-reference-conversions)), zabalení ([ Zabalení převody](conversions.md#boxing-conversions)), explicitní s možnou hodnotou Null ([explicitní převody s možnou hodnotou Null](conversions.md#explicit-nullable-conversions)), přímý odkaz ([převody explicitní odkaz](conversions.md#explicit-reference-conversions)), nebo rozbalení ([Rozbalení převody](conversions.md#unboxing-conversions)) existuje převod z `E` k `T`.
-*  Typ `E` nebo `T` je otevřeného typu.
-*  `E` je `null` literálu.
+*  Identita ([převod identity](conversions.md#identity-conversion)), implicitně Nullable ([implicitní převody s možnou hodnotou null](conversions.md#implicit-nullable-conversions)), implicitní odkaz ([implicitní převody odkazů](conversions.md#implicit-reference-conversions)), zabalení ([převody zabalení](conversions.md#boxing-conversions)), explicitní Nullable (s[možnou hodnotou null) převody](conversions.md#explicit-nullable-conversions)), explicitní odkaz ([explicitní převody odkazů](conversions.md#explicit-reference-conversions)) nebo rozbalení ([převody rozbalení](conversions.md#unboxing-conversions)) existují z `E` na `T`.
+*  Typ `E` nebo `T` je otevřený typ.
+*  `E` je literál `null`.
 
-Pokud typ době kompilace `E` není `dynamic`, operace `E as T` vytváří stejný výsledek jako
+Pokud typ doby kompilace `E` není `dynamic`, operace `E as T` vytvoří stejný výsledek jako
 ```csharp
 E is T ? (T)(E) : (T)null
 ```
-s tím rozdílem, že `E` se jenom vyhodnotí jednou. Kompilátor může očekávat, že optimalizace `E as T` provádět maximálně jeden dynamický typ kontrolu na rozdíl od dvou kontroly dynamického typu odvozené od výše uvedených rozšíření.
+s výjimkou, že `E` je vyhodnocena pouze jednou. Kompilátor je možné očekávat pro optimalizaci `E as T`, aby bylo možné provést maximálně jednu kontrolu dynamického typu, a to na rozdíl od dvou kontrol dynamického typu, které jsou odvozené od výše uvedeného rozšíření.
 
-Pokud typ době kompilace `E` je `dynamic`, na rozdíl od operátoru přetypování `as` operátor není vázán dynamicky ([dynamické vazby](expressions.md#dynamic-binding)). Proto v tomto případě je rozšíření:
+Pokud je typ doby kompilace `E` `dynamic`, na rozdíl od operátoru přetypování není operátor `as` dynamicky svázán ([dynamická vazba](expressions.md#dynamic-binding)). Proto rozšíření v tomto případě je:
 ```csharp
 E is T ? (T)(object)(E) : (T)null
 ```
 
-Všimněte si, že některé převody, jako je například uživatelem definované převody nejsou s `as` operátor a by místo toho provádět pomocí výrazy přetypování.
+Všimněte si, že některé převody, například uživatelsky definované převody, nejsou možné s operátorem `as` a měly by se provádět místo toho, aby je bylo možné provádět pomocí výrazů přetypování.
 
 V příkladu
 ```csharp
@@ -3422,11 +3422,11 @@ class X
     }
 }
 ```
-parametr typu `T` z `G` známý typ odkazu, protože nemá omezení třídy. Parametr typu `U` z `H` není ale; proto používání `as` operátor v `H` se nepovoluje.
+parametr typu `T` `G` je známý jako typ odkazu, protože má omezení třídy. Parametr typu `U` `H` ale nikoli; proto použití operátoru `as` v `H` není povoleno.
 
 ## <a name="logical-operators"></a>Logické operátory
 
-`&`, `^`, A `|` operátory jsou volány logické operátory.
+Operátory `&`, `^` a `|` se nazývají logické operátory.
 
 ```antlr
 and_expression
@@ -3445,15 +3445,15 @@ inclusive_or_expression
     ;
 ```
 
-Pokud operand logického operátoru má typ kompilace `dynamic`, pak je dynamicky vázán výraz ([dynamické vazby](expressions.md#dynamic-binding)). V tomto případě je kompilaci typu výrazu `dynamic`, a rozlišení je popsáno níže se provede v době běhu pomocí run-time typu těchto operandů, která mají typ kompilace `dynamic`.
+Pokud má operand logického operátoru typ doby kompilace `dynamic`, je výraz dynamicky svázán ([dynamická vazba](expressions.md#dynamic-binding)). V tomto případě je typ doby kompilace výrazu `dynamic` a řešení popsané níže bude provedeno za běhu pomocí běhového typu u operandů, které mají typ doby kompilace `dynamic`.
 
-Operace formuláře `x op y`, kde `op` je jedním z logické operátory přetížení ([binárním operátorem rozlišení přetěžování](expressions.md#binary-operator-overload-resolution)) se použije k výběru na konkrétní operátor implementace. Operandy jsou převedeny na zvoleném operátorovi typy parametrů a typ výsledku je návratový typ operátoru.
+Pro operaci formuláře `x op y`, kde `op` je jedním z logických operátorů, je pro výběr konkrétní implementace operátoru použito rozlišení přetížení ([rozlišení přetěžování binárních operátorů](expressions.md#binary-operator-overload-resolution)). Operandy jsou převedeny na typy parametrů vybraného operátoru a typ výsledku je návratový typ operátoru.
 
 Předdefinované logické operátory jsou popsány v následujících částech.
 
-### <a name="integer-logical-operators"></a>Celé číslo logické operátory
+### <a name="integer-logical-operators"></a>Logické operátory typu Integer
 
-Předdefinované celé číslo logické operátory jsou:
+Předdefinované logické operátory typu Integer jsou:
 ```csharp
 int operator &(int x, int y);
 uint operator &(uint x, uint y);
@@ -3471,9 +3471,9 @@ long operator ^(long x, long y);
 ulong operator ^(ulong x, ulong y);
 ```
 
-`&` Vypočítá bitový operátor logického `AND` dvou operandů `|` vypočítá bitový operátor logického `OR` dvou operandů a `^` vypočítá bitový exkluzivní logický operátor `OR` dvou operandů. Žádné přetečení jsou z těchto operací.
+Operátor `&` vypočítá bitový logický `AND` dvou operandů, operátor `|` Vypočítá bitový logický operátor `OR` dvou operandů a operátor `^` vypočítá bitový logický exkluzivní `OR` dvou operandů. Z těchto operací nejsou možné žádné přetečení.
 
-### <a name="enumeration-logical-operators"></a>Výčet logické operátory
+### <a name="enumeration-logical-operators"></a>Logické operátory výčtu
 
 Každý typ výčtu `E` implicitně poskytuje následující předdefinované logické operátory:
 
@@ -3483,33 +3483,33 @@ E operator |(E x, E y);
 E operator ^(E x, E y);
 ```
 
-Výsledek vyhodnocení výrazu `x op y`, kde `x` a `y` jsou výrazy typu výčtu `E` s podkladovým typem `U`, a `op` je jedním z logické operátory, je stejný jako vyhodnocení `(E)((U)x op (U)y)`. Logické operátory typu výčtu jinými slovy, stačí provést logická operace s základního typu dva operandy.
+Výsledek vyhodnocení `x op y`, kde `x` a `y` jsou výrazy typu výčtu `E` s podkladovým typem `U` a `op` je jedním z logických operátorů, je naprosto stejný jako vyhodnocování `(E)((U)x op (U)y)`. Jinými slovy, logické operátory typu výčtu jednoduše provádějí logickou operaci na základním typu dvou operandů.
 
 ### <a name="boolean-logical-operators"></a>Logické operátory
 
-Předdefinované logické logické operátory jsou:
+Předdefinované logické operátory Boolean jsou:
 ```csharp
 bool operator &(bool x, bool y);
 bool operator |(bool x, bool y);
 bool operator ^(bool x, bool y);
 ```
 
-Výsledek `x & y` je `true` Pokud mají oba `x` a `y` jsou `true`. V opačném případě je výsledek `false`.
+Výsledek `x & y` je `true`, pokud jsou `x` i `y` `true`. V opačném případě je výsledkem `false`.
 
-Výsledek `x | y` je `true` Pokud `x` nebo `y` je `true`. V opačném případě je výsledek `false`.
+Výsledek `x | y` je `true`, pokud je `x` nebo `y` `true`. V opačném případě je výsledkem `false`.
 
-Výsledek `x ^ y` je `true` Pokud `x` je `true` a `y` je `false`, nebo `x` je `false` a `y` je `true`. V opačném případě je výsledek `false`. Když jsou operandy typu `bool`, `^` operátor vypočítá stejný výsledek jako `!=` operátor.
+Výsledek `x ^ y` je `true`, pokud `x` je `true` a `y` je `false` nebo `x` je `false` a `y` je `true`. V opačném případě je výsledkem `false`. Pokud jsou operandy typu `bool`, operátor `^` vypočítá stejný výsledek jako operátor `!=`.
 
-### <a name="nullable-boolean-logical-operators"></a>Logická logické operátory s povolenou hodnotou Null
+### <a name="nullable-boolean-logical-operators"></a>Logické operátory s možnou hodnotou null
 
-Typ s možnou hodnotou Null logická `bool?` může představovat tří hodnot `true`, `false`, a `null`a se koncepčně podobá tři vracející typ použitý pro logické výrazy v jazyce SQL. Chcete-li zajistit výsledky vytvořené metodou `&` a `|` operátory pro `bool?` operandy jsou konzistentní s logikou s hodnotou tři SQL, následující předdefinované operátory jsou k dispozici:
+Typ Boolean s možnou hodnotou null `bool?` může představovat tři hodnoty, `true`, `false` a `null` a je koncepčně podobný typu se třemi hodnotami použitými pro logické výrazy v SQL. Chcete-li zajistit, aby výsledky vytvořené operátory `&` a `|` pro operandy `bool?` byly konzistentní s logikou se třemi hodnotami SQL, jsou k dispozici následující předdefinované operátory:
 
 ```csharp
 bool? operator &(bool? x, bool? y);
 bool? operator |(bool? x, bool? y);
 ```
 
-V následující tabulce jsou uvedeny výsledky vytvořené metodou tyto operátory pro všechny kombinace hodnot `true`, `false`, a `null`.
+V následující tabulce jsou uvedeny výsledky, které tyto operátory vygenerovaly pro všechny kombinace hodnot `true`, `false` a `null`.
 
 | `x`     | `y`     | `x & y` | <code>x &#124; y</code> |
 |:-------:|:-------:|:-------:|:-------:|
@@ -3525,7 +3525,7 @@ V následující tabulce jsou uvedeny výsledky vytvořené metodou tyto operát
 
 ## <a name="conditional-logical-operators"></a>Podmíněné logické operátory
 
-`&&` a `||` operátory jsou volány podmíněné logické operátory. Označují se také jako "short-circuiting" logické operátory.
+Operátory `&&` a `||` se nazývají Podmíněné logické operátory. Označují se také jako logické operátory "krátkodobého okruhu".
 
 ```antlr
 conditional_and_expression
@@ -3539,47 +3539,47 @@ conditional_or_expression
     ;
 ```
 
-`&&` a `||` operátory jsou podmíněné verze `&` a `|` operátory:
+Operátory `&&` a `||` jsou podmíněné verze operátorů `&` a `|`:
 
-*  Operace `x && y` odpovídá operaci `x & y`, s tím rozdílem, že `y` je vyhodnocen pouze v případě `x` není `false`.
-*  Operace `x || y` odpovídá operaci `x | y`, s tím rozdílem, že `y` je vyhodnocen pouze v případě `x` není `true`.
+*  Operace `x && y` odpovídá operaci `x & y` s tím rozdílem, že `y` je vyhodnocena pouze v případě, že `x` není `false`.
+*  Operace `x || y` odpovídá operaci `x | y` s tím rozdílem, že `y` je vyhodnocena pouze v případě, že `x` není `true`.
 
-Pokud operand logického operátoru podmíněného má typ kompilace `dynamic`, pak je dynamicky vázán výraz ([dynamické vazby](expressions.md#dynamic-binding)). V tomto případě je kompilaci typu výrazu `dynamic`, a rozlišení je popsáno níže se provede v době běhu pomocí run-time typu těchto operandů, která mají typ kompilace `dynamic`.
+Pokud má operand podmíněného logického operátoru typ doby kompilace `dynamic`, pak je výraz dynamicky svázán ([dynamická vazba](expressions.md#dynamic-binding)). V tomto případě je typ doby kompilace výrazu `dynamic` a řešení popsané níže bude provedeno za běhu pomocí běhového typu u operandů, které mají typ doby kompilace `dynamic`.
 
-Operace formuláře `x && y` nebo `x || y` zpracování s použitím řešení přetížení ([binárním operátorem rozlišení přetěžování](expressions.md#binary-operator-overload-resolution)) jako kdyby byla zapsána operaci `x & y` nebo `x | y`. Potom
+Operace formuláře `x && y` nebo `x || y` se zpracovává pomocí Rozlišení přetěžování ([rozlišení přetížení binárního operátoru](expressions.md#binary-operator-overload-resolution)), jako kdyby byla operace zapsána `x & y` nebo `x | y`. Stisknutím
 
-*  Pokud se nepodaří určit přetížení k vyhledání jednoho nejlepší operátoru nebo řešení přetížení vybere jeden z předdefinovaných celé číslo logické operátory, dojde k chybě vazby čas.
-*  Jinak, pokud vybraný operátor je jedním z předdefinované logické logické operátory ([logické logické operátory](expressions.md#boolean-logical-operators)) nebo logická logické operátory s povolenou hodnotou Null ([logické operátory s povolenou hodnotou Null logická](expressions.md#nullable-boolean-logical-operators)), operace se nezpracovala, jak je popsáno v [logické podmíněné logické operátory](expressions.md#boolean-conditional-logical-operators).
-*  V opačném případě zvoleném operátorovi je uživatelem definovaný operátor a bude operace zpracována, jak je popsáno v [podmíněné logické operátory definované uživatelem](expressions.md#user-defined-conditional-logical-operators).
+*  Pokud rozlišení přetížení nenajde jeden nejlepší operátor, nebo pokud řešení přetížení vybere jeden z předdefinovaných logických logických operátorů, dojde k chybě při vazbě.
+*  V opačném případě, pokud je vybraný operátor jedním z předdefinovaných logických logických operátorů ([logických logických operátorů](expressions.md#boolean-logical-operators)) nebo hodnot s možnou hodnotou null logické operátory (s[možnou hodnotou null logických operátorů](expressions.md#nullable-boolean-logical-operators)), bude zpracován [ Logické Podmíněné logické operátory](expressions.md#boolean-conditional-logical-operators).
+*  V opačném případě je vybraný operátor uživatelem definovaný operátor a operace je zpracována tak, jak je popsáno v [uživatelsky definovaných podmíněných logických operátorech](expressions.md#user-defined-conditional-logical-operators).
 
-Není možné přímo přetížení podmíněné logické operátory. Ale protože podmíněné logické operátory jsou vyhodnocovány z hlediska regulární logické operátory, přetíženími pravidelné logických operátorů, s určitými omezeními také považují přetížení podmíněné logických operátorů. Toto je popsáno dále v [podmíněné logické operátory definované uživatelem](expressions.md#user-defined-conditional-logical-operators).
+Není možné přímo přetížit Podmíněné logické operátory. Vzhledem k tomu, že podmíněné logické operátory jsou vyhodnocovány v souvislosti s běžnými logickými operátory, jsou přetížení běžných logických operátorů, s určitými omezeními, také považována za přetížení podmíněných logických operátorů. To je podrobněji popsáno v [uživatelsky definovaných podmíněných logických operátorech](expressions.md#user-defined-conditional-logical-operators).
 
-### <a name="boolean-conditional-logical-operators"></a>Logická podmíněné logické operátory
+### <a name="boolean-conditional-logical-operators"></a>Logické Podmíněné logické operátory
 
-Když operandy `&&` nebo `||` jsou typu `bool`, nebo když jsou jako operandy typů, které nedefinují příslušném `operator &` nebo `operator |`, ale definovat implicitní převod na `bool`, operace se zpracování následujícím způsobem:
+Pokud jsou operandy `&&` nebo `||` typu `bool` nebo pokud jsou operandy typů, které nedefinují příslušné `operator &` nebo `operator |`, ale definují implicitní převody na `bool`, operace je zpracována následujícím způsobem. :
 
-*  Operace `x && y` se vyhodnotí jako `x ? y : false`. Jinými slovy `x` je nejdřív vyhodnotit a převedeny na typ `bool`. Když se poté `x` je `true`, `y` je vyhodnocen a převeden na typ `bool`, a toto řešení je výsledek operace. V opačném případě je výsledek operace `false`.
-*  Operace `x || y` se vyhodnotí jako `x ? true : y`. Jinými slovy `x` je nejdřív vyhodnotit a převedeny na typ `bool`. Když se poté `x` je `true`, je výsledek operace `true`. V opačném případě `y` je vyhodnocen a převeden na typ `bool`, a toto řešení je výsledek operace.
+*  Operace `x && y` je vyhodnocena jako `x ? y : false`. Jinými slovy, `x` se nejprve vyhodnotí a převede na typ `bool`. Pokud je pak `x` `true`, `y` se vyhodnotí a převede na typ `bool`, což se stalo výsledkem operace. V opačném případě je výsledkem operace `false`.
+*  Operace `x || y` je vyhodnocena jako `x ? true : y`. Jinými slovy, `x` se nejprve vyhodnotí a převede na typ `bool`. Pokud je `x` `true`, výsledek operace je @no__t – 2. V opačném případě je `y` vyhodnocena a převedena na typ `bool`, což se stalo výsledkem operace.
 
 ### <a name="user-defined-conditional-logical-operators"></a>Podmíněné logické operátory definované uživatelem
 
-Když operandy `&&` nebo `||` jsou typy, které deklarují příslušném uživatelem definované `operator &` nebo `operator |`, z následujících možností musí mít hodnotu true, pokud `T` je typ, ve kterém je deklarována zvoleném operátorovi:
+Pokud jsou operandy `&&` nebo `||` typu, který deklaruje příslušné uživatelsky definované `operator &` nebo `operator |`, musí být obě následující hodnoty true, kde `T` je typ, ve kterém je deklarovaný vybraný operátor:
 
-*  Musí být návratový typ a zadejte každý parametr zvoleném operátorovi `T`. Jinými slovy, musíte vypočítat logický operátor, který `AND` nebo logickém `OR` dvou operandů typu `T`a musí vrátit výsledek typu `T`.
+*  Návratový typ a typ každého parametru vybraného operátoru musí být `T`. Jinými slovy, operátor musí vypočítat logický `AND` nebo logický `OR` dvou operandech typu `T` a musí vracet výsledek typu `T`.
 *  `T` musí obsahovat deklarace `operator true` a `operator false`.
 
-Pokud některý z těchto požadavků není splněno, dojde k chybě vazby – za. V opačném případě `&&` nebo `||` operace se vyhodnocuje na základě kombinace uživatelsky definované `operator true` nebo `operator false` s vybranou uživatelem definovaný operátor:
+Pokud některý z těchto požadavků není splněn, dojde k chybě při vazbě. V opačném případě je operace `&&` nebo `||` vyhodnocena kombinací uživatelsky definovaného `operator true` nebo `operator false` s vybraným uživatelem definovaným operátorem:
 
-*  Operace `x && y` se vyhodnotí jako `T.false(x) ? x : T.&(x, y)`, kde `T.false(x)` je vyvolání `operator false` deklarované v `T`, a `T.&(x, y)` je vyvolání vybraného `operator &`. Jinými slovy `x` nejdřív vyhodnotit a `operator false` se vyvolá u výsledku k určení, zda `x` je jednoznačně false. Když se poté `x` je jednoznačně false, je hodnota vypočítaná dříve pro výsledek operace `x`. V opačném případě `y` je vyhodnocen a vybraný `operator &` se vyvolá u hodnota vypočítaná dříve pro `x` a hodnotu vypočítat pro `y` vytvoří výsledek operace.
-*  Operace `x || y` se vyhodnotí jako `T.true(x) ? x : T.|(x, y)`, kde `T.true(x)` je vyvolání `operator true` deklarované v `T`, a `T.|(x,y)` je vyvolání vybraného `operator|`. Jinými slovy `x` nejdřív vyhodnotit a `operator true` se vyvolá u výsledku k určení, zda `x` jednoznačně platí. Když se poté `x` je jednoznačně true, je hodnota vypočítaná dříve pro výsledek operace `x`. V opačném případě `y` je vyhodnocen a vybraný `operator |` se vyvolá u hodnota vypočítaná dříve pro `x` a hodnotu vypočítat pro `y` vytvoří výsledek operace.
+*  Operace `x && y` je vyhodnocena jako `T.false(x) ? x : T.&(x, y)`, kde `T.false(x)` je vyvolání `operator false` deklarovaného v `T` a `T.&(x, y)` je vyvolání vybrané `operator &`. Jinými slovy, `x` se nejprve vyhodnotí a vyvolá se `operator false` ve výsledku, aby bylo možné zjistit, jestli je `x` jednoznačně false. Pokud je `x` jednoznačně false, výsledek operace je hodnota dříve vypočítaná pro `x`. V opačném případě je vyhodnocena hodnota `y` a vybraný `operator &` je vyvolán na hodnotu dříve vypočítanou pro `x` a hodnotu vypočítanou pro `y` pro získání výsledku operace.
+*  Operace `x || y` je vyhodnocena jako `T.true(x) ? x : T.|(x, y)`, kde `T.true(x)` je vyvolání `operator true` deklarovaného v `T` a `T.|(x,y)` je vyvolání vybrané `operator|`. Jinými slovy @no__t – 0 se nejprve vyhodnotí a `operator true` je vyvoláno ve výsledku, abyste zjistili, zda je hodnota `x` jednoznačně pravdivá. Pokud je `x` jednoznačně true, výsledek operace je hodnota dříve vypočítaná pro `x`. V opačném případě je vyhodnocena hodnota `y` a vybraný `operator |` je vyvolán na hodnotu dříve vypočítanou pro `x` a hodnotu vypočítanou pro `y` pro získání výsledku operace.
 
-V některém z těchto operací výraz Dal `x` je jen pro vyhodnotí jednou a výraz Dal `y` je buď není vyhodnocen nebo vyhodnotí přesně jednou.
+V některé z těchto operací je výraz zadaný pomocí `x` vyhodnocován pouze jednou a výraz zadaný `y` není vyhodnocen nebo vyhodnocován přesně jednou.
 
-Příklad typu, který implementuje `operator true` a `operator false`, naleznete v tématu [databáze typu boolean](structs.md#database-boolean-type).
+Příklad typu, který implementuje `operator true` a `operator false`, naleznete v tématu [Database Boolean Type](structs.md#database-boolean-type).
 
-## <a name="the-null-coalescing-operator"></a>Null operátor sloučení
+## <a name="the-null-coalescing-operator"></a>Operátor slučování s hodnotou null
 
-`??` Operátor je volána null operátor sloučení.
+Operátor `??` se nazývá slučovací operátor null.
 
 ```antlr
 null_coalescing_expression
@@ -3588,22 +3588,22 @@ null_coalescing_expression
     ;
 ```
 
-Nulový slučovací výraz ve tvaru `a ?? b` vyžaduje `a` bude typu nebo odkaz na typ připouštějící hodnotu Null. Pokud `a` je jiná než null, výsledek `a ?? b` je `a`; jinak vrátí hodnotu, výsledek je `b`. Výsledkem operace `b` pouze tehdy, pokud `a` má hodnotu null.
+Nulový slučovací výraz formuláře `a ?? b` vyžaduje, aby `a` bylo typu s možnou hodnotou null nebo odkazem. Pokud `a` není null, výsledkem `a ?? b` je `a`; v opačném případě je výsledkem `b`. Tato operace vyhodnotí `b` pouze v případě, že `a` má hodnotu null.
 
-Null operátor sloučení je asociativní zprava, což znamená, že operace se seskupují zleva doprava. Například výraz ve tvaru `a ?? b ?? c` se vyhodnotí jako `a ?? (b ?? c)`. Obecně platí podmínky výrazu v podobě `E1 ?? E2 ?? ... ?? En` vrátí první operandy, jinou hodnotu než null, nebo hodnotu null, pokud jsou všechny operandy hodnotu null.
+Operátor slučování s hodnotou null je asociativní zprava, což znamená, že operace jsou seskupeny zprava doleva. Například výraz formuláře `a ?? b ?? c` je vyhodnocen jako `a ?? (b ?? c)`. Obecně platí, že výraz formuláře `E1 ?? E2 ?? ... ?? En` vrací první z operandů, které nejsou null, nebo hodnotu null, pokud jsou všechny operandy NULL.
 
-Typ výrazu `a ?? b` závisí na které implicitní převody jsou k dispozici na operandy. V pořadí podle priority, typu `a ?? b` je `A0`, `A`, nebo `B`, kde `A` je typ `a` (za předpokladu, že `a` má typ), `B` je typ `b` () za předpokladu, že `b` má typ), a `A0` je základní typ `A` Pokud `A` je typ připouštějící hodnotu Null, nebo `A` jinak. Konkrétně `a ?? b` zpracování následujícím způsobem:
+Typ výrazu `a ?? b` závisí na tom, které implicitní převody jsou k dispozici u operandů. V upřednostňovaném pořadí je typ `a ?? b` `A0`, `A` nebo `B`, kde `A` je typ `a` (za předpokladu, že `a` je typu), `B` je typ `b` (za předpokladu, že `b` má typ). a 0 je základní typ 1, pokud 2 je typ s možnou hodnotou null nebo 3 v opačném případě. Konkrétně `a ?? b` se zpracovává takto:
 
-*  Pokud `A` existuje a není typ připouštějící hodnotu null nebo typ odkazu, dojde k chybě kompilace.
-*  Pokud `b` dynamického výrazu je typ výsledku je `dynamic`. V době běhu `a` nejprve vyhodnocena. Pokud `a` nemá hodnotu null, `a` je převést na dynamický, a to se stane výsledek. V opačném případě `b` vyhodnocena, a to se stane výsledek.
-*  Jinak, pokud `A` existuje a je typ připouštějící hodnotu Null a existuje implicitní převod z `b` k `A0`, typ výsledku je `A0`. V době běhu `a` nejprve vyhodnocena. Pokud `a` nemá hodnotu null, `a` je neobalený, aby typ `A0`, a to se stane výsledek. V opačném případě `b` je vyhodnocen a převeden na typ `A0`, a to se stane výsledek.
-*  Jinak, pokud `A` existuje a že existuje implicitní převod z `b` k `A`, typ výsledku je `A`. V době běhu `a` nejprve vyhodnocena. Pokud `a` nemá hodnotu null, `a` výsledek. V opačném případě `b` je vyhodnocen a převeden na typ `A`, a to se stane výsledek.
-*  Jinak, pokud `b` má typ `B` a existuje implicitní převod z `a` k `B`, typ výsledku je `B`. V době běhu `a` nejprve vyhodnocena. Pokud `a` nemá hodnotu null, `a` je neobalený, aby typ `A0` (Pokud `A` existuje a může mít hodnotu Null) a převedeny na typ `B`, a toto řešení je výsledek. V opačném případě `b` jsou vyhodnoceny a výsledek.
-*  V opačném případě `a` a `b` jsou nekompatibilní, za kompilace dojde k chybě.
+*  Pokud `A` existuje a není to typ s možnou hodnotou null nebo odkazový typ, dojde k chybě při kompilaci.
+*  Pokud je `b` dynamický výraz, je typ výsledku `dynamic`. V době běhu se nejprve vyhodnotí `a`. Pokud `a` není null, je `a` převedena na Dynamic, což se změní na výsledek. V opačném případě je vyhodnocena hodnota `b`, což se zobrazí jako výsledek.
+*  Jinak, pokud `A` existuje a jde o typ s možnou hodnotou null a implicitní převod existuje z `b` na `A0`, je typ výsledku `A0`. V době běhu se nejprve vyhodnotí `a`. Pokud `a` není null, `a` je rozbalením do typu `A0`, a to se stalo výsledkem. V opačném případě je `b` vyhodnocena a převedena na typ `A0`, což se zobrazí jako výsledek.
+*  V opačném případě, pokud `A` existuje a implicitní převod existuje z `b` na `A`, je typ výsledku `A`. V době běhu se nejprve vyhodnotí `a`. Pokud `a` není null, bude výsledkem `a`. V opačném případě je `b` vyhodnocena a převedena na typ `A`, což se zobrazí jako výsledek.
+*  Jinak, pokud `b` má typ `B` a implicitní převod existuje z `a` na `B`, je typ výsledku `B`. V době běhu se nejprve vyhodnotí `a`. Pokud `a` není null, `a` se rozbalí do typu `A0` (Pokud `A` existuje a je null) a převedeno na typ `B`, což se stalo výsledkem. V opačném případě se vyhodnotí `b` a výsledkem bude výsledek.
+*  V opačném případě jsou `a` a `b` nekompatibilní a dojde k chybě při kompilaci.
 
 ## <a name="conditional-operator"></a>Podmíněný operátor
 
-`?:` Operátor se nazývá podmiňovací operátor. V některých případech také nazývá tříhodnotový operátor.
+Operátor `?:` se nazývá podmíněný operátor. Je někdy také označován jako Ternární operátor.
 
 ```antlr
 conditional_expression
@@ -3612,34 +3612,34 @@ conditional_expression
     ;
 ```
 
-Podmíněný výraz ve tvaru `b ? x : y` nejprve tuto podmínku vyhodnotí `b`. Když se poté `b` je `true`, `x` jsou vyhodnoceny a výsledek operace. V opačném případě `y` jsou vyhodnoceny a výsledek operace. Podmíněný výraz nikdy vyhodnotí oba `x` a `y`.
+Podmíněný výraz formuláře `b ? x : y` nejprve vyhodnotí podmínku `b`. Pokud je pak `b` `true`, vyhodnotí se `x` a výsledkem operace je. V opačném případě se `y` vyhodnotí a výsledkem operace se. Podmíněný výraz nikdy nevyhodnotí `x` a `y`.
 
-Podmíněný operátor je asociativní zprava, což znamená, že operace se seskupují zleva doprava. Například výraz ve tvaru `a ? b : c ? d : e` se vyhodnotí jako `a ? b : (c ? d : e)`.
+Podmíněný operátor je asociativní zprava, což znamená, že operace jsou seskupeny zprava doleva. Například výraz formuláře `a ? b : c ? d : e` je vyhodnocen jako `a ? b : (c ? d : e)`.
 
-První operand `?:` operator musí být výraz, který lze implicitně převést na `bool`, nebo výraz typu, který implementuje `operator true`. Pokud ani jeden z těchto požadavků není splněna, dojde k chybě v době kompilace.
+Prvním operandem operátoru `?:` musí být výraz, který lze implicitně převést na `bool` nebo výraz typu, který implementuje `operator true`. Pokud ani jeden z těchto požadavků není splněn, dojde k chybě při kompilaci.
 
-Druhý a třetí operand `x` a `y`, z `?:` operátor řídit typ podmíněného výrazu.
+Druhý a třetí operand `x` a `y` ovládacího prvku operátoru `?:` typ podmíněného výrazu.
 
-*  Pokud `x` má typ `X` a `y` má typ `Y` pak
-   * Pokud implicitní převod ([implicitních převodů](conversions.md#implicit-conversions)) existuje z `X` k `Y`, ale ne z `Y` k `X`, pak `Y` je typ podmíněného výrazu.
-   * Pokud implicitní převod ([implicitních převodů](conversions.md#implicit-conversions)) existuje z `Y` k `X`, ale ne z `X` k `Y`, pak `X` je typ podmíněného výrazu.
-   * V opačném případě se dá určit bez typu výrazu a dojde k chybě kompilace.
-*  Pokud pouze jeden z `x` a `y` má typ a obě `x` a `y`, aplikace se implicitně převést na typ, pak je typ podmíněného výrazu.
-*  V opačném případě se dá určit bez typu výrazu a dojde k chybě kompilace.
+*  Pokud je `x` typu `X` a `y` je typu `Y` then
+   * Pokud implicitní převod ([implicitní převody](conversions.md#implicit-conversions)) existuje z `X` na `Y`, ale ne z `Y` na `X`, pak `Y` je typ podmíněného výrazu.
+   * Pokud implicitní převod ([implicitní převody](conversions.md#implicit-conversions)) existuje z `Y` na `X`, ale ne z `X` na `Y`, pak `X` je typ podmíněného výrazu.
+   * V opačném případě nelze určit žádný typ výrazu a dojde k chybě při kompilaci.
+*  Pokud je typ pouze jeden z `x` a `y`, je implicitně převoditelné na tento typ a obou `x` a `y`, a to je typ podmíněného výrazu.
+*  V opačném případě nelze určit žádný typ výrazu a dojde k chybě při kompilaci.
 
-Zpracování za běhu podmíněného výrazu v podobě `b ? x : y` se skládá z následujících kroků:
+Běhové zpracování podmíněného výrazu ve formátu `b ? x : y` se skládá z následujících kroků:
 
-*  První, `b` je vyhodnocen a `bool` hodnotu `b` závisí:
-   * Pokud implicitní převod z typu `b` k `bool` existuje, tento implicitní převod se provádí za účelem vytvoření `bool` hodnotu.
-   * V opačném případě `operator true` definovaný podle typu `b` se vyvolá k vytvoření `bool` hodnotu.
-*  Pokud `bool` hodnotu vytvořenou testovaným výše uvedeném kroku je `true`, pak `x` je vyhodnotit a převedeny na typ podmíněného výrazu, a toto řešení je výsledek podmíněného výrazu.
-*  V opačném případě `y` je vyhodnotit a převedeny na typ podmíněného výrazu, a to se stane výsledek podmíněného výrazu.
+*  Nejprve je vyhodnocena hodnota `b` a je určena hodnota `bool` `b`:
+   * Pokud existuje implicitní převod z typu `b` na `bool`, pak se tento implicitní převod provede tak, aby se vytvořila hodnota `bool`.
+   * V opačném případě je vyvoláno `operator true` definované typem `b`, aby se vytvořila hodnota `bool`.
+*  Pokud hodnota `bool` vytvořená výše v kroku je `true`, pak `x` je vyhodnocena a převedena na typ podmíněného výrazu, a to se projeví v důsledku podmíněného výrazu.
+*  V opačném případě je `y` vyhodnocena a převedena na typ podmíněného výrazu, a to se projeví v důsledku podmíněného výrazu.
 
-## <a name="anonymous-function-expressions"></a>Výrazy anonymní funkce
+## <a name="anonymous-function-expressions"></a>Anonymní výrazy funkcí
 
-***Anonymní funkce*** je výraz, který představuje definici metody "in-line". Anonymní funkce nemá hodnotu nebo typ v a sama o sobě, ale lze převést na kompatibilní typ. strom delegáta nebo výraz. Vyhodnocení anonymní funkce převodu závisí na cílový typ převodu: Pokud je typ delegátu, převod vyhodnocen na hodnotu delegáta, které se odkazuje na metodu, která definuje anonymní funkce. Pokud je typu stromu výrazu, se vyhodnotí jako převod na strom výrazu, která reprezentuje strukturu těchto metodu jako objektovou strukturu.
+***Anonymní funkce*** je výraz, který představuje definici metody "in-line". Anonymní funkce nemá hodnotu ani typ v rámci sebe, ale je převoditelná na kompatibilního delegáta nebo na typ stromu výrazů. Vyhodnocení konverze anonymní funkce závisí na typu cíle převodu: Pokud se jedná o typ delegáta, převod se vyhodnotí na hodnotu delegáta odkazující na metodu, kterou definuje anonymní funkce. Pokud se jedná o typ stromu výrazu, převod se vyhodnotí na strom výrazu, který představuje strukturu metody jako strukturu objektu.
 
-Z historických důvodů jsou mají dvě syntaktické varianty anonymní funkce, a to *lambda_expression*s a *anonymous_method_expression*s. Pro téměř všechny účely *lambda_expression*s jsou stručné a expresivní než *anonymous_method_expression*s, která zůstanou v jazyce pro zpětnou kompatibilitu.
+Z historických důvodů existují dvě syntaktické charakter anonymních funkcí, konkrétně *lambda_expression*s a *anonymous_method_expression*s. Pro téměř všechny účely jsou *lambda_expression*s stručnější a výraznou výjimkou *anonymous_method_expression*s, které zůstávají v jazyce pro zpětnou kompatibilitu.
 
 ```antlr
 lambda_expression
@@ -3691,26 +3691,26 @@ anonymous_function_body
     ;
 ```
 
-`=>` Operátor má stejnou prioritu jako přiřazení (`=`) a je asociativní zprava.
+Operátor `=>` má stejnou prioritu jako přiřazení (`=`) a je asociativní zprava.
 
-Anonymní funkce s `async` Modifikátor je asynchronní funkci a postupuje pravidel popsaných v [iterátory](classes.md#iterators).
+Anonymní funkce s modifikátorem `async` je asynchronní funkce a postupuje podle pravidel popsaných v [iterátorech](classes.md#iterators).
 
-Parametry anonymní funkce v podobě *lambda_expression* může být explicitně nebo implicitně typu. V seznamu parametrů explicitně je výslovně uvedeno každý parametr typu. V seznamu implicitně typované parametrů typy parametrů jsou odvozeny z kontextu, ve kterém dochází anonymní funkce – konkrétně, když je anonymní funkce převedena na typ kompatibilní delegáta nebo typu stromu výrazu, který poskytuje typ typy parametrů ([anonymní funkce převody](conversions.md#anonymous-function-conversions)).
+Parametry anonymní funkce ve formě *lambda_expression* mohou být explicitně nebo implicitně typované. V seznamu explicitně typovaného parametru je typ každého parametru explicitně uveden. V seznamu implicitně typových parametrů jsou typy parametrů odvoditelné z kontextu, ve kterém se anonymní funkce vyskytují – konkrétně, když je anonymní funkce převedena na kompatibilní typ delegáta nebo na typ stromu výrazů, který tento typ poskytuje. typy parametrů ([anonymní převody funkcí](conversions.md#anonymous-function-conversions)).
 
-Anonymní funkce s parametrem jeden, implicitně typované můžete vynechat závorky ze seznamu parametrů. Jinými slovy anonymní funkci formuláře
+V anonymní funkci s jedním implicitně typovým parametrem mohou být kulaté závorky vynechány v seznamu parametrů. Jinými slovy, anonymní funkce formuláře
 ```csharp
 ( param ) => expr
 ```
-lze zkrátit na
+může být zkrácen na
 ```csharp
 param => expr
 ```
 
-Seznam parametrů anonymní funkce v podobě *anonymous_method_expression* je volitelný. Pokud tento parametr zadaný, parametry musí být explicitně určeny typy. Pokud ne, je převeden na delegáta se žádné parametry anonymní funkce seznamu neobsahující `out` parametry.
+Seznam parametrů anonymní funkce ve formě *anonymous_method_expression* je nepovinný. Je-li tento parametr zadán, musí být parametry explicitně zadány. V takovém případě je anonymní funkce převoditelná na delegáta s jakýmkoli seznamem parametrů, který neobsahuje parametry `out`.
 
-A *bloku* tělo anonymní funkce je dostupná ([koncové body a dostupnosti](statements.md#end-points-and-reachability)) Pokud do nedostupný příkaz nedojde anonymní funkce.
+Tělo *bloku* anonymní funkce je dosažitelné ([koncové body a dosažitelnost](statements.md#end-points-and-reachability)), pokud anonymní funkce nedochází uvnitř nedosažitelného příkazu.
 
-Některé příklady anonymní funkce, postupujte podle následujících:
+Příklady anonymních funkcí jsou následující:
 
 ```csharp
 x => x + 1                              // Implicitly typed, expression body
@@ -3724,41 +3724,41 @@ delegate (int x) { return x + 1; }      // Anonymous method expression
 delegate { return 1 + 1; }              // Parameter list omitted
 ```
 
-Chování *lambda_expression*s a *anonymous_method_expression*s je stejná s výjimkou následujících bodů:
+Chování *lambda_expression*s a *anonymous_method_expression*s se shoduje s výjimkou následujících bodů:
 
-*  *anonymous_method_expression*s povolit seznam parametrů pro zcela vynechat získávání převoditelnosti na typy v seznamu parametrů hodnot delegátů.
-*  *lambda_expression*povolit s typy parametrů pro tento parametr vynechán a odvodit, zatímco *anonymous_method_expression*vyžadují s typy parametrů pro výslovně uvedeno.
-*  Text *lambda_expression* může být výraz nebo blok příkazů, že text *anonymous_method_expression* musí být blok příkazů.
-*  Pouze *lambda_expression*y mají převody na typy stromu výrazů kompatibilní ([typy stromu výrazů](types.md#expression-tree-types)).
+*  *anonymous_method_expression*s umožní, aby byl seznam parametrů zcela vynechán, a to tak, že převoditelnosti na typy delegátů všech seznamů hodnot parametrů.
+*  *lambda_expression*s povoluje, aby byly typy parametrů vynechány a odvozeny, zatímco *anonymous_method_expression*s vyžadují explicitní zadání typů parametrů.
+*  Tělo *lambda_expression* může být výraz nebo blok příkazu, zatímco tělo *anonymous_method_expression* musí být blok příkazu.
+*  Pouze *lambda_expression*mají převody na kompatibilní typy stromu výrazů ([typy stromu výrazů](types.md#expression-tree-types)).
 
-### <a name="anonymous-function-signatures"></a>Anonymní funkce podpisy
+### <a name="anonymous-function-signatures"></a>Podpisy anonymních funkcí
 
-Volitelný *anonymous_function_signature* anonymní funkce definuje název a volitelně typy formálních parametrů pro anonymní funkce. Rozsah parametry anonymní funkce je *anonymous_function_body*. ([Obory](basic-concepts.md#scopes)) společně s seznamu parametrů (Pokud je zadaný) představuje anonymní--tělo metody místa deklarace ([deklarace](basic-concepts.md#declarations)). Proto je chyba kompilace pro název parametru anonymní funkce, která se shodovat s názvem lokální proměnná, lokální konstanta ani parametr, jehož obor zahrnuje *anonymous_method_expression* nebo *lambda_ výraz*.
+Volitelná *anonymous_function_signature* anonymní funkce definuje názvy a volitelně typy formálních parametrů anonymní funkce. Rozsah parametrů anonymní funkce je *anonymous_function_body*. ([Rozsahy](basic-concepts.md#scopes)) Společně se seznamem parametrů (Pokud je uvedeno), představuje tělo anonymní metody místo deklarace ([deklarace](basic-concepts.md#declarations)). V důsledku toho je chyba kompilace pro název parametru anonymní funkce tak, aby odpovídala názvu místní proměnné, místní konstanty nebo parametru, jehož obor zahrnuje *anonymous_method_expression* nebo *lambda_expression*.
 
-Pokud je anonymní funkce *explicit_anonymous_function_signature*, pak sada delegáta kompatibilní typy a typy stromu výrazů je omezené na ty, které mají stejné typy parametrů a modifikátory ve stejném pořadí. Na rozdíl od skupiny převody – metoda ([Metoda skupiny převody](conversions.md#method-group-conversions)), odchylku opravné položky k typy parametrů anonymní funkce není podporována. Pokud anonymní funkce nemá *anonymous_function_signature*, pak sada delegáta kompatibilní typy a typy stromu výrazů je omezené na ty, které nemají `out` parametry.
+Pokud má anonymní funkce *explicit_anonymous_function_signature*, pak sada kompatibilních typů delegátů a typů stromu výrazů je omezena na ty, které mají stejné typy parametrů a modifikátory ve stejném pořadí. Na rozdíl od převodů skupin metod ([Převod skupin metod](conversions.md#method-group-conversions)) je kontraindikace Nepodporovaná – variance typů parametrů anonymní funkce. Pokud anonymní funkce nemá *anonymous_function_signature*, pak sada kompatibilních typů delegátů a typů stromu výrazů je omezena na ty, které nemají žádné parametry `out`.
 
-Všimněte si, že *anonymous_function_signature* nesmí obsahovat atributy nebo pole parametrů. Nicméně *anonymous_function_signature* může být kompatibilní s typem delegáta, jehož seznam parametrů obsahuje pole parametrů.
+Všimněte si, že *anonymous_function_signature* nemůže obsahovat atributy ani pole parametrů. Nicméně *anonymous_function_signature* může být kompatibilní s typem delegáta, jehož seznam parametrů obsahuje pole parametrů.
 
-Nezapomeňte tento převod do typu stromu výrazu, i v případě kompatibilní, může stále selžou v době kompilace ([typy stromu výrazů](types.md#expression-tree-types)).
+Všimněte si také, že převod na typ stromu výrazu, i když je kompatibilní, může stále selhat v době kompilace ([typy stromu výrazů](types.md#expression-tree-types)).
 
-### <a name="anonymous-function-bodies"></a>Anonymní funkce těla
+### <a name="anonymous-function-bodies"></a>Anonymní orgány funkcí
 
-Text (*výraz* nebo *bloku*) anonymní funkce se vztahují následující pravidla:
+Tělo (*výraz* nebo *blok*) anonymní funkce podléhá následujícím pravidlům:
 
-*  Pokud anonymní funkce obsahuje podpis, jsou k dispozici v těle parametry zadaná v signatuře. Pokud anonymní funkce nemá žádný podpis lze převést na typ delegáta nebo typ výrazu s parametry ([anonymní funkce převody](conversions.md#anonymous-function-conversions)), ale parametry nelze získat přístup v textu.
-*  S výjimkou `ref` nebo `out` parametry zadaná v signatuře (pokud existuje) nejbližšího obklopujícího anonymní funkce, je chyba kompilace pro tělo pro přístup k `ref` nebo `out` parametru.
-*  Pokud typ `this` je typ struktury je chyba kompilace pro tělo pro přístup k `this`. Je hodnota true Určuje, zda je explicitní přístup (jako v `this.x`) nebo implicitní (jako v `x` kde `x` je členem instance struktury). Toto pravidlo jednoduše zakazují takový přístup a nemá vliv, zda člen vyhledávání výsledkem členem struktury.
-*  Text má přístup do vnější proměnné ([vnější proměnné](expressions.md#outer-variables)) anonymní funkce. Přístup vnější proměnné odkazovat na instanci proměnné, která je aktivní v okamžiku *lambda_expression* nebo *anonymous_method_expression* vyhodnocena ([hodnocení anonymní funkce výrazy](expressions.md#evaluation-of-anonymous-function-expressions)).
-*  Je chyba kompilace pro text tak, aby obsahovala `goto` příkazu `break` příkazu, nebo `continue` jehož cíl je mimo tělo, nebo v těle obsažené anonymní funkce.
-*  A `return` příkaz v těle nevrátí řízení z nejbližšího obklopujícího vyvolání anonymní funkce, nikoli z nadřazeného členské funkce. Výraz zadaný v `return` příkaz musí být implicitně převoditelná na návratový typ na typ delegáta nebo typu stromu výrazu, ke kterému nejbližšího obklopujícího *lambda_expression* nebo *anonymous_ method_expression* převeden ([anonymní funkce převody](conversions.md#anonymous-function-conversions)).
+*  Pokud anonymní funkce obsahuje podpis, jsou v těle k dispozici parametry zadané v podpisu. Pokud anonymní funkce nemá žádný podpis, může být převedena na typ delegáta nebo typ výrazu s parametry ([anonymní převody funkcí](conversions.md#anonymous-function-conversions)), ale k těmto parametrům nelze přistupovat v těle.
+*  S výjimkou parametrů `ref` nebo `out` zadaných v signatuře (pokud existuje) nejbližší nadřazené anonymní funkce se jedná o chybu při kompilaci pro tělo pro přístup k parametru `ref` nebo `out`.
+*  Pokud je typ `this` typem struktury, jedná se o chybu při kompilaci, která je pro tělo přístup k `this`. To je pravdivé bez ohledu na to, zda je přístup explicitní (jako v `this.x`) nebo implicitní (jako v `x`, kde `x` je člen instance struktury). Toto pravidlo jednoduše zakazuje takový přístup a nemá vliv na to, jestli výsledky hledání členů jsou v členu struktury.
+*  Tělo má přístup k vnějším proměnným ([vnějším proměnným](expressions.md#outer-variables)) anonymní funkce. Přístup k vnější proměnné bude odkazovat na instanci proměnné, která je aktivní v okamžiku vyhodnocení *lambda_expression* nebo *anonymous_method_expression* ([vyhodnocení anonymních výrazů funkce](expressions.md#evaluation-of-anonymous-function-expressions)).
+*  Jedná se o chybu při kompilaci pro tělo, které obsahuje příkaz `goto`, příkaz `break` nebo příkaz `continue`, jehož cíl je mimo tělo nebo v těle obsažené anonymní funkce.
+*  Příkaz `return` v těle vrátí řízení od vyvolání nejbližší nadřazené anonymní funkce, nikoli nadřazeného člena funkce. Výraz zadaný v příkazu `return` musí být implicitně převoditelný na návratový typ typu delegáta nebo stromu výrazů, na který je převeden nejbližší nadřazený objekt *lambda_expression* nebo *anonymous_method_expression* ( [Anonymní převody funkcí](conversions.md#anonymous-function-conversions)).
 
-Je explicitně nespecifikovaná, zda neexistuje žádný způsob, jak spustit blok anonymní funkce jiných než prostřednictvím zkušební verze a vyvolání *lambda_expression* nebo *anonymous_method_expression*. Konkrétně se kompilátor můžete implementovat anonymní funkci syntetizační jeden nebo více metod nebo typy. Názvy těchto syntetizovaný prvků musí být vyhrazená pro použití kompilátoru formuláře.
+Explicitně neurčuje, zda existuje nějaký způsob, jak spustit blok anonymní funkce jiné než prostřednictvím vyhodnocení a volání *lambda_expression* nebo *anonymous_method_expression*. Konkrétně se může kompilátor rozhodnout implementovat anonymní funkci vysyntetizující jednu nebo více pojmenovaných metod nebo typů. Názvy těchto syntetizních prvků musí mít tvar vyhrazený pro použití kompilátorem.
 
-### <a name="overload-resolution-and-anonymous-functions"></a>Rozlišení přetížení a anonymní funkce
+### <a name="overload-resolution-and-anonymous-functions"></a>Rozlišení přetěžování a anonymní funkce
 
-Anonymní funkce v seznam argumentů účastnit odvození typu proměnné a řešení přetížení. Najdete [odvození typu](expressions.md#type-inference) a [rozlišení přetěžování](expressions.md#overload-resolution) přesná pravidla.
+Anonymní funkce v seznamu argumentů se účastní odvození typu a řešení přetížení. Přesné pravidla naleznete v tématu věnovaném [odvození typů](expressions.md#type-inference) a [rozlišení přetěžování](expressions.md#overload-resolution) .
 
-Následující příklad ukazuje účinek anonymní funkce v řešení přetížení.
+Následující příklad ukazuje účinek anonymních funkcí na řešení přetížení.
 
 ```csharp
 class ItemList<T>: List<T>
@@ -3777,9 +3777,9 @@ class ItemList<T>: List<T>
 }
 ```
 
-`ItemList<T>` Třída má dvě `Sum` metody. Každý má `selector` argument, který extrahuje hodnotu Součet přes ze seznamu položek. Extrahovaná hodnota může být buď `int` nebo `double` a výsledný součet je rovněž `int` nebo `double`.
+Třída `ItemList<T>` má dvě metody `Sum`. Každá z nich přebírá argument `selector`, který extrahuje hodnotu, která se má sečíst z položky seznamu. Extrahovaná hodnota může být buď `int`, nebo `double` a výsledný součet je také buď `int`, nebo `double`.
 
-`Sum` Metody může třeba vypočítat součtů ze seznamu řádky podrobností v pořadí.
+Metody `Sum` můžete použít například k výpočtu součtů ze seznamu řádků podrobností v objednávce.
 
 ```csharp
 class Detail
@@ -3797,21 +3797,21 @@ void ComputeSums() {
 }
 ```
 
-V prvním vyvoláním služby `orderDetails.Sum`, obě `Sum` metody jsou použitelné protože anonymní funkce `d => d. UnitCount` je kompatibilní s oběma `Func<Detail,int>` a `Func<Detail,double>`. Ale řešení přetížení vybere první `Sum` metoda protože převod na `Func<Detail,int>` je obecně lepší než převod na `Func<Detail,double>`.
+Při prvním vyvolání `orderDetails.Sum` lze použít obě metody `Sum`, protože anonymní funkce `d => d. UnitCount` je kompatibilní s `Func<Detail,int>` a `Func<Detail,double>`. Řešení přetížení však vybere první metodu `Sum`, protože převod na `Func<Detail,int>` je lepší než převod na `Func<Detail,double>`.
 
-V druhém volání `orderDetails.Sum`, pouze druhý `Sum` metodu je možné použít protože anonymní funkce `d => d.UnitPrice * d.UnitCount` produkuje hodnotu typu `double`. Proto přetížení rozlišení zvolí druhý `Sum` metodu pro tohoto volání.
+Při druhém vyvolání `orderDetails.Sum` lze použít pouze druhou metodu `Sum`, protože anonymní funkce `d => d.UnitPrice * d.UnitCount` vytvoří hodnotu typu `double`. Proto řešení přetížení vybere druhou metodu `Sum` pro toto vyvolání.
 
-### <a name="anonymous-functions-and-dynamic-binding"></a>Anonymní funkce a dynamické vazby
+### <a name="anonymous-functions-and-dynamic-binding"></a>Anonymní funkce a dynamická vazba
 
-Anonymní funkce nemůže být příjemce, argument nebo operand dynamicky vázané operace.
+Anonymní funkce nemůže být přijímač, argument nebo operand dynamicky vázané operace.
 
 ### <a name="outer-variables"></a>Vnější proměnné
 
-Všechny místní proměnná, parametr hodnoty nebo pole parametrů, jehož obor zahrnuje *lambda_expression* nebo *anonymous_method_expression* je volána ***vnější proměnné*** anonymní funkce. V instanci funkce člena třídy `this` hodnoty je považován za hodnotu parametru a vnější proměnný všechny anonymní funkce obsažené v členské funkce.
+Všechny místní proměnné, hodnoty parametru nebo pole parametrů, jejichž obor zahrnuje *lambda_expression* nebo *anonymous_method_expression* , se nazývají ***vnější proměnná*** anonymní funkce. V členu funkce instance třídy je hodnota `this` považována za parametr hodnoty a je vnější proměnná všech anonymních funkcí obsažených v rámci člena funkce.
 
 #### <a name="captured-outer-variables"></a>Zachycené vnější proměnné
 
-Když vnější proměnná odkazuje anonymní funkce, vnější proměnné se říká, že byly ***zachycené*** anonymní funkce. Obvykle je omezená na provedení bloku nebo příkazu, ke kterému je přidružené životního cyklu lokální proměnné ([lokální proměnné](variables.md#local-variables)). Však životnost zachycené vnější proměnné je rozšířená alespoň do delegáta nebo strom výrazu, které jsou vytvořené z anonymní funkce je způsobilý pro uvolňování paměti.
+Pokud je vnější proměnná odkazována anonymní funkcí, je vnější proměnná označována jako ***zachycena*** anonymní funkcí. Obvykle je doba života místní proměnné omezena na provedení bloku nebo příkazu, ke kterému je přidruženo ([místní proměnné](variables.md#local-variables)). Doba trvání zachycené vnější proměnné se ale rozšířila aspoň na to, dokud se stromové struktury nebo stromu výrazů vytvořené z anonymní funkce neprojeví pro uvolňování paměti.
 
 V příkladu
 ```csharp
@@ -3835,20 +3835,20 @@ class Test
     }
 }
 ```
-lokální proměnná `x` zachycena anonymní funkce a životnost `x` rozšířené alespoň do delegáta vrácená `F` stane nárok uvolňování paměti (které nedojde do konce velmi program). Protože každé vyvolání sady anonymní funkce pracuje na stejnou instanci `x`, výstup v příkladu je:
-```
+lokální proměnná `x` je zachycena anonymní funkcí a životnost `x` je prodloužena alespoň do doby, než se delegát vrácený z `F` stane nárokem na uvolňování paměti (ke kterému nedojde až do konce programu). Vzhledem k tomu, že každé vyvolání anonymní funkce funguje na stejné instanci `x`, výstup tohoto příkladu je:
+```console
 1
 2
 3
 ```
 
-Při zachytávání lokální proměnná ani parametr hodnoty anonymní funkcí lokální proměnná ani parametr se již považuje za pevná proměnná ([Fixed a přesunutelný proměnné](unsafe-code.md#fixed-and-moveable-variables)), ale místo toho považováno za přesouvat Proměnná. Proto všechny `unsafe` musíte nejprve použít kód, který přebírá adresu zachycené vnější proměnné `fixed` příkaz vyřešit proměnnou.
+Je-li lokální proměnná nebo parametr hodnoty zachycen anonymní funkcí, místní proměnná nebo parametr již není považována za pevnou proměnnou ([pevné a mobilní proměnné](unsafe-code.md#fixed-and-moveable-variables)), ale místo toho je považována za pohyblivou proměnnou. Proto každý kód `unsafe`, který přebírá adresu zachycené vnější proměnné, musí nejprve použít příkaz `fixed` k opravě proměnné.
 
-Všimněte si, že na rozdíl od nezachycené proměnnou, zachycené lokální proměnné může být současně vystavena více vláken provádění.
+Všimněte si, že na rozdíl od nezachycené proměnné může být zachycená lokální proměnná současně vystavena více vláknům provádění.
 
-#### <a name="instantiation-of-local-variables"></a>Vytvoření instance lokální proměnné
+#### <a name="instantiation-of-local-variables"></a>Vytváření instancí místních proměnných
 
-Místní proměnná se považuje za ***vytvořena instance*** při provádění zadá rozsah proměnné. Například když je vyvolána následující metodu, místní proměnná `x` je vytvořena instance a inicializován třikrát – jednou pro každou iteraci smyčky.
+Místní proměnná je považována za ***instanci*** , pokud provádění vstoupí do oboru proměnné. Například pokud je vyvolána následující metoda, místní proměnná `x` je vytvořena a inicializována třikrát – jednou pro každou iteraci smyčky.
 
 ```csharp
 static void F() {
@@ -3859,7 +3859,7 @@ static void F() {
 }
 ```
 
-Ale přesunutí deklarace `x` mimo smyčku výsledky v jedné instance `x`:
+Nicméně přesun deklarace `x` mimo smyčku má za následek jednu instanci `x`:
 ```csharp
 static void F() {
     int x;
@@ -3870,9 +3870,9 @@ static void F() {
 }
 ```
 
-Při není zachycena, neexistuje žádný způsob, jak sledovat, přesně jak často je vytvořena instance místní proměnné, protože životnosti vytváření instancí je nesouvislý, je možné, že každá instance jednoduše používat stejné umístění úložiště. Ale když anonymní funkci explicitně zaznamenává místní proměnnou, účinky instanciace stanou zjevnými.
+Pokud není zachyceno, neexistuje způsob, jak přesně sledovat, jak často je vytvořena instance místní proměnné – protože životnost instancí jsou nesouvislé, je možné, že každá instance bude jednoduše používat stejné umístění úložiště. Nicméně, pokud anonymní funkce zachytí místní proměnnou, projeví se zřejmé účinky vytváření instancí.
 
-V příkladu
+Příklad
 ```csharp
 using System;
 
@@ -3895,13 +3895,13 @@ class Test
 }
 ```
 Vytvoří výstup:
-```
+```console
 1
 3
 5
 ```
 
-Nicméně, když deklarace `x` je přesunut mimo smyčku:
+Pokud je však deklarace `x` přesunuta mimo smyčku:
 ```csharp
 static D[] F() {
     D[] result = new D[3];
@@ -3913,14 +3913,14 @@ static D[] F() {
     return result;
 }
 ```
-Výstup bude:
-```
+Výstup je:
+```console
 5
 5
 5
 ```
 
-Pokud smyčky for vycházející z deklaruje proměnnou iterace, proměnné samotné se považuje za deklarované mimo smyčku. Proto pokud v příkladu se změní na zachycení proměnné iterace, sama:
+Pokud smyčka for deklaruje proměnnou iterace, tato proměnná je považována za deklaraci mimo smyčku. Proto, pokud je změněn příklad pro zachycení samotné proměnné iterace:
 
 ```csharp
 static D[] F() {
@@ -3931,14 +3931,14 @@ static D[] F() {
     return result;
 }
 ```
-je zachycena pouze jedna instance proměnné iterace, která vytvoří výstup:
-```
+je zachycena pouze jedna instance iterační proměnné, která vytváří výstup:
+```console
 3
 3
 3
 ```
 
-Je možné pro delegáty anonymní funkce pro sdílení některých zachyceným proměnným, ale mají samostatné instance ostatních. Například pokud `F` se změní na
+Je možné, aby delegáti anonymní funkce sdíleli některé zachycené proměnné, ale mají samostatné instance jiných. Například pokud se `F` změní na
 ```csharp
 static D[] F() {
     D[] result = new D[3];
@@ -3950,14 +3950,14 @@ static D[] F() {
     return result;
 }
 ```
-tři delegáty zachycení stejnou instanci `x` ale samostatným instancím `y`, a zobrazí se výstup:
-```
+tři Delegáti zachytí stejnou instanci `x`, ale samostatné instance `y`, a výstupem je:
+```console
 1 1
 2 1
 3 1
 ```
 
-Samostatné anonymní funkce můžete zachytit stejnou instanci vnější proměnná. V tomto příkladu:
+Samostatné anonymní funkce mohou zachytit stejnou instanci vnější proměnné. V tomto příkladu:
 ```csharp
 using System;
 
@@ -3978,19 +3978,19 @@ class Test
     }
 }
 ```
-dvě anonymní funkce capture stejnou instanci lokální proměnná `x`, a jejich komunikace mohla probíhat tedy"" prostřednictvím dané proměnné. Výstup v příkladu je:
-```
+Tyto dvě anonymní funkce zachytí stejnou instanci místní proměnné `x` a mohou tedy "komunikovat" prostřednictvím této proměnné. Výstup tohoto příkladu je:
+```console
 5
 10
 ```
 
-### <a name="evaluation-of-anonymous-function-expressions"></a>Vyhodnocování výrazů anonymní funkce
+### <a name="evaluation-of-anonymous-function-expressions"></a>Vyhodnocení anonymních výrazů funkce
 
-Anonymní funkce `F` vždy musí být převeden na typ delegáta `D` nebo typu stromu výrazu `E`, buď přímo nebo prostřednictvím spuštění výraz vytvářející delegáta `new D(F)`. Tento převod určuje výsledek anonymní funkce, jak je popsáno v [anonymní funkce převody](conversions.md#anonymous-function-conversions).
+Anonymní funkce `F` musí být vždy převedena na typ delegáta `D` nebo na typ stromu výrazu `E`, a to buď přímo, nebo prostřednictvím provedení výrazu vytvoření delegáta `new D(F)`. Tento převod Určuje výsledek anonymní funkce, jak je popsáno v tématu [anonymní převody funkcí](conversions.md#anonymous-function-conversions).
 
 ## <a name="query-expressions"></a>Výrazy dotazů
 
-***Výrazy dotazu*** poskytují syntaxi jazyka pro dotazy, které je podobné jako u jazyků relačních a hierarchických dotazů, jako jsou SQL a XQuery.
+***Výrazy dotazů*** poskytují syntaxi jazyka integrovanou do dotazů, které jsou podobné relačním a hierarchickým dotazovacím jazykům, jako jsou SQL a XQuery.
 
 ```antlr
 query_expression
@@ -4070,230 +4070,230 @@ query_continuation
     ;
 ```
 
-Výraz dotazu začíná `from` klauzule a končí buď `select` nebo `group` klauzuli. Počáteční `from` klauzule může následovat nula nebo více `from`, `let`, `where`, `join` nebo `orderby` klauzule. Každý `from` klauzule je generátor Představujeme ***proměnnou rozsahu*** které rozsahy nad elementy ***pořadí***. Každý `let` klauzule představuje proměnnou rozsahu představující hodnotu vypočítat pomocí předchozích proměnných rozsahu. Každý `where` klauzule je filtr, který vyloučí položky z výsledku. Každý `join` klauzule porovnání zadaného klíče zdrojové sekvence s klíči jiné pořadí, což má za následek odpovídající dvojice. Každý `orderby` klauzule změní pořadí položek podle zadaných kritérií. Finální `select` nebo `group` klauzule určuje tvar výsledku z hlediska proměnné rozsahu. A konečně `into` klauzuli lze použít k "splice" dotazy zpracováním výsledků dotazu jako generátor v následných dotazu.
+Výraz dotazu začíná klauzulí `from` a končí klauzulí `select` nebo `group`. Počáteční klauzule `from` může následovat nula nebo více klauzulí `from`, `let`, `where`, `join` nebo `orderby`. Každá klauzule `from` je generátorem, který zavádí ***proměnnou rozsahu*** , která je v rozsahu nad prvky ***sekvence***. Každá klauzule `let` zavádí proměnnou rozsahu reprezentující hodnotu vypočítanou pomocí předchozích proměnných rozsahu. Každá klauzule `where` je filtr, který vyloučí položky z výsledku. Každá klauzule `join` porovná zadané klíče zdrojové sekvence s klíči jiné sekvence a předává dvojice párů. Každá klauzule `orderby` změní pořadí položek podle zadaných kritérií. Poslední klauzule `select` nebo `group` určuje tvar výsledku z hodnot proměnných rozsahu. Nakonec můžete použít klauzuli `into` k "spojování" dotazům tím, že se výsledky jednoho dotazu považují za generátor v následném dotazu.
 
-### <a name="ambiguities-in-query-expressions"></a>Nejednoznačnosti ve výrazech dotazů
+### <a name="ambiguities-in-query-expressions"></a>Nejednoznačné výrazy ve výrazech dotazů
 
-Výrazy dotazů obsahují počet "kontextová klíčová slova", to znamená, identifikátory, které mají speciální význam v daném kontextu. Konkrétně jde o `from`, `where`, `join`, `on`, `equals`, `into`, `let`, `orderby`, `ascending`, `descending`, `select`, `group` a `by`. Aby bylo možné vyhnout se nejasnostem ve výrazech dotazů způsobené smíšené použití těchto identifikátorů jako klíčová slova nebo jednoduché názvy, považují tyto identifikátory klíčová slova při, ke kterým dochází kdekoli ve výrazu dotazu.
+Výrazy dotazů obsahují počet kontextových klíčových slov, tj. identifikátory, které mají v daném kontextu zvláštní význam. Konkrétně se jedná o `from`, `where`, `join`, `on`, `equals`, `into`, `let`, `orderby`, `ascending`, `descending`, 0, 1 a 2. Aby nedocházelo k nejednoznačnosti ve výrazech dotazů způsobených smíšeným použitím těchto identifikátorů jako klíčová slova nebo jednoduché názvy, jsou tyto identifikátory považovány za klíčová slova při výskytu kamkoli v rámci výrazu dotazu.
 
-Pro tento účel, výrazu dotazu je libovolný výraz, který začíná na "`from identifier`"následované žádný token s výjimkou"`;`","`=`"nebo"`,`".
+Pro tento účel výraz dotazu je libovolný výraz, který začíná řetězcem "`from identifier`" následovaný jakýmkoli tokenem, s výjimkou "`;`", "`=`" nebo "`,`".
 
-Chcete-li použít tato slova jako identifikátory v rámci výrazu dotazu, mohou mít předponu "`@`" ([identifikátory](lexical-structure.md#identifiers)).
+Aby bylo možné použít tato slova jako identifikátory v rámci výrazu dotazu, mohou být předponou "`@`" ([identifikátory](lexical-structure.md#identifiers)).
 
 ### <a name="query-expression-translation"></a>Překlad výrazu dotazu
 
-Jazyk C# neurčuje sémantika provádění – výrazy dotazů. Místo toho – výrazy dotazů jsou přeloženy do volání metod, které se řídí *vzor výrazu dotazu* ([vzor výrazu dotazu](expressions.md#the-query-expression-pattern)). Konkrétně – výrazy dotazů jsou přeloženy do volání metod s názvem `Where`, `Select`, `SelectMany`, `Join`, `GroupJoin`, `OrderBy`, `OrderByDescending`, `ThenBy`, `ThenByDescending`, `GroupBy`, a `Cast`. Tyto metody se očekává, mají konkrétní podpisy a typy výsledků, jak je popsáno v [vzor výrazu dotazu](expressions.md#the-query-expression-pattern). Tyto metody mohou být metody instance objektu, která je dotazována nebo rozšiřující metody, které jsou externí vzhledem k objektu, a implementují vlastní provedení dotazu.
+C# Jazyk neurčuje sémantiku provádění výrazů dotazů. Místo toho jsou výrazy dotazu přeloženy na vyvolání metod, které vyhovují *vzoru výrazu dotazu* ([vzor výrazu dotazu](expressions.md#the-query-expression-pattern)). Výrazy dotazů jsou konkrétně přeloženy na vyvolání metod s názvem `Where`, `Select`, `SelectMany`, `Join`, `GroupJoin`, `OrderBy`, `OrderByDescending`, `ThenBy`, `ThenByDescending`, `GroupBy` a 0. U těchto metod se očekává, že budou mít konkrétní signatury a typy výsledků, jak je popsáno ve [vzoru výrazu dotazu](expressions.md#the-query-expression-pattern). Tyto metody mohou být instanční metody objektu, na který se dotazuje, nebo metody rozšíření, které jsou pro objekt externí, a implementují skutečné provedení dotazu.
 
-Překlad z – výrazy dotazů volání metod je syntaktické mapování, která předchází libovolný typ vazby nebo provedl řešení přetížení. Překlad je zaručeno, že syntakticky správný, ale není zaručena pro vytvoření sémanticky kód jazyka C#. Překlad výrazů dotazů výsledné volání metod jsou zpracovány jako volání metod regulárních, a to může zase odhalte chyby, například pokud metody neexistují, pokud máte nesprávné typy argumentů, nebo pokud jsou obecné metody, a odvození typu proměnné se nezdaří.
+Překlad z výrazů dotazů na vyvolání metody je syntaktické mapování, které se vyskytuje před provedením jakékoli vazby typu nebo vyřešení přetížení. Je zaručeno, že překlad bude syntakticky správný, ale není zaručeno vydávat sémanticky správný C# kód. Po překladu výrazů dotazů jsou výsledná volání metody zpracovávána jako běžná volání metod, což může vést k chybám při zjištění chyb, například pokud tyto metody neexistují, pokud argumenty mají chybné typy nebo pokud jsou metody obecné a odvození typu se nezdařilo.
 
-Výraz dotazu je zpracován opakovaně použití následujících překlady, dokud nedojde k žádné další snížení je to možné. Překlady jsou uvedeny v pořadí použití: každá část předpokládá, že byly provedeny překlady v předchozích částech vyčerpávajícím způsobem a po vyčerpání, oddíl nebude později být znovu obrácena pozornost při zpracování stejném výrazu dotazu.
+Výraz dotazu se zpracovává opakovaným použitím následujících překladů, dokud nebudou možná žádná další snížení. Překlady jsou uvedeny v pořadí aplikace: každá část předpokládá, že překlady v předchozích částech byly vyčerpány a po jejím vyčerpání se oddíl nebude později znovu navštěvovat při zpracování stejného výrazu dotazu.
 
-Přiřazení k proměnné rozsahu není povolené ve výrazech dotazů. Implementace jazyka C# je však povoleno ne vždy vynutit toto omezení, protože to není v některých případech možné schématem syntaktické překlad okomentovat.
+Přiřazení k proměnným rozsahu není ve výrazech dotazů povoleno. Nicméně C# implementace je dovoleno, aby toto omezení vynutilo vždy, protože to může být někdy možné pouze pomocí syntaktického schématu překladu, který je zde zobrazen.
 
-Některé překlady vložení proměnné rozsahu s transparentní identifikátory, označena `*`. Speciální vlastnosti transparentní identifikátorů, které jsou popsány dále v [transparentní identifikátory](expressions.md#transparent-identifiers).
+Některé překlady vloží proměnné rozsahu s průhlednými identifikátory, které jsou označeny `*`. Speciální vlastnosti transparentních identifikátorů jsou podrobněji popsány v [transparentní identifikátory](expressions.md#transparent-identifiers).
 
-#### <a name="select-and-groupby-clauses-with-continuations"></a>Klauzule SELECT a groupby s pokračováními
+#### <a name="select-and-groupby-clauses-with-continuations"></a>Klauzule SELECT a GroupBy s pokračováními
 
 Výraz dotazu s pokračováním
 ```csharp
 from ... into x ...
 ```
-převést na
+je přeloženo do
 ```csharp
 from x in ( from ... ) ...
 ```
 
-Překlady v následujících částech Předpokládejme dotazy nemají `into` pokračování.
+Překlady v následujících částech předpokládají, že dotazy nemají žádné pokračování `into`.
 
-V příkladu
+Příklad
 ```csharp
 from c in customers
 group c by c.Country into g
 select new { Country = g.Key, CustCount = g.Count() }
 ```
-převést na
+je přeloženo do
 ```csharp
 from g in
     from c in customers
     group c by c.Country
 select new { Country = g.Key, CustCount = g.Count() }
 ```
-je konečný překlad
+konečný překlad, který je
 ```csharp
 customers.
 GroupBy(c => c.Country).
 Select(g => new { Country = g.Key, CustCount = g.Count() })
 ```
 
-#### <a name="explicit-range-variable-types"></a>Typy proměnných explicitní rozsahu
+#### <a name="explicit-range-variable-types"></a>Explicitní typy proměnných rozsahu
 
-A `from` klauzuli, která explicitně určuje typ proměnné rozsahu
+Klauzule `from`, která explicitně určuje typ proměnné rozsahu
 ```csharp
 from T x in e
 ```
-převést na
+je přeloženo do
 ```csharp
 from x in ( e ) . Cast < T > ( )
 ```
 
-A `join` klauzuli, která explicitně určuje typ proměnné rozsahu
-```
+Klauzule `join`, která explicitně určuje typ proměnné rozsahu
+```csharp
 join T x in e on k1 equals k2
 ```
-převést na
-```
+je přeloženo do
+```csharp
 join x in ( e ) . Cast < T > ( ) on k1 equals k2
 ```
 
-Překlady v následujících částech předpokládá, že dotazy bez explicitního rozsahu se tyto typy proměnných.
+Překlady v následujících částech předpokládají, že dotazy nemají žádné explicitní typy proměnných rozsahu.
 
-V příkladu
+Příklad
 ```csharp
 from Customer c in customers
 where c.City == "London"
 select c
 ```
-převést na
+je přeloženo do
 ```csharp
 from c in customers.Cast<Customer>()
 where c.City == "London"
 select c
 ```
-je konečný překlad
+konečný překlad, který je
 ```csharp
 customers.
 Cast<Customer>().
 Where(c => c.City == "London")
 ```
 
-Jsou užitečné pro dotazování na kolekce, které implementují neobecné typy proměnných explicitní rozsah `IEnumerable` rozhraní, ale ne Obecné `IEnumerable<T>` rozhraní. V předchozím příkladu to může být v případě, pokud `customers` byly typu `ArrayList`.
+Explicitní typy proměnných rozsahu jsou užitečné pro dotazování kolekce, které implementují neobecné rozhraní @no__t 0, ale ne obecného rozhraní `IEnumerable<T>`. V předchozím příkladu se jedná o případ, kdy `customers` byly typu `ArrayList`.
 
-#### <a name="degenerate-query-expressions"></a>Výrazy degenerovanou dotazů
+#### <a name="degenerate-query-expressions"></a>Degenerovat výrazy dotazů
 
-Výraz dotazu ve formuláři
+Výraz dotazu formuláře
 ```csharp
 from x in e select x
 ```
-převést na
+je přeloženo do
 ```csharp
 ( e ) . Select ( x => x )
 ```
 
-V příkladu
+Příklad
 ```csharp
 from c in customers
 select c
 ```
-převést na
+je přeloženo do
 ```csharp
 customers.Select(c => c)
 ```
 
-Výraz degenerovanou dotazu je ten, který triviálně vybere elementy zdroje. Pozdější fáze překladu odebere degenerovanou dotazy zavedené dalších kroků a nahradí je jejich zdroji. Je důležité, ale zajistit, aby výsledek dotazu výrazu není nikdy zdrojového objektu samotného, podle typu a identitu zdroje, které by odhalit klientovi dotazu. Proto tento krok chrání degenerovanou dotazy napsané přímo ve zdrojovém kódu explicitně voláním `Select` ve zdroji. Je pak až implementátorům `Select` a jiných operátorů dotazu pro zajištění, že tyto metody nikdy vrátí samotného objektu zdroje.
+Negenerovaný výraz dotazu je ten, který triviální výběr prvků zdroje. Později v pozdější fázi překladu se odstraní negenerované dotazy, které zavádějí jiné kroky překladu, a nahradí je jejich zdrojem. Je však důležité zajistit, aby výsledek výrazu dotazu nebyl nikdy samotný zdrojový objekt, protože by bylo možné odhalit typ a identitu zdroje pro klienta dotazu. Proto tento krok chrání před vygenerováním dotazů napsaných přímo ve zdrojovém kódu explicitním voláním `Select` na zdroj. Následně až po implementátori `Select` a dalších operátorů dotazu, které zajistí, že tyto metody nikdy nevrátí samotný zdrojový objekt.
 
-#### <a name="from-let-where-join-and-orderby-clauses"></a>FROM, where, umožní klauzule join a řadit podle
+#### <a name="from-let-where-join-and-orderby-clauses"></a>Klauzule FROM, let, WHERE, Join a OrderBy
 
-Výrazu dotazu s druhou `from` klauzuli za nímž následuje `select` – klauzule
+Výraz dotazu s druhou klauzulí `from` následovaný klauzulí `select`
 ```csharp
 from x1 in e1
 from x2 in e2
 select v
 ```
-převést na
+je přeloženo do
 ```csharp
 ( e1 ) . SelectMany( x1 => e2 , ( x1 , x2 ) => v )
 ```
 
-Výraz dotazu s druhou `from` klauzuli za nímž následuje něco jiného než `select` klauzule:
+Výraz dotazu s druhou klauzulí `from` následovaný jinou výjimkou jako klauzule `select`:
 
 ```csharp
 from x1 in e1
 from x2 in e2
 ...
 ```
-převést na
+je přeloženo do
 ```csharp
 from * in ( e1 ) . SelectMany( x1 => e2 , ( x1 , x2 ) => new { x1 , x2 } )
 ...
 ```
 
-Výraz dotazu s `let` – klauzule
+Výraz dotazu s klauzulí `let`
 ```csharp
 from x in e
 let y = f
 ...
 ```
-převést na
+je přeloženo do
 ```csharp
 from * in ( e ) . Select ( x => new { x , y = f } )
 ...
 ```
 
-Výraz dotazu s `where` – klauzule
+Výraz dotazu s klauzulí `where`
 ```csharp
 from x in e
 where f
 ...
 ```
-převést na
+je přeloženo do
 ```csharp
 from x in ( e ) . Where ( x => f )
 ...
 ```
 
-Výrazu dotazu s `join` klauzule bez `into` následovaný `select` – klauzule
+Výraz dotazu s klauzulí `join` bez `into` následovaný klauzulí `select`
 ```csharp
 from x1 in e1
 join x2 in e2 on k1 equals k2
 select v
 ```
-převést na
+je přeloženo do
 ```csharp
 ( e1 ) . Join( e2 , x1 => k1 , x2 => k2 , ( x1 , x2 ) => v )
 ```
 
-Výrazu dotazu s `join` klauzule bez `into` za nímž následuje něco jiného než `select` – klauzule
+Výraz dotazu s klauzulí `join` bez `into` následovaný jinou klauzulí `select`
 ```csharp
 from x1 in e1
 join x2 in e2 on k1 equals k2
 ...
 ```
-převést na
+je přeloženo do
 ```csharp
 from * in ( e1 ) . Join( e2 , x1 => k1 , x2 => k2 , ( x1 , x2 ) => new { x1 , x2 })
 ...
 ```
 
-Výrazu dotazu s `join` klauzule `into` následovaný `select` – klauzule
+Výraz dotazu s klauzulí `join` s `into` následovaný klauzulí `select`
 ```csharp
 from x1 in e1
 join x2 in e2 on k1 equals k2 into g
 select v
 ```
-převést na
+je přeloženo do
 ```csharp
 ( e1 ) . GroupJoin( e2 , x1 => k1 , x2 => k2 , ( x1 , g ) => v )
 ```
 
-Výrazu dotazu s `join` klauzule `into` za nímž následuje něco jiného než `select` – klauzule
+Výraz dotazu s klauzulí `join` s `into` následovaný jinou výjimkou klauzule `select`
 ```csharp
 from x1 in e1
 join x2 in e2 on k1 equals k2 into g
 ...
 ```
-převést na
+je přeloženo do
 ```csharp
 from * in ( e1 ) . GroupJoin( e2 , x1 => k1 , x2 => k2 , ( x1 , g ) => new { x1 , g })
 ...
 ```
 
-Výraz dotazu pomocí `orderby` – klauzule
+Výraz dotazu s klauzulí `orderby`
 ```csharp
 from x in e
 orderby k1 , k2 , ..., kn
 ...
 ```
-převést na
+je přeloženo do
 ```csharp
 from x in ( e ) . 
 OrderBy ( x => k1 ) . 
@@ -4303,17 +4303,17 @@ ThenBy ( x => kn )
 ...
 ```
 
-Pokud má za výsledek řazení klauzule určuje `descending` směrové, vyvolání `OrderByDescending` nebo `ThenByDescending` místo toho je vytvořen.
+Pokud klauzule ORDER určuje směrové indikátory `descending`, místo toho se vytvoří volání `OrderByDescending` nebo `ThenByDescending`.
 
-Tyto překlady se předpokládá, že neexistují žádné `let`, `where`, `join` nebo `orderby` klauzule a více než jednu počáteční `from` klauzuli v každém výrazu dotazu.
+Následující překlady předpokládají, že nejsou k dispozici žádné klauzule `let`, `where`, `join` nebo `orderby` a v každém výrazu dotazu nejsou větší než jedna počáteční klauzule @no__t 4.
 
-V příkladu
+Příklad
 ```csharp
 from c in customers
 from o in c.Orders
 select new { c.Name, o.OrderID, o.Total }
 ```
-převést na
+je přeloženo do
 ```csharp
 customers.
 SelectMany(c => c.Orders,
@@ -4321,65 +4321,65 @@ SelectMany(c => c.Orders,
 )
 ```
 
-V příkladu
+Příklad
 ```csharp
 from c in customers
 from o in c.Orders
 orderby o.Total descending
 select new { c.Name, o.OrderID, o.Total }
 ```
-převést na
+je přeloženo do
 ```csharp
 from * in customers.
     SelectMany(c => c.Orders, (c,o) => new { c, o })
 orderby o.Total descending
 select new { c.Name, o.OrderID, o.Total }
 ```
-je konečný překlad
+konečný překlad, který je
 ```csharp
 customers.
 SelectMany(c => c.Orders, (c,o) => new { c, o }).
 OrderByDescending(x => x.o.Total).
 Select(x => new { x.c.Name, x.o.OrderID, x.o.Total })
 ```
-kde `x` identifikátor generovaný kompilátorem, který je jinak neviditelné a nejsou přístupné.
+kde `x` je identifikátor generovaný kompilátorem, který je jinak neviditelný a nepřístupný.
 
-V příkladu
+Příklad
 ```csharp
 from o in orders
 let t = o.Details.Sum(d => d.UnitPrice * d.Quantity)
 where t >= 1000
 select new { o.OrderID, Total = t }
 ```
-převést na
+je přeloženo do
 ```csharp
 from * in orders.
     Select(o => new { o, t = o.Details.Sum(d => d.UnitPrice * d.Quantity) })
 where t >= 1000 
 select new { o.OrderID, Total = t }
 ```
-je konečný překlad
+konečný překlad, který je
 ```csharp
 orders.
 Select(o => new { o, t = o.Details.Sum(d => d.UnitPrice * d.Quantity) }).
 Where(x => x.t >= 1000).
 Select(x => new { x.o.OrderID, Total = x.t })
 ```
-kde `x` identifikátor generovaný kompilátorem, který je jinak neviditelné a nejsou přístupné.
+kde `x` je identifikátor generovaný kompilátorem, který je jinak neviditelný a nepřístupný.
 
-V příkladu
+Příklad
 ```csharp
 from c in customers
 join o in orders on c.CustomerID equals o.CustomerID
 select new { c.Name, o.OrderDate, o.Total }
 ```
-převést na
+je přeloženo do
 ```csharp
 customers.Join(orders, c => c.CustomerID, o => o.CustomerID,
     (c, o) => new { c.Name, o.OrderDate, o.Total })
 ```
 
-V příkladu
+Příklad
 ```csharp
 from c in customers
 join o in orders on c.CustomerID equals o.CustomerID into co
@@ -4387,7 +4387,7 @@ let n = co.Count()
 where n >= 10
 select new { c.Name, OrderCount = n }
 ```
-převést na
+je přeloženo do
 ```csharp
 from * in customers.
     GroupJoin(orders, c => c.CustomerID, o => o.CustomerID,
@@ -4396,7 +4396,7 @@ let n = co.Count()
 where n >= 10 
 select new { c.Name, OrderCount = n }
 ```
-je konečný překlad
+konečný překlad, který je
 ```csharp
 customers.
 GroupJoin(orders, c => c.CustomerID, o => o.CustomerID,
@@ -4405,67 +4405,67 @@ Select(x => new { x, n = x.co.Count() }).
 Where(y => y.n >= 10).
 Select(y => new { y.x.c.Name, OrderCount = y.n)
 ```
-kde `x` a `y` jsou identifikátory generovaný kompilátorem, které jsou jinak neviditelné a nejsou přístupné.
+kde `x` a `y` jsou identifikátory generované kompilátorem, které jsou jinak neviditelné a nedostupné.
 
-V příkladu
+Příklad
 ```csharp
 from o in orders
 orderby o.Customer.Name, o.Total descending
 select o
 ```
-je konečný překlad
+má konečný překlad
 ```csharp
 orders.
 OrderBy(o => o.Customer.Name).
 ThenByDescending(o => o.Total)
 ```
 
-#### <a name="select-clauses"></a>Klauzule FROM
+#### <a name="select-clauses"></a>Vybrat klauzule
 
-Výraz dotazu ve formuláři
+Výraz dotazu formuláře
 ```csharp
 from x in e select v
 ```
-převést na
+je přeloženo do
 ```csharp
 ( e ) . Select ( x => v )
 ```
-s výjimkou případu, kdy v identifikátor x, překlad je jednoduše
+s výjimkou případů, kdy v je identifikátor x, je překlad jednoduše
 ```csharp
 ( e )
 ```
 
-Příklad
+Například
 ```csharp
 from c in customers.Where(c => c.City == "London")
 select c
 ```
-je jednoduše převést na
+je jednoduše přeložen na
 ```csharp
 customers.Where(c => c.City == "London")
 ```
 
 #### <a name="groupby-clauses"></a>Klauzule GroupBy
 
-Výraz dotazu ve formuláři
+Výraz dotazu formuláře
 ```csharp
 from x in e group v by k
 ```
-převést na
+je přeloženo do
 ```csharp
 ( e ) . GroupBy ( x => k , x => v )
 ```
-s výjimkou případu, kdy v identifikátoru je x, překlad
+s výjimkou případů, kdy v je identifikátor x, je překlad
 ```csharp
 ( e ) . GroupBy ( x => k )
 ```
 
-V příkladu
+Příklad
 ```csharp
 from c in customers
 group c.Name by c.Country
 ```
-převést na
+je přeloženo do
 ```csharp
 customers.
 GroupBy(c => c.Country, c => c.Name)
@@ -4473,23 +4473,23 @@ GroupBy(c => c.Country, c => c.Name)
 
 #### <a name="transparent-identifiers"></a>Transparentní identifikátory
 
-Některé překlady vložení proměnné rozsahu s ***transparentní identifikátory*** udávají `*`. Transparentní identifikátory nejsou správné jazykové funkce; existují pouze jako přechodný krok v procesu překladu výrazu dotazu.
+Některé překlady vloží proměnné rozsahu s ***průhlednými identifikátory*** , které jsou označeny `*`. Transparentní identifikátory nejsou funkcí jazyka správné verze; Existují pouze jako zprostředkující krok v procesu překladu výrazu dotazu.
 
-Při překladu dotazu vkládá transparentním identifikátorem, další kroky šířit do anonymní funkce a anonymní objekt inicializátory transparentním identifikátorem. V těchto kontextech transparentní identifikátory mají následující chování:
+Když překlad dotazů vloží transparentní identifikátor, další kroky překladu šíří transparentní identifikátor do anonymních funkcí a inicializátorů anonymních objektů. V těchto kontextech mají transparentní identifikátory následující chování:
 
-*  Dojde-li k transparentním identifikátorem jako anonymní funkce, jsou členy přidružených anonymního typu automaticky v oboru v těle anonymní funkce.
-*  Pokud člen s transparentním identifikátorem je v oboru, členy, se kterou jsou v oboru také.
-*  Pokud dojde k transparentním identifikátorem jako deklarátor členu v inicializátoru anonymní objekt, představuje člena s transparentním identifikátorem.
-*  Ve výše uvedeného postupu překladu jsou transparentní identifikátory vždy zavedli spolu s anonymní typy se záměrem zachycení více proměnných rozsahu jako členy jednoho objektu. Implementace jazyka C# je povoleno používat jiným způsobem než anonymní typy k seskupení více proměnných rozsahu. Následující příklady překlad předpokládají, že anonymní typy se používají a zobrazit průhledné identifikátory lze přeložit okamžitě.
+*  Pokud dojde k transparentnímu identifikátoru jako parametr v anonymní funkci, členové přidruženého anonymního typu jsou automaticky v oboru v těle anonymní funkce.
+*  Pokud je člen s transparentním identifikátorem v oboru, členy tohoto člena jsou také v oboru.
+*  Když dojde k transparentnímu identifikátoru jako člen deklarátor v inicializátoru anonymního objektu, zavádí člen s transparentním identifikátorem.
+*  V krocích překladu výše jsou transparentní identifikátory vždy představeny spolu s anonymními typy s úmyslem zachytávání více proměnných rozsahu jako členů jednoho objektu. Implementace C# je oprávněná používat jiný mechanismus než anonymní typy pro seskupení více proměnných rozsahu. V následujících příkladech překladu se předpokládá, že se používají anonymní typy, a ukazuje, jak se dají překládat transparentní identifikátory.
 
-V příkladu
+Příklad
 ```csharp
 from c in customers
 from o in c.Orders
 orderby o.Total descending
 select new { c.Name, o.Total }
 ```
-převést na
+je přeloženo do
 ```csharp
 from * in customers.
     SelectMany(c => c.Orders, (c,o) => new { c, o })
@@ -4497,23 +4497,23 @@ orderby o.Total descending
 select new { c.Name, o.Total }
 ```
 
-což je další přeloženy do
+který je dále přeložen do
 ```csharp
 customers.
 SelectMany(c => c.Orders, (c,o) => new { c, o }).
 OrderByDescending(* => o.Total).
 Select(* => new { c.Name, o.Total })
 ```
-což, když transparentní identifikátory jsou vymazány, je ekvivalentní k
+který, když jsou transparentní identifikátory smazány, je ekvivalentní
 ```csharp
 customers.
 SelectMany(c => c.Orders, (c,o) => new { c, o }).
 OrderByDescending(x => x.o.Total).
 Select(x => new { x.c.Name, x.o.Total })
 ```
-kde `x` identifikátor generovaný kompilátorem, který je jinak neviditelné a nejsou přístupné.
+kde `x` je identifikátor generovaný kompilátorem, který je jinak neviditelný a nepřístupný.
 
-V příkladu
+Příklad
 ```csharp
 from c in customers
 join o in orders on c.CustomerID equals o.CustomerID
@@ -4521,7 +4521,7 @@ join d in details on o.OrderID equals d.OrderID
 join p in products on d.ProductID equals p.ProductID
 select new { c.Name, o.OrderDate, p.ProductName }
 ```
-převést na
+je přeloženo do
 ```csharp
 from * in customers.
     Join(orders, c => c.CustomerID, o => o.CustomerID, 
@@ -4530,7 +4530,7 @@ join d in details on o.OrderID equals d.OrderID
 join p in products on d.ProductID equals p.ProductID
 select new { c.Name, o.OrderDate, p.ProductName }
 ```
-což je dále omezit na
+což je dále sníženo na
 ```csharp
 customers.
 Join(orders, c => c.CustomerID, o => o.CustomerID, (c, o) => new { c, o }).
@@ -4538,7 +4538,7 @@ Join(details, * => o.OrderID, d => d.OrderID, (*, d) => new { *, d }).
 Join(products, * => d.ProductID, p => p.ProductID, (*, p) => new { *, p }).
 Select(* => new { c.Name, o.OrderDate, p.ProductName })
 ```
-je konečný překlad
+konečný překlad, který je
 ```csharp
 customers.
 Join(orders, c => c.CustomerID, o => o.CustomerID,
@@ -4549,13 +4549,13 @@ Join(products, y => y.d.ProductID, p => p.ProductID,
     (y, p) => new { y, p }).
 Select(z => new { z.y.x.c.Name, z.y.x.o.OrderDate, z.p.ProductName })
 ```
-kde `x`, `y`, a `z` jsou identifikátory generovaný kompilátorem, které jsou jinak neviditelné a nejsou přístupné.
+kde `x`, `y` a `z` jsou identifikátory generované kompilátorem, které jsou jinak skryté a nedostupné.
 
 ### <a name="the-query-expression-pattern"></a>Vzor výrazu dotazu
 
-***Vzor výrazu dotazu*** vytváří vzor metody, které implementují typy pro podporu výrazy dotazu. Protože výrazy dotazu jsou převedeny na volání metod prostřednictvím syntaktické mapování, typy mají značnou flexibilitu ve způsobu implementace vzorku dotazu výrazu. Například metody vzor je možné implementovat jako metody instance nebo jako metody rozšíření protože dva mají stejnou syntaxi volání a metody můžete vyžádat delegáty nebo stromů výrazů, protože lze převést na obojí jsou anonymní funkce.
+***Vzor výrazu dotazu*** vytváří vzor metod, které mohou typy implementovat pro podporu výrazů dotazů. Vzhledem k tomu, že výrazy dotazů jsou přeloženy do vyvolání metod pomocí syntaktického mapování, typy mají značnou flexibilitu v tom, jak implementují vzor výrazu dotazu. Například metody vzoru lze implementovat jako metody instance nebo jako metody rozšíření, protože obě mají stejnou syntaxi vyvolání a metody mohou požadovat delegáty nebo stromy výrazů, protože anonymní funkce jsou převoditelné na obojí.
 
-Doporučené tvar obecného typu `C<T>` podporuje vzor výrazu dotazu je uveden níže. Obecný typ se používá k ilustraci správné relace mezi typy parametrů a výsledek, ale je možné implementovat vzor pro obecné typy a také.
+Doporučený tvar obecného typu `C<T>`, který podporuje vzor výrazu dotazu, je uveden níže. Obecný typ se používá pro ilustraci správných vztahů mezi typy parametrů a výsledků, ale je možné implementovat také vzor pro neobecné typy.
 
 ```csharp
 delegate R Func<T1,R>(T1 arg1);
@@ -4605,15 +4605,15 @@ class G<K,T> : C<T>
 }
 ```
 
-Výše uvedené metody pomocí typů obecného delegátu `Func<T1,R>` a `Func<T1,T2,R>`, ale jejich mohl stejně dobře použít jiné typy delegát nebo výraz stromu stejné relace v typy parametrů a výsledek.
+Výše uvedené metody používají obecné typy delegátů `Func<T1,R>` a `Func<T1,T2,R>`, ale mohly by stejně dobře používat jiné typy delegátů nebo strom výrazů se stejnými relacemi v parametrech a typech výsledků.
 
-Všimněte si, že doporučená vztah mezi `C<T>` a `O<T>` který zajišťuje, že `ThenBy` a `ThenByDescending` jsou k dispozici pouze na výsledek metody `OrderBy` nebo `OrderByDescending`. Všimněte si také doporučené tvar výsledku `GroupBy` --sekvence sekvencí, ve kterém má každé vnitřní řady dalších `Key` vlastnost.
+Všimněte si doporučené relace mezi `C<T>` a `O<T>`, která zajišťuje, že metody `ThenBy` a `ThenByDescending` jsou k dispozici pouze pro výsledek `OrderBy` nebo `OrderByDescending`. Všimněte si také doporučeného tvaru výsledku `GroupBy`--sekvence sekvencí, kde má každá vnitřní sekvence další vlastnost `Key`.
 
-`System.Linq` Obor názvů obsahuje implementace vzorku dotazu operátor pro libovolný typ, který implementuje `System.Collections.Generic.IEnumerable<T>` rozhraní.
+Obor názvů `System.Linq` poskytuje implementaci vzoru operátoru dotazu pro jakýkoli typ, který implementuje rozhraní `System.Collections.Generic.IEnumerable<T>`.
 
 ## <a name="assignment-operators"></a>Operátory přiřazení
 
-Operátory přiřazení přiřadí novou hodnotu do proměnné, vlastnosti, události nebo elementu indexeru.
+Operátory přiřazení přiřadí novou hodnotu proměnné, vlastnosti, události nebo prvku indexeru.
 
 ```antlr
 assignment
@@ -4635,41 +4635,41 @@ assignment_operator
     ;
 ```
 
-Levý operand přiřazení musí být výraz jsou klasifikovány jako proměnné, přístup k vlastnosti, přístup indexeru nebo události přístupu.
+Levý operand přiřazení musí být výraz klasifikovaný jako proměnná, přístup k vlastnosti, přístup indexeru nebo přístup k události.
 
-`=` Operátor je volána ***operátor jednoduchého přiřazení***. Přiřadí hodnotu pravý operand elementu proměnná, vlastnost nebo indexer Dal levý operand. Levý operand operátor jednoduchého přiřazení nemusí být přístup k události (s výjimkou případů popsaných v [události podobné poli](classes.md#field-like-events)). Operátor jednoduchého přiřazení je popsána v [jednoduché přiřazení](expressions.md#simple-assignment).
+Operátor `=` se nazývá ***jednoduchý operátor přiřazení***. Přiřadí hodnotu pravého operandu proměnné, vlastnosti nebo prvku indexeru, který je dán levým operandem. Levý operand operátoru jednoduchého přiřazení nemůže být přístupem k události (s výjimkou popsaných v [událostech podobných poli](classes.md#field-like-events)). Jednoduchý operátor přiřazení je popsán v tématu [jednoduché přiřazení](expressions.md#simple-assignment).
 
-Operátory přiřazení jinak než `=` označují jako operátor ***operátory přiřazení složení***. Tyto operátory provádějí uvedené operace na dvou operandech a výslednou hodnotu pak přiřaďte elementu proměnná, vlastnost nebo indexer Dal levý operand. Složené operátory přiřazení jsou popsány v [složené přiřazení](expressions.md#compound-assignment).
+Operátory přiřazení jiné než operátor `=` se nazývají ***operátory složeného přiřazení***. Tyto operátory provádějí určenou operaci na dvou operandech a následně přiřadí výslednou hodnotu proměnné, vlastnosti nebo prvku indexeru, který je dán levým operandem. Složené operátory přiřazení jsou popsány ve [složeném přiřazení](expressions.md#compound-assignment).
 
-`+=` a `-=` se nazývají operátory s výrazem přístup události jako levý operand *operátory přiřazení pro událost*. Žádný operátor přiřazení je platné s přístupem události jako levý operand. Operátory přiřazení události jsou popsány v [události přiřazení](expressions.md#event-assignment).
+Operátory `+=` a `-=` s výrazem přístupu k události jako levý operand se nazývají *operátory přiřazení události*. Žádný jiný operátor přiřazení není platný s přístupem k události jako levý operand. Operátory přiřazení událostí jsou popsány v tématu [přiřazení události](expressions.md#event-assignment).
 
-Operátory přiřazení jsou asociativní zprava, což znamená, že operace se seskupují zleva doprava. Například výraz ve tvaru `a = b = c` se vyhodnotí jako `a = (b = c)`.
+Operátory přiřazení jsou asociativní zprava, což znamená, že operace jsou seskupeny zprava doleva. Například výraz formuláře `a = b = c` je vyhodnocen jako `a = (b = c)`.
 
 ### <a name="simple-assignment"></a>Jednoduché přiřazení
 
-`=` Operátor se nazývá operátor jednoduchého přiřazení.
+Operátor `=` se nazývá jednoduchý operátor přiřazení.
 
-Pokud levý operand jednoduché přiřazení má formát `E.P` nebo `E[Ei]` kde `E` má typ kompilace `dynamic`, pak přiřazení je vázán dynamicky ([dynamické vazby](expressions.md#dynamic-binding)). V tomto případě je typ kompilaci výrazu přiřazení `dynamic`, a rozlišení je popsáno níže se provede v době běhu na základě typu za běhu `E`.
+Je-li levý operand jednoduchého přiřazení ve formátu `E.P` nebo `E[Ei]`, kde `E` je typ doby kompilace `dynamic`, pak je přiřazení dynamicky svázáno ([dynamická vazba](expressions.md#dynamic-binding)). V tomto případě je typ doby kompilace výrazu přiřazení `dynamic` a řešení popsané níže bude provedeno za běhu na základě typu modulu runtime `E`.
 
-V jednoduché přiřazení pravý operand musí být výraz, který je implicitně převést na typ levého operandu. Operace přiřadí hodnotu pravý operand elementu proměnná, vlastnost nebo indexer Dal levý operand.
+V jednoduchém přiřazení musí být pravý operand výraz, který lze implicitně převést na typ levého operandu. Operace přiřadí hodnotu pravého operandu proměnné, vlastnosti nebo prvku indexeru, který je dán levým operandem.
 
-Výsledek výrazu jednoduché přiřazení je hodnota přiřazená k levý operand. Výsledek je stejného typu jako levý operand a vždy je klasifikován jako hodnotu.
+Výsledkem jednoduchého výrazu přiřazení je hodnota přiřazená k levému operandu. Výsledek má stejný typ jako levý operand a je vždycky klasifikován jako hodnota.
 
-Pokud levý operand je přístup vlastnost nebo indexer, vlastnost nebo indexovací člen musí mít `set` přistupujícího objektu. Pokud to není tento případ, dojde k chybě vazby čas.
+Pokud levý operand je vlastnost nebo přístup indexeru, vlastnost nebo indexer musí mít přistupující objekt `set`. Pokud se nejedná o tento případ, dojde k chybě při vazbě.
 
-Zpracování za běhu jednoduché přiřazení formuláře `x = y` se skládá z následujících kroků:
+Běhové zpracování jednoduchého přiřazení formuláře `x = y` se skládá z následujících kroků:
 
-*  Pokud `x` je klasifikován jako proměnnou:
-   * `x` je vyhodnocen pro vytvoření proměnné.
-   * `y` je vyhodnocen a v případě potřeby převeden na typ `x` prostřednictvím implicitního převodu ([implicitních převodů](conversions.md#implicit-conversions)).
-   * Pokud proměnná Dal `x` je prvek pole *reference_type*, kontrolu za běhu se provádí za účelem zajištění, že hodnotu vypočítat pro `y` je kompatibilní s poli instance `x` je element. Kontrola proběhne úspěšně, pokud `y` je `null`, nebo pokud implicitní referenční převod ([odkaz na implicitní převody](conversions.md#implicit-reference-conversions)) z skutečné typu instance odkazované procedurou `y` skutečným prvkem typu pole instance nadřazeného `x`. V opačném případě `System.ArrayTypeMismatchException` je vyvolána výjimka.
-   * Hodnota plynoucí z hodnocení a převod `y` jsou uložena do umístění, Dal po vyhodnocení `x`.
-*  Pokud `x` klasifikovaný jako vlastnost nebo indexovací člen přístupu:
-   * Výraz instance (Pokud `x` není `static`) a seznam argumentů (Pokud `x` představuje přístup k indexer) přidružené k `x` jsou vyhodnocovány, a výsledky se používají v následné `set` vyvolání přistupujícího objektu.
-   * `y` je vyhodnocen a v případě potřeby převeden na typ `x` prostřednictvím implicitního převodu ([implicitních převodů](conversions.md#implicit-conversions)).
-   * `set` Přistupující objekt `x` je volána s hodnotou pro vypočítat `y` jako jeho `value` argument.
+*  Je-li hodnota `x` klasifikována jako proměnná:
+   * `x` se vyhodnotí, aby se vytvořila proměnná.
+   * hodnota `y` je vyhodnocena a v případě potřeby převedena na typ `x` prostřednictvím implicitního převodu ([implicitní převody](conversions.md#implicit-conversions)).
+   * Pokud proměnná zadaná pomocí `x` je prvkem pole *reference_type*, je provedena kontrola za běhu, aby se zajistilo, že hodnota vypočítaná pro `y` je kompatibilní s instancí pole, pro kterou je prvek `x` prvkem. Pokud je `y` `null` nebo pokud implicitní převod odkazu ([implicitní převody odkazů](conversions.md#implicit-reference-conversions)) existuje ze skutečného typu instance, na kterou odkazuje `y`, na skutečný typ prvku instance pole, která obsahuje `x`, je ověření úspěšné. V opačném případě je vyvolána `System.ArrayTypeMismatchException`.
+   * Hodnota, která je výsledkem vyhodnocení a konverze `y`, je uložena do umístění uvedeného vyhodnocením `x`.
+*  Pokud je `x` klasifikován jako vlastnost nebo přístup indexeru:
+   * Výraz instance (Pokud `x` není `static`) a seznam argumentů (Pokud `x` je indexerový přístup) přidružený k `x` jsou vyhodnocovány a výsledky se používají v následných voláních přístupových práv @no__t 4.
+   * hodnota `y` je vyhodnocena a v případě potřeby převedena na typ `x` prostřednictvím implicitního převodu ([implicitní převody](conversions.md#implicit-conversions)).
+   * Přistupující objekt `set` `x` je vyvolán s hodnotou vypočítanou pro `y` jako svůj argument `value`.
 
-Pravidla pole společné odchylky ([kovariance polí](arrays.md#array-covariance)) povolit hodnotu typu pole `A[]` byl odkaz na instanci typu pole `B[]`, pokud existuje implicitní referenční převod z `B` do `A`. Protože tato pravidla přiřazení k prvku pole *reference_type* vyžaduje kontrolu za běhu k zajištění, že přiřazené hodnoty je kompatibilní s poli instance. V příkladu
+Pravidla koodchylky pole ([kovariance pole](arrays.md#array-covariance)) povolují hodnotu typu pole `A[]`, aby byla odkazem na instanci typu pole `B[]`, za předpokladu, že se implicitní převod odkazu vyskytuje z `B` na `A`. Z důvodu těchto pravidel přiřazení k elementu pole *reference_type* vyžaduje kontrolu za běhu, aby bylo zajištěno, že přiřazená hodnota je kompatibilní s instancí Array. V příkladu
 ```csharp
 string[] sa = new string[10];
 object[] oa = sa;
@@ -4678,11 +4678,11 @@ oa[0] = null;               // Ok
 oa[1] = "Hello";            // Ok
 oa[2] = new ArrayList();    // ArrayTypeMismatchException
 ```
-způsobí, že poslední přiřazení `System.ArrayTypeMismatchException` vyvolání, protože instance `ArrayList` nelze ukládat v prvku `string[]`.
+Poslední přiřazení způsobí vyvyvolání `System.ArrayTypeMismatchException`, protože instance `ArrayList` nemůže být uložena v prvku `string[]`.
 
-Pokud vlastnost nebo indexovací člen deklarovaný v *struct_type* cílem přiřazení, výraz instance přidružené vlastnost nebo indexer přístupu musí být zařazeny jako proměnnou. Pokud výraz instance je klasifikován tak hodnotu, dojde k chybě vazby čas. Z důvodu [přístup ke členu](expressions.md#member-access), stejné pravidlo platí také pro pole.
+Je-li vlastnost nebo indexovací člen deklarovaný v *struct_type* cílem přiřazení, musí být výraz instance přidružený k vlastnosti nebo přístupu indexeru klasifikován jako proměnná. Pokud je výraz instance klasifikován jako hodnota, dojde k chybě při vazbě. Vzhledem k tomu, že je [členem](expressions.md#member-access), platí stejné pravidlo i pro pole.
 
-Zadané deklarace:
+S ohledem na deklarace:
 ```csharp
 struct Point
 {
@@ -4733,7 +4733,7 @@ Rectangle r = new Rectangle();
 r.A = new Point(10, 10);
 r.B = p;
 ```
-přiřazení k `p.X`, `p.Y`, `r.A`, a `r.B` se nepovoluje, protože `p` a `r` jsou proměnné. V tomto příkladu však
+přiřazení `p.X`, `p.Y`, `r.A` a `r.B` jsou povolena, protože `p` a `r` jsou proměnné. V tomto příkladu se ale
 ```csharp
 Rectangle r = new Rectangle();
 r.A.X = 10;
@@ -4741,25 +4741,25 @@ r.A.Y = 10;
 r.B.X = 100;
 r.B.Y = 100;
 ```
-přiřazení jsou všechny neplatné, protože `r.A` a `r.B` nejsou proměnné.
+přiřazení jsou neplatná, protože `r.A` a `r.B` nejsou proměnné.
 
 ### <a name="compound-assignment"></a>Složené přiřazení
 
-Pokud levý operand složeného přiřazení má formát `E.P` nebo `E[Ei]` kde `E` má typ kompilace `dynamic`, pak přiřazení je vázán dynamicky ([dynamické vazby](expressions.md#dynamic-binding)). V tomto případě je typ kompilaci výrazu přiřazení `dynamic`, a rozlišení je popsáno níže se provede v době běhu na základě typu za běhu `E`.
+Je-li levý operand složeného přiřazení ve formátu `E.P` nebo `E[Ei]`, kde `E` je typ doby kompilace `dynamic`, pak je přiřazení dynamicky svázáno ([dynamická vazba](expressions.md#dynamic-binding)). V tomto případě je typ doby kompilace výrazu přiřazení `dynamic` a řešení popsané níže bude provedeno za běhu na základě typu modulu runtime `E`.
 
-Operace formuláře `x op= y` zpracování s použitím binárním operátorem rozlišení přetížení ([binárním operátorem rozlišení přetěžování](expressions.md#binary-operator-overload-resolution)) jako kdyby byla zapsána operaci `x op y`. Potom
+Operace formuláře `x op= y` se zpracovává pomocí řešení přetížení binárního operátoru ([rozlišení přetížení binárního operátoru](expressions.md#binary-operator-overload-resolution)), jako kdyby byla operace zapsána `x op y`. Stisknutím
 
-*  Pokud je implicitně převést na typ návratového typu zvoleném operátorovi `x`, operace se vyhodnotí jako `x = x op y`, s tím rozdílem, že `x` se vyhodnotí pouze jednou.
-*  Jinak, pokud vybraný operátor je předdefinovaný operátor, pokud je výslovně převeditelný na typ návratového typu zvoleném operátorovi `x`a pokud `y` implicitně převést na typ `x` nebo operátor, který je operátor, pak operace se vyhodnotí jako posunu `x = (T)(x op y)`, kde `T` je typ `x`, s tím rozdílem, že `x` se vyhodnotí pouze jednou.
-*  V opačném případě složeného přiřazení je neplatný a dojde k chybě vazby čas.
+*  Pokud je návratový typ vybraného operátoru implicitně převoditelný na typ `x`, operace se vyhodnotí jako `x = x op y` s tím rozdílem, že `x` se vyhodnotí jenom jednou.
+*  V opačném případě, pokud je vybraný operátor předdefinovaným operátorem, je-li návratový typ vybraného operátoru explicitně převeden na typ `x` a pokud `y` je implicitně převeden na typ `x` nebo je operátor Shift , operace je vyhodnocena jako `x = (T)(x op y)`, kde `T` je typ `x` s tím rozdílem, že `x` je vyhodnocena pouze jednou.
+*  V opačném případě je složené přiřazení neplatné a dojde k chybě při vazbě.
 
-Termín "vyhodnotí pouze jednou" znamená, že při vyhodnocení `x op y`, výsledky všech základních výrazy `x` jsou dočasně uloženy a pak znovu použít při provádění přiřazení `x`. Například v přiřazení `A()[B()] += C()`, kde `A` je metody vracející `int[]`, a `B` a `C` jsou metody vracející `int`, jsou metody vyvolány pouze jednou, v pořadí `A`, `B`, `C`.
+Termín "vyhodnocený pouze jednou" znamená, že při vyhodnocování `x op y` jsou výsledky jakýchkoliv výrazů `x` dočasně uloženy a následně znovu použity při provádění přiřazení do `x`. Například v přiřazení `A()[B()] += C()`, kde `A` je metoda, která vrací `int[]` a `B` a `C` jsou metody vracející `int`, metody jsou vyvolány pouze jednou, v pořadí `A`, `B`, `C`.
 
-Pokud levý operand složeného přiřazení je přístup k vlastnosti nebo indexeru přístup, vlastnost nebo indexovací člen musí mít obojí `get` přístupového objektu a `set` přistupujícího objektu. Pokud to není tento případ, dojde k chybě vazby čas.
+Když je levý operand složeného přiřazení přístup k vlastnosti nebo indexer, vlastnost nebo indexer musí mít přístupový objekt `get` a přístupový objekt `set`. Pokud se nejedná o tento případ, dojde k chybě při vazbě.
 
-Druhé pravidlo nad povolení `x op= y` má být vyhodnocen jako `x = (T)(x op y)` v některých kontextech. Existuje pravidlo tak, aby předdefinované operátory lze používat jako složené operátory, pokud levý operand je typu `sbyte`, `byte`, `short`, `ushort`, nebo `char`. I když oba argumenty jsou jednoho z těchto typů, předdefinované operátory vytvoření výsledku typu `int`, jak je popsáno v [binární číselný propagace](expressions.md#binary-numeric-promotions). Proto bez přetypování ji nebude možné přiřadit výsledek levému operandu.
+Druhé pravidlo výše povoluje `x op= y` vyhodnotit jako `x = (T)(x op y)` v určitých kontextech. Toto pravidlo existuje, protože předdefinované operátory lze použít jako složené operátory, pokud je levý operand typu `sbyte`, `byte`, `short`, `ushort` nebo `char`. I v případě, že oba argumenty mají jeden z těchto typů, předdefinované operátory vytvoří výsledek typu `int`, jak je popsáno v tématu [binární číselné propagační akce](expressions.md#binary-numeric-promotions). Bez přetypování proto by nebylo možné přiřadit výsledek k levému operandu.
 
-Intuitivní efekt pravidla pro předdefinované operátory je jednoduše `x op= y` je povolené, pokud obě z `x op y` a `x = y` nejsou povoleny. V příkladu
+Intuitivní efekt pravidla pro předdefinované operátory je jednoduše tím, že `x op= y` je povolen, pokud jsou povoleny obě `x op y` a `x = y`. V příkladu
 ```csharp
 byte b = 0;
 char ch = '\0';
@@ -4773,28 +4773,28 @@ b += (byte)i;       // Ok
 ch += 1;            // Error, ch = 1 not permitted
 ch += (char)1;      // Ok
 ```
-intuitivní důvod u každé chyby je, že odpovídající jednoduché přiřazení také bylo chybu.
+intuitivním důvodem pro každou chybu je to, že došlo k chybě odpovídající jednoduchého přiřazení.
 
-Zároveň to znamená, že složeného přiřazení, které podporují operace zrušeno vs. operace. V příkladu
+To také znamená, že operace složeného přiřazení podporují přenesené operace. V příkladu
 ```csharp
 int? i = 0;
 i += 1;             // Ok
 ```
-operátor zdvižené `+(int?,int?)` se používá.
+je použit předaný operátor `+(int?,int?)`.
 
 ### <a name="event-assignment"></a>Přiřazení události
 
-Pokud levý operand `+=` nebo `-=` operátor je klasifikován tak přístup události, pak je výraz vyhodnocen následujícím způsobem:
+Pokud je levý operand operátoru `+=` nebo `-=` klasifikován jako přístup k události, je výraz vyhodnocen takto:
 
-*  Výraz instance, pokud existuje, události přístupu je vyhodnocen.
-*  Pravý operand `+=` nebo `-=` operátor je vyhodnocen a, v případě potřeby převeden na typ levého operandu prostřednictvím implicitního převodu ([implicitních převodů](conversions.md#implicit-conversions)).
-*  Přístupový objekt události události se vyvolala s seznam argumentů, který se skládá z pravého operandu po vyhodnocení a v případě potřeby převodu. Pokud se operátor `+=`, `add` přístupového objektu je vyvolán; Pokud operátor, který byl `-=`, `remove` přístupového objektu je vyvolán.
+*  Výraz instance, pokud existuje, je vyhodnocen.
+*  Pravý operand operátoru `+=` nebo `-=` je vyhodnocen a v případě potřeby převeden na typ levého operandu pomocí implicitního převodu ([implicitní převody](conversions.md#implicit-conversions)).
+*  Přístup k události události je vyvolán s seznamem argumentů, který se skládá z pravého operandu po vyhodnocení a v případě potřeby konverze. Pokud byl operátor `+=`, je vyvolán přistupující objekt `add`. Pokud byl operátor `-=`, je vyvolán přistupující objekt `remove`.
 
-Výraz přiřazení události nevydává hodnotu. Proto je platný pouze v kontextu výrazu přiřazení událostí *statement_expression* ([příkazy výrazů](statements.md#expression-statements)).
+Výraz přiřazení události nepřinese hodnotu. Proto je výraz přiřazení události platný pouze v kontextu *statement_expression* ([příkazy výrazu](statements.md#expression-statements)).
 
 ## <a name="expression"></a>Výraz
 
-*Výraz* je buď *non_assignment_expression* nebo *přiřazení*.
+*Výraz* je buď *non_assignment_expression* , nebo *přiřazení*.
 
 ```antlr
 expression
@@ -4811,7 +4811,7 @@ non_assignment_expression
 
 ## <a name="constant-expressions"></a>Výrazy konstant
 
-A *constant_expression* je výraz, který může být plně vyhodnocen v době kompilace.
+*Constant_expression* je výraz, který lze plně vyhodnotit v době kompilace.
 
 ```antlr
 constant_expression
@@ -4819,59 +4819,59 @@ constant_expression
     ;
 ```
 
-Musí být konstantní výraz `null` literál nebo hodnotu s jedním z následujících typů: `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char` , `float`, `double`, `decimal`, `bool`, `object`, `string`, nebo libovolný typ výčtu. Pouze následující konstrukce jsou povoleny v konstantních výrazech:
+Konstantní výraz musí být literál `null` nebo hodnota s jedním z následujících typů: `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, @no__t-@no__t `ulong`, `char`, 0, 1, 2, 3,-14 , 5 nebo jakýkoli typ výčtu. V konstantních výrazech jsou povoleny pouze následující konstrukce:
 
-*  Literály (včetně `null` literál).
-*  Odkazy na `const` členy třídy a struktury typů.
-*  Odkazy na členy typů výčtu.
-*  Odkazy na `const` parametry nebo lokální proměnné
-*  V závorkách dílčí výrazy, které představují samy o sobě konstantní výrazy.
-*  Výrazy přetypování, poskytuje cílový typ je jedním z typů uvedených výše.
-*  `checked` a `unchecked` výrazy
-*  Výrazy s výchozími hodnotami
-*  Výrazy Nameof
-*  Předdefinované `+`, `-`, `!`, a `~` unárních operátorů.
-*  Předdefinované `+`, `-`, `*`, `/`, `%`, `<<`, `>>`, `&`, `|`, `^`, `&&`, `||`, `==`, `!=`, `<`, `>`, `<=`, a `>=` binární operátory, k dispozici každý operand je typu uvedené výše.
-*  `?:` Podmiňovací operátor.
+*  Literály (včetně literálu `null`).
+*  Odkazy na `const` členů typů třídy a struktury.
+*  Odkazy na členy výčtových typů.
+*  Odkazy na parametry `const` nebo místní proměnné
+*  Dílčí výrazy v závorkách, které jsou samotnými konstantními výrazy.
+*  Výrazy přetypování, za předpokladu, že cílový typ je jeden z výše uvedených typů.
+*  @no__t – 0 a `unchecked` výrazy
+*  výrazy výchozích hodnot
+*  Výrazy nameof
+*  Předdefinovaná `+`, `-`, `!` a unární operátory `~`.
+*  Předdefinovaná `+`, `-`, `*`, `/`, `%`, `<<`, `>>`, `&`, `|`, `^`, 0, 1, 2, 3, 4, 5, 6 a 7 Binary, za předpokladu, že každý operand je typ uvedený výše.
+*  Podmíněný operátor `?:`
 
-Následující převody jsou povoleny v konstantních výrazech:
+V konstantních výrazech jsou povoleny následující převody:
 
 *  Převody identity
 *  Číselné převody
-*  Výčet převody
-*  Konstantní výraz převody
-*  Odkaz na implicitní a explicitní převody, za předpokladu, že zdroj převody je konstantní výraz vyhodnocený na hodnotu null.
+*  Převody výčtu
+*  Převody konstantních výrazů
+*  Implicitní a explicitní převody odkazů za předpokladu, že zdrojem převodů je konstantní výraz, který se vyhodnocuje na hodnotu null.
 
-Ostatní převody, včetně zabalení, rozbalení a implicitní převody odkazů z hodnoty null nejsou povolené v konstantních výrazech. Příklad:
+Další převody, včetně zabalení, rozbalení a implicitních převodů odkazů na hodnoty, které nejsou null, nejsou povoleny v konstantních výrazech. Příklad:
 ```csharp
 class C {
     const object i = 5;         // error: boxing conversion not permitted
     const object str = "hello"; // error: implicit reference conversion
 }
 ```
-Inicializace i se o chybu, protože je vyžadován převod na uzavřené určení. Inicializace str se o chybu, protože je vyžadován implicitní referenční převod z nenulová hodnota.
+Inicializace i je chyba, protože je vyžadován převod zabalení. Inicializace str je chyba, protože je vyžadován implicitní převod odkazu z hodnoty, která není null.
 
-Pokaždé, když se výraz splňuje všechny požadavky uvedené výše, je výraz vyhodnocen v době kompilace. To platí i v případě, že je dílčí výraz rozsáhlejšího výrazu, který obsahuje konstrukce, která není konstantní výraz.
+Pokaždé, když výraz splní požadavky uvedené výše, je výraz vyhodnocen při kompilaci. To platí i v případě, že výraz je dílčí výraz většího výrazu, který obsahuje nekonstantní konstrukce.
 
-Vyhodnocení za kompilace konstantní výrazy používá stejná pravidla jako vyhodnocení výrazů, která není konstantní, s tím rozdílem, kde by být vyvolána hodnocení za běhu výjimku, vyhodnocení za kompilace způsobí chybu kompilace dojde k.
+Vyhodnocení konstantních výrazů v době kompilace používá stejná pravidla jako vyhodnocení za běhu nekonstantních výrazů, s výjimkou toho, že při vyhodnocení za běhu by došlo k chybě při kompilaci.
 
-Pokud není konstantní výraz se explicitně umístí do `unchecked` kontextu, přetečení, ke kterým dochází v integrálového typu aritmetické operace a převody během vyhodnocení za kompilace výrazu vždy způsobit chyby kompilace ([Konstantní výrazy](expressions.md#constant-expressions)).
+Pokud není konstantní výraz explicitně umístěn v kontextu `unchecked`, přetečení, ke kterým dochází v aritmetických operacích typu integrál a převody během kompilace výrazu, vždy způsobují chyby při kompilaci ([konstanta výrazy](expressions.md#constant-expressions)).
 
-Konstantní výrazy dojít v kontextech uvedených níže. V těchto kontextech dojde k chybě kompilace Pokud výraz nejde vyhodnotit plně v době kompilace.
+Konstantní výrazy se vyskytují v kontextech uvedených níže. V těchto kontextech dojde k chybě při kompilaci, pokud výraz nemůže být plně vyhodnocen v době kompilace.
 
-*  Deklarace konstant ([konstanty](classes.md#constants)).
+*  Konstantní deklarace ([konstanty](classes.md#constants)).
 *  Deklarace členů výčtu ([členy výčtu](enums.md#enum-members)).
-*  Výchozí argumenty seznam formálních parametrů ([parametry metody](classes.md#method-parameters))
-*  `case` popisky `switch` – příkaz ([příkazu switch](statements.md#the-switch-statement)).
-*  `goto case` příkazy ([příkazu goto](statements.md#the-goto-statement)).
-*  Dimenze délky ve výraz vytvoření pole ([pole vytváření výrazů](expressions.md#array-creation-expressions)), která obsahuje inicializátor.
+*  Výchozí argumenty formálních seznamů parametrů ([parametry metody](classes.md#method-parameters))
+*  popisky `case` příkazu `switch` ([příkaz switch](statements.md#the-switch-statement))
+*  příkazy `goto case` ([příkaz goto](statements.md#the-goto-statement)).
+*  Délky dimenzí ve výrazu vytváření pole ([výrazy vytváření pole](expressions.md#array-creation-expressions)), které obsahují inicializátor.
 *  Atributy ([atributy](attributes.md)).
 
-Konverzi implicitní konstantní výraz ([konstantní výraz implicitní převody](conversions.md#implicit-constant-expression-conversions)) umožňuje konstantní výraz typu `int` má být převeden na `sbyte`, `byte`, `short`, `ushort`, `uint`, nebo `ulong`, pokud má konstantní výraz hodnotu v rozsahu cílového typu.
+Implicitní převod konstantních výrazů ([implicitní převody konstantních výrazů](conversions.md#implicit-constant-expression-conversions)) povoluje převod konstantního výrazu typu `int` na `sbyte`, `byte`, `short`, `ushort`, `uint` nebo `ulong` za předpokladu, že hodnota konstantní výraz je v rozsahu cílového typu.
 
 ## <a name="boolean-expressions"></a>logické výrazy
 
-A *boolean_expression* je výraz, který poskytuje výsledek typu `bool`; buď přímo nebo prostřednictvím použití `operator true` v některých kontextech, jak je uvedeno v následující.
+*Boolean_expression* je výraz, který vrací výsledek typu `bool`; buď přímo, nebo prostřednictvím aplikace `operator true` v některých kontextech, jak je uvedeno v následujícím seznamu.
 
 ```antlr
 boolean_expression
@@ -4879,12 +4879,12 @@ boolean_expression
     ;
 ```
 
-Řízení podmíněného výrazu *if_statement* ([if – příkaz](statements.md#the-if-statement)), *while_statement* ([while – příkaz](statements.md#the-while-statement)), *do_statement* ([proveďte příkaz](statements.md#the-do-statement)), nebo *for_statement* ([pro příkaz](statements.md#the-for-statement)) je *boolean_ výraz*. Řízení podmíněného výrazu `?:` – operátor ([Podmiňovací operátor](expressions.md#conditional-operator)) následuje stejná pravidla jako *boolean_expression*, ale z důvodu operátoru je sestavení klasifikováno prioritu jako *conditional_or_expression*.
+Řízení podmíněného výrazu pro *if_statement* ([příkaz if](statements.md#the-if-statement)), *while_statement* ([příkaz While](statements.md#the-while-statement)), *do_statement* ([příkaz](statements.md#the-do-statement)do) nebo *for_statement* ([pro příkaz](statements.md#the-for-statement)) je *Boolean_expression*. Řízení podmíněného výrazu operátoru `?:` ([podmíněný operátor](expressions.md#conditional-operator)) se řídí stejnými pravidly jako *Boolean_expression*, ale z důvodů priority operátoru je klasifikován jako *conditional_or_expression*.
 
-A *boolean_expression* `E` musí být schopny vytvořit hodnotu typu `bool`, následujícím způsobem:
+*Boolean_expression* `E` je nutné, aby bylo možné vytvořit hodnotu typu `bool` následujícím způsobem:
 
-*  Pokud `E` implicitně převést na `bool` pak za běhu se použije implicitní převodu.
-*  V opačném případě unární operátor rozlišení přetěžování ([unární operátor rozlišení přetěžování](expressions.md#unary-operator-overload-resolution)) slouží k vyhledání jedinečný nejlepší implementace operátoru `true` na `E`, a tuto implementaci se použije v době běhu.
-*  Pokud se nenajde žádný takový operátor, dojde k chybě vazby čas.
+*  Pokud je `E` implicitně převést na `bool`, pak za běhu, že se používá implicitní převod.
+*  V opačném případě se k nalezení jedinečné nejlepší implementace operátoru `true` v `E` používá rozlišení přetížení unárního operátoru ([řešení přetížení unárního operátoru](expressions.md#unary-operator-overload-resolution)) a tato implementace se aplikuje za běhu.
+*  Pokud žádný takový operátor nenajde, dojde k chybě při vazbě.
 
-`DBBool` Typu Struktura v [databáze typu boolean](structs.md#database-boolean-type) poskytuje příklad, typ, který implementuje `operator true` a `operator false`.
+Typ struktury `DBBool` v typu [logická hodnota databáze](structs.md#database-boolean-type) poskytuje příklad typu, který implementuje `operator true` a `operator false`.
