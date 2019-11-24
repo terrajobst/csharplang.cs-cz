@@ -21,11 +21,11 @@ enum Color
 }
 ```
 
-Deklaruje typ výčtu s názvem `Color` s členy `Red`, `Green` a `Blue`.
+Deklaruje typ výčtu s názvem `Color` s členy `Red`, `Green`a `Blue`.
 
 ## <a name="enum-declarations"></a>Deklarace výčtu
 
-Deklarace výčtu deklaruje nový typ výčtu. Deklarace výčtu začíná klíčovým slovem `enum` a definuje název, přístupnost, nadřízený typ a členy výčtu.
+Deklarace výčtu deklaruje nový typ výčtu. Deklarace výčtu začíná klíčovým slovem `enum`a definuje název, přístupnost, nadřízený typ a členy výčtu.
 
 ```antlr
 enum_declaration
@@ -73,7 +73,7 @@ enum_modifier
 
 Jedná se o chybu při kompilaci, aby se stejný modifikátor zobrazoval víckrát v deklaraci výčtu.
 
-Modifikátory výčtového typu mají stejný význam jako deklarace třídy ([modifikátory třídy](classes.md#class-modifiers)). Upozorňujeme však, že modifikátory `abstract` a `sealed` nejsou v deklaraci výčtu povoleny. Výčty nemohou být abstraktní a nepovolují odvození.
+Modifikátory výčtového typu mají stejný význam jako deklarace třídy ([modifikátory třídy](classes.md#class-modifiers)). Upozorňujeme však, že v deklaraci výčtu nejsou povoleny modifikátory `abstract` a `sealed`. Výčty nemohou být abstraktní a nepovolují odvození.
 
 ## <a name="enum-members"></a>Členy výčtu
 
@@ -100,7 +100,7 @@ enum Color: uint
 }
 ```
 
-dojde k chybě v době kompilace, protože hodnoty konstant `-1`, `-2` a `-3` nejsou v rozsahu základního integrálního typu `uint`.
+má za následek chybu při kompilaci, protože hodnoty konstant `-1`, `-2`a `-3` nejsou v rozsahu základního integrálního typu `uint`.
 
 Víc členů výčtu může sdílet stejnou přidruženou hodnotu. Příklad
 
@@ -115,7 +115,7 @@ enum Color
 }
 ```
 
-zobrazuje výčet, ve kterém jsou dva členy výčtu--`Blue` a `Max`--mají stejnou přidruženou hodnotu.
+zobrazuje výčet, ve kterém dva členy výčtu--`Blue` a `Max`--mají stejnou přidruženou hodnotu.
 
 Přidružená hodnota člena výčtu je přiřazena implicitně nebo explicitně. Pokud deklarace člena výčtu má inicializátor *constant_expression* , hodnota tohoto konstantního výrazu implicitně převedená na nadřízený typ výčtu je přidružená hodnota člena výčtu. Pokud deklarace člena výčtu nemá žádný inicializátor, je jeho přidružená hodnota nastavena implicitně následujícím způsobem:
 
@@ -170,9 +170,9 @@ Blue = 11
 
 z následujících důvodů:
 
-*  člen výčtu `Red` automaticky přiřadí hodnotu nula (protože nemá žádný inicializátor a je prvním členem výčtu);
-*  člen výčtu `Green` má explicitně udělenou hodnotu `10`;
-*  a člen výčtu `Blue` automaticky přiřazuje hodnotu vyšší než člen, který předá text.
+*  `Red` členů výčtu je automaticky přiřazena hodnota nula (protože nemá žádný inicializátor a je prvním členem výčtu);
+*  člen výčtu `Green` je explicitně přidělena hodnota `10`;
+*  a člen výčtu `Blue` je automaticky přiřazena hodnota, která je vyšší než člen, který předá text před ním.
 
 Přidružená hodnota člena výčtu nesmí přímo ani nepřímo používat hodnotu vlastního přidruženého člena výčtu. Kromě tohoto omezení cyklace mohou Inicializátory členů výčtu volně odkazovat na jiné Inicializátory členů výčtu, bez ohledu na jejich textovou pozici. V rámci inicializátoru členů výčtu jsou hodnoty jiných členů výčtu vždy zpracovány jako typ jejich nadřazeného typu, takže přetypování není nutné při odkazování na jiné členy výčtu.
 
@@ -186,15 +186,15 @@ enum Circular
 }
 ```
 
-dojde k chybě v době kompilace, protože deklarace `A` a `B` jsou cyklické. `A` závisí explicitně na `B` a `B` je implicitně závislá na `A`.
+má za následek chybu v době kompilace, protože deklarace `A` a `B` jsou cyklické. `A` závisí na `B` explicitně a `B` závisí na `A` implicitně.
 
 Členy výčtu jsou pojmenovány a vymezeny způsobem, který je přesně podobný polím v rámci tříd. Rozsah člena výčtu je tělo jeho obsahujícího typu výčtu. V rámci tohoto oboru můžou být členy výčtu odkazováni podle jejich jednoduchého názvu. Ze všech ostatních kódů musí být název člena výčtu kvalifikován názvem jeho typu výčtu. Členové výčtu nemají žádné deklarované přístupnost – člen výčtu je přístupný, pokud je jeho nadřazený typ výčtu přístupný.
 
 ## <a name="the-systemenum-type"></a>Typ System. Enum
 
-Typ `System.Enum` je abstraktní základní třída všech typů výčtu (to je rozdílné a odlišná od základního typu typu výčtu) a členy zděděné z `System.Enum` jsou k dispozici v jakémkoli typu výčtu. Převod zabalení ([převody zabalení](types.md#boxing-conversions)) existuje z libovolného typu výčtu na `System.Enum` a převod rozbalení ([převody rozbalení](types.md#unboxing-conversions)) existuje z `System.Enum` na libovolný typ výčtu.
+Typ `System.Enum` je abstraktní základní třída všech typů výčtu (to se liší a liší od základního typu typu výčtu) a členové dědění z `System.Enum` jsou k dispozici v jakémkoli typu výčtu. Převod zabalení ([převody zabalení](types.md#boxing-conversions)) existuje z libovolného typu výčtu na `System.Enum`a převod rozbalení ([převody rozbalení](types.md#unboxing-conversions)) existuje z `System.Enum` na libovolný typ výčtu.
 
-Všimněte si, že `System.Enum` není *enum_type*. Místo toho je *class_type* , ze kterého jsou odvozeny všechny *enum_typey*. Typ `System.Enum` dědí z typu `System.ValueType` ([typ System. ValueType](types.md#the-systemvaluetype-type)), který naopak dědí z typu `object`. V době běhu může být hodnota typu `System.Enum` `null` nebo odkaz na zabalenou hodnotu libovolného typu výčtu.
+Všimněte si, že `System.Enum` sám o sobě není *enum_type*. Místo toho se jedná o *class_type* , ze kterého jsou odvozeny všechny *enum_type*s. Typ `System.Enum` dědí z typu `System.ValueType` ([typ System. ValueType](types.md#the-systemvaluetype-type)), který naopak dědí z typu `object`. V době běhu může být hodnota typu `System.Enum` `null` nebo odkaz na zabalenou hodnotu libovolného typu výčtu.
 
 ## <a name="enum-values-and-operations"></a>Výčtové hodnoty a operace
 
@@ -202,6 +202,6 @@ Každý typ výčtu definuje odlišný typ; pro převod mezi výčtovým typem a
 
 Členy výčtu mají typ svého obsahujícího výčtového typu (s výjimkou jiných inicializátorů členů výčtu: viz [výčet členů](enums.md#enum-members)). Hodnota člena výčtu deklarovaného v typu výčtu `E` s přidruženou hodnotou `v` je `(E)v`.
 
-Následující operátory lze použít na hodnoty typů výčtu: `==`, `!=`, `<`, `>`, `<=`, `>=` @ no__t-6 ([operátory porovnání výčtu](expressions.md#enumeration-comparison-operators)), binární `+` @ no__t-9 ([operátor sčítání](expressions.md#addition-operator)), binární 1 @ no__ t-12 ([operátor odčítání](expressions.md#subtraction-operator)), 4, 5, 6 @ no__t-17 ([logické operátory výčtu](expressions.md#enumeration-logical-operators)), 9 @ no__t-20 ([Operátor bitového doplňku](expressions.md#bitwise-complement-operator)), 2 a 3 @ no__t-24 ([přírůstek přípony a operátory snížení](expressions.md#postfix-increment-and-decrement-operators) a [operátory přírůstku a snížení předpony](expressions.md#prefix-increment-and-decrement-operators)).
+Následující operátory lze použít na hodnoty typů výčtu: `==`, `!=`, `<`, `>`, `<=`, `>=` ([operátory porovnání výčtu](expressions.md#enumeration-comparison-operators)), binární `+` ([operátor sčítání](expressions.md#addition-operator)), binární `-` ([operátor odčítání](expressions.md#subtraction-operator)), `^`, `&`, `|` ([logické operátory výčtu](expressions.md#enumeration-logical-operators)), `~` ([operátor bitového doplňku](expressions.md#bitwise-complement-operator)), `++` a `--` ( [Operátory přírůstku a snížení přípony](expressions.md#postfix-increment-and-decrement-operators) a [operátory přírůstku a snížení předpony](expressions.md#prefix-increment-and-decrement-operators).
 
 Každý typ výčtu je automaticky odvozen od třídy `System.Enum` (což je naopak odvozeno z `System.ValueType` a `object`). Proto lze zděděné metody a vlastnosti této třídy použít pro hodnoty typu výčtu.

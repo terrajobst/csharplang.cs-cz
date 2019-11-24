@@ -14,15 +14,15 @@ I když je prakticky každá konstrukce typu ukazatele v C++ jazyce C nebo má p
 
 V nebezpečném kódu je možné deklarovat a pracovat na ukazatelích pro provádění převodů mezi ukazateli a integrálními typy, pro převzetí adresy proměnných a tak dále. Ve smyslu je psaní nebezpečného kódu podobně jako psaní kódu jazyka C v C# rámci programu.
 
-Nezabezpečený kód je ve skutečnosti "bezpečnou" funkcí z perspektivy vývojářů i uživatelů. Nezabezpečený kód musí být jasně označený modifikátorem `unsafe`, takže vývojáři nemůžou nepoužívat nezabezpečené funkce omylem a prováděcí modul funguje, aby se zajistilo, že nezabezpečený kód nemůže být spuštěn v nedůvěryhodném prostředí.
+Nezabezpečený kód je ve skutečnosti "bezpečnou" funkcí z perspektivy vývojářů i uživatelů. Nezabezpečený kód musí být jasně označený modifikátorem `unsafe`, takže vývojáři nemůžou nepoužívat nezabezpečené funkce omylem a prováděcí modul funguje, aby se zajistilo, že nezabezpečený kód nejde spustit v nedůvěryhodném prostředí.
 
 ## <a name="unsafe-contexts"></a>Nezabezpečené kontexty
 
-Nezabezpečené funkce nástroje C# jsou k dispozici pouze v nebezpečných kontextech. Nezabezpečený kontext je zaveden zahrnutím modifikátoru `unsafe` v deklaraci typu nebo členu nebo použitím *unsafe_statement*:
+Nezabezpečené funkce nástroje C# jsou k dispozici pouze v nebezpečných kontextech. Nezabezpečený kontext je představený zahrnutím modifikátoru `unsafe` v deklaraci typu nebo členu nebo využitím *unsafe_statement*:
 
-*  Deklarace třídy, struktury, rozhraní nebo delegáta může obsahovat modifikátor @no__t 0. v takovém případě je celý textový rozsah deklarace typu (včetně těla třídy, struktury nebo rozhraní) považován za nezabezpečený kontext.
-*  Deklarace pole, metody, vlastnosti, události, indexeru, operátora, konstruktoru instance, destruktoru nebo statického konstruktoru může obsahovat modifikátor `unsafe`. v takovém případě je celý textový rozsah deklarace člena považován za nezabezpečený kontext.
-*  *Unsafe_statement* umožňuje použití nebezpečného kontextu v rámci *bloku*. Celý textový rozsah asociovaného *bloku* je považován za nezabezpečený kontext.
+*  Deklarace třídy, struktury, rozhraní nebo delegáta může obsahovat modifikátor `unsafe`. v takovém případě je celý textový rozsah deklarace typu (včetně těla třídy, struktury nebo rozhraní) považován za nezabezpečený kontext.
+*  Deklarace pole, metody, vlastnosti, události, indexeru, operátora, konstruktoru instance, destruktoru nebo statického konstruktoru může zahrnovat modifikátor `unsafe`. v takovém případě je celý textový rozsah této deklarace člena považován za nezabezpečený kontext.
+*  *Unsafe_statement* povoluje použití nebezpečného kontextu v rámci *bloku*. Celý textový rozsah asociovaného *bloku* je považován za nezabezpečený kontext.
 
 Níže jsou uvedeny související gramatické výroby.
 
@@ -106,7 +106,7 @@ public unsafe struct Node
 }
 ```
 
-Modifikátor `unsafe` určený v deklaraci struktury způsobí, že celý textový rozsah deklarace struktury se stane nebezpečným kontextem. Proto je možné deklarovat pole `Left` a `Right` jako typ ukazatele. Lze také zapsat příklad výše.
+Modifikátor `unsafe` určený v deklaraci struktury způsobí, že celý textový rozsah deklarace struktury se stane nebezpečným kontextem. Proto je možné deklarovat `Left` a `Right` pole jako typ ukazatele. Lze také zapsat příklad výše.
 
 ```csharp
 public struct Node
@@ -139,7 +139,7 @@ public class B: A
 }
 ```
 
-Modifikátor `unsafe` v metodě `F` v `A` způsobí, že se textový rozsah `F` stane nebezpečným kontextem, ve kterém lze použít nebezpečné funkce jazyka. V přepsání `F` v `B` není nutné znovu zadávat modifikátor `unsafe` – Pokud by nedošlo k použití metody `F` v `B`, musí mít přístup k nebezpečným funkcím.
+Modifikátor `unsafe` v metodě `F` v `A` jednoduše způsobí, že se textový rozsah `F` stane nebezpečným kontextem, ve kterém lze použít nebezpečné funkce jazyka. V přepsání `F` v `B`není nutné znovu zadat modifikátor `unsafe` – Pokud `F` metoda v `B` sama potřebuje přístup k nebezpečným funkcím.
 
 Tato situace je mírně odlišná, pokud je typ ukazatele součástí signatury metody.
 
@@ -155,11 +155,11 @@ public class B: A
 }
 ```
 
-Z toho důvodu, že signatura `F` zahrnuje typ ukazatele, může být zapsána pouze v nezabezpečeném kontextu. Nezabezpečený kontext však lze začlenit buď tak, že celou třídu není bezpečná, jak je to v případě `A`, nebo zahrnutím modifikátoru `unsafe` v deklaraci metody, jako je například případ v `B`.
+V důsledku toho, že signatura `F`obsahuje typ ukazatele, může být zapsána pouze v nezabezpečeném kontextu. Nezabezpečený kontext však lze začlenit buď tak, že celou třídu není bezpečná, jako je případ v `A`, nebo zahrnutím modifikátoru `unsafe` v deklaraci metody, stejně jako v případě `B`.
 
 ## <a name="pointer-types"></a>Typy ukazatelů
 
-V nezabezpečeném kontextu může být *typ* ([typy](types.md)) *pointer_type* a také *value_type* nebo *reference_type*. Ve výrazu `typeof` ([výrazy vytváření anonymních objektů](expressions.md#anonymous-object-creation-expressions)) ale můžete použít i *pointer_type* mimo nezabezpečený kontext, protože takové použití není bezpečné.
+V nezabezpečeném kontextu může být *typ* ([typy](types.md)) *pointer_type* a také *value_type* nebo *reference_type*. *Pointer_type* však lze použít také ve výrazu `typeof` ([výrazy vytváření anonymních objektů](expressions.md#anonymous-object-creation-expressions)) mimo nezabezpečený kontext, protože takové použití není bezpečné.
 
 ```antlr
 type_unsafe
@@ -167,7 +167,7 @@ type_unsafe
     ;
 ```
 
-*Pointer_type* je zapsán jako *unmanaged_type* nebo klíčové slovo `void`, následované tokenem `*`:
+*Pointer_type* se zapisuje jako *unmanaged_type* nebo klíčové slovo `void`a za ním následuje token `*`:
 
 ```antlr
 pointer_type
@@ -184,12 +184,12 @@ Typ zadaný před `*` v typu ukazatele se nazývá ***typ referenční*** typu u
 
 Na rozdíl od odkazů (hodnoty typů odkazů) ukazatele nejsou sledovány systémem uvolňování paměti – systém uvolňování paměti nemá žádné znalosti ukazatelů a dat, na která odkazují. Z tohoto důvodu ukazatel není povolen odkazování na odkaz nebo na strukturu, která obsahuje odkazy, a typ referenční ukazatele musí být *unmanaged_type*.
 
-*Unmanaged_type* je libovolný typ, který není *reference_type* nebo konstruovaný typ a neobsahuje pole *reference_type* nebo vytvořená v žádné úrovni vnoření. Jinými slovy je *unmanaged_type* jedna z následujících:
+*Unmanaged_type* je jakýkoliv typ, který není *reference_type* nebo konstruovaný typ a neobsahuje *reference_type* nebo vytvořená pole typu na žádné úrovni vnoření. Jinými slovy *unmanaged_type* je jedna z následujících:
 
-*  `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char`, `float`, 0, 1 nebo 2.
-*  Libovolný *enum_type*.
-*  Libovolný *pointer_type*.
-*  Jakékoli uživatelsky definované *struct_type* , které není konstruovaným typem a obsahuje pouze pole *unmanaged_type*.
+*  `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char`, `float`, `double`, `decimal`nebo `bool`.
+*  Jakékoli *enum_type*.
+*  Jakékoli *pointer_type*.
+*  Jakékoli uživatelsky definované *struct_type* , které nejsou konstruovaným typem a obsahují pouze pole *unmanaged_type*.
 
 Intuitivní pravidlo pro kombinování ukazatelů a odkazů je, že referents odkazy (objekty) mají obsahovat ukazatele, ale referents ukazatelů nemají oprávnění obsahovat odkazy.
 
@@ -205,25 +205,25 @@ V následující tabulce jsou uvedeny některé příklady typů ukazatelů:
 
 Pro danou implementaci musí mít všechny typy ukazatelů stejnou velikost a reprezentace.
 
-Na rozdíl od jazyka C++C a, pokud je více ukazatelů deklarováno ve stejné deklaraci C# , v `*` je zapsáno pouze s podkladovým typem, nikoli jako prefix punctuator u každého názvu ukazatele. Příklad
+Na rozdíl od jazyka C++C a, pokud je více ukazatelů deklarováno ve stejné deklaraci C# , v `*` je zapsána společně s podkladovým typem, nikoli jako předpona punctuator na každém názvu ukazatele. Například
 
 ```csharp
 int* pi, pj;    // NOT as int *pi, *pj;
 ```
 
-Hodnota ukazatele typu `T*` představuje adresu proměnné typu `T`. Operátor dereference ukazatele `*` ([Indirekce ukazatele](unsafe-code.md#pointer-indirection)) se dá použít pro přístup k této proměnné. Například s ohledem na proměnnou `P` typu `int*`, výraz `*P` označuje proměnnou `int` nalezenou na adrese obsažené v `P`.
+Hodnota ukazatele typu `T*` představuje adresu proměnné typu `T`. Operátor dereference ukazatele `*` ([Indirekce ukazatele](unsafe-code.md#pointer-indirection)) se dá použít pro přístup k této proměnné. Například s ohledem na proměnnou `P` typu `int*`výraz `*P` označuje `int` proměnnou nalezenou na adrese obsažené v `P`.
 
-Podobně jako odkaz na objekt může být ukazatel `null`. Použití operátoru dereference na ukazatel `null` vede k chování definovanému implementací. Ukazatel s hodnotou `null` je reprezentován všemi-bity-Zero.
+Podobně jako odkaz na objekt může být `null`ukazatel. Použití operátoru dereference na `null` ukazatel má za následek chování definované implementací. Ukazatel s hodnotou `null` je reprezentován všemi-bity-Zero.
 
-Typ `void*` představuje ukazatel na neznámý typ. Vzhledem k tomu, že typ referenční je neznámý, nelze operátor dereference použít na ukazatel typu `void*`, ani na takový ukazatel nesmí být provedena žádná aritmetická operace. Ukazatel typu `void*` však lze přetypovat na jakýkoli jiný typ ukazatele (a naopak).
+Typ `void*` představuje ukazatel na neznámý typ. Vzhledem k tomu, že typ referenční je neznámý, nelze operátor dereference použít na ukazatel typu `void*`, ani na takový ukazatel nelze provádět aritmetické operace. Nicméně ukazatel typu `void*` lze přetypovat na jakýkoli jiný typ ukazatele (a naopak).
 
-Typy ukazatelů jsou samostatnou kategorií typů. Na rozdíl od typů odkazů a typů hodnot nedědí typy ukazatelů od `object` a mezi typy ukazatelů a `object` neexistují žádné převody. Konkrétně zabalení a rozbalení (zabalení[a rozbalení](types.md#boxing-and-unboxing)) nejsou pro ukazatele podporovány. Převody jsou však povoleny mezi různými typy ukazatelů a mezi typy ukazatelů a celočíselnými typy. Tento postup je popsaný v tématu [převody ukazatelů](unsafe-code.md#pointer-conversions).
+Typy ukazatelů jsou samostatnou kategorií typů. Na rozdíl od typů odkazu a hodnot typy ukazatelů nedědí z `object` a mezi typy ukazatelů a `object`neexistují žádné převody. Konkrétně zabalení a rozbalení (zabalení[a rozbalení](types.md#boxing-and-unboxing)) nejsou pro ukazatele podporovány. Převody jsou však povoleny mezi různými typy ukazatelů a mezi typy ukazatelů a celočíselnými typy. Tento postup je popsaný v tématu [převody ukazatelů](unsafe-code.md#pointer-conversions).
 
-*Pointer_type* nelze použít jako argument typu ([konstruované typy](types.md#constructed-types)) a odvození typu ([odvození typu](expressions.md#type-inference)) se nedaří u volání obecných metod, které by byly odvozeny argument typu jako typ ukazatele.
+*Pointer_type* nelze použít jako argument typu ([konstruované typy](types.md#constructed-types)) a odvození typu ([odvození typu](expressions.md#type-inference)) se nedaří při voláních obecných metod, které by byly odvozeny argumentem typu jako typ ukazatele.
 
-*Pointer_type* se dá použít jako typ pole volatile ([pole](classes.md#volatile-fields)s stálým typem).
+Jako typ pole typu volatile (pole s modifikátorem[volatile](classes.md#volatile-fields)) se dá použít *pointer_type* .
 
-I když mohou být ukazatele předány jako parametry `ref` nebo `out`, může to vést k nedefinovanému chování, protože ukazatel může být dobře nastaven tak, aby odkazoval na místní proměnnou, která již neexistuje, je-li volána metoda, nebo pevný objekt, na který se používá k nasměrování. , již není vyřešen. Příklad:
+I když mohou být ukazatele předány jako `ref` nebo `out` parametry, tak může dojít k nedefinovanému chování, protože ukazatel může být dobře nastaven tak, aby odkazoval na místní proměnnou, která již neexistuje, je-li volaná metoda vrácena, nebo pevný objekt, na který je odkazováno, již není opraven. Příklad:
 
 ```csharp
 using System;
@@ -278,40 +278,40 @@ V nezabezpečeném kontextu jsou k dispozici několik konstrukcí pro provoz na 
 *  Operátor `&` lze použít k získání adresy proměnné ([operátor address-of](unsafe-code.md#the-address-of-operator)).
 *  Operátory `++` a `--` lze použít k zvýšení a snížení ukazatelů ([zvýšení a snížení ukazatele](unsafe-code.md#pointer-increment-and-decrement)).
 *  Operátory `+` a `-` lze použít k provádění aritmetického ukazatele ([aritmetický ukazatel](unsafe-code.md#pointer-arithmetic)).
-*  Pro porovnání ukazatelů ([porovnání ukazatelů](unsafe-code.md#pointer-comparison)) se dají použít operátory `==`, `!=`, `<`, `>`, `<=` a `=>`.
+*  Operátory `==`, `!=`, `<`, `>`, `<=`a `=>` lze použít k porovnání ukazatelů ([porovnání ukazatelů](unsafe-code.md#pointer-comparison)).
 *  Operátor `stackalloc` lze použít k přidělení paměti ze zásobníku volání ([vyrovnávací paměti pevné velikosti](unsafe-code.md#fixed-size-buffers)).
 *  Příkaz `fixed` lze použít k dočasné opravě proměnné tak, aby se její adresa mohla získat ([příkaz fixed](unsafe-code.md#the-fixed-statement)).
 
 ## <a name="fixed-and-moveable-variables"></a>Pevné a mobilní proměnné
 
-Operátor address-of ([operátor address-of](unsafe-code.md#the-address-of-operator)) a příkaz `fixed` ([příkaz fixed](unsafe-code.md#the-fixed-statement)) dělí proměnné do dvou kategorií: ***pevné proměnné*** a ***přenosné proměnné***.
+Operátor address-of ([operátor address-of](unsafe-code.md#the-address-of-operator)) a příkaz `fixed` ([příkaz fixed](unsafe-code.md#the-fixed-statement)) rozdělují proměnné do dvou kategorií: ***pevné proměnné*** a ***přenosné proměnné***.
 
 Pevné proměnné jsou umístěny v umístěních úložiště, která nejsou ovlivněna operací uvolňování paměti. (Příklady pevných proměnných zahrnují lokální proměnné, hodnoty parametrů a proměnné, které jsou vytvořeny pomocí přesměrování ukazatelů.) Na druhé straně se přenosné proměnné nacházejí v umístěních úložiště, která se vztahují k přemístění nebo vyřazení systémem uvolňování paměti. (Příklady pohyblivých proměnných zahrnují pole v objektech a prvcích polí.)
 
-Operátor `&` ([operátor address-of](unsafe-code.md#the-address-of-operator)) umožňuje, aby se adresa pevné proměnné získala bez omezení. Vzhledem k tomu, že je pohyblivá proměnná předmětem přemístění nebo likvidace systémem uvolňování paměti, adresa pohyblivé proměnné se dá získat jenom pomocí příkazu `fixed` ([příkaz fixed](unsafe-code.md#the-fixed-statement)) a tato adresa zůstává platná jenom pro Doba trvání tohoto příkazu `fixed`.
+Operátor `&` ([operátor address-of](unsafe-code.md#the-address-of-operator)) umožňuje, aby se adresa pevné proměnné získala bez omezení. Vzhledem k tomu, že pohyblivá proměnná je předmětem přemístění nebo likvidace systémem uvolňování paměti, adresa pohyblivé proměnné lze získat pouze pomocí příkazu `fixed` ([příkaz fixed](unsafe-code.md#the-fixed-statement)) a tato adresa zůstává platná pouze po dobu trvání tohoto příkazu `fixed`.
 
 V přesném smyslu je pevná proměnná jedna z následujících:
 
 *  Proměnná, která je výsledkem *simple_name* ([jednoduché názvy](expressions.md#simple-names)), která odkazuje na místní proměnnou nebo parametr hodnoty, pokud proměnná není zachycena anonymní funkcí.
 *  Proměnná, která je výsledkem *member_access* ([členský přístup](expressions.md#member-access)) formuláře `V.I`, kde `V` je pevná proměnná *struct_type*.
-*  Proměnná, která vyplývají z *pointer_indirection_expression* ([dereference ukazatele](unsafe-code.md#pointer-indirection)) formuláře `*P`, *pointer_member_access* ([přístup ke členu ukazatele](unsafe-code.md#pointer-member-access)) formuláře `P->I` nebo *pointer_element_access* ( [Přístup k elementu ukazatele](unsafe-code.md#pointer-element-access)) formuláře `P[E]`.
+*  Proměnná, která vyplývají z *pointer_indirection_expression* ([dereference ukazatele](unsafe-code.md#pointer-indirection)) formuláře `*P`, *pointer_member_access* ([přístup ke členu ukazatele](unsafe-code.md#pointer-member-access)) formuláře `P->I`nebo *pointer_element_access* ([přístup k prvku ukazatele](unsafe-code.md#pointer-element-access)) formuláře `P[E]`.
 
 Všechny ostatní proměnné jsou klasifikovány jako přenosné proměnné.
 
-Všimněte si, že statické pole je klasifikované jako mobilní proměnná. Všimněte si také, že parametr `ref` nebo `out` je klasifikován jako mobilní proměnná, a to i v případě, že argument zadaný pro parametr je pevná proměnná. Nakonec si všimněte, že proměnná vytvořená pomocí přesměrování ukazatele je vždy klasifikována jako pevná proměnná.
+Všimněte si, že statické pole je klasifikované jako mobilní proměnná. Všimněte si také, že parametr `ref` nebo `out` je klasifikován jako pohyblivá proměnná, i když argument zadaný pro parametr je pevná proměnná. Nakonec si všimněte, že proměnná vytvořená pomocí přesměrování ukazatele je vždy klasifikována jako pevná proměnná.
 
 ## <a name="pointer-conversions"></a>Převody ukazatele
 
 V nezabezpečeném kontextu je sada dostupných implicitních převodů ([implicitní převody](conversions.md#implicit-conversions)) rozšířena tak, aby zahrnovala následující implicitní převody ukazatelů:
 
 *  Z libovolného *pointer_type* na typ `void*`.
-*  Z literálu `null` pro libovolný *pointer_type*.
+*  Z `null` literálu *pointer_type*.
 
 Kromě toho v nezabezpečeném kontextu je sada dostupných explicitních převodů ([explicitní převody](conversions.md#explicit-conversions)) rozšířena tak, aby zahrnovala následující explicitní převody ukazatelů:
 
-*  Z libovolného *pointer_typeu* na jakýkoli jiný *pointer_type*.
-*  Z `sbyte` `byte`, `short`, `ushort`, `int`, `uint`, `long` nebo `ulong` pro všechny *pointer_type*.
-*  Z libovolného *pointer_type* na `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long` nebo `ulong`.
+*  Z libovolného *pointer_type* na jakékoli jiné *pointer_type*.
+*  Z `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`*nebo `ulong` na pointer_type.*
+*  Z libovolného *pointer_type* na `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`nebo `ulong`.
 
 V nezabezpečeném kontextu sada standardních implicitních převodů ([standardní implicitní převody](conversions.md#standard-implicit-conversions)) obsahuje následující převod ukazatele:
 
@@ -319,7 +319,7 @@ V nezabezpečeném kontextu sada standardních implicitních převodů ([standar
 
 Převody mezi dvěma typy ukazatelů nikdy nezmění skutečnou hodnotu ukazatele. Jinými slovy, převod z jednoho typu ukazatele na jiný nemá žádný vliv na podkladovou adresu určenou ukazatelem.
 
-Když je jeden typ ukazatele převeden na jiný, pokud výsledný ukazatel není správně zarovnán pro typ Point-to, chování není definováno, pokud je výsledek zpětně odkazován. Obecně platí, že koncept "správně zarovnán" je přenosný: Pokud je ukazatel na typ `A` správně zarovnán pro ukazatel na typ `B`, který je zase správně zarovnán pro ukazatel na typ `C`, pak je ukazatel na typ `A` správně zarovnán pro ukazatel na typ `C`.
+Když je jeden typ ukazatele převeden na jiný, pokud výsledný ukazatel není správně zarovnán pro typ Point-to, chování není definováno, pokud je výsledek zpětně odkazován. Obecně platí, že pojem "správně zarovnán" je přenositelný: Pokud je ukazatel na typ `A` správně zarovnán pro ukazatel na typ `B`, který je zase správně zarovnán pro ukazatel na typ `C`, pak je ukazatel na typ `A` správně zarovnán pro ukazatel na typ `C`.
 
 Vezměte v úvahu následující případ, ve kterém je k proměnné s jedním typem přistupované prostřednictvím ukazatele na jiný typ:
 
@@ -353,16 +353,16 @@ class Test
 
 Vytvářený výstup samozřejmě závisí na endian.
 
-Mapování mezi ukazateli a celými čísly jsou definovaná implementací. Nicméně u architektur PROCESORů 32 * a 64 s lineárním adresním prostorem se převody ukazatelů na nebo z integrálních typů obvykle chovají stejně jako převody hodnot `uint` nebo `ulong`, v uvedeném pořadí, do nebo z těchto integrálních typů.
+Mapování mezi ukazateli a celými čísly jsou definovaná implementací. Nicméně u architektur PROCESORů 32 * a 64 s lineárním adresním prostorem se převody ukazatelů na nebo z integrálních typů obvykle chovají stejně jako převody `uint` nebo `ulong` hodnot, v uvedeném pořadí, do nebo z těchto integrálních typů.
 
 ### <a name="pointer-arrays"></a>Pole ukazatelů
 
 V nezabezpečeném kontextu mohou být vytvořena pole ukazatelů. V polích ukazatelů jsou povoleny pouze některé převody, které platí pro jiné typy polí:
 
 *  Implicitní převod odkazu ([implicitní převod odkazů](conversions.md#implicit-reference-conversions)) z libovolného *array_type* na `System.Array` a rozhraní, které implementuje, platí také pro pole ukazatelů. Nicméně jakýkoliv pokus o přístup k prvkům pole pomocí `System.Array` nebo rozhraní, které implementuje, způsobí výjimku za běhu, protože typy ukazatelů nelze převést na `object`.
-*  Implicitní a explicitní převody odkazů ([implicitní převody odkazů](conversions.md#implicit-reference-conversions), [explicitní převody odkazů](conversions.md#explicit-reference-conversions)) z jednorozměrného pole typu `S[]` na `System.Collections.Generic.IList<T>` a jeho Obecná základní rozhraní se nikdy nevztahují na pole ukazatelů, vzhledem k tomu, že typy ukazatelů nelze použít jako argumenty typu a nedochází k žádným převodům z typů ukazatelů na typy bez ukazatelů.
-*  Explicitní převod odkazu ([explicitní převody odkazů](conversions.md#explicit-reference-conversions)) z `System.Array` a rozhraní, které implementuje na libovolný *array_type* , se vztahuje na pole ukazatelů.
-*  Explicitní převody odkazů ([explicitní převody odkazů](conversions.md#explicit-reference-conversions)) z `System.Collections.Generic.IList<S>` a jeho základních rozhraní na typ jednorozměrného pole `T[]` nikdy neplatí pro pole ukazatelů, protože typy ukazatelů nelze použít jako argumenty typu a existují žádné převody z typů ukazatele na typy bez ukazatele.
+*  Implicitní a explicitní převody odkazů ([implicitní převody odkazů](conversions.md#implicit-reference-conversions), [explicitní převody odkazů](conversions.md#explicit-reference-conversions)) z jednorozměrného typu pole `S[]` na `System.Collections.Generic.IList<T>` a jeho obecné základní rozhraní se nikdy nevztahují na pole ukazatelů, protože typy ukazatelů nejde použít jako argumenty typu a neexistují žádné převody z typů ukazatelů na typy bez ukazatelů.
+*  Explicitní převod odkazu ([explicitní převody odkazů](conversions.md#explicit-reference-conversions)) z `System.Array` a rozhraní, které implementuje pro všechny *array_type* , se vztahují na pole ukazatelů.
+*  Explicitní převody odkazů ([explicitní referenční převody](conversions.md#explicit-reference-conversions)) z `System.Collections.Generic.IList<S>` a jeho základních rozhraní na typ jednorozměrného pole `T[]` se nikdy nevztahují na pole ukazatelů, protože typy ukazatelů nejde použít jako argumenty typu a neexistují žádné převody z typů ukazatelů na typy bez ukazatelů.
 
 Tato omezení znamenají, že rozšíření pro příkaz `foreach` nad poli popsanými v [příkazu foreach](statements.md#the-foreach-statement) nelze použít na pole ukazatelů. Místo toho příkaz foreach formuláře
 
@@ -370,7 +370,7 @@ Tato omezení znamenají, že rozšíření pro příkaz `foreach` nad poli pops
 foreach (V v in x) embedded_statement
 ```
 
-kde typ `x` je typ pole formuláře `T[,,...,]`, `N` je počet dimenzí minus 1 a `T` nebo `V` je typ ukazatele, rozbalený pomocí vnořených smyček, jak je znázorněno níže:
+kde typ `x` je typ pole `T[,,...,]`formuláře, `N` je počet dimenzí minus 1 a `T` nebo `V` je typ ukazatele, rozbalený pomocí vnořených smyček následujícím způsobem:
 
 ```csharp
 {
@@ -385,13 +385,13 @@ kde typ `x` je typ pole formuláře `T[,,...,]`, `N` je počet dimenzí minus 1 
 }
 ```
 
-Proměnné `a`, `i0` `i1`,..., `iN` nejsou viditelné ani dostupné pro `x` nebo *embedded_statement* nebo jakýkoli jiný zdrojový kód tohoto programu. Proměnná `v` je v vloženém příkazu jen pro čtení. Pokud není k dispozici explicitní převod ([převody ukazatelů](unsafe-code.md#pointer-conversions)) z `T` (typ elementu) na `V`, vytvoří se chyba a neprovádí se žádné další kroky. Pokud `x` má hodnotu `null`, je vyvolána `System.NullReferenceException` v době běhu.
+Proměnné `a`, `i0`, `i1`,..., `iN` nejsou viditelné ani dostupné *pro `x` nebo* jiný zdrojový kód programu. Proměnná `v` v příkazu Embedded jen pro čtení. Pokud není k dispozici explicitní převod ([převody ukazatelů](unsafe-code.md#pointer-conversions)) z `T` (typ elementu) na `V`, je vytvořena chyba a nejsou provedeny žádné další kroky. Pokud má `x` hodnotu `null`, je vyvolána `System.NullReferenceException` v době běhu.
 
 ## <a name="pointers-in-expressions"></a>Ukazatelé ve výrazech
 
-V nezabezpečeném kontextu může výraz vracet výsledek typu ukazatele, ale mimo nezabezpečený kontext, jedná se o chybu při kompilaci, aby výraz byl typu ukazatele. V přesném termínu mimo nezabezpečený kontext dojde k chybě při kompilaci, pokud jakýkoli *simple_name* ([jednoduché názvy](expressions.md#simple-names)), *member_access* ([přístup členů](expressions.md#member-access)), *invocation_expression* ([výrazy vyvolání](expressions.md#invocation-expressions)), nebo  *element_access* ([přístup k prvkům](expressions.md#element-access)) je typ ukazatele.
+V nezabezpečeném kontextu může výraz vracet výsledek typu ukazatele, ale mimo nezabezpečený kontext, jedná se o chybu při kompilaci, aby výraz byl typu ukazatele. V přesném termínu mimo nezabezpečený kontext dojde k chybě při kompilaci, *pokud simple_name* ([jednoduché názvy](expressions.md#simple-names)), *member_access* ([přístup členů](expressions.md#member-access)), *invocation_expression* ([výrazy vyvolání](expressions.md#invocation-expressions)) nebo *element_access* ([přístup k prvkům](expressions.md#element-access)) je typu ukazatele.
 
-V nezabezpečeném kontextu umožňují výroba *primary_no_array_creation_expression* ([Primary Expressions](expressions.md#primary-expressions)) a *unary_expression* ([unární operátory](expressions.md#unary-operators)) následující dodatečné konstrukce:
+V nezabezpečeném kontextu, *primary_no_array_creation_expression* ([primární výrazy](expressions.md#primary-expressions)) a *unary_expression* ([unární operátory](expressions.md#unary-operators)), umožňují následující dodatečné konstrukce:
 
 ```antlr
 primary_no_array_creation_expression_unsafe
@@ -418,17 +418,17 @@ pointer_indirection_expression
     ;
 ```
 
-Unární operátor `*` označuje nepřímý odkaz na ukazatel a používá se k získání proměnné, na kterou ukazatel ukazuje. Výsledek vyhodnocení `*P`, kde `P` je výrazem typu ukazatele `T*`, je proměnná typu `T`. Jedná se o chybu při kompilaci pro použití unárního operátoru `*` na výraz typu `void*` nebo na výraz, který není typu ukazatele.
+Unární operátor `*` označuje nepřímý odkaz na ukazatel a používá se k získání proměnné, na kterou ukazatel ukazuje. Výsledek vyhodnocení `*P`, kde `P` je výraz typu ukazatele `T*`, je proměnná typu `T`. Jedná se o chybu při kompilaci pro použití unárního operátoru `*` na výraz typu `void*` nebo na výraz, který není typu ukazatele.
 
 Účinek použití unárního operátoru `*` na ukazatel `null` je definován implementací. Konkrétně není nijak zaručeno, že tato operace vyvolá `System.NullReferenceException`.
 
-Pokud je k ukazateli přiřazena neplatná hodnota, chování unárního operátoru `*` není definováno. Mezi neplatné hodnoty pro přesměrování ukazatele pomocí unárního operátoru `*` jsou adresy nevhodně zarovnané na typ, na který se odkazuje (viz příklad [Převod ukazatelů](unsafe-code.md#pointer-conversions)) a adresa proměnné po konci své životnosti.
+Pokud je k ukazateli přiřazena neplatná hodnota, chování unárního operátoru `*` není definováno. Mezi neplatné hodnoty pro přesměrování ukazatele pomocí unárního operátoru `*` je adresa nevhodně zarovnána na typ, na který se odkazuje (viz příklad [Převod ukazatelů](unsafe-code.md#pointer-conversions)), a adresu proměnné po konci své životnosti.
 
-Pro účely analýzy jednoznačného přiřazení je proměnná vytvořená vyhodnocením výrazu ve formátu `*P` považována za původně přiřazenou ([původně přiřazené proměnné](variables.md#initially-assigned-variables)).
+Pro účely analýzy jednoznačného přiřazení je proměnná vytvořená pomocí vyhodnocení výrazu `*P` formuláře považována za původně přiřazenou ([původně přiřazené proměnné](variables.md#initially-assigned-variables)).
 
 ### <a name="pointer-member-access"></a>Přístup ke členu ukazatele
 
-*Pointer_member_access* se skládá z *primary_expression*, po kterém následuje token "`->`", následovaný *identifikátorem* a volitelnou *type_argument_list*.
+*Pointer_member_access* se skládá z *primary_expression*, po kterém následuje token "`->`" následovaný *identifikátorem* a nepovinným *type_argument_list*.
 
 ```antlr
 pointer_member_access
@@ -436,9 +436,9 @@ pointer_member_access
     ;
 ```
 
-V přístupu člena ukazatele ve formě `P->I` musí být `P` výrazem jiného typu ukazatele než `void*` a `I` musí poznamenat přístupný člen typu, na který `P` body.
+V přístupu člena ukazatele na `P->I`formuláře musí být `P` výrazem jiného typu ukazatele než `void*`a `I` musí poznamenat přístupný člen typu, na který `P` body.
 
-Přístup člena ukazatele `P->I` se vyhodnocuje přesně jako `(*P).I`. Popis operátoru dereference ukazatele (`*`) naleznete v tématu [dereference ukazatele](unsafe-code.md#pointer-indirection). Popis operátoru přístupu ke členu (`.`) najdete v tématu [Member Access](expressions.md#member-access).
+Přístup člena ukazatele do formuláře `P->I` je vyhodnocen přesně jako `(*P).I`. Popis operátoru indirekce ukazatele (`*`) naleznete v tématu [dereference ukazatele](unsafe-code.md#pointer-indirection). Popis operátoru přístupu ke členu (`.`) naleznete v tématu [Member Access](expressions.md#member-access).
 
 V příkladu
 
@@ -469,7 +469,7 @@ class Test
 }
 ```
 
-operátor `->` se používá pro přístup k polím a vyvolání metody struktury prostřednictvím ukazatele. Vzhledem k tomu, že operace `P->I` je přesně ekvivalentní `(*P).I`, může být metoda `Main` také zapsána stejně:
+operátor `->` se používá pro přístup k polím a vyvolání metody struktury prostřednictvím ukazatele. Vzhledem k tomu, že je operace `P->I` přesně rovnocenná `(*P).I`, může být metoda `Main` zapsána stejně jako:
 
 ```csharp
 class Test
@@ -488,7 +488,7 @@ class Test
 
 ### <a name="pointer-element-access"></a>Přístup k prvku ukazatele
 
-*Pointer_element_access* se skládá z *primary_no_array_creation_expression* následovaný výrazem uzavřeným v "`[`" a "`]`".
+*Pointer_element_access* se skládá z *primary_no_array_creation_expression* následovaného výrazem uzavřeným v části "`[`" a "`]`".
 
 ```antlr
 pointer_element_access
@@ -496,9 +496,9 @@ pointer_element_access
     ;
 ```
 
-Ve formuláři s ukazatelem ve formě `P[E]` `P` musí být výrazem jiného typu ukazatele než `void*` a `E` musí být výraz, který lze implicitně převést na `int`, `uint`, `long` nebo `ulong`.
+V prvku ukazatele přístup k `P[E]`formuláře musí být `P` výrazem jiného typu ukazatele než `void*`a `E` musí být výraz, který lze implicitně převést na `int`, `uint`, `long`nebo `ulong`.
 
-Přístup k prvku formuláře `P[E]` se vyhodnocuje přesně jako `*(P + E)`. Popis operátoru dereference ukazatele (`*`) naleznete v tématu [dereference ukazatele](unsafe-code.md#pointer-indirection). Popis operátoru sčítání ukazatelů (`+`) naleznete v tématu [aritmetický ukazatel](unsafe-code.md#pointer-arithmetic).
+Přístup k prvku `P[E]` formuláře je vyhodnocen přesně jako `*(P + E)`. Popis operátoru indirekce ukazatele (`*`) naleznete v tématu [dereference ukazatele](unsafe-code.md#pointer-indirection). Popis operátoru sčítání ukazatelů (`+`) naleznete v tématu [aritmetický ukazatel](unsafe-code.md#pointer-arithmetic).
 
 V příkladu
 
@@ -514,7 +514,7 @@ class Test
 }
 ```
 
-přístup k prvku ukazatele se používá k inicializaci vyrovnávací paměti znaků ve smyčce `for`. Vzhledem k tomu, že operace `P[E]` je přesně ekvivalentní `*(P + E)`, může být příklad stejně dobře zapsaný:
+přístup k prvku ukazatele se používá k inicializaci vyrovnávací paměti znaků ve smyčce `for`. Vzhledem k tomu, že je operace `P[E]` přesně rovnocenná `*(P + E)`, může být příklad stejně dobře zapsán:
 
 ```csharp
 class Test
@@ -532,7 +532,7 @@ Operátor přístupu k elementu ukazatele nekontroluje chyby mimo hranice a chov
 
 ### <a name="the-address-of-operator"></a>Operátor address-of
 
-*Addressof_expression* se skládá z ampersandu (`&`) následovaného *unary_expression*.
+*Addressof_expression* se skládá ampersand (`&`) následovaný *unary_expression*.
 
 ```antlr
 addressof_expression
@@ -540,9 +540,9 @@ addressof_expression
     ;
 ```
 
-Vzhledem k výrazu `E`, který je typu `T` a klasifikován jako pevná proměnná ([pevné a mobilní proměnné](unsafe-code.md#fixed-and-moveable-variables)), konstrukce `&E` vypočítá adresu proměnné dané `E`. Typ výsledku je `T*` a je klasifikován jako hodnota. K chybě při kompilaci dojde, pokud `E` není klasifikován jako proměnná, pokud je `E` klasifikován jako lokální proměnná jen pro čtení, nebo pokud `E` označuje pohyblivou proměnnou. V posledním případě lze pomocí příkazu fixed ([příkaz fixed](unsafe-code.md#the-fixed-statement)) dočasně "opravit" proměnnou před získáním její adresy. Jak je uvedeno v [přístupu ke členu](expressions.md#member-access), mimo konstruktor instance nebo statický konstruktor pro strukturu nebo třídu, která definuje pole `readonly`, toto pole se považuje za hodnotu, nikoli proměnnou. V takovém případě se adresa nedá vzít. Obdobně nelze adresu konstanty považovat.
+Vzhledem k `E` výrazu, který je typu `T` a je klasifikován jako pevná proměnná ([pevné a pohyblivé proměnné](unsafe-code.md#fixed-and-moveable-variables)), konstrukce `&E` vypočítá adresu proměnné dané `E`. Typ výsledku je `T*` a je klasifikován jako hodnota. K chybě při kompilaci dojde v případě, že `E` není klasifikován jako proměnná, pokud je `E` klasifikován jako místní proměnná jen pro čtení, nebo pokud `E` označuje pohyblivou proměnnou. V posledním případě lze pomocí příkazu fixed ([příkaz fixed](unsafe-code.md#the-fixed-statement)) dočasně "opravit" proměnnou před získáním její adresy. Jak je uvedeno v [přístupu ke členu](expressions.md#member-access), mimo konstruktor instance nebo statický konstruktor pro strukturu nebo třídu, která definuje `readonly` pole, toto pole je považováno za hodnotu, nikoli proměnnou. V takovém případě se adresa nedá vzít. Obdobně nelze adresu konstanty považovat.
 
-Operátor `&` nevyžaduje jednoznačně přiřazený argument, ale za operací `&` je proměnná, na kterou je operátor použit, považována za jednoznačně přiřazenou v cestě provádění, ve které k operaci dojde. Je zodpovědností programátora, aby se zajistilo, že v této situaci bude provedeno správné inicializaci proměnné.
+Operátor `&` nepožaduje, aby byl jeho argument jednoznačně přiřazen, ale za `&` operace je proměnná, na kterou je operátor použit, považována za jednoznačně přiřazenou v cestě provádění, ve které k operaci dojde. Je zodpovědností programátora, aby se zajistilo, že v této situaci bude provedeno správné inicializaci proměnné.
 
 V příkladu
 
@@ -562,26 +562,26 @@ class Test
 }
 ```
 
-`i` se považuje za jednoznačně přiřazenou za operaci `&i` použitou k inicializaci `p`. Přiřazení k `*p` v účinnosti inicializuje `i`, ale zahrnutí této inicializace je zodpovědností programátora a při odebrání přiřazení by nedocházelo k žádné chybě při kompilaci.
+`i` se považuje za jednoznačně přiřazenou po `&i` operaci použitou k inicializaci `p`. Přiřazení `*p` v účinnosti inicializuje `i`, ale zahrnutí této inicializace je zodpovědností programátora a při odebrání přiřazení by nedocházelo k žádné chybě v době kompilace.
 
 Pravidla jednoznačného přiřazení pro operátor `&` existují tak, aby bylo možné zabránit redundantní inicializaci místních proměnných. Mnoho externích rozhraní API například převezme ukazatel na strukturu, která je vyplněna rozhraním API. Volání těchto rozhraní API obvykle předávají adresu místní proměnné struktury a bez pravidla, která by vyžadovala redundantní inicializaci proměnné struct.
 
 ### <a name="pointer-increment-and-decrement"></a>Zvýšení a snížení ukazatele
 
-V nezabezpečeném kontextu lze použít operátory `++` a `--` (operátory[přírůstku a snížení](expressions.md#postfix-increment-and-decrement-operators) [předpony a modifikátory přírůstku a snížení](expressions.md#prefix-increment-and-decrement-operators)), s výjimkou `void*`. Proto pro každý typ ukazatele `T*` jsou implicitně definovány následující operátory:
+V nezabezpečeném kontextu lze použít operátory `++` a `--` (operátory[přírůstku a snížení](expressions.md#postfix-increment-and-decrement-operators) [předpony a modifikátory zvýšení a snížení předpony](expressions.md#prefix-increment-and-decrement-operators)), s výjimkou `void*`. Proto pro každý typ ukazatele `T*`jsou implicitně definovány následující operátory:
 
 ```csharp
 T* operator ++(T* x);
 T* operator --(T* x);
 ```
 
-Operátory vytváří stejné výsledky jako `x + 1` a `x - 1` v uvedeném pořadí ([aritmetický ukazatel](unsafe-code.md#pointer-arithmetic)). Jinými slovy, pro proměnnou typu `T*` operátor `++` přidá `sizeof(T)` na adresu obsaženou v proměnné a operátor `--` odečte `sizeof(T)` od adresy obsažené v proměnné.
+Operátory vytváří stejné výsledky jako `x + 1` a `x - 1`, v uvedeném pořadí ([aritmetický ukazatel](unsafe-code.md#pointer-arithmetic)). Jinými slovy, operátor `++` pro proměnnou typu `T*`přidá `sizeof(T)` na adresu obsaženou v proměnné a operátor `--` odečte `sizeof(T)` od adresy obsažené v proměnné.
 
 Pokud operace zvýšení nebo snížení ukazatele přetéká v doméně typu ukazatele, výsledek je definován implementací, ale nejsou vyprodukovány žádné výjimky.
 
 ### <a name="pointer-arithmetic"></a>Aritmetika ukazatele
 
-V nezabezpečeném kontextu lze použít operátory `+` a `-` ([operátor sčítání](expressions.md#addition-operator) a [odčítání](expressions.md#subtraction-operator)) na hodnoty všech typů ukazatelů s výjimkou `void*`. Proto pro každý typ ukazatele `T*` jsou implicitně definovány následující operátory:
+V nezabezpečeném kontextu lze použít operátory `+` a `-` ([operátor sčítání](expressions.md#addition-operator) a [odčítání](expressions.md#subtraction-operator)) na hodnoty všech typů ukazatelů s výjimkou `void*`. Proto pro každý typ ukazatele `T*`jsou implicitně definovány následující operátory:
 
 ```csharp
 T* operator +(T* x, int y);
@@ -602,9 +602,9 @@ T* operator -(T* x, ulong y);
 long operator -(T* x, T* y);
 ```
 
-Vzhledem k výrazu `P` typu ukazatele `T*` a výrazu `N` typu `int`, `uint`, `long` nebo `ulong`, výrazy `P + N` a `N + P` počítají hodnotu ukazatele typu `T*`, která je výsledkem přidání 0 na adresu. předána 1. Podobně výraz `P - N` vypočítá hodnotu ukazatele typu `T*`, který je výsledkem odečítání `N * sizeof(T)` z adresy zadané `P`.
+Vzhledem k `P` výrazu `T*` typu ukazatele a výrazu `N` typu `int`, `uint`, `long`nebo `ulong`, výrazy `P + N` a `N + P` výpočet hodnoty ukazatele typu `T*`, který je výsledkem přidání `N * sizeof(T)` k adrese uvedené `P`. Podobně výraz `P - N` vypočítá hodnotu ukazatele typu `T*`, která je výsledkem odčítání `N * sizeof(T)` od adresy zadané `P`.
 
-U dvou výrazů, `P` a `Q` typu ukazatele `T*`, vypočítá výraz `P - Q` rozdíl mezi adresami zadanými `P` a `Q` a pak tento rozdíl vydělí `sizeof(T)`. Typ výsledku je vždycky `long`. V důsledku toho je `P - Q` vypočítána jako `((long)(P) - (long)(Q)) / sizeof(T)`.
+Zadané dva výrazy, `P` a `Q`typu ukazatele `T*`, výraz `P - Q` vypočítá rozdíl mezi adresami zadanými `P` a `Q` a potom tento rozdíl vydělí `sizeof(T)`. Typ výsledku je vždy `long`. V důsledku toho se `P - Q` počítá jako `((long)(P) - (long)(Q)) / sizeof(T)`.
 
 Příklad:
 
@@ -636,7 +636,7 @@ Pokud aritmetická operace ukazatele přetéká doménu typu ukazatele, výslede
 
 ### <a name="pointer-comparison"></a>Porovnání ukazatelů
 
-V nezabezpečeném kontextu lze použít operátory `==`, `!=`, `<`, `>`, `<=` a `=>` ([relační a operátor testování typu](expressions.md#relational-and-type-testing-operators)), a to pro hodnoty všech typů ukazatelů. Operátory porovnání ukazatelů jsou:
+V nezabezpečeném kontextu lze použít operátory `==`, `!=`, `<`, `>`, `<=`a `=>` ([relační a operátor testování typů](expressions.md#relational-and-type-testing-operators)) pro hodnoty všech typů ukazatelů. Operátory porovnání ukazatelů jsou:
 
 ```csharp
 bool operator ==(void* x, void* y);
@@ -647,7 +647,7 @@ bool operator <=(void* x, void* y);
 bool operator >=(void* x, void* y);
 ```
 
-Vzhledem k tomu, že implicitní převod existuje z libovolného typu ukazatele na typ `void*`, operandy libovolného typu ukazatele lze porovnat pomocí těchto operátorů. Relační operátory porovnávají adresy zadané pomocí dvou operandů, jako kdyby byla celá čísla bez znaménka.
+Vzhledem k tomu, že implicitní převod existuje z libovolného typu ukazatele na typ `void*`, lze pomocí těchto operátorů porovnat operandy libovolného typu ukazatele. Relační operátory porovnávají adresy zadané pomocí dvou operandů, jako kdyby byla celá čísla bez znaménka.
 
 ### <a name="the-sizeof-operator"></a>Operátor sizeof
 
@@ -662,7 +662,7 @@ sizeof_expression
 Výsledek operátoru `sizeof` je hodnota typu `int`. Pro určité předdefinované typy operátor `sizeof` vrací konstantní hodnotu, jak je znázorněno v následující tabulce.
 
 
-| __Vyjádření__   | __Vyústit__ |
+| __Vyjádření__   | __výsledek__ |
 |------------------|------------|
 | `sizeof(sbyte)`  | `1`        |
 | `sizeof(byte)`   | `1`        |
@@ -677,7 +677,7 @@ Výsledek operátoru `sizeof` je hodnota typu `int`. Pro určité předdefinovan
 | `sizeof(double)` | `8`        |
 | `sizeof(bool)`   | `1`        |
 
-U všech ostatních typů je výsledkem operátoru `sizeof` definovaná implementace a je klasifikována jako hodnota, nikoli konstanta.
+Pro všechny ostatní typy je výsledkem operátoru `sizeof` definovaná implementace a je klasifikována jako hodnota, nikoli konstanta.
 
 Pořadí, ve kterém jsou členové zabaleni do struktury, není určeno.
 
@@ -687,7 +687,7 @@ Při použití na operand, který má typ struktury, je výsledkem celkový poč
 
 ## <a name="the-fixed-statement"></a>Příkaz fixed
 
-V nezabezpečeném kontextu produkční prostředí *embedded_statement* ([Statements](statements.md)) umožňuje další konstrukci, příkaz `fixed`, který se používá k "opravě" pohyblivé proměnné, aby její adresa zůstala konstantní po dobu trvání příkazu. .
+V nezabezpečeném kontextu produkční prostředí *embedded_statement* ([příkazy](statements.md)) umožňuje další konstrukci, příkaz `fixed`, který se používá k "opravě" pohyblivé proměnné, aby její adresa zůstala konstantní po dobu trvání příkazu.
 
 ```antlr
 fixed_statement
@@ -708,18 +708,18 @@ fixed_pointer_initializer
     ;
 ```
 
-Každý *fixed_pointer_declarator* deklaruje místní proměnnou daného *pointer_type* a inicializuje tuto místní proměnnou s adresou vypočítanou odpovídajícím *fixed_pointer_initializer*. Lokální proměnná deklarovaná v příkazu `fixed` je přístupná v jakémkoli *fixed_pointer_initializeru*, ke kterému dochází napravo od deklarace proměnné, a v *embedded_statement* příkazu `fixed`. Lokální proměnná deklarovaná příkazem `fixed` je považována za jen pro čtení. K chybě při kompilaci dojde v případě, že se vložený příkaz pokusí změnit tuto místní proměnnou (přes přiřazení nebo operátory `++` a `--`) nebo předat jako parametr `ref` nebo `out`.
+Každý *fixed_pointer_declarator* deklaruje místní proměnnou daného *pointer_type* a inicializuje tuto místní proměnnou s adresou vypočítanou odpovídajícím *fixed_pointer_initializer*. Lokální proměnná deklarovaná v příkazu `fixed` je přístupná v jakémkoli *fixed_pointer_initializer*, ke kterým dochází napravo od deklarace proměnné, a v *embedded_statement* příkazu `fixed`. Lokální proměnná deklarovaná příkazem `fixed` je považována za jen pro čtení. K chybě při kompilaci dojde v případě, že se vložený příkaz pokusí změnit tuto místní proměnnou (prostřednictvím přiřazení nebo operátorů `++` a `--`) nebo předat jako parametr `ref` nebo `out`.
 
 *Fixed_pointer_initializer* může být jedna z následujících:
 
-*  Token "`&`" následovaný *variable_reference* ([přesné pravidlo pro určení jednoznačného přiřazení](variables.md#precise-rules-for-determining-definite-assignment)) k pohyblivé proměnné ([pevné a mobilní proměnné](unsafe-code.md#fixed-and-moveable-variables)) nespravovaného typu `T` za předpokladu, že typ `T*` je implicitně převoditelné na typ ukazatele uvedený v příkazu `fixed`. V tomto případě inicializátor vypočítá adresu dané proměnné a proměnná je zaručena, aby zůstala na pevné adrese po dobu trvání příkazu `fixed`.
-*  Výraz *array_type* s elementy nespravovaného typu `T`, za předpokladu, že typ `T*` je implicitně převeden na typ ukazatele uvedený v příkazu `fixed`. V tomto případě inicializátor vypočítá adresu prvního prvku v poli a celé pole je zaručeno, že zůstane na pevné adrese po dobu trvání příkazu `fixed`. Pokud je výraz pole null nebo pokud má pole nulové prvky, inicializátor vypočítá adresu rovnou nule.
-*  Výraz typu `string`, pokud je typ `char*` implicitně převoditelné na typ ukazatele uvedený v příkazu `fixed`. V tomto případě inicializátor vypočítá adresu prvního znaku v řetězci a celý řetězec zaručuje, že zůstane na pevné adrese po dobu trvání příkazu `fixed`. Chování příkazu `fixed` je definováno implementací, pokud má řetězcový výraz hodnotu null.
-*  *Simple_name* nebo *member_access* , který odkazuje na člen vyrovnávací paměti s pevnou velikostí pohyblivé proměnné za předpokladu, že typ člena vyrovnávací paměti pevné velikosti je implicitně převeden na typ ukazatele uvedený v příkazu `fixed`. V tomto případě inicializátor vypočítá ukazatel na první prvek vyrovnávací paměti pevné velikosti ([vyrovnávací paměti pevné velikosti ve výrazech](unsafe-code.md#fixed-size-buffers-in-expressions)) a vyrovnávací paměť pevné velikosti je zaručena, aby zůstala na pevné adrese po dobu trvání příkazu `fixed`.
+*  Token "`&`" následovaný *variable_reference* ([přesné pravidlo pro stanovení jednoznačného přiřazení](variables.md#precise-rules-for-determining-definite-assignment)) k pohyblivé proměnné ([pevné a mobilní proměnné](unsafe-code.md#fixed-and-moveable-variables)) nespravovaného typu `T`, za předpokladu, že je typ `T*` implicitně převoditelný na typ ukazatele uvedený v příkazu `fixed`. V tomto případě inicializátor vypočítá adresu dané proměnné a proměnná je zaručena, aby zůstala na pevné adrese po dobu trvání příkazu `fixed`.
+*  Výraz *array_type* s elementy nespravovaného typu `T`za předpokladu, že typ `T*` je implicitně převoditelné na typ ukazatele uvedený v příkazu `fixed`. V tomto případě inicializátor vypočítá adresu prvního prvku v poli a celé pole je zaručeno, že zůstane na pevné adrese po dobu trvání `fixed`ho příkazu. Pokud je výraz pole null nebo pokud má pole nulové prvky, inicializátor vypočítá adresu rovnou nule.
+*  Výraz typu `string`za předpokladu, že typ `char*` je implicitně převoditelné na typ ukazatele uvedený v příkazu `fixed`. V tomto případě inicializátor vypočítá adresu prvního znaku v řetězci a celý řetězec zaručuje, že zůstane na pevné adrese po dobu trvání příkazu `fixed`. Chování příkazu `fixed` je definováno implementací, pokud má řetězcový výraz hodnotu null.
+*  *Simple_name* nebo *member_access* odkazující na člena vyrovnávací paměti s pevnou velikostí pohyblivé proměnné, pokud je typ člena vyrovnávací paměti s pevnou velikostí implicitně převoditelný na typ ukazatele uvedený v příkazu `fixed`. V tomto případě inicializátor vypočítá ukazatel na první prvek vyrovnávací paměti pevné velikosti ([vyrovnávací paměti pevné velikosti ve výrazech](unsafe-code.md#fixed-size-buffers-in-expressions)) a vyrovnávací paměť pevné velikosti je zaručena, aby zůstala na pevné adrese po dobu trvání příkazu `fixed`.
 
-Pro každou adresu, která je vypočítána *fixed_pointer_initializer* , příkaz `fixed` zajistí, že proměnná odkazovaná adresou nepodléhá přemístění nebo vyřazení systémem uvolňování paměti po dobu trvání příkazu `fixed`. Například pokud adresa vypočítaná pomocí *fixed_pointer_initializer* odkazuje na pole objektu nebo prvku instance pole, příkaz `fixed` zaručuje, že se instance obsahujícího objektu nebude přecházet nebo není odstraněna během doba života příkazu
+Pro každou adresu vypočítanou *fixed_pointer_initializer* `fixed` příkaz zajistí, že proměnná odkazovaná adresou není předmětem přemístění nebo vyřazení systémem uvolňování paměti po dobu trvání příkazu `fixed`. Například pokud adresa vypočítaná *fixed_pointer_initializer* odkazuje na pole objektu nebo prvku instance pole, příkaz `fixed` garantuje, že objekt obsahující instanci objektu není přemístěné nebo vyřazený během životnosti prohlášení.
 
-Je zodpovědností programátora, aby se zajistilo, že ukazatelé vytvořené příkazy `fixed` nepřekročí provádění těchto příkazů. Například pokud jsou ukazatele vytvořené pomocí příkazu `fixed` předány externím rozhraním API, je úkolem programátora zajistit, aby rozhraní API nezůstala žádná paměť těchto ukazatelů.
+Je zodpovědností programátora, aby se zajistilo, že ukazatelé vytvořené pomocí `fixed` příkazy nezůstanou po provedení těchto příkazů. Například pokud jsou ukazatele vytvořené pomocí příkazů `fixed` předány externím rozhraním API, je úkolem programátora zajistit, aby rozhraní API nezůstala žádná paměť těchto ukazatelů.
 
 Pevné objekty můžou způsobit fragmentaci haldy (protože se nedají přesunout). Z tohoto důvodu by objekty měly být opraveny pouze v případě nezbytně nutné a pak pouze pro nejkratší možné množství času.
 
@@ -748,9 +748,9 @@ class Test
 }
 ```
 
-ukazuje několik použití příkazu `fixed`. První příkaz opraví a získá adresu statického pole, druhý příkaz opraví a získá adresu pole instance a třetí příkaz opraví a získá adresu elementu pole. V každém případě by došlo k chybě při použití regulárního operátoru `&`, protože proměnné jsou klasifikovány jako přenosné proměnné.
+ukazuje několik použití příkazu `fixed`. První příkaz opraví a získá adresu statického pole, druhý příkaz opraví a získá adresu pole instance a třetí příkaz opraví a získá adresu elementu pole. V každém případě by došlo k chybě při použití regulárního operátoru `&`, protože proměnné jsou klasifikovány jako mobilní proměnné.
 
-Čtvrtý příkaz `fixed` v předchozím příkladu vytvoří podobný výsledek jako třetí.
+Čtvrtý `fixed` příkaz v předchozím příkladu vytvoří podobný výsledek jako třetí.
 
 Tento příklad příkazu `fixed` používá `string`:
 
@@ -773,7 +773,7 @@ class Test
 }
 ```
 
-V nezabezpečené prvky pole kontextu jednorozměrného pole jsou uloženy ve vzestupném pořadí indexu, počínaje indexem `0` a končící indexem `Length - 1`. U multidimenzionálních polí jsou prvky pole uloženy tak, aby byly nejprve zvyšovány indexy pravého rozměru, potom následující levá dimenze a tak dále doleva. V rámci příkazu `fixed`, který získá ukazatel `p` na instanci pole `a`, hodnoty ukazatele od `p` do `p + a.Length - 1` představuje adresy prvků v poli. Podobně proměnné od `p[0]` do `p[a.Length - 1]` reprezentují skutečné prvky pole. S ohledem na způsob, jakým jsou pole uložena, můžeme považovat pole libovolné dimenze, jako kdyby byla lineární.
+V nezabezpečené prvky pole kontextu jednorozměrného pole jsou uloženy ve vzestupném pořadí indexů, počínaje indexem `0` a končící `Length - 1`indexu. U multidimenzionálních polí jsou prvky pole uloženy tak, aby byly nejprve zvyšovány indexy pravého rozměru, potom následující levá dimenze a tak dále doleva. V rámci příkazu `fixed`, který získá ukazatel `p` na instanci pole `a`, hodnoty ukazatele od `p` po `p + a.Length - 1` reprezentují adresy prvků v poli. Podobně proměnné, od `p[0]` po `p[a.Length - 1]` reprezentují skutečné prvky pole. S ohledem na způsob, jakým jsou pole uložena, můžeme považovat pole libovolné dimenze, jako kdyby byla lineární.
 
 Příklad:
 
@@ -865,11 +865,11 @@ class Test
 
 příkaz fixed se používá k opravě vyrovnávací paměti pevné velikosti struktury, aby její adresa mohla být použita jako ukazatel.
 
-Hodnota `char*` vytvořená opravou instance řetězce vždy odkazuje na řetězec zakončený hodnotou null. V rámci příkazu fixed, který získá ukazatel `p` do instance řetězce `s`, hodnoty ukazatele od `p` do `p + s.Length - 1` reprezentují adresy znaků v řetězci a hodnota ukazatele `p + s.Length` vždy odkazuje na znak null ( znak s hodnotou `'\0'`).
+Hodnota `char*` vytvořená opravou instance řetězce vždy odkazuje na řetězec zakončený hodnotou null. V rámci příkazu fixed, který získá ukazatel `p` na `s`instance řetězce, hodnoty ukazatele od `p` po `p + s.Length - 1` reprezentují adresy znaků v řetězci a hodnota ukazatele `p + s.Length` vždy odkazuje na znak null (znak s hodnotou `'\0'`).
 
 Změna objektů spravovaného typu prostřednictvím pevných ukazatelů může mít za následek nedefinované chování. Například vzhledem k tomu, že řetězce jsou neměnné, je úkolem programátora zajistit, aby se znaky odkazované ukazatelem na pevný řetězec nezměnily.
 
-Automatické ukončení řetězce s hodnotou null je zvláště pohodlné při volání externích rozhraní API, která očekávají řetězce "C-Style". Všimněte si však, že instance řetězce má povoleno obsahovat znaky null. Pokud jsou tyto znaky null k dispozici, řetězec se zkrátí, pokud je zpracován jako zakončené znakem null `char*`.
+Automatické ukončení řetězce s hodnotou null je zvláště pohodlné při volání externích rozhraní API, která očekávají řetězce "C-Style". Všimněte si však, že instance řetězce má povoleno obsahovat znaky null. Pokud jsou tyto znaky null k dispozici, řetězec se zkrátí, pokud je považován za `char*`zakončený hodnotou null.
 
 ## <a name="fixed-size-buffers"></a>Vyrovnávací paměti pevné velikosti
 
@@ -906,17 +906,17 @@ fixed_size_buffer_declarator
     ;
 ```
 
-Deklarace vyrovnávací paměti s pevnou velikostí může zahrnovat sadu atributů ([atributů](attributes.md)), modifikátor `new` ([modifikátory](classes.md#modifiers)), platnou kombinaci čtyř modifikátorů přístupu ([parametry typu a omezení](classes.md#type-parameters-and-constraints)) a modifikátoru `unsafe` ([nezabezpečené kontexty](unsafe-code.md#unsafe-contexts)). Atributy a modifikátory se vztahují na všechny členy deklarované deklarací vyrovnávací paměti s pevnou velikostí. Jedná se o chybu, aby se stejný modifikátor zobrazoval víckrát v deklaraci vyrovnávací paměti s pevnou velikostí.
+Deklarace vyrovnávací paměti pevné velikosti může zahrnovat sadu atributů ([atributů](attributes.md)), modifikátor `new` ([modifikátory](classes.md#modifiers)), platnou kombinaci obou modifikátorů přístupu ([parametry typu a omezení](classes.md#type-parameters-and-constraints)) a modifikátoru `unsafe` ([nebezpečné kontexty](unsafe-code.md#unsafe-contexts)). Atributy a modifikátory se vztahují na všechny členy deklarované deklarací vyrovnávací paměti s pevnou velikostí. Jedná se o chybu, aby se stejný modifikátor zobrazoval víckrát v deklaraci vyrovnávací paměti s pevnou velikostí.
 
 Deklarace vyrovnávací paměti s pevnou velikostí není povolená pro zahrnutí modifikátoru `static`.
 
-Typ elementu bufferu pro deklaraci vyrovnávací paměti s pevnou velikostí určuje typ prvku vyrovnávací paměti, kterou deklarace zavedla. Typ elementu buffer musí být jeden z předdefinovaných typů `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char`, `float`, 0 nebo 1.
+Typ elementu bufferu pro deklaraci vyrovnávací paměti s pevnou velikostí určuje typ prvku vyrovnávací paměti, kterou deklarace zavedla. Typ elementu buffer musí být jeden z předdefinovaných typů `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char`, `float`, `double`nebo `bool`.
 
-Typ elementu bufferu následuje seznam deklarátory vyrovnávací paměti s pevnou velikostí, z nichž každá zavádí nového člena. Vyrovnávací paměť pevné velikosti deklarátor se skládá z identifikátoru, který člen pojmenovává, následovaný konstantním výrazem uzavřeným v tokenech `[` a `]`. Konstantní výraz označuje počet prvků v členu zavedený deklarátor vyrovnávací paměti s pevnou velikostí. Typ konstantního výrazu musí být implicitně převeden na typ `int` a hodnota musí být kladné celé číslo, které není nula.
+Typ elementu bufferu následuje seznam deklarátory vyrovnávací paměti s pevnou velikostí, z nichž každá zavádí nového člena. Deklarátor vyrovnávací paměti s pevnou velikostí se skládá z identifikátoru, který člen pojmenovává, následovaný konstantním výrazem uzavřeným v `[` a `]` tokeny. Konstantní výraz označuje počet prvků v členu zavedený deklarátor vyrovnávací paměti s pevnou velikostí. Typ konstantního výrazu musí být implicitně převeden na typ `int`a hodnota musí být kladné celé číslo, které není nula.
 
 Prvky vyrovnávací paměti s pevnou velikostí jsou zaručeny tak, aby byly rozloženy postupně v paměti.
 
-Deklarace vyrovnávací paměti s pevnou velikostí, která deklaruje více vyrovnávacích pamětí s pevnou velikostí, je ekvivalentní více deklaracím jediné deklarace vyrovnávací paměti s pevnou velikostí se stejnými atributy a typy prvků. Příklad
+Deklarace vyrovnávací paměti s pevnou velikostí, která deklaruje více vyrovnávacích pamětí s pevnou velikostí, je ekvivalentní více deklaracím jediné deklarace vyrovnávací paměti s pevnou velikostí se stejnými atributy a typy prvků. Například
 
 ```csharp
 unsafe struct A
@@ -942,14 +942,14 @@ Vyhledávání členů ([operátoři](expressions.md#operators)) člena vyrovná
 
 Vyrovnávací paměť pevné velikosti může být ve výrazu odkazována pomocí *simple_name* ([odvození typu](expressions.md#type-inference)) nebo *member_access* ([Kontrola při kompilaci dynamického překladu přetížení](expressions.md#compile-time-checking-of-dynamic-overload-resolution)).
 
-Když se na člena vyrovnávací paměti pevné velikosti odkazuje jako na jednoduchý název, je efekt stejný jako členský přístup ve formátu `this.I`, kde `I` je členem vyrovnávací paměti pevné velikosti.
+Když je člen vyrovnávací paměti s pevnou velikostí odkazován jako jednoduchý název, je efekt stejný jako členský přístup k formuláři `this.I`, kde `I` je členem vyrovnávací paměti s pevnou velikostí.
 
-V případě členství ve formuláři `E.I`, pokud `E` je typu struktury a vyhledávání členů `I` v tomto typu struktury identifikuje člena pevné velikosti, pak `E.I` je vyhodnocen jako následující:
+V případě přístupu člena formuláře `E.I`, pokud `E` je typu struktura a vyhledávání členů `I` v tomto typu struktury identifikuje člena pevné velikosti, `E.I` je vyhodnocen jako následující:
 
-*  Pokud výraz `E.I` nenastane v nezabezpečeném kontextu, dojde k chybě při kompilaci.
-*  Pokud je `E` klasifikována jako hodnota, dojde k chybě při kompilaci.
-*  V opačném případě, pokud `E` je pohyblivá proměnná ([pevné a mobilní proměnné](unsafe-code.md#fixed-and-moveable-variables)) a výraz `E.I` není *fixed_pointer_initializer* ([příkaz fixed](unsafe-code.md#the-fixed-statement)), dojde k chybě při kompilaci.
-*  V opačném případě `E` odkazuje na pevnou proměnnou a výsledek výrazu je ukazatel na první prvek člena vyrovnávací paměti pevné velikosti `I` v `E`. Výsledek je typu `S*`, kde `S` je typ prvku `I` a je klasifikován jako hodnota.
+*  Pokud `E.I` výraz neproběhne v nebezpečném kontextu, dojde k chybě při kompilaci.
+*  Pokud je `E` klasifikován jako hodnota, dojde k chybě při kompilaci.
+*  V opačném případě, pokud je `E` pohyblivé proměnné ([pevné a mobilní proměnné](unsafe-code.md#fixed-and-moveable-variables)) a výraz `E.I` není *fixed_pointer_initializer* ([příkaz fixed](unsafe-code.md#the-fixed-statement)), dojde k chybě při kompilaci.
+*  V opačném případě `E` odkazuje na pevnou proměnnou a výsledek výrazu je ukazatel na první prvek člena vyrovnávací paměti pevné velikosti `I` v `E`. Výsledek je typu `S*`, kde `S` je typ prvku `I`a je klasifikován jako hodnota.
 
 Následující prvky vyrovnávací paměti s pevnou velikostí lze použít při operacích s ukazateli z prvního prvku. Přístup k prvkům vyrovnávací paměti s pevnou velikostí je na rozdíl od přístupu k polím nebezpečná operace a není zaškrtnuta rozsah.
 
@@ -984,7 +984,7 @@ class Test
 
 Vyrovnávací paměti s pevnou velikostí nepodléhají jednoznačné kontrole přiřazení ([jednoznačné přiřazení](variables.md#definite-assignment)) a členy vyrovnávací paměti pevné velikosti jsou ignorovány pro účely jednoznačné kontroly přiřazení proměnných typu struktury.
 
-Pokud je nejvzdálenější Proměnná obsahující proměnnou struktury člena vyrovnávací paměti pevné velikosti statická proměnná, proměnná instance třídy nebo element pole, prvky vyrovnávací paměti pevné velikosti jsou automaticky inicializovány na výchozí hodnoty ([Výchozí hodnota hodnoty](variables.md#default-values)). Ve všech ostatních případech není počáteční obsah vyrovnávací paměti s pevnou velikostí definován.
+Když je nejvzdálenější objekt obsahující proměnnou struktury pro člena vyrovnávací paměti pevné velikosti statická proměnná, proměnná instance třídy nebo element pole, prvky vyrovnávací paměti pevné velikosti jsou automaticky inicializovány na výchozí hodnoty ([výchozí hodnoty](variables.md#default-values)). Ve všech ostatních případech není počáteční obsah vyrovnávací paměti s pevnou velikostí definován.
 
 ## <a name="stack-allocation"></a>Přidělení zásobníku
 
@@ -1000,15 +1000,15 @@ stackalloc_initializer
     ;
 ```
 
-*Unmanaged_type* označuje typ položek, které budou uloženy v nově přiděleném umístění, a *výraz* označuje počet těchto položek. Společně, určují velikost požadované alokace. Vzhledem k tomu, že velikost přidělení zásobníku nemůže být záporná, jedná se o chybu při kompilaci, která určuje počet položek jako *constant_expression* , který se vyhodnotí jako záporná hodnota.
+*Unmanaged_type* označuje typ položek, které budou uloženy v nově přiděleném umístění, a *výraz* označuje počet těchto položek. Společně, určují velikost požadované alokace. Vzhledem k tomu, že velikost přidělení zásobníku nemůže být záporná, jedná se o chybu při kompilaci, která určuje počet položek jako *constant_expression* , která se vyhodnocuje jako záporná hodnota.
 
-Inicializátor přidělení zásobníku ve formátu `stackalloc T[E]` vyžaduje, aby `T` byl nespravovaného typu ([typy ukazatelů](unsafe-code.md#pointer-types)) a `E` jako výraz typu `int`. Konstrukce přiděluje `E * sizeof(T)` bajtů ze zásobníku volání a vrátí ukazatel typu `T*` do nově přiděleného bloku. Pokud je `E` záporná hodnota, chování není definováno. Pokud je hodnota `E` nulová, není provedena žádná alokace a vrácený ukazatel je definován implementací. Pokud není k dispozici dostatek paměti pro přidělení bloku dané velikosti, je vyvolána `System.StackOverflowException`.
+Inicializátor přidělení zásobníku formuláře `stackalloc T[E]` vyžaduje, aby `T` být nespravovaného typu ([typy ukazatelů](unsafe-code.md#pointer-types)) a `E` jako výraz typu `int`. Konstrukce přiděluje `E * sizeof(T)` bajtů ze zásobníku volání a vrací ukazatel typu `T*`na nově přidělený blok. Je-li `E` záporná hodnota, chování není definováno. Pokud je `E` nula, není provedena žádná alokace a vrácený ukazatel je definován implementací. Pokud není k dispozici dostatek paměti pro přidělení bloku dané velikosti, je vyvolána `System.StackOverflowException`.
 
 Obsah nově přidělené paměti není definován.
 
 Inicializátory přidělení zásobníku nejsou povolené v blocích `catch` nebo `finally` ([příkaz try](statements.md#the-try-statement)).
 
-Neexistuje žádný způsob, jak explicitně uvolnit přidělenou paměť pomocí `stackalloc`. Všechny bloky paměti přidělené zásobníku vytvořené během provádění členu funkce jsou automaticky zahozeny, když tento člen funkce vrátí. To odpovídá funkci `alloca`, rozšíření se běžně našlo v jazyce C a C++ implementací.
+Neexistuje žádný způsob, jak explicitně uvolnit paměť přidělenou pomocí `stackalloc`. Všechny bloky paměti přidělené zásobníku vytvořené během provádění členu funkce jsou automaticky zahozeny, když tento člen funkce vrátí. To odpovídá funkci `alloca`, rozšíření obvykle nalezeno v C a C++ implementacích.
 
 V příkladu
 
@@ -1038,11 +1038,11 @@ class Test
 }
 ```
 
-v metodě `IntToString` se k přidělení vyrovnávací paměti 16 znaků v zásobníku používá inicializátor `stackalloc`. Vyrovnávací paměť se automaticky zahodí, když se metoda vrátí.
+v metodě `IntToString` se používá inicializátor `stackalloc` k přidělení vyrovnávací paměti 16 znaků v zásobníku. Vyrovnávací paměť se automaticky zahodí, když se metoda vrátí.
 
 ## <a name="dynamic-memory-allocation"></a>Dynamické přidělování paměti
 
-S výjimkou operátoru `stackalloc` C# neposkytuje žádné předdefinované konstrukce pro správu paměti, která není v paměti pro uvolňování paměti. Tyto služby jsou obvykle poskytovány prostřednictvím podpory knihoven tříd nebo naimportované přímo z podkladového operačního systému. Například níže uvedená třída `Memory` ukazuje, jak může být k dispozici funkce haldy základního operačního systému z C#:
+S výjimkou operátoru `stackalloc` C# neposkytuje žádné předdefinované konstrukce pro správu paměti, která není v paměti pro uvolňování paměti. Tyto služby jsou obvykle poskytovány prostřednictvím podpory knihoven tříd nebo naimportované přímo z podkladového operačního systému. Například třída `Memory` níže ukazuje, jak je možné, že jsou k dispozici funkce haldy základního operačního systému C#:
 
 ```csharp
 using System;
@@ -1149,4 +1149,4 @@ class Test
 }
 ```
 
-Příklad přiděluje 256 bajtů paměti prostřednictvím `Memory.Alloc` a inicializuje blok paměti hodnotami, které se zvyšují od 0 do 255. Poté přidělí pole bajtů elementu 256 a používá `Memory.Copy` ke zkopírování obsahu bloku paměti do pole bajtů. Nakonec je blok paměti uvolněn pomocí `Memory.Free` a obsah pole bajtů je výstupem v konzole.
+Příklad přiděluje 256 bajtů paměti prostřednictvím `Memory.Alloc` a inicializuje blok paměti hodnotami, které se zvyšují z 0 na 255. Poté přidělí pole bajtů elementu 256 a používá `Memory.Copy` ke zkopírování obsahu bloku paměti do pole bajtů. Nakonec je blok paměti uvolněn pomocí `Memory.Free` a obsah pole bajtů je výstupem v konzole.
