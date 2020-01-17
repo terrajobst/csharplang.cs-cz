@@ -1,9 +1,9 @@
 ---
 ms.openlocfilehash: f61039abd6bd557ac0ea625e6aac1c8bafa57b02
-ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
+ms.sourcegitcommit: e134bb7058e9848120b93b345f96d6ac0cb8c815
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 10/01/2019
+ms.lasthandoff: 01/17/2020
 ms.locfileid: "71704077"
 ---
 # <a name="expressions"></a>Výrazy
@@ -24,7 +24,7 @@ Výraz je klasifikován jako jeden z následujících:
 *  Přístup k vlastnosti. Každý přístup k vlastnosti má přidružený typ, konkrétně typ vlastnosti. Kromě toho může mít přístup k vlastnosti přidružený výraz instance. Když je vyvolán přistupující objekt (`get` nebo `set`) k vlastnosti instance, výsledek vyhodnocení výrazu instance se projeví jako instance reprezentované `this` ([Tento přístup](expressions.md#this-access)).
 *  Přístup k události. Každý přístup k události má přidružený typ, konkrétně typ události. Kromě toho může mít přístup k události přidružený výraz instance. Přístup k události se může zobrazit jako levý operand operátoru `+=` a `-=` ([přiřazení události](expressions.md#event-assignment)). V jakémkoli jiném kontextu výraz klasifikovaný jako přístup k události způsobí chybu při kompilaci.
 *  Přístup indexeru Každý přístup k indexeru má přidružený typ, konkrétně typ prvku indexeru. Kromě toho má k přístupu indexeru přidružený výraz instance a seznam přidružených argumentů. Při vyvolání přístupového objektu (`get` nebo `set`) k vyvolání indexeru se výsledek vyhodnocení výrazu instance stala instancí reprezentovanou `this` ([Tento přístup](expressions.md#this-access)) a výsledkem vyhodnocení seznamu argumentů se bude seznam parametrů vyvolání.
-*  Žádným. K tomu dochází, když je výraz voláním metody s návratovým typem `void`. Výraz klasifikovaný jako Nothing je platný pouze v kontextu *statement_expression* ([příkazy výrazu](statements.md#expression-statements)).
+*  Nic K tomu dochází, když je výraz voláním metody s návratovým typem `void`. Výraz klasifikovaný jako Nothing je platný pouze v kontextu *statement_expression* ([příkazy výrazu](statements.md#expression-statements)).
 
 Konečný výsledek výrazu není nikdy obor názvů, typ, skupina metod ani přístup k události. Namísto toho, jak je uvedeno výše, jsou tyto kategorie výrazů zprostředkující konstrukce, které jsou povoleny pouze v určitých kontextech.
 
@@ -122,7 +122,7 @@ Pokud výraz obsahuje více operátorů, ***Priorita*** operátorů řídí poř
 
 Následující tabulka shrnuje všechny operátory v pořadí podle priority od nejvyšších po nejnižší:
 
-| __Section__                                                                                   | __Kategorie__                | __Operátory__ | 
+| __Sekce__                                                                                   | __Kategorie__                | __Operátory__ | 
 |-----------------------------------------------------------------------------------------------|-----------------------------|---------------|
 | [Primární výrazy](expressions.md#primary-expressions)                                     | Primární                     | `x.y`  `f(x)`  `a[x]`  `x++`  `x--`  `new`  `typeof`  `default`  `checked`  `unchecked`  `delegate` | 
 | [Unární operátory](expressions.md#unary-operators)                                             | Unární                       | `+`  `-`  `!`  `~`  `++x`  `--x`  `(T)x` | 
@@ -137,7 +137,7 @@ Následující tabulka shrnuje všechny operátory v pořadí podle priority od 
 | [Podmíněné logické operátory](expressions.md#conditional-logical-operators)                 | Podmiňovací operátor AND             | `&&`          | 
 | [Podmíněné logické operátory](expressions.md#conditional-logical-operators)                 | Podmiňovací operátor OR              | <code>&#124;&#124;</code>          | 
 | [Operátor slučování s hodnotou null](expressions.md#the-null-coalescing-operator)                   | Nulové sloučení             | `??`          | 
-| [Podmíněný operátor](expressions.md#conditional-operator)                                   | Podmíněné                 | `?:`          | 
+| [Podmíněný operátor](expressions.md#conditional-operator)                                   | Podmiňovací operátor                 | `?:`          | 
 | [Operátory přiřazení](expressions.md#assignment-operators), [anonymní výrazy funkcí](expressions.md#anonymous-function-expressions)  | Přiřazení a výraz lambda | `=`  `*=`  `/=`  `%=`  `+=`  `-=`  `<<=`  `>>=`  `&=`  `^=`  <code>&#124;=</code>  `=>` | 
 
 Když dojde k operandu mezi dvěma operátory se stejnou prioritou, asociativita operátor řídí pořadí, ve kterém jsou operace prováděny:
@@ -592,7 +592,7 @@ Druhá fáze pokračuje následujícím způsobem:
 
 Pokud `E` je skupina metod nebo implicitně typové anonymní funkce a `T` je typ delegáta nebo strom výrazů, pak všechny typy parametrů `T` jsou *vstupní typy* `E` *s typem* `T`.
 
-####  <a name="output-types"></a>Výstupní typy
+####  <a name="output-types"></a>Typy výstupu
 
 Pokud `E` je skupina metod nebo anonymní funkce a `T` je typ delegáta nebo typ stromu výrazů, návratový typ `T` je *výstupní typ* `E` *s typem* `T`.
 
@@ -868,7 +868,7 @@ U dvou různých typů `T1` a `T2`je `T1` cílem lepšího převodu než `T2`, p
    * `D2` vrací typ void
    * `D2` má `S2`návratového typu a `S1` je cílem lepšího převodu než `S2`
 *  `T1` je `Task<S1>`, `T2` je `Task<S2>`a `S1` je lepším cílem převodu než `S2`
-*  `T1` je `S1` nebo `S1?`, kde `S1` je celočíselný typ se znaménkem a `T2` je `S2` nebo `S2?`, kde `S2` je celočíselný typ bez znaménka. Určen
+*  `T1` je `S1` nebo `S1?`, kde `S1` je celočíselný typ se znaménkem a `T2` je `S2` nebo `S2?`, kde `S2` je celočíselný typ bez znaménka. Zejména:
    * `S1` je `sbyte` a `S2` je `byte`, `ushort`, `uint`nebo `ulong`
    * `S1` je `short` a `S2` je `ushort`, `uint`nebo `ulong`
    * `S1` je `int` a `S2` `uint`nebo `ulong`
@@ -2424,7 +2424,7 @@ který je opět stejný jako:
 ```csharp
 if (a.b != null) if (a.b[0] != null) a.b[0].c();
 ```
-s výjimkou, že `a.b` a `a.b[0]` jsou vyhodnocovány pouze jednou.
+S výjimkou, že `a.b` a `a.b[0]` jsou vyhodnocovány pouze jednou.
 
 Pokud k tomu dojde v kontextu, ve kterém je použita jeho hodnota, jako v:
 ```csharp
@@ -2858,10 +2858,10 @@ Předdefinované operátory sčítání jsou uvedeny níže. Pro číselné a v�
 
    |      |      |      |      |      |      |      |
    |:----:|:----:|:----:|:----:|:----:|:----:|:----:|
-   |      | Y    | +0   | -0   | \+ INF | – INF | NaN  | 
+   |      | y    | +0   | -0   | \+ INF | – INF | NaN  | 
    | x    | z    | x    | x    | \+ INF | – INF | NaN  | 
-   | +0   | Y    | +0   | +0   | \+ INF | – INF | NaN  | 
-   | -0   | Y    | +0   | -0   | \+ INF | – INF | NaN  | 
+   | +0   | y    | +0   | +0   | \+ INF | – INF | NaN  | 
+   | -0   | y    | +0   | -0   | \+ INF | – INF | NaN  | 
    | \+ INF | \+ INF | \+ INF | \+ INF | \+ INF | NaN  | NaN  | 
    | – INF | – INF | – INF | – INF | NaN  | – INF | NaN  | 
    | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | 
@@ -2951,7 +2951,7 @@ Předdefinované operátory odčítání jsou uvedeny níže. Všechny operátor
 
    |      |      |      |      |      |      |     |
    |:----:|:----:|:----:|:----:|:----:|:----:|:---:|
-   |      | Y    | +0   | -0   | \+ INF | – INF | NaN | 
+   |      | y    | +0   | -0   | \+ INF | – INF | NaN | 
    | x    | z    | x    | x    | – INF | \+ INF | NaN | 
    | +0   | -y   | +0   | +0   | – INF | \+ INF | NaN | 
    | -0   | -y   | -0   | +0   | – INF | \+ INF | NaN | 
@@ -3220,9 +3220,9 @@ bool operator ==(bool x, bool y);
 bool operator !=(bool x, bool y);
 ```
 
-Výsledek `==` je `true`, pokud `x` i `y` `true` nebo `x`.`y``false` V opačném případě je výsledek `false`.
+Výsledek `==` je `true`, pokud `x` i `y` `true` nebo `x`. V opačném případě je výsledek `false`.
 
-Výsledek `!=` je `false`, pokud `x` i `y` `true` nebo `x`.`y``false` V opačném případě je výsledek `true`. Pokud jsou operandy typu `bool`, operátor `!=` vytvoří stejný výsledek jako operátor `^`.
+Výsledek `!=` je `false`, pokud `x` i `y` `true` nebo `x`. V opačném případě je výsledek `true`. Pokud jsou operandy typu `bool`, operátor `!=` vytvoří stejný výsledek jako operátor `^`.
 
 ### <a name="enumeration-comparison-operators"></a>Operátory porovnání výčtu
 
@@ -3498,7 +3498,7 @@ Výsledek `x & y` je `true`, pokud jsou `true``x` i `y`. V opačném případě 
 
 Výsledek `x | y` je `true`, pokud je `true`buď `x`, nebo `y`. V opačném případě je výsledek `false`.
 
-Výsledek `x ^ y` je `true`, pokud je `x` `true` a `y` `false`nebo `x` `false` a `y`.`true` V opačném případě je výsledek `false`. Pokud jsou operandy typu `bool`, operátor `^` vypočítá stejný výsledek jako operátor `!=`.
+Výsledek `x ^ y` je `true`, pokud je `x` `true` a `y` `false`nebo `x` `false` a `y`. V opačném případě je výsledek `false`. Pokud jsou operandy typu `bool`, operátor `^` vypočítá stejný výsledek jako operátor `!=`.
 
 ### <a name="nullable-boolean-logical-operators"></a>Logické operátory s možnou hodnotou null
 
@@ -3913,7 +3913,7 @@ static D[] F() {
     return result;
 }
 ```
-Výstup je:
+výstup je:
 ```console
 5
 5
@@ -4435,7 +4435,7 @@ s výjimkou případů, kdy v je identifikátor x, je překlad jednoduše
 ( e )
 ```
 
-Například
+Příklad
 ```csharp
 from c in customers.Where(c => c.City == "London")
 select c
@@ -4724,7 +4724,7 @@ struct Rectangle
     }
 }
 ```
-V příkladu
+v příkladu
 ```csharp
 Point p = new Point();
 p.X = 100;
