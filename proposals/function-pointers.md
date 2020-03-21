@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: d9080202f9413f8beb80db222d47f5fc082ae641
-ms.sourcegitcommit: f3170512e7a3193efbcea52ec330648375e36915
+ms.openlocfilehash: 8bf3a18dc42e225e64bd3ccda2106aed89b421ed
+ms.sourcegitcommit: 9aa177443b83116fe1be2ab28e2c7291947fe32d
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/11/2020
-ms.locfileid: "79485502"
+ms.lasthandoff: 03/21/2020
+ms.locfileid: "80108386"
 ---
 # <a name="function-pointers"></a>Ukazatele na funkce
 
@@ -174,7 +174,8 @@ V nezabezpečeném kontextu je metoda `M` kompatibilní s typem ukazatele funkce
 V nezabezpečeném kontextu existuje implicitní převod z výrazu adresy, jehož cílem je skupina metod `E` na kompatibilní typ ukazatele na funkci `F` Pokud `E` obsahuje alespoň jednu metodu, která je použita v běžné formě na seznam argumentů konstruovaný pomocí typů parametrů a modifikátorů `F`, jak je popsáno v následujícím tématu.
 - `M` je vybrána jedna metoda, která odpovídá vyvolání metody `E(A)` formuláře s těmito úpravami:
    - Seznam argumentů `A` je seznam výrazů, každý klasifikovaný jako proměnná a s typem a modifikátorem (`ref`, `out`nebo `in`) odpovídajícího _formálního\_parametru\_seznam_ `D`.
-   - Kandidátské metody jsou pouze metody, které jsou použity pouze v jejich normálním tvaru, nikoli v rozbalených formulářích.
+   - Kandidátské metody jsou pouze metody, které jsou použitelné v jejich normální podobě, nikoli ty, které platí v rozbaleném formuláři.
+   - Kandidátské metody jsou pouze metody, které jsou statické.
 - Pokud algoritmus vyvolání metody vyvolá chybu, dojde k chybě při kompilaci. V opačném případě algoritmus vytvoří jednu nejlepší metodu `M` se stejným počtem parametrů jako `F` a převod je považován za existující.
 - Vybraná metoda `M` musí být kompatibilní (jak je definováno výše) s typem ukazatele na funkci `F`. V opačném případě dojde k chybě při kompilaci.
 - Výsledkem převodu je ukazatel na funkci typu `F`.
@@ -356,7 +357,7 @@ Po diskuzi se rozhodli, že nepovolíte pojmenovanou deklaraci `delegate*`ch typ
 
 ## <a name="future-considerations"></a>Budoucí požadavky
 
-### <a name="static-local-functions"></a>statické místní funkce
+### <a name="static-local-functions"></a>Statické místní funkce
 
 To odkazuje na [Návrh](https://github.com/dotnet/csharplang/issues/1565) , který povolí modifikátor `static` na místních funkcích. Tato funkce by měla být zaručená, že se bude generovat jako `static` a s přesným podpisem zadaným ve zdrojovém kódu. Tato funkce by měla být platným argumentem pro `&`, protože neobsahuje žádné z problémů, které místní funkce mají dnes
 
