@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: d6519ff57b4a98c4eec8ccbf310303432ac3255e
-ms.sourcegitcommit: 65ea1e6dc02853e37e7f2088e2b6cc08d01d1044
+ms.openlocfilehash: 50f2bd2d0a84064cfe35fe65b9e5c59c052d19ac
+ms.sourcegitcommit: 1dbb8e82bed5012a58a3a035bf2c3737ed570d07
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 09/27/2019
-ms.locfileid: "79485026"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80122952"
 ---
 # <a name="ranges"></a>Rozsahy
 
@@ -100,7 +100,7 @@ C#nemá žádný syntaktický způsob pro přístup k "rozsahům" nebo "řezů" 
 
 Jazyk zavádí nový operátor rozsahu `x..y`. Je to binární operátor vpony, který přijímá dva výrazy. Operand může být vynechán (níže uvedené příklady) a musí být převoditelné na `System.Index`. Bude snížena na příslušné volání metody Factory `System.Range`.
 
-– Nahrazujeme C# gramatická pravidla pro *multiplicative_expression* následující (aby bylo možné zavést novou úroveň priority):
+C# Gramatická pravidla pro *multiplicative_expression* se nahrazují následujícími písmeny (aby bylo možné zavést novou úroveň priority):
 
 ```antlr
 range_expression
@@ -149,14 +149,14 @@ Jazyk poskytne člen indexeru instance s jedním parametrem typu `Index` pro typ
 
 Typ je ***vypočítán*** , pokud má vlastnost s názvem `Length` nebo `Count` s přístupným mechanismem getter a návratovým typem `int`. Jazyk může tuto vlastnost použít k převedení výrazu typu `Index` do `int` v místě výrazu bez nutnosti použít typ `Index` vůbec. V případě, že jsou přítomny `Length` i `Count`, bude preferovaná `Length`. Pro zjednodušení předá návrh bude používat název `Length` k reprezentaci `Count` nebo `Length`.
 
-U takových typů bude jazyk fungovat jako v případě, že se jedná o člena indexu formuláře `T this[Index index]` kde `T` je návratový typ indexeru založeného na `int` včetně všech `ref` poznámek ve stylu. Nový člen bude mít stejné `get` a `set` členy s porovnávacím přístupným přístupností jako indexerem `int`. 
+U takových typů bude jazyk fungovat jako v případě, že je členem formuláře indexer, `T this[Index index]` kde `T` je návratový typ indexeru založeného na `int`, včetně všech poznámek `ref` stylů. Nový člen bude mít stejné `get` a `set` členy s porovnávacím přístupným přístupností jako indexerem `int`. 
 
-Nový indexer bude implementován převodem argumentu typu `Index` do `int` a vyvoláním indexeru založeného na `int`. Pro účely diskuze umožňuje použít příklad `receiver[expr]`. Převod `expr` na `int` se projeví takto:
+Nový indexer bude implementován převodem argumentu typu `Index` do `int` a vyvoláním indexeru založeného na `int`. Pro účely diskuze použijte příklad `receiver[expr]`. Převod `expr` na `int` se projeví takto:
 
 - Pokud má argument formu `^expr2` a typ `expr2` je `int`, bude přeložen na `receiver.Length - expr2`.
 - V opačném případě bude převedena jako `expr.GetOffset(receiver.Length)`.
 
-To umožňuje vývojářům používat funkci `Index` u stávajících typů bez nutnosti úprav. Příklad:
+To umožňuje vývojářům používat funkci `Index` u stávajících typů bez nutnosti úprav. Například:
 
 ``` csharp
 List<char> list = ...;
@@ -166,7 +166,7 @@ var value = list[^1];
 var value = list[list.Count - 1]; 
 ```
 
-Výrazy `receiver` a `Length` budou podle potřeby vyloučeny, aby se zajistilo, že se všechny vedlejší účinky spustí pouze jednou. Příklad:
+Výrazy `receiver` a `Length` budou podle potřeby vyloučeny, aby se zajistilo, že se všechny vedlejší účinky spustí pouze jednou. Například:
 
 ``` csharp
 class Collection {
@@ -205,11 +205,11 @@ Jazyk poskytne člen indexeru instance s jedním parametrem typu `Range` pro typ
 - Typ má přístupný člen s názvem `Slice`, který má dva parametry typu `int`.
 - Typ nemá indexer instancí, který jako první parametr přebírá jeden `Range`. `Range` musí být jediný parametr nebo zbývající parametry musí být nepovinné.
 
-U takových typů se jazyk sváže, jako by byl člen indexu formuláře `T this[Range range]`, kde `T` je návratový typ `Slice` metody, včetně všech `ref` poznámek ve stylu. Nový člen také bude mít k dispozici přístupnost s `Slice`. 
+U takových typů se jazyk sváže, jako by byl člen indexeru formuláře `T this[Range range]`, kde `T` je návratový typ `Slice` metody, včetně všech `ref` poznámek ve stylu. Nový člen také bude mít k dispozici přístupnost s `Slice`. 
 
-Pokud je indexer založený na `Range` vázaný na výraz s názvem `receiver`, bude snížen převodem výrazu `Range` na dvě hodnoty, které jsou poté předány metodě `Slice`. Pro účely diskuze umožňuje použít příklad `receiver[expr]`.
+Pokud je indexer založený na `Range` vázaný na výraz s názvem `receiver`, bude snížen převodem výrazu `Range` na dvě hodnoty, které jsou poté předány metodě `Slice`. Pro účely diskuze použijte příklad `receiver[expr]`.
 
-První argument `Slice` bude získán převodem typovaného výrazu následujícím způsobem:
+První argument `Slice` bude získán převodem výrazu zadaného rozsahu následujícím způsobem:
 
 - Pokud má `expr` `expr1..expr2` formuláře (kde se `expr2` může vynechat) a `expr1` má typ `int`, bude vygenerován jako `expr1`.
 - Pokud má `expr` `^expr1..expr2` (kde je možné vynechání `expr2`), bude vygenerována jako `receiver.Length - expr1`.
@@ -223,7 +223,7 @@ Tato hodnota se znovu použije při výpočtu druhého argumentu `Slice`. V tako
 - Pokud má `expr` `expr1..` (kde je možné vynechání `expr1`), bude vygenerována jako `receiver.Length - start`.
 - V opačném případě bude vygenerována jako `expr.End.GetOffset(receiver.Length) - start`.
 
-`receiver`, `Length` a `expr` výrazy budou přecházet podle potřeby, aby se zajistilo, že se všechny vedlejší účinky spustí pouze jednou. Příklad:
+Výrazy `receiver`, `Length`a `expr` budou přecházet podle potřeby, aby se zajistilo, že všechny vedlejší účinky budou provedeny pouze jednou. Například:
 
 ``` csharp
 class Collection {
@@ -319,7 +319,7 @@ Převod cílového typu se implementuje následovně pro libovolný výraz, kter
 - Pokud má `expr` `^expr2` a typ `expr2` `int`, bude přeložen na `receiver.Length - expr2`.
 - V opačném případě bude převedena jako `expr.GetOffset(receiver.Length)`.
 
-Výrazy `receiver` a `Length` budou podle potřeby vyloučeny, aby se zajistilo, že se všechny vedlejší účinky spustí pouze jednou. Příklad:
+Výrazy `receiver` a `Length` budou podle potřeby vyloučeny, aby se zajistilo, že se všechny vedlejší účinky spustí pouze jednou. Například:
 
 ``` csharp
 class Collection {
