@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 38740069a2e105f920fa275c443f4560055e2901
-ms.sourcegitcommit: 9aa177443b83116fe1be2ab28e2c7291947fe32d
+ms.openlocfilehash: 07b4afe4a3fcbf10c978f05e642dfd8a47d53ea5
+ms.sourcegitcommit: 194a043db72b9244f8db45db326cc82de6cec965
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/21/2020
-ms.locfileid: "80108364"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80217200"
 ---
 
 # <a name="target-typed-new-expressions"></a>Výrazy `new` s cílovým typem
@@ -80,35 +80,36 @@ Action a = new(() => {}); // "new" is redundant
 
 (int a, int b) t = new(); // ruled out by "use of struct default constructor"
 Action a = new(); // no constructor found
+```
 
-### Miscellaneous
+### <a name="miscellaneous"></a>Různé
 
-`throw new()` is disallowed.
+`throw new()` není povoleno.
 
-Target-typed `new` is not allowed with binary operators.
+`new` cílového typu není povolený u binárních operátorů.
 
-It is disallowed when there is no type to target: unary operators, collection of a `foreach`, in a `using`, in a deconstruction, in an `await` expression, as an anonymous type property (`new { Prop = new() }`), in a `lock` statement, in a `sizeof`, in a `fixed` statement, in a member access (`new().field`), in a dynamically dispatched operation (`someDynamic.Method(new())`), in a LINQ query, as the operand of the `is` operator, as the left operand of the `??` operator,  ...
+Není povoleno, není-li k dispozici žádný typ k cíli: unární operátory, kolekce `foreach`, v `using`ve formě dekonstrukce ve výrazu `await` jako vlastnost anonymního typu (`new { Prop = new() }`) v příkazu `lock`, v `sizeof`v příkazu `fixed` v příkazu`new().field`v rámci člena přístup (`someDynamic.Method(new())`) v dynamicky odesílané operaci (`is`) v dotazu LINQ jako Operand operátoru `??`, jako levý operand operátoru ,  ...
 
-It is also disallowed as a `ref`.
+Nepovoluje se taky jako `ref`.
 
-## Drawbacks
+## <a name="drawbacks"></a>Nevýhody
 [drawbacks]: #drawbacks
 
-There were some concerns with target-typed `new` creating new categories of breaking changes, but we already have that with `null` and `default`, and that has not been a significant problem.
+Došlo k nějakým potížím s cílovým typem `new` vytváření nových kategorií podstatných změn, ale už to máme s `null` a `default`a že nedošlo k významnému problému.
 
-## Alternatives
+## <a name="alternatives"></a>Alternativy
 [alternatives]: #alternatives
 
-Most of complaints about types being too long to duplicate in field initialization is about *type arguments* not the type itself, we could infer only type arguments like `new Dictionary(...)` (or similar) and infer type arguments locally from arguments or the collection initializer.
+Většina stížností na typy, které jsou příliš dlouhé na duplicity při inicializaci pole, se týká *typů argumentů* , které nejsou samotný typ, můžeme odvodit jenom argumenty typu jako `new Dictionary(...)` (nebo podobné) a odvodit argumenty typu místně z argumentů nebo inicializátoru kolekce.
 
-## Questions
+## <a name="questions"></a>Otázky
 [questions]: #questions
 
-- Should we forbid usages in expression trees? (no)
-- How the feature interacts with `dynamic` arguments? (no special treatment)
-- How IntelliSense should work with `new()`? (only when there is a single target-type)
+- Pokud byste měli zakázat použití ve stromech výrazů? žádné
+- Jak funkce komunikuje s argumenty `dynamic`? (žádné zvláštní zacházení)
+- Jak má IntelliSense pracovat s `new()`? (pouze v případě, že existuje jeden cílový typ)
 
-## Design meetings
+## <a name="design-meetings"></a>Schůzky pro návrh
 
 - [LDM-2017-10-18](https://github.com/dotnet/csharplang/blob/master/meetings/2017/LDM-2017-10-18.md#100)
 - [LDM-2018-05-21](https://github.com/dotnet/csharplang/blob/master/meetings/2018/LDM-2018-05-21.md)
