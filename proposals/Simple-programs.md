@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: b9697fc1d772ba59ed3b1de339a5a3d4eb24b1bd
-ms.sourcegitcommit: 36b028f4d6e88bd7d4a843c6d384d1b63cc73334
+ms.openlocfilehash: 54ae4ffabde6dca49b7e6bfb626d65837eabc8f5
+ms.sourcegitcommit: 1e1c7c72b156e2fbc54d6d6ac8d21bca9934d8d2
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 02/19/2020
-ms.locfileid: "79485222"
+ms.lasthandoff: 03/26/2020
+ms.locfileid: "80281941"
 ---
 # <a name="simple-programs"></a>Jednoduché programy
 
@@ -50,18 +50,16 @@ compilation_unit
     ;
 ```
 
-Ve všech, ale v jednom *compilation_unit* *příkaz*s musí být všechny deklarace místní funkce. 
+Pouze jeden *compilation_unit* může mít příkaz s *příkazem*. 
 
 Příklad:
 
 ``` c#
-// File 1 - any statements
-if (args.Length == 0
-    || !int.TryParse(args[0], out int n)
+if (System.Environment.CommandLine.Length == 0
+    || !int.TryParse(System.Environment.CommandLine, out int n)
     || n < 0) return;
 Console.WriteLine(Fib(n).curr);
 
-// File 2 - only local functions
 (int curr, int prev) Fib(int i)
 {
     if (i == 0) return (1, 0);
@@ -79,18 +77,14 @@ static class Program
 {
     static async Task Main()
     {
-        // File 1 statements
-        // File 2 local functions
-        // ...
+        // statements
     }
 }
 ```
 
 Všimněte si, že názvy "program" a "Main" jsou používány pouze pro ilustraci, skutečné názvy používané kompilátorem jsou závislé na implementaci a ani typ ani na metodu nelze odkazovat pomocí názvu ze zdrojového kódu.
 
-Metoda je určena jako vstupní bod programu. Explicitně deklarované metody, které by mohly být považovány za kandidáty vstupního bodu, se ignorují. V případě, že k tomu dojde, je hlášeno upozornění. Je-li zadán `-main:<type>` přepínač kompilátoru, jedná se o chybu.
-
-Pokud některá jednotka kompilace obsahuje příkazy jiné než deklarace místní funkce, napřed příkazy z této jednotky kompilace nastávají. To způsobí, že je právní pro místní funkce v jednom souboru, aby odkazovaly na lokální proměnné v jiném. Pořadí příspěvků příkazu (které by měly být místní funkce) z jiných kompilačních jednotek, není definováno.
+Metoda je určena jako vstupní bod programu. Explicitně deklarované metody, které by mohly být považovány za kandidáty vstupního bodu, se ignorují. V případě, že k tomu dojde, je hlášeno upozornění. Pokud existují příkazy na nejvyšší úrovni, při určení `-main:<type>` přepínač kompilátoru se jedná o chybu.
 
 Asynchronní operace jsou povoleny v příkazech nejvyšší úrovně do rozsahu, v němž jsou povoleny v příkazech v rámci běžné metody asynchronního vstupního bodu. Nejsou však požadovány, pokud `await` výrazy a jiné asynchronní operace vynechány, není vytvořeno žádné upozornění. Místo toho je podpis generované metody vstupního bodu ekvivalentní 
 ``` c#
@@ -104,13 +98,11 @@ static class $Program
 {
     static void $Main()
     {
-        // Statements from File 1
-        if (args.Length == 0
-            || !int.TryParse(args[0], out int n)
+        if (System.Environment.CommandLine.Length == 0
+            || !int.TryParse(System.Environment.CommandLine, out int n)
             || n < 0) return;
         Console.WriteLine(Fib(n).curr);
         
-        // Local functions from File 2
         (int curr, int prev) Fib(int i)
         {
             if (i == 0) return (1, 0);
@@ -123,7 +115,6 @@ static class $Program
 
 Ve stejnou dobu jako příklad:
 ``` c#
-// File 1
 await System.Threading.Tasks.Task.Delay(1000);
 System.Console.WriteLine("Hi!");
 ```
@@ -134,7 +125,6 @@ static class $Program
 {
     static async Task $Main()
     {
-        // Statements from File 1
         await System.Threading.Tasks.Task.Delay(1000);
         System.Console.WriteLine("Hi!");
     }
@@ -143,7 +133,7 @@ static class $Program
 
 ### <a name="scope-of-top-level-local-variables-and-local-functions"></a>Rozsah místních proměnných nejvyšší úrovně a místních funkcí
 
-I když jsou lokální proměnné a funkce nejvyšší úrovně "zabalené" do generované metody vstupního bodu, měly by být stále v rozsahu celého programu.
+I když jsou lokální proměnné a funkce nejvyšší úrovně "zabalené" do generované metody vstupního bodu, měly by být stále v rozsahu v rámci programu v každé kompilační jednotce.
 Pro účely vyhodnocení jednoduchého názvu po dosažení globálního oboru názvů:
 - Nejprve se provede pokus o vyhodnocení názvu v rámci generované metody vstupního bodu a jenom v případě, že se tento pokus nezdaří. 
 - Vyhodnocování "regular" v rámci deklarace globálního oboru názvů je provedeno. 

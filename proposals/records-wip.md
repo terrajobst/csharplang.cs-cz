@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 25756c1811d5e6dc97512ce70f99ab7fefa91c4a
-ms.sourcegitcommit: 2a6dffb60718065ece95df75e1cc7eb509e48a8d
+ms.openlocfilehash: 258ae6865c5b2c3103a0cdf7e1e5a2cdee11e740
+ms.sourcegitcommit: 1e1c7c72b156e2fbc54d6d6ac8d21bca9934d8d2
 ms.translationtype: MT
 ms.contentlocale: cs-CZ
-ms.lasthandoff: 03/01/2020
-ms.locfileid: "79485236"
+ms.lasthandoff: 03/26/2020
+ms.locfileid: "80281954"
 ---
 # <a name="records-work-in-progress"></a>Zaznamenává probíhající práci.
 
@@ -78,3 +78,31 @@ Typy záznamů poskytují syntetizované implementace následujících metod:
 ```C#
 override Equals(object o) => Equals(o as T);
 ```
+
+## <a name="with-expression"></a>výraz `with`
+
+Výraz `with` je nový výraz pomocí následující syntaxe.
+
+```antlr
+with_expression
+    : switch_expression
+    | switch_expression 'with' anonymous_object_initializer
+```
+
+Výraz `with` umožňuje "nedestruktivní mutace", navržený tak, aby vytvořil kopii výrazu příjemce se změnami vlastností, které jsou uvedeny v `anonymous_object_initializer`.
+
+Platný výraz `with` má přijímač s typem, který není typu void. Typ přijímače musí obsahovat přístupnou metodu instance nazvanou `With` s příslušnými parametry a návratovým typem. Jedná se o chybu, pokud existuje více metod `With` bez přepsání. Pokud existuje více `With` přepsání, musí existovat nepřepisující `With` metoda, která je cílovou metodou. V opačném případě musí být k dispozici právě jedna metoda `With`.
+
+Na pravé straně `with` výrazu je `anonymous_object_initializer` se sekvencí přiřazení s polem nebo vlastností přijímače na levé straně přiřazení a libovolným výrazem na pravé straně, který se implicitně předává na typ na levé straně.
+
+S ohledem na cílovou metodu `With` musí být návratový typ typu typu výrazu příjemce nebo jeho základního typu. Pro každý parametr metody `With` musí být k dispozici odpovídající pole instance nebo vlastnost čitelný na typu příjemce se stejným názvem a stejným typem. Každá vlastnost nebo pole na pravé straně výrazu with musí také odpovídat parametru se stejným názvem v metodě `With`.
+
+S ohledem na platnou metodu `With` je vyhodnocení výrazu `with` ekvivalentní volání metody `With` s výrazy v `anonymous_object_initializer` nahrazeny parametrem se stejným názvem jako vlastnost na levé straně. Pokud neexistuje žádná vyhovující vlastnost pro daný parametr v `anonymous_object_initializer`, je argumentem vyhodnoceno pole nebo vlastnost se stejným názvem na přijímači.
+
+Pořadí vyhodnocení vedlejších účinků je následující, přičemž každý výraz se vyhodnocuje přesně jednou:
+
+1. Výraz přijímače
+
+2. Výrazy v `anonymous_object_initializer`v lexikálním pořadí
+
+3. Vyhodnocení jakýchkoli vlastností, které odpovídají parametrům `With` metody, v pořadí podle definice parametrů `With` metody.
